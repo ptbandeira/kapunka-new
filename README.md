@@ -18,3 +18,11 @@ View your app in AI Studio: https://ai.studio/apps/drive/1ROv6j-3REdmWuJaFL9bv6n
 2. Set the `GEMINI_API_KEY` in [.env.local](.env.local) to your Gemini API key
 3. Run the app:
    `npm run dev`
+
+## Deploy to Netlify with Decap CMS
+
+1. Connect the repository to Netlify and choose the branch that should trigger builds (e.g. `main`).
+2. In **Site settings → Build & deploy**, set the **Build command** to `npm run build` and the **Publish directory** to `dist`.
+3. Enable **Identity** and **Git Gateway** from the Netlify dashboard so Decap CMS can authenticate editors and commit updates.
+4. Make sure the branch selected in Netlify matches the `branch` value in [`admin/config.yml`](admin/config.yml). The configuration now defaults to `main`; change it if your production site uses a different branch.
+5. After deploying, visit `/admin/` on your Netlify site to log in with Netlify Identity and manage all site content through Decap CMS.
