@@ -1,1 +1,316 @@
-~�er��z{l����)�r�ߊ�
+backend:
+  name: git-gateway
+  branch: main
+
+local_backend: true
+
+media_folder: content/uploads
+public_folder: /content/uploads
+
+collections:
+  - name: site
+    label: Site Settings
+    files:
+      - name: site
+        label: Site Configuration
+        file: content/site.json
+        format: json
+        fields:
+          - label: Brand
+            name: brand
+            widget: object
+            fields:
+              - { label: Name, name: name, widget: string }
+          - label: Home
+            name: home
+            widget: object
+            fields:
+              - { label: Hero Image, name: heroImage, widget: image, choose_url: true }
+          - label: Contact
+            name: contact
+            widget: object
+            fields:
+              - { label: Email Address, name: email, widget: string }
+              - { label: Phone Number, name: phone, widget: string }
+              - { label: WhatsApp Link, name: whatsapp, widget: string }
+          - label: Footer
+            name: footer
+            widget: object
+            fields:
+              - { label: Legal Name, name: legalName, widget: string }
+              - label: Social Links
+                name: socialLinks
+                widget: list
+                summary: "{{fields.label}}"
+                fields:
+                  - { label: ID, name: id, widget: string }
+                  - { label: Label, name: label, widget: string }
+                  - { label: URL, name: url, widget: string }
+                  - label: Icon
+                    name: icon
+                    widget: select
+                    options:
+                      - { label: Facebook, value: facebook }
+                      - { label: Instagram, value: instagram }
+                      - { label: LinkedIn, value: linkedin }
+                      - { label: YouTube, value: youtube }
+                      - { label: Globe, value: globe }
+  - name: translations
+    label: Translations
+    files:
+      - name: translations
+        label: All Translations
+        file: content/translations.json
+        format: json
+        fields:
+          - { label: English, name: en, widget: json }
+          - { label: Portuguese, name: pt, widget: json }
+          - { label: Spanish, name: es, widget: json }
+  - name: products
+    label: Products
+    files:
+      - name: catalog
+        label: Product Catalog
+        file: content/products/index.json
+        format: json
+        fields:
+          - label: Products
+            name: items
+            widget: list
+            summary: "{{fields.name.en}}"
+            fields:
+              - { label: ID, name: id, widget: string }
+              - label: Name
+                name: name
+                widget: object
+                fields:
+                  - { label: English, name: en, widget: string }
+                  - { label: Portuguese, name: pt, widget: string }
+                  - { label: Spanish, name: es, widget: string }
+              - label: Tagline
+                name: tagline
+                widget: object
+                fields:
+                  - { label: English, name: en, widget: string }
+                  - { label: Portuguese, name: pt, widget: string }
+                  - { label: Spanish, name: es, widget: string }
+              - { label: Image, name: imageUrl, widget: image, choose_url: true }
+              - label: Sizes
+                name: sizes
+                widget: list
+                summary: "{{fields.size}} ml"
+                fields:
+                  - { label: Option ID, name: id, widget: string }
+                  - { label: Size (ml), name: size, widget: number }
+                  - { label: Price, name: price, widget: number, value_type: float }
+              - label: Badges
+                name: badges
+                widget: object
+                fields:
+                  - label: English
+                    name: en
+                    widget: list
+                    field: { label: Badge, name: badge, widget: string }
+                  - label: Portuguese
+                    name: pt
+                    widget: list
+                    field: { label: Selo, name: badge, widget: string }
+                  - label: Spanish
+                    name: es
+                    widget: list
+                    field: { label: Distintivo, name: badge, widget: string }
+              - label: Benefits
+                name: benefits
+                widget: object
+                fields:
+                  - label: English
+                    name: en
+                    widget: list
+                    field: { label: Benefit, name: benefit, widget: string }
+                  - label: Portuguese
+                    name: pt
+                    widget: list
+                    field: { label: Benefício, name: benefit, widget: string }
+                  - label: Spanish
+                    name: es
+                    widget: list
+                    field: { label: Beneficio, name: benefit, widget: string }
+              - label: How to Use
+                name: howToUse
+                widget: object
+                fields:
+                  - { label: English, name: en, widget: text }
+                  - { label: Portuguese, name: pt, widget: text }
+                  - { label: Spanish, name: es, widget: text }
+              - label: Ingredients
+                name: ingredients
+                widget: object
+                fields:
+                  - { label: English, name: en, widget: text }
+                  - { label: Portuguese, name: pt, widget: text }
+                  - { label: Spanish, name: es, widget: text }
+              - label: Origin & Purity Note
+                name: labTestedNote
+                widget: object
+                fields:
+                  - { label: English, name: en, widget: text }
+                  - { label: Portuguese, name: pt, widget: text }
+                  - { label: Spanish, name: es, widget: text }
+  - name: articles
+    label: Articles
+    files:
+      - name: articles
+        label: Skincare Library
+        file: content/articles/index.json
+        format: json
+        fields:
+          - label: Articles
+            name: items
+            widget: list
+            summary: "{{fields.title.en}}"
+            fields:
+              - { label: ID, name: id, widget: string }
+              - { label: Slug, name: slug, widget: string }
+              - label: Title
+                name: title
+                widget: object
+                fields:
+                  - { label: English, name: en, widget: string }
+                  - { label: Portuguese, name: pt, widget: string }
+                  - { label: Spanish, name: es, widget: string }
+              - label: Preview
+                name: preview
+                widget: object
+                fields:
+                  - { label: English, name: en, widget: text }
+                  - { label: Portuguese, name: pt, widget: text }
+                  - { label: Spanish, name: es, widget: text }
+              - label: Content
+                name: content
+                widget: object
+                fields:
+                  - { label: English, name: en, widget: markdown }
+                  - { label: Portuguese, name: pt, widget: markdown }
+                  - { label: Spanish, name: es, widget: markdown }
+              - { label: Category, name: category, widget: string }
+              - { label: Featured Image, name: imageUrl, widget: image, choose_url: true }
+              - { label: Related Product ID, name: relatedProductId, widget: string, required: false }
+  - name: reviews
+    label: Reviews
+    files:
+      - name: reviews
+        label: Testimonials
+        file: content/reviews/index.json
+        format: json
+        fields:
+          - label: Reviews
+            name: items
+            widget: list
+            summary: "{{fields.author.en}}"
+            fields:
+              - { label: ID, name: id, widget: string }
+              - label: Quote
+                name: text
+                widget: object
+                fields:
+                  - { label: English, name: en, widget: text }
+                  - { label: Portuguese, name: pt, widget: text }
+                  - { label: Spanish, name: es, widget: text }
+              - label: Author
+                name: author
+                widget: object
+                fields:
+                  - { label: English, name: en, widget: string }
+                  - { label: Portuguese, name: pt, widget: string }
+                  - { label: Spanish, name: es, widget: string }
+              - label: Role
+                name: role
+                widget: object
+                fields:
+                  - { label: English, name: en, widget: string }
+                  - { label: Portuguese, name: pt, widget: string }
+                  - { label: Spanish, name: es, widget: string }
+  - name: courses
+    label: Courses
+    files:
+      - name: courses
+        label: Academy Courses
+        file: content/courses.json
+        format: json
+        fields:
+          - label: Courses
+            name: courses
+            widget: list
+            summary: "{{fields.title.en}}"
+            fields:
+              - { label: ID, name: id, widget: string }
+              - label: Title
+                name: title
+                widget: object
+                fields:
+                  - { label: English, name: en, widget: string }
+                  - { label: Portuguese, name: pt, widget: string }
+                  - { label: Spanish, name: es, widget: string }
+              - { label: Image, name: imageUrl, widget: image, choose_url: true }
+              - { label: Price, name: price, widget: number, value_type: float }
+              - { label: Enroll Link, name: enrollLink, widget: string }
+  - name: doctors
+    label: Doctors
+    files:
+      - name: doctors
+        label: Professional Network
+        file: content/doctors.json
+        format: json
+        fields:
+          - label: Doctors
+            name: doctors
+            widget: list
+            summary: "{{fields.name}}"
+            fields:
+              - { label: ID, name: id, widget: string }
+              - { label: Name, name: name, widget: string }
+              - { label: Image, name: imageUrl, widget: image, choose_url: true }
+  - name: partners
+    label: Partners
+    files:
+      - name: partners
+        label: Press & Clinics
+        file: content/partners.json
+        format: json
+        fields:
+          - label: Partners
+            name: partners
+            widget: list
+            summary: "{{fields.name}}"
+            fields:
+              - { label: ID, name: id, widget: string }
+              - { label: Name, name: name, widget: string }
+              - { label: Logo URL, name: logoUrl, widget: string }
+  - name: policies
+    label: Policies
+    files:
+      - name: policies
+        label: Store Policies
+        file: content/policies.json
+        format: json
+        fields:
+          - label: Policies
+            name: items
+            widget: list
+            summary: "{{fields.title.en}}"
+            fields:
+              - { label: ID, name: id, widget: string }
+              - label: Title
+                name: title
+                widget: object
+                fields:
+                  - { label: English, name: en, widget: string }
+                  - { label: Portuguese, name: pt, widget: string }
+                  - { label: Spanish, name: es, widget: string }
+              - label: Content
+                name: content
+                widget: object
+                fields:
+                  - { label: English, name: en, widget: markdown }
+                  - { label: Portuguese, name: pt, widget: markdown }
+                  - { label: Spanish, name: es, widget: markdown }

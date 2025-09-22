@@ -1,7 +1,17 @@
 
-import React, { createContext, useState, useContext, useCallback, useMemo } from 'react';
+import React, {
+  createContext,
+  useState,
+  useContext,
+  useCallback,
+  useMemo,
+  useEffect,
+} from 'react';
 import type { Language } from '../types';
-import { translations } from '../data/translations';
+import translationsData from '@/content/translations.json';
+
+type TranslationTree = Record<string, any>;
+type Translations = Record<Language, TranslationTree>;
 
 interface LanguageContextType {
   language: Language;
@@ -14,6 +24,20 @@ const LanguageContext = createContext<LanguageContextType | undefined>(undefined
 
 export const LanguageProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const [language, setLanguage] = useState<Language>('en');
+  const [translations, setTranslations] = useState<Translations>(
+    translationsData as Translations,
+  );
+
+  useEffect(() => {
+    fetch('/content/translations.json')
+      .then((res) => res.json())
+      .then((data) => {
+        setTranslations(data as Translations);
+      })
+      .catch((error) => {
+        console.error('Failed to load translations', error);
+      });
+  }, []);
 
   const t = useCallback((key: string): string => {
     const keys = key.split('.');
@@ -25,7 +49,7 @@ export const LanguageProvider: React.FC<{ children: React.ReactNode }> = ({ chil
       }
     }
     return result || key;
-  }, [language]);
+  }, [language, translations]);
 
   const translate = useCallback((content: Record<string, any>) => {
     if (typeof content === 'object' && content !== null && content[language]) {

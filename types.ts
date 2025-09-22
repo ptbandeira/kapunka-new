@@ -74,3 +74,34 @@ export interface Partner {
     name: string;
     logoUrl: string;
 }
+
+export interface Policy {
+    id: string;
+    title: Translatable;
+    content: Translatable;
+}
+
+export interface SocialLink {
+    id: string;
+    label: string;
+    url: string;
+    icon: string;
+}
+
+export interface SiteSettings {
+    brand?: {
+        name: string;
+    };
+    home?: {
+        heroImage: string;
+    };
+    contact?: {
+        email: string;
+        phone: string;
+        whatsapp: string;
+    };
+    footer?: {
+        legalName?: string;
+        socialLinks?: SocialLink[];
+    };
+}

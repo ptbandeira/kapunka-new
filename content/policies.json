@@ -1,0 +1,56 @@
+{
+  "items": [
+    {
+      "id": "shipping",
+      "title": {
+        "en": "Shipping Policy",
+        "pt": "Política de Envio",
+        "es": "Política de Envío"
+      },
+      "content": {
+        "en": "We offer standard and express shipping options. All orders are processed within 1-2 business days. Shipping times and costs will be calculated at checkout based on your location. You will receive a tracking number once your order has shipped.",
+        "pt": "Oferecemos opções de envio padrão e expresso. Todos os pedidos são processados dentro de 1-2 dias úteis. Os prazos e custos de envio são calculados no checkout com base na sua localização. Você receberá um número de rastreamento assim que seu pedido for enviado.",
+        "es": "Ofrecemos opciones de envío estándar y exprés. Todos los pedidos se procesan en un plazo de 1-2 días laborables. Los tiempos y costos de envío se calculan en el checkout según tu ubicación. Recibirás un número de seguimiento una vez que tu pedido haya sido enviado."
+      }
+    },
+    {
+      "id": "returns",
+      "title": {
+        "en": "Return Policy",
+        "pt": "Política de Devolução",
+        "es": "Política de Devoluciones"
+      },
+      "content": {
+        "en": "We want you to be happy with your purchase. If you are not satisfied, you can return your product within 30 days of receipt for a full refund. Please contact our customer service to initiate a return. Products must be at least half full to be eligible for a refund.",
+        "pt": "Queremos que você fique satisfeito com a sua compra. Se não estiver, você pode devolver o produto dentro de 30 dias do recebimento para um reembolso total. Entre em contato com o nosso atendimento ao cliente para iniciar uma devolução. Os produtos devem estar pelo menos pela metade cheios para serem elegíveis a reembolso.",
+        "es": "Queremos que estés satisfecho con tu compra. Si no es así, puedes devolver tu producto dentro de los 30 días posteriores a la recepción para obtener un reembolso completo. Ponte en contacto con nuestro servicio de atención al cliente para iniciar una devolución. Los productos deben estar al menos a la mitad para ser elegibles para un reembolso."
+      }
+    },
+    {
+      "id": "privacy",
+      "title": {
+        "en": "Privacy Policy",
+        "pt": "Política de Privacidade",
+        "es": "Política de Privacidad"
+      },
+      "content": {
+        "en": "Your privacy is important to us. We collect personal information to process your orders and improve your experience. We do not sell your data to third parties. Our website uses cookies for functionality and analytics. You can manage your cookie preferences at any time.",
+        "pt": "A sua privacidade é importante para nós. Recolhemos informações pessoais para processar os seus pedidos e melhorar a sua experiência. Não vendemos os seus dados a terceiros. O nosso site utiliza cookies para funcionalidades e análises. Você pode gerir as suas preferências de cookies a qualquer momento.",
+        "es": "Tu privacidad es importante para nosotros. Recopilamos información personal para procesar tus pedidos y mejorar tu experiencia. No vendemos tus datos a terceros. Nuestro sitio web utiliza cookies para funcionalidad y análisis. Puedes gestionar tus preferencias de cookies en cualquier momento."
+      }
+    },
+    {
+      "id": "terms",
+      "title": {
+        "en": "Terms of Service",
+        "pt": "Termos de Serviço",
+        "es": "Términos de Servicio"
+      },
+      "content": {
+        "en": "By using this website, you agree to our terms and conditions. All content on this site is the property of Kapunka Skincare. We reserve the right to refuse service to anyone for any reason at any time. Prices for our products are subject to change without notice.",
+        "pt": "Ao utilizar este site, você concorda com nossos termos e condições. Todo o conteúdo deste site é propriedade da Kapunka Skincare. Reservamo-nos o direito de recusar serviço a qualquer pessoa por qualquer motivo a qualquer momento. Os preços dos nossos produtos estão sujeitos a alterações sem aviso prévio.",
+        "es": "Al usar este sitio, aceptas nuestros términos y condiciones. Todo el contenido de este sitio es propiedad de Kapunka Skincare. Nos reservamos el derecho de rechazar el servicio a cualquier persona por cualquier motivo en cualquier momento. Los precios de nuestros productos están sujetos a cambios sin previo aviso."
+      }
+    }
+  ]
+}

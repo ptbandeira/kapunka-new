@@ -4,6 +4,7 @@ import { Helmet } from 'react-helmet-async';
 import { motion } from 'framer-motion';
 import { Mail, Phone, MessageSquare } from 'lucide-react';
 import { useLanguage } from '../contexts/LanguageContext';
+import { useSiteSettings } from '../contexts/SiteSettingsContext';
 
 const ContactForm: React.FC = () => {
     const { t } = useLanguage();
@@ -41,6 +42,11 @@ const ContactForm: React.FC = () => {
 
 const Contact: React.FC = () => {
     const { t } = useLanguage();
+    const { settings } = useSiteSettings();
+    const contactSettings = settings.contact ?? { email: 'hello@kapunka.com', phone: '+1 (234) 567-890', whatsapp: 'https://wa.me/1234567890' };
+    const emailLink = contactSettings.email ? `mailto:${contactSettings.email}` : '#';
+    const phoneLink = contactSettings.phone ? `tel:${contactSettings.phone.replace(/[^+\d]/g, '')}` : '#';
+    const whatsappLink = contactSettings.whatsapp || '#';
   return (
     <div className="py-16 sm:py-24">
         <Helmet>
@@ -79,21 +85,21 @@ const Contact: React.FC = () => {
                             <Mail className="h-6 w-6 text-stone-600 mt-1" />
                             <div>
                                 <h3 className="font-semibold">{t('contact.emailTitle')}</h3>
-                                <a href="mailto:hello@kapunka.com" className="text-stone-600 hover:text-stone-900 transition-colors">hello@kapunka.com</a>
+                                <a href={emailLink} className="text-stone-600 hover:text-stone-900 transition-colors">{contactSettings.email}</a>
                             </div>
                         </div>
                         <div className="flex items-start space-x-4">
                             <Phone className="h-6 w-6 text-stone-600 mt-1" />
                             <div>
                                 <h3 className="font-semibold">{t('contact.phoneTitle')}</h3>
-                                <a href="tel:+1234567890" className="text-stone-600 hover:text-stone-900 transition-colors">+1 (234) 567-890</a>
+                                <a href={phoneLink} className="text-stone-600 hover:text-stone-900 transition-colors">{contactSettings.phone}</a>
                             </div>
                         </div>
                         <div className="flex items-start space-x-4">
                             <MessageSquare className="h-6 w-6 text-stone-600 mt-1" />
                             <div>
                                 <h3 className="font-semibold">{t('contact.whatsappTitle')}</h3>
-                                <a href="https://wa.me/1234567890" target="_blank" rel="noopener noreferrer" className="text-stone-600 hover:text-stone-900 transition-colors">{t('contact.whatsappAction')}</a>
+                                <a href={whatsappLink} target="_blank" rel="noopener noreferrer" className="text-stone-600 hover:text-stone-900 transition-colors">{t('contact.whatsappAction')}</a>
                             </div>
                         </div>
                     </div>

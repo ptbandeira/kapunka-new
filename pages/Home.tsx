@@ -5,6 +5,7 @@ import { Droplet, ShieldCheck, Leaf } from 'lucide-react';
 import { Helmet } from 'react-helmet-async';
 import ProductCard from '../components/ProductCard';
 import { useLanguage } from '../contexts/LanguageContext';
+import { useSiteSettings } from '../contexts/SiteSettingsContext';
 import type { Product, Review } from '../types';
 
 const Bestsellers: React.FC = () => {
@@ -33,7 +34,7 @@ const Bestsellers: React.FC = () => {
                     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                         {products.map(product => <ProductCard key={product.id} product={product} />)}
                     </div>
-                ) : <p className="text-center">Loading bestsellers...</p>}
+                ) : <p className="text-center">{t('common.loadingBestsellers')}</p>}
             </div>
         </div>
     );
@@ -107,7 +108,7 @@ const Reviews: React.FC = () => {
                             </motion.div>
                         ))}
                     </div>
-                ) : <p className="text-center">Loading reviews...</p>}
+                ) : <p className="text-center">{t('common.loadingReviews')}</p>}
             </div>
         </div>
     );
@@ -163,6 +164,8 @@ const NewsletterSignup: React.FC = () => {
 
 const Home: React.FC = () => {
   const { t } = useLanguage();
+  const { settings } = useSiteSettings();
+  const heroImage = settings.home?.heroImage ?? '/content/uploads/hero-abstract.jpg';
 
   return (
     <div>
@@ -170,7 +173,7 @@ const Home: React.FC = () => {
             <title>Kapunka Skincare | {t('home.metaTitle')}</title>
             <meta name="description" content={t('home.metaDescription')} />
         </Helmet>
-      <div className="relative h-screen bg-cover bg-center" style={{ backgroundImage: "url('/content/uploads/hero-abstract.jpg')" }}>
+      <div className="relative h-screen bg-cover bg-center" style={{ backgroundImage: `url('${heroImage}')` }}>
         <div className="absolute inset-0 bg-stone-50/30"></div>
         <div className="relative h-full flex items-center justify-center">
           <motion.div

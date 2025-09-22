@@ -62,7 +62,7 @@ const CartPage: React.FC = () => {
     }, 0);
     
     if (loading) {
-        return <div className="text-center py-20">Loading Cart...</div>;
+        return <div className="text-center py-20">{t('common.loadingCart')}</div>;
     }
 
     return (
