@@ -67,7 +67,7 @@ const Shop: React.FC = () => {
       </div>
 
       {loading ? (
-        <p className="text-center py-10">Loading products...</p>
+        <p className="text-center py-10">{t('common.loadingProducts')}</p>
       ) : (
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
             {sortedProducts.map(product => (

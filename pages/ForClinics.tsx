@@ -73,7 +73,7 @@ const ForClinics: React.FC = () => {
                 </motion.div>
                 ))}
             </div>
-          ) : <p className="text-center">Loading professionals...</p>}
+          ) : <p className="text-center">{t('common.loadingProfessionals')}</p>}
         </div>
       </div>
 

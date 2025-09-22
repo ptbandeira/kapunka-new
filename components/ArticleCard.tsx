@@ -10,7 +10,13 @@ interface ArticleCardProps {
 }
 
 const ArticleCard: React.FC<ArticleCardProps> = ({ article, index }) => {
-  const { translate } = useLanguage();
+  const { translate, t } = useLanguage();
+
+  const categoryKey = `learn.categories.${article.category}`;
+  const categoryLabel = t(categoryKey);
+  const displayCategory = categoryLabel === categoryKey
+    ? article.category.replace('-', ' ').replace(/\b\w/g, (letter) => letter.toUpperCase())
+    : categoryLabel;
 
   return (
     <motion.div
@@ -28,7 +34,7 @@ const ArticleCard: React.FC<ArticleCardProps> = ({ article, index }) => {
           />
         </div>
         <div className="mt-4">
-          <p className="text-sm text-stone-500 uppercase tracking-wider">{article.category.replace('-', ' ')}</p>
+          <p className="text-sm text-stone-500 uppercase tracking-wider">{displayCategory}</p>
           <h3 className="font-semibold text-xl mt-2 text-stone-800 group-hover:text-stone-900 transition-colors">{translate(article.title)}</h3>
           <p className="text-sm text-stone-600 mt-2">{translate(article.preview)}</p>
         </div>
