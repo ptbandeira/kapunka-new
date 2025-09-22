@@ -1,0 +1,37 @@
+{
+    "courses": [
+        {
+            "id": "1",
+            "title": {
+                "en": "Kapunka Method: Post-Peel Facial Massage",
+                "pt": "Método Kapunka: Massagem Facial Pós-Peeling",
+                "es": "Método Kapunka: Masaje Facial Post-Peeling"
+            },
+            "imageUrl": "/content/uploads/course-1.jpg",
+            "price": 49.99,
+            "enrollLink": "#"
+        },
+        {
+            "id": "2",
+            "title": {
+                "en": "Advanced Dermocosmetics with Argan Oil",
+                "pt": "Dermocosméticos Avançados com Óleo de Argan",
+                "es": "Dermocosmética Avanzada con Aceite de Argán"
+            },
+            "imageUrl": "/content/uploads/course-2.jpg",
+            "price": 79.99,
+            "enrollLink": "#"
+        },
+        {
+            "id": "3",
+            "title": {
+                "en": "Professional Protocols for Sensitive Skin",
+                "pt": "Protocolos Profissionais para Pele Sensível",
+                "es": "Protocolos Profesionales para Piel Sensible"
+            },
+            "imageUrl": "/content/uploads/course-3.jpg",
+            "price": 59.99,
+            "enrollLink": "#"
+        }
+    ]
+}

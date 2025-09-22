@@ -1,0 +1,59 @@
+
+import type { Review } from '../types';
+
+export const reviews: Review[] = [
+  {
+    id: '1',
+    text: {
+        en: 'This serum is a game changer. My skin has never felt so calm and looked so even. I use it after my laser treatments and the difference is incredible.',
+        pt: 'Este sérum mudou o jogo. Minha pele nunca esteve tão calma e com um tom tão uniforme. Eu uso após meus tratamentos a laser e a diferença é incrível.',
+        es: 'Este sérum es un antes y un después. Mi piel nunca se ha sentido tan calmada ni se ha visto tan uniforme. Lo uso después de mis tratamientos con láser y la diferencia es increíble.'
+    },
+    author: {
+        en: 'Dr. Isabella Rossi',
+        pt: 'Dra. Isabella Rossi',
+        es: 'Dra. Isabella Rossi'
+    },
+    role: {
+        en: 'Dermatologist',
+        pt: 'Dermatologista',
+        es: 'Dermatóloga'
+    }
+  },
+  {
+    id: '2',
+    text: {
+        en: 'Finally, a cleanser that doesn\'t leave my dry skin feeling tight. It\'s so gentle but removes all my makeup. I recommend it to all my clients.',
+        pt: 'Finalmente, um limpador que não deixa minha pele seca repuxando. É tão suave, mas remove toda a minha maquiagem. Recomendo a todos os meus clientes.',
+        es: 'Por fin, un limpiador que no deja mi piel seca con sensación de tirantez. Es muy suave pero elimina todo mi maquillaje. Se lo recomiendo a todos mis clientes.'
+    },
+    author: {
+        en: 'Chloe Davis',
+        pt: 'Chloe Davis',
+        es: 'Chloe Davis'
+    },
+    role: {
+        en: 'Esthetician',
+        pt: 'Esteticista',
+        es: 'Esteticista'
+    }
+  },
+  {
+    id: '3',
+    text: {
+        en: 'The Recovery Cream saved my skin barrier after I over-exfoliated. It\'s rich without being greasy and feels incredibly soothing.',
+        pt: 'O Creme de Recuperação salvou a barreira da minha pele depois que eu exagerei na esfoliação. É rico sem ser oleoso e tem uma sensação incrivelmente calmante.',
+        es: 'La Crema de Recuperación salvó mi barrera cutánea después de una exfoliación excesiva. Es rica sin ser grasa y se siente increíblemente calmante.'
+    },
+    author: {
+        en: 'Liam Chen',
+        pt: 'Liam Chen',
+        es: 'Liam Chen'
+    },
+    role: {
+        en: 'Skincare Enthusiast',
+        pt: 'Entusiasta de Skincare',
+        es: 'Entusiasta del Cuidado de la Piel'
+    }
+  }
+];

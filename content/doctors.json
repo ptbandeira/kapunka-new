@@ -1,0 +1,10 @@
+{
+    "doctors": [
+        { "id": "1", "name": "Dr. Vila Rovira", "imageUrl": "/content/uploads/doc-1.jpg" },
+        { "id": "2", "name": "Dr. Pelegrí", "imageUrl": "/content/uploads/doc-2.jpg" },
+        { "id": "3", "name": "Dr. García", "imageUrl": "/content/uploads/doc-3.jpg" },
+        { "id": "4", "name": "Dr. Hernández", "imageUrl": "/content/uploads/doc-4.jpg" },
+        { "id": "5", "name": "Dr. López", "imageUrl": "/content/uploads/doc-5.jpg" },
+        { "id": "6", "name": "Dra. Moreno", "imageUrl": "/content/uploads/doc-6.jpg" }
+    ]
+}

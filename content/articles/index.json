@@ -1,0 +1,31 @@
+{
+    "items": [
+        {
+            "id": "6",
+            "slug": "what-is-argan-oil",
+            "title": { "en": "What is Argan Oil? Unveiling Morocco's Liquid Gold", "pt": "O que é Óleo de Argan? Revelando o Ouro Líquido de Marrocos", "es": "¿Qué es el Aceite de Argán? Desvelando el Oro Líquido de Marruecos" },
+            "preview": { "en": "Discover the origins and properties of this rare and precious oil...", "pt": "Descubra as origens e propriedades deste óleo raro e precioso...", "es": "Descubre los orígenes y propiedades de este raro y precioso aceite..." },
+            "category": "argan-oil",
+            "imageUrl": "/content/uploads/argan-tree.jpg",
+            "relatedProductId": "pure-argan-oil"
+        },
+        {
+            "id": "7",
+            "slug": "benefits-of-argan-oil",
+            "title": { "en": "The Top 5 Benefits of Argan Oil for Skin", "pt": "Os 5 Principais Benefícios do Óleo de Argan para a Pele", "es": "Los 5 Principales Beneficios del Aceite de Argán para la Piel" },
+            "preview": { "en": "From intense hydration to soothing properties, explore why Argan oil is a multitasking powerhouse...", "pt": "Desde hidratação intensa a propriedades calmantes, explore porque o óleo de Argan é um poderoso multitarefas...", "es": "Desde una hidratación intensa hasta propiedades calmantes, explore por qué el aceite de Argán es un potente multitarea..." },
+            "category": "argan-oil",
+            "imageUrl": "/content/uploads/argan-benefits.jpg",
+            "relatedProductId": "pure-argan-oil"
+        },
+        {
+            "id": "1",
+            "slug": "caring-for-skin-post-procedure",
+            "title": { "en": "Caring for Your Skin Post-Procedure", "pt": "Cuidando da Sua Pele Pós-Procedimento", "es": "Cuidado de la Piel Después de un Procedimiento" },
+            "preview": { "en": "Proper aftercare is crucial for optimal healing and results...", "pt": "O cuidado adequado é crucial para uma cicatrização e resultados ótimos...", "es": "El cuidado posterior adecuado es crucial para una curación y resultados óptimos..." },
+            "category": "post-procedure",
+            "imageUrl": "/content/uploads/post-procedure.jpg",
+            "relatedProductId": "pure-argan-oil"
+        }
+    ]
+}

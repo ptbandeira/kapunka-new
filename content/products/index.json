@@ -1,0 +1,124 @@
+{"items": [
+  {
+    "id": "pure-argan-oil",
+    "name": {
+      "en": "100% Pure Argan Oil",
+      "pt": "Óleo de Argan 100% Puro",
+      "es": "Aceite de Argán Puro 100%"
+    },
+    "tagline": {
+      "en": "ECOCERT Certified, First Cold Press",
+      "pt": "Certificado ECOCERT, Primeira Prensagem a Frio",
+      "es": "Certificado ECOCERT, Primera Presión en Frío"
+    },
+    "imageUrl": "/content/uploads/argan-oil-main.jpg",
+    "sizes": [
+      { "id": "15ml", "size": 15, "price": 15.00 },
+      { "id": "30ml", "size": 30, "price": 25.00 },
+      { "id": "50ml", "size": 50, "price": 35.00 },
+      { "id": "100ml", "size": 100, "price": 55.00 }
+    ]
+  },
+  {
+    "id": "rose-water",
+    "name": {
+      "en": "Damask Rose Water",
+      "pt": "Água de Rosas Damascena",
+      "es": "Agua de Rosas de Damasco"
+    },
+    "tagline": {
+      "en": "Pure floral toner and refresher",
+      "pt": "Tônico floral puro e refrescante",
+      "es": "Tónico floral puro y refrescante"
+    },
+    "imageUrl": "/content/uploads/rose-water.jpg",
+    "sizes": [
+      { "id": "100ml", "size": 100, "price": 22.00 }
+    ]
+  },
+  {
+    "id": "black-soap",
+    "name": {
+      "en": "Moroccan Black Soap",
+      "pt": "Sabão Preto Marroquino",
+      "es": "Jabón Negro de Marruecos"
+    },
+    "tagline": {
+      "en": "Deep cleansing body treatment",
+      "pt": "Tratamento corporal de limpeza profunda",
+      "es": "Tratamiento corporal de limpieza profunda"
+    },
+    "imageUrl": "/content/uploads/black-soap.jpg",
+    "sizes": [
+      { "id": "200g", "size": 200, "price": 28.00 }
+    ]
+  },
+  {
+    "id": "lavender-argan-oil",
+    "name": {
+      "en": "Argan Oil + Lavender",
+      "pt": "Óleo de Argan + Lavanda",
+      "es": "Aceite de Argán + Lavanda"
+    },
+    "tagline": {
+      "en": "Soothing and calming blend",
+      "pt": "Mistura calmante e relaxante",
+      "es": "Mezcla calmante y relajante"
+    },
+    "imageUrl": "/content/uploads/lavender-oil.jpg",
+    "sizes": [
+      { "id": "250ml", "size": 250, "price": 40.00 }
+    ]
+  },
+  {
+    "id": "rosemary-argan-oil",
+    "name": {
+      "en": "Argan Oil + Rosemary",
+      "pt": "Óleo de Argan + Alecrim",
+      "es": "Aceite de Argán + Romero"
+    },
+    "tagline": {
+      "en": "Invigorating and clarifying blend",
+      "pt": "Mistura revigorante e clarificante",
+      "es": "Mezcla vigorizante y clarificante"
+    },
+    "imageUrl": "/content/uploads/rosemary-oil.jpg",
+    "sizes": [
+      { "id": "250ml", "size": 250, "price": 40.00 }
+    ]
+  },
+  {
+    "id": "patchouli-argan-oil",
+    "name": {
+      "en": "Argan Oil + Patchouli",
+      "pt": "Óleo de Argan + Patchouli",
+      "es": "Aceite de Argán + Pachulí"
+    },
+    "tagline": {
+      "en": "Earthy and grounding blend",
+      "pt": "Mistura terrosa e estabilizadora",
+      "es": "Mezcla terrosa y estabilizadora"
+    },
+    "imageUrl": "/content/uploads/patchouli-oil.jpg",
+    "sizes": [
+      { "id": "250ml", "size": 250, "price": 40.00 }
+    ]
+  },
+  {
+    "id": "kessa-glove",
+    "name": {
+      "en": "Kessa Exfoliating Glove",
+      "pt": "Luva Esfoliante Kessa",
+      "es": "Guante Exfoliante Kessa"
+    },
+    "tagline": {
+      "en": "The essential tool for smooth skin",
+      "pt": "A ferramenta essencial para uma pele macia",
+      "es": "La herramienta esencial para una piel suave"
+    },
+    "imageUrl": "/content/uploads/kessa-glove.jpg",
+    "sizes": [
+      { "id": "1-unit", "size": 1, "price": 12.00 }
+    ]
+  }
+]}

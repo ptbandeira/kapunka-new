@@ -1,0 +1,114 @@
+
+import React, { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
+import { AnimatePresence, motion } from 'framer-motion';
+import { X, Minus, Plus, Trash2 } from 'lucide-react';
+import { useUI } from '../contexts/UIContext';
+import { useCart } from '../contexts/CartContext';
+import { useLanguage } from '../contexts/LanguageContext';
+import type { CartItem, Product } from '../types';
+
+const MiniCartItem: React.FC<{ item: CartItem; products: Product[] }> = ({ item, products }) => {
+  const { updateQuantity, removeFromCart } = useCart();
+  const { translate } = useLanguage();
+
+  const product = products.find(p => p.id === item.productId);
+  if (!product) return null;
+
+  const size = product.sizes.find(s => s.id === item.sizeId);
+  if (!size) return null;
+
+  return (
+    <div className="flex items-center space-x-4 py-4">
+      <img src={product.imageUrl} alt={translate(product.name)} className="w-16 h-16 object-cover rounded" />
+      <div className="flex-grow">
+        <h4 className="font-semibold text-sm">{translate(product.name)}</h4>
+        <p className="text-xs text-stone-500">{size.size}ml</p>
+        <div className="flex items-center mt-2">
+          <button onClick={() => updateQuantity(item.productId, item.sizeId, item.quantity - 1)} className="p-1 text-stone-500 hover:text-stone-900"><Minus size={14} /></button>
+          <span className="px-3 text-sm">{item.quantity}</span>
+          <button onClick={() => updateQuantity(item.productId, item.sizeId, item.quantity + 1)} className="p-1 text-stone-500 hover:text-stone-900"><Plus size={14} /></button>
+        </div>
+      </div>
+      <div className="text-right">
+        <p className="font-semibold text-sm">${(size.price * item.quantity).toFixed(2)}</p>
+        <button onClick={() => removeFromCart(item.productId, item.sizeId)} className="text-stone-400 hover:text-red-500 mt-2"><Trash2 size={16} /></button>
+      </div>
+    </div>
+  );
+};
+
+const MiniCart: React.FC = () => {
+  const { isCartOpen, closeCart } = useUI();
+  const { cart, cartCount } = useCart();
+  const { t } = useLanguage();
+  const [products, setProducts] = useState<Product[]>([]);
+
+  useEffect(() => {
+    // Fetch all products data to resolve cart items
+    fetch('/content/products/index.json')
+      .then(res => res.json())
+      .then(data => setProducts(data.items));
+  }, []);
+
+  const subtotal = cart.reduce((total, item) => {
+    const product = products.find(p => p.id === item.productId);
+    const size = product?.sizes.find(s => s.id === item.sizeId);
+    return total + (size ? size.price * item.quantity : 0);
+  }, 0);
+
+  return (
+    <AnimatePresence>
+      {isCartOpen && (
+        <>
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.3 }}
+            className="fixed inset-0 bg-black/50 z-50"
+            onClick={closeCart}
+          />
+          <motion.div
+            initial={{ x: '100%' }}
+            animate={{ x: 0 }}
+            exit={{ x: '100%' }}
+            transition={{ type: 'spring', stiffness: 300, damping: 30 }}
+            className="fixed top-0 right-0 h-full w-full max-w-sm bg-stone-50 z-50 flex flex-col shadow-2xl"
+          >
+            <div className="flex items-center justify-between p-6 border-b border-stone-200">
+              <h3 className="text-lg font-semibold">{t('cart.title')} ({cartCount})</h3>
+              <button onClick={closeCart} className="p-2 -mr-2 text-stone-500 hover:text-stone-900"><X size={24} /></button>
+            </div>
+            {cart.length > 0 && products.length > 0 ? (
+              <>
+                <div className="flex-grow overflow-y-auto px-6 divide-y divide-stone-200">
+                  {cart.map(item => <MiniCartItem key={`${item.productId}-${item.sizeId}`} item={item} products={products} />)}
+                </div>
+                <div className="p-6 border-t border-stone-200">
+                  <div className="flex justify-between items-center mb-4">
+                    <span className="text-stone-600">{t('cart.subtotal')}</span>
+                    <span className="font-semibold text-lg">${subtotal.toFixed(2)}</span>
+                  </div>
+                  <p className="text-xs text-stone-400 text-center mb-4">{t('cart.shippingNote')}</p>
+                  <Link to="/cart" onClick={closeCart} className="block w-full text-center bg-stone-900 text-white py-3 rounded-md hover:bg-stone-700 transition-colors duration-300">
+                    {t('cart.viewCart')}
+                  </Link>
+                </div>
+              </>
+            ) : (
+              <div className="flex-grow flex flex-col items-center justify-center p-6 text-center">
+                <p className="text-stone-500 mb-4">{t('cart.empty')}</p>
+                <Link to="/shop" onClick={closeCart} className="bg-stone-200 text-stone-800 px-6 py-2 rounded-md hover:bg-stone-300 transition-colors duration-300">
+                  {t('cart.continueShopping')}
+                </Link>
+              </div>
+            )}
+          </motion.div>
+        </>
+      )}
+    </AnimatePresence>
+  );
+};
+
+export default MiniCart;

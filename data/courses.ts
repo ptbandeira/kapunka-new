@@ -1,0 +1,37 @@
+import type { Course } from '../types';
+
+export const courses: Course[] = [
+  {
+    id: '1',
+    title: {
+      en: 'Kapunka Method: Post-Peel Facial Massage',
+      pt: 'Método Kapunka: Massagem Facial Pós-Peeling',
+      es: 'Método Kapunka: Masaje Facial Post-Peeling',
+    },
+    imageUrl: 'https://images.unsplash.com/photo-1570172619644-dfd03ed5d881?q=80&w=2070&auto=format&fit=crop',
+    price: 49.99,
+    enrollLink: '#',
+  },
+  {
+    id: '2',
+    title: {
+      en: 'Advanced Dermocosmetics with Argan Oil',
+      pt: 'Dermocosméticos Avançados com Óleo de Argan',
+      es: 'Dermocosmética Avanzada con Aceite de Argán',
+    },
+    imageUrl: 'https://images.unsplash.com/photo-1600984510005-c4308b3c9934?q=80&w=1887&auto=format&fit=crop',
+    price: 79.99,
+    enrollLink: '#',
+  },
+  {
+    id: '3',
+    title: {
+      en: 'Professional Protocols for Sensitive Skin',
+      pt: 'Protocolos Profissionais para Pele Sensível',
+      es: 'Protocolos Profesionales para Piel Sensible',
+    },
+    imageUrl: 'https://images.unsplash.com/photo-1512290923902-8a9f31c83659?q=80&w=2070&auto=format&fit=crop',
+    price: 59.99,
+    enrollLink: '#',
+  },
+];
