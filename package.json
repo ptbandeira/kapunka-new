@@ -10,11 +10,11 @@
   },
   "dependencies": {
     "react": "^19.1.1",
-    "react-dom": "^19.1.1",
     "react-router-dom": "6.23.1",
     "framer-motion": "11.2.10",
     "react-helmet-async": "2.0.5",
-    "lucide-react": "0.395.0"
+    "lucide-react": "0.395.0",
+    "react-dom": "^19.1.1"
   },
   "devDependencies": {
     "@types/node": "^22.14.0",

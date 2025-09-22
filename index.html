@@ -1,77 +1,57 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Kapunka Skincare</title>
-
-  <!--
-    DO NOT CHANGE REACT VERSION OR IMPORT MAP ENTRIES.
-    This app MUST use React 18.2.0 consistently.
-    Removing or re-adding mappings like "react/" or "react-dom/" to 19.x WILL BREAK the app
-    with "Minified React error #31" due to mixed versions.
-  -->
-
-  <!-- Fonts -->
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
-
-  <!-- Tailwind -->
-  <script src="https://cdn.tailwindcss.com"></script>
-  <script>
-    tailwind.config = {
-      theme: {
-        extend: {
-          fontFamily: { sans: ['Inter', 'sans-serif'] },
-          keyframes: {
-            scroll: {
-              '0%': { transform: 'translateX(0)' },
-              '100%': { transform: 'translateX(-100%)' }
-            }
-          },
-          animation: { scroll: 'scroll 40s linear infinite' }
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Kapunka Skincare</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            fontFamily: {
+              sans: ['Inter', 'sans-serif'],
+            },
+            keyframes: {
+              scroll: {
+                '0%': { transform: 'translateX(0)' },
+                '100%': { transform: 'translateX(-100%)' },
+              }
+            },
+            animation: {
+              scroll: 'scroll 40s linear infinite',
+            },
+          }
         }
       }
-    }
-  </script>
-
-  <style>
-    .prose ul > li::before { background-color: #57534e; } /* stone-600 */
-  </style>
-
-  <!-- SINGLE React version (18.2.0) + jsx-runtime; deps pinned to React 18 -->
-  <script type="importmap">
+    </script>
+    <style>
+      .prose ul > li::before {
+        background-color: #57534e; /* stone-600 */
+      }
+    </style>
+    <script type="importmap">
 {
   "imports": {
     "react": "https://esm.sh/react@18.2.0",
-    "react/jsx-runtime": "https://esm.sh/react@18.2.0/jsx-runtime",
-    "react-dom": "https://esm.sh/react-dom@18.2.0",
     "react-dom/client": "https://esm.sh/react-dom@18.2.0/client",
-    "react-router-dom": "https://esm.sh/react-router-dom@6.23.1?deps=react@18.2.0,react-dom@18.2.0",
-    "framer-motion": "https://esm.sh/framer-motion@11.2.10?deps=react@18.2.0,react-dom@18.2.0",
-    "react-helmet-async": "https://esm.sh/react-helmet-async@2.0.5?deps=react@18.2.0,react-dom@18.2.0",
-    "lucide-react": "https://esm.sh/lucide-react@0.395.0?deps=react@18.2.0",
+    "react-router-dom": "https://esm.sh/react-router-dom@6.23.1",
+    "framer-motion": "https://esm.sh/framer-motion@11.2.10",
+    "react-helmet-async": "https://esm.sh/react-helmet-async@2.0.5",
+    "lucide-react": "https://esm.sh/lucide-react@0.395.0",
     "react-dom/": "https://aistudiocdn.com/react-dom@^19.1.1/",
     "react/": "https://aistudiocdn.com/react@^19.1.1/"
   }
 }
 </script>
-
-  <!-- Netlify Identity Widget for CMS -->
-  <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
+    <!-- Netlify Identity Widget for CMS -->
+    <script type="text/javascript" src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
 </head>
 <body>
-  <div id="root"></div>
-
-  <!-- Load entry after DOM is ready to avoid "no root element" races -->
-  <script type="module">
-    const start = () => import('/index.tsx');
-    if (document.readyState === 'loading') {
-      document.addEventListener('DOMContentLoaded', start, { once: true });
-    } else {
-      start();
-    }
-  </script>
+    <div id="root"></div>
+    <script type="module" src="/index.tsx"></script>
 </body>
 </html>
