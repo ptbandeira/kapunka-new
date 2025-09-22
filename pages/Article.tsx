@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useMemo } from 'react';
+import React, { useState, useEffect, useMemo, useCallback } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { Helmet } from 'react-helmet-async';
 import { motion } from 'framer-motion';
@@ -9,7 +9,7 @@ import ProductCard from '../components/ProductCard';
 
 const ArticlePage: React.FC = () => {
     const { slug } = useParams<{ slug: string }>();
-    const { translate } = useLanguage();
+    const { translate, t } = useLanguage();
 
     const [article, setArticle] = useState<Article | null>(null);
     const [relatedProduct, setRelatedProduct] = useState<Product | null>(null);
@@ -50,6 +50,15 @@ const ArticlePage: React.FC = () => {
         return () => { isMounted = false; };
     }, [slug]);
 
+    const formatCategoryLabel = useCallback((category: string) => {
+        const key = `learn.categories.${category}`;
+        const label = t(key);
+        if (label === key) {
+            return category.replace('-', ' ').replace(/\b\w/g, (letter) => letter.toUpperCase());
+        }
+        return label;
+    }, [t]);
+
     const formattedContent = useMemo(() => {
         if (!article) return null;
         const content = translate(article.content);
@@ -60,11 +69,11 @@ const ArticlePage: React.FC = () => {
     }, [article, translate]);
 
     if (loading) {
-        return <div className="text-center py-20">Loading article...</div>;
+        return <div className="text-center py-20">{t('article.loading')}</div>;
     }
 
     if (!article) {
-        return <div className="text-center py-20">Article not found.</div>;
+        return <div className="text-center py-20">{t('article.notFound')}</div>;
     }
 
     return (
@@ -81,7 +90,7 @@ const ArticlePage: React.FC = () => {
                     transition={{ duration: 0.6 }}
                     className="mb-8"
                 >
-                    <p className="text-sm text-stone-500 uppercase tracking-wider">{article.category.replace('-', ' ')}</p>
+                    <p className="text-sm text-stone-500 uppercase tracking-wider">{formatCategoryLabel(article.category)}</p>
                     <h1 className="text-3xl sm:text-4xl md:text-5xl font-semibold tracking-tight mt-2">{translate(article.title)}</h1>
                 </motion.header>
                 
@@ -107,7 +116,7 @@ const ArticlePage: React.FC = () => {
             {relatedProduct && (
                 <div className="py-16 sm:py-24 bg-stone-50">
                     <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-                        <h2 className="text-3xl font-semibold text-center mb-12">Featured Product</h2>
+                        <h2 className="text-3xl font-semibold text-center mb-12">{t('article.featuredProduct')}</h2>
                         <div className="max-w-sm mx-auto">
                            <ProductCard product={relatedProduct} />
                         </div>
@@ -117,7 +126,7 @@ const ArticlePage: React.FC = () => {
             
             <div className="text-center pb-16 sm:pb-24">
                 <Link to="/learn" className="px-8 py-3 bg-stone-200 text-stone-800 font-semibold rounded-md hover:bg-stone-300 transition-colors">
-                    Back to Skincare Library
+                    {t('article.backToLibrary')}
                 </Link>
             </div>
         </div>

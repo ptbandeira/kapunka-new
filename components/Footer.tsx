@@ -1,7 +1,8 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { useLanguage } from '../contexts/LanguageContext';
-import { Facebook, Instagram } from 'lucide-react';
+import { Facebook, Instagram, Linkedin, Youtube, Globe } from 'lucide-react';
+import { useSiteSettings } from '../contexts/SiteSettingsContext';
 
 const FooterLink: React.FC<{ to: string; children: React.ReactNode }> = ({ to, children }) => (
     <Link to={to} className="relative group text-stone-500 hover:text-stone-900 transition-colors duration-300">
@@ -12,23 +13,47 @@ const FooterLink: React.FC<{ to: string; children: React.ReactNode }> = ({ to, c
 
 const Footer: React.FC = () => {
     const { t } = useLanguage();
+    const { settings } = useSiteSettings();
+    const socialLinks = settings.footer?.socialLinks ?? [];
+    const legalName = settings.footer?.legalName ?? 'Kapunka Skincare';
+    const brandName = settings.brand?.name ?? 'KAPUNKA';
+
+    const socialIconMap: Record<string, React.ComponentType<{ size?: number }>> = {
+        facebook: Facebook,
+        instagram: Instagram,
+        linkedin: Linkedin,
+        youtube: Youtube,
+        globe: Globe,
+    };
   return (
     <footer className="bg-stone-100 border-t border-stone-200">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-12">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
           <div>
-            <h3 className="text-lg font-semibold mb-4">KAPUNKA</h3>
+            <h3 className="text-lg font-semibold mb-4">{brandName}</h3>
             <p className="text-sm text-stone-500">{t('footer.tagline')}</p>
             <div className="mt-6">
                 <h4 className="font-semibold mb-3 text-sm">{t('footer.followUs')}</h4>
-                <div className="flex space-x-4">
-                    <a href="https://facebook.com/kapunka" target="_blank" rel="noopener noreferrer" aria-label="Facebook" className="text-stone-500 hover:text-stone-900 transition-colors">
-                        <Facebook size={20} />
-                    </a>
-                    <a href="https://instagram.com/kapunka" target="_blank" rel="noopener noreferrer" aria-label="Instagram" className="text-stone-500 hover:text-stone-900 transition-colors">
-                        <Instagram size={20} />
-                    </a>
-                </div>
+                {socialLinks.length > 0 && (
+                    <div className="flex space-x-4">
+                        {socialLinks.map((link) => {
+                            const iconKey = link.icon ? link.icon.toLowerCase() : '';
+                            const Icon = socialIconMap[iconKey] ?? Globe;
+                            return (
+                                <a
+                                    key={link.id}
+                                    href={link.url || '#'}
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    aria-label={link.label}
+                                    className="text-stone-500 hover:text-stone-900 transition-colors"
+                                >
+                                    <Icon size={20} />
+                                </a>
+                            );
+                        })}
+                    </div>
+                )}
             </div>
           </div>
           <div>
@@ -56,7 +81,7 @@ const Footer: React.FC = () => {
           </div>
         </div>
         <div className="mt-12 pt-8 border-t border-stone-200 text-center text-sm text-stone-400">
-          <p>&copy; {new Date().getFullYear()} Kapunka Skincare. All Rights Reserved.</p>
+          <p>&copy; {new Date().getFullYear()} {legalName}. All Rights Reserved.</p>
         </div>
       </div>
     </footer>

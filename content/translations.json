@@ -1,0 +1,533 @@
+{
+  "en": {
+    "nav": {
+      "shop": "Shop",
+      "learn": "Learn",
+      "forClinics": "For Clinics",
+      "about": "About",
+      "contact": "Contact"
+    },
+    "footer": {
+      "tagline": "Science-backed skincare for a healthy barrier.",
+      "followUs": "Follow Us",
+      "shop": "Shop",
+      "allProducts": "All Products",
+      "guides": "Skincare Guides",
+      "about": "About Kapunka",
+      "ourStory": "Our Story",
+      "contact": "Contact Us",
+      "policies": "Policies",
+      "shipping": "Shipping Policy",
+      "returns": "Return Policy",
+      "privacy": "Privacy Policy",
+      "terms": "Terms of Service"
+    },
+    "cart": {
+      "title": "Your Cart",
+      "subtotal": "Subtotal",
+      "shippingNote": "Shipping and taxes calculated at checkout.",
+      "viewCart": "View Full Cart",
+      "empty": "Your cart is empty.",
+      "continueShopping": "Continue Shopping",
+      "pageTitle": "Shopping Cart",
+      "summary": "Order Summary",
+      "shipping": "Shipping",
+      "shippingCalculated": "Calculated at next step",
+      "total": "Total",
+      "checkout": "Proceed to Checkout",
+      "checkoutRedirect": "You will be redirected to a secure checkout page."
+    },
+    "cookies": {
+      "message": "We use cookies to enhance your experience.",
+      "learnMore": "Learn more",
+      "decline": "Decline",
+      "accept": "Accept"
+    },
+    "home": {
+      "metaTitle": "Minimalist Skincare for Barrier Health",
+      "metaDescription": "Discover Kapunka Skincare. Pure, potent formulas designed to restore and protect your skin barrier. Vegan and cruelty-free.",
+      "heroTitle": "Your Barrier, Protected.",
+      "heroSubtitle": "Minimalist, science-backed formulas designed to calm, restore, and protect your skin. Pure Argan Oil from Morocco.",
+      "ctaShop": "Shop Now",
+      "ctaClinics": "For Professionals",
+      "bestsellersTitle": "Our Bestsellers",
+      "value1": "Pure & Potent Formulas",
+      "value2": "Barrier-First Approach",
+      "value3": "Sustainably Sourced",
+      "reviewsTitle": "What Professionals Say",
+      "newsletterTitle": "Join The List",
+      "newsletterSubtitle": "Receive 10% off your first order and stay up to date on new products and skincare science.",
+      "newsletterThanks": "Thank you for subscribing!",
+      "newsletterPlaceholder": "Enter your email address",
+      "newsletterSubmit": "Subscribe"
+    },
+    "shop": {
+      "title": "All Products",
+      "metaDescription": "Shop our complete collection of skincare products formulated to support a healthy skin barrier.",
+      "subtitle": "Gentle yet effective solutions for every skin type, focusing on barrier health and minimalist formulas.",
+      "sortFeatured": "Featured",
+      "sortPriceAsc": "Price: Low to High",
+      "sortPriceDesc": "Price: High to Low",
+      "sortNameAsc": "Alphabetically: A-Z",
+      "sortNameDesc": "Alphabetically: Z-A"
+    },
+    "pdp": {
+      "notFound": "Product not found.",
+      "size": "Size",
+      "addToCart": "Add to Cart",
+      "tabs": {
+        "benefits": "Benefits",
+        "howToUse": "How to Use",
+        "ingredients": "Ingredients",
+        "labTested": "Origin & Purity"
+      },
+      "relatedProducts": "You Might Also Like"
+    },
+    "about": {
+      "title": "Our Story",
+      "metaDescription": "Learn about Kapunka Skincare's mission to create effective, minimalist skincare that respects the skin barrier and the environment.",
+      "headerTitle": "Less, but better.",
+      "headerSubtitle": "We believe in the power of simplicity. Our philosophy is rooted in using pure, high-quality ingredients to create formulations that support your skin's long-term health.",
+      "storyTitle": "Our Story",
+      "storyText1": "Kapunka was born from a desire for transparent, effective skincare. We started by sourcing the purest, ECOCERT-certified Argan oil from women's cooperatives in Morocco.",
+      "storyText2": "Our goal is to create products that are not only a pleasure to use but also deliver tangible results, always prioritizing the health of your skin barrier.",
+      "sourcingTitle": "Ethical Sourcing",
+      "sourcingText1": "We are committed to ethical and sustainable practices. Our ingredients are sourced from suppliers who share our values of environmental responsibility and fair trade.",
+      "sourcingText2": "Our Argan oil is a prime example, providing economic empowerment to the Berber women who have perfected its traditional extraction method for centuries.",
+      "sourcingImageAlt": "Field of argan trees"
+    },
+    "contact": {
+      "title": "Contact Us",
+      "metaDescription": "Get in touch with the Kapunka Skincare team for questions, partnership inquiries, or customer support.",
+      "headerTitle": "Get in Touch",
+      "headerSubtitle": "We're here to help. Whether you have a question about our products or want to share your skin journey, we'd love to hear from you.",
+      "formTitle": "Send us a message",
+      "form": {
+        "name": "Full Name",
+        "email": "Email Address",
+        "message": "Your Message",
+        "sending": "Sending...",
+        "submit": "Send Message",
+        "success": "Thank you! Your message has been sent.",
+        "error": "Sorry, something went wrong. Please try again."
+      },
+      "infoTitle": "Other ways to connect",
+      "emailTitle": "Email",
+      "phoneTitle": "Phone",
+      "whatsappTitle": "WhatsApp",
+      "whatsappAction": "Chat with us"
+    },
+    "academy": {
+      "headerTitle": "Kapunka Academy",
+      "headerSubtitle": "Professional education for dermatologists and estheticians to master advanced skincare techniques with our products.",
+      "coursesTitle": "Available Courses",
+      "enrollNow": "Enroll Now"
+    },
+    "clinics": {
+      "title": "For Clinics & Professionals",
+      "metaDescription": "Partner with Kapunka Skincare. Discover our professional-grade products and protocols for your clinic.",
+      "headerTitle": "Partner with Kapunka",
+      "headerSubtitle": "Elevate your practice with our pure, potent formulations designed for post-procedure care and professional treatments.",
+      "section1Title": "The Professional's Choice",
+      "section1Text1": "Kapunka Skincare is trusted by dermatologists and estheticians for its commitment to barrier health. Our minimalist formulas are ideal for preparing skin for procedures and supporting its recovery afterwards.",
+      "section1Text2": "We offer exclusive professional sizes, protocols, and training to help you deliver the best results for your clients.",
+      "doctorsTitle": "Trusted by Top Professionals",
+      "ctaTitle": "Become a Partner",
+      "ctaSubtitle": "Join our network of skincare professionals and get access to exclusive products and education.",
+      "ctaButton": "Contact Us",
+      "partnersTitle": "As Seen In"
+    },
+    "common": {
+      "loading": "Loading...",
+      "loadingProducts": "Loading products...",
+      "loadingBestsellers": "Loading bestsellers...",
+      "loadingReviews": "Loading reviews...",
+      "loadingCourses": "Loading courses...",
+      "loadingProfessionals": "Loading professionals...",
+      "loadingArticle": "Loading article...",
+      "loadingPolicies": "Loading policy...",
+      "loadingCart": "Loading cart...",
+      "loadingProduct": "Loading product..."
+    },
+    "learn": {
+      "metaTitle": "Skincare Library",
+      "metaDescription": "Explore articles and guides on skincare, ingredients, and maintaining a healthy skin barrier.",
+      "title": "Skincare Library",
+      "subtitle": "Guides and insights to help you understand your skin better.",
+      "categories": {
+        "all": "All topics",
+        "argan-oil": "Argan Oil",
+        "uses-applications": "Uses & Applications",
+        "post-procedure": "Post-Procedure",
+        "skin-barrier": "Skin Barrier",
+        "baby": "Baby Care",
+        "scars": "Scars & Recovery"
+      }
+    },
+    "article": {
+      "featuredProduct": "Featured Product",
+      "backToLibrary": "Back to Skincare Library",
+      "notFound": "Article not found.",
+      "loading": "Loading article..."
+    },
+    "policy": {
+      "loading": "Loading policy...",
+      "notFound": "The requested policy page could not be found.",
+      "contactPrompt": "For more detailed information or specific questions, please contact us."
+    }
+  },
+  "pt": {
+    "nav": {
+      "shop": "Loja",
+      "learn": "Aprender",
+      "forClinics": "Para Cl\u00ednicas",
+      "about": "Sobre",
+      "contact": "Contato"
+    },
+    "footer": {
+      "tagline": "Cuidados com a pele baseados na ci\u00eancia para uma barreira saud\u00e1vel.",
+      "followUs": "Siga-nos",
+      "shop": "Loja",
+      "allProducts": "Todos os Produtos",
+      "guides": "Guias de Skincare",
+      "about": "Sobre a Kapunka",
+      "ourStory": "Nossa Hist\u00f3ria",
+      "contact": "Contate-nos",
+      "policies": "Pol\u00edticas",
+      "shipping": "Pol\u00edtica de Envio",
+      "returns": "Pol\u00edtica de Devolu\u00e7\u00e3o",
+      "privacy": "Pol\u00edtica de Privacidade",
+      "terms": "Termos de Servi\u00e7o"
+    },
+    "cart": {
+      "title": "Seu Carrinho",
+      "subtotal": "Subtotal",
+      "shippingNote": "Envio e impostos calculados no checkout.",
+      "viewCart": "Ver Carrinho Completo",
+      "empty": "Seu carrinho est\u00e1 vazio.",
+      "continueShopping": "Continuar Comprando",
+      "pageTitle": "Carrinho de Compras",
+      "summary": "Resumo do Pedido",
+      "shipping": "Envio",
+      "shippingCalculated": "Calculado no pr\u00f3ximo passo",
+      "total": "Total",
+      "checkout": "Ir para o Checkout",
+      "checkoutRedirect": "Voc\u00ea ser\u00e1 redirecionado para uma p\u00e1gina de checkout segura."
+    },
+    "cookies": {
+      "message": "Usamos cookies para melhorar sua experi\u00eancia.",
+      "learnMore": "Saiba mais",
+      "decline": "Recusar",
+      "accept": "Aceitar"
+    },
+    "home": {
+      "metaTitle": "Skincare Minimalista para a Sa\u00fade da Barreira",
+      "metaDescription": "Descubra a Kapunka Skincare. F\u00f3rmulas puras e potentes, criadas para restaurar e proteger a sua barreira cut\u00e2nea. Vegano e cruelty-free.",
+      "heroTitle": "Sua Barreira, Protegida.",
+      "heroSubtitle": "F\u00f3rmulas minimalistas e baseadas na ci\u00eancia, criadas para acalmar, restaurar e proteger a sua pele. \u00d3leo de Argan puro de Marrocos.",
+      "ctaShop": "Comprar Agora",
+      "ctaClinics": "Para Profissionais",
+      "bestsellersTitle": "Nossos Mais Vendidos",
+      "value1": "F\u00f3rmulas Puras e Potentes",
+      "value2": "Foco na Barreira Cut\u00e2nea",
+      "value3": "Origem Sustent\u00e1vel",
+      "reviewsTitle": "O Que Dizem os Profissionais",
+      "newsletterTitle": "Junte-se \u00e0 Lista",
+      "newsletterSubtitle": "Receba 10% de desconto no seu primeiro pedido e fique por dentro de novos produtos e da ci\u00eancia do skincare.",
+      "newsletterThanks": "Obrigado por se inscrever!",
+      "newsletterPlaceholder": "Digite seu e-mail",
+      "newsletterSubmit": "Inscrever-se"
+    },
+    "shop": {
+      "title": "Todos os Produtos",
+      "metaDescription": "Compre nossa cole\u00e7\u00e3o completa de produtos de skincare formulados para apoiar uma barreira cut\u00e2nea saud\u00e1vel.",
+      "subtitle": "Solu\u00e7\u00f5es suaves mas eficazes para todos os tipos de pele, focando na sa\u00fade da barreira e em f\u00f3rmulas minimalistas.",
+      "sortFeatured": "Destaque",
+      "sortPriceAsc": "Pre\u00e7o: Menor para Maior",
+      "sortPriceDesc": "Pre\u00e7o: Maior para Menor",
+      "sortNameAsc": "Alfabeticamente: A-Z",
+      "sortNameDesc": "Alfabeticamente: Z-A"
+    },
+    "pdp": {
+      "notFound": "Produto n\u00e3o encontrado.",
+      "size": "Tamanho",
+      "addToCart": "Adicionar ao Carrinho",
+      "tabs": {
+        "benefits": "Benef\u00edcios",
+        "howToUse": "Como Usar",
+        "ingredients": "Ingredientes",
+        "labTested": "Origem e Pureza"
+      },
+      "relatedProducts": "Voc\u00ea Tamb\u00e9m Pode Gostar"
+    },
+    "about": {
+      "title": "Nossa Hist\u00f3ria",
+      "metaDescription": "Conhe\u00e7a a miss\u00e3o da Kapunka Skincare de criar cuidados com a pele eficazes e minimalistas que respeitam a barreira cut\u00e2nea e o meio ambiente.",
+      "headerTitle": "Menos, mas melhor.",
+      "headerSubtitle": "Acreditamos no poder da simplicidade. Nossa filosofia est\u00e1 enraizada no uso de ingredientes puros e de alta qualidade para criar formula\u00e7\u00f5es que apoiam a sa\u00fade da sua pele a longo prazo.",
+      "storyTitle": "Nossa Hist\u00f3ria",
+      "storyText1": "A Kapunka nasceu do desejo por cuidados com a pele transparentes e eficazes. Come\u00e7amos por obter o mais puro \u00f3leo de Argan certificado pela ECOCERT de cooperativas de mulheres em Marrocos.",
+      "storyText2": "Nosso objetivo \u00e9 criar produtos que n\u00e3o sejam apenas um prazer de usar, mas que tamb\u00e9m entreguem resultados tang\u00edveis, priorizando sempre a sa\u00fade da sua barreira cut\u00e2nea.",
+      "sourcingTitle": "Fornecimento \u00c9tico",
+      "sourcingText1": "Estamos comprometidos com pr\u00e1ticas \u00e9ticas e sustent\u00e1veis. Nossos ingredientes s\u00e3o provenientes de fornecedores que compartilham nossos valores de responsabilidade ambiental e com\u00e9rcio justo.",
+      "sourcingText2": "Nosso \u00f3leo de Argan \u00e9 um excelente exemplo, proporcionando empoderamento econ\u00f4mico para as mulheres berberes que aperfei\u00e7oaram seu m\u00e9todo tradicional de extra\u00e7\u00e3o por s\u00e9culos.",
+      "sourcingImageAlt": "Campo de \u00e1rvores de argan"
+    },
+    "contact": {
+      "title": "Fale Conosco",
+      "metaDescription": "Entre em contato com a equipe da Kapunka Skincare para perguntas, parcerias ou suporte ao cliente.",
+      "headerTitle": "Entre em Contato",
+      "headerSubtitle": "Estamos aqui para ajudar. Se voc\u00ea tem uma pergunta sobre nossos produtos ou quer compartilhar sua jornada com a pele, adorar\u00edamos ouvir de voc\u00ea.",
+      "formTitle": "Envie-nos uma mensagem",
+      "form": {
+        "name": "Nome Completo",
+        "email": "Endere\u00e7o de E-mail",
+        "message": "Sua Mensagem",
+        "sending": "Enviando...",
+        "submit": "Enviar Mensagem",
+        "success": "Obrigado! Sua mensagem foi enviada.",
+        "error": "Desculpe, algo deu errado. Por favor, tente novamente."
+      },
+      "infoTitle": "Outras formas de conectar",
+      "emailTitle": "E-mail",
+      "phoneTitle": "Telefone",
+      "whatsappTitle": "WhatsApp",
+      "whatsappAction": "Converse conosco"
+    },
+    "academy": {
+      "headerTitle": "Academia Kapunka",
+      "headerSubtitle": "Educa\u00e7\u00e3o profissional para dermatologistas e esteticistas para dominar t\u00e9cnicas avan\u00e7adas de cuidados com a pele com nossos produtos.",
+      "coursesTitle": "Cursos Dispon\u00edveis",
+      "enrollNow": "Inscreva-se Agora"
+    },
+    "clinics": {
+      "title": "Para Cl\u00ednicas e Profissionais",
+      "metaDescription": "Seja um parceiro da Kapunka Skincare. Descubra nossos produtos e protocolos de n\u00edvel profissional para sua cl\u00ednica.",
+      "headerTitle": "Seja um Parceiro Kapunka",
+      "headerSubtitle": "Eleve sua pr\u00e1tica com nossas formula\u00e7\u00f5es puras e potentes, projetadas para cuidados p\u00f3s-procedimento e tratamentos profissionais.",
+      "section1Title": "A Escolha do Profissional",
+      "section1Text1": "A Kapunka Skincare \u00e9 confiada por dermatologistas e esteticistas por seu compromisso com a sa\u00fade da barreira. Nossas f\u00f3rmulas minimalistas s\u00e3o ideais para preparar a pele para procedimentos e apoiar sua recupera\u00e7\u00e3o.",
+      "section1Text2": "Oferecemos tamanhos profissionais exclusivos, protocolos e treinamento para ajud\u00e1-lo a entregar os melhores resultados para seus clientes.",
+      "doctorsTitle": "Aprovado pelos Melhores Profissionais",
+      "ctaTitle": "Torne-se um Parceiro",
+      "ctaSubtitle": "Junte-se \u00e0 nossa rede de profissionais de cuidados com a pele e tenha acesso a produtos e educa\u00e7\u00e3o exclusivos.",
+      "ctaButton": "Fale Conosco",
+      "partnersTitle": "Como Visto Em"
+    },
+    "common": {
+      "loading": "Carregando...",
+      "loadingProducts": "Carregando produtos...",
+      "loadingBestsellers": "Carregando mais vendidos...",
+      "loadingReviews": "Carregando avalia\u00e7\u00f5es...",
+      "loadingCourses": "Carregando cursos...",
+      "loadingProfessionals": "Carregando profissionais...",
+      "loadingArticle": "Carregando artigo...",
+      "loadingPolicies": "Carregando pol\u00edtica...",
+      "loadingCart": "Carregando carrinho...",
+      "loadingProduct": "Carregando produto..."
+    },
+    "learn": {
+      "metaTitle": "Biblioteca de Skincare",
+      "metaDescription": "Explore artigos e guias sobre skincare, ingredientes e como manter uma barreira cut\u00e2nea saud\u00e1vel.",
+      "title": "Biblioteca de Skincare",
+      "subtitle": "Guias e insights para ajudar voc\u00ea a entender melhor a sua pele.",
+      "categories": {
+        "all": "Todos os temas",
+        "argan-oil": "\u00d3leo de Argan",
+        "uses-applications": "Usos e Aplica\u00e7\u00f5es",
+        "post-procedure": "P\u00f3s-Procedimento",
+        "skin-barrier": "Barreira Cut\u00e2nea",
+        "baby": "Cuidados com Beb\u00eas",
+        "scars": "Cicatrizes e Recupera\u00e7\u00e3o"
+      }
+    },
+    "article": {
+      "featuredProduct": "Produto em destaque",
+      "backToLibrary": "Voltar \u00e0 Biblioteca de Skincare",
+      "notFound": "Artigo n\u00e3o encontrado.",
+      "loading": "Carregando artigo..."
+    },
+    "policy": {
+      "loading": "Carregando pol\u00edtica...",
+      "notFound": "A p\u00e1gina de pol\u00edtica solicitada n\u00e3o foi encontrada.",
+      "contactPrompt": "Para informa\u00e7\u00f5es mais detalhadas ou d\u00favidas espec\u00edficas, entre em contato conosco."
+    }
+  },
+  "es": {
+    "nav": {
+      "shop": "Tienda",
+      "learn": "Aprender",
+      "forClinics": "Para Cl\u00ednicas",
+      "about": "Nosotros",
+      "contact": "Contacto"
+    },
+    "footer": {
+      "tagline": "Cuidado de la piel respaldado por la ciencia para una barrera saludable.",
+      "followUs": "S\u00edguenos",
+      "shop": "Tienda",
+      "allProducts": "Todos los Productos",
+      "guides": "Gu\u00edas de Skincare",
+      "about": "Sobre Kapunka",
+      "ourStory": "Nuestra Historia",
+      "contact": "Cont\u00e1ctanos",
+      "policies": "Pol\u00edticas",
+      "shipping": "Pol\u00edtica de Env\u00edo",
+      "returns": "Pol\u00edtica de Devoluci\u00f3n",
+      "privacy": "Pol\u00edtica de Privacidad",
+      "terms": "T\u00e9rminos de Servicio"
+    },
+    "cart": {
+      "title": "Tu Carrito",
+      "subtotal": "Subtotal",
+      "shippingNote": "Env\u00edo e impuestos calculados en el checkout.",
+      "viewCart": "Ver Carrito Completo",
+      "empty": "Tu carrito est\u00e1 vac\u00edo.",
+      "continueShopping": "Seguir Comprando",
+      "pageTitle": "Carrito de Compras",
+      "summary": "Resumen del Pedido",
+      "shipping": "Env\u00edo",
+      "shippingCalculated": "Calculado en el siguiente paso",
+      "total": "Total",
+      "checkout": "Proceder al Pago",
+      "checkoutRedirect": "Ser\u00e1s redirigido a una p\u00e1gina de pago segura."
+    },
+    "cookies": {
+      "message": "Usamos cookies para mejorar tu experiencia.",
+      "learnMore": "Saber m\u00e1s",
+      "decline": "Rechazar",
+      "accept": "Aceptar"
+    },
+    "home": {
+      "metaTitle": "Skincare Minimalista para la Salud de la Barrera",
+      "metaDescription": "Descubre Kapunka Skincare. F\u00f3rmulas puras y potentes, dise\u00f1adas para restaurar y proteger tu barrera cut\u00e1nea. Vegano y sin crueldad.",
+      "heroTitle": "Tu Barrera, Protegida.",
+      "heroSubtitle": "F\u00f3rmulas minimalistas y respaldadas por la ciencia, dise\u00f1adas para calmar, restaurar y proteger tu piel. Aceite de Arg\u00e1n puro de Marruecos.",
+      "ctaShop": "Comprar Ahora",
+      "ctaClinics": "Para Profesionales",
+      "bestsellersTitle": "Nuestros M\u00e1s Vendidos",
+      "value1": "F\u00f3rmulas Puras y Potentes",
+      "value2": "Enfoque en la Barrera",
+      "value3": "Origen Sostenible",
+      "reviewsTitle": "Lo que Dicen los Profesionales",
+      "newsletterTitle": "\u00danete a la Lista",
+      "newsletterSubtitle": "Recibe un 10% de descuento en tu primer pedido y mantente al d\u00eda sobre nuevos productos y la ciencia del cuidado de la piel.",
+      "newsletterThanks": "\u00a1Gracias por suscribirte!",
+      "newsletterPlaceholder": "Introduce tu correo electr\u00f3nico",
+      "newsletterSubmit": "Suscribirse"
+    },
+    "shop": {
+      "title": "Todos los Productos",
+      "metaDescription": "Compra nuestra colecci\u00f3n completa de productos para el cuidado de la piel formulados para apoyar una barrera cut\u00e1nea saludable.",
+      "subtitle": "Soluciones suaves pero eficaces para cada tipo de piel, centradas en la salud de la barrera y f\u00f3rmulas minimalistas.",
+      "sortFeatured": "Destacado",
+      "sortPriceAsc": "Precio: Menor a Mayor",
+      "sortPriceDesc": "Precio: Mayor a Menor",
+      "sortNameAsc": "Alfab\u00e9ticamente: A-Z",
+      "sortNameDesc": "Alfab\u00e9ticamente: Z-A"
+    },
+    "pdp": {
+      "notFound": "Producto no encontrado.",
+      "size": "Tama\u00f1o",
+      "addToCart": "A\u00f1adir al Carrito",
+      "tabs": {
+        "benefits": "Beneficios",
+        "howToUse": "Modo de Uso",
+        "ingredients": "Ingredientes",
+        "labTested": "Origen y Pureza"
+      },
+      "relatedProducts": "Tambi\u00e9n te podr\u00eda gustar"
+    },
+    "about": {
+      "title": "Nuestra Historia",
+      "metaDescription": "Conoce la misi\u00f3n de Kapunka Skincare de crear un cuidado de la piel eficaz y minimalista que respete la barrera cut\u00e1nea y el medio ambiente.",
+      "headerTitle": "Menos, pero mejor.",
+      "headerSubtitle": "Creemos en el poder de la simplicidad. Nuestra filosof\u00eda se basa en el uso de ingredientes puros y de alta calidad para crear formulaciones que apoyen la salud de tu piel a largo plazo.",
+      "storyTitle": "Nuestra Historia",
+      "storyText1": "Kapunka naci\u00f3 del deseo de un cuidado de la piel transparente y eficaz. Empezamos por obtener el aceite de Arg\u00e1n m\u00e1s puro, certificado por ECOCERT, de cooperativas de mujeres en Marruecos.",
+      "storyText2": "Nuestro objetivo es crear productos que no solo sean un placer de usar, sino que tambi\u00e9n ofrezcan resultados tangibles, priorizando siempre la salud de tu barrera cut\u00e1nea.",
+      "sourcingTitle": "Abastecimiento \u00c9tico",
+      "sourcingText1": "Estamos comprometidos con pr\u00e1cticas \u00e9ticas y sostenibles. Nuestros ingredientes provienen de proveedores que comparten nuestros valores de responsabilidad ambiental y comercio justo.",
+      "sourcingText2": "Nuestro aceite de Arg\u00e1n es un ejemplo primordial, proporcionando empoderamiento econ\u00f3mico a las mujeres bereberes que han perfeccionado su m\u00e9todo tradicional de extracci\u00f3n durante siglos.",
+      "sourcingImageAlt": "Campo de \u00e1rboles de arg\u00e1n"
+    },
+    "contact": {
+      "title": "Cont\u00e1ctanos",
+      "metaDescription": "Ponte en contacto con el equipo de Kapunka Skincare para preguntas, consultas sobre asociaciones o soporte al cliente.",
+      "headerTitle": "Ponte en Contacto",
+      "headerSubtitle": "Estamos aqu\u00ed para ayudar. Ya sea que tengas una pregunta sobre nuestros productos o quieras compartir tu viaje con la piel, nos encantar\u00eda saber de ti.",
+      "formTitle": "Env\u00edanos un mensaje",
+      "form": {
+        "name": "Nombre Completo",
+        "email": "Correo Electr\u00f3nico",
+        "message": "Tu Mensaje",
+        "sending": "Enviando...",
+        "submit": "Enviar Mensaje",
+        "success": "\u00a1Gracias! Tu mensaje ha sido enviado.",
+        "error": "Lo sentimos, algo sali\u00f3 mal. Por favor, int\u00e9ntalo de nuevo."
+      },
+      "infoTitle": "Otras formas de conectar",
+      "emailTitle": "Correo electr\u00f3nico",
+      "phoneTitle": "Tel\u00e9fono",
+      "whatsappTitle": "WhatsApp",
+      "whatsappAction": "Chatea con nosotros"
+    },
+    "academy": {
+      "headerTitle": "Academia Kapunka",
+      "headerSubtitle": "Educaci\u00f3n profesional para dermat\u00f3logos y esteticistas para dominar t\u00e9cnicas avanzadas de cuidado de la piel con nuestros productos.",
+      "coursesTitle": "Cursos Disponibles",
+      "enrollNow": "Inscribirse Ahora"
+    },
+    "clinics": {
+      "title": "Para Cl\u00ednicas y Profesionales",
+      "metaDescription": "As\u00f3ciate con Kapunka Skincare. Descubre nuestros productos y protocolos de grado profesional para tu cl\u00ednica.",
+      "headerTitle": "As\u00f3ciate con Kapunka",
+      "headerSubtitle": "Eleva tu pr\u00e1ctica con nuestras formulaciones puras y potentes, dise\u00f1adas para el cuidado post-procedimiento y tratamientos profesionales.",
+      "section1Title": "La Elecci\u00f3n del Profesional",
+      "section1Text1": "Kapunka Skincare cuenta con la confianza de dermat\u00f3logos y esteticistas por su compromiso con la salud de la barrera. Nuestras f\u00f3rmulas minimalistas son ideales para preparar la piel para procedimientos y apoyar su recuperaci\u00f3n posterior.",
+      "section1Text2": "Ofrecemos tama\u00f1os profesionales exclusivos, protocolos y capacitaci\u00f3n para ayudarte a ofrecer los mejores resultados a tus clientes.",
+      "doctorsTitle": "Con la Confianza de los Mejores Profesionales",
+      "ctaTitle": "Convi\u00e9rtete en Socio",
+      "ctaSubtitle": "\u00danete a nuestra red de profesionales del cuidado de la piel y obt\u00e9n acceso a productos y educaci\u00f3n exclusivos.",
+      "ctaButton": "Cont\u00e1ctanos",
+      "partnersTitle": "Como Visto En"
+    },
+    "common": {
+      "loading": "Cargando...",
+      "loadingProducts": "Cargando productos...",
+      "loadingBestsellers": "Cargando m\u00e1s vendidos...",
+      "loadingReviews": "Cargando rese\u00f1as...",
+      "loadingCourses": "Cargando cursos...",
+      "loadingProfessionals": "Cargando profesionales...",
+      "loadingArticle": "Cargando art\u00edculo...",
+      "loadingPolicies": "Cargando pol\u00edtica...",
+      "loadingCart": "Cargando carrito...",
+      "loadingProduct": "Cargando producto..."
+    },
+    "learn": {
+      "metaTitle": "Biblioteca de Skincare",
+      "metaDescription": "Explora art\u00edculos y gu\u00edas sobre skincare, ingredientes y c\u00f3mo mantener una barrera cut\u00e1nea saludable.",
+      "title": "Biblioteca de Skincare",
+      "subtitle": "Gu\u00edas e ideas para ayudarte a entender mejor tu piel.",
+      "categories": {
+        "all": "Todos los temas",
+        "argan-oil": "Aceite de Arg\u00e1n",
+        "uses-applications": "Usos y Aplicaciones",
+        "post-procedure": "Post-Procedimiento",
+        "skin-barrier": "Barrera Cut\u00e1nea",
+        "baby": "Cuidado del Beb\u00e9",
+        "scars": "Cicatrices y Recuperaci\u00f3n"
+      }
+    },
+    "article": {
+      "featuredProduct": "Producto destacado",
+      "backToLibrary": "Volver a la Biblioteca de Skincare",
+      "notFound": "Art\u00edculo no encontrado.",
+      "loading": "Cargando art\u00edculo..."
+    },
+    "policy": {
+      "loading": "Cargando pol\u00edtica...",
+      "notFound": "La p\u00e1gina de pol\u00edtica solicitada no se encontr\u00f3.",
+      "contactPrompt": "Para obtener informaci\u00f3n m\u00e1s detallada o preguntas espec\u00edficas, cont\u00e1ctanos."
+    }
+  }
+}

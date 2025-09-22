@@ -55,7 +55,7 @@ const ProductDetail: React.FC = () => {
     }, [product, allProducts]);
 
     if (loading) {
-        return <div className="text-center py-20">Loading product...</div>;
+        return <div className="text-center py-20">{t('common.loadingProduct')}</div>;
     }
 
     if (!product) {

@@ -7,6 +7,7 @@ import { useLanguage } from '../contexts/LanguageContext';
 import { useCart } from '../contexts/CartContext';
 import { useUI } from '../contexts/UIContext';
 import type { Language } from '../types';
+import { useSiteSettings } from '../contexts/SiteSettingsContext';
 
 const NavItem: React.FC<{ to: string; children: React.ReactNode; onClick?: () => void }> = ({ to, children, onClick }) => (
   <NavLink
@@ -68,6 +69,8 @@ const Header: React.FC = () => {
   const { toggleCart } = useUI();
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const { settings } = useSiteSettings();
+  const brandName = settings.brand?.name ?? 'KAPUNKA';
 
   useEffect(() => {
     const handleScroll = () => {
@@ -113,7 +116,7 @@ const Header: React.FC = () => {
             {/* Logo */}
             <div className="absolute left-1/2 -translate-x-1/2">
                 <Link to="/" className="text-2xl font-bold tracking-wider text-stone-900 transition-transform duration-300 hover:scale-105">
-                KAPUNKA
+                {brandName}
                 </Link>
             </div>
 
@@ -159,7 +162,7 @@ const Header: React.FC = () => {
             <div className="container mx-auto px-4 sm:px-6 lg:px-8 pt-6 h-full flex flex-col">
               <div className="flex justify-between items-center mb-12">
                 <Link to="/" onClick={() => setIsMenuOpen(false)} className="text-2xl font-bold tracking-wider text-stone-900">
-                  KAPUNKA
+                  {brandName}
                 </Link>
                 <button onClick={() => setIsMenuOpen(false)} className="p-2">
                   <X size={24} />
