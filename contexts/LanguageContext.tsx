@@ -16,7 +16,7 @@ type Translations = Record<Language, TranslationTree>;
 interface LanguageContextType {
   language: Language;
   setLanguage: (lang: Language) => void;
-  t: (key: string) => string;
+  t: <T = string>(key: string) => T;
   translate: (content: Record<string, any>) => any;
 }
 
@@ -39,16 +39,16 @@ export const LanguageProvider: React.FC<{ children: React.ReactNode }> = ({ chil
       });
   }, []);
 
-  const t = useCallback((key: string): string => {
+  const t = useCallback(<T = string>(key: string): T => {
     const keys = key.split('.');
     let result: any = translations[language];
     for (const k of keys) {
       result = result?.[k];
       if (result === undefined) {
-        return key; // Return key if not found
+        return key as unknown as T; // Return key if not found
       }
     }
-    return result || key;
+    return (result ?? key) as T;
   }, [language, translations]);
 
   const translate = useCallback((content: Record<string, any>) => {
