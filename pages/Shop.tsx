@@ -1,27 +1,73 @@
-
-import React, { useState, useMemo, useEffect } from 'react';
+import React, { useState, useMemo, useEffect, useCallback } from 'react';
 import { Helmet } from 'react-helmet-async';
+import { Link } from 'react-router-dom';
+import { ArrowUpRight, BookOpen, Stethoscope } from 'lucide-react';
+import type { LucideIcon } from 'lucide-react';
+
 import ProductCard from '../components/ProductCard';
 import { useLanguage } from '../contexts/LanguageContext';
-import type { Product } from '../types';
+import type { Product, ShopCategory, ShopCategoryLink, ShopContent } from '../types';
+
+const linkIcons: Record<ShopCategoryLink['type'], LucideIcon> = {
+  product: ArrowUpRight,
+  article: BookOpen,
+  clinics: Stethoscope,
+};
+
+interface ProductsResponse {
+  items: Product[];
+}
 
 const Shop: React.FC = () => {
   const [sortOption, setSortOption] = useState('featured');
   const [products, setProducts] = useState<Product[]>([]);
+  const [categories, setCategories] = useState<ShopCategory[]>([]);
+  const [activeCategoryId, setActiveCategoryId] = useState<string>('all');
   const [loading, setLoading] = useState(true);
   const { t, translate } = useLanguage();
 
   useEffect(() => {
-      fetch('/content/products/index.json')
-          .then(res => res.json())
-          .then(data => {
-              setProducts(data.items);
-              setLoading(false);
-          });
+    let isMounted = true;
+
+    Promise.all([
+      fetch('/content/products/index.json').then(res => res.json() as Promise<ProductsResponse>),
+      fetch('/content/shop.json').then(res => res.json() as Promise<ShopContent>),
+    ])
+      .then(([productData, shopData]) => {
+        if (!isMounted) return;
+        setProducts(productData?.items ?? []);
+        setCategories(shopData?.categories ?? []);
+      })
+      .catch(() => {
+        if (!isMounted) return;
+        setProducts([]);
+        setCategories([]);
+      })
+      .finally(() => {
+        if (!isMounted) return;
+        setLoading(false);
+      });
+
+    return () => {
+      isMounted = false;
+    };
   }, []);
 
-  const sortedProducts = useMemo(() => {
-    let sorted = [...products];
+  useEffect(() => {
+    if (categories.length === 0) {
+      setActiveCategoryId('all');
+    } else if (categories.every(category => category.id !== activeCategoryId) && activeCategoryId !== 'all') {
+      setActiveCategoryId('all');
+    }
+  }, [categories, activeCategoryId]);
+
+  const sortProducts = useCallback((list: Product[]) => {
+    if (sortOption === 'featured') {
+      return list;
+    }
+
+    const sorted = [...list];
+
     switch (sortOption) {
       case 'price-asc':
         sorted.sort((a, b) => a.sizes[0].price - b.sizes[0].price);
@@ -38,41 +84,186 @@ const Shop: React.FC = () => {
       default:
         break;
     }
+
     return sorted;
-  }, [sortOption, translate, products]);
+  }, [sortOption, translate]);
+
+  const productsById = useMemo(() => {
+    const map = new Map<string, Product>();
+    products.forEach(product => {
+      map.set(product.id, product);
+    });
+    return map;
+  }, [products]);
+
+  const activeCategory = useMemo(() => {
+    if (activeCategoryId === 'all') {
+      return undefined;
+    }
+    return categories.find(category => category.id === activeCategoryId);
+  }, [activeCategoryId, categories]);
+
+  const activeCategoryIndex = activeCategory
+    ? categories.findIndex(category => category.id === activeCategory.id)
+    : -1;
+
+  const displayedProducts = useMemo(() => {
+    if (!activeCategory) {
+      return sortProducts(products);
+    }
+
+    const categoryProducts = activeCategory.productIds
+      .map(productId => productsById.get(productId))
+      .filter((product): product is Product => Boolean(product));
+
+    return sortProducts(categoryProducts);
+  }, [activeCategory, products, productsById, sortProducts]);
+
+  const categoryTabs = useMemo(() => {
+    const tabs = categories.map((category, index) => ({
+      id: category.id,
+      label: translate(category.title),
+      fieldPath: `shop.categories.${index}.title.en`,
+    }));
+
+    return [
+      {
+        id: 'all',
+        label: t('shop.title'),
+        fieldPath: 'translations.en.shop.title',
+      },
+      ...tabs,
+    ];
+  }, [categories, t, translate]);
 
   return (
     <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-16">
-        <Helmet>
-            <title>{t('shop.title')} | Kapunka Skincare</title>
-            <meta name="description" content={t('shop.metaDescription')} />
-        </Helmet>
+      <Helmet>
+        <title>{t('shop.title')} | Kapunka Skincare</title>
+        <meta name="description" content={t('shop.metaDescription')} />
+      </Helmet>
       <header className="text-center mb-12">
-        <h1 className="text-4xl sm:text-5xl font-semibold tracking-tight" data-nlv-field-path="translations.en.shop.title">{t('shop.title')}</h1>
-        <p className="mt-4 text-lg text-stone-600 max-w-2xl mx-auto" data-nlv-field-path="translations.en.shop.subtitle">{t('shop.subtitle')}</p>
+        <h1 className="text-4xl sm:text-5xl font-semibold tracking-tight" data-nlv-field-path="translations.en.shop.title">
+          {t('shop.title')}
+        </h1>
+        <p className="mt-4 text-lg text-stone-600 max-w-2xl mx-auto" data-nlv-field-path="translations.en.shop.subtitle">
+          {t('shop.subtitle')}
+        </p>
       </header>
 
-      <div className="flex justify-end mb-8">
-        <select
-          value={sortOption}
-          onChange={(e) => setSortOption(e.target.value)}
-          className="border-stone-300 rounded-md shadow-sm focus:border-stone-500 focus:ring-stone-500"
-        >
-          <option value="featured" data-nlv-field-path="translations.en.shop.sortFeatured">{t('shop.sortFeatured')}</option>
-          <option value="price-asc" data-nlv-field-path="translations.en.shop.sortPriceAsc">{t('shop.sortPriceAsc')}</option>
-          <option value="price-desc" data-nlv-field-path="translations.en.shop.sortPriceDesc">{t('shop.sortPriceDesc')}</option>
-          <option value="name-asc" data-nlv-field-path="translations.en.shop.sortNameAsc">{t('shop.sortNameAsc')}</option>
-          <option value="name-desc" data-nlv-field-path="translations.en.shop.sortNameDesc">{t('shop.sortNameDesc')}</option>
-        </select>
+      <div className="flex flex-col gap-6 md:flex-row md:items-center md:justify-between mb-10">
+        <div className="md:flex-1">
+          <p className="text-xs uppercase tracking-widest text-stone-500">
+            <span data-nlv-field-path="translations.en.shop.categoryFilterLabel">{t('shop.categoryFilterLabel')}</span>
+          </p>
+          <div className="flex flex-wrap gap-2 mt-3">
+            {categoryTabs.map((tab) => (
+              <button
+                key={tab.id}
+                type="button"
+                onClick={() => setActiveCategoryId(tab.id)}
+                className={`px-4 py-2 rounded-full text-sm font-medium transition-colors ${
+                  activeCategoryId === tab.id
+                    ? 'bg-stone-900 text-white'
+                    : 'bg-white border border-stone-300 text-stone-600 hover:border-stone-500 hover:text-stone-900'
+                }`}
+              >
+                <span data-nlv-field-path={tab.fieldPath}>{tab.label}</span>
+              </button>
+            ))}
+          </div>
+        </div>
+
+        <div className="md:w-60">
+          <label htmlFor="shop-sort" className="sr-only">
+            <span data-nlv-field-path="translations.en.shop.sortLabel">{t('shop.sortLabel')}</span>
+          </label>
+          <select
+            id="shop-sort"
+            value={sortOption}
+            onChange={(e) => setSortOption(e.target.value)}
+            className="w-full border-stone-300 rounded-md shadow-sm focus:border-stone-500 focus:ring-stone-500"
+          >
+            <option value="featured" data-nlv-field-path="translations.en.shop.sortFeatured">
+              {t('shop.sortFeatured')}
+            </option>
+            <option value="price-asc" data-nlv-field-path="translations.en.shop.sortPriceAsc">
+              {t('shop.sortPriceAsc')}
+            </option>
+            <option value="price-desc" data-nlv-field-path="translations.en.shop.sortPriceDesc">
+              {t('shop.sortPriceDesc')}
+            </option>
+            <option value="name-asc" data-nlv-field-path="translations.en.shop.sortNameAsc">
+              {t('shop.sortNameAsc')}
+            </option>
+            <option value="name-desc" data-nlv-field-path="translations.en.shop.sortNameDesc">
+              {t('shop.sortNameDesc')}
+            </option>
+          </select>
+        </div>
+      </div>
+
+      <div className="mb-12">
+        {activeCategory ? (
+          <div className="bg-white border border-stone-200 rounded-xl p-6 sm:p-8 shadow-sm">
+            <h2
+              className="text-2xl font-semibold text-stone-900"
+              data-nlv-field-path={activeCategoryIndex >= 0 ? `shop.categories.${activeCategoryIndex}.title.en` : undefined}
+            >
+              {translate(activeCategory.title)}
+            </h2>
+            <p
+              className="mt-3 text-stone-600 leading-relaxed"
+              data-nlv-field-path={activeCategoryIndex >= 0 ? `shop.categories.${activeCategoryIndex}.intro.en` : undefined}
+            >
+              {translate(activeCategory.intro)}
+            </p>
+            {activeCategory.links.length > 0 && (
+              <div className="mt-6">
+                <p className="text-xs uppercase tracking-widest text-stone-500 mb-3">
+                  <span data-nlv-field-path="translations.en.shop.relatedResources">{t('shop.relatedResources')}</span>
+                </p>
+                <div className="flex flex-wrap gap-2">
+                  {activeCategory.links.map((link, linkIndex) => {
+                    const Icon = linkIcons[link.type];
+                    return (
+                      <Link
+                        key={link.id}
+                        to={link.url}
+                        className="inline-flex items-center gap-2 px-3 py-2 bg-stone-100 text-stone-700 rounded-full text-sm font-medium hover:bg-stone-200 transition-colors"
+                        data-nlv-field-path={
+                          activeCategoryIndex >= 0
+                            ? `shop.categories.${activeCategoryIndex}.links.${linkIndex}.label.en`
+                            : undefined
+                        }
+                      >
+                        <Icon className="w-4 h-4" />
+                        <span>{translate(link.label)}</span>
+                      </Link>
+                    );
+                  })}
+                </div>
+              </div>
+            )}
+          </div>
+        ) : (
+          <div className="text-stone-600 leading-relaxed max-w-3xl">
+            <p data-nlv-field-path="translations.en.shop.subtitle">{t('shop.subtitle')}</p>
+          </div>
+        )}
       </div>
 
       {loading ? (
         <p className="text-center py-10">{t('common.loadingProducts')}</p>
+      ) : displayedProducts.length === 0 ? (
+        <p className="text-center py-10" data-nlv-field-path="translations.en.shop.noProducts">
+          {t('shop.noProducts')}
+        </p>
       ) : (
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
-            {sortedProducts.map(product => (
+          {displayedProducts.map(product => (
             <ProductCard key={product.id} product={product} />
-            ))}
+          ))}
         </div>
       )}
     </div>

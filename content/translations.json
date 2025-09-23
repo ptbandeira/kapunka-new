@@ -69,7 +69,11 @@
       "sortPriceAsc": "Price: Low to High",
       "sortPriceDesc": "Price: High to Low",
       "sortNameAsc": "Alphabetically: A-Z",
-      "sortNameDesc": "Alphabetically: Z-A"
+      "sortNameDesc": "Alphabetically: Z-A",
+      "sortLabel": "Sort products",
+      "categoryFilterLabel": "Browse by collection",
+      "relatedResources": "Related resources",
+      "noProducts": "No products found in this collection."
     },
     "pdp": {
       "notFound": "Product not found.",
@@ -261,7 +265,11 @@
       "sortPriceAsc": "Pre\u00e7o: Menor para Maior",
       "sortPriceDesc": "Pre\u00e7o: Maior para Menor",
       "sortNameAsc": "Alfabeticamente: A-Z",
-      "sortNameDesc": "Alfabeticamente: Z-A"
+      "sortNameDesc": "Alfabeticamente: Z-A",
+      "sortLabel": "Ordenar produtos",
+      "categoryFilterLabel": "Navegue por coleção",
+      "relatedResources": "Recursos relacionados",
+      "noProducts": "Nenhum produto encontrado nesta coleção."
     },
     "pdp": {
       "notFound": "Produto n\u00e3o encontrado.",
@@ -453,7 +461,11 @@
       "sortPriceAsc": "Precio: Menor a Mayor",
       "sortPriceDesc": "Precio: Mayor a Menor",
       "sortNameAsc": "Alfab\u00e9ticamente: A-Z",
-      "sortNameDesc": "Alfab\u00e9ticamente: Z-A"
+      "sortNameDesc": "Alfab\u00e9ticamente: Z-A",
+      "sortLabel": "Ordenar productos",
+      "categoryFilterLabel": "Explorar por colección",
+      "relatedResources": "Recursos relacionados",
+      "noProducts": "No se encontraron productos en esta colección."
     },
     "pdp": {
       "notFound": "Producto no encontrado.",
