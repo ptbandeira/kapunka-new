@@ -81,7 +81,22 @@
         "ingredients": "Ingredients",
         "labTested": "Origin & Purity"
       },
-      "relatedProducts": "You Might Also Like"
+      "relatedProducts": "You Might Also Like",
+      "knowledge": {
+        "title": "Deep dive into the formula",
+        "subtitle": "Explore how this product fits into modern dermal science and time-honored rituals.",
+        "sections": {
+          "whatItIs": "What it is",
+          "howItWorks": "How it works on skin & scalp",
+          "whoItsFor": "Who it's for",
+          "scientificBacking": "Scientific backing",
+          "culturalContext": "Cultural & traditional context"
+        }
+      },
+      "faq": {
+        "title": "Product FAQs",
+        "subtitle": "Answers to the most searched questions about this treatment."
+      }
     },
     "about": {
       "title": "Our Story",
@@ -258,7 +273,22 @@
         "ingredients": "Ingredientes",
         "labTested": "Origem e Pureza"
       },
-      "relatedProducts": "Voc\u00ea Tamb\u00e9m Pode Gostar"
+      "relatedProducts": "Voc\u00ea Tamb\u00e9m Pode Gostar",
+      "knowledge": {
+        "title": "Mergulho na f\u00f3rmula",
+        "subtitle": "Descubra como este produto se encaixa na ci\u00eancia d\u00e9rmica moderna e nos rituais ancestrais.",
+        "sections": {
+          "whatItIs": "O que \u00e9",
+          "howItWorks": "Como atua na pele e no couro cabeludo",
+          "whoItsFor": "Para quem \u00e9 indicado",
+          "scientificBacking": "Comprova\u00e7\u00e3o cient\u00edfica",
+          "culturalContext": "Contexto cultural e tradicional"
+        }
+      },
+      "faq": {
+        "title": "Perguntas frequentes",
+        "subtitle": "Respostas para as d\u00favidas mais buscadas sobre este tratamento."
+      }
     },
     "about": {
       "title": "Nossa Hist\u00f3ria",
@@ -435,7 +465,22 @@
         "ingredients": "Ingredientes",
         "labTested": "Origen y Pureza"
       },
-      "relatedProducts": "Tambi\u00e9n te podr\u00eda gustar"
+      "relatedProducts": "Tambi\u00e9n te podr\u00eda gustar",
+      "knowledge": {
+        "title": "Profundiza en la f\u00f3rmula",
+        "subtitle": "Descubre c\u00f3mo este producto se integra a la ciencia d\u00e9rmica moderna y a los rituales ancestrales.",
+        "sections": {
+          "whatItIs": "Qu\u00e9 es",
+          "howItWorks": "C\u00f3mo act\u00faa en piel y cuero cabelludo",
+          "whoItsFor": "Para qui\u00e9n es",
+          "scientificBacking": "Respaldo cient\u00edfico",
+          "culturalContext": "Contexto cultural y tradicional"
+        }
+      },
+      "faq": {
+        "title": "Preguntas frecuentes",
+        "subtitle": "Respuestas a las preguntas m\u00e1s buscadas sobre este tratamiento."
+      }
     },
     "about": {
       "title": "Nuestra Historia",

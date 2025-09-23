@@ -18,6 +18,19 @@ export interface ProductSize {
   price: number;
 }
 
+export interface ProductKnowledge {
+  whatItIs: Translatable;
+  howItWorks: Translatable;
+  whoItsFor: Translatable;
+  scientificBacking: Translatable;
+  culturalContext: Translatable;
+}
+
+export interface ProductFaq {
+  question: Translatable;
+  answer: Translatable;
+}
+
 export interface Product {
   id: string;
   name: Translatable;
@@ -29,6 +42,8 @@ export interface Product {
   howToUse: Translatable;
   ingredients: Translatable;
   labTestedNote: Translatable;
+  knowledge: ProductKnowledge;
+  faqs: ProductFaq[];
 }
 
 export interface CartItem {

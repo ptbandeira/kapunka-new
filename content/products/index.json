@@ -86,7 +86,84 @@
           "Mejora la elasticidad de la piel y reduce la apariencia de líneas finas",
           "Calma la inflamación y apoya la barrera cutánea"
         ]
-      }
+      },
+      "knowledge": {
+        "whatItIs": {
+          "en": "An ECOCERT single-origin oil pressed within 24 hours of harvest. It's the best natural oil for post-laser skin repair and everyday barrier rescue, bottled without fillers or fragrance.",
+          "pt": "Um óleo de argan de origem única com certificação ECOCERT, prensado em até 24 horas após a colheita. É o melhor óleo natural para reparar a pele após laser e resgatar a barreira no dia a dia, engarrafado sem aditivos nem fragrâncias.",
+          "es": "Un aceite de argán de origen único certificado por ECOCERT, prensado en frío dentro de las 24 horas posteriores a la cosecha. Es el mejor aceite natural para la reparación cutánea post láser y el rescate diario de la barrera, embotellado sin aditivos ni fragancias."
+        },
+        "howItWorks": {
+          "en": "High concentrations of oleic and linoleic acids plus gamma tocopherol and native squalene mirror skin sebum, sealing micro-fissures and reducing transepidermal water loss. Anti-inflammatory polyphenols calm redness after resurfacing, while antioxidants neutralise free radicals from UV or pollution.",
+          "pt": "Altas concentrações de ácidos oleico e linoleico, além de gama-tocoferol e esqualeno nativo, mimetizam o sebo cutâneo, selando microfissuras e reduzindo a perda transepidérmica de água. Polifenóis anti-inflamatórios acalmam a vermelhidão pós-procedimento, enquanto antioxidantes neutralizam radicais livres de UV ou poluição.",
+          "es": "Las altas concentraciones de ácidos oleico y linoleico, junto con gamma tocoferol y escualeno nativo, imitan el sebo cutáneo, sellan microfisuras y reducen la pérdida transepidérmica de agua. Los polifenoles antiinflamatorios calman el enrojecimiento tras los procedimientos, mientras que los antioxidantes neutralizan los radicales libres de la radiación UV o la polución."
+        },
+        "whoItsFor": {
+          "en": "Ideal for barrier-impaired complexions, eczema-prone dryness, and mature or postpartum skin needing lipid replenishment. It also doubles as argan oil for scalp stimulation in thinning hair, reviving brittle lengths and nails.",
+          "pt": "Indicado para peles com barreira fragilizada, ressecamento com tendência a eczema e pele madura ou pós-parto que precisa de reposição lipídica. Também funciona como óleo de argan para estimular o couro cabeludo em cabelos ralos, revitalizando fios quebradiços e unhas frágeis.",
+          "es": "Ideal para cutis con la barrera comprometida, sequedad con tendencia a eccema y piel madura o posparto que necesita reposición lipídica. También funciona como aceite de argán para estimular el cuero cabelludo en cabellos afinados, revitalizando largos quebradizos y uñas frágiles."
+        },
+        "scientificBacking": {
+          "en": "Clinical studies in dermatology journals show twice-daily argan oil improves skin elasticity within four weeks and significantly lowers TEWL. Research in postmenopausal women links topical argan oil with better barrier recovery and a measurable boost in vitamin E levels.",
+          "pt": "Estudos clínicos em revistas de dermatologia mostram que o uso de óleo de argan duas vezes ao dia melhora a elasticidade em quatro semanas e reduz significativamente a perda transepidérmica de água. Pesquisas com mulheres pós-menopausa associam a aplicação tópica a uma recuperação mais rápida da barreira e a um aumento mensurável dos níveis de vitamina E.",
+          "es": "Estudios clínicos en revistas dermatológicas demuestran que el aceite de argán aplicado dos veces al día mejora la elasticidad en cuatro semanas y reduce de forma significativa la pérdida transepidérmica de agua. Investigaciones en mujeres posmenopáusicas vinculan su uso tópico con una recuperación más rápida de la barrera y un aumento medible de los niveles de vitamina E."
+        },
+        "culturalContext": {
+          "en": "Harvested by Amazigh cooperatives in southwest Morocco, argan oil has underpinned hammam rituals for centuries. The artisanal cold-pressing process is recognised by UNESCO as part of humanity's cultural heritage and sustains women's economic independence.",
+          "pt": "Extraído por cooperativas amazigh no sudoeste de Marrocos, o óleo de argan sustenta comunidades femininas e compõe rituais de hammam há séculos. O processo artesanal de prensagem a frio é reconhecido pela UNESCO como patrimônio cultural e garante independência econômica às mulheres.",
+          "es": "Extraído por cooperativas amazigh del suroeste de Marruecos, el aceite de argán sostiene a comunidades de mujeres y forma parte del ritual de hammam desde hace siglos. El proceso artesanal de prensado en frío está reconocido por la UNESCO como patrimonio cultural y garantiza la independencia económica femenina."
+        }
+      },
+      "faqs": [
+        {
+          "question": {
+            "en": "Can I apply it after microneedling or laser treatments?",
+            "pt": "Posso aplicar após microagulhamento ou tratamentos a laser?",
+            "es": "¿Puedo aplicarlo después de un microneedling o tratamientos láser?"
+          },
+          "answer": {
+            "en": "Yes—once the skin is fully closed, usually 24 hours after fractional laser or microneedling, smooth two to three drops over damp skin. Its vitamin E and essential fatty acids make it the best natural oil for post-laser skin repair, helping calm heat and replenish the barrier.",
+            "pt": "Sim — assim que a pele estiver totalmente fechada, geralmente 24 horas após laser fracionado ou microagulhamento, espalhe duas a três gotas sobre a pele úmida. A vitamina E e os ácidos graxos essenciais fazem dele o melhor óleo natural para reparar a pele pós-laser, ajudando a acalmar o calor e reabastecer a barreira.",
+            "es": "Sí; una vez que la piel esté totalmente cerrada, normalmente 24 horas después de un láser fraccionado o microneedling, distribuye de dos a tres gotas sobre la piel húmeda. Su vitamina E y ácidos grasos esenciales lo convierten en el mejor aceite natural para la reparación cutánea post láser, ayudando a calmar el calor y reponer la barrera."
+          }
+        },
+        {
+          "question": {
+            "en": "Will pure argan oil clog my pores?",
+            "pt": "O óleo de argan puro vai obstruir meus poros?",
+            "es": "¿El aceite de argán puro obstruirá mis poros?"
+          },
+          "answer": {
+            "en": "Argan oil has a comedogenic rating of 0–1, meaning it rarely blocks pores. Warm a single drop between your palms and press onto skin as the final step, or mix it with a water-based serum to aid absorption.",
+            "pt": "O óleo de argan tem índice comedogênico 0–1, ou seja, dificilmente obstrui os poros. Aqueça uma gota entre as palmas e pressione sobre a pele como último passo, ou misture a um sérum aquoso para facilitar a absorção.",
+            "es": "El aceite de argán tiene un índice comedogénico de 0–1, lo que significa que rara vez obstruye los poros. Calienta una gota entre las palmas y presiona sobre la piel como paso final, o mézclala con un sérum acuoso para mejorar la absorción."
+          }
+        },
+        {
+          "question": {
+            "en": "How do I use it as argan oil for scalp stimulation in thinning hair?",
+            "pt": "Como usar como óleo de argan para estimular o couro cabeludo em cabelos ralos?",
+            "es": "¿Cómo lo uso como aceite de argán para estimular el cuero cabelludo en cabellos afinados?"
+          },
+          "answer": {
+            "en": "Section clean hair, apply the dropper along partings, and massage the scalp for three minutes. Leave overnight and cleanse in the morning; consistent use three nights a week supports circulation and stronger growth.",
+            "pt": "Separe o cabelo limpo, aplique o conta-gotas nas divisões e massageie o couro cabeludo por três minutos. Deixe agir durante a noite e lave de manhã; o uso constante três noites por semana estimula a circulação e fortalece o crescimento.",
+            "es": "Divide el cabello limpio, aplica el gotero sobre las secciones y masajea el cuero cabelludo durante tres minutos. Déjalo actuar toda la noche y lava por la mañana; usarlo tres noches por semana estimula la circulación y refuerza el crecimiento."
+          }
+        },
+        {
+          "question": {
+            "en": "Can it replace my moisturiser?",
+            "pt": "Ele pode substituir o meu hidratante?",
+            "es": "¿Puede reemplazar mi hidratante?"
+          },
+          "answer": {
+            "en": "Use it as the final occlusive layer over humectants or blend a drop into your ceramide cream. It locks in water but does not replace water-based hydration, so keep your toner or essence in the routine.",
+            "pt": "Use como camada oclusiva final sobre umectantes ou misture uma gota ao seu creme com ceramidas. Ele retém a água, mas não substitui a hidratação à base de água, portanto mantenha seu tônico ou essência na rotina.",
+            "es": "Úsalo como capa oclusiva final sobre humectantes o mezcla una gota con tu crema de ceramidas. Sella el agua, pero no sustituye la hidratación acuosa, así que conserva tu tónico o esencia en la rutina."
+          }
+        }
+      ]
     },
     {
       "ingredients": {
@@ -156,7 +233,84 @@
           "Ayuda a reducir el enrojecimiento y calmar la irritación",
           "Se puede usar para fijar el maquillaje o refrescar la piel durante el día"
         ]
-      }
+      },
+      "knowledge": {
+        "whatItIs": {
+          "en": "A single-ingredient Damask rose hydrosol distilled from handpicked petals. It's the best alcohol-free rose water for rosacea-friendly toning, delivering instant hydration without stickiness.",
+          "pt": "Um hidrossol de Rosa Damascena de ingrediente único, destilado de pétalas colhidas à mão. É a melhor água de rosas sem álcool para tonificar peles com rosácea, oferecendo hidratação imediata sem deixar resíduo pegajoso.",
+          "es": "Un hidrosol de Rosa Damascena de un solo ingrediente, destilado de pétalos recolectados a mano. Es el mejor agua de rosas sin alcohol para tonificar pieles con rosácea, aportando hidratación instantánea sin sensación pegajosa."
+        },
+        "howItWorks": {
+          "en": "With a natural pH close to skin, rose water replenishes moisture while phenolic compounds like quercetin reduce inflammation. Mild astringent tannins refine pores and balance sebum without stripping.",
+          "pt": "Com pH natural próximo ao da pele, a água de rosas repõe a umidade enquanto compostos fenólicos como a quercetina reduzem a inflamação. Taninos adstringentes suaves refinam os poros e equilibram a oleosidade sem ressecar.",
+          "es": "Con un pH natural cercano al de la piel, el agua de rosas repone humedad mientras compuestos fenólicos como la quercetina reducen la inflamación. Los taninos astringentes suaves afinan los poros y equilibran el sebo sin resecar."
+        },
+        "whoItsFor": {
+          "en": "Perfect for reactive, redness-prone, or combination skin needing a calm reset throughout the day. Also loved as a rose water mist for sensitive combination skin, setting makeup and soothing overheated scalps.",
+          "pt": "Perfeita para peles reativas, com tendência à vermelhidão ou mistas que precisam de um reset calmante ao longo do dia. Também é adorada como bruma de água de rosas para peles sensíveis mistas, fixando a maquiagem e acalmando couros cabeludos superaquecidos.",
+          "es": "Perfecta para pieles reactivas, con tendencia al enrojecimiento o mixtas que necesitan un reinicio calmante durante el día. También es una bruma de agua de rosas ideal para piel sensible mixta, fija el maquillaje y alivia cueros cabelludos sobrecalentados."
+        },
+        "scientificBacking": {
+          "en": "In vitro studies show Rosa damascena extracts inhibit COX-2 and reduce lipid peroxidation, key markers of inflammation. Clinical testing on sensitive volunteers found reduced redness and improved hydration after four weeks of daily rose water use.",
+          "pt": "Estudos in vitro mostram que extratos de Rosa damascena inibem a COX-2 e reduzem a peroxidação lipídica, marcadores chave da inflamação. Testes clínicos em voluntários de pele sensível registraram menos vermelhidão e hidratação superior após quatro semanas de uso diário.",
+          "es": "Estudios in vitro muestran que los extractos de Rosa damascena inhiben la COX-2 y reducen la peroxidación lipídica, marcadores clave de inflamación. Pruebas clínicas en voluntarios de piel sensible reportaron menos enrojecimiento y mejor hidratación tras cuatro semanas de uso diario."
+        },
+        "culturalContext": {
+          "en": "Damask rose distillation has deep roots in Moroccan and Middle Eastern hammam rituals, where the floral water cools the skin after steam baths. It's also poured over guests during celebrations as a gesture of purity and welcome.",
+          "pt": "A destilação de rosas damascenas tem raízes profundas nos rituais de hammam do Marrocos e do Oriente Médio, onde a água floral resfria a pele após os banhos de vapor. Ela também é oferecida em celebrações como gesto de pureza e boas-vindas.",
+          "es": "La destilación de rosas damascenas tiene raíces profundas en los rituales de hammam marroquíes y de Oriente Medio, donde el agua floral refresca la piel después de los baños de vapor. También se vierte sobre los invitados en celebraciones como gesto de pureza y bienvenida."
+        }
+      },
+      "faqs": [
+        {
+          "question": {
+            "en": "Can I layer it after chemical exfoliants or retinoids?",
+            "pt": "Posso usar após esfoliantes químicos ou retinoides?",
+            "es": "¿Puedo aplicarla después de exfoliantes químicos o retinoides?"
+          },
+          "answer": {
+            "en": "Yes—mist immediately after neutralising acids or retinoids to rebalance pH and reduce stinging. The hydrosol's humectants help buffer active treatments while keeping the barrier hydrated.",
+            "pt": "Sim — borrife imediatamente após neutralizar ácidos ou retinoides para reequilibrar o pH e reduzir o ardor. Os umectantes do hidrossol ajudam a amortecer os ativos enquanto mantêm a barreira hidratada.",
+            "es": "Sí; rocíala inmediatamente después de neutralizar ácidos o retinoides para reequilibrar el pH y reducir el escozor. Los humectantes del hidrosol amortiguan los activos mientras mantienen la barrera hidratada."
+          }
+        },
+        {
+          "question": {
+            "en": "Does it help calm redness or rosacea flare-ups?",
+            "pt": "Ela ajuda a acalmar vermelhidão ou crises de rosácea?",
+            "es": "¿Ayuda a calmar el enrojecimiento o los brotes de rosácea?"
+          },
+          "answer": {
+            "en": "Store it chilled and press soaked cotton rounds onto flushed areas for five minutes. Rose polyphenols visibly ease heat and capillary flare without the need for menthol or alcohol.",
+            "pt": "Guarde na geladeira e pressione discos de algodão embebidos sobre as áreas quentes por cinco minutos. Os polifenóis da rosa aliviam o calor e a dilatação capilar sem recorrer a mentol ou álcool.",
+            "es": "Guárdala en frío y presiona discos de algodón empapados sobre las zonas enrojecidas durante cinco minutos. Los polifenoles de la rosa calman el calor y el enrojecimiento capilar sin recurrir a mentol ni alcohol."
+          }
+        },
+        {
+          "question": {
+            "en": "Can I spray it on my hair or scalp?",
+            "pt": "Posso borrifar no cabelo ou no couro cabeludo?",
+            "es": "¿Puedo rociarla en el cabello o el cuero cabelludo?"
+          },
+          "answer": {
+            "en": "Yes—mist roots before styling to rehydrate curls, reduce static, and leave a subtle botanical scent. It also refreshes the scalp between wash days.",
+            "pt": "Sim — borrife nas raízes antes de modelar para reidratar os cachos, reduzir o frizz elétrico e deixar um aroma botânico sutil. Também refresca o couro cabeludo entre as lavagens.",
+            "es": "Sí; rocíala en las raíces antes de peinar para rehidratar rizos, reducir la estática y dejar un aroma botánico sutil. También refresca el cuero cabelludo entre lavados."
+          }
+        },
+        {
+          "question": {
+            "en": "How long does pure rose water stay fresh once opened?",
+            "pt": "Quanto tempo a água de rosas pura permanece fresca depois de aberta?",
+            "es": "¿Cuánto tiempo se mantiene fresca el agua de rosas pura después de abrirla?"
+          },
+          "answer": {
+            "en": "Use within six months for optimal potency. Keep the cap tightly closed, store away from direct light, and refrigerate in hot climates to extend freshness.",
+            "pt": "Use em até seis meses para garantir a potência. Mantenha a tampa bem fechada, longe da luz direta, e refrigere em climas quentes para prolongar a frescura.",
+            "es": "Úsala dentro de seis meses para conservar su potencia. Mantén la tapa bien cerrada, resguárdala de la luz directa y refrigérala en climas cálidos para prolongar la frescura."
+          }
+        }
+      ]
     },
     {
       "ingredients": {
@@ -226,7 +380,84 @@
           "Rico en Vitamina E",
           "Parte esencial del ritual tradicional del Hammam"
         ]
-      }
+      },
+      "knowledge": {
+        "whatItIs": {
+          "en": "A traditional Moroccan beldi black soap made from saponified olive pulp and eucalyptus. It's the best pre-exfoliation gel for ingrown-prone body skin, melting buildup before the Kessa glove.",
+          "pt": "Um sabão preto marroquino tradicional beldi feito de polpa de oliva saponificada com eucalipto. É o melhor gel de pré-esfoliação para pele corporal com pelos encravados, dissolvendo o acúmulo antes da luva Kessa.",
+          "es": "Un jabón negro marroquí tradicional beldi elaborado con pulpa de oliva saponificada y eucalipto. Es el mejor gel de preexfoliación para piel corporal con vellos encarnados, disolviendo la acumulación antes del guante Kessa."
+        },
+        "howItWorks": {
+          "en": "Potassium-based saponification creates a low-foaming paste rich in oleic acid to soften keratin and loosen debris. Humectant glycerin draws moisture into the stratum corneum, while eucalyptus oil increases circulation and offers purifying aromatherapy.",
+          "pt": "A saponificação à base de potássio cria uma pasta de baixa espuma rica em ácido oleico que amacia a queratina e desprende resíduos. A glicerina umectante atrai água para o estrato córneo, enquanto o óleo de eucalipto ativa a circulação e oferece aromaterapia purificante.",
+          "es": "La saponificación a base de potasio crea una pasta de poca espuma rica en ácido oleico que suaviza la queratina y afloja los residuos. La glicerina humectante atrae agua hacia el estrato córneo, mientras el aceite de eucalipto activa la circulación y aporta aromaterapia purificante."
+        },
+        "whoItsFor": {
+          "en": "Ideal for dull, rough texture on arms, legs, and backs, including keratosis pilaris, ingrown hairs, or athletes needing deep cleansing. Not recommended for the face or broken skin.",
+          "pt": "Ideal para textura opaca e áspera em braços, pernas e costas, incluindo queratose pilar, pelos encravados ou atletas que precisam de limpeza profunda. Não é recomendado para o rosto ou pele lesionada.",
+          "es": "Ideal para textura apagada y áspera en brazos, piernas y espalda, incluida la queratosis pilaris, los vellos encarnados o atletas que necesitan limpieza profunda. No se recomienda para el rostro ni para piel lesionada."
+        },
+        "scientificBacking": {
+          "en": "Spa therapy research shows that warm occlusive cleansers like Moroccan black soap increase stratum corneum water content by up to 20%, making mechanical exfoliation more effective. Olive-derived saponins are naturally rich in vitamin E and have documented antioxidant activity.",
+          "pt": "Pesquisas em terapias de spa mostram que limpadores quentes e oclusivos como o sabão preto marroquino aumentam em até 20% o conteúdo hídrico do estrato córneo, potencializando a esfoliação mecânica. Saponinas derivadas da oliva são naturalmente ricas em vitamina E e apresentam atividade antioxidante documentada.",
+          "es": "Investigaciones en terapias de spa muestran que limpiadores tibios y oclusivos como el jabón negro marroquí aumentan hasta un 20% el contenido hídrico del estrato córneo, potenciando la exfoliación mecánica. Las saponinas derivadas de la oliva son naturalmente ricas en vitamina E y poseen actividad antioxidante documentada."
+        },
+        "culturalContext": {
+          "en": "Known as savon noir or beldi soap, this gel has anchored hammam rituals for centuries. Applied in steamy bathhouses before vigorous gommage, it symbolises purification and communal care across North Africa.",
+          "pt": "Conhecido como savon noir ou sabão beldi, esse gel sustenta os rituais de hammam há séculos. Aplicado em banhos de vapor antes do vigoroso gommage, simboliza purificação e cuidado coletivo em todo o Norte da África.",
+          "es": "Conocido como savon noir o jabón beldi, este gel sostiene los rituales de hammam desde hace siglos. Aplicado en baños de vapor antes del vigoroso gommage, simboliza purificación y cuidado comunitario en todo el norte de África."
+        }
+      },
+      "faqs": [
+        {
+          "question": {
+            "en": "How long should I leave it on before exfoliating?",
+            "pt": "Quanto tempo devo deixar agir antes de esfoliar?",
+            "es": "¿Cuánto tiempo debo dejarlo actuar antes de exfoliar?"
+          },
+          "answer": {
+            "en": "Massage onto damp skin and let the steam work for five to seven minutes without letting it dry. Rinse lightly, then scrub with a Kessa glove to lift the softened buildup.",
+            "pt": "Massageie na pele úmida e deixe o vapor agir por cinco a sete minutos sem deixar secar. Enxágue levemente e, em seguida, esfolie com a luva Kessa para remover o acúmulo amolecido.",
+            "es": "Masajea sobre la piel húmeda y deja que el vapor actúe entre cinco y siete minutos sin permitir que se seque. Aclara ligeramente y luego exfolia con el guante Kessa para retirar la acumulación ablandada."
+          }
+        },
+        {
+          "question": {
+            "en": "Can I use it on my face?",
+            "pt": "Posso usar no rosto?",
+            "es": "¿Puedo usarlo en el rostro?"
+          },
+          "answer": {
+            "en": "We recommend keeping it for the body only. Its higher alkaline pH and eucalyptus essential oil can be too stimulating for delicate facial skin—choose a gentler cleanser for the face.",
+            "pt": "Recomendamos reservar o uso para o corpo. O pH mais alcalino e o óleo essencial de eucalipto podem ser estimulantes demais para a pele delicada do rosto — prefira um limpador mais suave para essa área.",
+            "es": "Recomendamos reservarlo solo para el cuerpo. Su pH más alcalino y el aceite esencial de eucalipto pueden resultar demasiado estimulantes para la piel facial delicada; elige un limpiador más suave para el rostro."
+          }
+        },
+        {
+          "question": {
+            "en": "Is it safe for eczema or psoriasis patches?",
+            "pt": "É seguro em áreas com eczema ou psoríase?",
+            "es": "¿Es seguro en zonas con eccema o psoriasis?"
+          },
+          "answer": {
+            "en": "On eczema or psoriasis-prone areas, patch-test first and limit use to calm phases. Avoid applying on active flares, open cuts, or freshly shaved skin.",
+            "pt": "Em áreas com eczema ou psoríase, faça um teste de toque e limite o uso a fases controladas. Evite aplicar sobre surtos ativos, cortes abertos ou pele recém-depilada.",
+            "es": "En zonas propensas a eccema o psoriasis, realiza una prueba en parche y úsalo solo en fases controladas. Evita aplicarlo sobre brotes activos, cortes abiertos o piel recién depilada."
+          }
+        },
+        {
+          "question": {
+            "en": "How often should I use it for keratosis pilaris or ingrown hairs?",
+            "pt": "Com que frequência devo usar para queratose pilar ou pelos encravados?",
+            "es": "¿Con qué frecuencia debo usarlo para queratosis pilaris o vellos encarnados?"
+          },
+          "answer": {
+            "en": "Use once or twice a week alongside your shower routine. Pair with daily moisturisers containing lactic acid or urea to keep bumps smooth between sessions.",
+            "pt": "Use uma ou duas vezes por semana durante o banho. Combine com hidratantes diários contendo ácido lático ou ureia para manter as protuberâncias lisas entre as sessões.",
+            "es": "Úsalo una o dos veces por semana durante la ducha. Combínalo con hidratantes diarios que contengan ácido láctico o urea para mantener la piel lisa entre sesiones."
+          }
+        }
+      ]
     },
     {
       "ingredients": {
@@ -293,7 +524,84 @@
           "El aceite esencial de lavanda ayuda a calmar la mente y la piel",
           "Ideal para uso nocturno o para un masaje relajante"
         ]
-      }
+      },
+      "knowledge": {
+        "whatItIs": {
+          "en": "A blend of pure argan oil with Lavandula angustifolia essential oil. It's the lavender argan body oil for bedtime anxiety relief and overnight barrier repair.",
+          "pt": "Uma mistura de óleo de argan puro com óleo essencial de Lavandula angustifolia. É o óleo corporal de argan com lavanda para aliviar a ansiedade na hora de dormir e restaurar a barreira durante a noite.",
+          "es": "Una mezcla de aceite de argán puro con aceite esencial de Lavandula angustifolia. Es el aceite corporal de argán con lavanda para aliviar la ansiedad a la hora de dormir y reparar la barrera durante la noche."
+        },
+        "howItWorks": {
+          "en": "Argan's fatty acids nourish while lavender's linalool and linalyl acetate interact with GABA receptors, reducing nervous system arousal. Anti-inflammatory terpenes ease redness and micro-tension in the skin.",
+          "pt": "Os ácidos graxos do argan nutrem enquanto o linalol e o acetato de linalila da lavanda interagem com receptores GABA, reduzindo a excitação do sistema nervoso. Terpenos anti-inflamatórios suavizam a vermelhidão e a microtensão da pele.",
+          "es": "Los ácidos grasos del argán nutren mientras que el linalol y el acetato de linalilo de la lavanda interactúan con los receptores GABA, reduciendo la excitación del sistema nervioso. Los terpenos antiinflamatorios suavizan el enrojecimiento y la microtensión de la piel."
+        },
+        "whoItsFor": {
+          "en": "Designed for evening routines, stressed or sensitised skin, postpartum parents, and massage therapists seeking a grounding glide. It suits anyone wanting a lavender argan body oil that feels dry-touch yet cushioning.",
+          "pt": "Pensado para rituais noturnos, peles estressadas ou sensibilizadas, mães no pós-parto e terapeutas de massagem que buscam um deslizamento acolhedor. Atende a quem deseja um óleo corporal de argan com lavanda de toque seco e confortável.",
+          "es": "Creado para rituales nocturnos, pieles estresadas o sensibilizadas, madres posparto y terapeutas de masaje que buscan un deslizamiento reconfortante. Atiende a quienes desean un aceite corporal de argán con lavanda de tacto seco pero envolvente."
+        },
+        "scientificBacking": {
+          "en": "Clinical aromatherapy trials show lavender inhalation lowers heart rate and improves sleep latency, while studies on argan oil demonstrate greater hydration and elasticity after four weeks. Together they support calmer skin and a quieter mind.",
+          "pt": "Ensaios clínicos de aromaterapia mostram que a inalação de lavanda reduz a frequência cardíaca e melhora a latência do sono, enquanto estudos com óleo de argan demonstram mais hidratação e elasticidade após quatro semanas. Juntos, promovem uma pele mais calma e uma mente mais tranquila.",
+          "es": "Ensayos clínicos de aromaterapia muestran que la inhalación de lavanda reduce la frecuencia cardíaca y mejora la latencia del sueño, mientras que estudios con aceite de argán demuestran mayor hidratación y elasticidad tras cuatro semanas. Juntos favorecen una piel más calmada y una mente serena."
+        },
+        "culturalContext": {
+          "en": "Mediterranean lavender fields have long infused hammam rituals, where floral waters are blended with argan oil for massage. This fusion honours the exchange between Moroccan cooperatives and Provençal aromatherapists.",
+          "pt": "Campos de lavanda mediterrâneos há muito inspiram os rituais de hammam, nos quais águas florais se misturam ao argan para massagens. Esta fusão homenageia a troca entre cooperativas marroquinas e aromaterapeutas provençais.",
+          "es": "Los campos de lavanda mediterráneos llevan siglos inspirando los rituales de hammam, donde las aguas florales se combinan con argán para masajes. Esta fusión honra el intercambio entre cooperativas marroquíes y aromaterapeutas provenzales."
+        }
+      },
+      "faqs": [
+        {
+          "question": {
+            "en": "Is it safe during pregnancy or breastfeeding?",
+            "pt": "É seguro durante a gravidez ou amamentação?",
+            "es": "¿Es seguro durante el embarazo o la lactancia?"
+          },
+          "answer": {
+            "en": "Most midwives consider true lavender safe after the first trimester when used diluted, but always consult your healthcare provider. Avoid applying on the abdomen while pregnant and use sparingly while breastfeeding to keep fragrance away from your baby's face.",
+            "pt": "A maioria das parteiras considera a lavanda verdadeira segura após o primeiro trimestre quando diluída, mas consulte sempre o seu profissional de saúde. Evite aplicar no abdômen durante a gravidez e use com moderação na amamentação para manter a fragrância longe do rosto do bebê.",
+            "es": "La mayoría de las matronas considera la lavanda verdadera segura después del primer trimestre cuando está diluida, pero consulta siempre con tu profesional de salud. Evita aplicarla sobre el abdomen durante el embarazo y úsala con moderación en la lactancia para mantener la fragancia lejos del rostro del bebé."
+          }
+        },
+        {
+          "question": {
+            "en": "Will the lavender scent linger or clash with perfume?",
+            "pt": "O aroma de lavanda permanece ou conflita com o perfume?",
+            "es": "¿El aroma de lavanda permanece o choca con el perfume?"
+          },
+          "answer": {
+            "en": "The natural aroma diffuses within about twenty minutes, leaving a soft skin scent that layers beautifully under gourmand, amber, or citrus fragrances.",
+            "pt": "O aroma natural se dissipa em cerca de vinte minutos, deixando uma fragrância suave na pele que combina perfeitamente com perfumes gourmand, âmbar ou cítricos.",
+            "es": "El aroma natural se difunde en unos veinte minutos, dejando un velo suave en la piel que se integra muy bien con perfumes gourmand, ámbar o cítricos."
+          }
+        },
+        {
+          "question": {
+            "en": "How do I build a sleep ritual with this oil?",
+            "pt": "Como criar um ritual do sono com este óleo?",
+            "es": "¿Cómo creo un ritual de sueño con este aceite?"
+          },
+          "answer": {
+            "en": "Warm three to four drops between your palms, cup your hands to inhale for four counts, then massage into chest, shoulders, and soles. Pair with box breathing or gentle stretching to ease you into restorative sleep.",
+            "pt": "Aqueça três a quatro gotas entre as palmas, cubra o nariz para inalar por quatro tempos e massageie no peito, ombros e solas. Combine com respiração em caixa ou alongamentos suaves para facilitar um sono reparador.",
+            "es": "Calienta de tres a cuatro gotas entre las palmas, cubre la nariz para inhalar en cuatro tiempos y masajea en el pecho, hombros y plantas de los pies. Acompaña con respiración cuadrada o estiramientos suaves para inducir un sueño reparador."
+          }
+        },
+        {
+          "question": {
+            "en": "Can I use it on my face as well as my body?",
+            "pt": "Posso usar no rosto além do corpo?",
+            "es": "¿Puedo usarlo en el rostro además del cuerpo?"
+          },
+          "answer": {
+            "en": "Yes—press a single drop over your moisturiser or mix it with a night cream. Always patch-test first and avoid the eye contour to prevent irritation.",
+            "pt": "Sim — pressione uma gota sobre o hidratante ou misture a um creme noturno. Faça sempre um teste de toque e evite a área dos olhos para prevenir irritações.",
+            "es": "Sí; presiona una gota sobre tu hidratante o mézclala con una crema nocturna. Realiza siempre una prueba en parche y evita el contorno de ojos para prevenir irritaciones."
+          }
+        }
+      ]
     },
     {
       "ingredients": {
@@ -360,7 +668,84 @@
           "El romero es conocido por estimular el cuero cabelludo y promover la salud del cabello",
           "Propiedades clarificantes para la piel"
         ]
-      }
+      },
+      "knowledge": {
+        "whatItIs": {
+          "en": "A fusion of pure argan oil and steam-distilled rosemary leaf oil. It's the argan and rosemary scalp oil for postpartum shedding and fatigued roots.",
+          "pt": "Uma fusão de óleo de argan puro com óleo essencial de alecrim destilado a vapor. É o óleo de argan com alecrim para queda capilar pós-parto e raízes fatigadas.",
+          "es": "Una fusión de aceite de argán puro con aceite esencial de romero destilado al vapor. Es el aceite de argán con romero para la caída capilar posparto y raíces fatigadas."
+        },
+        "howItWorks": {
+          "en": "Rosemary's 1,8-cineole and carnosic acid boost microcirculation, modulate DHT, and deliver antioxidant protection while argan lipids cushion the scalp and lock in moisture.",
+          "pt": "O 1,8-cineol e o ácido carnósico do alecrim estimulam a microcirculação, modulam o DHT e oferecem proteção antioxidante, enquanto os lipídios do argan amortecem o couro cabeludo e retêm a umidade.",
+          "es": "El 1,8-cineol y el ácido carnósico del romero estimulan la microcirculación, modulan el DHT y aportan protección antioxidante, mientras los lípidos del argán amortiguan el cuero cabelludo y sellan la humedad."
+        },
+        "whoItsFor": {
+          "en": "Tailored for thinning hairlines, oily or congested scalps, athletes dealing with helmet build-up, and clients wanting an energising pre-shampoo massage oil.",
+          "pt": "Feito para linhas capilares afinadas, couros cabeludos oleosos ou congestionados, atletas com acúmulo de capacete e clientes que desejam um óleo de massagem pré-shampoo energizante.",
+          "es": "Pensado para líneas capilares afinadas, cueros cabelludos grasos o congestionados, deportistas con acumulación por casco y clientes que buscan un aceite energizante previo al champú."
+        },
+        "scientificBacking": {
+          "en": "A randomised clinical trial showed rosemary oil performed comparably to 2% minoxidil for androgenic alopecia after six months. Additional studies highlight rosemary's antimicrobial action against Malassezia, helping maintain scalp balance.",
+          "pt": "Um ensaio clínico randomizado mostrou que o óleo de alecrim teve desempenho comparável ao minoxidil a 2% para alopecia androgenética após seis meses. Estudos adicionais destacam a ação antimicrobiana do alecrim contra Malassezia, ajudando a manter o equilíbrio do couro cabeludo.",
+          "es": "Un ensayo clínico aleatorizado demostró que el aceite de romero tuvo un desempeño comparable al minoxidil al 2% para la alopecia androgenética después de seis meses. Estudios adicionales destacan la acción antimicrobiana del romero contra Malassezia, ayudando a mantener el equilibrio del cuero cabelludo."
+        },
+        "culturalContext": {
+          "en": "Rosemary has long featured in Mediterranean postpartum rituals to invigorate the scalp. Blended with Moroccan argan oil, it bridges two botanical heritages celebrated for strength and resilience.",
+          "pt": "O alecrim há muito integra rituais pós-parto mediterrâneos para revitalizar o couro cabeludo. Combinado ao óleo de argan marroquino, une dois patrimônios botânicos celebrados por força e resiliência.",
+          "es": "El romero lleva siglos presente en rituales posparto mediterráneos para revitalizar el cuero cabelludo. Combinado con el aceite de argán marroquí, une dos patrimonios botánicos celebrados por su fuerza y resiliencia."
+        }
+      },
+      "faqs": [
+        {
+          "question": {
+            "en": "How often should I use it to support hair density?",
+            "pt": "Com que frequência devo usar para apoiar a densidade capilar?",
+            "es": "¿Con qué frecuencia debo usarlo para apoyar la densidad capilar?"
+          },
+          "answer": {
+            "en": "Massage three to four nights per week, leave on for two to eight hours, and cleanse with a gentle shampoo. Consistent use for at least three months is key to seeing fuller-looking growth.",
+            "pt": "Massageie três a quatro noites por semana, deixe agir de duas a oito horas e lave com um shampoo suave. A consistência por pelo menos três meses é essencial para notar um crescimento visualmente mais cheio.",
+            "es": "Masajea de tres a cuatro noches por semana, deja actuar de dos a ocho horas y lava con un champú suave. La constancia durante al menos tres meses es clave para percibir un crecimiento con más cuerpo."
+          }
+        },
+        {
+          "question": {
+            "en": "Can I apply it to colour-treated or chemically straightened hair?",
+            "pt": "Posso aplicar em cabelos coloridos ou alisados quimicamente?",
+            "es": "¿Puedo aplicarlo en cabello teñido o alisado químicamente?"
+          },
+          "answer": {
+            "en": "Yes—focus on the scalp and massage before shampooing. The lightweight argan base rinses clean and will not strip professional colour when followed with a sulfate-free cleanser.",
+            "pt": "Sim — concentre-se no couro cabeludo e massageie antes do shampoo. A base leve de argan sai facilmente e não desbota colorações profissionais quando enxaguada com um limpador sem sulfatos.",
+            "es": "Sí; concéntrate en el cuero cabelludo y masajea antes del champú. La base ligera de argán se enjuaga con facilidad y no arrastra el color profesional cuando se aclara con un limpiador sin sulfatos."
+          }
+        },
+        {
+          "question": {
+            "en": "Will it cause tingling or irritation?",
+            "pt": "Ele causa formigamento ou irritação?",
+            "es": "¿Provoca hormigueo o irritación?"
+          },
+          "answer": {
+            "en": "A gentle warming or tingling sensation is normal as circulation increases. If you experience burning or redness, rinse immediately and dilute with more pure argan oil on future applications.",
+            "pt": "Um aquecimento ou formigamento suave é normal conforme a circulação aumenta. Se sentir ardência ou vermelhidão, enxágue imediatamente e dilua com mais óleo de argan puro nas próximas aplicações.",
+            "es": "Una sensación de calor o cosquilleo suave es normal a medida que aumenta la circulación. Si notas ardor o enrojecimiento, aclara de inmediato y diluye con más aceite de argán puro en las aplicaciones siguientes."
+          }
+        },
+        {
+          "question": {
+            "en": "Can it help with scalp flaking or dandruff?",
+            "pt": "Ajuda com descamação ou caspa no couro cabeludo?",
+            "es": "¿Ayuda con la descamación o la caspa del cuero cabelludo?"
+          },
+          "answer": {
+            "en": "Rosemary's antimicrobial properties can help curb Malassezia yeast that contributes to flaking. Pair it with weekly gentle scalp exfoliation and a balanced shampoo routine for best results.",
+            "pt": "As propriedades antimicrobianas do alecrim ajudam a controlar a levedura Malassezia que contribui para a descamação. Combine com esfoliação suave semanal e um shampoo equilibrado para melhores resultados.",
+            "es": "Las propiedades antimicrobianas del romero pueden ayudar a frenar la levadura Malassezia que provoca descamación. Combínalo con una exfoliación suave semanal y una rutina de champú equilibrada para obtener mejores resultados."
+          }
+        }
+      ]
     },
     {
       "ingredients": {
@@ -427,7 +812,84 @@
           "El pachulí es apreciado por su aroma estabilizador y sus beneficios para la piel madura",
           "Ayuda a reducir la apariencia de las arrugas"
         ]
-      }
+      },
+      "knowledge": {
+        "whatItIs": {
+          "en": "A luxurious blend of pure argan oil enriched with patchouli essential oil. It's the patchouli argan body oil for menopausal skin comfort and grounding aromatherapy.",
+          "pt": "Uma mistura luxuosa de óleo de argan puro enriquecida com óleo essencial de patchouli. É o óleo corporal de argan com patchouli para conforto da pele na menopausa e aromaterapia aterradora.",
+          "es": "Una mezcla lujosa de aceite de argán puro enriquecida con aceite esencial de pachuli. Es el aceite corporal de argán con pachuli para el confort de la piel en la menopausia y una aromaterapia arraigada."
+        },
+        "howItWorks": {
+          "en": "Patchoulol and alpha-bulnesene support microcirculation and balance sebum production, while argan lipids restore natural ceramides and soften inflammation.",
+          "pt": "Patchoulol e alfa-bulneseno estimulam a microcirculação e equilibram a produção de sebo, enquanto os lipídios do argan recompõem ceramidas naturais e suavizam a inflamação.",
+          "es": "El patchoulol y el alfa-bulneseno estimulan la microcirculación y equilibran la producción de sebo, mientras los lípidos del argán reponen las ceramidas naturales y suavizan la inflamación."
+        },
+        "whoItsFor": {
+          "en": "Perfect for dry, mature, or menopausal skin needing lasting nourishment, for body gua sha rituals, or for anyone seeking a sensorial self-massage experience.",
+          "pt": "Perfeito para peles secas, maduras ou na menopausa que precisam de nutrição prolongada, para rituais de gua sha corporal ou para quem busca uma experiência sensorial de automassagem.",
+          "es": "Perfecto para pieles secas, maduras o en menopausia que necesitan nutrición prolongada, para rituales de gua sha corporal o para quienes buscan una experiencia sensorial de automasaje."
+        },
+        "scientificBacking": {
+          "en": "Studies show patchouli essential oil can reduce inflammatory markers and lower stress-related heart rate variability, while argan oil is documented to improve elasticity and support recovery from photodamage.",
+          "pt": "Estudos mostram que o óleo essencial de patchouli reduz marcadores inflamatórios e diminui a variabilidade cardíaca associada ao estresse, enquanto o óleo de argan melhora a elasticidade e apoia a recuperação de danos solares.",
+          "es": "Los estudios muestran que el aceite esencial de pachuli reduce marcadores inflamatorios y disminuye la variabilidad cardíaca asociada al estrés, mientras que el aceite de argán mejora la elasticidad y favorece la recuperación del daño solar."
+        },
+        "culturalContext": {
+          "en": "Patchouli leaves have long perfumed North African hammams and Southeast Asian ceremonies. Blending them with Moroccan argan oil honours the trade routes linking Marrakech souks with Indonesian botanicals.",
+          "pt": "Folhas de patchouli há muito perfumam hammams norte-africanos e cerimônias do sudeste asiático. Combiná-las ao óleo de argan marroquino homenageia as rotas comerciais que ligam os souks de Marrakech aos botânicos indonésios.",
+          "es": "Las hojas de pachuli han perfumado durante siglos los hammams norteafricanos y las ceremonias del sudeste asiático. Al combinarlas con el aceite de argán marroquí se rinden honores a las rutas comerciales que unen los zocos de Marrakech con los botánicos indonesios."
+        }
+      },
+      "faqs": [
+        {
+          "question": {
+            "en": "Is the patchouli scent overpowering?",
+            "pt": "O aroma de patchouli é muito intenso?",
+            "es": "¿El aroma de pachuli es demasiado intenso?"
+          },
+          "answer": {
+            "en": "We work with a low, skin-safe concentration so the scent opens earthy and dries down to a soft ambered musk within thirty minutes, making it wearable day or night.",
+            "pt": "Usamos uma concentração baixa e segura para a pele, por isso o aroma começa terroso e evolui para um âmbar suave em até trinta minutos, tornando-o confortável para dia ou noite.",
+            "es": "Utilizamos una concentración baja y segura para la piel, de modo que el aroma se abre terroso y se transforma en un ámbar suave en treinta minutos, haciéndolo cómodo de día o de noche."
+          }
+        },
+        {
+          "question": {
+            "en": "Can I layer it with my favourite fragrance?",
+            "pt": "Posso combiná-lo com meu perfume favorito?",
+            "es": "¿Puedo combinarlo con mi perfume favorito?"
+          },
+          "answer": {
+            "en": "Yes—apply the oil after showering, let it absorb, and then mist your perfume on pulse points. It pairs beautifully with vanilla, sandalwood, oud, and citrus notes.",
+            "pt": "Sim — aplique o óleo após o banho, deixe absorver e depois borrife o perfume nos pontos de pulsação. Ele harmoniza com notas de baunilha, sândalo, oud e cítricos.",
+            "es": "Sí; aplica el aceite después de la ducha, deja que se absorba y luego pulveriza tu perfume en los puntos de pulso. Combina muy bien con notas de vainilla, sándalo, oud y cítricos."
+          }
+        },
+        {
+          "question": {
+            "en": "Is patchouli safe for sensitive skin?",
+            "pt": "Patchouli é seguro para peles sensíveis?",
+            "es": "¿El pachuli es seguro para pieles sensibles?"
+          },
+          "answer": {
+            "en": "The essential oil is diluted to under one percent within the argan base, but we still recommend patch-testing on the inner arm. Avoid use on broken skin or if you have a known sensitivity to patchouli.",
+            "pt": "O óleo essencial é diluído a menos de um por cento na base de argan, mas recomendamos fazer um teste de toque na parte interna do braço. Evite usar sobre pele lesionada ou se houver sensibilidade conhecida ao patchouli.",
+            "es": "El aceite esencial está diluido a menos del uno por ciento en la base de argán, pero recomendamos realizar una prueba en el antebrazo. Evita usarlo sobre piel lesionada o si tienes sensibilidad conocida al pachuli."
+          }
+        },
+        {
+          "question": {
+            "en": "Can men use this blend as well?",
+            "pt": "Homens também podem usar essa mistura?",
+            "es": "¿Los hombres también pueden usar esta mezcla?"
+          },
+          "answer": {
+            "en": "Absolutely—the earthy, resinous profile makes an excellent post-shower body treatment or beard oil. Massage a few drops into damp facial hair to condition and lightly scent.",
+            "pt": "Com certeza — o perfil terroso e resinoso é perfeito como tratamento corporal pós-banho ou óleo para barba. Massageie algumas gotas na barba úmida para condicionar e perfumar levemente.",
+            "es": "Por supuesto; su perfil terroso y resinoso funciona muy bien como tratamiento corporal posducha o aceite para barba. Masajea unas gotas sobre el vello facial húmedo para acondicionar y perfumar suavemente."
+          }
+        }
+      ]
     },
     {
       "ingredients": {
@@ -497,7 +959,84 @@
           "Deja la piel increíblemente suave y tersa",
           "Perfecto para usar después de aplicar el Jabón Negro Marroquí"
         ]
-      }
+      },
+      "knowledge": {
+        "whatItIs": {
+          "en": "A traditional viscose crepe mitt with a tightly woven texture. It's the best hammam exfoliating glove for keratosis pilaris arms and pre-self-tan prep.",
+          "pt": "Uma luva tradicional de crepe de viscose com textura fechada. É a melhor luva de esfoliação hammam para queratose pilar nos braços e preparação para autobronzeador.",
+          "es": "Un guante tradicional de crespón de viscosa con textura cerrada. Es el mejor guante exfoliante de hammam para la queratosis pilaris en los brazos y la preparación para autobronceadores."
+        },
+        "howItWorks": {
+          "en": "The coarse weave creates controlled friction that lifts away corneocytes, boosts microcirculation, and supports lymphatic flow. Using it after steam or black soap softens keratin so exfoliation stays effective yet gentle.",
+          "pt": "A trama áspera cria fricção controlada que remove corneócitos, estimula a microcirculação e favorece o fluxo linfático. Usá-la após vapor ou sabão preto amolece a queratina para uma esfoliação eficaz e delicada.",
+          "es": "El tejido áspero genera fricción controlada que desprende corneocitos, activa la microcirculación y favorece el flujo linfático. Usarlo después del vapor o del jabón negro ablanda la queratina para una exfoliación eficaz pero suave."
+        },
+        "whoItsFor": {
+          "en": "Ideal for rough arms, legs, and backs, for athletes managing body acne, or anyone prepping skin for body oils or spray tans. Avoid on the face, sunburn, or compromised skin.",
+          "pt": "Ideal para braços, pernas e costas ásperas, para atletas que lidam com acne corporal ou para quem deseja preparar a pele para óleos corporais ou spray bronzeador. Evite no rosto, em queimaduras solares ou pele comprometida.",
+          "es": "Ideal para brazos, piernas y espalda ásperos, para deportistas con acné corporal o para quienes preparan la piel para aceites o bronceados en spray. Evítalo en el rostro, quemaduras solares o piel comprometida."
+        },
+        "scientificBacking": {
+          "en": "Dermatologic research notes that mechanical exfoliation can accelerate cell turnover by up to 30% and improves the absorption of topical actives when followed by emollients. Regular use also helps prevent ingrown hairs when paired with proper shaving techniques.",
+          "pt": "Pesquisas dermatológicas apontam que a esfoliação mecânica pode acelerar a renovação celular em até 30% e melhora a absorção de ativos tópicos quando seguida de emolientes. O uso regular também evita pelos encravados quando combinado a técnicas adequadas de depilação.",
+          "es": "Las investigaciones dermatológicas señalan que la exfoliación mecánica puede acelerar la renovación celular hasta un 30% y mejora la absorción de activos tópicos cuando se continúa con emolientes. El uso regular también previene vellos encarnados cuando se combina con técnicas adecuadas de depilación."
+        },
+        "culturalContext": {
+          "en": "The Kessa glove is a cornerstone of Moroccan hammam culture, symbolising renewal as attendants perform vigorous gommage. Keeping one at home preserves that communal ritual between spa visits.",
+          "pt": "A luva Kessa é um pilar da cultura do hammam marroquino, simbolizando renovação quando as atendentes realizam o vigoroso gommage. Tê-la em casa mantém vivo esse ritual comunitário entre as visitas ao spa.",
+          "es": "El guante Kessa es un pilar de la cultura del hammam marroquí, símbolo de renovación mientras las asistentes realizan el vigoroso gommage. Tener uno en casa mantiene vivo ese ritual comunitario entre visitas al spa."
+        }
+      },
+      "faqs": [
+        {
+          "question": {
+            "en": "How often should I use the Kessa glove?",
+            "pt": "Com que frequência devo usar a luva Kessa?",
+            "es": "¿Con qué frecuencia debo usar el guante Kessa?"
+          },
+          "answer": {
+            "en": "Use it once or twice per week after softening skin with warm water or steam. Daily use can over-exfoliate and compromise the barrier.",
+            "pt": "Use uma ou duas vezes por semana após amaciar a pele com água morna ou vapor. O uso diário pode esfoliar em excesso e comprometer a barreira.",
+            "es": "Úsalo una o dos veces por semana después de ablandar la piel con agua tibia o vapor. El uso diario puede sobreexfoliar y comprometer la barrera."
+          }
+        },
+        {
+          "question": {
+            "en": "Do I need black soap beforehand?",
+            "pt": "Preciso usar sabão preto antes?",
+            "es": "¿Necesito jabón negro antes?"
+          },
+          "answer": {
+            "en": "Traditional hammam rituals pair the glove with Moroccan black soap, but at home you can also soak under a hot shower for five minutes or use a creamy body wash before scrubbing.",
+            "pt": "O ritual tradicional de hammam combina a luva com o sabão preto marroquino, mas em casa você pode ficar debaixo do chuveiro quente por cinco minutos ou usar um sabonete cremoso antes de esfoliar.",
+            "es": "El ritual tradicional del hammam combina el guante con jabón negro marroquí, pero en casa también puedes permanecer bajo la ducha caliente cinco minutos o usar un gel cremoso antes de exfoliar."
+          }
+        },
+        {
+          "question": {
+            "en": "How do I clean and dry the glove?",
+            "pt": "Como limpar e secar a luva?",
+            "es": "¿Cómo limpio y seco el guante?"
+          },
+          "answer": {
+            "en": "Rinse thoroughly after each use, wash with a mild soap once a week, and hang it in a well-ventilated area to air-dry completely.",
+            "pt": "Enxágue bem após cada uso, lave com um sabonete suave uma vez por semana e pendure em local ventilado para secar completamente ao ar.",
+            "es": "Acláralo bien después de cada uso, lávalo con un jabón suave una vez por semana y cuélgalo en un lugar ventilado para que se seque por completo al aire."
+          }
+        },
+        {
+          "question": {
+            "en": "When should I replace my Kessa glove?",
+            "pt": "Quando devo substituir minha luva Kessa?",
+            "es": "¿Cuándo debo reemplazar mi guante Kessa?"
+          },
+          "answer": {
+            "en": "Replace it every three months of regular use, or sooner if the fabric feels smooth, stretches out, or loses its exfoliating bite.",
+            "pt": "Substitua a cada três meses de uso regular, ou antes se o tecido ficar liso, esticar demais ou perder a aspereza esfoliante.",
+            "es": "Sustitúyelo cada tres meses de uso habitual, o antes si la tela se vuelve lisa, se estira demasiado o pierde su capacidad exfoliante."
+          }
+        }
+      ]
     }
   ]
 }

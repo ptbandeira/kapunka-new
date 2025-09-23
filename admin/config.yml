@@ -156,6 +156,64 @@ collections:
                   - { label: English, name: en, widget: text }
                   - { label: Portuguese, name: pt, widget: text }
                   - { label: Spanish, name: es, widget: text }
+              - label: Knowledge Hub
+                name: knowledge
+                widget: object
+                fields:
+                  - label: What It Is
+                    name: whatItIs
+                    widget: object
+                    fields:
+                      - { label: English, name: en, widget: text }
+                      - { label: Portuguese, name: pt, widget: text }
+                      - { label: Spanish, name: es, widget: text }
+                  - label: How It Works
+                    name: howItWorks
+                    widget: object
+                    fields:
+                      - { label: English, name: en, widget: text }
+                      - { label: Portuguese, name: pt, widget: text }
+                      - { label: Spanish, name: es, widget: text }
+                  - label: Who It's For
+                    name: whoItsFor
+                    widget: object
+                    fields:
+                      - { label: English, name: en, widget: text }
+                      - { label: Portuguese, name: pt, widget: text }
+                      - { label: Spanish, name: es, widget: text }
+                  - label: Scientific Backing
+                    name: scientificBacking
+                    widget: object
+                    fields:
+                      - { label: English, name: en, widget: text }
+                      - { label: Portuguese, name: pt, widget: text }
+                      - { label: Spanish, name: es, widget: text }
+                  - label: Cultural & Traditional Context
+                    name: culturalContext
+                    widget: object
+                    fields:
+                      - { label: English, name: en, widget: text }
+                      - { label: Portuguese, name: pt, widget: text }
+                      - { label: Spanish, name: es, widget: text }
+              - label: FAQs
+                name: faqs
+                widget: list
+                summary: "{{fields.question.en}}"
+                fields:
+                  - label: Question
+                    name: question
+                    widget: object
+                    fields:
+                      - { label: English, name: en, widget: text }
+                      - { label: Portuguese, name: pt, widget: text }
+                      - { label: Spanish, name: es, widget: text }
+                  - label: Answer
+                    name: answer
+                    widget: object
+                    fields:
+                      - { label: English, name: en, widget: text }
+                      - { label: Portuguese, name: pt, widget: text }
+                      - { label: Spanish, name: es, widget: text }
   - name: articles
     label: Articles
     files:
