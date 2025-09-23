@@ -54,24 +54,30 @@ const Learn: React.FC = () => {
         transition={{ duration: 0.6 }}
         className="text-center mb-12"
       >
-        <h1 className="text-4xl sm:text-5xl font-semibold tracking-tight">{t('learn.title')}</h1>
-        <p className="mt-4 text-lg text-stone-600 max-w-2xl mx-auto">{t('learn.subtitle')}</p>
+        <h1 className="text-4xl sm:text-5xl font-semibold tracking-tight" data-nlv-field-path="translations.en.learn.title">{t('learn.title')}</h1>
+        <p className="mt-4 text-lg text-stone-600 max-w-2xl mx-auto" data-nlv-field-path="translations.en.learn.subtitle">{t('learn.subtitle')}</p>
       </motion.header>
 
       <div className="flex justify-center flex-wrap gap-2 mb-12">
-        {categories.map(category => (
-          <button
-            key={category}
-            onClick={() => setActiveCategory(category)}
-            className={`text-sm px-4 py-2 border rounded-full transition-colors duration-300 ${
-              activeCategory === category
-                ? 'bg-stone-800 text-white border-stone-800'
-                : 'border-stone-300 text-stone-500 hover:border-stone-800 hover:text-stone-800'
-            }`}
-          >
-            {formatCategoryLabel(category)}
-          </button>
-        ))}
+        {categories.map(category => {
+          const translationKey = category === 'all'
+            ? 'translations.en.learn.categories.all'
+            : `translations.en.learn.categories.${category}`;
+          return (
+            <button
+              key={category}
+              onClick={() => setActiveCategory(category)}
+              className={`text-sm px-4 py-2 border rounded-full transition-colors duration-300 ${
+                activeCategory === category
+                  ? 'bg-stone-800 text-white border-stone-800'
+                  : 'border-stone-300 text-stone-500 hover:border-stone-800 hover:text-stone-800'
+              }`}
+              data-nlv-field-path={translationKey}
+            >
+              {formatCategoryLabel(category)}
+            </button>
+          );
+        })}
       </div>
 
       {loading ? (

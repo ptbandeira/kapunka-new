@@ -27,6 +27,7 @@ const Bestsellers: React.FC = () => {
                     viewport={{ once: true }}
                     transition={{ duration: 0.6 }}
                     className="text-3xl sm:text-4xl font-semibold text-center mb-12"
+                    data-nlv-field-path="translations.en.home.bestsellersTitle"
                 >
                     {t('home.bestsellersTitle')}
                 </motion.h2>
@@ -43,9 +44,9 @@ const Bestsellers: React.FC = () => {
 const ValueProps: React.FC = () => {
     const { t } = useLanguage();
     const props = [
-        { icon: Droplet, text: t('home.value1') },
-        { icon: ShieldCheck, text: t('home.value2') },
-        { icon: Leaf, text: t('home.value3') },
+        { icon: Droplet, text: t('home.value1'), fieldPath: 'translations.en.home.value1' },
+        { icon: ShieldCheck, text: t('home.value2'), fieldPath: 'translations.en.home.value2' },
+        { icon: Leaf, text: t('home.value3'), fieldPath: 'translations.en.home.value3' },
     ];
     return (
         <div className="py-16 sm:py-24">
@@ -60,7 +61,7 @@ const ValueProps: React.FC = () => {
                             transition={{ duration: 0.6, delay: index * 0.1 }}
                         >
                             <prop.icon className="mx-auto h-10 w-10 text-stone-600 mb-4" />
-                            <p className="text-stone-600">{prop.text}</p>
+                            <p className="text-stone-600" data-nlv-field-path={prop.fieldPath}>{prop.text}</p>
                         </motion.div>
                     ))}
                 </div>
@@ -88,6 +89,7 @@ const Reviews: React.FC = () => {
                     viewport={{ once: true }}
                     transition={{ duration: 0.6 }}
                     className="text-3xl sm:text-4xl font-semibold text-center mb-12"
+                    data-nlv-field-path="translations.en.home.reviewsTitle"
                 >
                     {t('home.reviewsTitle')}
                 </motion.h2>
@@ -101,10 +103,13 @@ const Reviews: React.FC = () => {
                                 viewport={{ once: true }}
                                 transition={{ duration: 0.6, delay: index * 0.1 }}
                                 className="p-8 bg-stone-100 rounded-lg text-center"
+                                data-nlv-field-path={`reviews.items.${index}`}
                             >
-                                <p className="text-stone-700 italic">"{translate(review.text)}"</p>
-                                <p className="mt-6 font-semibold">{translate(review.author)}</p>
-                                <p className="text-sm text-stone-500">{translate(review.role)}</p>
+                                <p className="text-stone-700 italic">
+                                    &ldquo;<span data-nlv-field-path={`reviews.items.${index}.text.en`}>{translate(review.text)}</span>&rdquo;
+                                </p>
+                                <p className="mt-6 font-semibold" data-nlv-field-path={`reviews.items.${index}.author.en`}>{translate(review.author)}</p>
+                                <p className="text-sm text-stone-500" data-nlv-field-path={`reviews.items.${index}.role.en`}>{translate(review.role)}</p>
                             </motion.div>
                         ))}
                     </div>
@@ -134,10 +139,10 @@ const NewsletterSignup: React.FC = () => {
                     viewport={{ once: true }}
                     transition={{ duration: 0.6 }}
                 >
-                    <h2 className="text-3xl sm:text-4xl font-semibold mb-4">{t('home.newsletterTitle')}</h2>
-                    <p className="text-stone-600 mb-8">{t('home.newsletterSubtitle')}</p>
+                    <h2 className="text-3xl sm:text-4xl font-semibold mb-4" data-nlv-field-path="translations.en.home.newsletterTitle">{t('home.newsletterTitle')}</h2>
+                    <p className="text-stone-600 mb-8" data-nlv-field-path="translations.en.home.newsletterSubtitle">{t('home.newsletterSubtitle')}</p>
                     {submitted ? (
-                        <p className="text-lg text-green-700">{t('home.newsletterThanks')}</p>
+                        <p className="text-lg text-green-700" data-nlv-field-path="translations.en.home.newsletterThanks">{t('home.newsletterThanks')}</p>
                     ) : (
                         <form onSubmit={handleSubmit} className="flex flex-col sm:flex-row gap-2 max-w-md mx-auto">
                             <input
@@ -147,12 +152,13 @@ const NewsletterSignup: React.FC = () => {
                                 placeholder={t('home.newsletterPlaceholder')}
                                 required
                                 className="flex-grow px-4 py-3 rounded-md border-stone-300 focus:ring-stone-500 focus:border-stone-500 transition"
+                                data-nlv-field-path="translations.en.home.newsletterPlaceholder"
                             />
                             <button
                                 type="submit"
                                 className="px-6 py-3 bg-stone-900 text-white font-semibold rounded-md hover:bg-stone-700 transition-colors"
                             >
-                                {t('home.newsletterSubmit')}
+                                <span data-nlv-field-path="translations.en.home.newsletterSubmit">{t('home.newsletterSubmit')}</span>
                             </button>
                         </form>
                     )}
@@ -173,7 +179,7 @@ const Home: React.FC = () => {
             <title>Kapunka Skincare | {t('home.metaTitle')}</title>
             <meta name="description" content={t('home.metaDescription')} />
         </Helmet>
-      <div className="relative h-screen bg-cover bg-center" style={{ backgroundImage: `url('${heroImage}')` }}>
+      <div className="relative h-screen bg-cover bg-center" style={{ backgroundImage: `url('${heroImage}')` }} data-nlv-field-path="site.home.heroImage">
         <div className="absolute inset-0 bg-stone-50/30"></div>
         <div className="relative h-full flex items-center justify-center">
           <motion.div
@@ -182,14 +188,14 @@ const Home: React.FC = () => {
             transition={{ duration: 0.8, ease: 'easeOut' }}
             className="text-center text-stone-900"
           >
-            <h1 className="text-4xl md:text-6xl font-semibold tracking-tight">{t('home.heroTitle')}</h1>
-            <p className="mt-4 text-lg md:text-xl max-w-2xl mx-auto">{t('home.heroSubtitle')}</p>
+            <h1 className="text-4xl md:text-6xl font-semibold tracking-tight" data-nlv-field-path="translations.en.home.heroTitle">{t('home.heroTitle')}</h1>
+            <p className="mt-4 text-lg md:text-xl max-w-2xl mx-auto" data-nlv-field-path="translations.en.home.heroSubtitle">{t('home.heroSubtitle')}</p>
             <div className="mt-8 flex justify-center gap-4">
               <Link to="/shop" className="px-8 py-3 bg-stone-900 text-white font-semibold rounded-md hover:bg-stone-700 transition-colors">
-                {t('home.ctaShop')}
+                <span data-nlv-field-path="translations.en.home.ctaShop">{t('home.ctaShop')}</span>
               </Link>
               <Link to="/for-clinics" className="px-8 py-3 bg-white/70 backdrop-blur-sm text-stone-900 font-semibold rounded-md hover:bg-white transition-colors">
-                {t('home.ctaClinics')}
+                <span data-nlv-field-path="translations.en.home.ctaClinics">{t('home.ctaClinics')}</span>
               </Link>
             </div>
           </motion.div>

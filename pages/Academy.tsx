@@ -27,30 +27,30 @@ const Academy: React.FC = () => {
         </Helmet>
       <header className="py-20 sm:py-32 bg-stone-100 text-center">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-          <motion.h1 
+          <motion.h1
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
             className="text-4xl sm:text-5xl font-semibold tracking-tight"
           >
-            {t('academy.headerTitle')}
+            <span data-nlv-field-path="translations.en.academy.headerTitle">{t('academy.headerTitle')}</span>
           </motion.h1>
-          <motion.p 
+          <motion.p
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.1 }}
             className="mt-4 text-lg text-stone-600 max-w-3xl mx-auto"
           >
-            {t('academy.headerSubtitle')}
+            <span data-nlv-field-path="translations.en.academy.headerSubtitle">{t('academy.headerSubtitle')}</span>
           </motion.p>
         </div>
       </header>
-      
+
       <div className="py-16 sm:py-24">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="text-3xl font-semibold text-center mb-12">{t('academy.coursesTitle')}</h2>
+          <h2 className="text-3xl font-semibold text-center mb-12" data-nlv-field-path="translations.en.academy.coursesTitle">{t('academy.coursesTitle')}</h2>
           {loading ? (
-            <p className="text-center">{t('common.loadingCourses')}</p>
+            <p className="text-center" data-nlv-field-path="translations.en.common.loadingCourses">{t('common.loadingCourses')}</p>
           ) : (
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12">
                 {courses.map((course, index) => (
