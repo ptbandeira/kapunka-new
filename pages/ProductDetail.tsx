@@ -103,6 +103,14 @@ const ProductDetail: React.FC = () => {
                         <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6, delay: 0.1 }}>
                             <h1 className="text-3xl sm:text-4xl font-semibold" data-nlv-field-path={productFieldPath ? `${productFieldPath}.name.en` : undefined}>{translate(product.name)}</h1>
                             <p className="text-lg text-stone-500 mt-2" data-nlv-field-path={productFieldPath ? `${productFieldPath}.tagline.en` : undefined}>{translate(product.tagline)}</p>
+                            {product.description && (
+                                <p
+                                    className="mt-4 text-base text-stone-600 leading-relaxed"
+                                    data-nlv-field-path={productFieldPath ? `${productFieldPath}.description.en` : undefined}
+                                >
+                                    {translate(product.description)}
+                                </p>
+                            )}
                         </motion.div>
 
                         <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6, delay: 0.2 }}>
@@ -192,6 +200,26 @@ const ProductDetail: React.FC = () => {
                                 )}
                                 {activeTab === 'labTested' && (
                                     <p data-nlv-field-path={productFieldPath ? `${productFieldPath}.labTestedNote.en` : undefined}>{translate(product.labTestedNote)}</p>
+                                )}
+                                {product.goodToKnow && (
+                                    <div className="mt-8">
+                                        <h4
+                                            className="text-sm font-semibold uppercase tracking-wide text-stone-500"
+                                            data-nlv-field-path={productFieldPath ? `${productFieldPath}.goodToKnow.title.en` : undefined}
+                                        >
+                                            {translate(product.goodToKnow.title)}
+                                        </h4>
+                                        <ul className="mt-3 list-disc pl-5 space-y-2">
+                                            {(translate(product.goodToKnow.items) as string[]).map((item: string, index: number) => (
+                                                <li
+                                                    key={index}
+                                                    data-nlv-field-path={productFieldPath ? `${productFieldPath}.goodToKnow.items.en.${index}` : undefined}
+                                                >
+                                                    {item}
+                                                </li>
+                                            ))}
+                                        </ul>
+                                    </div>
                                 )}
                             </div>
                         </motion.div>
