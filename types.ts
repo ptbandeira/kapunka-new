@@ -96,6 +96,25 @@ export interface Policy {
     content: Translatable;
 }
 
+export interface ShopCategoryLink {
+    id: string;
+    type: 'product' | 'article' | 'clinics';
+    url: string;
+    label: Translatable;
+}
+
+export interface ShopCategory {
+    id: string;
+    title: Translatable;
+    intro: Translatable;
+    productIds: string[];
+    links: ShopCategoryLink[];
+}
+
+export interface ShopContent {
+    categories: ShopCategory[];
+}
+
 export interface SocialLink {
     id: string;
     label: string;

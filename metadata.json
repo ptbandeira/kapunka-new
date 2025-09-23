@@ -109,6 +109,12 @@
       "filePath": "content/translations.json"
     },
     {
+      "id": "shop",
+      "label": "Shop Page",
+      "type": "single",
+      "filePath": "content/shop.json"
+    },
+    {
       "id": "products",
       "label": "Products",
       "type": "collection",

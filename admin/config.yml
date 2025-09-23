@@ -66,6 +66,59 @@ collections:
           - { label: English, name: en, widget: json }
           - { label: Portuguese, name: pt, widget: json }
           - { label: Spanish, name: es, widget: json }
+  - name: shop
+    label: Shop Page
+    files:
+      - name: categories
+        label: Shop Collections
+        file: content/shop.json
+        format: json
+        fields:
+          - label: Categories
+            name: categories
+            widget: list
+            summary: "{{fields.title.en}}"
+            fields:
+              - { label: ID, name: id, widget: string }
+              - label: Title
+                name: title
+                widget: object
+                fields:
+                  - { label: English, name: en, widget: string }
+                  - { label: Portuguese, name: pt, widget: string }
+                  - { label: Spanish, name: es, widget: string }
+              - label: Introductory Copy
+                name: intro
+                widget: object
+                fields:
+                  - { label: English, name: en, widget: text }
+                  - { label: Portuguese, name: pt, widget: text }
+                  - { label: Spanish, name: es, widget: text }
+              - label: Product IDs
+                name: productIds
+                widget: list
+                field: { label: Product ID, name: productId, widget: string }
+              - label: Related Links
+                name: links
+                widget: list
+                summary: "{{fields.label.en}}"
+                fields:
+                  - { label: ID, name: id, widget: string }
+                  - label: Type
+                    name: type
+                    widget: select
+                    options:
+                      - { label: Product, value: product }
+                      - { label: Learn Article, value: article }
+                      - { label: Clinic Use-Case, value: clinics }
+                  - { label: URL, name: url, widget: string }
+                  - label: Label
+                    name: label
+                    widget: object
+                    fields:
+                      - { label: English, name: en, widget: string }
+                      - { label: Portuguese, name: pt, widget: string }
+                      - { label: Spanish, name: es, widget: string }
   - name: products
     label: Products
     files:
