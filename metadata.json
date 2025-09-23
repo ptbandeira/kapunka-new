@@ -37,6 +37,15 @@
       }
     },
     {
+      "id": "method",
+      "label": "Method Kapunka",
+      "urlPath": "/method",
+      "page": {
+        "type": "static",
+        "filePath": "pages/Method.tsx"
+      }
+    },
+    {
       "id": "article-detail",
       "label": "Article Detail",
       "urlPath": "/learn/{slug}",
@@ -107,6 +116,12 @@
       "label": "Translations",
       "type": "single",
       "filePath": "content/translations.json"
+    },
+    {
+      "id": "method",
+      "label": "Method Page",
+      "type": "single",
+      "filePath": "content/method.json"
     },
     {
       "id": "shop",

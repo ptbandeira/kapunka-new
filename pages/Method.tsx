@@ -1,0 +1,153 @@
+import React, { useEffect, useState } from 'react';
+import { Helmet } from 'react-helmet-async';
+import { motion } from 'framer-motion';
+import { useLanguage } from '../contexts/LanguageContext';
+import type { Language } from '../types';
+
+interface MethodTestimonial {
+  id: string;
+  quote: string;
+  name: string;
+  role: string;
+}
+
+interface MethodLocaleContent {
+  metaTitle: string;
+  metaDescription: string;
+  heroTitle: string;
+  heroSubtitle: string;
+  body: string;
+  testimonialsTitle: string;
+  testimonials: MethodTestimonial[];
+}
+
+type MethodContent = Record<Language, MethodLocaleContent>;
+
+const fallbackHeroTitles: Record<Language, string> = {
+  en: 'Method Kapunka',
+  pt: 'Método Kapunka',
+  es: 'Método Kapunka',
+};
+
+const fallbackMetaDescriptions: Record<Language, string> = {
+  en: 'Sensitive care rooted in Berber tradition and modern dermal science.',
+  pt: 'Cuidado sensível enraizado na tradição berbere e na ciência dermal moderna.',
+  es: 'Cuidado sensible arraigado en la tradición bereber y la ciencia dérmica moderna.',
+};
+
+const Method: React.FC = () => {
+  const { language, t } = useLanguage();
+  const [content, setContent] = useState<MethodContent | null>(null);
+
+  useEffect(() => {
+    fetch('/content/method.json')
+      .then((res) => res.json())
+      .then((data: MethodContent) => {
+        setContent(data);
+      })
+      .catch((error) => {
+        console.error('Failed to load Method Kapunka content', error);
+      });
+  }, []);
+
+  const localeContent = content?.[language];
+  const heroTitle = localeContent?.heroTitle ?? fallbackHeroTitles[language];
+  const heroSubtitle = localeContent?.heroSubtitle ?? fallbackMetaDescriptions[language];
+  const metaTitle = localeContent?.metaTitle ?? heroTitle;
+  const metaDescription = localeContent?.metaDescription ?? fallbackMetaDescriptions[language];
+  const paragraphs = localeContent?.body.split('\n\n') ?? [];
+  const testimonials = localeContent?.testimonials ?? [];
+  const testimonialsTitle = localeContent?.testimonialsTitle ?? heroTitle;
+
+  return (
+    <div>
+      <Helmet>
+        <title>{`${metaTitle} | Kapunka Skincare`}</title>
+        <meta name="description" content={metaDescription} />
+      </Helmet>
+
+      <header className="py-20 sm:py-32 bg-stone-100 text-center">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+          <motion.h1
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            className="text-4xl sm:text-5xl font-semibold tracking-tight"
+          >
+            {heroTitle}
+          </motion.h1>
+          <motion.p
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.1 }}
+            className="mt-4 text-lg text-stone-600 max-w-3xl mx-auto"
+          >
+            {heroSubtitle}
+          </motion.p>
+        </div>
+      </header>
+
+      <section className="py-16 sm:py-24">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-3xl">
+          {paragraphs.length > 0 ? (
+            paragraphs.map((paragraph, index) => (
+              <motion.p
+                // eslint-disable-next-line react/no-array-index-key
+                key={index}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: index * 0.05 }}
+                className={`text-stone-700 leading-relaxed ${index > 0 ? 'mt-6' : ''}`}
+              >
+                {paragraph}
+              </motion.p>
+            ))
+          ) : (
+            <p className="text-center text-stone-600">{t('common.loading')}</p>
+          )}
+        </div>
+      </section>
+
+      <section className="py-16 sm:py-24 bg-stone-50">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center max-w-3xl mx-auto">
+            <motion.h2
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6 }}
+              className="text-3xl font-semibold"
+            >
+              {testimonialsTitle}
+            </motion.h2>
+          </div>
+          {testimonials.length > 0 ? (
+            <div className="mt-12 grid gap-8 md:grid-cols-2 lg:grid-cols-3">
+              {testimonials.map((testimonial, index) => (
+                <motion.blockquote
+                  key={testimonial.id}
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.5, delay: index * 0.1 }}
+                  className="h-full bg-white border border-stone-200 rounded-2xl p-6 shadow-sm flex flex-col"
+                >
+                  <p className="text-stone-700 leading-relaxed flex-1">{testimonial.quote}</p>
+                  <footer className="mt-6 text-sm text-stone-500">
+                    <span className="block font-semibold text-stone-700">{testimonial.name}</span>
+                    <span className="block">{testimonial.role}</span>
+                  </footer>
+                </motion.blockquote>
+              ))}
+            </div>
+          ) : (
+            <p className="mt-8 text-center text-stone-600">{t('common.loading')}</p>
+          )}
+        </div>
+      </section>
+    </div>
+  );
+};
+
+export default Method;

@@ -3,6 +3,7 @@
     "nav": {
       "shop": "Shop",
       "learn": "Learn",
+      "method": "Method",
       "forClinics": "For Clinics",
       "about": "About",
       "contact": "Contact"
@@ -301,6 +302,7 @@
     "nav": {
       "shop": "Loja",
       "learn": "Aprender",
+      "method": "Método",
       "forClinics": "Para Clínicas",
       "about": "Sobre",
       "contact": "Contato"
@@ -599,6 +601,7 @@
     "nav": {
       "shop": "Tienda",
       "learn": "Aprender",
+      "method": "Método",
       "forClinics": "Para Clínicas",
       "about": "Nosotros",
       "contact": "Contacto"

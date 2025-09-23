@@ -21,6 +21,7 @@ import Contact from './pages/Contact';
 import CartPage from './pages/CartPage';
 import PolicyPage from './pages/PolicyPage';
 import Academy from './pages/Academy';
+import Method from './pages/Method';
 
 const pageVariants = {
   initial: {
@@ -69,6 +70,7 @@ const AnimatedRoutes: React.FC = () => {
         <Route path="/product/:id" element={<PageWrapper pageKey="product"><ProductDetail /></PageWrapper>} />
         <Route path="/learn" element={<PageWrapper pageKey="learn"><Learn /></PageWrapper>} />
         <Route path="/learn/:slug" element={<PageWrapper pageKey="article"><ArticlePage /></PageWrapper>} />
+        <Route path="/method" element={<PageWrapper pageKey="method"><Method /></PageWrapper>} />
         <Route path="/for-clinics" element={<PageWrapper pageKey="clinics"><ForClinics /></PageWrapper>} />
         <Route path="/academy" element={<PageWrapper pageKey="academy"><Academy /></PageWrapper>} />
         <Route path="/about" element={<PageWrapper pageKey="about"><About /></PageWrapper>} />
