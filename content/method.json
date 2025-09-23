@@ -1,0 +1,86 @@
+{
+  "en": {
+    "metaTitle": "Method Kapunka",
+    "metaDescription": "Sensitive rituals rooted in Berber heritage, artisan extraction, and modern skin science.",
+    "heroTitle": "Method Kapunka",
+    "heroSubtitle": "Berber heritage, artisan precision, and clinical rigor in one ritual.",
+    "body": "At Kapunka, we believe in caring with sensitivity. Our method blends centuries-old Berber argan cultivation, artisan extraction, and modern skin science.\n\nEvery drop of Kapunka Argan Oil is cold-pressed, additive-free, certified by ECOCERT, and lab-tested for purity. Used in post-procedure care, sensitive skin routines, and everyday wellness.",
+    "testimonialsTitle": "Clinics that trust Method Kapunka",
+    "testimonials": [
+      {
+        "id": "teknon-laser",
+        "quote": "We integrate Method Kapunka after fractional lasers—the cold-pressed argan oil seals hydration without suffocating skin, so redness resolves faster.",
+        "name": "Dr. Víctor Hernández",
+        "role": "Medical Director, Teknon Laser Unit"
+      },
+      {
+        "id": "canons-clinic",
+        "quote": "As an aesthetic nurse I trust Kapunka for rosacea-prone clients; the method's rose mist plus argan layering keeps their barrier calm on the journey home.",
+        "name": "Carmen López, RN",
+        "role": "Lead aesthetic nurse, Canons Clinic"
+      },
+      {
+        "id": "sen-atelier",
+        "quote": "Our wellness members use Method Kapunka as a daily ritual—the lab-tested argan glides over scalp and body without residue, keeping adherence high.",
+        "name": "Marina Costa",
+        "role": "Founder, Sên Atelier de Piel"
+      }
+    ]
+  },
+  "pt": {
+    "metaTitle": "Método Kapunka",
+    "metaDescription": "Rituais sensíveis enraizados na herança berbere, na extração artesanal e na ciência moderna da pele.",
+    "heroTitle": "Método Kapunka",
+    "heroSubtitle": "Herança berbere, precisão artesanal e rigor clínico em um único ritual.",
+    "body": "Na Kapunka acreditamos no cuidado com sensibilidade. Nosso método combina séculos de cultivo berbere, extração artesanal e ciência moderna de cuidados com a pele.\n\nCada gota de óleo de argan Kapunka é prensada a frio, livre de aditivos, certificada pela ECOCERT e testada em laboratório para pureza. É usado em cuidados pós-procedimento, rotinas de pele sensível e no bem-estar diário.",
+    "testimonialsTitle": "Clínicas que confiam no Método Kapunka",
+    "testimonials": [
+      {
+        "id": "teknon-laser",
+        "quote": "Integramos o Método Kapunka após lasers fracionados — o óleo de argan prensado a frio sela a hidratação sem sufocar a pele, então a vermelhidão desaparece mais rápido.",
+        "name": "Dr. Víctor Hernández",
+        "role": "Diretor médico, Unidade de Laser Teknon"
+      },
+      {
+        "id": "canons-clinic",
+        "quote": "Como enfermeira estética, confio na Kapunka para clientes com rosácea; a névoa de rosas e as camadas de argan do método mantêm a barreira calma no caminho de volta.",
+        "name": "Carmen López, RN",
+        "role": "Enfermeira estética líder, Canons Clinic"
+      },
+      {
+        "id": "sen-atelier",
+        "quote": "Nossos membros de bem-estar usam o Método Kapunka como ritual diário — o argan testado em laboratório desliza sobre couro cabeludo e corpo sem resíduos, mantendo a adesão alta.",
+        "name": "Marina Costa",
+        "role": "Fundadora, Sên Atelier da Pele"
+      }
+    ]
+  },
+  "es": {
+    "metaTitle": "Método Kapunka",
+    "metaDescription": "Rituales sensibles arraigados en la herencia bereber, la extracción artesanal y la ciencia moderna de la piel.",
+    "heroTitle": "Método Kapunka",
+    "heroSubtitle": "Herencia bereber, precisión artesanal y rigor clínico en un solo ritual.",
+    "body": "En Kapunka creemos en cuidar con sensibilidad. Nuestro método mezcla siglos de cultivo bereber, extracción artesanal y ciencia moderna de cuidados de la piel.\n\nCada gota de aceite de argán Kapunka está prensada en frío, libre de aditivos, certificada por ECOCERT y analizada en laboratorio para pureza. Se utiliza en cuidados post-procedimiento, piel sensible y bienestar diario.",
+    "testimonialsTitle": "Clínicas que confían en el Método Kapunka",
+    "testimonials": [
+      {
+        "id": "teknon-laser",
+        "quote": "Integramos el Método Kapunka tras láseres fraccionados: el aceite de argán prensado en frío sella la hidratación sin asfixiar la piel, así el enrojecimiento se resuelve antes.",
+        "name": "Dr. Víctor Hernández",
+        "role": "Director médico, Unidad Láser Teknon"
+      },
+      {
+        "id": "canons-clinic",
+        "quote": "Como enfermera estética confío en Kapunka para pacientes con rosácea; la bruma de rosas y las capas de argán del método mantienen la barrera tranquila camino a casa.",
+        "name": "Carmen López, RN",
+        "role": "Enfermera estética líder, Canons Clinic"
+      },
+      {
+        "id": "sen-atelier",
+        "quote": "Nuestros miembros de bienestar usan el Método Kapunka como ritual diario: el argán testado en laboratorio se desliza sobre cuero cabelludo y cuerpo sin residuos, manteniendo la adherencia alta.",
+        "name": "Marina Costa",
+        "role": "Fundadora, Sên Atelier de Piel"
+      }
+    ]
+  }
+}

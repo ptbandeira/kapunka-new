@@ -83,6 +83,7 @@ const Header: React.FC = () => {
   const navLinks = [
     { to: '/shop', label: t('nav.shop'), fieldPath: 'translations.en.nav.shop' },
     { to: '/learn', label: t('nav.learn'), fieldPath: 'translations.en.nav.learn' },
+    { to: '/method', label: t('nav.method'), fieldPath: 'translations.en.nav.method' },
     { to: '/for-clinics', label: t('nav.forClinics'), fieldPath: 'translations.en.nav.forClinics' },
     { to: '/about', label: t('nav.about'), fieldPath: 'translations.en.nav.about' },
     { to: '/contact', label: t('nav.contact'), fieldPath: 'translations.en.nav.contact' },

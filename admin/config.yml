@@ -66,6 +66,68 @@ collections:
           - { label: English, name: en, widget: json }
           - { label: Portuguese, name: pt, widget: json }
           - { label: Spanish, name: es, widget: json }
+  - name: method
+    label: Method Page
+    files:
+      - name: method
+        label: Method Kapunka Content
+        file: content/method.json
+        format: json
+        fields:
+          - label: English
+            name: en
+            widget: object
+            fields:
+              - { label: Meta Title, name: metaTitle, widget: string }
+              - { label: Meta Description, name: metaDescription, widget: text }
+              - { label: Hero Title, name: heroTitle, widget: string }
+              - { label: Hero Subtitle, name: heroSubtitle, widget: string }
+              - { label: Body Copy, name: body, widget: text }
+              - { label: Testimonials Title, name: testimonialsTitle, widget: string }
+              - label: Testimonials
+                name: testimonials
+                widget: list
+                fields:
+                  - { label: ID, name: id, widget: string }
+                  - { label: Quote, name: quote, widget: text }
+                  - { label: Name, name: name, widget: string }
+                  - { label: Role, name: role, widget: string }
+          - label: Portuguese
+            name: pt
+            widget: object
+            fields:
+              - { label: Meta Title, name: metaTitle, widget: string }
+              - { label: Meta Description, name: metaDescription, widget: text }
+              - { label: Hero Title, name: heroTitle, widget: string }
+              - { label: Hero Subtitle, name: heroSubtitle, widget: string }
+              - { label: Body Copy, name: body, widget: text }
+              - { label: Testimonials Title, name: testimonialsTitle, widget: string }
+              - label: Testimonials
+                name: testimonials
+                widget: list
+                fields:
+                  - { label: ID, name: id, widget: string }
+                  - { label: Quote, name: quote, widget: text }
+                  - { label: Name, name: name, widget: string }
+                  - { label: Role, name: role, widget: string }
+          - label: Spanish
+            name: es
+            widget: object
+            fields:
+              - { label: Meta Title, name: metaTitle, widget: string }
+              - { label: Meta Description, name: metaDescription, widget: text }
+              - { label: Hero Title, name: heroTitle, widget: string }
+              - { label: Hero Subtitle, name: heroSubtitle, widget: string }
+              - { label: Body Copy, name: body, widget: text }
+              - { label: Testimonials Title, name: testimonialsTitle, widget: string }
+              - label: Testimonials
+                name: testimonials
+                widget: list
+                fields:
+                  - { label: ID, name: id, widget: string }
+                  - { label: Quote, name: quote, widget: text }
+                  - { label: Name, name: name, widget: string }
+                  - { label: Role, name: role, widget: string }
   - name: shop
     label: Shop Page
     files:
