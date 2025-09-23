@@ -1,0 +1,446 @@
+{
+  "products": [
+    {
+      "slug": "pure-argan-oil",
+      "active": true,
+      "category": "oil",
+      "currency": "EUR",
+      "vatIncluded": true,
+      "name": {
+        "en": "Pure Argan Oil",
+        "es": "Aceite de Argán Puro",
+        "pt": "Óleo de Argan Puro"
+      },
+      "sizes": [
+        {
+          "slug": "pure-argan-oil-roll-on-10ml",
+          "active": true,
+          "format": "roll-on",
+          "label": {
+            "en": "Roll-on 10 ml",
+            "es": "Roll-on 10 ml",
+            "pt": "Roll-on 10 ml"
+          },
+          "size": 10,
+          "unit": "ml",
+          "price": null
+        },
+        {
+          "slug": "pure-argan-oil-dropper-30ml",
+          "active": true,
+          "format": "dropper",
+          "label": {
+            "en": "Dropper 30 ml",
+            "es": "Gotero 30 ml",
+            "pt": "Conta-gotas 30 ml"
+          },
+          "size": 30,
+          "unit": "ml",
+          "price": null
+        },
+        {
+          "slug": "pure-argan-oil-dispenser-30ml",
+          "active": true,
+          "format": "dispenser",
+          "label": {
+            "en": "Dispenser 30 ml",
+            "es": "Dosificador 30 ml",
+            "pt": "Dispensador 30 ml"
+          },
+          "size": 30,
+          "unit": "ml",
+          "price": null
+        },
+        {
+          "slug": "pure-argan-oil-dispenser-50ml",
+          "active": true,
+          "format": "dispenser",
+          "label": {
+            "en": "Dispenser 50 ml",
+            "es": "Dosificador 50 ml",
+            "pt": "Dispensador 50 ml"
+          },
+          "size": 50,
+          "unit": "ml",
+          "price": null
+        },
+        {
+          "slug": "pure-argan-oil-dispenser-100ml",
+          "active": true,
+          "format": "dispenser",
+          "label": {
+            "en": "Dispenser 100 ml",
+            "es": "Dosificador 100 ml",
+            "pt": "Dispensador 100 ml"
+          },
+          "size": 100,
+          "unit": "ml",
+          "price": null
+        },
+        {
+          "slug": "pure-argan-oil-dispenser-250ml",
+          "active": true,
+          "format": "dispenser",
+          "label": {
+            "en": "Dispenser 250 ml",
+            "es": "Dosificador 250 ml",
+            "pt": "Dispensador 250 ml"
+          },
+          "size": 250,
+          "unit": "ml",
+          "price": null
+        },
+        {
+          "slug": "pure-argan-oil-dispenser-500ml",
+          "active": true,
+          "format": "dispenser",
+          "label": {
+            "en": "Dispenser 500 ml",
+            "es": "Dosificador 500 ml",
+            "pt": "Dispensador 500 ml"
+          },
+          "size": 500,
+          "unit": "ml",
+          "price": null
+        }
+      ]
+    },
+    {
+      "slug": "cotton-argan-oil",
+      "active": true,
+      "category": "oil",
+      "currency": "EUR",
+      "vatIncluded": true,
+      "name": {
+        "en": "Argan Oil + Cotton",
+        "es": "Aceite de Argán + Algodón",
+        "pt": "Óleo de Argan + Algodão"
+      },
+      "sizes": [
+        {
+          "slug": "cotton-argan-oil-dispenser-250ml",
+          "active": true,
+          "format": "dispenser",
+          "label": {
+            "en": "Dispenser 250 ml",
+            "es": "Dosificador 250 ml",
+            "pt": "Dispensador 250 ml"
+          },
+          "size": 250,
+          "unit": "ml",
+          "price": null
+        }
+      ]
+    },
+    {
+      "slug": "agra-incense-argan-oil",
+      "active": true,
+      "category": "oil",
+      "currency": "EUR",
+      "vatIncluded": true,
+      "name": {
+        "en": "Argan Oil + Agra Incense",
+        "es": "Aceite de Argán + Incienso de Agra",
+        "pt": "Óleo de Argan + Incenso de Agra"
+      },
+      "sizes": [
+        {
+          "slug": "agra-incense-argan-oil-dispenser-250ml",
+          "active": true,
+          "format": "dispenser",
+          "label": {
+            "en": "Dispenser 250 ml",
+            "es": "Dosificador 250 ml",
+            "pt": "Dispensador 250 ml"
+          },
+          "size": 250,
+          "unit": "ml",
+          "price": null
+        }
+      ]
+    },
+    {
+      "slug": "jasmine-argan-oil",
+      "active": true,
+      "category": "oil",
+      "currency": "EUR",
+      "vatIncluded": true,
+      "name": {
+        "en": "Argan Oil + Jasmine",
+        "es": "Aceite de Argán + Jazmín",
+        "pt": "Óleo de Argan + Jasmim"
+      },
+      "sizes": [
+        {
+          "slug": "jasmine-argan-oil-dispenser-250ml",
+          "active": true,
+          "format": "dispenser",
+          "label": {
+            "en": "Dispenser 250 ml",
+            "es": "Dosificador 250 ml",
+            "pt": "Dispensador 250 ml"
+          },
+          "size": 250,
+          "unit": "ml",
+          "price": null
+        }
+      ]
+    },
+    {
+      "slug": "lavender-argan-oil",
+      "active": true,
+      "category": "oil",
+      "currency": "EUR",
+      "vatIncluded": true,
+      "name": {
+        "en": "Argan Oil + Lavender",
+        "es": "Aceite de Argán + Lavanda",
+        "pt": "Óleo de Argan + Lavanda"
+      },
+      "sizes": [
+        {
+          "slug": "lavender-argan-oil-dispenser-250ml",
+          "active": true,
+          "format": "dispenser",
+          "label": {
+            "en": "Dispenser 250 ml",
+            "es": "Dosificador 250 ml",
+            "pt": "Dispensador 250 ml"
+          },
+          "size": 250,
+          "unit": "ml",
+          "price": null
+        }
+      ]
+    },
+    {
+      "slug": "patchouli-argan-oil",
+      "active": true,
+      "category": "oil",
+      "currency": "EUR",
+      "vatIncluded": true,
+      "name": {
+        "en": "Argan Oil + Patchouli",
+        "es": "Aceite de Argán + Patchouli",
+        "pt": "Óleo de Argan + Patchouli"
+      },
+      "sizes": [
+        {
+          "slug": "patchouli-argan-oil-dispenser-250ml",
+          "active": true,
+          "format": "dispenser",
+          "label": {
+            "en": "Dispenser 250 ml",
+            "es": "Dosificador 250 ml",
+            "pt": "Dispensador 250 ml"
+          },
+          "size": 250,
+          "unit": "ml",
+          "price": null
+        }
+      ]
+    },
+    {
+      "slug": "rosemary-argan-oil",
+      "active": true,
+      "category": "oil",
+      "currency": "EUR",
+      "vatIncluded": true,
+      "name": {
+        "en": "Argan Oil + Rosemary",
+        "es": "Aceite de Argán + Romero",
+        "pt": "Óleo de Argan + Alecrim"
+      },
+      "sizes": [
+        {
+          "slug": "rosemary-argan-oil-dispenser-250ml",
+          "active": true,
+          "format": "dispenser",
+          "label": {
+            "en": "Dispenser 250 ml",
+            "es": "Dosificador 250 ml",
+            "pt": "Dispensador 250 ml"
+          },
+          "size": 250,
+          "unit": "ml",
+          "price": null
+        }
+      ]
+    },
+    {
+      "slug": "argan-30ml-kessa-bundle",
+      "active": true,
+      "category": "bundle",
+      "currency": "EUR",
+      "vatIncluded": true,
+      "name": {
+        "en": "30 ml Argan Oil + Kessa Glove",
+        "es": "Pack 30 ml Aceite de Argán + Manopla Kessa",
+        "pt": "Kit 30 ml Óleo de Argan + Luva Kessa"
+      },
+      "sizes": [
+        {
+          "slug": "argan-30ml-kessa-bundle-set",
+          "active": true,
+          "format": "bundle",
+          "label": {
+            "en": "Set 30 ml + Kessa",
+            "es": "Set 30 ml + Kessa",
+            "pt": "Set 30 ml + Kessa"
+          },
+          "size": 30,
+          "unit": "ml",
+          "price": null
+        }
+      ]
+    },
+    {
+      "slug": "argan-100ml-kessa-bundle",
+      "active": true,
+      "category": "bundle",
+      "currency": "EUR",
+      "vatIncluded": true,
+      "name": {
+        "en": "100 ml Argan Oil + Kessa Glove",
+        "es": "Pack 100 ml Aceite de Argán + Manopla Kessa",
+        "pt": "Kit 100 ml Óleo de Argan + Luva Kessa"
+      },
+      "sizes": [
+        {
+          "slug": "argan-100ml-kessa-bundle-set",
+          "active": true,
+          "format": "bundle",
+          "label": {
+            "en": "Set 100 ml + Kessa",
+            "es": "Set 100 ml + Kessa",
+            "pt": "Set 100 ml + Kessa"
+          },
+          "size": 100,
+          "unit": "ml",
+          "price": null
+        }
+      ]
+    },
+    {
+      "slug": "argan-500ml-kessa-bundle",
+      "active": true,
+      "category": "bundle",
+      "currency": "EUR",
+      "vatIncluded": true,
+      "name": {
+        "en": "500 ml Argan Oil + Kessa + Pouch",
+        "es": "Pack 500 ml Aceite de Argán + Kessa + Neceser",
+        "pt": "Kit 500 ml Óleo de Argan + Kessa + Nécessaire"
+      },
+      "sizes": [
+        {
+          "slug": "argan-500ml-kessa-bundle-set",
+          "active": true,
+          "format": "bundle",
+          "label": {
+            "en": "Set 500 ml + Kessa",
+            "es": "Set 500 ml + Kessa",
+            "pt": "Set 500 ml + Kessa"
+          },
+          "size": 500,
+          "unit": "ml",
+          "price": null
+        }
+      ]
+    },
+    {
+      "slug": "lavender-50ml-argan-30ml-pack",
+      "active": true,
+      "category": "bundle",
+      "currency": "EUR",
+      "vatIncluded": true,
+      "name": {
+        "en": "Lavender 50 ml + Argan 30 ml Pack",
+        "es": "Pack Lavanda 50 ml + Argán 30 ml",
+        "pt": "Kit Lavanda 50 ml + Argan 30 ml"
+      },
+      "sizes": [
+        {
+          "slug": "lavender-50ml-argan-30ml-pack-set",
+          "active": true,
+          "format": "bundle",
+          "label": {
+            "en": "Lavender 50 ml + Argan 30 ml",
+            "es": "Lavanda 50 ml + Argán 30 ml",
+            "pt": "Lavanda 50 ml + Argan 30 ml"
+          },
+          "size": 1,
+          "unit": "set",
+          "price": null
+        }
+      ]
+    },
+    {
+      "slug": "manopla-kessa",
+      "active": true,
+      "category": "accessory",
+      "currency": "EUR",
+      "vatIncluded": true,
+      "name": {
+        "en": "Kessa Exfoliating Glove",
+        "es": "Manopla Exfoliante Kessa",
+        "pt": "Luva Esfoliante Kessa"
+      },
+      "sizes": [
+        {
+          "slug": "manopla-kessa-standard",
+          "active": true,
+          "format": "accessory",
+          "label": {
+            "en": "Single Glove",
+            "es": "Manopla individual",
+            "pt": "Luva individual"
+          },
+          "size": 1,
+          "unit": "unit",
+          "price": null
+        }
+      ]
+    },
+    {
+      "slug": "kapunka-neceser",
+      "active": true,
+      "category": "accessory",
+      "currency": "EUR",
+      "vatIncluded": true,
+      "name": {
+        "en": "Kapunka Travel Pouch",
+        "es": "Neceser Kapunka",
+        "pt": "Nécessaire Kapunka"
+      },
+      "sizes": [
+        {
+          "slug": "kapunka-neceser-medium",
+          "active": true,
+          "format": "pouch",
+          "label": {
+            "en": "Medium Pouch",
+            "es": "Neceser mediano",
+            "pt": "Nécessaire médio"
+          },
+          "size": 1,
+          "unit": "unit",
+          "price": null
+        },
+        {
+          "slug": "kapunka-neceser-large",
+          "active": true,
+          "format": "pouch",
+          "label": {
+            "en": "Large Pouch",
+            "es": "Neceser grande",
+            "pt": "Nécessaire grande"
+          },
+          "size": 1,
+          "unit": "unit",
+          "price": null
+        }
+      ]
+    }
+  ]
+}
