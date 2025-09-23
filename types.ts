@@ -41,6 +41,7 @@ export interface Product {
   name: Translatable;
   tagline: Translatable;
   description?: Translatable;
+  bundleIncludes?: TranslatableArray;
   imageUrl: string;
   sizes: ProductSize[];
   badges: TranslatableArray;

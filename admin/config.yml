@@ -154,6 +154,22 @@ collections:
                   - { label: English, name: en, widget: text }
                   - { label: Portuguese, name: pt, widget: text }
                   - { label: Spanish, name: es, widget: text }
+              - label: Bundle Includes
+                name: bundleIncludes
+                widget: object
+                fields:
+                  - label: English
+                    name: en
+                    widget: list
+                    field: { label: Item, name: item, widget: string }
+                  - label: Portuguese
+                    name: pt
+                    widget: list
+                    field: { label: Item, name: item, widget: string }
+                  - label: Spanish
+                    name: es
+                    widget: list
+                    field: { label: Item, name: item, widget: string }
               - { label: Image, name: imageUrl, widget: image, choose_url: true }
               - label: Sizes
                 name: sizes

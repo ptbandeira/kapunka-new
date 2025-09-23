@@ -85,6 +85,7 @@
         "ingredients": "Ingredients",
         "labTested": "Origin & Purity"
       },
+      "bundleIncludes": "Bundle includes",
       "relatedProducts": "You Might Also Like",
       "knowledge": {
         "title": "Deep dive into the formula",
@@ -381,6 +382,7 @@
         "ingredients": "Ingredientes",
         "labTested": "Origem e Pureza"
       },
+      "bundleIncludes": "O conjunto inclui",
       "relatedProducts": "Você Também Pode Gostar",
       "knowledge": {
         "title": "Mergulho na fórmula",
@@ -677,6 +679,7 @@
         "ingredients": "Ingredientes",
         "labTested": "Origen y Pureza"
       },
+      "bundleIncludes": "El pack incluye",
       "relatedProducts": "También te podría gustar",
       "knowledge": {
         "title": "Profundiza en la fórmula",
