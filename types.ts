@@ -31,10 +31,16 @@ export interface ProductFaq {
   answer: Translatable;
 }
 
+export interface ProductGoodToKnow {
+  title: Translatable;
+  items: TranslatableArray;
+}
+
 export interface Product {
   id: string;
   name: Translatable;
   tagline: Translatable;
+  description?: Translatable;
   imageUrl: string;
   sizes: ProductSize[];
   badges: TranslatableArray;
@@ -44,6 +50,7 @@ export interface Product {
   labTestedNote: Translatable;
   knowledge: ProductKnowledge;
   faqs: ProductFaq[];
+  goodToKnow?: ProductGoodToKnow;
 }
 
 export interface CartItem {

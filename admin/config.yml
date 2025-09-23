@@ -147,6 +147,13 @@ collections:
                   - { label: English, name: en, widget: string }
                   - { label: Portuguese, name: pt, widget: string }
                   - { label: Spanish, name: es, widget: string }
+              - label: Description
+                name: description
+                widget: object
+                fields:
+                  - { label: English, name: en, widget: text }
+                  - { label: Portuguese, name: pt, widget: text }
+                  - { label: Spanish, name: es, widget: text }
               - { label: Image, name: imageUrl, widget: image, choose_url: true }
               - label: Sizes
                 name: sizes
@@ -209,6 +216,33 @@ collections:
                   - { label: English, name: en, widget: text }
                   - { label: Portuguese, name: pt, widget: text }
                   - { label: Spanish, name: es, widget: text }
+              - label: Good to Know
+                name: goodToKnow
+                widget: object
+                fields:
+                  - label: Title
+                    name: title
+                    widget: object
+                    fields:
+                      - { label: English, name: en, widget: string }
+                      - { label: Portuguese, name: pt, widget: string }
+                      - { label: Spanish, name: es, widget: string }
+                  - label: Items
+                    name: items
+                    widget: object
+                    fields:
+                      - label: English
+                        name: en
+                        widget: list
+                        field: { label: Item, name: item, widget: string }
+                      - label: Portuguese
+                        name: pt
+                        widget: list
+                        field: { label: Item, name: item, widget: string }
+                      - label: Spanish
+                        name: es
+                        widget: list
+                        field: { label: Item, name: item, widget: string }
               - label: Knowledge Hub
                 name: knowledge
                 widget: object
