@@ -1,7 +1,11 @@
 {
   "items": [
     {
-      "id": "pure-argan-oil",
+      "ingredients": {
+        "en": "100% Argania Spinosa (Argan) Kernel Oil.",
+        "pt": "100% Óleo de Caroço de Argania Spinosa (Argan).",
+        "es": "100% Aceite de Semilla de Argania Spinosa (Argán)."
+      },
       "name": {
         "en": "100% Pure Argan Oil",
         "pt": "Óleo de Argan 100% Puro",
@@ -12,7 +16,28 @@
         "pt": "Certificado ECOCERT, Primeira Prensagem a Frio",
         "es": "Certificado ECOCERT, Primera Presión en Frío"
       },
-      "imageUrl": "https://images.unsplash.com/photo-1556228720-195a672e8a03?q=80&w=1887&auto=format&fit=crop",
+      "badges": {
+        "en": [
+          "ECOCERT Certified",
+          "100% Pure",
+          "Cold-Pressed"
+        ],
+        "pt": [
+          "Certificado ECOCERT",
+          "100% Puro",
+          "Prensado a Frio"
+        ],
+        "es": [
+          "Certificado ECOCERT",
+          "100% Puro",
+          "Prensado en Frío"
+        ]
+      },
+      "labTestedNote": {
+        "en": "Our Argan Oil is ECOCERT certified, guaranteeing its organic purity and ethical sourcing from the women's cooperatives of Morocco.",
+        "pt": "O nosso Óleo de Argan é certificado pela ECOCERT, garantindo a sua pureza orgânica e origem ética das cooperativas de mulheres de Marrocos.",
+        "es": "Nuestro Aceite de Argán está certificado por ECOCERT, garantizando su pureza orgánica y su origen ético de las cooperativas de mujeres de Marruecos."
+      },
       "sizes": [
         {
           "id": "15ml",
@@ -35,22 +60,12 @@
           "price": 55
         }
       ],
-      "badges": {
-        "en": [
-          "ECOCERT Certified",
-          "100% Pure",
-          "Cold-Pressed"
-        ],
-        "pt": [
-          "Certificado ECOCERT",
-          "100% Puro",
-          "Prensado a Frio"
-        ],
-        "es": [
-          "Certificado ECOCERT",
-          "100% Puro",
-          "Prensado en Frío"
-        ]
+      "imageUrl": "/content/uploads/aceite-argan-dosificador-250ml-300x300.jpg",
+      "id": "pure-argan-oil",
+      "howToUse": {
+        "en": "Apply a few drops to the face, body, or hair as needed. A little goes a long way. Can be used morning and night.",
+        "pt": "Aplique algumas gotas no rosto, corpo ou cabelo conforme necessário. Um pouco rende muito. Pode ser usado de manhã e à noite.",
+        "es": "Aplicar unas gotas en el rostro, cuerpo o cabello según sea necesario. Un poco es suficiente. Se puede usar por la mañana y por la noche."
       },
       "benefits": {
         "en": [
@@ -71,25 +86,14 @@
           "Mejora la elasticidad de la piel y reduce la apariencia de líneas finas",
           "Calma la inflamación y apoya la barrera cutánea"
         ]
-      },
-      "howToUse": {
-        "en": "Apply a few drops to the face, body, or hair as needed. A little goes a long way. Can be used morning and night.",
-        "pt": "Aplique algumas gotas no rosto, corpo ou cabelo conforme necessário. Um pouco rende muito. Pode ser usado de manhã e à noite.",
-        "es": "Aplicar unas gotas en el rostro, cuerpo o cabello según sea necesario. Un poco es suficiente. Se puede usar por la mañana y por la noche."
-      },
-      "ingredients": {
-        "en": "100% Argania Spinosa (Argan) Kernel Oil.",
-        "pt": "100% Óleo de Caroço de Argania Spinosa (Argan).",
-        "es": "100% Aceite de Semilla de Argania Spinosa (Argán)."
-      },
-      "labTestedNote": {
-        "en": "Our Argan Oil is ECOCERT certified, guaranteeing its organic purity and ethical sourcing from the women's cooperatives of Morocco.",
-        "pt": "O nosso Óleo de Argan é certificado pela ECOCERT, garantindo a sua pureza orgânica e origem ética das cooperativas de mulheres de Marrocos.",
-        "es": "Nuestro Aceite de Argán está certificado por ECOCERT, garantizando su pureza orgánica y su origen ético de las cooperativas de mujeres de Marruecos."
       }
     },
     {
-      "id": "rose-water",
+      "ingredients": {
+        "en": "100% Rosa Damascena (Rose) Flower Water.",
+        "pt": "100% Água da Flor de Rosa Damascena (Rosa).",
+        "es": "100% Agua de Flor de Rosa Damascena (Rosa)."
+      },
       "name": {
         "en": "Damask Rose Water",
         "pt": "Água de Rosas Damascena",
@@ -100,14 +104,6 @@
         "pt": "Tônico floral puro e refrescante",
         "es": "Tónico floral puro y refrescante"
       },
-      "imageUrl": "https://images.unsplash.com/photo-1627223901301-a1264c7674e5?q=80&w=1887&auto=format&fit=crop",
-      "sizes": [
-        {
-          "id": "100ml",
-          "size": 100,
-          "price": 22
-        }
-      ],
       "badges": {
         "en": [
           "100% Pure",
@@ -121,6 +117,25 @@
           "100% Pura",
           "Destilada"
         ]
+      },
+      "labTestedNote": {
+        "en": "Distilled from pure Damask roses. Free from alcohol and synthetic fragrances.",
+        "pt": "Destilado de rosas de Damasco puras. Livre de álcool e fragrâncias sintéticas.",
+        "es": "Destilado de rosas de Damasco puras. Libre de alcohol y fragancias sintéticas."
+      },
+      "sizes": [
+        {
+          "id": "100ml",
+          "size": 100,
+          "price": 22
+        }
+      ],
+      "imageUrl": "/content/uploads/aceite-argan-puro-primera-prensada-frio-250ml-con-lavanda-300x300.jpg",
+      "id": "rose-water",
+      "howToUse": {
+        "en": "Mist onto face after cleansing or anytime skin needs a refresh. Can be used on hair to add a light, pleasant scent.",
+        "pt": "Borrife no rosto após a limpeza ou sempre que a pele precisar de um refresh. Pode ser usado no cabelo para adicionar um aroma leve e agradável.",
+        "es": "Rociar sobre el rostro después de la limpieza o en cualquier momento que la piel necesite un refresco. Se puede usar en el cabello para agregar un aroma ligero y agradable."
       },
       "benefits": {
         "en": [
@@ -141,25 +156,14 @@
           "Ayuda a reducir el enrojecimiento y calmar la irritación",
           "Se puede usar para fijar el maquillaje o refrescar la piel durante el día"
         ]
-      },
-      "howToUse": {
-        "en": "Mist onto face after cleansing or anytime skin needs a refresh. Can be used on hair to add a light, pleasant scent.",
-        "pt": "Borrife no rosto após a limpeza ou sempre que a pele precisar de um refresh. Pode ser usado no cabelo para adicionar um aroma leve e agradável.",
-        "es": "Rociar sobre el rostro después de la limpieza o en cualquier momento que la piel necesite un refresco. Se puede usar en el cabello para agregar un aroma ligero y agradable."
-      },
-      "ingredients": {
-        "en": "100% Rosa Damascena (Rose) Flower Water.",
-        "pt": "100% Água da Flor de Rosa Damascena (Rosa).",
-        "es": "100% Agua de Flor de Rosa Damascena (Rosa)."
-      },
-      "labTestedNote": {
-        "en": "Distilled from pure Damask roses. Free from alcohol and synthetic fragrances.",
-        "pt": "Destilado de rosas de Damasco puras. Livre de álcool e fragrâncias sintéticas.",
-        "es": "Destilado de rosas de Damasco puras. Libre de alcohol y fragancias sintéticas."
       }
     },
     {
-      "id": "black-soap",
+      "ingredients": {
+        "en": "Aqua, Olea Europaea (Olive) Fruit Oil, Potassium Hydroxide, Eucalyptus Globulus Leaf Oil.",
+        "pt": "Água, Óleo de Fruta Olea Europaea (Azeitona), Hidróxido de Potássio, Óleo da Folha de Eucalyptus Globulus.",
+        "es": "Agua, Aceite de Fruta Olea Europaea (Oliva), Hidróxido de Potasio, Aceite de Hoja de Eucalyptus Globulus."
+      },
       "name": {
         "en": "Moroccan Black Soap",
         "pt": "Sabão Preto Marroquino",
@@ -170,14 +174,6 @@
         "pt": "Tratamento corporal de limpeza profunda",
         "es": "Tratamiento corporal de limpieza profunda"
       },
-      "imageUrl": "https://images.unsplash.com/photo-1599351548093-2ff58f705a6b?q=80&w=1887&auto=format&fit=crop",
-      "sizes": [
-        {
-          "id": "200g",
-          "size": 200,
-          "price": 28
-        }
-      ],
       "badges": {
         "en": [
           "Traditional Recipe",
@@ -191,6 +187,25 @@
           "Receta Tradicional",
           "Exfoliante"
         ]
+      },
+      "labTestedNote": {
+        "en": "Made with traditional methods. Its unique gel-like consistency is a hallmark of its authenticity.",
+        "pt": "Feito com métodos tradicionais. A sua consistência única em gel é uma marca da sua autenticidade.",
+        "es": "Elaborado con métodos tradicionales. Su consistencia única tipo gel es un sello de su autenticidad."
+      },
+      "sizes": [
+        {
+          "id": "200g",
+          "size": 200,
+          "price": 28
+        }
+      ],
+      "imageUrl": "https://images.unsplash.com/photo-1599351548093-2ff58f705a6b?q=80&w=1887&auto=format&fit=crop",
+      "id": "black-soap",
+      "howToUse": {
+        "en": "In a warm bath or shower, apply to damp skin. Leave on for a few minutes, then rinse. For best results, exfoliate with a Kessa glove.",
+        "pt": "Num banho quente, aplique na pele úmida. Deixe agir por alguns minutos e enxágue. Para melhores resultados, esfolie com uma luva Kessa.",
+        "es": "En un baño o ducha tibia, aplicar sobre la piel húmeda. Dejar actuar unos minutos y aclarar. Para mejores resultados, exfoliar con un guante Kessa."
       },
       "benefits": {
         "en": [
@@ -211,25 +226,14 @@
           "Rico en Vitamina E",
           "Parte esencial del ritual tradicional del Hammam"
         ]
-      },
-      "howToUse": {
-        "en": "In a warm bath or shower, apply to damp skin. Leave on for a few minutes, then rinse. For best results, exfoliate with a Kessa glove.",
-        "pt": "Num banho quente, aplique na pele úmida. Deixe agir por alguns minutos e enxágue. Para melhores resultados, esfolie com uma luva Kessa.",
-        "es": "En un baño o ducha tibia, aplicar sobre la piel húmeda. Dejar actuar unos minutos y aclarar. Para mejores resultados, exfoliar con un guante Kessa."
-      },
-      "ingredients": {
-        "en": "Aqua, Olea Europaea (Olive) Fruit Oil, Potassium Hydroxide, Eucalyptus Globulus Leaf Oil.",
-        "pt": "Água, Óleo de Fruta Olea Europaea (Azeitona), Hidróxido de Potássio, Óleo da Folha de Eucalyptus Globulus.",
-        "es": "Agua, Aceite de Fruta Olea Europaea (Oliva), Hidróxido de Potasio, Aceite de Hoja de Eucalyptus Globulus."
-      },
-      "labTestedNote": {
-        "en": "Made with traditional methods. Its unique gel-like consistency is a hallmark of its authenticity.",
-        "pt": "Feito com métodos tradicionais. A sua consistência única em gel é uma marca da sua autenticidade.",
-        "es": "Elaborado con métodos tradicionales. Su consistencia única tipo gel es un sello de su autenticidad."
       }
     },
     {
-      "id": "lavender-argan-oil",
+      "ingredients": {
+        "en": "Argania Spinosa (Argan) Kernel Oil, Lavandula Angustifolia (Lavender) Oil.",
+        "pt": "Óleo de Caroço de Argania Spinosa (Argan), Óleo de Lavandula Angustifolia (Lavanda).",
+        "es": "Aceite de Semilla de Argania Spinosa (Argán), Aceite de Lavandula Angustifolia (Lavanda)."
+      },
       "name": {
         "en": "Argan Oil + Lavender",
         "pt": "Óleo de Argan + Lavanda",
@@ -240,14 +244,6 @@
         "pt": "Mistura calmante e relaxante",
         "es": "Mezcla calmante y relajante"
       },
-      "imageUrl": "https://images.unsplash.com/photo-1599691124403-5533588a44e5?q=80&w=1887&auto=format&fit=crop",
-      "sizes": [
-        {
-          "id": "250ml",
-          "size": 250,
-          "price": 40
-        }
-      ],
       "badges": {
         "en": [
           "Soothing",
@@ -261,6 +257,25 @@
           "Calmante",
           "Aroma Natural"
         ]
+      },
+      "labTestedNote": {
+        "en": "Infused with pure, high-grade lavender essential oil for a truly aromatic and therapeutic experience.",
+        "pt": "Infundido com óleo essencial de lavanda puro e de alta qualidade para uma experiência verdadeiramente aromática e terapêutica.",
+        "es": "Infundido con aceite esencial de lavanda puro y de alta calidad para una experiencia verdaderamente aromática y terapéutica."
+      },
+      "sizes": [
+        {
+          "id": "250ml",
+          "size": 250,
+          "price": 40
+        }
+      ],
+      "imageUrl": "/content/uploads/aceite-argan-puro-primera-prensada-frio-250ml-con-lavanda-300x300.jpg",
+      "id": "lavender-argan-oil",
+      "howToUse": {
+        "en": "Apply to the body for a moisturizing and calming experience. Perfect for after a bath or before bedtime.",
+        "pt": "Aplique no corpo para uma experiência hidratante e calmante. Perfeito para depois do banho ou antes de dormir.",
+        "es": "Aplicar sobre el cuerpo para una experiencia hidratante y calmante. Perfecto para después del baño o antes de acostarse."
       },
       "benefits": {
         "en": [
@@ -278,25 +293,14 @@
           "El aceite esencial de lavanda ayuda a calmar la mente y la piel",
           "Ideal para uso nocturno o para un masaje relajante"
         ]
-      },
-      "howToUse": {
-        "en": "Apply to the body for a moisturizing and calming experience. Perfect for after a bath or before bedtime.",
-        "pt": "Aplique no corpo para uma experiência hidratante e calmante. Perfeito para depois do banho ou antes de dormir.",
-        "es": "Aplicar sobre el cuerpo para una experiencia hidratante y calmante. Perfecto para después del baño o antes de acostarse."
-      },
-      "ingredients": {
-        "en": "Argania Spinosa (Argan) Kernel Oil, Lavandula Angustifolia (Lavender) Oil.",
-        "pt": "Óleo de Caroço de Argania Spinosa (Argan), Óleo de Lavandula Angustifolia (Lavanda).",
-        "es": "Aceite de Semilla de Argania Spinosa (Argán), Aceite de Lavandula Angustifolia (Lavanda)."
-      },
-      "labTestedNote": {
-        "en": "Infused with pure, high-grade lavender essential oil for a truly aromatic and therapeutic experience.",
-        "pt": "Infundido com óleo essencial de lavanda puro e de alta qualidade para uma experiência verdadeiramente aromática e terapêutica.",
-        "es": "Infundido con aceite esencial de lavanda puro y de alta calidad para una experiencia verdaderamente aromática y terapéutica."
       }
     },
     {
-      "id": "rosemary-argan-oil",
+      "ingredients": {
+        "en": "Argania Spinosa (Argan) Kernel Oil, Rosmarinus Officinalis (Rosemary) Leaf Oil.",
+        "pt": "Óleo de Caroço de Argania Spinosa (Argan), Óleo da Folha de Rosmarinus Officinalis (Alecrim).",
+        "es": "Aceite de Semilla de Argania Spinosa (Argán), Aceite de Hoja de Rosmarinus Officinalis (Romero)."
+      },
       "name": {
         "en": "Argan Oil + Rosemary",
         "pt": "Óleo de Argan + Alecrim",
@@ -307,14 +311,6 @@
         "pt": "Mistura revigorante e clarificante",
         "es": "Mezcla vigorizante y clarificante"
       },
-      "imageUrl": "https://images.unsplash.com/photo-1598993539803-ce3ed997424c?q=80&w=1887&auto=format&fit=crop",
-      "sizes": [
-        {
-          "id": "250ml",
-          "size": 250,
-          "price": 40
-        }
-      ],
       "badges": {
         "en": [
           "Invigorating",
@@ -328,6 +324,25 @@
           "Vigorizante",
           "Cuidado del Cuero Cabelludo"
         ]
+      },
+      "labTestedNote": {
+        "en": "Infused with pure, steam-distilled rosemary essential oil.",
+        "pt": "Infundido com óleo essencial de alecrim puro, destilado a vapor.",
+        "es": "Infundido con aceite esencial de romero puro, destilado al vapor."
+      },
+      "sizes": [
+        {
+          "id": "250ml",
+          "size": 250,
+          "price": 40
+        }
+      ],
+      "imageUrl": "/content/uploads/aceite-argan-puro-primera-prensada-frio-250ml-con-romero-300x300.jpg",
+      "id": "rosemary-argan-oil",
+      "howToUse": {
+        "en": "Excellent as a scalp treatment. Massage into the scalp before washing hair. Can also be used on the body.",
+        "pt": "Excelente como tratamento para o couro cabeludo. Massageie no couro cabeludo antes de lavar o cabelo. Também pode ser usado no corpo.",
+        "es": "Excelente como tratamiento para el cuero cabelludo. Masajear en el cuero cabelludo antes de lavar el cabello. También se puede usar en el cuerpo."
       },
       "benefits": {
         "en": [
@@ -345,25 +360,14 @@
           "El romero es conocido por estimular el cuero cabelludo y promover la salud del cabello",
           "Propiedades clarificantes para la piel"
         ]
-      },
-      "howToUse": {
-        "en": "Excellent as a scalp treatment. Massage into the scalp before washing hair. Can also be used on the body.",
-        "pt": "Excelente como tratamento para o couro cabeludo. Massageie no couro cabeludo antes de lavar o cabelo. Também pode ser usado no corpo.",
-        "es": "Excelente como tratamiento para el cuero cabelludo. Masajear en el cuero cabelludo antes de lavar el cabello. También se puede usar en el cuerpo."
-      },
-      "ingredients": {
-        "en": "Argania Spinosa (Argan) Kernel Oil, Rosmarinus Officinalis (Rosemary) Leaf Oil.",
-        "pt": "Óleo de Caroço de Argania Spinosa (Argan), Óleo da Folha de Rosmarinus Officinalis (Alecrim).",
-        "es": "Aceite de Semilla de Argania Spinosa (Argán), Aceite de Hoja de Rosmarinus Officinalis (Romero)."
-      },
-      "labTestedNote": {
-        "en": "Infused with pure, steam-distilled rosemary essential oil.",
-        "pt": "Infundido com óleo essencial de alecrim puro, destilado a vapor.",
-        "es": "Infundido con aceite esencial de romero puro, destilado al vapor."
       }
     },
     {
-      "id": "patchouli-argan-oil",
+      "ingredients": {
+        "en": "Argania Spinosa (Argan) Kernel Oil, Pogostemon Cablin (Patchouli) Oil.",
+        "pt": "Óleo de Caroço de Argania Spinosa (Argan), Óleo de Pogostemon Cablin (Patchouli).",
+        "es": "Aceite de Semilla de Argania Spinosa (Argán), Aceite de Pogostemon Cablin (Pachulí)."
+      },
       "name": {
         "en": "Argan Oil + Patchouli",
         "pt": "Óleo de Argan + Patchouli",
@@ -374,14 +378,6 @@
         "pt": "Mistura terrosa e estabilizadora",
         "es": "Mezcla terrosa y estabilizadora"
       },
-      "imageUrl": "https://images.unsplash.com/photo-1605911443422-220a9a1c1325?q=80&w=1887&auto=format&fit=crop",
-      "sizes": [
-        {
-          "id": "250ml",
-          "size": 250,
-          "price": 40
-        }
-      ],
       "badges": {
         "en": [
           "Grounding",
@@ -395,6 +391,25 @@
           "Estabilizador",
           "Piel Madura"
         ]
+      },
+      "labTestedNote": {
+        "en": "Infused with pure patchouli essential oil for a rich, earthy fragrance.",
+        "pt": "Infundido com óleo essencial de patchouli puro para uma fragrância rica e terrosa.",
+        "es": "Infundido con aceite esencial de pachulí puro para una fragancia rica y terrosa."
+      },
+      "sizes": [
+        {
+          "id": "250ml",
+          "size": 250,
+          "price": 40
+        }
+      ],
+      "imageUrl": "/content/uploads/aceite-de-argán-puro-con-patchouli-500ml-300x300.jpg",
+      "id": "patchouli-argan-oil",
+      "howToUse": {
+        "en": "Use as a daily body oil to moisturize and envelop yourself in a grounding scent.",
+        "pt": "Use como um óleo corporal diário para hidratar e se envolver em um aroma estabilizador.",
+        "es": "Usar como aceite corporal diario para hidratar y envolverse en un aroma estabilizador."
       },
       "benefits": {
         "en": [
@@ -412,25 +427,14 @@
           "El pachulí es apreciado por su aroma estabilizador y sus beneficios para la piel madura",
           "Ayuda a reducir la apariencia de las arrugas"
         ]
-      },
-      "howToUse": {
-        "en": "Use as a daily body oil to moisturize and envelop yourself in a grounding scent.",
-        "pt": "Use como um óleo corporal diário para hidratar e se envolver em um aroma estabilizador.",
-        "es": "Usar como aceite corporal diario para hidratar y envolverse en un aroma estabilizador."
-      },
-      "ingredients": {
-        "en": "Argania Spinosa (Argan) Kernel Oil, Pogostemon Cablin (Patchouli) Oil.",
-        "pt": "Óleo de Caroço de Argania Spinosa (Argan), Óleo de Pogostemon Cablin (Patchouli).",
-        "es": "Aceite de Semilla de Argania Spinosa (Argán), Aceite de Pogostemon Cablin (Pachulí)."
-      },
-      "labTestedNote": {
-        "en": "Infused with pure patchouli essential oil for a rich, earthy fragrance.",
-        "pt": "Infundido com óleo essencial de patchouli puro para uma fragrância rica e terrosa.",
-        "es": "Infundido con aceite esencial de pachulí puro para una fragancia rica y terrosa."
       }
     },
     {
-      "id": "kessa-glove",
+      "ingredients": {
+        "en": "100% Viscose Crepe.",
+        "pt": "100% Crepe de Viscose.",
+        "es": "100% Crepé de Viscosa."
+      },
       "name": {
         "en": "Kessa Exfoliating Glove",
         "pt": "Luva Esfoliante Kessa",
@@ -441,14 +445,6 @@
         "pt": "A ferramenta essencial para uma pele macia",
         "es": "La herramienta esencial para una piel suave"
       },
-      "imageUrl": "https://images.unsplash.com/photo-1580870069867-74c57ee130b0?q=80&w=1928&auto=format&fit=crop",
-      "sizes": [
-        {
-          "id": "1-unit",
-          "size": 1,
-          "price": 12
-        }
-      ],
       "badges": {
         "en": [
           "Hammam Essential",
@@ -462,6 +458,25 @@
           "Esencial de Hammam",
           "Reutilizable"
         ]
+      },
+      "labTestedNote": {
+        "en": "A durable, high-quality glove designed for repeated use. Rinse thoroughly after each use and hang to dry.",
+        "pt": "Uma luva durável e de alta qualidade projetada para uso repetido. Enxágue bem após cada uso e pendure para secar.",
+        "es": "Un guante duradero y de alta calidad diseñado para un uso repetido. Aclarar bien después de cada uso y colgar para secar."
+      },
+      "sizes": [
+        {
+          "id": "1-unit",
+          "size": 1,
+          "price": 12
+        }
+      ],
+      "imageUrl": "/content/uploads/product-item2.png",
+      "id": "kessa-glove",
+      "howToUse": {
+        "en": "After cleansing with Black Soap and rinsing, scrub the body in upward and downward strokes. Do not use on the face or irritated skin.",
+        "pt": "Após a limpeza com Sabão Preto e enxágue, esfregue o corpo com movimentos ascendentes e descendentes. Não use no rosto ou em pele irritada.",
+        "es": "Después de limpiar con Jabón Negro y aclarar, frotar el cuerpo con movimientos ascendentes y descendentes. No usar en la cara o piel irritada."
       },
       "benefits": {
         "en": [
@@ -482,21 +497,6 @@
           "Deja la piel increíblemente suave y tersa",
           "Perfecto para usar después de aplicar el Jabón Negro Marroquí"
         ]
-      },
-      "howToUse": {
-        "en": "After cleansing with Black Soap and rinsing, scrub the body in upward and downward strokes. Do not use on the face or irritated skin.",
-        "pt": "Após a limpeza com Sabão Preto e enxágue, esfregue o corpo com movimentos ascendentes e descendentes. Não use no rosto ou em pele irritada.",
-        "es": "Después de limpiar con Jabón Negro y aclarar, frotar el cuerpo con movimientos ascendentes y descendentes. No usar en la cara o piel irritada."
-      },
-      "ingredients": {
-        "en": "100% Viscose Crepe.",
-        "pt": "100% Crepe de Viscose.",
-        "es": "100% Crepé de Viscosa."
-      },
-      "labTestedNote": {
-        "en": "A durable, high-quality glove designed for repeated use. Rinse thoroughly after each use and hang to dry.",
-        "pt": "Uma luva durável e de alta qualidade projetada para uso repetido. Enxágue bem após cada uso e pendure para secar.",
-        "es": "Un guante duradero y de alta calidad diseñado para un uso repetido. Aclarar bien después de cada uso y colgar para secar."
       }
     }
   ]
