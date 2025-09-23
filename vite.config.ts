@@ -11,7 +11,10 @@ export default defineConfig(({ mode }) => {
         'process.env.GEMINI_API_KEY': JSON.stringify(env.GEMINI_API_KEY)
       },
       server: {
-        allowedHosts: ['devserver-preview--kapunka-new.netlify.app']
+        allowedHosts: [
+          'devserver-preview--kapunka-new.netlify.app',
+          'devserver-main--kapunka-new.netlify.app',
+        ]
       },
       resolve: {
         alias: {
