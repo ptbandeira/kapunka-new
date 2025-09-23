@@ -111,6 +111,24 @@ const ProductDetail: React.FC = () => {
                                     {translate(product.description)}
                                 </p>
                             )}
+                            {product.bundleIncludes && (
+                                <div className="mt-6">
+                                    <h2 className="text-sm font-semibold uppercase tracking-wide text-stone-500" data-nlv-field-path="translations.en.pdp.bundleIncludes">
+                                        {t('pdp.bundleIncludes')}
+                                    </h2>
+                                    <ul className="mt-3 list-disc pl-5 space-y-1">
+                                        {(translate(product.bundleIncludes) as string[]).map((item: string, index: number) => (
+                                            <li
+                                                key={index}
+                                                className="text-sm text-stone-600"
+                                                data-nlv-field-path={productFieldPath ? `${productFieldPath}.bundleIncludes.en.${index}` : undefined}
+                                            >
+                                                {item}
+                                            </li>
+                                        ))}
+                                    </ul>
+                                </div>
+                            )}
                         </motion.div>
 
                         <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6, delay: 0.2 }}>

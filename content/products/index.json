@@ -1069,6 +1069,377 @@
           }
         }
       ]
+    },
+    {
+      "ingredients": {
+        "en": "Argania Spinosa (Argan) Kernel Oil. Viscose (Kessa) exfoliating glove.",
+        "pt": "Óleo de Caroço de Argania Spinosa (Argan). Luva esfoliante de viscose (Kessa).",
+        "es": "Aceite de semilla de Argania Spinosa (Argán). Manopla exfoliante de viscosa (Kessa)."
+      },
+      "name": {
+        "en": "Pure Argan Oil 30 ml + Kessa Glove",
+        "pt": "Óleo de Argan Puro 30 ml + Luva Kessa",
+        "es": "Aceite de Argán Puro 30 ml + Manopla Kessa"
+      },
+      "tagline": {
+        "en": "Polish, nourish, and glow with our 2-step ritual",
+        "pt": "Polir, nutrir e iluminar com nosso ritual em 2 passos",
+        "es": "Pulir, nutrir y resplandecer con nuestro ritual en 2 pasos"
+      },
+      "description": {
+        "en": "This bundle includes Kapunka Pure Argan Oil and our soft Kessa exfoliating glove. Use the glove first to gently exfoliate and remove dead skin, then apply the argan oil to lock in moisture and promote smooth, radiant skin. Perfect as a gift or to elevate your self-care routine.",
+        "pt": "Este conjunto inclui Óleo de Argan puro Kapunka e nossa luva esfoliante suave Kessa. Primeiro use a luva para esfoliar gentilmente e remover células mortas, depois aplique o óleo para selar a hidratação e promover pele macia e radiante. Perfeito como presente ou para elevar sua rotina de autocuidado.",
+        "es": "Este pack incluye Aceite de Argán puro Kapunka y nuestra suave manopla exfoliante Kessa. Usa primero la manopla para exfoliar suavemente y eliminar células muertas, luego aplica el aceite para fijar la hidratación y promover una piel suave y radiante. Perfecto como regalo o para elevar tu rutina de autocuidado."
+      },
+      "bundleIncludes": {
+        "en": [
+          "Kapunka Pure Argan Oil (30 ml glass bottle with dropper)",
+          "Soft black Kessa exfoliating glove (one size)"
+        ],
+        "pt": [
+          "Óleo de Argan Puro Kapunka (30 ml, frasco de vidro com conta-gotas)",
+          "Luva esfoliante Kessa macia na cor preta (tamanho único)"
+        ],
+        "es": [
+          "Aceite de Argán puro Kapunka (30 ml, frasco de vidrio con cuentagotas)",
+          "Manopla exfoliante Kessa suave en color negro (talla única)"
+        ]
+      },
+      "badges": {
+        "en": [
+          "2-Piece Bundle",
+          "Gift-Ready",
+          "Hammam Ritual"
+        ],
+        "pt": [
+          "Kit com 2 itens",
+          "Pronto para presente",
+          "Ritual de hammam"
+        ],
+        "es": [
+          "Set de 2 piezas",
+          "Listo para regalar",
+          "Ritual hammam"
+        ]
+      },
+      "labTestedNote": {
+        "en": "Our ECOCERT argan oil is cold-pressed within 24 hours of harvest and lab-verified for purity. The Kessa glove is woven for long-term reuse.",
+        "pt": "Nosso óleo de argan com certificação ECOCERT é prensado a frio em até 24 horas após a colheita e testado em laboratório para garantir a pureza. A luva Kessa é tecida para uso prolongado.",
+        "es": "Nuestro aceite de argán con certificación ECOCERT se prensa en frío dentro de las 24 horas de la cosecha y se analiza en laboratorio para asegurar su pureza. La manopla Kessa está tejida para un uso prolongado."
+      },
+      "sizes": [
+        {
+          "id": "30ml-bundle",
+          "size": 30,
+          "price": 37
+        }
+      ],
+      "imageUrl": "/content/uploads/aceite-argan-dosificador-250ml-300x300.jpg",
+      "id": "argan-30ml-kessa-bundle",
+      "howToUse": {
+        "en": "Use the Kessa glove on damp skin with long upward strokes once or twice per week. Rinse, pat dry, and immediately massage 3–4 drops of argan oil over the exfoliated areas to seal in hydration.",
+        "pt": "Use a luva Kessa na pele úmida com movimentos longos ascendentes uma ou duas vezes por semana. Enxágue, seque suavemente e massageie imediatamente 3–4 gotas de óleo de argan sobre as áreas esfoliadas para selar a hidratação.",
+        "es": "Utiliza la manopla Kessa sobre la piel húmeda con movimientos largos ascendentes una o dos veces por semana. Aclara, seca con suavidad y masajea de inmediato 3–4 gotas de aceite de argán sobre las zonas exfoliadas para sellar la hidratación."
+      },
+      "benefits": {
+        "en": [
+          "Combines physical exfoliation and lipid replenishment for instantly smoother skin",
+          "Supports microcirculation while the oil locks in moisture and boosts glow",
+          "Helps minimize ingrown hairs and flaking on arms, legs, and décolletage",
+          "Compact ritual makes a thoughtful gift or travel-friendly body treatment"
+        ],
+        "pt": [
+          "Combina esfoliação física e reposição lipídica para uma pele imediatamente mais lisa",
+          "Estimula a microcirculação enquanto o óleo sela a hidratação e realça o brilho",
+          "Ajuda a minimizar pelos encravados e descamação em braços, pernas e colo",
+          "Ritual compacto perfeito para presentear ou cuidar do corpo em viagens"
+        ],
+        "es": [
+          "Combina exfoliación física y reposición lipídica para una piel visiblemente más lisa al instante",
+          "Favorece la microcirculación mientras el aceite sella la hidratación y potencia el resplandor",
+          "Ayuda a minimizar los vellos encarnados y la descamación en brazos, piernas y escote",
+          "Ritual compacto ideal para regalar o llevar en tus desplazamientos"
+        ]
+      },
+      "goodToKnow": {
+        "title": {
+          "en": "Good to know",
+          "pt": "Bom saber",
+          "es": "Para tener en cuenta"
+        },
+        "items": {
+          "en": [
+            "Perform exfoliation on softened, steamed skin for best results",
+            "Wash the glove weekly with mild soap and let it air-dry",
+            "Apply argan oil on slightly damp skin to enhance absorption",
+            "Use the glove no more than twice per week to avoid over-exfoliation"
+          ],
+          "pt": [
+            "Faça a esfoliação com a pele amolecida pelo vapor para melhores resultados",
+            "Lave a luva semanalmente com sabão suave e deixe secar ao ar",
+            "Aplique o óleo de argan com a pele levemente úmida para aumentar a absorção",
+            "Use a luva no máximo duas vezes por semana para evitar esfoliação excessiva"
+          ],
+          "es": [
+            "Realiza la exfoliación con la piel suavizada por el vapor para obtener mejores resultados",
+            "Lava la manopla cada semana con jabón suave y deja que se seque al aire",
+            "Aplica el aceite de argán con la piel ligeramente húmeda para mejorar la absorción",
+            "Utiliza la manopla como máximo dos veces por semana para evitar la sobreexfoliación"
+          ]
+        }
+      },
+      "knowledge": {
+        "whatItIs": {
+          "en": "A curated two-step hammam ritual pairing ECOCERT argan oil with a traditional viscose Kessa glove. It brings the spa-grade exfoliate-and-nourish treatment home in a single bundle.",
+          "pt": "Um ritual hammam em dois passos que combina óleo de argan ECOCERT com a tradicional luva Kessa de viscose. Reúne em um único kit a esfoliação e nutrição dignas de spa.",
+          "es": "Un ritual hammam de dos pasos que combina aceite de argán ECOCERT con la tradicional manopla Kessa de viscosa. Reúne en un solo kit la exfoliación y la nutrición dignas de spa."
+        },
+        "howItWorks": {
+          "en": "The glove’s tightly woven fibers create controlled friction that lifts corneocytes and boosts circulation. Immediately sealing skin with antioxidant-rich argan oil restores lipids, reduces transepidermal water loss, and leaves a satin finish.",
+          "pt": "As fibras fechadas da luva criam fricção controlada que remove corneócitos e ativa a circulação. Selar a pele em seguida com o óleo de argan rico em antioxidantes repõe lipídios, reduz a perda transepidérmica de água e deixa um toque acetinado.",
+          "es": "Las fibras cerradas de la manopla generan fricción controlada que desprende corneocitos y activa la circulación. Sellar después con el aceite de argán rico en antioxidantes repone lípidos, reduce la pérdida transepidérmica de agua y deja un acabado satinado."
+        },
+        "whoItsFor": {
+          "en": "Ideal for dry or keratosis-prone limbs, post-wax or shave care to prevent ingrowns, and anyone wanting a glow-boosting body ritual without harsh acids.",
+          "pt": "Indicado para membros secos ou com tendência à queratose, cuidados pós-depilação para evitar pelos encravados e para quem busca um ritual corporal iluminador sem ácidos agressivos.",
+          "es": "Indicado para zonas secas o con tendencia a queratosis, cuidados posteriores a la depilación para prevenir vellos encarnados y para quienes buscan un ritual corporal iluminador sin ácidos agresivos."
+        },
+        "scientificBacking": {
+          "en": "Dermatologic literature shows mechanical exfoliation can accelerate cell turnover up to 30%, while clinical trials on argan oil document improved elasticity and hydration in four weeks of use. Combining both steps maximizes smoothness and barrier recovery.",
+          "pt": "Literatura dermatológica demonstra que a esfoliação mecânica pode acelerar a renovação celular em até 30%, enquanto estudos clínicos com óleo de argan registram melhora na elasticidade e na hidratação após quatro semanas de uso. A combinação dos dois passos potencializa a maciez e a recuperação da barreira.",
+          "es": "La literatura dermatológica muestra que la exfoliación mecánica puede acelerar la renovación celular hasta un 30%, y los ensayos clínicos con aceite de argán documentan mejor elasticidad e hidratación tras cuatro semanas de uso. Combinar ambos pasos maximiza la suavidad y la recuperación de la barrera."
+        },
+        "culturalContext": {
+          "en": "In Moroccan hammams, attendants perform vigorous gommage with Kessa mitts before massaging argan oil into freshly polished skin. This bundle recreates that communal ritual in a modern, giftable format.",
+          "pt": "Nos hammams marroquinos, as atendentes realizam o gommage vigoroso com a luva Kessa antes de massagear óleo de argan na pele recém polida. Este kit traduz esse ritual coletivo em um formato moderno e presenteável.",
+          "es": "En los hammams marroquíes, las asistentes realizan el gommage vigoroso con la manopla Kessa antes de masajear aceite de argán sobre la piel recién pulida. Este kit traslada ese ritual comunitario a un formato moderno y listo para regalar."
+        }
+      },
+      "faqs": [
+        {
+          "question": {
+            "en": "How often should I use the Kessa glove included in the bundle?",
+            "pt": "Com que frequência devo usar a luva Kessa do kit?",
+            "es": "¿Con qué frecuencia debo usar la manopla Kessa del pack?"
+          },
+          "answer": {
+            "en": "Limit exfoliation to once or twice per week. Give skin 48 hours between sessions so the barrier can recover before reapplying the argan oil.",
+            "pt": "Limite a esfoliação a uma ou duas vezes por semana. Dê 48 horas entre as sessões para que a barreira se recupere antes de reaplicar o óleo de argan.",
+            "es": "Limita la exfoliación a una o dos veces por semana. Deja pasar 48 horas entre sesiones para que la barrera se recupere antes de volver a aplicar el aceite de argán."
+          }
+        },
+        {
+          "question": {
+            "en": "Can I use the Kessa glove on my face?",
+            "pt": "Posso usar a luva Kessa no rosto?",
+            "es": "¿Puedo usar la manopla Kessa en el rostro?"
+          },
+          "answer": {
+            "en": "No—the weave is designed for body skin. Keep it on arms, legs, back, and décolletage, and reserve pure argan oil alone for facial use.",
+            "pt": "Não — a trama foi pensada para a pele do corpo. Use-a em braços, pernas, costas e colo, e deixe o óleo de argan puro sozinho para o rosto.",
+            "es": "No: el tejido está diseñado para la piel del cuerpo. Úsala en brazos, piernas, espalda y escote, y reserva el aceite de argán puro por sí solo para el rostro."
+          }
+        },
+        {
+          "question": {
+            "en": "How do I clean the glove between uses?",
+            "pt": "Como devo limpar a luva entre os usos?",
+            "es": "¿Cómo limpio la manopla entre usos?"
+          },
+          "answer": {
+            "en": "Rinse after each session, wash weekly with gentle soap, squeeze out excess water, and hang to air-dry away from humidity.",
+            "pt": "Enxágue após cada sessão, lave semanalmente com sabão neutro, esprema o excesso de água e deixe secar ao ar longe da umidade.",
+            "es": "Aclárala después de cada sesión, lávala semanalmente con jabón neutro, escurre el exceso de agua y déjala secar al aire lejos de la humedad."
+          }
+        }
+      ]
+    },
+    {
+      "ingredients": {
+        "en": "Argania Spinosa (Argan) Kernel Oil. Viscose (Kessa) exfoliating glove. Cotton travel pouch.",
+        "pt": "Óleo de Caroço de Argania Spinosa (Argan). Luva esfoliante de viscose (Kessa). Nécessaire de algodão.",
+        "es": "Aceite de semilla de Argania Spinosa (Argán). Manopla exfoliante de viscosa (Kessa). Neceser de algodón."
+      },
+      "name": {
+        "en": "Argan Oil 500 ml Dispenser + Pouch + Kessa Bundle",
+        "pt": "Kit Óleo de Argan 500 ml com Dosificador + Nécessaire + Kessa",
+        "es": "Dosificador 500 ml de Aceite de Argán + Neceser + Kessa"
+      },
+      "tagline": {
+        "en": "Full-size spa ritual with travel-ready storage",
+        "pt": "Ritual completo em tamanho spa com armazenamento pronto para viagens",
+        "es": "Ritual de spa en formato grande con almacenamiento listo para viajar"
+      },
+      "description": {
+        "en": "This bundle includes Kapunka Pure Argan Oil in a 500 ml pump dispenser, our soft Kessa exfoliating glove, and a washable travel pouch. Use the glove first to gently exfoliate and remove dead skin, then apply the argan oil to lock in moisture and promote smooth, radiant skin. Pack everything in the pouch to keep your ritual organized at home or on the go.",
+        "pt": "Este conjunto inclui Óleo de Argan puro Kapunka em um dosificador de 500 ml, nossa luva esfoliante suave Kessa e uma nécessaire lavável. Use primeiro a luva para esfoliar suavemente e remover células mortas, depois aplique o óleo para selar a hidratação e promover uma pele macia e radiante. Guarde tudo na nécessaire para manter o ritual organizado em casa ou nas viagens.",
+        "es": "Este pack incluye Aceite de Argán puro Kapunka en un dosificador de 500 ml, nuestra suave manopla exfoliante Kessa y un neceser lavable. Usa primero la manopla para exfoliar suavemente y eliminar células muertas, luego aplica el aceite para fijar la hidratación y promover una piel suave y radiante. Guarda todo en el neceser para mantener el ritual organizado en casa o durante tus desplazamientos."
+      },
+      "bundleIncludes": {
+        "en": [
+          "Kapunka Pure Argan Oil (500 ml aluminum pump dispenser)",
+          "Soft black Kessa exfoliating glove (one size)",
+          "Reusable Kapunka travel pouch (cream canvas)"
+        ],
+        "pt": [
+          "Óleo de Argan Puro Kapunka (500 ml com dosificador de alumínio)",
+          "Luva esfoliante Kessa macia preta (tamanho único)",
+          "Nécessaire Kapunka reutilizável (tecido cru)"
+        ],
+        "es": [
+          "Aceite de Argán puro Kapunka (500 ml con dosificador de aluminio)",
+          "Manopla exfoliante Kessa suave negra (talla única)",
+          "Neceser Kapunka reutilizable (lona cruda)"
+        ]
+      },
+      "badges": {
+        "en": [
+          "3-Piece Bundle",
+          "Travel Ready",
+          "Pro Studio Size"
+        ],
+        "pt": [
+          "Kit com 3 itens",
+          "Pronto para viagens",
+          "Formato profissional"
+        ],
+        "es": [
+          "Set de 3 piezas",
+          "Listo para viajar",
+          "Formato profesional"
+        ]
+      },
+      "labTestedNote": {
+        "en": "Our ECOCERT argan oil batches are cold-pressed and analyzed for purity; the locking pump shields the oil from light and air. The cotton pouch is washable to keep the set hygienic.",
+        "pt": "Nossos lotes de óleo de argan com certificação ECOCERT são prensados a frio e analisados para garantir pureza; o dosificador com trava protege o óleo da luz e do ar. A nécessaire de algodão é lavável para manter o kit higiênico.",
+        "es": "Nuestros lotes de aceite de argán con certificación ECOCERT se prensan en frío y se analizan para garantizar su pureza; el dosificador con bloqueo protege el aceite de la luz y el aire. El neceser de algodón es lavable para mantener el set higiénico."
+      },
+      "sizes": [
+        {
+          "id": "500ml-bundle",
+          "size": 500,
+          "price": 120
+        }
+      ],
+      "imageUrl": "/content/uploads/aceite-argan-dosificador-250ml-300x300.jpg",
+      "id": "argan-500ml-pouch-kessa-bundle",
+      "howToUse": {
+        "en": "Before showering, place the glove and pump within reach. After cleansing, scrub damp skin with the glove, rinse, then dispense 2–3 pumps of argan oil into your palms and massage over the body while skin is still warm. Allow the glove to dry fully before storing it back in the pouch.",
+        "pt": "Antes do banho, deixe a luva e o dosificador ao alcance. Após a limpeza, esfregue a pele úmida com a luva, enxágue e dispense 2–3 pumps de óleo de argan nas mãos, massageando o corpo enquanto a pele ainda estiver aquecida. Deixe a luva secar completamente antes de guardá-la novamente na nécessaire.",
+        "es": "Antes de ducharte, deja la manopla y el dosificador al alcance. Tras la limpieza, frota la piel húmeda con la manopla, aclara y dispensa 2–3 pulsaciones de aceite de argán en las manos, masajeando el cuerpo mientras la piel sigue caliente. Deja que la manopla se seque por completo antes de guardarla de nuevo en el neceser."
+      },
+      "benefits": {
+        "en": [
+          "Salon-size pump makes it easy to saturate skin and scalp with antioxidant argan oil",
+          "Exfoliating glove improves absorption so the oil leaves a velvety, even finish",
+          "Washable pouch keeps every component organized for gifting or travel",
+          "Ideal for treatment rooms, shared households, or anyone committed to a weekly hammam ritual"
+        ],
+        "pt": [
+          "O dosificador em formato profissional facilita saturar pele e couro cabeludo com o óleo de argan antioxidante",
+          "A luva esfoliante melhora a absorção para que o óleo deixe um acabamento aveludado e uniforme",
+          "A nécessaire lavável mantém todas as peças organizadas para presentear ou viajar",
+          "Perfeito para cabines de tratamento, casas compartilhadas ou para quem segue um ritual de hammam semanal"
+        ],
+        "es": [
+          "El dosificador en formato profesional facilita saturar la piel y el cuero cabelludo con el aceite de argán antioxidante",
+          "La manopla exfoliante mejora la absorción para que el aceite deje un acabado aterciopelado y uniforme",
+          "El neceser lavable mantiene cada pieza organizada para regalar o viajar",
+          "Ideal para cabinas de tratamiento, hogares compartidos o para quienes siguen un ritual hammam semanal"
+        ]
+      },
+      "goodToKnow": {
+        "title": {
+          "en": "Good to know",
+          "pt": "Bom saber",
+          "es": "Para tener en cuenta"
+        },
+        "items": {
+          "en": [
+            "Twist the pump clockwise to lock it before placing the bottle inside the pouch",
+            "Refill with Kapunka Pure Argan Oil once the 500 ml bottle is empty",
+            "Allow the glove to dry completely before storing to avoid humidity buildup",
+            "Hand-wash the pouch in cold water and air-dry to preserve its shape"
+          ],
+          "pt": [
+            "Gire o dosificador no sentido horário para travá-lo antes de guardar o frasco na nécessaire",
+            "Reabasteça com Óleo de Argan Puro Kapunka quando o frasco de 500 ml terminar",
+            "Deixe a luva secar totalmente antes de guardar para evitar acúmulo de umidade",
+            "Lave a nécessaire à mão em água fria e deixe secar ao ar para preservar o formato"
+          ],
+          "es": [
+            "Gira el dosificador en sentido horario para bloquearlo antes de guardar el frasco en el neceser",
+            "Rellena con Aceite de Argán puro Kapunka cuando se termine el frasco de 500 ml",
+            "Deja que la manopla se seque por completo antes de guardarla para evitar la humedad",
+            "Lava el neceser a mano con agua fría y déjalo secar al aire para conservar su forma"
+          ]
+        }
+      },
+      "knowledge": {
+        "whatItIs": {
+          "en": "A complete hammam-inspired body care kit featuring a 500 ml ECOCERT argan oil pump, exfoliating Kessa glove, and washable travel pouch for organized storage.",
+          "pt": "Um kit completo de cuidados corporais inspirado no hammam, com óleo de argan ECOCERT de 500 ml em dosificador, luva Kessa esfoliante e nécessaire lavável para guardar tudo organizado.",
+          "es": "Un kit de cuidado corporal inspirado en el hammam que reúne aceite de argán ECOCERT de 500 ml con dosificador, manopla Kessa exfoliante y neceser lavable para mantener todo organizado."
+        },
+        "howItWorks": {
+          "en": "The glove removes dull buildup and stimulates circulation, opening the way for argan oil’s tocopherols and squalene to replenish lipids. The pump protects the formula from contamination and delivers consistent doses for full-body coverage.",
+          "pt": "A luva remove o acúmulo opaco e estimula a circulação, abrindo caminho para que os tocoferóis e o esqualeno do óleo de argan reponham os lipídios. O dosificador protege a fórmula de contaminações e fornece doses consistentes para cobrir todo o corpo.",
+          "es": "La manopla elimina la acumulación opaca y estimula la circulación, permitiendo que los tocoferoles y el escualeno del aceite de argán repongan los lípidos. El dosificador protege la fórmula de contaminaciones y ofrece dosis consistentes para cubrir todo el cuerpo."
+        },
+        "whoItsFor": {
+          "en": "Designed for households who share argan oil, spa back bars, and travelers who want to bring a full ritual without loose accessories. Also great for athletes managing body dryness from frequent showers.",
+          "pt": "Pensado para famílias que compartilham o óleo de argan, para backbars de spa e para viajantes que desejam levar o ritual completo sem acessórios soltos. Também ideal para atletas que lidam com ressecamento corporal por banhos frequentes.",
+          "es": "Pensado para hogares que comparten el aceite de argán, para backbars de spa y para viajeros que quieren llevar el ritual completo sin accesorios sueltos. También ideal para deportistas que afrontan sequedad corporal por duchas frecuentes."
+        },
+        "scientificBacking": {
+          "en": "Studies in spa and dermatology journals note that sealed pump packaging reduces oxidation, while research on argan oil documents improved elasticity and hydration. Pairing mechanical exfoliation with immediate lipid replenishment optimizes barrier repair.",
+          "pt": "Estudos em revistas de spa e dermatologia mostram que embalagens com bomba reduzem a oxidação, enquanto pesquisas sobre o óleo de argan comprovam melhoria na elasticidade e na hidratação. Combinar esfoliação mecânica com reposição lipídica imediata otimiza a reparação da barreira.",
+          "es": "Estudios en revistas de spa y dermatología señalan que los envases con bomba sellada reducen la oxidación, mientras que las investigaciones sobre el aceite de argán documentan mejoras en elasticidad e hidratación. Combinar la exfoliación mecánica con la reposición lipídica inmediata optimiza la reparación de la barrera."
+        },
+        "culturalContext": {
+          "en": "Moroccan hammams often send guests home with argan oil decanted into portable bottles. This bundle honors that tradition with a modern pouch that keeps the ritual ready between visits.",
+          "pt": "Nos hammams marroquinos é comum que as convidadas levem óleo de argan em frascos portáteis. Este kit honra essa tradição com uma nécessaire moderna que mantém o ritual pronto entre uma visita e outra.",
+          "es": "En los hammams marroquíes es habitual que los invitados se lleven aceite de argán en frascos portátiles. Este pack honra esa tradición con un neceser moderno que mantiene el ritual listo entre visitas."
+        }
+      },
+      "faqs": [
+        {
+          "question": {
+            "en": "How do I lock the pump for travel?",
+            "pt": "Como travar a bomba para viajar?",
+            "es": "¿Cómo bloqueo la bomba para viajar?"
+          },
+          "answer": {
+            "en": "Press down, twist clockwise until it clicks, and wipe any residue before slipping the bottle into the pouch.",
+            "pt": "Pressione para baixo, gire no sentido horário até ouvir um clique e limpe qualquer resíduo antes de colocar o frasco na nécessaire.",
+            "es": "Presiona hacia abajo, gírala en sentido horario hasta que haga clic y limpia cualquier residuo antes de guardar el frasco en el neceser."
+          }
+        },
+        {
+          "question": {
+            "en": "Can I refill the bottle when it runs out?",
+            "pt": "Posso reutilizar o frasco quando terminar?",
+            "es": "¿Puedo rellenar el frasco cuando se acabe?"
+          },
+          "answer": {
+            "en": "Yes—rinse the pump with warm soapy water, let it dry completely, and refill with fresh Kapunka Pure Argan Oil to maintain potency.",
+            "pt": "Sim — lave o dosificador com água morna e sabão, deixe secar totalmente e reabasteça com Óleo de Argan Puro Kapunka para manter a potência.",
+            "es": "Sí: lava el dosificador con agua tibia y jabón, deja que seque por completo y vuelve a llenarlo con Aceite de Argán Puro Kapunka para conservar su potencia."
+          }
+        },
+        {
+          "question": {
+            "en": "How should I care for the travel pouch?",
+            "pt": "Como cuidar da nécessaire de viagem?",
+            "es": "¿Cómo cuido el neceser de viaje?"
+          },
+          "answer": {
+            "en": "Hand-wash with a mild detergent as needed, reshape while damp, and air-dry away from direct sun to preserve the fabric.",
+            "pt": "Lave à mão com detergente suave quando necessário, recoloque no formato enquanto estiver úmida e deixe secar ao ar longe do sol direto para preservar o tecido.",
+            "es": "Lávalo a mano con detergente suave cuando sea necesario, devuelve la forma mientras está húmedo y deja que se seque al aire lejos del sol directo para preservar el tejido."
+          }
+        }
+      ]
     }
   ]
 }
