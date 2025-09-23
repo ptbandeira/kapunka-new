@@ -493,9 +493,555 @@
     },
     {
       "ingredients": {
-        "en": "Argania Spinosa (Argan) Kernel Oil, Lavandula Angustifolia (Lavender) Oil.",
-        "pt": "Óleo de Caroço de Argania Spinosa (Argan), Óleo de Lavandula Angustifolia (Lavanda).",
-        "es": "Aceite de Semilla de Argania Spinosa (Argán), Aceite de Lavandula Angustifolia (Lavanda)."
+        "en": "Argania Spinosa (Argan) Kernel Oil, Parfum",
+        "es": "Argania Spinosa (Argan) Kernel Oil, Parfum",
+        "pt": "Argania Spinosa (Argan) Kernel Oil, Parfum"
+      },
+      "name": {
+        "en": "Argan Oil + Cotton",
+        "es": "Aceite de Argán + Algodón",
+        "pt": "Óleo de Argan + Algodão"
+      },
+      "tagline": {
+        "en": "Soft ‘clean’ aroma for a comforting daily ritual",
+        "es": "Aroma ‘clean’ suave para un ritual reconfortante",
+        "pt": "Aroma ‘clean’ suave para um ritual reconfortante"
+      },
+      "description": {
+        "en": "Pure argan oil with a soft cotton-inspired aroma. The same lightweight nourishment with a cozy, clean scent.",
+        "es": "Aceite de argán puro con un aroma suave inspirado en el algodón. La misma nutrición ligera con un perfume limpio y reconfortante.",
+        "pt": "Óleo de argan puro com aroma suave inspirado no algodão. A mesma nutrição leve com um perfume limpo e confortável."
+      },
+      "badges": {
+        "en": [
+          "ECOCERT Certified",
+          "100% Pure",
+          "Cold-Pressed"
+        ],
+        "pt": [
+          "Certificado ECOCERT",
+          "100% Puro",
+          "Prensado a Frio"
+        ],
+        "es": [
+          "Certificado ECOCERT",
+          "100% Puro",
+          "Prensado en Frío"
+        ]
+      },
+      "labTestedNote": {
+        "en": "Our Argan Oil is ECOCERT certified, guaranteeing its organic purity and ethical sourcing from the women's cooperatives of Morocco.",
+        "pt": "O nosso Óleo de Argan é certificado pela ECOCERT, garantindo a sua pureza orgânica e origem ética das cooperativas de mulheres de Marrocos.",
+        "es": "Nuestro Aceite de Argán está certificado por ECOCERT, garantizando su pureza orgánica y su origen ético de las cooperativas de mujeres de Marruecos."
+      },
+      "goodToKnow": {
+        "title": {
+          "en": "Good to know",
+          "pt": "Bom saber",
+          "es": "Para tener en cuenta"
+        },
+        "items": {
+          "en": [
+            "Texture: lightweight, fast-absorbing",
+            "Finish: soft glow, non-greasy",
+            "Suitable for all skin types",
+            "Vegan; no additives"
+          ],
+          "pt": [
+            "Textura: leve, de rápida absorção",
+            "Acabamento: brilho suave, não oleoso",
+            "Adequado para todos os tipos de pele",
+            "Vegan; sem aditivos"
+          ],
+          "es": [
+            "Textura: ligera, de rápida absorción",
+            "Acabado: brillo suave, no graso",
+            "Apto para todo tipo de piel",
+            "Vegano; sin aditivos"
+          ]
+        }
+      },
+      "sizes": [
+        {
+          "id": "250ml",
+          "size": 250,
+          "price": 40
+        }
+      ],
+      "imageUrl": "/content/uploads/aceite-argan-dosificador-250ml-300x300.jpg",
+      "id": "cotton-argan-oil",
+      "howToUse": {
+        "en": "Apply 2–3 drops to clean skin AM/PM. For hair, smooth a drop on mid-lengths and ends. For post-procedure routines, follow your clinician’s guidance.",
+        "pt": "Aplicar 2–3 gotas na pele limpa de manhã e à noite. No cabelo, espalhar uma gota nos comprimentos e pontas. Em rotinas pós-procedimento, seguir a orientação do profissional.",
+        "es": "Aplicar 2–3 gotas sobre la piel limpia mañana y noche. Para el cabello, aplicar una gota en medios y puntas. En rutinas post-procedimiento, seguir las indicaciones del profesional."
+      },
+      "benefits": {
+        "en": [
+          "Deep hydration; soft, comfortable finish",
+          "Supports the skin barrier",
+          "Multi-use: face, body, hair, nails",
+          "Fragrance-free; suitable for sensitive skin"
+        ],
+        "pt": [
+          "Hidratação profunda; acabamento suave e confortável",
+          "Apoia a barreira cutânea",
+          "Multiuso: rosto, corpo, cabelo, unhas",
+          "Sem fragrância; adequado para pele sensível"
+        ],
+        "es": [
+          "Hidratación profunda; acabado suave y confortable",
+          "Apoya la barrera cutánea",
+          "Multiuso: rostro, cuerpo, cabello, uñas",
+          "Sin fragancia; apto para piel sensible"
+        ]
+      },
+      "knowledge": {
+        "whatItIs": {
+          "en": "An ECOCERT single-origin oil pressed within 24 hours of harvest. It's the best natural oil for post-laser skin repair and everyday barrier rescue, bottled without fillers.",
+          "pt": "Um óleo de argan de origem única com certificação ECOCERT, prensado em até 24 horas após a colheita. É o melhor óleo natural para reparar a pele após laser e resgatar a barreira no dia a dia, engarrafado sem aditivos.",
+          "es": "Un aceite de argán de origen único certificado por ECOCERT, prensado en frío dentro de las 24 horas posteriores a la cosecha. Es el mejor aceite natural para la reparación cutánea post láser y el rescate diario de la barrera, embotellado sin aditivos."
+        },
+        "howItWorks": {
+          "en": "High concentrations of oleic and linoleic acids plus gamma tocopherol and native squalene mirror skin sebum, sealing micro-fissures and reducing transepidermal water loss. Anti-inflammatory polyphenols calm redness after resurfacing, while antioxidants neutralise free radicals from UV or pollution.",
+          "pt": "Altas concentrações de ácidos oleico e linoleico, além de gama-tocoferol e esqualeno nativo, mimetizam o sebo cutâneo, selando microfissuras e reduzindo a perda transepidérmica de água. Polifenóis anti-inflamatórios acalmam a vermelhidão pós-procedimento, enquanto antioxidantes neutralizam radicais livres de UV ou poluição.",
+          "es": "Las altas concentraciones de ácidos oleico y linoleico, junto con gamma tocoferol y escualeno nativo, imitan el sebo cutáneo, sellan microfisuras y reducen la pérdida transepidérmica de agua. Los polifenoles antiinflamatorios calman el enrojecimiento tras los procedimientos, mientras que los antioxidantes neutralizan los radicales libres de la radiación UV o la polución."
+        },
+        "whoItsFor": {
+          "en": "Ideal for barrier-impaired complexions, eczema-prone dryness, and mature or postpartum skin needing lipid replenishment. It also doubles as argan oil for scalp stimulation in thinning hair, reviving brittle lengths and nails.",
+          "pt": "Indicado para peles com barreira fragilizada, ressecamento com tendência a eczema e pele madura ou pós-parto que precisa de reposição lipídica. Também funciona como óleo de argan para estimular o couro cabeludo em cabelos ralos, revitalizando fios quebradiços e unhas frágeis.",
+          "es": "Ideal para cutis con la barrera comprometida, sequedad con tendencia a eccema y piel madura o posparto que necesita reposición lipídica. También funciona como aceite de argán para estimular el cuero cabelludo en cabellos afinados, revitalizando largos quebradizos y uñas frágiles."
+        },
+        "scientificBacking": {
+          "en": "Clinical studies in dermatology journals show twice-daily argan oil improves skin elasticity within four weeks and significantly lowers TEWL. Research in postmenopausal women links topical argan oil with better barrier recovery and a measurable boost in vitamin E levels.",
+          "pt": "Estudos clínicos em revistas de dermatologia mostram que o uso de óleo de argan duas vezes ao dia melhora a elasticidade em quatro semanas e reduz significativamente a perda transepidérmica de água. Pesquisas com mulheres pós-menopausa associam a aplicação tópica a uma recuperação mais rápida da barreira e a um aumento mensurável dos níveis de vitamina E.",
+          "es": "Estudios clínicos en revistas dermatológicas demuestran que el aceite de argán aplicado dos veces al día mejora la elasticidad en cuatro semanas y reduce de forma significativa la pérdida transepidérmica de agua. Investigaciones en mujeres posmenopáusicas vinculan su uso tópico con una recuperación más rápida de la barrera y un aumento medible de los niveles de vitamina E."
+        },
+        "culturalContext": {
+          "en": "Harvested by Amazigh cooperatives in southwest Morocco, argan oil has underpinned hammam rituals for centuries. The artisanal cold-pressing process is recognised by UNESCO as part of humanity's cultural heritage and sustains women's economic independence.",
+          "pt": "Extraído por cooperativas amazigh no sudoeste de Marrocos, o óleo de argan sustenta comunidades femininas e compõe rituais de hammam há séculos. O processo artesanal de prensagem a frio é reconhecido pela UNESCO como patrimônio cultural e garante independência econômica às mulheres.",
+          "es": "Extraído por cooperativas amazigh del suroeste de Marruecos, el aceite de argán sostiene a comunidades de mujeres y forma parte del ritual de hammam desde hace siglos. El proceso artesanal de prensado en frío está reconocido por la UNESCO como patrimonio cultural y garantiza la independencia económica femenina."
+        }
+      },
+      "faqs": [
+        {
+          "question": {
+            "en": "Can I apply it after microneedling or laser treatments?",
+            "pt": "Posso aplicar após microagulhamento ou tratamentos a laser?",
+            "es": "¿Puedo aplicarlo después de un microneedling o tratamientos láser?"
+          },
+          "answer": {
+            "en": "Yes—once the skin is fully closed, usually 24 hours after fractional laser or microneedling, smooth two to three drops over damp skin. Its vitamin E and essential fatty acids make it the best natural oil for post-laser skin repair, helping calm heat and replenish the barrier.",
+            "pt": "Sim — assim que a pele estiver totalmente fechada, geralmente 24 horas após laser fracionado ou microagulhamento, espalhe duas a três gotas sobre a pele úmida. A vitamina E e os ácidos graxos essenciais fazem dele o melhor óleo natural para reparar a pele pós-laser, ajudando a acalmar o calor e reabastecer a barreira.",
+            "es": "Sí; una vez que la piel esté totalmente cerrada, normalmente 24 horas después de un láser fraccionado o microneedling, distribuye de dos a tres gotas sobre la piel húmeda. Su vitamina E y ácidos grasos esenciales lo convierten en el mejor aceite natural para la reparación cutánea post láser, ayudando a calmar el calor y reponer la barrera."
+          }
+        },
+        {
+          "question": {
+            "en": "Will pure argan oil clog my pores?",
+            "pt": "O óleo de argan puro vai obstruir meus poros?",
+            "es": "¿El aceite de argán puro obstruirá mis poros?"
+          },
+          "answer": {
+            "en": "Argan oil has a comedogenic rating of 0–1, meaning it rarely blocks pores. Warm a single drop between your palms and press onto skin as the final step, or mix it with a water-based serum to aid absorption.",
+            "pt": "O óleo de argan tem índice comedogênico 0–1, ou seja, dificilmente obstrui os poros. Aqueça uma gota entre as palmas e pressione sobre a pele como último passo, ou misture a um sérum aquoso para facilitar a absorção.",
+            "es": "El aceite de argán tiene un índice comedogénico de 0–1, lo que significa que rara vez obstruye los poros. Calienta una gota entre las palmas y presiona sobre la piel como paso final, o mézclala con un sérum acuoso para mejorar la absorción."
+          }
+        },
+        {
+          "question": {
+            "en": "How do I use it as argan oil for scalp stimulation in thinning hair?",
+            "pt": "Como usar como óleo de argan para estimular o couro cabeludo em cabelos ralos?",
+            "es": "¿Cómo lo uso como aceite de argán para estimular el cuero cabelludo en cabellos afinados?"
+          },
+          "answer": {
+            "en": "Section clean hair, apply the dropper along partings, and massage the scalp for three minutes. Leave overnight and cleanse in the morning; consistent use three nights a week supports circulation and stronger growth.",
+            "pt": "Separe o cabelo limpo, aplique o conta-gotas nas divisões e massageie o couro cabeludo por três minutos. Deixe agir durante a noite e lave de manhã; o uso constante três noites por semana estimula a circulação e fortalece o crescimento.",
+            "es": "Divide el cabello limpio, aplica el gotero sobre las secciones y masajea el cuero cabelludo durante tres minutos. Déjalo actuar toda la noche y lava por la mañana; usarlo tres noches por semana estimula la circulación y refuerza el crecimiento."
+          }
+        },
+        {
+          "question": {
+            "en": "Can it replace my moisturiser?",
+            "pt": "Ele pode substituir o meu hidratante?",
+            "es": "¿Puede reemplazar mi hidratante?"
+          },
+          "answer": {
+            "en": "Use it as the final occlusive layer over humectants or blend a drop into your ceramide cream. It locks in water but does not replace water-based hydration, so keep your toner or essence in the routine.",
+            "pt": "Use como camada oclusiva final sobre umectantes ou misture uma gota ao seu creme com ceramidas. Ele retém a água, mas não substitui a hidratação à base de água, portanto mantenha seu tônico ou essência na rotina.",
+            "es": "Úsalo como capa oclusiva final sobre humectantes o mezcla una gota con tu crema de ceramidas. Sella el agua, pero no sustituye la hidratación acuosa, así que conserva tu tónico o esencia en la rutina."
+          }
+        }
+      ]
+    },
+    {
+      "ingredients": {
+        "en": "Argania Spinosa (Argan) Kernel Oil, Boswellia Carterii (Frankincense) Oil",
+        "es": "Argania Spinosa (Argan) Kernel Oil, Boswellia Carterii (Frankincense) Oil",
+        "pt": "Argania Spinosa (Argan) Kernel Oil, Boswellia Carterii (Frankincense) Oil"
+      },
+      "name": {
+        "en": "Argan Oil + Agra Incense",
+        "es": "Aceite de Argán + Incienso de Agra",
+        "pt": "Óleo de Argan + Incenso de Agra"
+      },
+      "tagline": {
+        "en": "Warm, resinous aroma",
+        "es": "Aroma cálido y resinoso",
+        "pt": "Aroma quente e resinoso"
+      },
+      "description": {
+        "en": "Pure argan oil complemented by a warm, resinous note reminiscent of frankincense.",
+        "es": "Aceite de argán puro con una nota cálida y resinosa, inspirada en el incienso.",
+        "pt": "Óleo de argan puro com uma nota quente e resinosa, inspirada no incenso."
+      },
+      "badges": {
+        "en": [
+          "ECOCERT Certified",
+          "100% Pure",
+          "Cold-Pressed"
+        ],
+        "pt": [
+          "Certificado ECOCERT",
+          "100% Puro",
+          "Prensado a Frio"
+        ],
+        "es": [
+          "Certificado ECOCERT",
+          "100% Puro",
+          "Prensado en Frío"
+        ]
+      },
+      "labTestedNote": {
+        "en": "Our Argan Oil is ECOCERT certified, guaranteeing its organic purity and ethical sourcing from the women's cooperatives of Morocco.",
+        "pt": "O nosso Óleo de Argan é certificado pela ECOCERT, garantindo a sua pureza orgânica e origem ética das cooperativas de mulheres de Marrocos.",
+        "es": "Nuestro Aceite de Argán está certificado por ECOCERT, garantizando su pureza orgánica y su origen ético de las cooperativas de mujeres de Marruecos."
+      },
+      "goodToKnow": {
+        "title": {
+          "en": "Good to know",
+          "pt": "Bom saber",
+          "es": "Para tener en cuenta"
+        },
+        "items": {
+          "en": [
+            "Texture: lightweight, fast-absorbing",
+            "Finish: soft glow, non-greasy",
+            "Suitable for all skin types",
+            "Vegan; no additives"
+          ],
+          "pt": [
+            "Textura: leve, de rápida absorção",
+            "Acabamento: brilho suave, não oleoso",
+            "Adequado para todos os tipos de pele",
+            "Vegan; sem aditivos"
+          ],
+          "es": [
+            "Textura: ligera, de rápida absorción",
+            "Acabado: brillo suave, no graso",
+            "Apto para todo tipo de piel",
+            "Vegano; sin aditivos"
+          ]
+        }
+      },
+      "sizes": [
+        {
+          "id": "250ml",
+          "size": 250,
+          "price": 40
+        }
+      ],
+      "imageUrl": "/content/uploads/aceite-argan-dosificador-250ml-300x300.jpg",
+      "id": "agra-incense-argan-oil",
+      "howToUse": {
+        "en": "Apply 2–3 drops to clean skin AM/PM. For hair, smooth a drop on mid-lengths and ends. For post-procedure routines, follow your clinician’s guidance.",
+        "pt": "Aplicar 2–3 gotas na pele limpa de manhã e à noite. No cabelo, espalhar uma gota nos comprimentos e pontas. Em rotinas pós-procedimento, seguir a orientação do profissional.",
+        "es": "Aplicar 2–3 gotas sobre la piel limpia mañana y noche. Para el cabello, aplicar una gota en medios y puntas. En rutinas post-procedimiento, seguir las indicaciones del profesional."
+      },
+      "benefits": {
+        "en": [
+          "Deep hydration; soft, comfortable finish",
+          "Supports the skin barrier",
+          "Multi-use: face, body, hair, nails",
+          "Fragrance-free; suitable for sensitive skin"
+        ],
+        "pt": [
+          "Hidratação profunda; acabamento suave e confortável",
+          "Apoia a barreira cutânea",
+          "Multiuso: rosto, corpo, cabelo, unhas",
+          "Sem fragrância; adequado para pele sensível"
+        ],
+        "es": [
+          "Hidratación profunda; acabado suave y confortable",
+          "Apoya la barrera cutánea",
+          "Multiuso: rostro, cuerpo, cabello, uñas",
+          "Sin fragancia; apto para piel sensible"
+        ]
+      },
+      "knowledge": {
+        "whatItIs": {
+          "en": "An ECOCERT single-origin oil pressed within 24 hours of harvest. It's the best natural oil for post-laser skin repair and everyday barrier rescue, bottled without fillers.",
+          "pt": "Um óleo de argan de origem única com certificação ECOCERT, prensado em até 24 horas após a colheita. É o melhor óleo natural para reparar a pele após laser e resgatar a barreira no dia a dia, engarrafado sem aditivos.",
+          "es": "Un aceite de argán de origen único certificado por ECOCERT, prensado en frío dentro de las 24 horas posteriores a la cosecha. Es el mejor aceite natural para la reparación cutánea post láser y el rescate diario de la barrera, embotellado sin aditivos."
+        },
+        "howItWorks": {
+          "en": "High concentrations of oleic and linoleic acids plus gamma tocopherol and native squalene mirror skin sebum, sealing micro-fissures and reducing transepidermal water loss. Anti-inflammatory polyphenols calm redness after resurfacing, while antioxidants neutralise free radicals from UV or pollution.",
+          "pt": "Altas concentrações de ácidos oleico e linoleico, além de gama-tocoferol e esqualeno nativo, mimetizam o sebo cutâneo, selando microfissuras e reduzindo a perda transepidérmica de água. Polifenóis anti-inflamatórios acalmam a vermelhidão pós-procedimento, enquanto antioxidantes neutralizam radicais livres de UV ou poluição.",
+          "es": "Las altas concentraciones de ácidos oleico y linoleico, junto con gamma tocoferol y escualeno nativo, imitan el sebo cutáneo, sellan microfisuras y reducen la pérdida transepidérmica de agua. Los polifenoles antiinflamatorios calman el enrojecimiento tras los procedimientos, mientras que los antioxidantes neutralizan los radicales libres de la radiación UV o la polución."
+        },
+        "whoItsFor": {
+          "en": "Ideal for barrier-impaired complexions, eczema-prone dryness, and mature or postpartum skin needing lipid replenishment. It also doubles as argan oil for scalp stimulation in thinning hair, reviving brittle lengths and nails.",
+          "pt": "Indicado para peles com barreira fragilizada, ressecamento com tendência a eczema e pele madura ou pós-parto que precisa de reposição lipídica. Também funciona como óleo de argan para estimular o couro cabeludo em cabelos ralos, revitalizando fios quebradiços e unhas frágeis.",
+          "es": "Ideal para cutis con la barrera comprometida, sequedad con tendencia a eccema y piel madura o posparto que necesita reposición lipídica. También funciona como aceite de argán para estimular el cuero cabelludo en cabellos afinados, revitalizando largos quebradizos y uñas frágiles."
+        },
+        "scientificBacking": {
+          "en": "Clinical studies in dermatology journals show twice-daily argan oil improves skin elasticity within four weeks and significantly lowers TEWL. Research in postmenopausal women links topical argan oil with better barrier recovery and a measurable boost in vitamin E levels.",
+          "pt": "Estudos clínicos em revistas de dermatologia mostram que o uso de óleo de argan duas vezes ao dia melhora a elasticidade em quatro semanas e reduz significativamente a perda transepidérmica de água. Pesquisas com mulheres pós-menopausa associam a aplicação tópica a uma recuperação mais rápida da barreira e a um aumento mensurável dos níveis de vitamina E.",
+          "es": "Estudios clínicos en revistas dermatológicas demuestran que el aceite de argán aplicado dos veces al día mejora la elasticidad en cuatro semanas y reduce de forma significativa la pérdida transepidérmica de agua. Investigaciones en mujeres posmenopáusicas vinculan su uso tópico con una recuperación más rápida de la barrera y un aumento medible de los niveles de vitamina E."
+        },
+        "culturalContext": {
+          "en": "Harvested by Amazigh cooperatives in southwest Morocco, argan oil has underpinned hammam rituals for centuries. The artisanal cold-pressing process is recognised by UNESCO as part of humanity's cultural heritage and sustains women's economic independence.",
+          "pt": "Extraído por cooperativas amazigh no sudoeste de Marrocos, o óleo de argan sustenta comunidades femininas e compõe rituais de hammam há séculos. O processo artesanal de prensagem a frio é reconhecido pela UNESCO como patrimônio cultural e garante independência econômica às mulheres.",
+          "es": "Extraído por cooperativas amazigh del suroeste de Marruecos, el aceite de argán sostiene a comunidades de mujeres y forma parte del ritual de hammam desde hace siglos. El proceso artesanal de prensado en frío está reconocido por la UNESCO como patrimonio cultural y garantiza la independencia económica femenina."
+        }
+      },
+      "faqs": [
+        {
+          "question": {
+            "en": "Can I apply it after microneedling or laser treatments?",
+            "pt": "Posso aplicar após microagulhamento ou tratamentos a laser?",
+            "es": "¿Puedo aplicarlo después de un microneedling o tratamientos láser?"
+          },
+          "answer": {
+            "en": "Yes—once the skin is fully closed, usually 24 hours after fractional laser or microneedling, smooth two to three drops over damp skin. Its vitamin E and essential fatty acids make it the best natural oil for post-laser skin repair, helping calm heat and replenish the barrier.",
+            "pt": "Sim — assim que a pele estiver totalmente fechada, geralmente 24 horas após laser fracionado ou microagulhamento, espalhe duas a três gotas sobre a pele úmida. A vitamina E e os ácidos graxos essenciais fazem dele o melhor óleo natural para reparar a pele pós-laser, ajudando a acalmar o calor e reabastecer a barreira.",
+            "es": "Sí; una vez que la piel esté totalmente cerrada, normalmente 24 horas después de un láser fraccionado o microneedling, distribuye de dos a tres gotas sobre la piel húmeda. Su vitamina E y ácidos grasos esenciales lo convierten en el mejor aceite natural para la reparación cutánea post láser, ayudando a calmar el calor y reponer la barrera."
+          }
+        },
+        {
+          "question": {
+            "en": "Will pure argan oil clog my pores?",
+            "pt": "O óleo de argan puro vai obstruir meus poros?",
+            "es": "¿El aceite de argán puro obstruirá mis poros?"
+          },
+          "answer": {
+            "en": "Argan oil has a comedogenic rating of 0–1, meaning it rarely blocks pores. Warm a single drop between your palms and press onto skin as the final step, or mix it with a water-based serum to aid absorption.",
+            "pt": "O óleo de argan tem índice comedogênico 0–1, ou seja, dificilmente obstrui os poros. Aqueça uma gota entre as palmas e pressione sobre a pele como último passo, ou misture a um sérum aquoso para facilitar a absorção.",
+            "es": "El aceite de argán tiene un índice comedogénico de 0–1, lo que significa que rara vez obstruye los poros. Calienta una gota entre las palmas y presiona sobre la piel como paso final, o mézclala con un sérum acuoso para mejorar la absorción."
+          }
+        },
+        {
+          "question": {
+            "en": "How do I use it as argan oil for scalp stimulation in thinning hair?",
+            "pt": "Como usar como óleo de argan para estimular o couro cabeludo em cabelos ralos?",
+            "es": "¿Cómo lo uso como aceite de argán para estimular el cuero cabelludo en cabellos afinados?"
+          },
+          "answer": {
+            "en": "Section clean hair, apply the dropper along partings, and massage the scalp for three minutes. Leave overnight and cleanse in the morning; consistent use three nights a week supports circulation and stronger growth.",
+            "pt": "Separe o cabelo limpo, aplique o conta-gotas nas divisões e massageie o couro cabeludo por três minutos. Deixe agir durante a noite e lave de manhã; o uso constante três noites por semana estimula a circulação e fortalece o crescimento.",
+            "es": "Divide el cabello limpio, aplica el gotero sobre las secciones y masajea el cuero cabelludo durante tres minutos. Déjalo actuar toda la noche y lava por la mañana; usarlo tres noches por semana estimula la circulación y refuerza el crecimiento."
+          }
+        },
+        {
+          "question": {
+            "en": "Can it replace my moisturiser?",
+            "pt": "Ele pode substituir o meu hidratante?",
+            "es": "¿Puede reemplazar mi hidratante?"
+          },
+          "answer": {
+            "en": "Use it as the final occlusive layer over humectants or blend a drop into your ceramide cream. It locks in water but does not replace water-based hydration, so keep your toner or essence in the routine.",
+            "pt": "Use como camada oclusiva final sobre umectantes ou misture uma gota ao seu creme com ceramidas. Ele retém a água, mas não substitui a hidratação à base de água, portanto mantenha seu tônico ou essência na rotina.",
+            "es": "Úsalo como capa oclusiva final sobre humectantes o mezcla una gota con tu crema de ceramidas. Sella el agua, pero no sustituye la hidratación acuosa, así que conserva tu tónico o esencia en la rutina."
+          }
+        }
+      ]
+    },
+    {
+      "ingredients": {
+        "en": "Argania Spinosa (Argan) Kernel Oil, Jasminum Officinale (Jasmine) Oil",
+        "es": "Argania Spinosa (Argan) Kernel Oil, Jasminum Officinale (Jasmine) Oil",
+        "pt": "Argania Spinosa (Argan) Kernel Oil, Jasminum Officinale (Jasmine) Oil"
+      },
+      "name": {
+        "en": "Argan Oil + Jasmine",
+        "es": "Aceite de Argán + Jazmín",
+        "pt": "Óleo de Argan + Jasmim"
+      },
+      "tagline": {
+        "en": "Floral and delicate",
+        "es": "Floral y delicado",
+        "pt": "Floral e delicado"
+      },
+      "description": {
+        "en": "A delicate jasmine note adds a soft floral touch to our lightweight argan base.",
+        "es": "Una nota delicada de jazmín aporta un toque floral suave a nuestra base ligera de argán.",
+        "pt": "Uma nota delicada de jasmim acrescenta um toque floral suave à nossa base leve de argan."
+      },
+      "badges": {
+        "en": [
+          "ECOCERT Certified",
+          "100% Pure",
+          "Cold-Pressed"
+        ],
+        "pt": [
+          "Certificado ECOCERT",
+          "100% Puro",
+          "Prensado a Frio"
+        ],
+        "es": [
+          "Certificado ECOCERT",
+          "100% Puro",
+          "Prensado en Frío"
+        ]
+      },
+      "labTestedNote": {
+        "en": "Our Argan Oil is ECOCERT certified, guaranteeing its organic purity and ethical sourcing from the women's cooperatives of Morocco.",
+        "pt": "O nosso Óleo de Argan é certificado pela ECOCERT, garantindo a sua pureza orgânica e origem ética das cooperativas de mulheres de Marrocos.",
+        "es": "Nuestro Aceite de Argán está certificado por ECOCERT, garantizando su pureza orgánica y su origen ético de las cooperativas de mujeres de Marruecos."
+      },
+      "goodToKnow": {
+        "title": {
+          "en": "Good to know",
+          "pt": "Bom saber",
+          "es": "Para tener en cuenta"
+        },
+        "items": {
+          "en": [
+            "Texture: lightweight, fast-absorbing",
+            "Finish: soft glow, non-greasy",
+            "Suitable for all skin types",
+            "Vegan; no additives"
+          ],
+          "pt": [
+            "Textura: leve, de rápida absorção",
+            "Acabamento: brilho suave, não oleoso",
+            "Adequado para todos os tipos de pele",
+            "Vegan; sem aditivos"
+          ],
+          "es": [
+            "Textura: ligera, de rápida absorción",
+            "Acabado: brillo suave, no graso",
+            "Apto para todo tipo de piel",
+            "Vegano; sin aditivos"
+          ]
+        }
+      },
+      "sizes": [
+        {
+          "id": "250ml",
+          "size": 250,
+          "price": 40
+        }
+      ],
+      "imageUrl": "/content/uploads/aceite-argan-dosificador-250ml-300x300.jpg",
+      "id": "jasmine-argan-oil",
+      "howToUse": {
+        "en": "Apply 2–3 drops to clean skin AM/PM. For hair, smooth a drop on mid-lengths and ends. For post-procedure routines, follow your clinician’s guidance.",
+        "pt": "Aplicar 2–3 gotas na pele limpa de manhã e à noite. No cabelo, espalhar uma gota nos comprimentos e pontas. Em rotinas pós-procedimento, seguir a orientação do profissional.",
+        "es": "Aplicar 2–3 gotas sobre la piel limpia mañana y noche. Para el cabello, aplicar una gota en medios y puntas. En rutinas post-procedimiento, seguir las indicaciones del profesional."
+      },
+      "benefits": {
+        "en": [
+          "Deep hydration; soft, comfortable finish",
+          "Supports the skin barrier",
+          "Multi-use: face, body, hair, nails",
+          "Fragrance-free; suitable for sensitive skin"
+        ],
+        "pt": [
+          "Hidratação profunda; acabamento suave e confortável",
+          "Apoia a barreira cutânea",
+          "Multiuso: rosto, corpo, cabelo, unhas",
+          "Sem fragrância; adequado para pele sensível"
+        ],
+        "es": [
+          "Hidratación profunda; acabado suave y confortable",
+          "Apoya la barrera cutánea",
+          "Multiuso: rostro, cuerpo, cabello, uñas",
+          "Sin fragancia; apto para piel sensible"
+        ]
+      },
+      "knowledge": {
+        "whatItIs": {
+          "en": "An ECOCERT single-origin oil pressed within 24 hours of harvest. It's the best natural oil for post-laser skin repair and everyday barrier rescue, bottled without fillers.",
+          "pt": "Um óleo de argan de origem única com certificação ECOCERT, prensado em até 24 horas após a colheita. É o melhor óleo natural para reparar a pele após laser e resgatar a barreira no dia a dia, engarrafado sem aditivos.",
+          "es": "Un aceite de argán de origen único certificado por ECOCERT, prensado en frío dentro de las 24 horas posteriores a la cosecha. Es el mejor aceite natural para la reparación cutánea post láser y el rescate diario de la barrera, embotellado sin aditivos."
+        },
+        "howItWorks": {
+          "en": "High concentrations of oleic and linoleic acids plus gamma tocopherol and native squalene mirror skin sebum, sealing micro-fissures and reducing transepidermal water loss. Anti-inflammatory polyphenols calm redness after resurfacing, while antioxidants neutralise free radicals from UV or pollution.",
+          "pt": "Altas concentrações de ácidos oleico e linoleico, além de gama-tocoferol e esqualeno nativo, mimetizam o sebo cutâneo, selando microfissuras e reduzindo a perda transepidérmica de água. Polifenóis anti-inflamatórios acalmam a vermelhidão pós-procedimento, enquanto antioxidantes neutralizam radicais livres de UV ou poluição.",
+          "es": "Las altas concentraciones de ácidos oleico y linoleico, junto con gamma tocoferol y escualeno nativo, imitan el sebo cutáneo, sellan microfisuras y reducen la pérdida transepidérmica de agua. Los polifenoles antiinflamatorios calman el enrojecimiento tras los procedimientos, mientras que los antioxidantes neutralizan los radicales libres de la radiación UV o la polución."
+        },
+        "whoItsFor": {
+          "en": "Ideal for barrier-impaired complexions, eczema-prone dryness, and mature or postpartum skin needing lipid replenishment. It also doubles as argan oil for scalp stimulation in thinning hair, reviving brittle lengths and nails.",
+          "pt": "Indicado para peles com barreira fragilizada, ressecamento com tendência a eczema e pele madura ou pós-parto que precisa de reposição lipídica. Também funciona como óleo de argan para estimular o couro cabeludo em cabelos ralos, revitalizando fios quebradiços e unhas frágeis.",
+          "es": "Ideal para cutis con la barrera comprometida, sequedad con tendencia a eccema y piel madura o posparto que necesita reposición lipídica. También funciona como aceite de argán para estimular el cuero cabelludo en cabellos afinados, revitalizando largos quebradizos y uñas frágiles."
+        },
+        "scientificBacking": {
+          "en": "Clinical studies in dermatology journals show twice-daily argan oil improves skin elasticity within four weeks and significantly lowers TEWL. Research in postmenopausal women links topical argan oil with better barrier recovery and a measurable boost in vitamin E levels.",
+          "pt": "Estudos clínicos em revistas de dermatologia mostram que o uso de óleo de argan duas vezes ao dia melhora a elasticidade em quatro semanas e reduz significativamente a perda transepidérmica de água. Pesquisas com mulheres pós-menopausa associam a aplicação tópica a uma recuperação mais rápida da barreira e a um aumento mensurável dos níveis de vitamina E.",
+          "es": "Estudios clínicos en revistas dermatológicas demuestran que el aceite de argán aplicado dos veces al día mejora la elasticidad en cuatro semanas y reduce de forma significativa la pérdida transepidérmica de agua. Investigaciones en mujeres posmenopáusicas vinculan su uso tópico con una recuperación más rápida de la barrera y un aumento medible de los niveles de vitamina E."
+        },
+        "culturalContext": {
+          "en": "Harvested by Amazigh cooperatives in southwest Morocco, argan oil has underpinned hammam rituals for centuries. The artisanal cold-pressing process is recognised by UNESCO as part of humanity's cultural heritage and sustains women's economic independence.",
+          "pt": "Extraído por cooperativas amazigh no sudoeste de Marrocos, o óleo de argan sustenta comunidades femininas e compõe rituais de hammam há séculos. O processo artesanal de prensagem a frio é reconhecido pela UNESCO como patrimônio cultural e garante independência econômica às mulheres.",
+          "es": "Extraído por cooperativas amazigh del suroeste de Marruecos, el aceite de argán sostiene a comunidades de mujeres y forma parte del ritual de hammam desde hace siglos. El proceso artesanal de prensado en frío está reconocido por la UNESCO como patrimonio cultural y garantiza la independencia económica femenina."
+        }
+      },
+      "faqs": [
+        {
+          "question": {
+            "en": "Can I apply it after microneedling or laser treatments?",
+            "pt": "Posso aplicar após microagulhamento ou tratamentos a laser?",
+            "es": "¿Puedo aplicarlo después de un microneedling o tratamientos láser?"
+          },
+          "answer": {
+            "en": "Yes—once the skin is fully closed, usually 24 hours after fractional laser or microneedling, smooth two to three drops over damp skin. Its vitamin E and essential fatty acids make it the best natural oil for post-laser skin repair, helping calm heat and replenish the barrier.",
+            "pt": "Sim — assim que a pele estiver totalmente fechada, geralmente 24 horas após laser fracionado ou microagulhamento, espalhe duas a três gotas sobre a pele úmida. A vitamina E e os ácidos graxos essenciais fazem dele o melhor óleo natural para reparar a pele pós-laser, ajudando a acalmar o calor e reabastecer a barreira.",
+            "es": "Sí; una vez que la piel esté totalmente cerrada, normalmente 24 horas después de un láser fraccionado o microneedling, distribuye de dos a tres gotas sobre la piel húmeda. Su vitamina E y ácidos grasos esenciales lo convierten en el mejor aceite natural para la reparación cutánea post láser, ayudando a calmar el calor y reponer la barrera."
+          }
+        },
+        {
+          "question": {
+            "en": "Will pure argan oil clog my pores?",
+            "pt": "O óleo de argan puro vai obstruir meus poros?",
+            "es": "¿El aceite de argán puro obstruirá mis poros?"
+          },
+          "answer": {
+            "en": "Argan oil has a comedogenic rating of 0–1, meaning it rarely blocks pores. Warm a single drop between your palms and press onto skin as the final step, or mix it with a water-based serum to aid absorption.",
+            "pt": "O óleo de argan tem índice comedogênico 0–1, ou seja, dificilmente obstrui os poros. Aqueça uma gota entre as palmas e pressione sobre a pele como último passo, ou misture a um sérum aquoso para facilitar a absorção.",
+            "es": "El aceite de argán tiene un índice comedogénico de 0–1, lo que significa que rara vez obstruye los poros. Calienta una gota entre las palmas y presiona sobre la piel como paso final, o mézclala con un sérum acuoso para mejorar la absorción."
+          }
+        },
+        {
+          "question": {
+            "en": "How do I use it as argan oil for scalp stimulation in thinning hair?",
+            "pt": "Como usar como óleo de argan para estimular o couro cabeludo em cabelos ralos?",
+            "es": "¿Cómo lo uso como aceite de argán para estimular el cuero cabelludo en cabellos afinados?"
+          },
+          "answer": {
+            "en": "Section clean hair, apply the dropper along partings, and massage the scalp for three minutes. Leave overnight and cleanse in the morning; consistent use three nights a week supports circulation and stronger growth.",
+            "pt": "Separe o cabelo limpo, aplique o conta-gotas nas divisões e massageie o couro cabeludo por três minutos. Deixe agir durante a noite e lave de manhã; o uso constante três noites por semana estimula a circulação e fortalece o crescimento.",
+            "es": "Divide el cabello limpio, aplica el gotero sobre las secciones y masajea el cuero cabelludo durante tres minutos. Déjalo actuar toda la noche y lava por la mañana; usarlo tres noches por semana estimula la circulación y refuerza el crecimiento."
+          }
+        },
+        {
+          "question": {
+            "en": "Can it replace my moisturiser?",
+            "pt": "Ele pode substituir o meu hidratante?",
+            "es": "¿Puede reemplazar mi hidratante?"
+          },
+          "answer": {
+            "en": "Use it as the final occlusive layer over humectants or blend a drop into your ceramide cream. It locks in water but does not replace water-based hydration, so keep your toner or essence in the routine.",
+            "pt": "Use como camada oclusiva final sobre umectantes ou misture uma gota ao seu creme com ceramidas. Ele retém a água, mas não substitui a hidratação à base de água, portanto mantenha seu tônico ou essência na rotina.",
+            "es": "Úsalo como capa oclusiva final sobre humectantes o mezcla una gota con tu crema de ceramidas. Sella el agua, pero no sustituye la hidratación acuosa, así que conserva tu tónico o esencia en la rutina."
+          }
+        }
+      ]
+    },
+    {
+      "ingredients": {
+        "en": "Argania Spinosa (Argan) Kernel Oil, Lavandula Angustifolia (Lavender) Oil",
+        "es": "Argania Spinosa (Argan) Kernel Oil, Lavandula Angustifolia (Lavender) Oil",
+        "pt": "Argania Spinosa (Argan) Kernel Oil, Lavandula Angustifolia (Lavender) Oil"
       },
       "name": {
         "en": "Argan Oil + Lavender",
@@ -503,9 +1049,9 @@
         "es": "Aceite de Argán + Lavanda"
       },
       "tagline": {
-        "en": "Soothing and calming blend",
-        "pt": "Mistura calmante e relaxante",
-        "es": "Mezcla calmante y relajante"
+        "en": "Calming lavender aroma",
+        "es": "Aroma relajante de lavanda",
+        "pt": "Aroma calmante de lavanda"
       },
       "badges": {
         "en": [
@@ -536,25 +1082,28 @@
       "imageUrl": "/content/uploads/aceite-argan-puro-primera-prensada-frio-250ml-con-lavanda-300x300.jpg",
       "id": "lavender-argan-oil",
       "howToUse": {
-        "en": "Apply to the body for a moisturizing and calming experience. Perfect for after a bath or before bedtime.",
-        "pt": "Aplique no corpo para uma experiência hidratante e calmante. Perfeito para depois do banho ou antes de dormir.",
-        "es": "Aplicar sobre el cuerpo para una experiencia hidratante y calmante. Perfecto para después del baño o antes de acostarse."
+        "en": "Apply 2–3 drops to clean skin AM/PM. For hair, smooth a drop on mid-lengths and ends. For post-procedure routines, follow your clinician’s guidance.",
+        "pt": "Aplicar 2–3 gotas na pele limpa de manhã e à noite. No cabelo, espalhar uma gota nos comprimentos e pontas. Em rotinas pós-procedimento, seguir a orientação do profissional.",
+        "es": "Aplicar 2–3 gotas sobre la piel limpia mañana y noche. Para el cabello, aplicar una gota en medios y puntas. En rutinas post-procedimiento, seguir las indicaciones del profesional."
       },
       "benefits": {
         "en": [
-          "All the benefits of Pure Argan Oil",
-          "Lavender essential oil helps to calm the mind and soothe skin",
-          "Ideal for evening use or for a relaxing massage"
+          "Deep hydration; soft, comfortable finish",
+          "Supports the skin barrier",
+          "Multi-use: face, body, hair, nails",
+          "Fragrance-free; suitable for sensitive skin"
         ],
         "pt": [
-          "Todos os benefícios do Óleo de Argan Puro",
-          "O óleo essencial de lavanda ajuda a acalmar a mente e a pele",
-          "Ideal para uso noturno ou para uma massagem relaxante"
+          "Hidratação profunda; acabamento suave e confortável",
+          "Apoia a barreira cutânea",
+          "Multiuso: rosto, corpo, cabelo, unhas",
+          "Sem fragrância; adequado para pele sensível"
         ],
         "es": [
-          "Todos los beneficios del Aceite de Argán Puro",
-          "El aceite esencial de lavanda ayuda a calmar la mente y la piel",
-          "Ideal para uso nocturno o para un masaje relajante"
+          "Hidratación profunda; acabado suave y confortable",
+          "Apoya la barrera cutánea",
+          "Multiuso: rostro, cuerpo, cabello, uñas",
+          "Sin fragancia; apto para piel sensible"
         ]
       },
       "knowledge": {
@@ -633,13 +1182,18 @@
             "es": "Sí; presiona una gota sobre tu hidratante o mézclala con una crema nocturna. Realiza siempre una prueba en parche y evita el contorno de ojos para prevenir irritaciones."
           }
         }
-      ]
+      ],
+      "description": {
+        "en": "Pure argan oil with natural lavender aroma for a calming nightly ritual.",
+        "es": "Aceite de argán puro con aroma natural de lavanda para un ritual nocturno calmante.",
+        "pt": "Óleo de argan puro com aroma natural de lavanda para um ritual noturno calmante."
+      }
     },
     {
       "ingredients": {
-        "en": "Argania Spinosa (Argan) Kernel Oil, Rosmarinus Officinalis (Rosemary) Leaf Oil.",
-        "pt": "Óleo de Caroço de Argania Spinosa (Argan), Óleo da Folha de Rosmarinus Officinalis (Alecrim).",
-        "es": "Aceite de Semilla de Argania Spinosa (Argán), Aceite de Hoja de Rosmarinus Officinalis (Romero)."
+        "en": "Argania Spinosa (Argan) Kernel Oil, Rosmarinus Officinalis (Rosemary) Leaf Oil",
+        "es": "Argania Spinosa (Argan) Kernel Oil, Rosmarinus Officinalis (Rosemary) Leaf Oil",
+        "pt": "Argania Spinosa (Argan) Kernel Oil, Rosmarinus Officinalis (Rosemary) Leaf Oil"
       },
       "name": {
         "en": "Argan Oil + Rosemary",
@@ -647,9 +1201,9 @@
         "es": "Aceite de Argán + Romero"
       },
       "tagline": {
-        "en": "Invigorating and clarifying blend",
-        "pt": "Mistura revigorante e clarificante",
-        "es": "Mezcla vigorizante y clarificante"
+        "en": "Fresh rosemary note; popular for scalp rituals",
+        "es": "Nota fresca de romero; popular en rituales de cuero cabelludo",
+        "pt": "Nota fresca de alecrim; popular em rituais para o couro cabeludo"
       },
       "badges": {
         "en": [
@@ -680,25 +1234,28 @@
       "imageUrl": "/content/uploads/aceite-argan-puro-primera-prensada-frio-250ml-con-romero-300x300.jpg",
       "id": "rosemary-argan-oil",
       "howToUse": {
-        "en": "Excellent as a scalp treatment. Massage into the scalp before washing hair. Can also be used on the body.",
-        "pt": "Excelente como tratamento para o couro cabeludo. Massageie no couro cabeludo antes de lavar o cabelo. Também pode ser usado no corpo.",
-        "es": "Excelente como tratamiento para el cuero cabelludo. Masajear en el cuero cabelludo antes de lavar el cabello. También se puede usar en el cuerpo."
+        "en": "Apply 2–3 drops to clean skin AM/PM. For hair, smooth a drop on mid-lengths and ends. For post-procedure routines, follow your clinician’s guidance.",
+        "pt": "Aplicar 2–3 gotas na pele limpa de manhã e à noite. No cabelo, espalhar uma gota nos comprimentos e pontas. Em rotinas pós-procedimento, seguir a orientação do profissional.",
+        "es": "Aplicar 2–3 gotas sobre la piel limpia mañana y noche. Para el cabello, aplicar una gota en medios y puntas. En rutinas post-procedimiento, seguir las indicaciones del profesional."
       },
       "benefits": {
         "en": [
-          "All the benefits of Pure Argan Oil",
-          "Rosemary is known to stimulate the scalp and promote hair health",
-          "Clarifying properties for skin"
+          "Deep hydration; soft, comfortable finish",
+          "Supports the skin barrier",
+          "Multi-use: face, body, hair, nails",
+          "Fragrance-free; suitable for sensitive skin"
         ],
         "pt": [
-          "Todos os benefícios do Óleo de Argan Puro",
-          "O alecrim é conhecido por estimular o couro cabeludo e promover a saúde do cabelo",
-          "Propriedades clarificantes para a pele"
+          "Hidratação profunda; acabamento suave e confortável",
+          "Apoia a barreira cutânea",
+          "Multiuso: rosto, corpo, cabelo, unhas",
+          "Sem fragrância; adequado para pele sensível"
         ],
         "es": [
-          "Todos los beneficios del Aceite de Argán Puro",
-          "El romero es conocido por estimular el cuero cabelludo y promover la salud del cabello",
-          "Propiedades clarificantes para la piel"
+          "Hidratación profunda; acabado suave y confortable",
+          "Apoya la barrera cutánea",
+          "Multiuso: rostro, cuerpo, cabello, uñas",
+          "Sin fragancia; apto para piel sensible"
         ]
       },
       "knowledge": {
@@ -777,13 +1334,18 @@
             "es": "Las propiedades antimicrobianas del romero pueden ayudar a frenar la levadura Malassezia que provoca descamación. Combínalo con una exfoliación suave semanal y una rutina de champú equilibrada para obtener mejores resultados."
           }
         }
-      ]
+      ],
+      "description": {
+        "en": "Adds a fresh rosemary note to the nourishing argan base. Favored in scalp care routines.",
+        "es": "Aporta una nota fresca de romero a la base nutritiva de argán. Muy apreciado en rutinas para el cuero cabelludo.",
+        "pt": "Acrescenta uma nota fresca de alecrim à base nutritiva de argan. Muito apreciado em rotinas para o couro cabeludo."
+      }
     },
     {
       "ingredients": {
-        "en": "Argania Spinosa (Argan) Kernel Oil, Pogostemon Cablin (Patchouli) Oil.",
-        "pt": "Óleo de Caroço de Argania Spinosa (Argan), Óleo de Pogostemon Cablin (Patchouli).",
-        "es": "Aceite de Semilla de Argania Spinosa (Argán), Aceite de Pogostemon Cablin (Pachulí)."
+        "en": "Argania Spinosa (Argan) Kernel Oil, Pogostemon Cablin (Patchouli) Oil",
+        "es": "Argania Spinosa (Argan) Kernel Oil, Pogostemon Cablin (Patchouli) Oil",
+        "pt": "Argania Spinosa (Argan) Kernel Oil, Pogostemon Cablin (Patchouli) Oil"
       },
       "name": {
         "en": "Argan Oil + Patchouli",
@@ -791,9 +1353,9 @@
         "es": "Aceite de Argán + Pachulí"
       },
       "tagline": {
-        "en": "Earthy and grounding blend",
-        "pt": "Mistura terrosa e estabilizadora",
-        "es": "Mezcla terrosa y estabilizadora"
+        "en": "Earthy, grounding note",
+        "es": "Nota terrosa y envolvente",
+        "pt": "Nota terrosa e envolvente"
       },
       "badges": {
         "en": [
@@ -824,25 +1386,28 @@
       "imageUrl": "/content/uploads/aceite-de-argán-puro-con-patchouli-500ml-300x300.jpg",
       "id": "patchouli-argan-oil",
       "howToUse": {
-        "en": "Use as a daily body oil to moisturize and envelop yourself in a grounding scent.",
-        "pt": "Use como um óleo corporal diário para hidratar e se envolver em um aroma estabilizador.",
-        "es": "Usar como aceite corporal diario para hidratar y envolverse en un aroma estabilizador."
+        "en": "Apply 2–3 drops to clean skin AM/PM. For hair, smooth a drop on mid-lengths and ends. For post-procedure routines, follow your clinician’s guidance.",
+        "pt": "Aplicar 2–3 gotas na pele limpa de manhã e à noite. No cabelo, espalhar uma gota nos comprimentos e pontas. Em rotinas pós-procedimento, seguir a orientação do profissional.",
+        "es": "Aplicar 2–3 gotas sobre la piel limpia mañana y noche. Para el cabello, aplicar una gota en medios y puntas. En rutinas post-procedimiento, seguir las indicaciones del profesional."
       },
       "benefits": {
         "en": [
-          "All the benefits of Pure Argan Oil",
-          "Patchouli is prized for its grounding aroma and benefits for mature skin",
-          "Helps to reduce the appearance of wrinkles"
+          "Deep hydration; soft, comfortable finish",
+          "Supports the skin barrier",
+          "Multi-use: face, body, hair, nails",
+          "Fragrance-free; suitable for sensitive skin"
         ],
         "pt": [
-          "Todos os benefícios do Óleo de Argan Puro",
-          "O patchouli é apreciado por seu aroma estabilizador e benefícios para a pele madura",
-          "Ajuda a reduzir a aparência de rugas"
+          "Hidratação profunda; acabamento suave e confortável",
+          "Apoia a barreira cutânea",
+          "Multiuso: rosto, corpo, cabelo, unhas",
+          "Sem fragrância; adequado para pele sensível"
         ],
         "es": [
-          "Todos los beneficios del Aceite de Argán Puro",
-          "El pachulí es apreciado por su aroma estabilizador y sus beneficios para la piel madura",
-          "Ayuda a reducir la apariencia de las arrugas"
+          "Hidratación profunda; acabado suave y confortable",
+          "Apoya la barrera cutánea",
+          "Multiuso: rostro, cuerpo, cabello, uñas",
+          "Sin fragancia; apto para piel sensible"
         ]
       },
       "knowledge": {
@@ -921,7 +1486,12 @@
             "es": "Por supuesto; su perfil terroso y resinoso funciona muy bien como tratamiento corporal posducha o aceite para barba. Masajea unas gotas sobre el vello facial húmedo para acondicionar y perfumar suavemente."
           }
         }
-      ]
+      ],
+      "description": {
+        "en": "An earthy, grounding touch layered over our fast-absorbing argan base.",
+        "es": "Un matiz terroso y envolvente sobre nuestra base de argán de rápida absorción.",
+        "pt": "Um toque terroso e envolvente sobre a nossa base de argan de rápida absorção."
+      }
     },
     {
       "ingredients": {
