@@ -386,6 +386,11 @@
         "es": "Manopla Exfoliante Kessa",
         "pt": "Luva Esfoliante Kessa"
       },
+      "description": {
+        "en": "Traditional Moroccan glove to lift impurities and smooth roughness. Use with warm water before applying oil.",
+        "es": "Manopla tradicional marroquí para retirar impurezas y suavizar asperezas. Usar con agua tibia antes del aceite.",
+        "pt": "Luva marroquina tradicional para remover impurezas e suavizar asperezas. Usar com água morna antes do óleo."
+      },
       "sizes": [
         {
           "slug": "manopla-kessa-standard",
@@ -409,9 +414,14 @@
       "currency": "EUR",
       "vatIncluded": true,
       "name": {
-        "en": "Kapunka Travel Pouch",
+        "en": "Kapunka Vanity Pouch",
         "es": "Neceser Kapunka",
-        "pt": "Nécessaire Kapunka"
+        "pt": "Necessaire Kapunka"
+      },
+      "description": {
+        "en": "Durable pouch for travel or daily carry. Fits argan sizes and Kessa glove.",
+        "es": "Neceser resistente para viaje o uso diario. Acomoda tamaños de argán y manopla Kessa.",
+        "pt": "Necessaire resistente para viagem ou dia a dia. Comporta tamanhos de argan e luva Kessa."
       },
       "sizes": [
         {
