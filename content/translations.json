@@ -143,16 +143,116 @@
       "enrollNow": "Enroll Now"
     },
     "clinics": {
-      "title": "For Clinics & Professionals",
-      "metaDescription": "Partner with Kapunka Skincare. Discover our professional-grade products and protocols for your clinic.",
-      "headerTitle": "Partner with Kapunka",
-      "headerSubtitle": "Elevate your practice with our pure, potent formulations designed for post-procedure care and professional treatments.",
-      "section1Title": "The Professional's Choice",
-      "section1Text1": "Kapunka Skincare is trusted by dermatologists and estheticians for its commitment to barrier health. Our minimalist formulas are ideal for preparing skin for procedures and supporting its recovery afterwards.",
-      "section1Text2": "We offer exclusive professional sizes, protocols, and training to help you deliver the best results for your clients.",
+      "title": "Professional Clinic Partnerships",
+      "metaDescription": "B2B skincare supply for post-treatment skin care. Access dermatologist-approved argan oil, clinical protocols, and training for your clinic.",
+      "headerTitle": "Professional Clinic Partnership Program",
+      "headerSubtitle": "Deliver consistent post-treatment skin care with dermatologist-approved argan oil and minimalist, clinic-tested formulas tailored for recovery and hormonal hydration.",
+      "section1Title": "Evidence-Led Support for Every Treatment Room",
+      "section1Text1": "Our B2B skincare supply combines ECOCERT argan oil, Damask rose water, and barrier-strengthening lipids with educational assets you can personalize. Protocols are reviewed by board-certified dermatologists so your team can offer confident guidance after microneedling, chemical peels, laser, or menopause-related dryness.",
+      "section1Text2": "Partners receive wholesale pricing, onboarding modules, and printable aftercare one-pagers in English, Portuguese, and Spanish. Kapunka simplifies the handoff from procedure to home care, helping you retain patients and build retail revenue.",
+      "protocolSection": {
+        "title": "Protocol Blueprints You Can Personalize",
+        "subtitle": "Downloadable, dermatologist-reviewed routines to guide patients through the most requested treatments.",
+        "cards": [
+          {
+            "title": "Microneedling Aftercare (0–72 hours)",
+            "focus": "Stabilize the barrier, reduce TEWL, and prevent microbial contamination.",
+            "steps": [
+              "Immediately post-treatment: mist Kapunka Damask Rose Water or sterile saline, then press three drops of our dermatologist-approved argan oil over treated zones to seal microchannels.",
+              "First night: instruct patients to avoid makeup and retinoids; reapply argan oil on damp skin every 6–8 hours to keep the lipid matrix saturated.",
+              "Days 2–3: layer a hyaluronic serum under argan oil; resume mineral SPF once erythema resolves."
+            ],
+            "evidence": "Guided by Fabbrocini et al., Journal of Clinical and Aesthetic Dermatology (2014), which documents barrier disruption for up to 48 hours post-microneedling and the benefits of lipid-rich emollients."
+          },
+          {
+            "title": "Medium-Depth Chemical Peel Recovery (Day 0–7)",
+            "focus": "Modulate inflammation, support desquamation, and rebuild the stratum corneum.",
+            "steps": [
+              "Day 0: neutralize the peel per manufacturer instructions; once skin temperature normalizes, mist Damask Rose Water and apply a thin veil of argan oil to buffer tightness.",
+              "Days 1–3: cleanse with pH-balanced milk cleansers; alternate rose water compresses with argan oil occlusion to minimize crusting.",
+              "Days 4–7: introduce ceramide cream over argan oil; reinforce broad-spectrum SPF 50 and avoid exfoliants until peeling completes."
+            ],
+            "evidence": "Informed by Soleymani et al., Journal of Clinical and Aesthetic Dermatology (2018), highlighting lipid replenishment as a key determinant of controlled re-epithelialization."
+          },
+          {
+            "title": "Hydration Support During Menopause",
+            "focus": "Restore lipids, improve elasticity, and calm neurogenic dryness linked to estrogen decline.",
+            "steps": [
+              "Morning: spritz Damask Rose Water, cocktail two drops of argan oil with ceramide moisturizer, and finish with SPF to address increased photosensitivity.",
+              "Evening: apply argan oil to face, neck, and décolletage while skin is damp; follow with light massage to stimulate microcirculation.",
+              "Weekly: suggest scalp massages with argan oil to offset hair density changes and provide hand and forearm treatments during in-clinic visits."
+            ],
+            "evidence": "Aligned with Lephart, Biomedicine & Pharmacotherapy (2016) and Sator et al., Journal of the American Academy of Dermatology (2001), which report improved elasticity and hydration in postmenopausal skin after topical phyto-lipids."
+          }
+        ]
+      },
+      "referencesSection": {
+        "title": "Clinical References & Expert Voices",
+        "studiesTitle": "Peer-reviewed highlights",
+        "studies": [
+          {
+            "title": "Fabbrocini A. et al. Microneedling in dermatology: A review.",
+            "details": "Journal of Clinical and Aesthetic Dermatology, 2014."
+          },
+          {
+            "title": "Soleymani T. et al. A practical approach to chemical peels.",
+            "details": "Journal of Clinical and Aesthetic Dermatology, 2018."
+          },
+          {
+            "title": "Lephart E.D. Skin aging and menopause: Implications for treatment.",
+            "details": "Biomedicine & Pharmacotherapy, 2016."
+          }
+        ],
+        "testimonialsTitle": "Dermatologist testimonials",
+        "testimonials": [
+          {
+            "quote": "\"Kapunka’s dermatologist-approved argan oil delivers the lipid profile I want for post-treatment skin care, and patients appreciate the sustainable sourcing.\"",
+            "name": "Dr. Sofia Mendes",
+            "credentials": "Board-Certified Dermatologist, Lisbon"
+          },
+          {
+            "quote": "\"The minimalist INCI keeps our sensitized patients comfortable after peels, while the brand’s training modules shorten staff onboarding.\"",
+            "name": "Dr. Elena Ruiz",
+            "credentials": "Dermatologic Surgeon, Madrid"
+          }
+        ]
+      },
+      "keywordSection": {
+        "title": "Optimized B2B Skincare Supply",
+        "subtitle": "Include these focus points in your listings and marketing to reach discerning patients.",
+        "keywords": [
+          "post-treatment skin care protocols",
+          "dermatologist-approved argan oil retail sets",
+          "B2B skincare supply for medical spas",
+          "hormonal hydration support kits",
+          "sustainable Moroccan argan oil wholesale"
+        ]
+      },
+      "faqSection": {
+        "title": "Clinic FAQs",
+        "subtitle": "Logistics, training, and application methods tailored for your team.",
+        "items": [
+          {
+            "question": "What is the minimum order quantity (MOQ)?",
+            "answer": "Opening orders start at 24 retail units or 6 professional back-bar units. Mixed product cases qualify for the same wholesale pricing so smaller clinics can curate assortments."
+          },
+          {
+            "question": "Do you provide protocol training?",
+            "answer": "Yes. Partners access a bilingual e-learning portal with microneedling, chemical peel, and menopause hydration modules. Live quarterly webinars review updates and allow Q&A with our medical advisory board."
+          },
+          {
+            "question": "How should clinicians apply the argan oil in treatment rooms?",
+            "answer": "Decant into sterile droppers. After finishing a treatment, mist the skin with rose water and press the oil in gloved hands to avoid friction. For scalp or body services, warm the oil to body temperature before massage."
+          },
+          {
+            "question": "Can Kapunka support white-label or co-branded materials?",
+            "answer": "We offer customizable post-treatment cards and co-branded sleeves after your third order. Our design team adapts assets to your brand within five business days."
+          }
+        ]
+      },
       "doctorsTitle": "Trusted by Top Professionals",
       "ctaTitle": "Become a Partner",
-      "ctaSubtitle": "Join our network of skincare professionals and get access to exclusive products and education.",
+      "ctaSubtitle": "Schedule a call to review wholesale pricing, sampling, and clinic launch support.",
       "ctaButton": "Contact Us",
       "partnersTitle": "As Seen In"
     },
@@ -199,71 +299,71 @@
     "nav": {
       "shop": "Loja",
       "learn": "Aprender",
-      "forClinics": "Para Cl\u00ednicas",
+      "forClinics": "Para Clínicas",
       "about": "Sobre",
       "contact": "Contato"
     },
     "footer": {
-      "tagline": "Cuidados com a pele baseados na ci\u00eancia para uma barreira saud\u00e1vel.",
+      "tagline": "Cuidados com a pele baseados na ciência para uma barreira saudável.",
       "followUs": "Siga-nos",
       "shop": "Loja",
       "allProducts": "Todos os Produtos",
       "guides": "Guias de Skincare",
       "about": "Sobre a Kapunka",
-      "ourStory": "Nossa Hist\u00f3ria",
+      "ourStory": "Nossa História",
       "contact": "Contate-nos",
-      "policies": "Pol\u00edticas",
-      "shipping": "Pol\u00edtica de Envio",
-      "returns": "Pol\u00edtica de Devolu\u00e7\u00e3o",
-      "privacy": "Pol\u00edtica de Privacidade",
-      "terms": "Termos de Servi\u00e7o"
+      "policies": "Políticas",
+      "shipping": "Política de Envio",
+      "returns": "Política de Devolução",
+      "privacy": "Política de Privacidade",
+      "terms": "Termos de Serviço"
     },
     "cart": {
       "title": "Seu Carrinho",
       "subtotal": "Subtotal",
       "shippingNote": "Envio e impostos calculados no checkout.",
       "viewCart": "Ver Carrinho Completo",
-      "empty": "Seu carrinho est\u00e1 vazio.",
+      "empty": "Seu carrinho está vazio.",
       "continueShopping": "Continuar Comprando",
       "pageTitle": "Carrinho de Compras",
       "summary": "Resumo do Pedido",
       "shipping": "Envio",
-      "shippingCalculated": "Calculado no pr\u00f3ximo passo",
+      "shippingCalculated": "Calculado no próximo passo",
       "total": "Total",
       "checkout": "Ir para o Checkout",
-      "checkoutRedirect": "Voc\u00ea ser\u00e1 redirecionado para uma p\u00e1gina de checkout segura."
+      "checkoutRedirect": "Você será redirecionado para uma página de checkout segura."
     },
     "cookies": {
-      "message": "Usamos cookies para melhorar sua experi\u00eancia.",
+      "message": "Usamos cookies para melhorar sua experiência.",
       "learnMore": "Saiba mais",
       "decline": "Recusar",
       "accept": "Aceitar"
     },
     "home": {
-      "metaTitle": "Skincare Minimalista para a Sa\u00fade da Barreira",
-      "metaDescription": "Descubra a Kapunka Skincare. F\u00f3rmulas puras e potentes, criadas para restaurar e proteger a sua barreira cut\u00e2nea. Vegano e cruelty-free.",
+      "metaTitle": "Skincare Minimalista para a Saúde da Barreira",
+      "metaDescription": "Descubra a Kapunka Skincare. Fórmulas puras e potentes, criadas para restaurar e proteger a sua barreira cutânea. Vegano e cruelty-free.",
       "heroTitle": "Sua Barreira, Protegida.",
-      "heroSubtitle": "F\u00f3rmulas minimalistas e baseadas na ci\u00eancia, criadas para acalmar, restaurar e proteger a sua pele. \u00d3leo de Argan puro de Marrocos.",
+      "heroSubtitle": "Fórmulas minimalistas e baseadas na ciência, criadas para acalmar, restaurar e proteger a sua pele. Óleo de Argan puro de Marrocos.",
       "ctaShop": "Comprar Agora",
       "ctaClinics": "Para Profissionais",
       "bestsellersTitle": "Nossos Mais Vendidos",
-      "value1": "F\u00f3rmulas Puras e Potentes",
-      "value2": "Foco na Barreira Cut\u00e2nea",
-      "value3": "Origem Sustent\u00e1vel",
+      "value1": "Fórmulas Puras e Potentes",
+      "value2": "Foco na Barreira Cutânea",
+      "value3": "Origem Sustentável",
       "reviewsTitle": "O Que Dizem os Profissionais",
-      "newsletterTitle": "Junte-se \u00e0 Lista",
-      "newsletterSubtitle": "Receba 10% de desconto no seu primeiro pedido e fique por dentro de novos produtos e da ci\u00eancia do skincare.",
+      "newsletterTitle": "Junte-se à Lista",
+      "newsletterSubtitle": "Receba 10% de desconto no seu primeiro pedido e fique por dentro de novos produtos e da ciência do skincare.",
       "newsletterThanks": "Obrigado por se inscrever!",
       "newsletterPlaceholder": "Digite seu e-mail",
       "newsletterSubmit": "Inscrever-se"
     },
     "shop": {
       "title": "Todos os Produtos",
-      "metaDescription": "Compre nossa cole\u00e7\u00e3o completa de produtos de skincare formulados para apoiar uma barreira cut\u00e2nea saud\u00e1vel.",
-      "subtitle": "Solu\u00e7\u00f5es suaves mas eficazes para todos os tipos de pele, focando na sa\u00fade da barreira e em f\u00f3rmulas minimalistas.",
+      "metaDescription": "Compre nossa coleção completa de produtos de skincare formulados para apoiar uma barreira cutânea saudável.",
+      "subtitle": "Soluções suaves mas eficazes para todos os tipos de pele, focando na saúde da barreira e em fórmulas minimalistas.",
       "sortFeatured": "Destaque",
-      "sortPriceAsc": "Pre\u00e7o: Menor para Maior",
-      "sortPriceDesc": "Pre\u00e7o: Maior para Menor",
+      "sortPriceAsc": "Preço: Menor para Maior",
+      "sortPriceDesc": "Preço: Maior para Menor",
       "sortNameAsc": "Alfabeticamente: A-Z",
       "sortNameDesc": "Alfabeticamente: Z-A",
       "sortLabel": "Ordenar produtos",
@@ -272,54 +372,54 @@
       "noProducts": "Nenhum produto encontrado nesta coleção."
     },
     "pdp": {
-      "notFound": "Produto n\u00e3o encontrado.",
+      "notFound": "Produto não encontrado.",
       "size": "Tamanho",
       "addToCart": "Adicionar ao Carrinho",
       "tabs": {
-        "benefits": "Benef\u00edcios",
+        "benefits": "Benefícios",
         "howToUse": "Como Usar",
         "ingredients": "Ingredientes",
         "labTested": "Origem e Pureza"
       },
-      "relatedProducts": "Voc\u00ea Tamb\u00e9m Pode Gostar",
+      "relatedProducts": "Você Também Pode Gostar",
       "knowledge": {
-        "title": "Mergulho na f\u00f3rmula",
-        "subtitle": "Descubra como este produto se encaixa na ci\u00eancia d\u00e9rmica moderna e nos rituais ancestrais.",
+        "title": "Mergulho na fórmula",
+        "subtitle": "Descubra como este produto se encaixa na ciência dérmica moderna e nos rituais ancestrais.",
         "sections": {
-          "whatItIs": "O que \u00e9",
+          "whatItIs": "O que é",
           "howItWorks": "Como atua na pele e no couro cabeludo",
-          "whoItsFor": "Para quem \u00e9 indicado",
-          "scientificBacking": "Comprova\u00e7\u00e3o cient\u00edfica",
+          "whoItsFor": "Para quem é indicado",
+          "scientificBacking": "Comprovação científica",
           "culturalContext": "Contexto cultural e tradicional"
         }
       },
       "faq": {
         "title": "Perguntas frequentes",
-        "subtitle": "Respostas para as d\u00favidas mais buscadas sobre este tratamento."
+        "subtitle": "Respostas para as dúvidas mais buscadas sobre este tratamento."
       }
     },
     "about": {
-      "title": "Nossa Hist\u00f3ria",
-      "metaDescription": "Conhe\u00e7a a miss\u00e3o da Kapunka Skincare de criar cuidados com a pele eficazes e minimalistas que respeitam a barreira cut\u00e2nea e o meio ambiente.",
+      "title": "Nossa História",
+      "metaDescription": "Conheça a missão da Kapunka Skincare de criar cuidados com a pele eficazes e minimalistas que respeitam a barreira cutânea e o meio ambiente.",
       "headerTitle": "Menos, mas melhor.",
-      "headerSubtitle": "Acreditamos no poder da simplicidade. Nossa filosofia est\u00e1 enraizada no uso de ingredientes puros e de alta qualidade para criar formula\u00e7\u00f5es que apoiam a sa\u00fade da sua pele a longo prazo.",
-      "storyTitle": "Nossa Hist\u00f3ria",
-      "storyText1": "A Kapunka nasceu do desejo por cuidados com a pele transparentes e eficazes. Come\u00e7amos por obter o mais puro \u00f3leo de Argan certificado pela ECOCERT de cooperativas de mulheres em Marrocos.",
-      "storyText2": "Nosso objetivo \u00e9 criar produtos que n\u00e3o sejam apenas um prazer de usar, mas que tamb\u00e9m entreguem resultados tang\u00edveis, priorizando sempre a sa\u00fade da sua barreira cut\u00e2nea.",
-      "sourcingTitle": "Fornecimento \u00c9tico",
-      "sourcingText1": "Estamos comprometidos com pr\u00e1ticas \u00e9ticas e sustent\u00e1veis. Nossos ingredientes s\u00e3o provenientes de fornecedores que compartilham nossos valores de responsabilidade ambiental e com\u00e9rcio justo.",
-      "sourcingText2": "Nosso \u00f3leo de Argan \u00e9 um excelente exemplo, proporcionando empoderamento econ\u00f4mico para as mulheres berberes que aperfei\u00e7oaram seu m\u00e9todo tradicional de extra\u00e7\u00e3o por s\u00e9culos.",
-      "sourcingImageAlt": "Campo de \u00e1rvores de argan"
+      "headerSubtitle": "Acreditamos no poder da simplicidade. Nossa filosofia está enraizada no uso de ingredientes puros e de alta qualidade para criar formulações que apoiam a saúde da sua pele a longo prazo.",
+      "storyTitle": "Nossa História",
+      "storyText1": "A Kapunka nasceu do desejo por cuidados com a pele transparentes e eficazes. Começamos por obter o mais puro óleo de Argan certificado pela ECOCERT de cooperativas de mulheres em Marrocos.",
+      "storyText2": "Nosso objetivo é criar produtos que não sejam apenas um prazer de usar, mas que também entreguem resultados tangíveis, priorizando sempre a saúde da sua barreira cutânea.",
+      "sourcingTitle": "Fornecimento Ético",
+      "sourcingText1": "Estamos comprometidos com práticas éticas e sustentáveis. Nossos ingredientes são provenientes de fornecedores que compartilham nossos valores de responsabilidade ambiental e comércio justo.",
+      "sourcingText2": "Nosso óleo de Argan é um excelente exemplo, proporcionando empoderamento econômico para as mulheres berberes que aperfeiçoaram seu método tradicional de extração por séculos.",
+      "sourcingImageAlt": "Campo de árvores de argan"
     },
     "contact": {
       "title": "Fale Conosco",
       "metaDescription": "Entre em contato com a equipe da Kapunka Skincare para perguntas, parcerias ou suporte ao cliente.",
       "headerTitle": "Entre em Contato",
-      "headerSubtitle": "Estamos aqui para ajudar. Se voc\u00ea tem uma pergunta sobre nossos produtos ou quer compartilhar sua jornada com a pele, adorar\u00edamos ouvir de voc\u00ea.",
+      "headerSubtitle": "Estamos aqui para ajudar. Se você tem uma pergunta sobre nossos produtos ou quer compartilhar sua jornada com a pele, adoraríamos ouvir de você.",
       "formTitle": "Envie-nos uma mensagem",
       "form": {
         "name": "Nome Completo",
-        "email": "Endere\u00e7o de E-mail",
+        "email": "Endereço de E-mail",
         "message": "Sua Mensagem",
         "sending": "Enviando...",
         "submit": "Enviar Mensagem",
@@ -334,134 +434,234 @@
     },
     "academy": {
       "headerTitle": "Academia Kapunka",
-      "headerSubtitle": "Educa\u00e7\u00e3o profissional para dermatologistas e esteticistas para dominar t\u00e9cnicas avan\u00e7adas de cuidados com a pele com nossos produtos.",
-      "coursesTitle": "Cursos Dispon\u00edveis",
+      "headerSubtitle": "Educação profissional para dermatologistas e esteticistas para dominar técnicas avançadas de cuidados com a pele com nossos produtos.",
+      "coursesTitle": "Cursos Disponíveis",
       "enrollNow": "Inscreva-se Agora"
     },
     "clinics": {
-      "title": "Para Cl\u00ednicas e Profissionais",
-      "metaDescription": "Seja um parceiro da Kapunka Skincare. Descubra nossos produtos e protocolos de n\u00edvel profissional para sua cl\u00ednica.",
-      "headerTitle": "Seja um Parceiro Kapunka",
-      "headerSubtitle": "Eleve sua pr\u00e1tica com nossas formula\u00e7\u00f5es puras e potentes, projetadas para cuidados p\u00f3s-procedimento e tratamentos profissionais.",
-      "section1Title": "A Escolha do Profissional",
-      "section1Text1": "A Kapunka Skincare \u00e9 confiada por dermatologistas e esteticistas por seu compromisso com a sa\u00fade da barreira. Nossas f\u00f3rmulas minimalistas s\u00e3o ideais para preparar a pele para procedimentos e apoiar sua recupera\u00e7\u00e3o.",
-      "section1Text2": "Oferecemos tamanhos profissionais exclusivos, protocolos e treinamento para ajud\u00e1-lo a entregar os melhores resultados para seus clientes.",
-      "doctorsTitle": "Aprovado pelos Melhores Profissionais",
-      "ctaTitle": "Torne-se um Parceiro",
-      "ctaSubtitle": "Junte-se \u00e0 nossa rede de profissionais de cuidados com a pele e tenha acesso a produtos e educa\u00e7\u00e3o exclusivos.",
-      "ctaButton": "Fale Conosco",
-      "partnersTitle": "Como Visto Em"
+      "title": "Parcerias Profissionais para Clínicas",
+      "metaDescription": "Fornecimento B2B de skincare para cuidados pós-tratamento. Acesse óleo de argan aprovado por dermatologistas, protocolos clínicos e treinamento para a sua clínica.",
+      "headerTitle": "Programa Profissional Kapunka",
+      "headerSubtitle": "Ofereça cuidados pós-tratamento consistentes com óleo de argan aprovado por dermatologistas e fórmulas minimalistas testadas em clínica para recuperação e hidratação hormonal.",
+      "section1Title": "Suporte baseado em evidências para cada sala de tratamento",
+      "section1Text1": "Nosso fornecimento B2B de skincare combina óleo de argan ECOCERT, água de rosas Damascena e lipídios fortalecedores da barreira com materiais educativos que você pode personalizar. Os protocolos são revisados por dermatologistas certificados para que a sua equipa ofereça orientações seguras após microagulhamento, peelings químicos, laser ou ressecamento relacionado à menopausa.",
+      "section1Text2": "Os parceiros recebem preços no atacado, módulos de onboarding e folhetos de pós-tratamento prontos para imprimir em inglês, português e espanhol. A Kapunka simplifica a transição do procedimento para o cuidado em casa, ajudando a reter pacientes e ampliar a receita de varejo.",
+      "protocolSection": {
+        "title": "Modelos de protocolo para personalizar",
+        "subtitle": "Rotinas revisadas por dermatologistas e disponíveis para download, guiando pacientes nos tratamentos mais procurados.",
+        "cards": [
+          {
+            "title": "Pós-tratamento de microagulhamento (0–72 horas)",
+            "focus": "Estabilize a barreira, reduza a TEWL e previna contaminação microbiana.",
+            "steps": [
+              "Imediatamente após o procedimento: borrife Água de Rosas Damascena Kapunka ou soro fisiológico estéril e pressione três gotas do nosso óleo de argan aprovado por dermatologistas sobre as zonas tratadas para selar os microcanais.",
+              "Primeira noite: oriente as pacientes a evitarem maquiagem e retinoides; reaplique o óleo de argan na pele úmida a cada 6–8 horas para manter a matriz lipídica saturada.",
+              "Dias 2–3: estratifique um sérum de ácido hialurônico sob o óleo de argan; retome o protetor solar mineral quando o eritema diminuir."
+            ],
+            "evidence": "Orientado por Fabbrocini et al., Journal of Clinical and Aesthetic Dermatology (2014), que documenta a interrupção da barreira por até 48 horas após o microagulhamento e os benefícios de emolientes ricos em lipídios."
+          },
+          {
+            "title": "Recuperação de peeling químico médio (Dia 0–7)",
+            "focus": "Modere a inflamação, apoie a descamação e reconstrua o estrato córneo.",
+            "steps": [
+              "Dia 0: neutralize o peeling conforme as instruções do fabricante; quando a pele voltar à temperatura normal, borrife Água de Rosas Damascena e aplique um véu fino de óleo de argan para amenizar a sensação de repuxamento.",
+              "Dias 1–3: higienize com limpadores lácteos de pH equilibrado; alterne compressas de água de rosas com oclusão de óleo de argan para minimizar a formação de crostas.",
+              "Dias 4–7: introduza um creme com ceramidas sobre o óleo de argan; reforce o uso de protetor solar FPS 50 de amplo espectro e evite esfoliantes até o término da descamação."
+            ],
+            "evidence": "Baseado em Soleymani et al., Journal of Clinical and Aesthetic Dermatology (2018), que destaca a reposição lipídica como determinante para a reepitelização controlada."
+          },
+          {
+            "title": "Suporte de hidratação durante a menopausa",
+            "focus": "Restaure lipídios, melhore a elasticidade e acalme o ressecamento neurogênico ligado à queda estrogênica.",
+            "steps": [
+              "Manhã: borrife Água de Rosas Damascena, misture duas gotas de óleo de argan ao hidratante com ceramidas e finalize com protetor solar para lidar com a fotossensibilidade aumentada.",
+              "Noite: aplique óleo de argan no rosto, pescoço e colo com a pele úmida; faça uma massagem suave para estimular a microcirculação.",
+              "Semanalmente: sugerir massagens no couro cabeludo com óleo de argan para compensar mudanças na densidade capilar e oferecer tratamentos de mãos e antebraços durante as visitas à clínica."
+            ],
+            "evidence": "Alinhado a Lephart, Biomedicine & Pharmacotherapy (2016) e Sator et al., Journal of the American Academy of Dermatology (2001), que relatam melhora de elasticidade e hidratação na pele pós-menopausa após o uso tópico de fito-lipídios."
+          }
+        ]
+      },
+      "referencesSection": {
+        "title": "Referências clínicas e vozes especialistas",
+        "studiesTitle": "Destaques revisados por pares",
+        "studies": [
+          {
+            "title": "Fabbrocini A. et al. Microneedling in dermatology: A review.",
+            "details": "Journal of Clinical and Aesthetic Dermatology, 2014."
+          },
+          {
+            "title": "Soleymani T. et al. A practical approach to chemical peels.",
+            "details": "Journal of Clinical and Aesthetic Dermatology, 2018."
+          },
+          {
+            "title": "Lephart E.D. Skin aging and menopause: Implications for treatment.",
+            "details": "Biomedicine & Pharmacotherapy, 2016."
+          }
+        ],
+        "testimonialsTitle": "Depoimentos de dermatologistas",
+        "testimonials": [
+          {
+            "quote": "\"O óleo de argan aprovado por dermatologistas da Kapunka oferece o perfil lipídico que desejo para o post-treatment skin care, e as pacientes valorizam a origem sustentável.\"",
+            "name": "Dra. Sofia Mendes",
+            "credentials": "Dermatologista certificada, Lisboa"
+          },
+          {
+            "quote": "\"O INCI minimalista mantém as pacientes sensibilizadas confortáveis após os peelings, enquanto os módulos de treinamento da marca encurtam o onboarding da equipa.\"",
+            "name": "Dra. Elena Ruiz",
+            "credentials": "Cirurgiã dermatológica, Madri"
+          }
+        ]
+      },
+      "keywordSection": {
+        "title": "Fornecimento B2B de skincare otimizado",
+        "subtitle": "Inclua estes focos nas suas listas e campanhas para alcançar pacientes exigentes.",
+        "keywords": [
+          "post-treatment skin care protocols (protocolos de cuidados pós-tratamento)",
+          "dermatologist-approved argan oil retail sets (kits de óleo de argan aprovado por dermatologistas)",
+          "B2B skincare supply for medical spas (fornecimento B2B de skincare para clínicas e spas médicos)",
+          "hormonal hydration support kits (kits de suporte de hidratação hormonal)",
+          "sustainable Moroccan argan oil wholesale (óleo de argan marroquino sustentável no atacado)"
+        ]
+      },
+      "faqSection": {
+        "title": "Perguntas frequentes para clínicas",
+        "subtitle": "Logística, treinamento e métodos de aplicação adaptados à sua equipa.",
+        "items": [
+          {
+            "question": "Qual é a quantidade mínima de pedido (MOQ)?",
+            "answer": "Os pedidos iniciais começam com 24 unidades de varejo ou 6 unidades profissionais de back bar. Caixas com produtos variados mantêm o mesmo preço de atacado para que clínicas menores possam montar assortments personalizados."
+          },
+          {
+            "question": "Vocês oferecem treinamento de protocolos?",
+            "answer": "Sim. Os parceiros acessam uma plataforma de e-learning bilíngue com módulos de microagulhamento, peeling químico e hidratação na menopausa. Webinars trimestrais ao vivo trazem atualizações e um Q&A com o nosso conselho médico."
+          },
+          {
+            "question": "Como os clínicos devem aplicar o óleo de argan na sala de tratamento?",
+            "answer": "Transfira para conta-gotas estéreis. Ao finalizar o procedimento, borrife água de rosas na pele e pressione o óleo com as mãos enluvadas para evitar fricção. Em serviços de couro cabeludo ou corpo, aqueça o óleo à temperatura corporal antes da massagem."
+          },
+          {
+            "question": "A Kapunka oferece materiais em white label ou co-branded?",
+            "answer": "Oferecemos cartões pós-tratamento personalizáveis e sleeves co-branded após o terceiro pedido. A nossa equipa de design adapta os materiais à sua marca em até cinco dias úteis."
+          }
+        ]
+      },
+      "doctorsTitle": "Aprovado pelos melhores profissionais",
+      "ctaTitle": "Torne-se um parceiro",
+      "ctaSubtitle": "Agende uma chamada para conhecer preços de atacado, amostras e suporte de lançamento na clínica.",
+      "ctaButton": "Fale conosco",
+      "partnersTitle": "Como visto em"
     },
     "common": {
       "loading": "Carregando...",
       "loadingProducts": "Carregando produtos...",
       "loadingBestsellers": "Carregando mais vendidos...",
-      "loadingReviews": "Carregando avalia\u00e7\u00f5es...",
+      "loadingReviews": "Carregando avaliações...",
       "loadingCourses": "Carregando cursos...",
       "loadingProfessionals": "Carregando profissionais...",
       "loadingArticle": "Carregando artigo...",
-      "loadingPolicies": "Carregando pol\u00edtica...",
+      "loadingPolicies": "Carregando política...",
       "loadingCart": "Carregando carrinho...",
       "loadingProduct": "Carregando produto..."
     },
     "learn": {
       "metaTitle": "Biblioteca de Skincare",
-      "metaDescription": "Explore artigos e guias sobre skincare, ingredientes e como manter uma barreira cut\u00e2nea saud\u00e1vel.",
+      "metaDescription": "Explore artigos e guias sobre skincare, ingredientes e como manter uma barreira cutânea saudável.",
       "title": "Biblioteca de Skincare",
-      "subtitle": "Guias e insights para ajudar voc\u00ea a entender melhor a sua pele.",
+      "subtitle": "Guias e insights para ajudar você a entender melhor a sua pele.",
       "categories": {
         "all": "Todos os temas",
-        "argan-oil": "\u00d3leo de Argan",
-        "uses-applications": "Usos e Aplica\u00e7\u00f5es",
-        "post-procedure": "P\u00f3s-Procedimento",
-        "skin-barrier": "Barreira Cut\u00e2nea",
-        "baby": "Cuidados com Beb\u00eas",
-        "scars": "Cicatrizes e Recupera\u00e7\u00e3o"
+        "argan-oil": "Óleo de Argan",
+        "uses-applications": "Usos e Aplicações",
+        "post-procedure": "Pós-Procedimento",
+        "skin-barrier": "Barreira Cutânea",
+        "baby": "Cuidados com Bebês",
+        "scars": "Cicatrizes e Recuperação"
       }
     },
     "article": {
       "featuredProduct": "Produto em destaque",
-      "backToLibrary": "Voltar \u00e0 Biblioteca de Skincare",
-      "notFound": "Artigo n\u00e3o encontrado.",
+      "backToLibrary": "Voltar à Biblioteca de Skincare",
+      "notFound": "Artigo não encontrado.",
       "loading": "Carregando artigo..."
     },
     "policy": {
-      "loading": "Carregando pol\u00edtica...",
-      "notFound": "A p\u00e1gina de pol\u00edtica solicitada n\u00e3o foi encontrada.",
-      "contactPrompt": "Para informa\u00e7\u00f5es mais detalhadas ou d\u00favidas espec\u00edficas, entre em contato conosco."
+      "loading": "Carregando política...",
+      "notFound": "A página de política solicitada não foi encontrada.",
+      "contactPrompt": "Para informações mais detalhadas ou dúvidas específicas, entre em contato conosco."
     }
   },
   "es": {
     "nav": {
       "shop": "Tienda",
       "learn": "Aprender",
-      "forClinics": "Para Cl\u00ednicas",
+      "forClinics": "Para Clínicas",
       "about": "Nosotros",
       "contact": "Contacto"
     },
     "footer": {
       "tagline": "Cuidado de la piel respaldado por la ciencia para una barrera saludable.",
-      "followUs": "S\u00edguenos",
+      "followUs": "Síguenos",
       "shop": "Tienda",
       "allProducts": "Todos los Productos",
-      "guides": "Gu\u00edas de Skincare",
+      "guides": "Guías de Skincare",
       "about": "Sobre Kapunka",
       "ourStory": "Nuestra Historia",
-      "contact": "Cont\u00e1ctanos",
-      "policies": "Pol\u00edticas",
-      "shipping": "Pol\u00edtica de Env\u00edo",
-      "returns": "Pol\u00edtica de Devoluci\u00f3n",
-      "privacy": "Pol\u00edtica de Privacidad",
-      "terms": "T\u00e9rminos de Servicio"
+      "contact": "Contáctanos",
+      "policies": "Políticas",
+      "shipping": "Política de Envío",
+      "returns": "Política de Devolución",
+      "privacy": "Política de Privacidad",
+      "terms": "Términos de Servicio"
     },
     "cart": {
       "title": "Tu Carrito",
       "subtotal": "Subtotal",
-      "shippingNote": "Env\u00edo e impuestos calculados en el checkout.",
+      "shippingNote": "Envío e impuestos calculados en el checkout.",
       "viewCart": "Ver Carrito Completo",
-      "empty": "Tu carrito est\u00e1 vac\u00edo.",
+      "empty": "Tu carrito está vacío.",
       "continueShopping": "Seguir Comprando",
       "pageTitle": "Carrito de Compras",
       "summary": "Resumen del Pedido",
-      "shipping": "Env\u00edo",
+      "shipping": "Envío",
       "shippingCalculated": "Calculado en el siguiente paso",
       "total": "Total",
       "checkout": "Proceder al Pago",
-      "checkoutRedirect": "Ser\u00e1s redirigido a una p\u00e1gina de pago segura."
+      "checkoutRedirect": "Serás redirigido a una página de pago segura."
     },
     "cookies": {
       "message": "Usamos cookies para mejorar tu experiencia.",
-      "learnMore": "Saber m\u00e1s",
+      "learnMore": "Saber más",
       "decline": "Rechazar",
       "accept": "Aceptar"
     },
     "home": {
       "metaTitle": "Skincare Minimalista para la Salud de la Barrera",
-      "metaDescription": "Descubre Kapunka Skincare. F\u00f3rmulas puras y potentes, dise\u00f1adas para restaurar y proteger tu barrera cut\u00e1nea. Vegano y sin crueldad.",
+      "metaDescription": "Descubre Kapunka Skincare. Fórmulas puras y potentes, diseñadas para restaurar y proteger tu barrera cutánea. Vegano y sin crueldad.",
       "heroTitle": "Tu Barrera, Protegida.",
-      "heroSubtitle": "F\u00f3rmulas minimalistas y respaldadas por la ciencia, dise\u00f1adas para calmar, restaurar y proteger tu piel. Aceite de Arg\u00e1n puro de Marruecos.",
+      "heroSubtitle": "Fórmulas minimalistas y respaldadas por la ciencia, diseñadas para calmar, restaurar y proteger tu piel. Aceite de Argán puro de Marruecos.",
       "ctaShop": "Comprar Ahora",
       "ctaClinics": "Para Profesionales",
-      "bestsellersTitle": "Nuestros M\u00e1s Vendidos",
-      "value1": "F\u00f3rmulas Puras y Potentes",
+      "bestsellersTitle": "Nuestros Más Vendidos",
+      "value1": "Fórmulas Puras y Potentes",
       "value2": "Enfoque en la Barrera",
       "value3": "Origen Sostenible",
       "reviewsTitle": "Lo que Dicen los Profesionales",
-      "newsletterTitle": "\u00danete a la Lista",
-      "newsletterSubtitle": "Recibe un 10% de descuento en tu primer pedido y mantente al d\u00eda sobre nuevos productos y la ciencia del cuidado de la piel.",
-      "newsletterThanks": "\u00a1Gracias por suscribirte!",
-      "newsletterPlaceholder": "Introduce tu correo electr\u00f3nico",
+      "newsletterTitle": "Únete a la Lista",
+      "newsletterSubtitle": "Recibe un 10% de descuento en tu primer pedido y mantente al día sobre nuevos productos y la ciencia del cuidado de la piel.",
+      "newsletterThanks": "¡Gracias por suscribirte!",
+      "newsletterPlaceholder": "Introduce tu correo electrónico",
       "newsletterSubmit": "Suscribirse"
     },
     "shop": {
       "title": "Todos los Productos",
-      "metaDescription": "Compra nuestra colecci\u00f3n completa de productos para el cuidado de la piel formulados para apoyar una barrera cut\u00e1nea saludable.",
-      "subtitle": "Soluciones suaves pero eficaces para cada tipo de piel, centradas en la salud de la barrera y f\u00f3rmulas minimalistas.",
+      "metaDescription": "Compra nuestra colección completa de productos para el cuidado de la piel formulados para apoyar una barrera cutánea saludable.",
+      "subtitle": "Soluciones suaves pero eficaces para cada tipo de piel, centradas en la salud de la barrera y fórmulas minimalistas.",
       "sortFeatured": "Destacado",
       "sortPriceAsc": "Precio: Menor a Mayor",
       "sortPriceDesc": "Precio: Mayor a Menor",
-      "sortNameAsc": "Alfab\u00e9ticamente: A-Z",
-      "sortNameDesc": "Alfab\u00e9ticamente: Z-A",
+      "sortNameAsc": "Alfabéticamente: A-Z",
+      "sortNameDesc": "Alfabéticamente: Z-A",
       "sortLabel": "Ordenar productos",
       "categoryFilterLabel": "Explorar por colección",
       "relatedResources": "Recursos relacionados",
@@ -469,122 +669,222 @@
     },
     "pdp": {
       "notFound": "Producto no encontrado.",
-      "size": "Tama\u00f1o",
-      "addToCart": "A\u00f1adir al Carrito",
+      "size": "Tamaño",
+      "addToCart": "Añadir al Carrito",
       "tabs": {
         "benefits": "Beneficios",
         "howToUse": "Modo de Uso",
         "ingredients": "Ingredientes",
         "labTested": "Origen y Pureza"
       },
-      "relatedProducts": "Tambi\u00e9n te podr\u00eda gustar",
+      "relatedProducts": "También te podría gustar",
       "knowledge": {
-        "title": "Profundiza en la f\u00f3rmula",
-        "subtitle": "Descubre c\u00f3mo este producto se integra a la ciencia d\u00e9rmica moderna y a los rituales ancestrales.",
+        "title": "Profundiza en la fórmula",
+        "subtitle": "Descubre cómo este producto se integra a la ciencia dérmica moderna y a los rituales ancestrales.",
         "sections": {
-          "whatItIs": "Qu\u00e9 es",
-          "howItWorks": "C\u00f3mo act\u00faa en piel y cuero cabelludo",
-          "whoItsFor": "Para qui\u00e9n es",
-          "scientificBacking": "Respaldo cient\u00edfico",
+          "whatItIs": "Qué es",
+          "howItWorks": "Cómo actúa en piel y cuero cabelludo",
+          "whoItsFor": "Para quién es",
+          "scientificBacking": "Respaldo científico",
           "culturalContext": "Contexto cultural y tradicional"
         }
       },
       "faq": {
         "title": "Preguntas frecuentes",
-        "subtitle": "Respuestas a las preguntas m\u00e1s buscadas sobre este tratamiento."
+        "subtitle": "Respuestas a las preguntas más buscadas sobre este tratamiento."
       }
     },
     "about": {
       "title": "Nuestra Historia",
-      "metaDescription": "Conoce la misi\u00f3n de Kapunka Skincare de crear un cuidado de la piel eficaz y minimalista que respete la barrera cut\u00e1nea y el medio ambiente.",
+      "metaDescription": "Conoce la misión de Kapunka Skincare de crear un cuidado de la piel eficaz y minimalista que respete la barrera cutánea y el medio ambiente.",
       "headerTitle": "Menos, pero mejor.",
-      "headerSubtitle": "Creemos en el poder de la simplicidad. Nuestra filosof\u00eda se basa en el uso de ingredientes puros y de alta calidad para crear formulaciones que apoyen la salud de tu piel a largo plazo.",
+      "headerSubtitle": "Creemos en el poder de la simplicidad. Nuestra filosofía se basa en el uso de ingredientes puros y de alta calidad para crear formulaciones que apoyen la salud de tu piel a largo plazo.",
       "storyTitle": "Nuestra Historia",
-      "storyText1": "Kapunka naci\u00f3 del deseo de un cuidado de la piel transparente y eficaz. Empezamos por obtener el aceite de Arg\u00e1n m\u00e1s puro, certificado por ECOCERT, de cooperativas de mujeres en Marruecos.",
-      "storyText2": "Nuestro objetivo es crear productos que no solo sean un placer de usar, sino que tambi\u00e9n ofrezcan resultados tangibles, priorizando siempre la salud de tu barrera cut\u00e1nea.",
-      "sourcingTitle": "Abastecimiento \u00c9tico",
-      "sourcingText1": "Estamos comprometidos con pr\u00e1cticas \u00e9ticas y sostenibles. Nuestros ingredientes provienen de proveedores que comparten nuestros valores de responsabilidad ambiental y comercio justo.",
-      "sourcingText2": "Nuestro aceite de Arg\u00e1n es un ejemplo primordial, proporcionando empoderamiento econ\u00f3mico a las mujeres bereberes que han perfeccionado su m\u00e9todo tradicional de extracci\u00f3n durante siglos.",
-      "sourcingImageAlt": "Campo de \u00e1rboles de arg\u00e1n"
+      "storyText1": "Kapunka nació del deseo de un cuidado de la piel transparente y eficaz. Empezamos por obtener el aceite de Argán más puro, certificado por ECOCERT, de cooperativas de mujeres en Marruecos.",
+      "storyText2": "Nuestro objetivo es crear productos que no solo sean un placer de usar, sino que también ofrezcan resultados tangibles, priorizando siempre la salud de tu barrera cutánea.",
+      "sourcingTitle": "Abastecimiento Ético",
+      "sourcingText1": "Estamos comprometidos con prácticas éticas y sostenibles. Nuestros ingredientes provienen de proveedores que comparten nuestros valores de responsabilidad ambiental y comercio justo.",
+      "sourcingText2": "Nuestro aceite de Argán es un ejemplo primordial, proporcionando empoderamiento económico a las mujeres bereberes que han perfeccionado su método tradicional de extracción durante siglos.",
+      "sourcingImageAlt": "Campo de árboles de argán"
     },
     "contact": {
-      "title": "Cont\u00e1ctanos",
+      "title": "Contáctanos",
       "metaDescription": "Ponte en contacto con el equipo de Kapunka Skincare para preguntas, consultas sobre asociaciones o soporte al cliente.",
       "headerTitle": "Ponte en Contacto",
-      "headerSubtitle": "Estamos aqu\u00ed para ayudar. Ya sea que tengas una pregunta sobre nuestros productos o quieras compartir tu viaje con la piel, nos encantar\u00eda saber de ti.",
-      "formTitle": "Env\u00edanos un mensaje",
+      "headerSubtitle": "Estamos aquí para ayudar. Ya sea que tengas una pregunta sobre nuestros productos o quieras compartir tu viaje con la piel, nos encantaría saber de ti.",
+      "formTitle": "Envíanos un mensaje",
       "form": {
         "name": "Nombre Completo",
-        "email": "Correo Electr\u00f3nico",
+        "email": "Correo Electrónico",
         "message": "Tu Mensaje",
         "sending": "Enviando...",
         "submit": "Enviar Mensaje",
-        "success": "\u00a1Gracias! Tu mensaje ha sido enviado.",
-        "error": "Lo sentimos, algo sali\u00f3 mal. Por favor, int\u00e9ntalo de nuevo."
+        "success": "¡Gracias! Tu mensaje ha sido enviado.",
+        "error": "Lo sentimos, algo salió mal. Por favor, inténtalo de nuevo."
       },
       "infoTitle": "Otras formas de conectar",
-      "emailTitle": "Correo electr\u00f3nico",
-      "phoneTitle": "Tel\u00e9fono",
+      "emailTitle": "Correo electrónico",
+      "phoneTitle": "Teléfono",
       "whatsappTitle": "WhatsApp",
       "whatsappAction": "Chatea con nosotros"
     },
     "academy": {
       "headerTitle": "Academia Kapunka",
-      "headerSubtitle": "Educaci\u00f3n profesional para dermat\u00f3logos y esteticistas para dominar t\u00e9cnicas avanzadas de cuidado de la piel con nuestros productos.",
+      "headerSubtitle": "Educación profesional para dermatólogos y esteticistas para dominar técnicas avanzadas de cuidado de la piel con nuestros productos.",
       "coursesTitle": "Cursos Disponibles",
       "enrollNow": "Inscribirse Ahora"
     },
     "clinics": {
-      "title": "Para Cl\u00ednicas y Profesionales",
-      "metaDescription": "As\u00f3ciate con Kapunka Skincare. Descubre nuestros productos y protocolos de grado profesional para tu cl\u00ednica.",
-      "headerTitle": "As\u00f3ciate con Kapunka",
-      "headerSubtitle": "Eleva tu pr\u00e1ctica con nuestras formulaciones puras y potentes, dise\u00f1adas para el cuidado post-procedimiento y tratamientos profesionales.",
-      "section1Title": "La Elecci\u00f3n del Profesional",
-      "section1Text1": "Kapunka Skincare cuenta con la confianza de dermat\u00f3logos y esteticistas por su compromiso con la salud de la barrera. Nuestras f\u00f3rmulas minimalistas son ideales para preparar la piel para procedimientos y apoyar su recuperaci\u00f3n posterior.",
-      "section1Text2": "Ofrecemos tama\u00f1os profesionales exclusivos, protocolos y capacitaci\u00f3n para ayudarte a ofrecer los mejores resultados a tus clientes.",
-      "doctorsTitle": "Con la Confianza de los Mejores Profesionales",
-      "ctaTitle": "Convi\u00e9rtete en Socio",
-      "ctaSubtitle": "\u00danete a nuestra red de profesionales del cuidado de la piel y obt\u00e9n acceso a productos y educaci\u00f3n exclusivos.",
-      "ctaButton": "Cont\u00e1ctanos",
-      "partnersTitle": "Como Visto En"
+      "title": "Alianzas Profesionales para Clínicas",
+      "metaDescription": "Suministro B2B de cuidado de la piel para el post-tratamiento. Accede a aceite de argán aprobado por dermatólogos, protocolos clínicos y capacitación para tu clínica.",
+      "headerTitle": "Programa Profesional Kapunka",
+      "headerSubtitle": "Ofrece un post-treatment skin care coherente con aceite de argán aprobado por dermatólogos y fórmulas minimalistas, probadas en clínica para la recuperación y la hidratación hormonal.",
+      "section1Title": "Soporte basado en evidencia para cada sala de tratamiento",
+      "section1Text1": "Nuestro suministro B2B de skincare combina aceite de argán ECOCERT, agua de rosas de Damasco y lípidos que refuerzan la barrera con materiales educativos personalizables. Los protocolos son revisados por dermatólogos certificados para que tu equipo brinde indicaciones seguras tras microneedling, peelings químicos, láser o sequedad ligada a la menopausia.",
+      "section1Text2": "Los socios reciben precios mayoristas, módulos de onboarding y fichas de cuidados post-tratamiento listas para imprimir en inglés, portugués y español. Kapunka simplifica el traspaso del procedimiento al cuidado en casa, ayudando a fidelizar pacientes y aumentar el ticket minorista.",
+      "protocolSection": {
+        "title": "Planos de protocolo para personalizar",
+        "subtitle": "Rutinas revisadas por dermatólogos y descargables para guiar a los pacientes en los tratamientos más solicitados.",
+        "cards": [
+          {
+            "title": "Cuidados tras microneedling (0–72 horas)",
+            "focus": "Estabiliza la barrera, reduce la TEWL y evita la contaminación microbiana.",
+            "steps": [
+              "Inmediatamente después del tratamiento: pulveriza Agua de Rosas de Damasco Kapunka o suero fisiológico estéril y presiona tres gotas de nuestro aceite de argán aprobado por dermatólogos sobre las zonas tratadas para sellar los microcanales.",
+              "Primera noche: indica a los pacientes que eviten maquillaje y retinoides; reaplica el aceite de argán sobre la piel húmeda cada 6–8 horas para mantener saturada la matriz lipídica.",
+              "Días 2–3: coloca un sérum de ácido hialurónico bajo el aceite de argán; retoma el protector solar mineral cuando el eritema disminuya."
+            ],
+            "evidence": "Basado en Fabbrocini et al., Journal of Clinical and Aesthetic Dermatology (2014), que documenta la alteración de la barrera hasta 48 horas después del microneedling y los beneficios de los emolientes ricos en lípidos."
+          },
+          {
+            "title": "Recuperación de peeling químico medio (Día 0–7)",
+            "focus": "Modera la inflamación, favorece la descamación y reconstruye el estrato córneo.",
+            "steps": [
+              "Día 0: neutraliza el peeling según las instrucciones del fabricante; cuando la piel recupere su temperatura, pulveriza Agua de Rosas de Damasco y aplica un velo fino de aceite de argán para aliviar la tirantez.",
+              "Días 1–3: limpia con leches de pH equilibrado; alterna compresas de agua de rosas con oclusión de aceite de argán para minimizar las costras.",
+              "Días 4–7: incorpora una crema con ceramidas sobre el aceite de argán; refuerza el fotoprotector FPS 50 de amplio espectro y evita exfoliantes hasta finalizar la descamación."
+            ],
+            "evidence": "Respaldado por Soleymani et al., Journal of Clinical and Aesthetic Dermatology (2018), que destaca la reposición lipídica como clave para una reepitelización controlada."
+          },
+          {
+            "title": "Soporte de hidratación durante la menopausia",
+            "focus": "Restituye lípidos, mejora la elasticidad y calma la sequedad neurogénica asociada al descenso de estrógenos.",
+            "steps": [
+              "Mañana: pulveriza Agua de Rosas de Damasco, mezcla dos gotas de aceite de argán con la crema de ceramidas y finaliza con protector solar para abordar la fotosensibilidad aumentada.",
+              "Noche: aplica aceite de argán en rostro, cuello y escote con la piel húmeda; realiza un masaje ligero para estimular la microcirculación.",
+              "Semanalmente: sugiere masajes capilares con aceite de argán para compensar los cambios en la densidad del cabello y ofrece tratamientos de manos y antebrazos durante las visitas a la clínica."
+            ],
+            "evidence": "En línea con Lephart, Biomedicine & Pharmacotherapy (2016) y Sator et al., Journal of the American Academy of Dermatology (2001), que informan mejoras de elasticidad e hidratación en la piel posmenopáusica tras lípidos tópicos."
+          }
+        ]
+      },
+      "referencesSection": {
+        "title": "Referencias clínicas y voces expertas",
+        "studiesTitle": "Destacados revisados por pares",
+        "studies": [
+          {
+            "title": "Fabbrocini A. et al. Microneedling in dermatology: A review.",
+            "details": "Journal of Clinical and Aesthetic Dermatology, 2014."
+          },
+          {
+            "title": "Soleymani T. et al. A practical approach to chemical peels.",
+            "details": "Journal of Clinical and Aesthetic Dermatology, 2018."
+          },
+          {
+            "title": "Lephart E.D. Skin aging and menopause: Implications for treatment.",
+            "details": "Biomedicine & Pharmacotherapy, 2016."
+          }
+        ],
+        "testimonialsTitle": "Testimonios de dermatólogos",
+        "testimonials": [
+          {
+            "quote": "\"El aceite de argán aprobado por dermatólogos de Kapunka aporta el perfil lipídico que necesito para el post-treatment skin care, y las pacientes valoran su origen sostenible.\"",
+            "name": "Dra. Sofia Mendes",
+            "credentials": "Dermatóloga certificada, Lisboa"
+          },
+          {
+            "quote": "\"El INCI minimalista mantiene cómodos a nuestros pacientes sensibilizados tras los peelings, y los módulos formativos de la marca acortan la capacitación del personal.\"",
+            "name": "Dra. Elena Ruiz",
+            "credentials": "Cirujana dermatológica, Madrid"
+          }
+        ]
+      },
+      "keywordSection": {
+        "title": "Suministro B2B de skincare optimizado",
+        "subtitle": "Incluye estos enfoques en tus listados y campañas para llegar a pacientes exigentes.",
+        "keywords": [
+          "post-treatment skin care protocols (protocolos de cuidado post-tratamiento)",
+          "dermatologist-approved argan oil retail sets (sets minoristas de aceite de argán aprobado por dermatólogos)",
+          "B2B skincare supply for medical spas (suministro B2B de skincare para clínicas y spas médicos)",
+          "hormonal hydration support kits (kits de soporte de hidratación hormonal)",
+          "sustainable Moroccan argan oil wholesale (aceite de argán marroquí sostenible al por mayor)"
+        ]
+      },
+      "faqSection": {
+        "title": "Preguntas frecuentes para clínicas",
+        "subtitle": "Logística, formación y métodos de aplicación adaptados a tu equipo.",
+        "items": [
+          {
+            "question": "¿Cuál es la cantidad mínima de pedido (MOQ)?",
+            "answer": "Los pedidos iniciales comienzan con 24 unidades minoristas o 6 unidades profesionales de back bar. Los estuches mixtos califican para el mismo precio mayorista para que las clínicas más pequeñas puedan curar su surtido."
+          },
+          {
+            "question": "¿Ofrecen capacitación en protocolos?",
+            "answer": "Sí. Los socios acceden a un portal e-learning bilingüe con módulos de microneedling, peeling químico e hidratación en la menopausia. Webinars trimestrales en vivo repasan novedades y permiten preguntas a nuestro comité médico."
+          },
+          {
+            "question": "¿Cómo deben aplicar los clínicos el aceite de argán en cabina?",
+            "answer": "Transfiérelo a cuentagotas estériles. Tras finalizar el tratamiento, pulveriza agua de rosas sobre la piel y presiona el aceite con manos enguantadas para evitar fricción. En servicios capilares o corporales, templa el aceite a temperatura corporal antes del masaje."
+          },
+          {
+            "question": "¿Kapunka puede proporcionar materiales white label o co-brandeados?",
+            "answer": "Ofrecemos tarjetas post-tratamiento personalizables y fundas co-brandeadas después de tu tercer pedido. Nuestro equipo de diseño adapta los materiales a tu marca en un máximo de cinco días hábiles."
+          }
+        ]
+      },
+      "doctorsTitle": "Con la confianza de los mejores profesionales",
+      "ctaTitle": "Conviértete en socio",
+      "ctaSubtitle": "Agenda una llamada para revisar precios mayoristas, sampling y soporte de lanzamiento en clínica.",
+      "ctaButton": "Contáctanos",
+      "partnersTitle": "Como visto en"
     },
     "common": {
       "loading": "Cargando...",
       "loadingProducts": "Cargando productos...",
-      "loadingBestsellers": "Cargando m\u00e1s vendidos...",
-      "loadingReviews": "Cargando rese\u00f1as...",
+      "loadingBestsellers": "Cargando más vendidos...",
+      "loadingReviews": "Cargando reseñas...",
       "loadingCourses": "Cargando cursos...",
       "loadingProfessionals": "Cargando profesionales...",
-      "loadingArticle": "Cargando art\u00edculo...",
-      "loadingPolicies": "Cargando pol\u00edtica...",
+      "loadingArticle": "Cargando artículo...",
+      "loadingPolicies": "Cargando política...",
       "loadingCart": "Cargando carrito...",
       "loadingProduct": "Cargando producto..."
     },
     "learn": {
       "metaTitle": "Biblioteca de Skincare",
-      "metaDescription": "Explora art\u00edculos y gu\u00edas sobre skincare, ingredientes y c\u00f3mo mantener una barrera cut\u00e1nea saludable.",
+      "metaDescription": "Explora artículos y guías sobre skincare, ingredientes y cómo mantener una barrera cutánea saludable.",
       "title": "Biblioteca de Skincare",
-      "subtitle": "Gu\u00edas e ideas para ayudarte a entender mejor tu piel.",
+      "subtitle": "Guías e ideas para ayudarte a entender mejor tu piel.",
       "categories": {
         "all": "Todos los temas",
-        "argan-oil": "Aceite de Arg\u00e1n",
+        "argan-oil": "Aceite de Argán",
         "uses-applications": "Usos y Aplicaciones",
         "post-procedure": "Post-Procedimiento",
-        "skin-barrier": "Barrera Cut\u00e1nea",
-        "baby": "Cuidado del Beb\u00e9",
-        "scars": "Cicatrices y Recuperaci\u00f3n"
+        "skin-barrier": "Barrera Cutánea",
+        "baby": "Cuidado del Bebé",
+        "scars": "Cicatrices y Recuperación"
       }
     },
     "article": {
       "featuredProduct": "Producto destacado",
       "backToLibrary": "Volver a la Biblioteca de Skincare",
-      "notFound": "Art\u00edculo no encontrado.",
-      "loading": "Cargando art\u00edculo..."
+      "notFound": "Artículo no encontrado.",
+      "loading": "Cargando artículo..."
     },
     "policy": {
-      "loading": "Cargando pol\u00edtica...",
-      "notFound": "La p\u00e1gina de pol\u00edtica solicitada no se encontr\u00f3.",
-      "contactPrompt": "Para obtener informaci\u00f3n m\u00e1s detallada o preguntas espec\u00edficas, cont\u00e1ctanos."
+      "loading": "Cargando política...",
+      "notFound": "La página de política solicitada no se encontró.",
+      "contactPrompt": "Para obtener información más detallada o preguntas específicas, contáctanos."
     }
   }
 }
