@@ -1508,12 +1508,17 @@
       "name": {
         "en": "Kessa Exfoliating Glove",
         "pt": "Luva Esfoliante Kessa",
-        "es": "Guante Exfoliante Kessa"
+        "es": "Manopla Exfoliante Kessa"
       },
       "tagline": {
         "en": "The essential tool for smooth skin",
         "pt": "A ferramenta essencial para uma pele macia",
         "es": "La herramienta esencial para una piel suave"
+      },
+      "description": {
+        "en": "Traditional Moroccan glove to lift impurities and smooth roughness. Use with warm water before applying oil.",
+        "pt": "Luva marroquina tradicional para remover impurezas e suavizar asperezas. Usar com água morna antes do óleo.",
+        "es": "Manopla tradicional marroquí para retirar impurezas y suavizar asperezas. Usar con agua tibia antes del aceite."
       },
       "badges": {
         "en": [
