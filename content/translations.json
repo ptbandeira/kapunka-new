@@ -286,6 +286,7 @@
     },
     "article": {
       "featuredProduct": "Featured Product",
+      "faqTitle": "Frequently Asked Questions",
       "backToLibrary": "Back to Skincare Library",
       "notFound": "Article not found.",
       "loading": "Loading article..."
@@ -583,6 +584,7 @@
     },
     "article": {
       "featuredProduct": "Produto em destaque",
+      "faqTitle": "Perguntas frequentes",
       "backToLibrary": "Voltar à Biblioteca de Skincare",
       "notFound": "Artigo não encontrado.",
       "loading": "Carregando artigo..."
@@ -880,6 +882,7 @@
     },
     "article": {
       "featuredProduct": "Producto destacado",
+      "faqTitle": "Preguntas frecuentes",
       "backToLibrary": "Volver a la Biblioteca de Skincare",
       "notFound": "Artículo no encontrado.",
       "loading": "Cargando artículo..."
