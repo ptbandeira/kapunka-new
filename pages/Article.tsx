@@ -12,7 +12,7 @@ const ArticlePage: React.FC = () => {
     const { translate, t } = useLanguage();
 
     const [article, setArticle] = useState<Article | null>(null);
-    const [relatedProduct, setRelatedProduct] = useState<Product | null>(null);
+    const [relatedProducts, setRelatedProducts] = useState<Product[]>([]);
     const [loading, setLoading] = useState(true);
 
     useEffect(() => {
@@ -25,19 +25,38 @@ const ArticlePage: React.FC = () => {
                 const articlesData = await articlesRes.json();
                 if (!isMounted) return;
 
-                const currentArticle = articlesData.items.find((a: Article) => a.slug === slug);
-                setArticle(currentArticle || null);
+                const currentArticle = articlesData.items.find((a: Article) => a.slug === slug) || null;
+                setArticle(currentArticle);
 
-                if (currentArticle?.relatedProductId) {
-                    const productsRes = await fetch('/content/products/index.json');
-                    const productsData = await productsRes.json();
-                    if (!isMounted) return;
+                const productIds = currentArticle?.relatedProductIds ??
+                    (currentArticle?.relatedProductId ? [currentArticle.relatedProductId] : []);
 
-                    const product = productsData.items.find((p: Product) => p.id === currentArticle.relatedProductId);
-                    setRelatedProduct(product || null);
+                if (productIds.length > 0) {
+                    try {
+                        const productsRes = await fetch('/content/products/index.json');
+                        const productsData = await productsRes.json();
+                        if (!isMounted) return;
+
+                        const matchedProducts = productIds
+                            .map((id: string) => productsData.items.find((p: Product) => p.id === id))
+                            .filter((product): product is Product => Boolean(product));
+
+                        setRelatedProducts(matchedProducts);
+                    } catch (productError) {
+                        console.error("Failed to fetch related products", productError);
+                        if (isMounted) {
+                            setRelatedProducts([]);
+                        }
+                    }
+                } else if (isMounted) {
+                    setRelatedProducts([]);
                 }
             } catch (error) {
                 console.error("Failed to fetch article data", error);
+                if (isMounted) {
+                    setArticle(null);
+                    setRelatedProducts([]);
+                }
             } finally {
                 if (isMounted) {
                     setLoading(false);
@@ -68,6 +87,48 @@ const ArticlePage: React.FC = () => {
         ));
     }, [article, translate]);
 
+    const translatedFaqs = useMemo(() => {
+        if (!article?.faqs) return [];
+        return article.faqs.map((faq) => {
+            const question = translate(faq.question);
+            const answer = translate(faq.answer);
+            return {
+                question: typeof question === 'string' ? question : '',
+                answer: typeof answer === 'string' ? answer : '',
+            };
+        }).filter((faq) => faq.question && faq.answer);
+    }, [article, translate]);
+
+    const faqSchema = useMemo(() => {
+        if (!article?.faqs || article.faqs.length === 0) return null;
+
+        const mainEntity = article.faqs.map((faq) => {
+            const question = translate(faq.question);
+            const answer = translate(faq.answer);
+            const questionText = typeof question === 'string' ? question : '';
+            const answerText = typeof answer === 'string' ? answer : '';
+
+            return questionText && answerText ? {
+                "@type": "Question",
+                name: questionText,
+                acceptedAnswer: {
+                    "@type": "Answer",
+                    text: answerText,
+                },
+            } : null;
+        }).filter((entity): entity is { "@type": string; name: string; acceptedAnswer: { "@type": string; text: string; }; } => Boolean(entity));
+
+        if (mainEntity.length === 0) {
+            return null;
+        }
+
+        return {
+            "@context": "https://schema.org",
+            "@type": "FAQPage",
+            mainEntity,
+        };
+    }, [article, translate]);
+
     if (loading) {
         return <div className="text-center py-20">{t('article.loading')}</div>;
     }
@@ -81,6 +142,11 @@ const ArticlePage: React.FC = () => {
             <Helmet>
                 <title>{translate(article.title)} | Kapunka Skincare</title>
                 <meta name="description" content={translate(article.preview)} />
+                {faqSchema && (
+                    <script type="application/ld+json">
+                        {JSON.stringify(faqSchema)}
+                    </script>
+                )}
             </Helmet>
 
             <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-4xl py-12 sm:py-16">
@@ -103,7 +169,7 @@ const ArticlePage: React.FC = () => {
                     <img src={article.imageUrl} alt={translate(article.title)} className="w-full h-auto max-h-[500px] object-cover rounded-lg shadow-lg" />
                 </motion.div>
                 
-                <motion.div 
+                <motion.div
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.6, delay: 0.4 }}
@@ -111,14 +177,37 @@ const ArticlePage: React.FC = () => {
                 >
                     {formattedContent}
                 </motion.div>
+
+                {translatedFaqs.length > 0 && (
+                    <motion.section
+                        initial={{ opacity: 0, y: 20 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ duration: 0.6, delay: 0.6 }}
+                        className="mt-12"
+                    >
+                        <h2 className="text-2xl font-semibold text-stone-800">{t('article.faqTitle')}</h2>
+                        <div className="mt-6 space-y-6">
+                            {translatedFaqs.map((faq) => (
+                                <div key={faq.question} className="border-t border-stone-200 pt-6">
+                                    <h3 className="text-lg font-medium text-stone-800">{faq.question}</h3>
+                                    <p className="mt-2 text-stone-600">{faq.answer}</p>
+                                </div>
+                            ))}
+                        </div>
+                    </motion.section>
+                )}
             </div>
 
-            {relatedProduct && (
+            {relatedProducts.length > 0 && (
                 <div className="py-16 sm:py-24 bg-stone-50">
                     <div className="container mx-auto px-4 sm:px-6 lg:px-8">
                         <h2 className="text-3xl font-semibold text-center mb-12">{t('article.featuredProduct')}</h2>
-                        <div className="max-w-sm mx-auto">
-                           <ProductCard product={relatedProduct} />
+                        <div className={relatedProducts.length > 1
+                            ? 'mt-12 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10'
+                            : 'mt-12 max-w-sm mx-auto'}>
+                            {relatedProducts.map((product) => (
+                                <ProductCard key={product.id} product={product} />
+                            ))}
                         </div>
                     </div>
                 </div>

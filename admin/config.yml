@@ -356,6 +356,31 @@ collections:
               - { label: Category, name: category, widget: string }
               - { label: Featured Image, name: imageUrl, widget: image, choose_url: true }
               - { label: Related Product ID, name: relatedProductId, widget: string, required: false }
+              - label: Related Product IDs
+                name: relatedProductIds
+                widget: list
+                required: false
+                field: { label: Product ID, name: id, widget: string }
+              - label: FAQs
+                name: faqs
+                widget: list
+                required: false
+                summary: "{{fields.question.en}}"
+                fields:
+                  - label: Question
+                    name: question
+                    widget: object
+                    fields:
+                      - { label: English, name: en, widget: text }
+                      - { label: Portuguese, name: pt, widget: text }
+                      - { label: Spanish, name: es, widget: text }
+                  - label: Answer
+                    name: answer
+                    widget: object
+                    fields:
+                      - { label: English, name: en, widget: text }
+                      - { label: Portuguese, name: pt, widget: text }
+                      - { label: Spanish, name: es, widget: text }
   - name: reviews
     label: Reviews
     files:

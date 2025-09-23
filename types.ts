@@ -31,6 +31,11 @@ export interface ProductFaq {
   answer: Translatable;
 }
 
+export interface ArticleFaq {
+  question: Translatable;
+  answer: Translatable;
+}
+
 export interface ProductGoodToKnow {
   title: Translatable;
   items: TranslatableArray;
@@ -76,6 +81,8 @@ export interface Article {
     category: string;
     imageUrl: string;
     relatedProductId?: string;
+    relatedProductIds?: string[];
+    faqs?: ArticleFaq[];
 }
 
 export interface Course {
