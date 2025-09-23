@@ -45,22 +45,85 @@
       "accept": "Accept"
     },
     "home": {
-      "metaTitle": "Minimalist Skincare for Barrier Health",
-      "metaDescription": "Discover Kapunka Skincare. Pure, potent formulas designed to restore and protect your skin barrier. Vegan and cruelty-free.",
-      "heroTitle": "Your Barrier, Protected.",
-      "heroSubtitle": "Minimalist, science-backed formulas designed to calm, restore, and protect your skin. Pure Argan Oil from Morocco.",
-      "ctaShop": "Shop Now",
-      "ctaClinics": "For Professionals",
+      "metaTitle": "Kapunka — Single-origin Moroccan Argan for Sensitive & Post-Procedure Care",
+      "metaDescription": "Cold-pressed, single-origin argan with fragrance-free options. Lightweight textures for comfort, barrier support, and everyday glow. Trusted by clinics.",
+      "meta": {
+        "title": "Kapunka — Single-origin Moroccan Argan for Sensitive & Post-Procedure Care",
+        "description": "Cold-pressed, single-origin argan with fragrance-free options. Lightweight textures for comfort, barrier support, and everyday glow. Trusted by clinics."
+      },
+      "heroTitle": "Argan care for sensitive, post-procedure, and everyday skin",
+      "heroSubtitle": "Single-origin, cold-pressed Moroccan argan. Lightweight, fragrance-free options. Made for comfort, barrier support, and a soft glow.",
+      "hero": {
+        "title": "Argan care for sensitive, post-procedure, and everyday skin",
+        "subtitle": "Single-origin, cold-pressed Moroccan argan. Lightweight, fragrance-free options. Made for comfort, barrier support, and a soft glow.",
+        "ctaPrimary": "Shop bestsellers",
+        "ctaSecondary": "For Clinics"
+      },
+      "ctaShop": "Shop bestsellers",
+      "ctaClinics": "For Clinics",
       "bestsellersTitle": "Our Bestsellers",
-      "value1": "Pure & Potent Formulas",
-      "value2": "Barrier-First Approach",
-      "value3": "Sustainably Sourced",
+      "bestsellers": {
+        "intro": "Three simple staples for daily comfort—choose your texture and scent-free option.",
+        "cards": [
+          {
+            "slug": "pure-argan-oil",
+            "blurb": "Lightweight moisture; face, body, hair."
+          },
+          {
+            "slug": "rose-water",
+            "blurb": "Gentle toner; calm, refresh, prep."
+          },
+          {
+            "slug": "black-soap-kessa",
+            "blurb": "Weekly exfoliation; smooth, then nourish."
+          }
+        ]
+      },
+      "value1": "Single-origin, cold-pressed",
+      "value2": "Barrier-first formulas",
+      "value3": "Sensitive-skin friendly",
+      "value4": "Clinic-tested use",
+      "valueProps": [
+        {
+          "title": "Single-origin, cold-pressed",
+          "subtitle": "Traceable Moroccan cooperatives"
+        },
+        {
+          "title": "Barrier-first formulas",
+          "subtitle": "Comfortable textures, no heavy residue"
+        },
+        {
+          "title": "Sensitive-skin friendly",
+          "subtitle": "Fragrance-free options available"
+        },
+        {
+          "title": "Clinic-tested use",
+          "subtitle": "Chosen for post-procedure routines"
+        }
+      ],
       "reviewsTitle": "What Professionals Say",
+      "clinics": {
+        "title": "Trusted by dermatology clinics",
+        "copy": "Single-origin argan and minimalist routines used in post-procedure care. Packs and guidance available.",
+        "cta": "Become a Partner"
+      },
+      "socialProof": {
+        "line": "Seen in skin clinics and care practices across Europe."
+      },
+      "learn": {
+        "teaser": "Clear answers to real routines—post-procedure, scalp care, baby skin, and barrier support."
+      },
       "newsletterTitle": "Join The List",
-      "newsletterSubtitle": "Receive 10% off your first order and stay up to date on new products and skincare science.",
+      "newsletterSubtitle": "Tips for sensitive-skin routines, once or twice a month. No spam. Unsubscribe anytime.",
+      "newsletter": {
+        "pitch": "Tips for sensitive-skin routines, once or twice a month. No spam. Unsubscribe anytime."
+      },
       "newsletterThanks": "Thank you for subscribing!",
       "newsletterPlaceholder": "Enter your email address",
-      "newsletterSubmit": "Subscribe"
+      "newsletterSubmit": "Subscribe",
+      "footer": {
+        "complianceNote": "Cosmetic use only. Not intended to diagnose, treat, cure, or prevent disease."
+      }
     },
     "shop": {
       "title": "All Products",
@@ -344,22 +407,85 @@
       "accept": "Aceitar"
     },
     "home": {
-      "metaTitle": "Skincare Minimalista para a Saúde da Barreira",
-      "metaDescription": "Descubra a Kapunka Skincare. Fórmulas puras e potentes, criadas para restaurar e proteger a sua barreira cutânea. Vegano e cruelty-free.",
-      "heroTitle": "Sua Barreira, Protegida.",
-      "heroSubtitle": "Fórmulas minimalistas e baseadas na ciência, criadas para acalmar, restaurar e proteger a sua pele. Óleo de Argan puro de Marrocos.",
-      "ctaShop": "Comprar Agora",
-      "ctaClinics": "Para Profissionais",
+      "metaTitle": "Kapunka — Argan marroquino de origem única para pele sensível e pós-procedimento",
+      "metaDescription": "Argan de origem única, prensado a frio, com opções sem fragrância. Texturas leves para conforto, apoio da barreira e brilho diário. A confiança de clínicas.",
+      "meta": {
+        "title": "Kapunka — Argan marroquino de origem única para pele sensível e pós-procedimento",
+        "description": "Argan de origem única, prensado a frio, com opções sem fragrância. Texturas leves para conforto, apoio da barreira e brilho diário. A confiança de clínicas."
+      },
+      "heroTitle": "Cuidado com argan para pele sensível, pós-procedimento e uso diário",
+      "heroSubtitle": "Argan marroquino de origem única, prensado a frio. Opções sem fragrância. Conforto, barreira cutânea e brilho suave.",
+      "hero": {
+        "title": "Cuidado com argan para pele sensível, pós-procedimento e uso diário",
+        "subtitle": "Argan marroquino de origem única, prensado a frio. Opções sem fragrância. Conforto, barreira cutânea e brilho suave.",
+        "ctaPrimary": "Ver bestsellers",
+        "ctaSecondary": "Para Clínicas"
+      },
+      "ctaShop": "Ver bestsellers",
+      "ctaClinics": "Para Clínicas",
       "bestsellersTitle": "Nossos Mais Vendidos",
-      "value1": "Fórmulas Puras e Potentes",
-      "value2": "Foco na Barreira Cutânea",
-      "value3": "Origem Sustentável",
+      "bestsellers": {
+        "intro": "Três essenciais simples para conforto diário—escolha textura e opção sem fragrância.",
+        "cards": [
+          {
+            "slug": "pure-argan-oil",
+            "blurb": "Hidratação leve; rosto, corpo, cabelo."
+          },
+          {
+            "slug": "rose-water",
+            "blurb": "Tónico suave; acalma, refresca, prepara."
+          },
+          {
+            "slug": "black-soap-kessa",
+            "blurb": "Esfoliação semanal; alisa e nutre."
+          }
+        ]
+      },
+      "value1": "Origem única, prensado a frio",
+      "value2": "Foco na barreira cutânea",
+      "value3": "Adequado a pele sensível",
+      "value4": "Uso em clínicas",
+      "valueProps": [
+        {
+          "title": "Origem única, prensado a frio",
+          "subtitle": "Cooperativas marroquinas com rastreabilidade"
+        },
+        {
+          "title": "Foco na barreira cutânea",
+          "subtitle": "Texturas confortáveis, sem peso"
+        },
+        {
+          "title": "Adequado a pele sensível",
+          "subtitle": "Opções sem fragrância"
+        },
+        {
+          "title": "Uso em clínicas",
+          "subtitle": "Escolhido para rotinas pós-procedimento"
+        }
+      ],
       "reviewsTitle": "O Que Dizem os Profissionais",
+      "clinics": {
+        "title": "A confiança de clínicas de dermatologia",
+        "copy": "Argan de origem única e rotinas minimalistas usadas em pós-procedimento. Packs e guia disponíveis.",
+        "cta": "Seja parceiro"
+      },
+      "socialProof": {
+        "line": "Presente em clínicas e consultórios de cuidados da pele na Europa."
+      },
+      "learn": {
+        "teaser": "Respostas claras para rotinas reais—pós-procedimento, couro cabeludo, pele do bebé e apoio da barreira."
+      },
       "newsletterTitle": "Junte-se à Lista",
-      "newsletterSubtitle": "Receba 10% de desconto no seu primeiro pedido e fique por dentro de novos produtos e da ciência do skincare.",
+      "newsletterSubtitle": "Dicas para rotinas de pele sensível, uma ou duas vezes por mês. Sem spam. Cancele quando quiser.",
+      "newsletter": {
+        "pitch": "Dicas para rotinas de pele sensível, uma ou duas vezes por mês. Sem spam. Cancele quando quiser."
+      },
       "newsletterThanks": "Obrigado por se inscrever!",
       "newsletterPlaceholder": "Digite seu e-mail",
-      "newsletterSubmit": "Inscrever-se"
+      "newsletterSubmit": "Inscrever-se",
+      "footer": {
+        "complianceNote": "Uso cosmético. Não destinado a diagnosticar, tratar, curar ou prevenir doenças."
+      }
     },
     "shop": {
       "title": "Todos os Produtos",
@@ -643,22 +769,85 @@
       "accept": "Aceptar"
     },
     "home": {
-      "metaTitle": "Skincare Minimalista para la Salud de la Barrera",
-      "metaDescription": "Descubre Kapunka Skincare. Fórmulas puras y potentes, diseñadas para restaurar y proteger tu barrera cutánea. Vegano y sin crueldad.",
-      "heroTitle": "Tu Barrera, Protegida.",
-      "heroSubtitle": "Fórmulas minimalistas y respaldadas por la ciencia, diseñadas para calmar, restaurar y proteger tu piel. Aceite de Argán puro de Marruecos.",
-      "ctaShop": "Comprar Ahora",
-      "ctaClinics": "Para Profesionales",
+      "metaTitle": "Kapunka — Argán marroquí de origen único para piel sensible y post-procedimiento",
+      "metaDescription": "Argán de origen único, prensado en frío, con opciones sin fragancia. Texturas ligeras para confort, apoyo de la barrera y brillo diario. De confianza en clínicas.",
+      "meta": {
+        "title": "Kapunka — Argán marroquí de origen único para piel sensible y post-procedimiento",
+        "description": "Argán de origen único, prensado en frío, con opciones sin fragancia. Texturas ligeras para confort, apoyo de la barrera y brillo diario. De confianza en clínicas."
+      },
+      "heroTitle": "Cuidado con argán para piel sensible, post-procedimiento y uso diario",
+      "heroSubtitle": "Argán marroquí de origen único, prensado en frío. Opciones sin fragancia. Confort, barrera cutánea y un brillo suave.",
+      "hero": {
+        "title": "Cuidado con argán para piel sensible, post-procedimiento y uso diario",
+        "subtitle": "Argán marroquí de origen único, prensado en frío. Opciones sin fragancia. Confort, barrera cutánea y un brillo suave.",
+        "ctaPrimary": "Ver bestsellers",
+        "ctaSecondary": "Para Clínicas"
+      },
+      "ctaShop": "Ver bestsellers",
+      "ctaClinics": "Para Clínicas",
       "bestsellersTitle": "Nuestros Más Vendidos",
-      "value1": "Fórmulas Puras y Potentes",
-      "value2": "Enfoque en la Barrera",
-      "value3": "Origen Sostenible",
+      "bestsellers": {
+        "intro": "Tres básicos sencillos para confort diario—elige textura y opción sin fragancia.",
+        "cards": [
+          {
+            "slug": "pure-argan-oil",
+            "blurb": "Hidratación ligera; rostro, cuerpo, cabello."
+          },
+          {
+            "slug": "rose-water",
+            "blurb": "Tónico suave; calma, refresca, prepara."
+          },
+          {
+            "slug": "black-soap-kessa",
+            "blurb": "Exfoliación semanal; suaviza y nutre."
+          }
+        ]
+      },
+      "value1": "Origen único, prensado en frío",
+      "value2": "Fórmulas con foco en la barrera",
+      "value3": "Apto para piel sensible",
+      "value4": "Uso en clínicas",
+      "valueProps": [
+        {
+          "title": "Origen único, prensado en frío",
+          "subtitle": "Cooperativas de Marruecos con trazabilidad"
+        },
+        {
+          "title": "Fórmulas con foco en la barrera",
+          "subtitle": "Texturas confortables, sin pesadez"
+        },
+        {
+          "title": "Apto para piel sensible",
+          "subtitle": "Opciones sin fragancia"
+        },
+        {
+          "title": "Uso en clínicas",
+          "subtitle": "Elegido para rutinas post-procedimiento"
+        }
+      ],
       "reviewsTitle": "Lo que Dicen los Profesionales",
+      "clinics": {
+        "title": "De confianza en clínicas de dermatología",
+        "copy": "Argán de origen único y rutinas minimalistas usadas en cuidados post-procedimiento. Packs y guía disponibles.",
+        "cta": "Hazte partner"
+      },
+      "socialProof": {
+        "line": "Presente en clínicas y consultas de cuidado de la piel en Europa."
+      },
+      "learn": {
+        "teaser": "Respuestas claras para rutinas reales—post-procedimiento, cuero cabelludo, piel de bebé y apoyo de la barrera."
+      },
       "newsletterTitle": "Únete a la Lista",
-      "newsletterSubtitle": "Recibe un 10% de descuento en tu primer pedido y mantente al día sobre nuevos productos y la ciencia del cuidado de la piel.",
+      "newsletterSubtitle": "Consejos para rutinas de piel sensible, una o dos veces al mes. Sin spam. Baja cuando quieras.",
+      "newsletter": {
+        "pitch": "Consejos para rutinas de piel sensible, una o dos veces al mes. Sin spam. Baja cuando quieras."
+      },
       "newsletterThanks": "¡Gracias por suscribirte!",
       "newsletterPlaceholder": "Introduce tu correo electrónico",
-      "newsletterSubmit": "Suscribirse"
+      "newsletterSubmit": "Suscribirse",
+      "footer": {
+        "complianceNote": "Uso cosmético. No destinado a diagnosticar, tratar, curar ni prevenir enfermedades."
+      }
     },
     "shop": {
       "title": "Todos los Productos",
