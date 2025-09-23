@@ -100,7 +100,7 @@
     {
       "id": "policy",
       "label": "Policies",
-      "urlPath": "/policy/{type}",
+      "urlPath": "/policy/{id}",
       "collectionId": "policies"
     }
   ],
