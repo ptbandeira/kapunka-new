@@ -1,4 +1,4 @@
-import { defineStackbitConfig } from '@stackbit/sdk';
+import type { StackbitConfig } from '@stackbit/types';
 
 const pageModels: { name: string; type: 'page'; urlPath: string }[] = [
   {
@@ -33,7 +33,9 @@ const pageModels: { name: string; type: 'page'; urlPath: string }[] = [
   },
 ];
 
-export default defineStackbitConfig({
+const config = {
   stackbitVersion: '~0.6.0',
   modelExtensions: pageModels,
-});
+} satisfies StackbitConfig;
+
+export default config;
