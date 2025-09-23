@@ -64,7 +64,7 @@ const LanguageSelector: React.FC<{ onCloseMobileMenu?: () => void }> = ({ onClos
 };
 
 const Header: React.FC = () => {
-  const { t } = useLanguage();
+  const { t, language } = useLanguage();
   const { cartCount } = useCart();
   const { toggleCart } = useUI();
   const [isScrolled, setIsScrolled] = useState(false);
@@ -81,12 +81,12 @@ const Header: React.FC = () => {
   }, []);
 
   const navLinks = [
-    { to: '/shop', label: t('nav.shop'), fieldPath: 'translations.en.nav.shop' },
-    { to: '/learn', label: t('nav.learn'), fieldPath: 'translations.en.nav.learn' },
-    { to: '/method', label: t('nav.method'), fieldPath: 'translations.en.nav.method' },
-    { to: '/for-clinics', label: t('nav.forClinics'), fieldPath: 'translations.en.nav.forClinics' },
-    { to: '/about', label: t('nav.about'), fieldPath: 'translations.en.nav.about' },
-    { to: '/contact', label: t('nav.contact'), fieldPath: 'translations.en.nav.contact' },
+    { to: '/shop', label: t('nav.shop'), fieldPath: `translations.${language}.nav.shop` },
+    { to: '/learn', label: t('nav.learn'), fieldPath: `translations.${language}.nav.learn` },
+    { to: '/method', label: t('nav.method'), fieldPath: `translations.${language}.nav.method` },
+    { to: '/for-clinics', label: t('nav.forClinics'), fieldPath: `translations.${language}.nav.forClinics` },
+    { to: '/about', label: t('nav.about'), fieldPath: `translations.${language}.nav.about` },
+    { to: '/contact', label: t('nav.contact'), fieldPath: `translations.${language}.nav.contact` },
   ];
 
   return (

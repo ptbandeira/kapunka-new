@@ -9,7 +9,7 @@ const Learn: React.FC = () => {
   const [activeCategory, setActiveCategory] = useState('all');
   const [articles, setArticles] = useState<Article[]>([]);
   const [loading, setLoading] = useState(true);
-  const { t } = useLanguage();
+  const { t, language } = useLanguage();
 
   useEffect(() => {
     fetch('/content/articles/index.json')
@@ -54,15 +54,25 @@ const Learn: React.FC = () => {
         transition={{ duration: 0.6 }}
         className="text-center mb-12"
       >
-        <h1 className="text-4xl sm:text-5xl font-semibold tracking-tight" data-nlv-field-path="translations.en.learn.title">{t('learn.title')}</h1>
-        <p className="mt-4 text-lg text-stone-600 max-w-2xl mx-auto" data-nlv-field-path="translations.en.learn.subtitle">{t('learn.subtitle')}</p>
+        <h1
+          className="text-4xl sm:text-5xl font-semibold tracking-tight"
+          data-nlv-field-path={`translations.${language}.learn.title`}
+        >
+          {t('learn.title')}
+        </h1>
+        <p
+          className="mt-4 text-lg text-stone-600 max-w-2xl mx-auto"
+          data-nlv-field-path={`translations.${language}.learn.subtitle`}
+        >
+          {t('learn.subtitle')}
+        </p>
       </motion.header>
 
       <div className="flex justify-center flex-wrap gap-2 mb-12">
         {categories.map(category => {
           const translationKey = category === 'all'
-            ? 'translations.en.learn.categories.all'
-            : `translations.en.learn.categories.${category}`;
+            ? `translations.${language}.learn.categories.all`
+            : `translations.${language}.learn.categories.${category}`;
           return (
             <button
               key={category}
@@ -81,12 +91,18 @@ const Learn: React.FC = () => {
       </div>
 
       {loading ? (
-        <p className="text-center py-10">{t('common.loading')}</p>
+        <p className="text-center py-10" data-nlv-field-path={`translations.${language}.common.loading`}>
+          {t('common.loading')}
+        </p>
       ) : (
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12">
-            {filteredArticles.map((article, index) => (
-            <ArticleCard key={article.id} article={article} index={index} />
-            ))}
+            {filteredArticles.map((article, index) => {
+              const articleIndex = articles.findIndex((item) => item.id === article.id);
+              const fieldPath = articleIndex >= 0 ? `articles.items.${articleIndex}` : undefined;
+              return (
+                <ArticleCard key={article.id} article={article} index={index} fieldPath={fieldPath} />
+              );
+            })}
         </div>
       )}
     </div>

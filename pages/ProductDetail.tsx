@@ -12,7 +12,7 @@ import ProductCard from '../components/ProductCard';
 
 const ProductDetail: React.FC = () => {
     const { id } = useParams<{ id: string }>();
-    const { t, translate } = useLanguage();
+    const { t, translate, language } = useLanguage();
     const { addToCart } = useCart();
     const { openCart } = useUI();
 
@@ -67,10 +67,10 @@ const ProductDetail: React.FC = () => {
     const selectedSizeIndex = product.sizes.findIndex((size) => size.id === selectedSizeId);
 
     const tabs = [
-        { id: 'benefits', label: t('pdp.tabs.benefits'), fieldPath: 'translations.en.pdp.tabs.benefits' },
-        { id: 'howToUse', label: t('pdp.tabs.howToUse'), fieldPath: 'translations.en.pdp.tabs.howToUse' },
-        { id: 'ingredients', label: t('pdp.tabs.ingredients'), fieldPath: 'translations.en.pdp.tabs.ingredients' },
-        { id: 'labTested', label: t('pdp.tabs.labTested'), fieldPath: 'translations.en.pdp.tabs.labTested' },
+        { id: 'benefits', label: t('pdp.tabs.benefits'), fieldPath: `translations.${language}.pdp.tabs.benefits` },
+        { id: 'howToUse', label: t('pdp.tabs.howToUse'), fieldPath: `translations.${language}.pdp.tabs.howToUse` },
+        { id: 'ingredients', label: t('pdp.tabs.ingredients'), fieldPath: `translations.${language}.pdp.tabs.ingredients` },
+        { id: 'labTested', label: t('pdp.tabs.labTested'), fieldPath: `translations.${language}.pdp.tabs.labTested` },
     ];
 
     const knowledgeSectionConfigs: { id: string; field: keyof ProductKnowledge; titleKey: string }[] = [
@@ -101,19 +101,32 @@ const ProductDetail: React.FC = () => {
 
                     <div className="space-y-6">
                         <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6, delay: 0.1 }}>
-                            <h1 className="text-3xl sm:text-4xl font-semibold" data-nlv-field-path={productFieldPath ? `${productFieldPath}.name.en` : undefined}>{translate(product.name)}</h1>
-                            <p className="text-lg text-stone-500 mt-2" data-nlv-field-path={productFieldPath ? `${productFieldPath}.tagline.en` : undefined}>{translate(product.tagline)}</p>
+                            <h1
+                                className="text-3xl sm:text-4xl font-semibold"
+                                data-nlv-field-path={productFieldPath ? `${productFieldPath}.name.${language}` : undefined}
+                            >
+                                {translate(product.name)}
+                            </h1>
+                            <p
+                                className="text-lg text-stone-500 mt-2"
+                                data-nlv-field-path={productFieldPath ? `${productFieldPath}.tagline.${language}` : undefined}
+                            >
+                                {translate(product.tagline)}
+                            </p>
                             {product.description && (
                                 <p
                                     className="mt-4 text-base text-stone-600 leading-relaxed"
-                                    data-nlv-field-path={productFieldPath ? `${productFieldPath}.description.en` : undefined}
+                                    data-nlv-field-path={productFieldPath ? `${productFieldPath}.description.${language}` : undefined}
                                 >
                                     {translate(product.description)}
                                 </p>
                             )}
                             {product.bundleIncludes && (
                                 <div className="mt-6">
-                                    <h2 className="text-sm font-semibold uppercase tracking-wide text-stone-500" data-nlv-field-path="translations.en.pdp.bundleIncludes">
+                                    <h2
+                                        className="text-sm font-semibold uppercase tracking-wide text-stone-500"
+                                        data-nlv-field-path={`translations.${language}.pdp.bundleIncludes`}
+                                    >
                                         {t('pdp.bundleIncludes')}
                                     </h2>
                                     <ul className="mt-3 list-disc pl-5 space-y-1">
@@ -121,7 +134,11 @@ const ProductDetail: React.FC = () => {
                                             <li
                                                 key={index}
                                                 className="text-sm text-stone-600"
-                                                data-nlv-field-path={productFieldPath ? `${productFieldPath}.bundleIncludes.en.${index}` : undefined}
+                                                data-nlv-field-path={
+                                                    productFieldPath
+                                                        ? `${productFieldPath}.bundleIncludes.${language}.${index}`
+                                                        : undefined
+                                                }
                                             >
                                                 {item}
                                             </li>
@@ -137,7 +154,11 @@ const ProductDetail: React.FC = () => {
                                     <span
                                         key={index}
                                         className="text-xs font-semibold bg-stone-100 text-stone-700 px-3 py-1 rounded-full"
-                                        data-nlv-field-path={productFieldPath ? `${productFieldPath}.badges.en.${index}` : undefined}
+                                        data-nlv-field-path={
+                                            productFieldPath
+                                                ? `${productFieldPath}.badges.${language}.${index}`
+                                                : undefined
+                                        }
                                     >
                                         {badge}
                                     </span>
@@ -147,7 +168,12 @@ const ProductDetail: React.FC = () => {
 
                         <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6, delay: 0.3 }} className="space-y-4">
                             <div>
-                                <label className="block text-sm font-medium text-stone-700 mb-2" data-nlv-field-path="translations.en.pdp.size">{t('pdp.size')}</label>
+                                <label
+                                    className="block text-sm font-medium text-stone-700 mb-2"
+                                    data-nlv-field-path={`translations.${language}.pdp.size`}
+                                >
+                                    {t('pdp.size')}
+                                </label>
                                 <div className="flex items-center space-x-2">
                                     {product.sizes.map((size, index) => (
                                         <button
@@ -174,7 +200,10 @@ const ProductDetail: React.FC = () => {
                                     onClick={handleAddToCart}
                                     className="flex items-center gap-2 px-8 py-3 bg-stone-900 text-white font-semibold rounded-md hover:bg-stone-700 transition-colors"
                                 >
-                                    <Plus size={18} /> <span data-nlv-field-path="translations.en.pdp.addToCart">{t('pdp.addToCart')}</span>
+                                    <Plus size={18} />{' '}
+                                    <span data-nlv-field-path={`translations.${language}.pdp.addToCart`}>
+                                        {t('pdp.addToCart')}
+                                    </span>
                                 </button>
                             </div>
                         </motion.div>
@@ -203,7 +232,11 @@ const ProductDetail: React.FC = () => {
                                         {(translate(product.benefits) as string[]).map((benefit: string, index: number) => (
                                             <li
                                                 key={index}
-                                                data-nlv-field-path={productFieldPath ? `${productFieldPath}.benefits.en.${index}` : undefined}
+                                                data-nlv-field-path={
+                                                    productFieldPath
+                                                        ? `${productFieldPath}.benefits.${language}.${index}`
+                                                        : undefined
+                                                }
                                             >
                                                 {benefit}
                                             </li>
@@ -211,19 +244,19 @@ const ProductDetail: React.FC = () => {
                                     </ul>
                                 )}
                                 {activeTab === 'howToUse' && (
-                                    <p data-nlv-field-path={productFieldPath ? `${productFieldPath}.howToUse.en` : undefined}>{translate(product.howToUse)}</p>
+                                    <p data-nlv-field-path={productFieldPath ? `${productFieldPath}.howToUse.${language}` : undefined}>{translate(product.howToUse)}</p>
                                 )}
                                 {activeTab === 'ingredients' && (
-                                    <p data-nlv-field-path={productFieldPath ? `${productFieldPath}.ingredients.en` : undefined}>{translate(product.ingredients)}</p>
+                                    <p data-nlv-field-path={productFieldPath ? `${productFieldPath}.ingredients.${language}` : undefined}>{translate(product.ingredients)}</p>
                                 )}
                                 {activeTab === 'labTested' && (
-                                    <p data-nlv-field-path={productFieldPath ? `${productFieldPath}.labTestedNote.en` : undefined}>{translate(product.labTestedNote)}</p>
+                                    <p data-nlv-field-path={productFieldPath ? `${productFieldPath}.labTestedNote.${language}` : undefined}>{translate(product.labTestedNote)}</p>
                                 )}
                                 {product.goodToKnow && (
                                     <div className="mt-8">
                                         <h4
                                             className="text-sm font-semibold uppercase tracking-wide text-stone-500"
-                                            data-nlv-field-path={productFieldPath ? `${productFieldPath}.goodToKnow.title.en` : undefined}
+                                            data-nlv-field-path={productFieldPath ? `${productFieldPath}.goodToKnow.title.${language}` : undefined}
                                         >
                                             {translate(product.goodToKnow.title)}
                                         </h4>
@@ -231,7 +264,11 @@ const ProductDetail: React.FC = () => {
                                             {(translate(product.goodToKnow.items) as string[]).map((item: string, index: number) => (
                                                 <li
                                                     key={index}
-                                                    data-nlv-field-path={productFieldPath ? `${productFieldPath}.goodToKnow.items.en.${index}` : undefined}
+                                                    data-nlv-field-path={
+                                                        productFieldPath
+                                                            ? `${productFieldPath}.goodToKnow.items.${language}.${index}`
+                                                            : undefined
+                                                    }
                                                 >
                                                     {item}
                                                 </li>
@@ -249,8 +286,18 @@ const ProductDetail: React.FC = () => {
                 <section className="bg-stone-50 py-16 sm:py-24">
                     <div className="container mx-auto px-4 sm:px-6 lg:px-8">
                         <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }} className="max-w-3xl">
-                            <h2 className="text-3xl sm:text-4xl font-semibold text-stone-900" data-nlv-field-path="translations.en.pdp.knowledge.title">{t('pdp.knowledge.title')}</h2>
-                            <p className="mt-4 text-lg text-stone-600" data-nlv-field-path="translations.en.pdp.knowledge.subtitle">{t('pdp.knowledge.subtitle')}</p>
+                            <h2
+                                className="text-3xl sm:text-4xl font-semibold text-stone-900"
+                                data-nlv-field-path={`translations.${language}.pdp.knowledge.title`}
+                            >
+                                {t('pdp.knowledge.title')}
+                            </h2>
+                            <p
+                                className="mt-4 text-lg text-stone-600"
+                                data-nlv-field-path={`translations.${language}.pdp.knowledge.subtitle`}
+                            >
+                                {t('pdp.knowledge.subtitle')}
+                            </p>
                         </motion.div>
                         <div className="mt-12 grid gap-8 md:grid-cols-2">
                             {knowledgeSectionConfigs.map(section => (
@@ -261,12 +308,19 @@ const ProductDetail: React.FC = () => {
                                     transition={{ duration: 0.6, delay: 0.1 }}
                                     className="bg-white p-6 rounded-lg shadow-sm border border-stone-200"
                                 >
-                                    <h3 className="text-xl font-semibold text-stone-900" data-nlv-field-path={`translations.en.pdp.knowledge.sections.${section.field}`}>
+                                    <h3
+                                        className="text-xl font-semibold text-stone-900"
+                                        data-nlv-field-path={`translations.${language}.pdp.knowledge.sections.${section.field}`}
+                                    >
                                         {t(section.titleKey)}
                                     </h3>
                                     <p
                                         className="mt-4 text-stone-700 leading-relaxed"
-                                        data-nlv-field-path={productFieldPath ? `${productFieldPath}.knowledge.${section.field}.en` : undefined}
+                                        data-nlv-field-path={
+                                            productFieldPath
+                                                ? `${productFieldPath}.knowledge.${section.field}.${language}`
+                                                : undefined
+                                        }
                                     >
                                         {translate(product.knowledge[section.field])}
                                     </p>
@@ -281,8 +335,18 @@ const ProductDetail: React.FC = () => {
                 <section className="py-16 sm:py-24">
                     <div className="container mx-auto px-4 sm:px-6 lg:px-8">
                         <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }} className="max-w-3xl">
-                            <h2 className="text-3xl sm:text-4xl font-semibold text-stone-900" data-nlv-field-path="translations.en.pdp.faq.title">{t('pdp.faq.title')}</h2>
-                            <p className="mt-4 text-lg text-stone-600" data-nlv-field-path="translations.en.pdp.faq.subtitle">{t('pdp.faq.subtitle')}</p>
+                            <h2
+                                className="text-3xl sm:text-4xl font-semibold text-stone-900"
+                                data-nlv-field-path={`translations.${language}.pdp.faq.title`}
+                            >
+                                {t('pdp.faq.title')}
+                            </h2>
+                            <p
+                                className="mt-4 text-lg text-stone-600"
+                                data-nlv-field-path={`translations.${language}.pdp.faq.subtitle`}
+                            >
+                                {t('pdp.faq.subtitle')}
+                            </p>
                         </motion.div>
                         <div className="mt-10 space-y-6">
                             {product.faqs.map((faq, index) => (
@@ -295,13 +359,21 @@ const ProductDetail: React.FC = () => {
                                 >
                                     <h3
                                         className="text-xl font-semibold text-stone-900"
-                                        data-nlv-field-path={productFieldPath ? `${productFieldPath}.faqs.${index}.question.en` : undefined}
+                                        data-nlv-field-path={
+                                            productFieldPath
+                                                ? `${productFieldPath}.faqs.${index}.question.${language}`
+                                                : undefined
+                                        }
                                     >
                                         {translate(faq.question)}
                                     </h3>
                                     <p
                                         className="mt-3 text-stone-700 leading-relaxed"
-                                        data-nlv-field-path={productFieldPath ? `${productFieldPath}.faqs.${index}.answer.en` : undefined}
+                                        data-nlv-field-path={
+                                            productFieldPath
+                                                ? `${productFieldPath}.faqs.${index}.answer.${language}`
+                                                : undefined
+                                        }
                                     >
                                         {translate(faq.answer)}
                                     </p>
@@ -315,9 +387,18 @@ const ProductDetail: React.FC = () => {
             {relatedProducts.length > 0 && (
                 <div className="py-16 sm:py-24 bg-stone-50">
                     <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-                        <h2 className="text-3xl font-semibold text-center mb-12" data-nlv-field-path="translations.en.pdp.relatedProducts">{t('pdp.relatedProducts')}</h2>
+                        <h2
+                            className="text-3xl font-semibold text-center mb-12"
+                            data-nlv-field-path={`translations.${language}.pdp.relatedProducts`}
+                        >
+                            {t('pdp.relatedProducts')}
+                        </h2>
                         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
-                            {relatedProducts.map(p => <ProductCard key={p.id} product={p} />)}
+                            {relatedProducts.map((p) => {
+                                const relatedIndex = allProducts.findIndex((productItem) => productItem.id === p.id);
+                                const relatedFieldPath = relatedIndex >= 0 ? `products.items.${relatedIndex}` : undefined;
+                                return <ProductCard key={p.id} product={p} fieldPath={relatedFieldPath} />;
+                            })}
                         </div>
                     </div>
                 </div>

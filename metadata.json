@@ -196,5 +196,4739 @@
       "primaryKeyField": "id",
       "labelField": "name"
     }
+  ],
+  "models": [
+    {
+      "name": "site",
+      "label": "Site Settings",
+      "type": "data",
+      "singleInstance": true,
+      "filePath": "content/site.json",
+      "fields": [
+        {
+          "name": "brand",
+          "label": "Brand",
+          "type": "object",
+          "fields": [
+            {
+              "name": "name",
+              "label": "Name",
+              "type": "string"
+            }
+          ]
+        },
+        {
+          "name": "home",
+          "label": "Home",
+          "type": "object",
+          "fields": [
+            {
+              "name": "heroImage",
+              "label": "Hero Image",
+              "type": "image"
+            }
+          ]
+        },
+        {
+          "name": "contact",
+          "label": "Contact",
+          "type": "object",
+          "fields": [
+            {
+              "name": "email",
+              "label": "Email",
+              "type": "string"
+            },
+            {
+              "name": "phone",
+              "label": "Phone",
+              "type": "string"
+            },
+            {
+              "name": "whatsapp",
+              "label": "WhatsApp",
+              "type": "string"
+            }
+          ]
+        },
+        {
+          "name": "footer",
+          "label": "Footer",
+          "type": "object",
+          "fields": [
+            {
+              "name": "legalName",
+              "label": "Legal Name",
+              "type": "string"
+            },
+            {
+              "name": "socialLinks",
+              "label": "Social Links",
+              "type": "list",
+              "items": {
+                "type": "object",
+                "fields": [
+                  {
+                    "name": "id",
+                    "label": "ID",
+                    "type": "string"
+                  },
+                  {
+                    "name": "label",
+                    "label": "Label",
+                    "type": "string"
+                  },
+                  {
+                    "name": "url",
+                    "label": "URL",
+                    "type": "string"
+                  },
+                  {
+                    "name": "icon",
+                    "label": "Icon",
+                    "type": "string"
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "method",
+      "label": "Method Page Content",
+      "type": "data",
+      "singleInstance": true,
+      "filePath": "content/method.json",
+      "fields": [
+        {
+          "name": "en",
+          "label": "English",
+          "type": "object",
+          "fields": [
+            {
+              "name": "metaTitle",
+              "label": "Meta Title",
+              "type": "string"
+            },
+            {
+              "name": "metaDescription",
+              "label": "Meta Description",
+              "type": "text"
+            },
+            {
+              "name": "heroTitle",
+              "label": "Hero Title",
+              "type": "string"
+            },
+            {
+              "name": "heroSubtitle",
+              "label": "Hero Subtitle",
+              "type": "text"
+            },
+            {
+              "name": "body",
+              "label": "Body",
+              "type": "text"
+            },
+            {
+              "name": "testimonialsTitle",
+              "label": "Testimonials Title",
+              "type": "string"
+            },
+            {
+              "name": "testimonials",
+              "label": "Testimonials",
+              "type": "list",
+              "items": {
+                "type": "object",
+                "fields": [
+                  {
+                    "name": "id",
+                    "label": "ID",
+                    "type": "string"
+                  },
+                  {
+                    "name": "quote",
+                    "label": "Quote",
+                    "type": "text"
+                  },
+                  {
+                    "name": "name",
+                    "label": "Name",
+                    "type": "string"
+                  },
+                  {
+                    "name": "role",
+                    "label": "Role",
+                    "type": "string"
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "pt",
+          "label": "Portuguese",
+          "type": "object",
+          "fields": [
+            {
+              "name": "metaTitle",
+              "label": "Meta Title",
+              "type": "string"
+            },
+            {
+              "name": "metaDescription",
+              "label": "Meta Description",
+              "type": "text"
+            },
+            {
+              "name": "heroTitle",
+              "label": "Hero Title",
+              "type": "string"
+            },
+            {
+              "name": "heroSubtitle",
+              "label": "Hero Subtitle",
+              "type": "text"
+            },
+            {
+              "name": "body",
+              "label": "Body",
+              "type": "text"
+            },
+            {
+              "name": "testimonialsTitle",
+              "label": "Testimonials Title",
+              "type": "string"
+            },
+            {
+              "name": "testimonials",
+              "label": "Testimonials",
+              "type": "list",
+              "items": {
+                "type": "object",
+                "fields": [
+                  {
+                    "name": "id",
+                    "label": "ID",
+                    "type": "string"
+                  },
+                  {
+                    "name": "quote",
+                    "label": "Quote",
+                    "type": "text"
+                  },
+                  {
+                    "name": "name",
+                    "label": "Name",
+                    "type": "string"
+                  },
+                  {
+                    "name": "role",
+                    "label": "Role",
+                    "type": "string"
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "es",
+          "label": "Spanish",
+          "type": "object",
+          "fields": [
+            {
+              "name": "metaTitle",
+              "label": "Meta Title",
+              "type": "string"
+            },
+            {
+              "name": "metaDescription",
+              "label": "Meta Description",
+              "type": "text"
+            },
+            {
+              "name": "heroTitle",
+              "label": "Hero Title",
+              "type": "string"
+            },
+            {
+              "name": "heroSubtitle",
+              "label": "Hero Subtitle",
+              "type": "text"
+            },
+            {
+              "name": "body",
+              "label": "Body",
+              "type": "text"
+            },
+            {
+              "name": "testimonialsTitle",
+              "label": "Testimonials Title",
+              "type": "string"
+            },
+            {
+              "name": "testimonials",
+              "label": "Testimonials",
+              "type": "list",
+              "items": {
+                "type": "object",
+                "fields": [
+                  {
+                    "name": "id",
+                    "label": "ID",
+                    "type": "string"
+                  },
+                  {
+                    "name": "quote",
+                    "label": "Quote",
+                    "type": "text"
+                  },
+                  {
+                    "name": "name",
+                    "label": "Name",
+                    "type": "string"
+                  },
+                  {
+                    "name": "role",
+                    "label": "Role",
+                    "type": "string"
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "shop",
+      "label": "Shop Page Content",
+      "type": "data",
+      "singleInstance": true,
+      "filePath": "content/shop.json",
+      "fields": [
+        {
+          "name": "categories",
+          "label": "Categories",
+          "type": "list",
+          "items": {
+            "type": "object",
+            "fields": [
+              {
+                "name": "id",
+                "label": "ID",
+                "type": "string"
+              },
+              {
+                "name": "title",
+                "label": "Title",
+                "type": "object",
+                "fields": [
+                  {
+                    "name": "en",
+                    "label": "English",
+                    "type": "string"
+                  },
+                  {
+                    "name": "pt",
+                    "label": "Portuguese",
+                    "type": "string"
+                  },
+                  {
+                    "name": "es",
+                    "label": "Spanish",
+                    "type": "string"
+                  }
+                ]
+              },
+              {
+                "name": "intro",
+                "label": "Intro",
+                "type": "object",
+                "fields": [
+                  {
+                    "name": "en",
+                    "label": "English",
+                    "type": "text"
+                  },
+                  {
+                    "name": "pt",
+                    "label": "Portuguese",
+                    "type": "text"
+                  },
+                  {
+                    "name": "es",
+                    "label": "Spanish",
+                    "type": "text"
+                  }
+                ]
+              },
+              {
+                "name": "productIds",
+                "label": "Product IDs",
+                "type": "list",
+                "items": {
+                  "type": "string"
+                }
+              },
+              {
+                "name": "links",
+                "label": "Links",
+                "type": "list",
+                "items": {
+                  "type": "object",
+                  "fields": [
+                    {
+                      "name": "id",
+                      "label": "ID",
+                      "type": "string"
+                    },
+                    {
+                      "name": "type",
+                      "label": "Type",
+                      "type": "string"
+                    },
+                    {
+                      "name": "url",
+                      "label": "URL",
+                      "type": "string"
+                    },
+                    {
+                      "name": "label",
+                      "label": "Label",
+                      "type": "object",
+                      "fields": [
+                        {
+                          "name": "en",
+                          "label": "English",
+                          "type": "string"
+                        },
+                        {
+                          "name": "pt",
+                          "label": "Portuguese",
+                          "type": "string"
+                        },
+                        {
+                          "name": "es",
+                          "label": "Spanish",
+                          "type": "string"
+                        }
+                      ]
+                    }
+                  ]
+                }
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "products",
+      "label": "Products",
+      "type": "data",
+      "singleInstance": true,
+      "filePath": "content/products/index.json",
+      "fields": [
+        {
+          "name": "items",
+          "label": "Products",
+          "type": "list",
+          "items": {
+            "type": "object",
+            "fields": [
+              {
+                "name": "id",
+                "label": "ID",
+                "type": "string"
+              },
+              {
+                "name": "name",
+                "label": "Name",
+                "type": "object",
+                "fields": [
+                  {
+                    "name": "en",
+                    "label": "English",
+                    "type": "string"
+                  },
+                  {
+                    "name": "pt",
+                    "label": "Portuguese",
+                    "type": "string"
+                  },
+                  {
+                    "name": "es",
+                    "label": "Spanish",
+                    "type": "string"
+                  }
+                ]
+              },
+              {
+                "name": "tagline",
+                "label": "Tagline",
+                "type": "object",
+                "fields": [
+                  {
+                    "name": "en",
+                    "label": "English",
+                    "type": "string"
+                  },
+                  {
+                    "name": "pt",
+                    "label": "Portuguese",
+                    "type": "string"
+                  },
+                  {
+                    "name": "es",
+                    "label": "Spanish",
+                    "type": "string"
+                  }
+                ]
+              },
+              {
+                "name": "description",
+                "label": "Description",
+                "type": "object",
+                "fields": [
+                  {
+                    "name": "en",
+                    "label": "English",
+                    "type": "text"
+                  },
+                  {
+                    "name": "pt",
+                    "label": "Portuguese",
+                    "type": "text"
+                  },
+                  {
+                    "name": "es",
+                    "label": "Spanish",
+                    "type": "text"
+                  }
+                ]
+              },
+              {
+                "name": "bundleIncludes",
+                "label": "Bundle Includes",
+                "type": "object",
+                "fields": [
+                  {
+                    "name": "en",
+                    "label": "English",
+                    "type": "list",
+                    "items": {
+                      "type": "string"
+                    }
+                  },
+                  {
+                    "name": "pt",
+                    "label": "Portuguese",
+                    "type": "list",
+                    "items": {
+                      "type": "string"
+                    }
+                  },
+                  {
+                    "name": "es",
+                    "label": "Spanish",
+                    "type": "list",
+                    "items": {
+                      "type": "string"
+                    }
+                  }
+                ]
+              },
+              {
+                "name": "imageUrl",
+                "label": "Image URL",
+                "type": "image"
+              },
+              {
+                "name": "sizes",
+                "label": "Sizes",
+                "type": "list",
+                "items": {
+                  "type": "object",
+                  "fields": [
+                    {
+                      "name": "id",
+                      "label": "ID",
+                      "type": "string"
+                    },
+                    {
+                      "name": "size",
+                      "label": "Size",
+                      "type": "number"
+                    },
+                    {
+                      "name": "price",
+                      "label": "Price",
+                      "type": "number"
+                    }
+                  ]
+                }
+              },
+              {
+                "name": "badges",
+                "label": "Badges",
+                "type": "object",
+                "fields": [
+                  {
+                    "name": "en",
+                    "label": "English",
+                    "type": "list",
+                    "items": {
+                      "type": "string"
+                    }
+                  },
+                  {
+                    "name": "pt",
+                    "label": "Portuguese",
+                    "type": "list",
+                    "items": {
+                      "type": "string"
+                    }
+                  },
+                  {
+                    "name": "es",
+                    "label": "Spanish",
+                    "type": "list",
+                    "items": {
+                      "type": "string"
+                    }
+                  }
+                ]
+              },
+              {
+                "name": "benefits",
+                "label": "Benefits",
+                "type": "object",
+                "fields": [
+                  {
+                    "name": "en",
+                    "label": "English",
+                    "type": "list",
+                    "items": {
+                      "type": "string"
+                    }
+                  },
+                  {
+                    "name": "pt",
+                    "label": "Portuguese",
+                    "type": "list",
+                    "items": {
+                      "type": "string"
+                    }
+                  },
+                  {
+                    "name": "es",
+                    "label": "Spanish",
+                    "type": "list",
+                    "items": {
+                      "type": "string"
+                    }
+                  }
+                ]
+              },
+              {
+                "name": "howToUse",
+                "label": "How To Use",
+                "type": "object",
+                "fields": [
+                  {
+                    "name": "en",
+                    "label": "English",
+                    "type": "text"
+                  },
+                  {
+                    "name": "pt",
+                    "label": "Portuguese",
+                    "type": "text"
+                  },
+                  {
+                    "name": "es",
+                    "label": "Spanish",
+                    "type": "text"
+                  }
+                ]
+              },
+              {
+                "name": "ingredients",
+                "label": "Ingredients",
+                "type": "object",
+                "fields": [
+                  {
+                    "name": "en",
+                    "label": "English",
+                    "type": "text"
+                  },
+                  {
+                    "name": "pt",
+                    "label": "Portuguese",
+                    "type": "text"
+                  },
+                  {
+                    "name": "es",
+                    "label": "Spanish",
+                    "type": "text"
+                  }
+                ]
+              },
+              {
+                "name": "labTestedNote",
+                "label": "Lab Tested Note",
+                "type": "object",
+                "fields": [
+                  {
+                    "name": "en",
+                    "label": "English",
+                    "type": "text"
+                  },
+                  {
+                    "name": "pt",
+                    "label": "Portuguese",
+                    "type": "text"
+                  },
+                  {
+                    "name": "es",
+                    "label": "Spanish",
+                    "type": "text"
+                  }
+                ]
+              },
+              {
+                "name": "goodToKnow",
+                "label": "Good To Know",
+                "type": "object",
+                "fields": [
+                  {
+                    "name": "title",
+                    "label": "Title",
+                    "type": "object",
+                    "fields": [
+                      {
+                        "name": "en",
+                        "label": "English",
+                        "type": "string"
+                      },
+                      {
+                        "name": "pt",
+                        "label": "Portuguese",
+                        "type": "string"
+                      },
+                      {
+                        "name": "es",
+                        "label": "Spanish",
+                        "type": "string"
+                      }
+                    ]
+                  },
+                  {
+                    "name": "items",
+                    "label": "Items",
+                    "type": "object",
+                    "fields": [
+                      {
+                        "name": "en",
+                        "label": "English",
+                        "type": "list",
+                        "items": {
+                          "type": "string"
+                        }
+                      },
+                      {
+                        "name": "pt",
+                        "label": "Portuguese",
+                        "type": "list",
+                        "items": {
+                          "type": "string"
+                        }
+                      },
+                      {
+                        "name": "es",
+                        "label": "Spanish",
+                        "type": "list",
+                        "items": {
+                          "type": "string"
+                        }
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "name": "knowledge",
+                "label": "Knowledge",
+                "type": "object",
+                "fields": [
+                  {
+                    "name": "whatItIs",
+                    "label": "What It Is",
+                    "type": "object",
+                    "fields": [
+                      {
+                        "name": "en",
+                        "label": "English",
+                        "type": "text"
+                      },
+                      {
+                        "name": "pt",
+                        "label": "Portuguese",
+                        "type": "text"
+                      },
+                      {
+                        "name": "es",
+                        "label": "Spanish",
+                        "type": "text"
+                      }
+                    ]
+                  },
+                  {
+                    "name": "howItWorks",
+                    "label": "How It Works",
+                    "type": "object",
+                    "fields": [
+                      {
+                        "name": "en",
+                        "label": "English",
+                        "type": "text"
+                      },
+                      {
+                        "name": "pt",
+                        "label": "Portuguese",
+                        "type": "text"
+                      },
+                      {
+                        "name": "es",
+                        "label": "Spanish",
+                        "type": "text"
+                      }
+                    ]
+                  },
+                  {
+                    "name": "whoItsFor",
+                    "label": "Who It's For",
+                    "type": "object",
+                    "fields": [
+                      {
+                        "name": "en",
+                        "label": "English",
+                        "type": "text"
+                      },
+                      {
+                        "name": "pt",
+                        "label": "Portuguese",
+                        "type": "text"
+                      },
+                      {
+                        "name": "es",
+                        "label": "Spanish",
+                        "type": "text"
+                      }
+                    ]
+                  },
+                  {
+                    "name": "scientificBacking",
+                    "label": "Scientific Backing",
+                    "type": "object",
+                    "fields": [
+                      {
+                        "name": "en",
+                        "label": "English",
+                        "type": "text"
+                      },
+                      {
+                        "name": "pt",
+                        "label": "Portuguese",
+                        "type": "text"
+                      },
+                      {
+                        "name": "es",
+                        "label": "Spanish",
+                        "type": "text"
+                      }
+                    ]
+                  },
+                  {
+                    "name": "culturalContext",
+                    "label": "Cultural Context",
+                    "type": "object",
+                    "fields": [
+                      {
+                        "name": "en",
+                        "label": "English",
+                        "type": "text"
+                      },
+                      {
+                        "name": "pt",
+                        "label": "Portuguese",
+                        "type": "text"
+                      },
+                      {
+                        "name": "es",
+                        "label": "Spanish",
+                        "type": "text"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "name": "faqs",
+                "label": "FAQs",
+                "type": "list",
+                "items": {
+                  "type": "object",
+                  "fields": [
+                    {
+                      "name": "question",
+                      "label": "Question",
+                      "type": "object",
+                      "fields": [
+                        {
+                          "name": "en",
+                          "label": "English",
+                          "type": "text"
+                        },
+                        {
+                          "name": "pt",
+                          "label": "Portuguese",
+                          "type": "text"
+                        },
+                        {
+                          "name": "es",
+                          "label": "Spanish",
+                          "type": "text"
+                        }
+                      ]
+                    },
+                    {
+                      "name": "answer",
+                      "label": "Answer",
+                      "type": "object",
+                      "fields": [
+                        {
+                          "name": "en",
+                          "label": "English",
+                          "type": "text"
+                        },
+                        {
+                          "name": "pt",
+                          "label": "Portuguese",
+                          "type": "text"
+                        },
+                        {
+                          "name": "es",
+                          "label": "Spanish",
+                          "type": "text"
+                        }
+                      ]
+                    }
+                  ]
+                }
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "articles",
+      "label": "Articles",
+      "type": "data",
+      "singleInstance": true,
+      "filePath": "content/articles/index.json",
+      "fields": [
+        {
+          "name": "items",
+          "label": "Articles",
+          "type": "list",
+          "items": {
+            "type": "object",
+            "fields": [
+              {
+                "name": "id",
+                "label": "ID",
+                "type": "string"
+              },
+              {
+                "name": "slug",
+                "label": "Slug",
+                "type": "string"
+              },
+              {
+                "name": "title",
+                "label": "Title",
+                "type": "object",
+                "fields": [
+                  {
+                    "name": "en",
+                    "label": "English",
+                    "type": "string"
+                  },
+                  {
+                    "name": "pt",
+                    "label": "Portuguese",
+                    "type": "string"
+                  },
+                  {
+                    "name": "es",
+                    "label": "Spanish",
+                    "type": "string"
+                  }
+                ]
+              },
+              {
+                "name": "preview",
+                "label": "Preview",
+                "type": "object",
+                "fields": [
+                  {
+                    "name": "en",
+                    "label": "English",
+                    "type": "text"
+                  },
+                  {
+                    "name": "pt",
+                    "label": "Portuguese",
+                    "type": "text"
+                  },
+                  {
+                    "name": "es",
+                    "label": "Spanish",
+                    "type": "text"
+                  }
+                ]
+              },
+              {
+                "name": "content",
+                "label": "Content",
+                "type": "object",
+                "fields": [
+                  {
+                    "name": "en",
+                    "label": "English",
+                    "type": "markdown"
+                  },
+                  {
+                    "name": "pt",
+                    "label": "Portuguese",
+                    "type": "markdown"
+                  },
+                  {
+                    "name": "es",
+                    "label": "Spanish",
+                    "type": "markdown"
+                  }
+                ]
+              },
+              {
+                "name": "category",
+                "label": "Category",
+                "type": "string"
+              },
+              {
+                "name": "imageUrl",
+                "label": "Image URL",
+                "type": "image"
+              },
+              {
+                "name": "relatedProductId",
+                "label": "Related Product ID",
+                "type": "string"
+              },
+              {
+                "name": "relatedProductIds",
+                "label": "Related Product IDs",
+                "type": "list",
+                "items": {
+                  "type": "string"
+                }
+              },
+              {
+                "name": "faqs",
+                "label": "FAQs",
+                "type": "list",
+                "items": {
+                  "type": "object",
+                  "fields": [
+                    {
+                      "name": "question",
+                      "label": "Question",
+                      "type": "object",
+                      "fields": [
+                        {
+                          "name": "en",
+                          "label": "English",
+                          "type": "text"
+                        },
+                        {
+                          "name": "pt",
+                          "label": "Portuguese",
+                          "type": "text"
+                        },
+                        {
+                          "name": "es",
+                          "label": "Spanish",
+                          "type": "text"
+                        }
+                      ]
+                    },
+                    {
+                      "name": "answer",
+                      "label": "Answer",
+                      "type": "object",
+                      "fields": [
+                        {
+                          "name": "en",
+                          "label": "English",
+                          "type": "text"
+                        },
+                        {
+                          "name": "pt",
+                          "label": "Portuguese",
+                          "type": "text"
+                        },
+                        {
+                          "name": "es",
+                          "label": "Spanish",
+                          "type": "text"
+                        }
+                      ]
+                    }
+                  ]
+                }
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "reviews",
+      "label": "Reviews",
+      "type": "data",
+      "singleInstance": true,
+      "filePath": "content/reviews/index.json",
+      "fields": [
+        {
+          "name": "items",
+          "label": "Reviews",
+          "type": "list",
+          "items": {
+            "type": "object",
+            "fields": [
+              {
+                "name": "id",
+                "label": "ID",
+                "type": "string"
+              },
+              {
+                "name": "text",
+                "label": "Text",
+                "type": "object",
+                "fields": [
+                  {
+                    "name": "en",
+                    "label": "English",
+                    "type": "text"
+                  },
+                  {
+                    "name": "pt",
+                    "label": "Portuguese",
+                    "type": "text"
+                  },
+                  {
+                    "name": "es",
+                    "label": "Spanish",
+                    "type": "text"
+                  }
+                ]
+              },
+              {
+                "name": "author",
+                "label": "Author",
+                "type": "object",
+                "fields": [
+                  {
+                    "name": "en",
+                    "label": "English",
+                    "type": "string"
+                  },
+                  {
+                    "name": "pt",
+                    "label": "Portuguese",
+                    "type": "string"
+                  },
+                  {
+                    "name": "es",
+                    "label": "Spanish",
+                    "type": "string"
+                  }
+                ]
+              },
+              {
+                "name": "role",
+                "label": "Role",
+                "type": "object",
+                "fields": [
+                  {
+                    "name": "en",
+                    "label": "English",
+                    "type": "string"
+                  },
+                  {
+                    "name": "pt",
+                    "label": "Portuguese",
+                    "type": "string"
+                  },
+                  {
+                    "name": "es",
+                    "label": "Spanish",
+                    "type": "string"
+                  }
+                ]
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "courses",
+      "label": "Courses",
+      "type": "data",
+      "singleInstance": true,
+      "filePath": "content/courses.json",
+      "fields": [
+        {
+          "name": "courses",
+          "label": "Courses",
+          "type": "list",
+          "items": {
+            "type": "object",
+            "fields": [
+              {
+                "name": "id",
+                "label": "ID",
+                "type": "string"
+              },
+              {
+                "name": "title",
+                "label": "Title",
+                "type": "object",
+                "fields": [
+                  {
+                    "name": "en",
+                    "label": "English",
+                    "type": "string"
+                  },
+                  {
+                    "name": "pt",
+                    "label": "Portuguese",
+                    "type": "string"
+                  },
+                  {
+                    "name": "es",
+                    "label": "Spanish",
+                    "type": "string"
+                  }
+                ]
+              },
+              {
+                "name": "imageUrl",
+                "label": "Image URL",
+                "type": "image"
+              },
+              {
+                "name": "price",
+                "label": "Price",
+                "type": "number"
+              },
+              {
+                "name": "enrollLink",
+                "label": "Enroll Link",
+                "type": "string"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "doctors",
+      "label": "Doctors",
+      "type": "data",
+      "singleInstance": true,
+      "filePath": "content/doctors.json",
+      "fields": [
+        {
+          "name": "doctors",
+          "label": "Doctors",
+          "type": "list",
+          "items": {
+            "type": "object",
+            "fields": [
+              {
+                "name": "id",
+                "label": "ID",
+                "type": "string"
+              },
+              {
+                "name": "name",
+                "label": "Name",
+                "type": "string"
+              },
+              {
+                "name": "imageUrl",
+                "label": "Image URL",
+                "type": "image"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "partners",
+      "label": "Partners",
+      "type": "data",
+      "singleInstance": true,
+      "filePath": "content/partners.json",
+      "fields": [
+        {
+          "name": "partners",
+          "label": "Partners",
+          "type": "list",
+          "items": {
+            "type": "object",
+            "fields": [
+              {
+                "name": "id",
+                "label": "ID",
+                "type": "string"
+              },
+              {
+                "name": "name",
+                "label": "Name",
+                "type": "string"
+              },
+              {
+                "name": "logoUrl",
+                "label": "Logo URL",
+                "type": "image"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "policies",
+      "label": "Policies",
+      "type": "data",
+      "singleInstance": true,
+      "filePath": "content/policies.json",
+      "fields": [
+        {
+          "name": "items",
+          "label": "Policies",
+          "type": "list",
+          "items": {
+            "type": "object",
+            "fields": [
+              {
+                "name": "id",
+                "label": "ID",
+                "type": "string"
+              },
+              {
+                "name": "title",
+                "label": "Title",
+                "type": "object",
+                "fields": [
+                  {
+                    "name": "en",
+                    "label": "English",
+                    "type": "string"
+                  },
+                  {
+                    "name": "pt",
+                    "label": "Portuguese",
+                    "type": "string"
+                  },
+                  {
+                    "name": "es",
+                    "label": "Spanish",
+                    "type": "string"
+                  }
+                ]
+              },
+              {
+                "name": "content",
+                "label": "Content",
+                "type": "object",
+                "fields": [
+                  {
+                    "name": "en",
+                    "label": "English",
+                    "type": "markdown"
+                  },
+                  {
+                    "name": "pt",
+                    "label": "Portuguese",
+                    "type": "markdown"
+                  },
+                  {
+                    "name": "es",
+                    "label": "Spanish",
+                    "type": "markdown"
+                  }
+                ]
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "translations",
+      "label": "Translations",
+      "type": "data",
+      "singleInstance": true,
+      "filePath": "content/translations.json",
+      "fields": [
+        {
+          "name": "en",
+          "label": "English",
+          "type": "object",
+          "fields": [
+            {
+              "name": "nav",
+              "label": "Nav",
+              "type": "object",
+              "fields": [
+                {
+                  "name": "shop",
+                  "label": "Shop",
+                  "type": "string"
+                },
+                {
+                  "name": "learn",
+                  "label": "Learn",
+                  "type": "string"
+                },
+                {
+                  "name": "method",
+                  "label": "Method",
+                  "type": "string"
+                },
+                {
+                  "name": "forClinics",
+                  "label": "For clinics",
+                  "type": "string"
+                },
+                {
+                  "name": "about",
+                  "label": "About",
+                  "type": "string"
+                },
+                {
+                  "name": "contact",
+                  "label": "Contact",
+                  "type": "string"
+                }
+              ]
+            },
+            {
+              "name": "footer",
+              "label": "Footer",
+              "type": "object",
+              "fields": [
+                {
+                  "name": "tagline",
+                  "label": "Tagline",
+                  "type": "string"
+                },
+                {
+                  "name": "followUs",
+                  "label": "Follow us",
+                  "type": "string"
+                },
+                {
+                  "name": "shop",
+                  "label": "Shop",
+                  "type": "string"
+                },
+                {
+                  "name": "allProducts",
+                  "label": "All products",
+                  "type": "string"
+                },
+                {
+                  "name": "guides",
+                  "label": "Guides",
+                  "type": "string"
+                },
+                {
+                  "name": "about",
+                  "label": "About",
+                  "type": "string"
+                },
+                {
+                  "name": "ourStory",
+                  "label": "Our story",
+                  "type": "string"
+                },
+                {
+                  "name": "contact",
+                  "label": "Contact",
+                  "type": "string"
+                },
+                {
+                  "name": "policies",
+                  "label": "Policies",
+                  "type": "string"
+                },
+                {
+                  "name": "shipping",
+                  "label": "Shipping",
+                  "type": "string"
+                },
+                {
+                  "name": "returns",
+                  "label": "Returns",
+                  "type": "string"
+                },
+                {
+                  "name": "privacy",
+                  "label": "Privacy",
+                  "type": "string"
+                },
+                {
+                  "name": "terms",
+                  "label": "Terms",
+                  "type": "string"
+                }
+              ]
+            },
+            {
+              "name": "cart",
+              "label": "Cart",
+              "type": "object",
+              "fields": [
+                {
+                  "name": "title",
+                  "label": "Title",
+                  "type": "string"
+                },
+                {
+                  "name": "subtotal",
+                  "label": "Subtotal",
+                  "type": "string"
+                },
+                {
+                  "name": "shippingNote",
+                  "label": "Shipping note",
+                  "type": "string"
+                },
+                {
+                  "name": "viewCart",
+                  "label": "View cart",
+                  "type": "string"
+                },
+                {
+                  "name": "empty",
+                  "label": "Empty",
+                  "type": "string"
+                },
+                {
+                  "name": "continueShopping",
+                  "label": "Continue shopping",
+                  "type": "string"
+                },
+                {
+                  "name": "pageTitle",
+                  "label": "Page title",
+                  "type": "string"
+                },
+                {
+                  "name": "summary",
+                  "label": "Summary",
+                  "type": "string"
+                },
+                {
+                  "name": "shipping",
+                  "label": "Shipping",
+                  "type": "string"
+                },
+                {
+                  "name": "shippingCalculated",
+                  "label": "Shipping calculated",
+                  "type": "string"
+                },
+                {
+                  "name": "total",
+                  "label": "Total",
+                  "type": "string"
+                },
+                {
+                  "name": "checkout",
+                  "label": "Checkout",
+                  "type": "string"
+                },
+                {
+                  "name": "checkoutRedirect",
+                  "label": "Checkout redirect",
+                  "type": "string"
+                }
+              ]
+            },
+            {
+              "name": "cookies",
+              "label": "Cookies",
+              "type": "object",
+              "fields": [
+                {
+                  "name": "message",
+                  "label": "Message",
+                  "type": "string"
+                },
+                {
+                  "name": "learnMore",
+                  "label": "Learn more",
+                  "type": "string"
+                },
+                {
+                  "name": "decline",
+                  "label": "Decline",
+                  "type": "string"
+                },
+                {
+                  "name": "accept",
+                  "label": "Accept",
+                  "type": "string"
+                }
+              ]
+            },
+            {
+              "name": "home",
+              "label": "Home",
+              "type": "object",
+              "fields": [
+                {
+                  "name": "metaTitle",
+                  "label": "Meta title",
+                  "type": "string"
+                },
+                {
+                  "name": "metaDescription",
+                  "label": "Meta description",
+                  "type": "text"
+                },
+                {
+                  "name": "heroTitle",
+                  "label": "Hero title",
+                  "type": "string"
+                },
+                {
+                  "name": "heroSubtitle",
+                  "label": "Hero subtitle",
+                  "type": "string"
+                },
+                {
+                  "name": "ctaShop",
+                  "label": "Cta shop",
+                  "type": "string"
+                },
+                {
+                  "name": "ctaClinics",
+                  "label": "Cta clinics",
+                  "type": "string"
+                },
+                {
+                  "name": "bestsellersTitle",
+                  "label": "Bestsellers title",
+                  "type": "string"
+                },
+                {
+                  "name": "value1",
+                  "label": "Value1",
+                  "type": "string"
+                },
+                {
+                  "name": "value2",
+                  "label": "Value2",
+                  "type": "string"
+                },
+                {
+                  "name": "value3",
+                  "label": "Value3",
+                  "type": "string"
+                },
+                {
+                  "name": "reviewsTitle",
+                  "label": "Reviews title",
+                  "type": "string"
+                },
+                {
+                  "name": "newsletterTitle",
+                  "label": "Newsletter title",
+                  "type": "string"
+                },
+                {
+                  "name": "newsletterSubtitle",
+                  "label": "Newsletter subtitle",
+                  "type": "string"
+                },
+                {
+                  "name": "newsletterThanks",
+                  "label": "Newsletter thanks",
+                  "type": "string"
+                },
+                {
+                  "name": "newsletterPlaceholder",
+                  "label": "Newsletter placeholder",
+                  "type": "string"
+                },
+                {
+                  "name": "newsletterSubmit",
+                  "label": "Newsletter submit",
+                  "type": "string"
+                }
+              ]
+            },
+            {
+              "name": "shop",
+              "label": "Shop",
+              "type": "object",
+              "fields": [
+                {
+                  "name": "title",
+                  "label": "Title",
+                  "type": "string"
+                },
+                {
+                  "name": "metaDescription",
+                  "label": "Meta description",
+                  "type": "string"
+                },
+                {
+                  "name": "subtitle",
+                  "label": "Subtitle",
+                  "type": "string"
+                },
+                {
+                  "name": "sortFeatured",
+                  "label": "Sort featured",
+                  "type": "string"
+                },
+                {
+                  "name": "sortPriceAsc",
+                  "label": "Sort price asc",
+                  "type": "string"
+                },
+                {
+                  "name": "sortPriceDesc",
+                  "label": "Sort price desc",
+                  "type": "string"
+                },
+                {
+                  "name": "sortNameAsc",
+                  "label": "Sort name asc",
+                  "type": "string"
+                },
+                {
+                  "name": "sortNameDesc",
+                  "label": "Sort name desc",
+                  "type": "string"
+                },
+                {
+                  "name": "sortLabel",
+                  "label": "Sort label",
+                  "type": "string"
+                },
+                {
+                  "name": "categoryFilterLabel",
+                  "label": "Category filter label",
+                  "type": "string"
+                },
+                {
+                  "name": "relatedResources",
+                  "label": "Related resources",
+                  "type": "string"
+                },
+                {
+                  "name": "noProducts",
+                  "label": "No products",
+                  "type": "string"
+                }
+              ]
+            },
+            {
+              "name": "pdp",
+              "label": "Pdp",
+              "type": "object",
+              "fields": [
+                {
+                  "name": "notFound",
+                  "label": "Not found",
+                  "type": "string"
+                },
+                {
+                  "name": "size",
+                  "label": "Size",
+                  "type": "string"
+                },
+                {
+                  "name": "addToCart",
+                  "label": "Add to cart",
+                  "type": "string"
+                },
+                {
+                  "name": "tabs",
+                  "label": "Tabs",
+                  "type": "object",
+                  "fields": [
+                    {
+                      "name": "benefits",
+                      "label": "Benefits",
+                      "type": "string"
+                    },
+                    {
+                      "name": "howToUse",
+                      "label": "How to use",
+                      "type": "string"
+                    },
+                    {
+                      "name": "ingredients",
+                      "label": "Ingredients",
+                      "type": "string"
+                    },
+                    {
+                      "name": "labTested",
+                      "label": "Lab tested",
+                      "type": "string"
+                    }
+                  ]
+                },
+                {
+                  "name": "bundleIncludes",
+                  "label": "Bundle includes",
+                  "type": "string"
+                },
+                {
+                  "name": "relatedProducts",
+                  "label": "Related products",
+                  "type": "string"
+                },
+                {
+                  "name": "knowledge",
+                  "label": "Knowledge",
+                  "type": "object",
+                  "fields": [
+                    {
+                      "name": "title",
+                      "label": "Title",
+                      "type": "string"
+                    },
+                    {
+                      "name": "subtitle",
+                      "label": "Subtitle",
+                      "type": "string"
+                    },
+                    {
+                      "name": "sections",
+                      "label": "Sections",
+                      "type": "object",
+                      "fields": [
+                        {
+                          "name": "whatItIs",
+                          "label": "What it is",
+                          "type": "string"
+                        },
+                        {
+                          "name": "howItWorks",
+                          "label": "How it works",
+                          "type": "string"
+                        },
+                        {
+                          "name": "whoItsFor",
+                          "label": "Who its for",
+                          "type": "string"
+                        },
+                        {
+                          "name": "scientificBacking",
+                          "label": "Scientific backing",
+                          "type": "string"
+                        },
+                        {
+                          "name": "culturalContext",
+                          "label": "Cultural context",
+                          "type": "string"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "name": "faq",
+                  "label": "Faq",
+                  "type": "object",
+                  "fields": [
+                    {
+                      "name": "title",
+                      "label": "Title",
+                      "type": "string"
+                    },
+                    {
+                      "name": "subtitle",
+                      "label": "Subtitle",
+                      "type": "string"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "name": "about",
+              "label": "About",
+              "type": "object",
+              "fields": [
+                {
+                  "name": "title",
+                  "label": "Title",
+                  "type": "string"
+                },
+                {
+                  "name": "metaDescription",
+                  "label": "Meta description",
+                  "type": "text"
+                },
+                {
+                  "name": "headerTitle",
+                  "label": "Header title",
+                  "type": "string"
+                },
+                {
+                  "name": "headerSubtitle",
+                  "label": "Header subtitle",
+                  "type": "text"
+                },
+                {
+                  "name": "storyTitle",
+                  "label": "Story title",
+                  "type": "string"
+                },
+                {
+                  "name": "storyText1",
+                  "label": "Story text1",
+                  "type": "text"
+                },
+                {
+                  "name": "storyText2",
+                  "label": "Story text2",
+                  "type": "text"
+                },
+                {
+                  "name": "sourcingTitle",
+                  "label": "Sourcing title",
+                  "type": "string"
+                },
+                {
+                  "name": "sourcingText1",
+                  "label": "Sourcing text1",
+                  "type": "text"
+                },
+                {
+                  "name": "sourcingText2",
+                  "label": "Sourcing text2",
+                  "type": "text"
+                },
+                {
+                  "name": "sourcingImageAlt",
+                  "label": "Sourcing image alt",
+                  "type": "string"
+                }
+              ]
+            },
+            {
+              "name": "contact",
+              "label": "Contact",
+              "type": "object",
+              "fields": [
+                {
+                  "name": "title",
+                  "label": "Title",
+                  "type": "string"
+                },
+                {
+                  "name": "metaDescription",
+                  "label": "Meta description",
+                  "type": "string"
+                },
+                {
+                  "name": "headerTitle",
+                  "label": "Header title",
+                  "type": "string"
+                },
+                {
+                  "name": "headerSubtitle",
+                  "label": "Header subtitle",
+                  "type": "text"
+                },
+                {
+                  "name": "formTitle",
+                  "label": "Form title",
+                  "type": "string"
+                },
+                {
+                  "name": "form",
+                  "label": "Form",
+                  "type": "object",
+                  "fields": [
+                    {
+                      "name": "name",
+                      "label": "Name",
+                      "type": "string"
+                    },
+                    {
+                      "name": "email",
+                      "label": "Email",
+                      "type": "string"
+                    },
+                    {
+                      "name": "message",
+                      "label": "Message",
+                      "type": "string"
+                    },
+                    {
+                      "name": "sending",
+                      "label": "Sending",
+                      "type": "string"
+                    },
+                    {
+                      "name": "submit",
+                      "label": "Submit",
+                      "type": "string"
+                    },
+                    {
+                      "name": "success",
+                      "label": "Success",
+                      "type": "string"
+                    },
+                    {
+                      "name": "error",
+                      "label": "Error",
+                      "type": "string"
+                    }
+                  ]
+                },
+                {
+                  "name": "infoTitle",
+                  "label": "Info title",
+                  "type": "string"
+                },
+                {
+                  "name": "emailTitle",
+                  "label": "Email title",
+                  "type": "string"
+                },
+                {
+                  "name": "phoneTitle",
+                  "label": "Phone title",
+                  "type": "string"
+                },
+                {
+                  "name": "whatsappTitle",
+                  "label": "Whatsapp title",
+                  "type": "string"
+                },
+                {
+                  "name": "whatsappAction",
+                  "label": "Whatsapp action",
+                  "type": "string"
+                }
+              ]
+            },
+            {
+              "name": "academy",
+              "label": "Academy",
+              "type": "object",
+              "fields": [
+                {
+                  "name": "headerTitle",
+                  "label": "Header title",
+                  "type": "string"
+                },
+                {
+                  "name": "headerSubtitle",
+                  "label": "Header subtitle",
+                  "type": "string"
+                },
+                {
+                  "name": "coursesTitle",
+                  "label": "Courses title",
+                  "type": "string"
+                },
+                {
+                  "name": "enrollNow",
+                  "label": "Enroll now",
+                  "type": "string"
+                }
+              ]
+            },
+            {
+              "name": "clinics",
+              "label": "Clinics",
+              "type": "object",
+              "fields": [
+                {
+                  "name": "title",
+                  "label": "Title",
+                  "type": "string"
+                },
+                {
+                  "name": "metaDescription",
+                  "label": "Meta description",
+                  "type": "text"
+                },
+                {
+                  "name": "headerTitle",
+                  "label": "Header title",
+                  "type": "string"
+                },
+                {
+                  "name": "headerSubtitle",
+                  "label": "Header subtitle",
+                  "type": "text"
+                },
+                {
+                  "name": "section1Title",
+                  "label": "Section1 title",
+                  "type": "string"
+                },
+                {
+                  "name": "section1Text1",
+                  "label": "Section1 text1",
+                  "type": "text"
+                },
+                {
+                  "name": "section1Text2",
+                  "label": "Section1 text2",
+                  "type": "text"
+                },
+                {
+                  "name": "protocolSection",
+                  "label": "Protocol section",
+                  "type": "object",
+                  "fields": [
+                    {
+                      "name": "title",
+                      "label": "Title",
+                      "type": "string"
+                    },
+                    {
+                      "name": "subtitle",
+                      "label": "Subtitle",
+                      "type": "string"
+                    },
+                    {
+                      "name": "cards",
+                      "label": "Cards",
+                      "type": "list",
+                      "items": {
+                        "type": "object",
+                        "fields": [
+                          {
+                            "name": "title",
+                            "label": "Title",
+                            "type": "string"
+                          },
+                          {
+                            "name": "focus",
+                            "label": "Focus",
+                            "type": "string"
+                          },
+                          {
+                            "name": "steps",
+                            "label": "Steps",
+                            "type": "list",
+                            "items": {
+                              "type": "string"
+                            }
+                          },
+                          {
+                            "name": "evidence",
+                            "label": "Evidence",
+                            "type": "text"
+                          }
+                        ]
+                      }
+                    }
+                  ]
+                },
+                {
+                  "name": "referencesSection",
+                  "label": "References section",
+                  "type": "object",
+                  "fields": [
+                    {
+                      "name": "title",
+                      "label": "Title",
+                      "type": "string"
+                    },
+                    {
+                      "name": "studiesTitle",
+                      "label": "Studies title",
+                      "type": "string"
+                    },
+                    {
+                      "name": "studies",
+                      "label": "Studies",
+                      "type": "list",
+                      "items": {
+                        "type": "object",
+                        "fields": [
+                          {
+                            "name": "title",
+                            "label": "Title",
+                            "type": "string"
+                          },
+                          {
+                            "name": "details",
+                            "label": "Details",
+                            "type": "string"
+                          }
+                        ]
+                      }
+                    },
+                    {
+                      "name": "testimonialsTitle",
+                      "label": "Testimonials title",
+                      "type": "string"
+                    },
+                    {
+                      "name": "testimonials",
+                      "label": "Testimonials",
+                      "type": "list",
+                      "items": {
+                        "type": "object",
+                        "fields": [
+                          {
+                            "name": "quote",
+                            "label": "Quote",
+                            "type": "text"
+                          },
+                          {
+                            "name": "name",
+                            "label": "Name",
+                            "type": "string"
+                          },
+                          {
+                            "name": "credentials",
+                            "label": "Credentials",
+                            "type": "string"
+                          }
+                        ]
+                      }
+                    }
+                  ]
+                },
+                {
+                  "name": "keywordSection",
+                  "label": "Keyword section",
+                  "type": "object",
+                  "fields": [
+                    {
+                      "name": "title",
+                      "label": "Title",
+                      "type": "string"
+                    },
+                    {
+                      "name": "subtitle",
+                      "label": "Subtitle",
+                      "type": "string"
+                    },
+                    {
+                      "name": "keywords",
+                      "label": "Keywords",
+                      "type": "list",
+                      "items": {
+                        "type": "string"
+                      }
+                    }
+                  ]
+                },
+                {
+                  "name": "faqSection",
+                  "label": "Faq section",
+                  "type": "object",
+                  "fields": [
+                    {
+                      "name": "title",
+                      "label": "Title",
+                      "type": "string"
+                    },
+                    {
+                      "name": "subtitle",
+                      "label": "Subtitle",
+                      "type": "string"
+                    },
+                    {
+                      "name": "items",
+                      "label": "Items",
+                      "type": "list",
+                      "items": {
+                        "type": "object",
+                        "fields": [
+                          {
+                            "name": "question",
+                            "label": "Question",
+                            "type": "string"
+                          },
+                          {
+                            "name": "answer",
+                            "label": "Answer",
+                            "type": "text"
+                          }
+                        ]
+                      }
+                    }
+                  ]
+                },
+                {
+                  "name": "doctorsTitle",
+                  "label": "Doctors title",
+                  "type": "string"
+                },
+                {
+                  "name": "ctaTitle",
+                  "label": "Cta title",
+                  "type": "string"
+                },
+                {
+                  "name": "ctaSubtitle",
+                  "label": "Cta subtitle",
+                  "type": "string"
+                },
+                {
+                  "name": "ctaButton",
+                  "label": "Cta button",
+                  "type": "string"
+                },
+                {
+                  "name": "partnersTitle",
+                  "label": "Partners title",
+                  "type": "string"
+                }
+              ]
+            },
+            {
+              "name": "common",
+              "label": "Common",
+              "type": "object",
+              "fields": [
+                {
+                  "name": "loading",
+                  "label": "Loading",
+                  "type": "string"
+                },
+                {
+                  "name": "loadingProducts",
+                  "label": "Loading products",
+                  "type": "string"
+                },
+                {
+                  "name": "loadingBestsellers",
+                  "label": "Loading bestsellers",
+                  "type": "string"
+                },
+                {
+                  "name": "loadingReviews",
+                  "label": "Loading reviews",
+                  "type": "string"
+                },
+                {
+                  "name": "loadingCourses",
+                  "label": "Loading courses",
+                  "type": "string"
+                },
+                {
+                  "name": "loadingProfessionals",
+                  "label": "Loading professionals",
+                  "type": "string"
+                },
+                {
+                  "name": "loadingArticle",
+                  "label": "Loading article",
+                  "type": "string"
+                },
+                {
+                  "name": "loadingPolicies",
+                  "label": "Loading policies",
+                  "type": "string"
+                },
+                {
+                  "name": "loadingCart",
+                  "label": "Loading cart",
+                  "type": "string"
+                },
+                {
+                  "name": "loadingProduct",
+                  "label": "Loading product",
+                  "type": "string"
+                }
+              ]
+            },
+            {
+              "name": "learn",
+              "label": "Learn",
+              "type": "object",
+              "fields": [
+                {
+                  "name": "metaTitle",
+                  "label": "Meta title",
+                  "type": "string"
+                },
+                {
+                  "name": "metaDescription",
+                  "label": "Meta description",
+                  "type": "string"
+                },
+                {
+                  "name": "title",
+                  "label": "Title",
+                  "type": "string"
+                },
+                {
+                  "name": "subtitle",
+                  "label": "Subtitle",
+                  "type": "string"
+                },
+                {
+                  "name": "categories",
+                  "label": "Categories",
+                  "type": "object",
+                  "fields": [
+                    {
+                      "name": "all",
+                      "label": "All",
+                      "type": "string"
+                    },
+                    {
+                      "name": "argan-oil",
+                      "label": "Argan oil",
+                      "type": "string"
+                    },
+                    {
+                      "name": "uses-applications",
+                      "label": "Uses applications",
+                      "type": "string"
+                    },
+                    {
+                      "name": "post-procedure",
+                      "label": "Post procedure",
+                      "type": "string"
+                    },
+                    {
+                      "name": "skin-barrier",
+                      "label": "Skin barrier",
+                      "type": "string"
+                    },
+                    {
+                      "name": "baby",
+                      "label": "Baby",
+                      "type": "string"
+                    },
+                    {
+                      "name": "scars",
+                      "label": "Scars",
+                      "type": "string"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "name": "article",
+              "label": "Article",
+              "type": "object",
+              "fields": [
+                {
+                  "name": "featuredProduct",
+                  "label": "Featured product",
+                  "type": "string"
+                },
+                {
+                  "name": "faqTitle",
+                  "label": "Faq title",
+                  "type": "string"
+                },
+                {
+                  "name": "backToLibrary",
+                  "label": "Back to library",
+                  "type": "string"
+                },
+                {
+                  "name": "notFound",
+                  "label": "Not found",
+                  "type": "string"
+                },
+                {
+                  "name": "loading",
+                  "label": "Loading",
+                  "type": "string"
+                }
+              ]
+            },
+            {
+              "name": "policy",
+              "label": "Policy",
+              "type": "object",
+              "fields": [
+                {
+                  "name": "loading",
+                  "label": "Loading",
+                  "type": "string"
+                },
+                {
+                  "name": "notFound",
+                  "label": "Not found",
+                  "type": "string"
+                },
+                {
+                  "name": "contactPrompt",
+                  "label": "Contact prompt",
+                  "type": "string"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "pt",
+          "label": "Portuguese",
+          "type": "object",
+          "fields": [
+            {
+              "name": "nav",
+              "label": "Nav",
+              "type": "object",
+              "fields": [
+                {
+                  "name": "shop",
+                  "label": "Shop",
+                  "type": "string"
+                },
+                {
+                  "name": "learn",
+                  "label": "Learn",
+                  "type": "string"
+                },
+                {
+                  "name": "method",
+                  "label": "Method",
+                  "type": "string"
+                },
+                {
+                  "name": "forClinics",
+                  "label": "For clinics",
+                  "type": "string"
+                },
+                {
+                  "name": "about",
+                  "label": "About",
+                  "type": "string"
+                },
+                {
+                  "name": "contact",
+                  "label": "Contact",
+                  "type": "string"
+                }
+              ]
+            },
+            {
+              "name": "footer",
+              "label": "Footer",
+              "type": "object",
+              "fields": [
+                {
+                  "name": "tagline",
+                  "label": "Tagline",
+                  "type": "string"
+                },
+                {
+                  "name": "followUs",
+                  "label": "Follow us",
+                  "type": "string"
+                },
+                {
+                  "name": "shop",
+                  "label": "Shop",
+                  "type": "string"
+                },
+                {
+                  "name": "allProducts",
+                  "label": "All products",
+                  "type": "string"
+                },
+                {
+                  "name": "guides",
+                  "label": "Guides",
+                  "type": "string"
+                },
+                {
+                  "name": "about",
+                  "label": "About",
+                  "type": "string"
+                },
+                {
+                  "name": "ourStory",
+                  "label": "Our story",
+                  "type": "string"
+                },
+                {
+                  "name": "contact",
+                  "label": "Contact",
+                  "type": "string"
+                },
+                {
+                  "name": "policies",
+                  "label": "Policies",
+                  "type": "string"
+                },
+                {
+                  "name": "shipping",
+                  "label": "Shipping",
+                  "type": "string"
+                },
+                {
+                  "name": "returns",
+                  "label": "Returns",
+                  "type": "string"
+                },
+                {
+                  "name": "privacy",
+                  "label": "Privacy",
+                  "type": "string"
+                },
+                {
+                  "name": "terms",
+                  "label": "Terms",
+                  "type": "string"
+                }
+              ]
+            },
+            {
+              "name": "cart",
+              "label": "Cart",
+              "type": "object",
+              "fields": [
+                {
+                  "name": "title",
+                  "label": "Title",
+                  "type": "string"
+                },
+                {
+                  "name": "subtotal",
+                  "label": "Subtotal",
+                  "type": "string"
+                },
+                {
+                  "name": "shippingNote",
+                  "label": "Shipping note",
+                  "type": "string"
+                },
+                {
+                  "name": "viewCart",
+                  "label": "View cart",
+                  "type": "string"
+                },
+                {
+                  "name": "empty",
+                  "label": "Empty",
+                  "type": "string"
+                },
+                {
+                  "name": "continueShopping",
+                  "label": "Continue shopping",
+                  "type": "string"
+                },
+                {
+                  "name": "pageTitle",
+                  "label": "Page title",
+                  "type": "string"
+                },
+                {
+                  "name": "summary",
+                  "label": "Summary",
+                  "type": "string"
+                },
+                {
+                  "name": "shipping",
+                  "label": "Shipping",
+                  "type": "string"
+                },
+                {
+                  "name": "shippingCalculated",
+                  "label": "Shipping calculated",
+                  "type": "string"
+                },
+                {
+                  "name": "total",
+                  "label": "Total",
+                  "type": "string"
+                },
+                {
+                  "name": "checkout",
+                  "label": "Checkout",
+                  "type": "string"
+                },
+                {
+                  "name": "checkoutRedirect",
+                  "label": "Checkout redirect",
+                  "type": "string"
+                }
+              ]
+            },
+            {
+              "name": "cookies",
+              "label": "Cookies",
+              "type": "object",
+              "fields": [
+                {
+                  "name": "message",
+                  "label": "Message",
+                  "type": "string"
+                },
+                {
+                  "name": "learnMore",
+                  "label": "Learn more",
+                  "type": "string"
+                },
+                {
+                  "name": "decline",
+                  "label": "Decline",
+                  "type": "string"
+                },
+                {
+                  "name": "accept",
+                  "label": "Accept",
+                  "type": "string"
+                }
+              ]
+            },
+            {
+              "name": "home",
+              "label": "Home",
+              "type": "object",
+              "fields": [
+                {
+                  "name": "metaTitle",
+                  "label": "Meta title",
+                  "type": "string"
+                },
+                {
+                  "name": "metaDescription",
+                  "label": "Meta description",
+                  "type": "text"
+                },
+                {
+                  "name": "heroTitle",
+                  "label": "Hero title",
+                  "type": "string"
+                },
+                {
+                  "name": "heroSubtitle",
+                  "label": "Hero subtitle",
+                  "type": "string"
+                },
+                {
+                  "name": "ctaShop",
+                  "label": "Cta shop",
+                  "type": "string"
+                },
+                {
+                  "name": "ctaClinics",
+                  "label": "Cta clinics",
+                  "type": "string"
+                },
+                {
+                  "name": "bestsellersTitle",
+                  "label": "Bestsellers title",
+                  "type": "string"
+                },
+                {
+                  "name": "value1",
+                  "label": "Value1",
+                  "type": "string"
+                },
+                {
+                  "name": "value2",
+                  "label": "Value2",
+                  "type": "string"
+                },
+                {
+                  "name": "value3",
+                  "label": "Value3",
+                  "type": "string"
+                },
+                {
+                  "name": "reviewsTitle",
+                  "label": "Reviews title",
+                  "type": "string"
+                },
+                {
+                  "name": "newsletterTitle",
+                  "label": "Newsletter title",
+                  "type": "string"
+                },
+                {
+                  "name": "newsletterSubtitle",
+                  "label": "Newsletter subtitle",
+                  "type": "string"
+                },
+                {
+                  "name": "newsletterThanks",
+                  "label": "Newsletter thanks",
+                  "type": "string"
+                },
+                {
+                  "name": "newsletterPlaceholder",
+                  "label": "Newsletter placeholder",
+                  "type": "string"
+                },
+                {
+                  "name": "newsletterSubmit",
+                  "label": "Newsletter submit",
+                  "type": "string"
+                }
+              ]
+            },
+            {
+              "name": "shop",
+              "label": "Shop",
+              "type": "object",
+              "fields": [
+                {
+                  "name": "title",
+                  "label": "Title",
+                  "type": "string"
+                },
+                {
+                  "name": "metaDescription",
+                  "label": "Meta description",
+                  "type": "string"
+                },
+                {
+                  "name": "subtitle",
+                  "label": "Subtitle",
+                  "type": "string"
+                },
+                {
+                  "name": "sortFeatured",
+                  "label": "Sort featured",
+                  "type": "string"
+                },
+                {
+                  "name": "sortPriceAsc",
+                  "label": "Sort price asc",
+                  "type": "string"
+                },
+                {
+                  "name": "sortPriceDesc",
+                  "label": "Sort price desc",
+                  "type": "string"
+                },
+                {
+                  "name": "sortNameAsc",
+                  "label": "Sort name asc",
+                  "type": "string"
+                },
+                {
+                  "name": "sortNameDesc",
+                  "label": "Sort name desc",
+                  "type": "string"
+                },
+                {
+                  "name": "sortLabel",
+                  "label": "Sort label",
+                  "type": "string"
+                },
+                {
+                  "name": "categoryFilterLabel",
+                  "label": "Category filter label",
+                  "type": "string"
+                },
+                {
+                  "name": "relatedResources",
+                  "label": "Related resources",
+                  "type": "string"
+                },
+                {
+                  "name": "noProducts",
+                  "label": "No products",
+                  "type": "string"
+                }
+              ]
+            },
+            {
+              "name": "pdp",
+              "label": "Pdp",
+              "type": "object",
+              "fields": [
+                {
+                  "name": "notFound",
+                  "label": "Not found",
+                  "type": "string"
+                },
+                {
+                  "name": "size",
+                  "label": "Size",
+                  "type": "string"
+                },
+                {
+                  "name": "addToCart",
+                  "label": "Add to cart",
+                  "type": "string"
+                },
+                {
+                  "name": "tabs",
+                  "label": "Tabs",
+                  "type": "object",
+                  "fields": [
+                    {
+                      "name": "benefits",
+                      "label": "Benefits",
+                      "type": "string"
+                    },
+                    {
+                      "name": "howToUse",
+                      "label": "How to use",
+                      "type": "string"
+                    },
+                    {
+                      "name": "ingredients",
+                      "label": "Ingredients",
+                      "type": "string"
+                    },
+                    {
+                      "name": "labTested",
+                      "label": "Lab tested",
+                      "type": "string"
+                    }
+                  ]
+                },
+                {
+                  "name": "bundleIncludes",
+                  "label": "Bundle includes",
+                  "type": "string"
+                },
+                {
+                  "name": "relatedProducts",
+                  "label": "Related products",
+                  "type": "string"
+                },
+                {
+                  "name": "knowledge",
+                  "label": "Knowledge",
+                  "type": "object",
+                  "fields": [
+                    {
+                      "name": "title",
+                      "label": "Title",
+                      "type": "string"
+                    },
+                    {
+                      "name": "subtitle",
+                      "label": "Subtitle",
+                      "type": "string"
+                    },
+                    {
+                      "name": "sections",
+                      "label": "Sections",
+                      "type": "object",
+                      "fields": [
+                        {
+                          "name": "whatItIs",
+                          "label": "What it is",
+                          "type": "string"
+                        },
+                        {
+                          "name": "howItWorks",
+                          "label": "How it works",
+                          "type": "string"
+                        },
+                        {
+                          "name": "whoItsFor",
+                          "label": "Who its for",
+                          "type": "string"
+                        },
+                        {
+                          "name": "scientificBacking",
+                          "label": "Scientific backing",
+                          "type": "string"
+                        },
+                        {
+                          "name": "culturalContext",
+                          "label": "Cultural context",
+                          "type": "string"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "name": "faq",
+                  "label": "Faq",
+                  "type": "object",
+                  "fields": [
+                    {
+                      "name": "title",
+                      "label": "Title",
+                      "type": "string"
+                    },
+                    {
+                      "name": "subtitle",
+                      "label": "Subtitle",
+                      "type": "string"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "name": "about",
+              "label": "About",
+              "type": "object",
+              "fields": [
+                {
+                  "name": "title",
+                  "label": "Title",
+                  "type": "string"
+                },
+                {
+                  "name": "metaDescription",
+                  "label": "Meta description",
+                  "type": "text"
+                },
+                {
+                  "name": "headerTitle",
+                  "label": "Header title",
+                  "type": "string"
+                },
+                {
+                  "name": "headerSubtitle",
+                  "label": "Header subtitle",
+                  "type": "text"
+                },
+                {
+                  "name": "storyTitle",
+                  "label": "Story title",
+                  "type": "string"
+                },
+                {
+                  "name": "storyText1",
+                  "label": "Story text1",
+                  "type": "text"
+                },
+                {
+                  "name": "storyText2",
+                  "label": "Story text2",
+                  "type": "text"
+                },
+                {
+                  "name": "sourcingTitle",
+                  "label": "Sourcing title",
+                  "type": "string"
+                },
+                {
+                  "name": "sourcingText1",
+                  "label": "Sourcing text1",
+                  "type": "text"
+                },
+                {
+                  "name": "sourcingText2",
+                  "label": "Sourcing text2",
+                  "type": "text"
+                },
+                {
+                  "name": "sourcingImageAlt",
+                  "label": "Sourcing image alt",
+                  "type": "string"
+                }
+              ]
+            },
+            {
+              "name": "contact",
+              "label": "Contact",
+              "type": "object",
+              "fields": [
+                {
+                  "name": "title",
+                  "label": "Title",
+                  "type": "string"
+                },
+                {
+                  "name": "metaDescription",
+                  "label": "Meta description",
+                  "type": "string"
+                },
+                {
+                  "name": "headerTitle",
+                  "label": "Header title",
+                  "type": "string"
+                },
+                {
+                  "name": "headerSubtitle",
+                  "label": "Header subtitle",
+                  "type": "text"
+                },
+                {
+                  "name": "formTitle",
+                  "label": "Form title",
+                  "type": "string"
+                },
+                {
+                  "name": "form",
+                  "label": "Form",
+                  "type": "object",
+                  "fields": [
+                    {
+                      "name": "name",
+                      "label": "Name",
+                      "type": "string"
+                    },
+                    {
+                      "name": "email",
+                      "label": "Email",
+                      "type": "string"
+                    },
+                    {
+                      "name": "message",
+                      "label": "Message",
+                      "type": "string"
+                    },
+                    {
+                      "name": "sending",
+                      "label": "Sending",
+                      "type": "string"
+                    },
+                    {
+                      "name": "submit",
+                      "label": "Submit",
+                      "type": "string"
+                    },
+                    {
+                      "name": "success",
+                      "label": "Success",
+                      "type": "string"
+                    },
+                    {
+                      "name": "error",
+                      "label": "Error",
+                      "type": "string"
+                    }
+                  ]
+                },
+                {
+                  "name": "infoTitle",
+                  "label": "Info title",
+                  "type": "string"
+                },
+                {
+                  "name": "emailTitle",
+                  "label": "Email title",
+                  "type": "string"
+                },
+                {
+                  "name": "phoneTitle",
+                  "label": "Phone title",
+                  "type": "string"
+                },
+                {
+                  "name": "whatsappTitle",
+                  "label": "Whatsapp title",
+                  "type": "string"
+                },
+                {
+                  "name": "whatsappAction",
+                  "label": "Whatsapp action",
+                  "type": "string"
+                }
+              ]
+            },
+            {
+              "name": "academy",
+              "label": "Academy",
+              "type": "object",
+              "fields": [
+                {
+                  "name": "headerTitle",
+                  "label": "Header title",
+                  "type": "string"
+                },
+                {
+                  "name": "headerSubtitle",
+                  "label": "Header subtitle",
+                  "type": "string"
+                },
+                {
+                  "name": "coursesTitle",
+                  "label": "Courses title",
+                  "type": "string"
+                },
+                {
+                  "name": "enrollNow",
+                  "label": "Enroll now",
+                  "type": "string"
+                }
+              ]
+            },
+            {
+              "name": "clinics",
+              "label": "Clinics",
+              "type": "object",
+              "fields": [
+                {
+                  "name": "title",
+                  "label": "Title",
+                  "type": "string"
+                },
+                {
+                  "name": "metaDescription",
+                  "label": "Meta description",
+                  "type": "text"
+                },
+                {
+                  "name": "headerTitle",
+                  "label": "Header title",
+                  "type": "string"
+                },
+                {
+                  "name": "headerSubtitle",
+                  "label": "Header subtitle",
+                  "type": "text"
+                },
+                {
+                  "name": "section1Title",
+                  "label": "Section1 title",
+                  "type": "string"
+                },
+                {
+                  "name": "section1Text1",
+                  "label": "Section1 text1",
+                  "type": "text"
+                },
+                {
+                  "name": "section1Text2",
+                  "label": "Section1 text2",
+                  "type": "text"
+                },
+                {
+                  "name": "protocolSection",
+                  "label": "Protocol section",
+                  "type": "object",
+                  "fields": [
+                    {
+                      "name": "title",
+                      "label": "Title",
+                      "type": "string"
+                    },
+                    {
+                      "name": "subtitle",
+                      "label": "Subtitle",
+                      "type": "string"
+                    },
+                    {
+                      "name": "cards",
+                      "label": "Cards",
+                      "type": "list",
+                      "items": {
+                        "type": "object",
+                        "fields": [
+                          {
+                            "name": "title",
+                            "label": "Title",
+                            "type": "string"
+                          },
+                          {
+                            "name": "focus",
+                            "label": "Focus",
+                            "type": "string"
+                          },
+                          {
+                            "name": "steps",
+                            "label": "Steps",
+                            "type": "list",
+                            "items": {
+                              "type": "string"
+                            }
+                          },
+                          {
+                            "name": "evidence",
+                            "label": "Evidence",
+                            "type": "text"
+                          }
+                        ]
+                      }
+                    }
+                  ]
+                },
+                {
+                  "name": "referencesSection",
+                  "label": "References section",
+                  "type": "object",
+                  "fields": [
+                    {
+                      "name": "title",
+                      "label": "Title",
+                      "type": "string"
+                    },
+                    {
+                      "name": "studiesTitle",
+                      "label": "Studies title",
+                      "type": "string"
+                    },
+                    {
+                      "name": "studies",
+                      "label": "Studies",
+                      "type": "list",
+                      "items": {
+                        "type": "object",
+                        "fields": [
+                          {
+                            "name": "title",
+                            "label": "Title",
+                            "type": "string"
+                          },
+                          {
+                            "name": "details",
+                            "label": "Details",
+                            "type": "string"
+                          }
+                        ]
+                      }
+                    },
+                    {
+                      "name": "testimonialsTitle",
+                      "label": "Testimonials title",
+                      "type": "string"
+                    },
+                    {
+                      "name": "testimonials",
+                      "label": "Testimonials",
+                      "type": "list",
+                      "items": {
+                        "type": "object",
+                        "fields": [
+                          {
+                            "name": "quote",
+                            "label": "Quote",
+                            "type": "text"
+                          },
+                          {
+                            "name": "name",
+                            "label": "Name",
+                            "type": "string"
+                          },
+                          {
+                            "name": "credentials",
+                            "label": "Credentials",
+                            "type": "string"
+                          }
+                        ]
+                      }
+                    }
+                  ]
+                },
+                {
+                  "name": "keywordSection",
+                  "label": "Keyword section",
+                  "type": "object",
+                  "fields": [
+                    {
+                      "name": "title",
+                      "label": "Title",
+                      "type": "string"
+                    },
+                    {
+                      "name": "subtitle",
+                      "label": "Subtitle",
+                      "type": "string"
+                    },
+                    {
+                      "name": "keywords",
+                      "label": "Keywords",
+                      "type": "list",
+                      "items": {
+                        "type": "string"
+                      }
+                    }
+                  ]
+                },
+                {
+                  "name": "faqSection",
+                  "label": "Faq section",
+                  "type": "object",
+                  "fields": [
+                    {
+                      "name": "title",
+                      "label": "Title",
+                      "type": "string"
+                    },
+                    {
+                      "name": "subtitle",
+                      "label": "Subtitle",
+                      "type": "string"
+                    },
+                    {
+                      "name": "items",
+                      "label": "Items",
+                      "type": "list",
+                      "items": {
+                        "type": "object",
+                        "fields": [
+                          {
+                            "name": "question",
+                            "label": "Question",
+                            "type": "string"
+                          },
+                          {
+                            "name": "answer",
+                            "label": "Answer",
+                            "type": "text"
+                          }
+                        ]
+                      }
+                    }
+                  ]
+                },
+                {
+                  "name": "doctorsTitle",
+                  "label": "Doctors title",
+                  "type": "string"
+                },
+                {
+                  "name": "ctaTitle",
+                  "label": "Cta title",
+                  "type": "string"
+                },
+                {
+                  "name": "ctaSubtitle",
+                  "label": "Cta subtitle",
+                  "type": "string"
+                },
+                {
+                  "name": "ctaButton",
+                  "label": "Cta button",
+                  "type": "string"
+                },
+                {
+                  "name": "partnersTitle",
+                  "label": "Partners title",
+                  "type": "string"
+                }
+              ]
+            },
+            {
+              "name": "common",
+              "label": "Common",
+              "type": "object",
+              "fields": [
+                {
+                  "name": "loading",
+                  "label": "Loading",
+                  "type": "string"
+                },
+                {
+                  "name": "loadingProducts",
+                  "label": "Loading products",
+                  "type": "string"
+                },
+                {
+                  "name": "loadingBestsellers",
+                  "label": "Loading bestsellers",
+                  "type": "string"
+                },
+                {
+                  "name": "loadingReviews",
+                  "label": "Loading reviews",
+                  "type": "string"
+                },
+                {
+                  "name": "loadingCourses",
+                  "label": "Loading courses",
+                  "type": "string"
+                },
+                {
+                  "name": "loadingProfessionals",
+                  "label": "Loading professionals",
+                  "type": "string"
+                },
+                {
+                  "name": "loadingArticle",
+                  "label": "Loading article",
+                  "type": "string"
+                },
+                {
+                  "name": "loadingPolicies",
+                  "label": "Loading policies",
+                  "type": "string"
+                },
+                {
+                  "name": "loadingCart",
+                  "label": "Loading cart",
+                  "type": "string"
+                },
+                {
+                  "name": "loadingProduct",
+                  "label": "Loading product",
+                  "type": "string"
+                }
+              ]
+            },
+            {
+              "name": "learn",
+              "label": "Learn",
+              "type": "object",
+              "fields": [
+                {
+                  "name": "metaTitle",
+                  "label": "Meta title",
+                  "type": "string"
+                },
+                {
+                  "name": "metaDescription",
+                  "label": "Meta description",
+                  "type": "string"
+                },
+                {
+                  "name": "title",
+                  "label": "Title",
+                  "type": "string"
+                },
+                {
+                  "name": "subtitle",
+                  "label": "Subtitle",
+                  "type": "string"
+                },
+                {
+                  "name": "categories",
+                  "label": "Categories",
+                  "type": "object",
+                  "fields": [
+                    {
+                      "name": "all",
+                      "label": "All",
+                      "type": "string"
+                    },
+                    {
+                      "name": "argan-oil",
+                      "label": "Argan oil",
+                      "type": "string"
+                    },
+                    {
+                      "name": "uses-applications",
+                      "label": "Uses applications",
+                      "type": "string"
+                    },
+                    {
+                      "name": "post-procedure",
+                      "label": "Post procedure",
+                      "type": "string"
+                    },
+                    {
+                      "name": "skin-barrier",
+                      "label": "Skin barrier",
+                      "type": "string"
+                    },
+                    {
+                      "name": "baby",
+                      "label": "Baby",
+                      "type": "string"
+                    },
+                    {
+                      "name": "scars",
+                      "label": "Scars",
+                      "type": "string"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "name": "article",
+              "label": "Article",
+              "type": "object",
+              "fields": [
+                {
+                  "name": "featuredProduct",
+                  "label": "Featured product",
+                  "type": "string"
+                },
+                {
+                  "name": "faqTitle",
+                  "label": "Faq title",
+                  "type": "string"
+                },
+                {
+                  "name": "backToLibrary",
+                  "label": "Back to library",
+                  "type": "string"
+                },
+                {
+                  "name": "notFound",
+                  "label": "Not found",
+                  "type": "string"
+                },
+                {
+                  "name": "loading",
+                  "label": "Loading",
+                  "type": "string"
+                }
+              ]
+            },
+            {
+              "name": "policy",
+              "label": "Policy",
+              "type": "object",
+              "fields": [
+                {
+                  "name": "loading",
+                  "label": "Loading",
+                  "type": "string"
+                },
+                {
+                  "name": "notFound",
+                  "label": "Not found",
+                  "type": "string"
+                },
+                {
+                  "name": "contactPrompt",
+                  "label": "Contact prompt",
+                  "type": "string"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "es",
+          "label": "Spanish",
+          "type": "object",
+          "fields": [
+            {
+              "name": "nav",
+              "label": "Nav",
+              "type": "object",
+              "fields": [
+                {
+                  "name": "shop",
+                  "label": "Shop",
+                  "type": "string"
+                },
+                {
+                  "name": "learn",
+                  "label": "Learn",
+                  "type": "string"
+                },
+                {
+                  "name": "method",
+                  "label": "Method",
+                  "type": "string"
+                },
+                {
+                  "name": "forClinics",
+                  "label": "For clinics",
+                  "type": "string"
+                },
+                {
+                  "name": "about",
+                  "label": "About",
+                  "type": "string"
+                },
+                {
+                  "name": "contact",
+                  "label": "Contact",
+                  "type": "string"
+                }
+              ]
+            },
+            {
+              "name": "footer",
+              "label": "Footer",
+              "type": "object",
+              "fields": [
+                {
+                  "name": "tagline",
+                  "label": "Tagline",
+                  "type": "string"
+                },
+                {
+                  "name": "followUs",
+                  "label": "Follow us",
+                  "type": "string"
+                },
+                {
+                  "name": "shop",
+                  "label": "Shop",
+                  "type": "string"
+                },
+                {
+                  "name": "allProducts",
+                  "label": "All products",
+                  "type": "string"
+                },
+                {
+                  "name": "guides",
+                  "label": "Guides",
+                  "type": "string"
+                },
+                {
+                  "name": "about",
+                  "label": "About",
+                  "type": "string"
+                },
+                {
+                  "name": "ourStory",
+                  "label": "Our story",
+                  "type": "string"
+                },
+                {
+                  "name": "contact",
+                  "label": "Contact",
+                  "type": "string"
+                },
+                {
+                  "name": "policies",
+                  "label": "Policies",
+                  "type": "string"
+                },
+                {
+                  "name": "shipping",
+                  "label": "Shipping",
+                  "type": "string"
+                },
+                {
+                  "name": "returns",
+                  "label": "Returns",
+                  "type": "string"
+                },
+                {
+                  "name": "privacy",
+                  "label": "Privacy",
+                  "type": "string"
+                },
+                {
+                  "name": "terms",
+                  "label": "Terms",
+                  "type": "string"
+                }
+              ]
+            },
+            {
+              "name": "cart",
+              "label": "Cart",
+              "type": "object",
+              "fields": [
+                {
+                  "name": "title",
+                  "label": "Title",
+                  "type": "string"
+                },
+                {
+                  "name": "subtotal",
+                  "label": "Subtotal",
+                  "type": "string"
+                },
+                {
+                  "name": "shippingNote",
+                  "label": "Shipping note",
+                  "type": "string"
+                },
+                {
+                  "name": "viewCart",
+                  "label": "View cart",
+                  "type": "string"
+                },
+                {
+                  "name": "empty",
+                  "label": "Empty",
+                  "type": "string"
+                },
+                {
+                  "name": "continueShopping",
+                  "label": "Continue shopping",
+                  "type": "string"
+                },
+                {
+                  "name": "pageTitle",
+                  "label": "Page title",
+                  "type": "string"
+                },
+                {
+                  "name": "summary",
+                  "label": "Summary",
+                  "type": "string"
+                },
+                {
+                  "name": "shipping",
+                  "label": "Shipping",
+                  "type": "string"
+                },
+                {
+                  "name": "shippingCalculated",
+                  "label": "Shipping calculated",
+                  "type": "string"
+                },
+                {
+                  "name": "total",
+                  "label": "Total",
+                  "type": "string"
+                },
+                {
+                  "name": "checkout",
+                  "label": "Checkout",
+                  "type": "string"
+                },
+                {
+                  "name": "checkoutRedirect",
+                  "label": "Checkout redirect",
+                  "type": "string"
+                }
+              ]
+            },
+            {
+              "name": "cookies",
+              "label": "Cookies",
+              "type": "object",
+              "fields": [
+                {
+                  "name": "message",
+                  "label": "Message",
+                  "type": "string"
+                },
+                {
+                  "name": "learnMore",
+                  "label": "Learn more",
+                  "type": "string"
+                },
+                {
+                  "name": "decline",
+                  "label": "Decline",
+                  "type": "string"
+                },
+                {
+                  "name": "accept",
+                  "label": "Accept",
+                  "type": "string"
+                }
+              ]
+            },
+            {
+              "name": "home",
+              "label": "Home",
+              "type": "object",
+              "fields": [
+                {
+                  "name": "metaTitle",
+                  "label": "Meta title",
+                  "type": "string"
+                },
+                {
+                  "name": "metaDescription",
+                  "label": "Meta description",
+                  "type": "text"
+                },
+                {
+                  "name": "heroTitle",
+                  "label": "Hero title",
+                  "type": "string"
+                },
+                {
+                  "name": "heroSubtitle",
+                  "label": "Hero subtitle",
+                  "type": "string"
+                },
+                {
+                  "name": "ctaShop",
+                  "label": "Cta shop",
+                  "type": "string"
+                },
+                {
+                  "name": "ctaClinics",
+                  "label": "Cta clinics",
+                  "type": "string"
+                },
+                {
+                  "name": "bestsellersTitle",
+                  "label": "Bestsellers title",
+                  "type": "string"
+                },
+                {
+                  "name": "value1",
+                  "label": "Value1",
+                  "type": "string"
+                },
+                {
+                  "name": "value2",
+                  "label": "Value2",
+                  "type": "string"
+                },
+                {
+                  "name": "value3",
+                  "label": "Value3",
+                  "type": "string"
+                },
+                {
+                  "name": "reviewsTitle",
+                  "label": "Reviews title",
+                  "type": "string"
+                },
+                {
+                  "name": "newsletterTitle",
+                  "label": "Newsletter title",
+                  "type": "string"
+                },
+                {
+                  "name": "newsletterSubtitle",
+                  "label": "Newsletter subtitle",
+                  "type": "string"
+                },
+                {
+                  "name": "newsletterThanks",
+                  "label": "Newsletter thanks",
+                  "type": "string"
+                },
+                {
+                  "name": "newsletterPlaceholder",
+                  "label": "Newsletter placeholder",
+                  "type": "string"
+                },
+                {
+                  "name": "newsletterSubmit",
+                  "label": "Newsletter submit",
+                  "type": "string"
+                }
+              ]
+            },
+            {
+              "name": "shop",
+              "label": "Shop",
+              "type": "object",
+              "fields": [
+                {
+                  "name": "title",
+                  "label": "Title",
+                  "type": "string"
+                },
+                {
+                  "name": "metaDescription",
+                  "label": "Meta description",
+                  "type": "string"
+                },
+                {
+                  "name": "subtitle",
+                  "label": "Subtitle",
+                  "type": "string"
+                },
+                {
+                  "name": "sortFeatured",
+                  "label": "Sort featured",
+                  "type": "string"
+                },
+                {
+                  "name": "sortPriceAsc",
+                  "label": "Sort price asc",
+                  "type": "string"
+                },
+                {
+                  "name": "sortPriceDesc",
+                  "label": "Sort price desc",
+                  "type": "string"
+                },
+                {
+                  "name": "sortNameAsc",
+                  "label": "Sort name asc",
+                  "type": "string"
+                },
+                {
+                  "name": "sortNameDesc",
+                  "label": "Sort name desc",
+                  "type": "string"
+                },
+                {
+                  "name": "sortLabel",
+                  "label": "Sort label",
+                  "type": "string"
+                },
+                {
+                  "name": "categoryFilterLabel",
+                  "label": "Category filter label",
+                  "type": "string"
+                },
+                {
+                  "name": "relatedResources",
+                  "label": "Related resources",
+                  "type": "string"
+                },
+                {
+                  "name": "noProducts",
+                  "label": "No products",
+                  "type": "string"
+                }
+              ]
+            },
+            {
+              "name": "pdp",
+              "label": "Pdp",
+              "type": "object",
+              "fields": [
+                {
+                  "name": "notFound",
+                  "label": "Not found",
+                  "type": "string"
+                },
+                {
+                  "name": "size",
+                  "label": "Size",
+                  "type": "string"
+                },
+                {
+                  "name": "addToCart",
+                  "label": "Add to cart",
+                  "type": "string"
+                },
+                {
+                  "name": "tabs",
+                  "label": "Tabs",
+                  "type": "object",
+                  "fields": [
+                    {
+                      "name": "benefits",
+                      "label": "Benefits",
+                      "type": "string"
+                    },
+                    {
+                      "name": "howToUse",
+                      "label": "How to use",
+                      "type": "string"
+                    },
+                    {
+                      "name": "ingredients",
+                      "label": "Ingredients",
+                      "type": "string"
+                    },
+                    {
+                      "name": "labTested",
+                      "label": "Lab tested",
+                      "type": "string"
+                    }
+                  ]
+                },
+                {
+                  "name": "bundleIncludes",
+                  "label": "Bundle includes",
+                  "type": "string"
+                },
+                {
+                  "name": "relatedProducts",
+                  "label": "Related products",
+                  "type": "string"
+                },
+                {
+                  "name": "knowledge",
+                  "label": "Knowledge",
+                  "type": "object",
+                  "fields": [
+                    {
+                      "name": "title",
+                      "label": "Title",
+                      "type": "string"
+                    },
+                    {
+                      "name": "subtitle",
+                      "label": "Subtitle",
+                      "type": "string"
+                    },
+                    {
+                      "name": "sections",
+                      "label": "Sections",
+                      "type": "object",
+                      "fields": [
+                        {
+                          "name": "whatItIs",
+                          "label": "What it is",
+                          "type": "string"
+                        },
+                        {
+                          "name": "howItWorks",
+                          "label": "How it works",
+                          "type": "string"
+                        },
+                        {
+                          "name": "whoItsFor",
+                          "label": "Who its for",
+                          "type": "string"
+                        },
+                        {
+                          "name": "scientificBacking",
+                          "label": "Scientific backing",
+                          "type": "string"
+                        },
+                        {
+                          "name": "culturalContext",
+                          "label": "Cultural context",
+                          "type": "string"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "name": "faq",
+                  "label": "Faq",
+                  "type": "object",
+                  "fields": [
+                    {
+                      "name": "title",
+                      "label": "Title",
+                      "type": "string"
+                    },
+                    {
+                      "name": "subtitle",
+                      "label": "Subtitle",
+                      "type": "string"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "name": "about",
+              "label": "About",
+              "type": "object",
+              "fields": [
+                {
+                  "name": "title",
+                  "label": "Title",
+                  "type": "string"
+                },
+                {
+                  "name": "metaDescription",
+                  "label": "Meta description",
+                  "type": "text"
+                },
+                {
+                  "name": "headerTitle",
+                  "label": "Header title",
+                  "type": "string"
+                },
+                {
+                  "name": "headerSubtitle",
+                  "label": "Header subtitle",
+                  "type": "text"
+                },
+                {
+                  "name": "storyTitle",
+                  "label": "Story title",
+                  "type": "string"
+                },
+                {
+                  "name": "storyText1",
+                  "label": "Story text1",
+                  "type": "text"
+                },
+                {
+                  "name": "storyText2",
+                  "label": "Story text2",
+                  "type": "text"
+                },
+                {
+                  "name": "sourcingTitle",
+                  "label": "Sourcing title",
+                  "type": "string"
+                },
+                {
+                  "name": "sourcingText1",
+                  "label": "Sourcing text1",
+                  "type": "text"
+                },
+                {
+                  "name": "sourcingText2",
+                  "label": "Sourcing text2",
+                  "type": "text"
+                },
+                {
+                  "name": "sourcingImageAlt",
+                  "label": "Sourcing image alt",
+                  "type": "string"
+                }
+              ]
+            },
+            {
+              "name": "contact",
+              "label": "Contact",
+              "type": "object",
+              "fields": [
+                {
+                  "name": "title",
+                  "label": "Title",
+                  "type": "string"
+                },
+                {
+                  "name": "metaDescription",
+                  "label": "Meta description",
+                  "type": "string"
+                },
+                {
+                  "name": "headerTitle",
+                  "label": "Header title",
+                  "type": "string"
+                },
+                {
+                  "name": "headerSubtitle",
+                  "label": "Header subtitle",
+                  "type": "text"
+                },
+                {
+                  "name": "formTitle",
+                  "label": "Form title",
+                  "type": "string"
+                },
+                {
+                  "name": "form",
+                  "label": "Form",
+                  "type": "object",
+                  "fields": [
+                    {
+                      "name": "name",
+                      "label": "Name",
+                      "type": "string"
+                    },
+                    {
+                      "name": "email",
+                      "label": "Email",
+                      "type": "string"
+                    },
+                    {
+                      "name": "message",
+                      "label": "Message",
+                      "type": "string"
+                    },
+                    {
+                      "name": "sending",
+                      "label": "Sending",
+                      "type": "string"
+                    },
+                    {
+                      "name": "submit",
+                      "label": "Submit",
+                      "type": "string"
+                    },
+                    {
+                      "name": "success",
+                      "label": "Success",
+                      "type": "string"
+                    },
+                    {
+                      "name": "error",
+                      "label": "Error",
+                      "type": "string"
+                    }
+                  ]
+                },
+                {
+                  "name": "infoTitle",
+                  "label": "Info title",
+                  "type": "string"
+                },
+                {
+                  "name": "emailTitle",
+                  "label": "Email title",
+                  "type": "string"
+                },
+                {
+                  "name": "phoneTitle",
+                  "label": "Phone title",
+                  "type": "string"
+                },
+                {
+                  "name": "whatsappTitle",
+                  "label": "Whatsapp title",
+                  "type": "string"
+                },
+                {
+                  "name": "whatsappAction",
+                  "label": "Whatsapp action",
+                  "type": "string"
+                }
+              ]
+            },
+            {
+              "name": "academy",
+              "label": "Academy",
+              "type": "object",
+              "fields": [
+                {
+                  "name": "headerTitle",
+                  "label": "Header title",
+                  "type": "string"
+                },
+                {
+                  "name": "headerSubtitle",
+                  "label": "Header subtitle",
+                  "type": "string"
+                },
+                {
+                  "name": "coursesTitle",
+                  "label": "Courses title",
+                  "type": "string"
+                },
+                {
+                  "name": "enrollNow",
+                  "label": "Enroll now",
+                  "type": "string"
+                }
+              ]
+            },
+            {
+              "name": "clinics",
+              "label": "Clinics",
+              "type": "object",
+              "fields": [
+                {
+                  "name": "title",
+                  "label": "Title",
+                  "type": "string"
+                },
+                {
+                  "name": "metaDescription",
+                  "label": "Meta description",
+                  "type": "text"
+                },
+                {
+                  "name": "headerTitle",
+                  "label": "Header title",
+                  "type": "string"
+                },
+                {
+                  "name": "headerSubtitle",
+                  "label": "Header subtitle",
+                  "type": "text"
+                },
+                {
+                  "name": "section1Title",
+                  "label": "Section1 title",
+                  "type": "string"
+                },
+                {
+                  "name": "section1Text1",
+                  "label": "Section1 text1",
+                  "type": "text"
+                },
+                {
+                  "name": "section1Text2",
+                  "label": "Section1 text2",
+                  "type": "text"
+                },
+                {
+                  "name": "protocolSection",
+                  "label": "Protocol section",
+                  "type": "object",
+                  "fields": [
+                    {
+                      "name": "title",
+                      "label": "Title",
+                      "type": "string"
+                    },
+                    {
+                      "name": "subtitle",
+                      "label": "Subtitle",
+                      "type": "string"
+                    },
+                    {
+                      "name": "cards",
+                      "label": "Cards",
+                      "type": "list",
+                      "items": {
+                        "type": "object",
+                        "fields": [
+                          {
+                            "name": "title",
+                            "label": "Title",
+                            "type": "string"
+                          },
+                          {
+                            "name": "focus",
+                            "label": "Focus",
+                            "type": "string"
+                          },
+                          {
+                            "name": "steps",
+                            "label": "Steps",
+                            "type": "list",
+                            "items": {
+                              "type": "string"
+                            }
+                          },
+                          {
+                            "name": "evidence",
+                            "label": "Evidence",
+                            "type": "text"
+                          }
+                        ]
+                      }
+                    }
+                  ]
+                },
+                {
+                  "name": "referencesSection",
+                  "label": "References section",
+                  "type": "object",
+                  "fields": [
+                    {
+                      "name": "title",
+                      "label": "Title",
+                      "type": "string"
+                    },
+                    {
+                      "name": "studiesTitle",
+                      "label": "Studies title",
+                      "type": "string"
+                    },
+                    {
+                      "name": "studies",
+                      "label": "Studies",
+                      "type": "list",
+                      "items": {
+                        "type": "object",
+                        "fields": [
+                          {
+                            "name": "title",
+                            "label": "Title",
+                            "type": "string"
+                          },
+                          {
+                            "name": "details",
+                            "label": "Details",
+                            "type": "string"
+                          }
+                        ]
+                      }
+                    },
+                    {
+                      "name": "testimonialsTitle",
+                      "label": "Testimonials title",
+                      "type": "string"
+                    },
+                    {
+                      "name": "testimonials",
+                      "label": "Testimonials",
+                      "type": "list",
+                      "items": {
+                        "type": "object",
+                        "fields": [
+                          {
+                            "name": "quote",
+                            "label": "Quote",
+                            "type": "text"
+                          },
+                          {
+                            "name": "name",
+                            "label": "Name",
+                            "type": "string"
+                          },
+                          {
+                            "name": "credentials",
+                            "label": "Credentials",
+                            "type": "string"
+                          }
+                        ]
+                      }
+                    }
+                  ]
+                },
+                {
+                  "name": "keywordSection",
+                  "label": "Keyword section",
+                  "type": "object",
+                  "fields": [
+                    {
+                      "name": "title",
+                      "label": "Title",
+                      "type": "string"
+                    },
+                    {
+                      "name": "subtitle",
+                      "label": "Subtitle",
+                      "type": "string"
+                    },
+                    {
+                      "name": "keywords",
+                      "label": "Keywords",
+                      "type": "list",
+                      "items": {
+                        "type": "string"
+                      }
+                    }
+                  ]
+                },
+                {
+                  "name": "faqSection",
+                  "label": "Faq section",
+                  "type": "object",
+                  "fields": [
+                    {
+                      "name": "title",
+                      "label": "Title",
+                      "type": "string"
+                    },
+                    {
+                      "name": "subtitle",
+                      "label": "Subtitle",
+                      "type": "string"
+                    },
+                    {
+                      "name": "items",
+                      "label": "Items",
+                      "type": "list",
+                      "items": {
+                        "type": "object",
+                        "fields": [
+                          {
+                            "name": "question",
+                            "label": "Question",
+                            "type": "string"
+                          },
+                          {
+                            "name": "answer",
+                            "label": "Answer",
+                            "type": "text"
+                          }
+                        ]
+                      }
+                    }
+                  ]
+                },
+                {
+                  "name": "doctorsTitle",
+                  "label": "Doctors title",
+                  "type": "string"
+                },
+                {
+                  "name": "ctaTitle",
+                  "label": "Cta title",
+                  "type": "string"
+                },
+                {
+                  "name": "ctaSubtitle",
+                  "label": "Cta subtitle",
+                  "type": "string"
+                },
+                {
+                  "name": "ctaButton",
+                  "label": "Cta button",
+                  "type": "string"
+                },
+                {
+                  "name": "partnersTitle",
+                  "label": "Partners title",
+                  "type": "string"
+                }
+              ]
+            },
+            {
+              "name": "common",
+              "label": "Common",
+              "type": "object",
+              "fields": [
+                {
+                  "name": "loading",
+                  "label": "Loading",
+                  "type": "string"
+                },
+                {
+                  "name": "loadingProducts",
+                  "label": "Loading products",
+                  "type": "string"
+                },
+                {
+                  "name": "loadingBestsellers",
+                  "label": "Loading bestsellers",
+                  "type": "string"
+                },
+                {
+                  "name": "loadingReviews",
+                  "label": "Loading reviews",
+                  "type": "string"
+                },
+                {
+                  "name": "loadingCourses",
+                  "label": "Loading courses",
+                  "type": "string"
+                },
+                {
+                  "name": "loadingProfessionals",
+                  "label": "Loading professionals",
+                  "type": "string"
+                },
+                {
+                  "name": "loadingArticle",
+                  "label": "Loading article",
+                  "type": "string"
+                },
+                {
+                  "name": "loadingPolicies",
+                  "label": "Loading policies",
+                  "type": "string"
+                },
+                {
+                  "name": "loadingCart",
+                  "label": "Loading cart",
+                  "type": "string"
+                },
+                {
+                  "name": "loadingProduct",
+                  "label": "Loading product",
+                  "type": "string"
+                }
+              ]
+            },
+            {
+              "name": "learn",
+              "label": "Learn",
+              "type": "object",
+              "fields": [
+                {
+                  "name": "metaTitle",
+                  "label": "Meta title",
+                  "type": "string"
+                },
+                {
+                  "name": "metaDescription",
+                  "label": "Meta description",
+                  "type": "string"
+                },
+                {
+                  "name": "title",
+                  "label": "Title",
+                  "type": "string"
+                },
+                {
+                  "name": "subtitle",
+                  "label": "Subtitle",
+                  "type": "string"
+                },
+                {
+                  "name": "categories",
+                  "label": "Categories",
+                  "type": "object",
+                  "fields": [
+                    {
+                      "name": "all",
+                      "label": "All",
+                      "type": "string"
+                    },
+                    {
+                      "name": "argan-oil",
+                      "label": "Argan oil",
+                      "type": "string"
+                    },
+                    {
+                      "name": "uses-applications",
+                      "label": "Uses applications",
+                      "type": "string"
+                    },
+                    {
+                      "name": "post-procedure",
+                      "label": "Post procedure",
+                      "type": "string"
+                    },
+                    {
+                      "name": "skin-barrier",
+                      "label": "Skin barrier",
+                      "type": "string"
+                    },
+                    {
+                      "name": "baby",
+                      "label": "Baby",
+                      "type": "string"
+                    },
+                    {
+                      "name": "scars",
+                      "label": "Scars",
+                      "type": "string"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "name": "article",
+              "label": "Article",
+              "type": "object",
+              "fields": [
+                {
+                  "name": "featuredProduct",
+                  "label": "Featured product",
+                  "type": "string"
+                },
+                {
+                  "name": "faqTitle",
+                  "label": "Faq title",
+                  "type": "string"
+                },
+                {
+                  "name": "backToLibrary",
+                  "label": "Back to library",
+                  "type": "string"
+                },
+                {
+                  "name": "notFound",
+                  "label": "Not found",
+                  "type": "string"
+                },
+                {
+                  "name": "loading",
+                  "label": "Loading",
+                  "type": "string"
+                }
+              ]
+            },
+            {
+              "name": "policy",
+              "label": "Policy",
+              "type": "object",
+              "fields": [
+                {
+                  "name": "loading",
+                  "label": "Loading",
+                  "type": "string"
+                },
+                {
+                  "name": "notFound",
+                  "label": "Not found",
+                  "type": "string"
+                },
+                {
+                  "name": "contactPrompt",
+                  "label": "Contact prompt",
+                  "type": "string"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
   ]
 }

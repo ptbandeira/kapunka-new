@@ -51,6 +51,7 @@ const Method: React.FC = () => {
   }, []);
 
   const localeContent = content?.[language];
+  const methodFieldPath = `method.${language}`;
   const heroTitle = localeContent?.heroTitle ?? fallbackHeroTitles[language];
   const heroSubtitle = localeContent?.heroSubtitle ?? fallbackMetaDescriptions[language];
   const metaTitle = localeContent?.metaTitle ?? heroTitle;
@@ -73,6 +74,7 @@ const Method: React.FC = () => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
             className="text-4xl sm:text-5xl font-semibold tracking-tight"
+            data-nlv-field-path={`${methodFieldPath}.heroTitle`}
           >
             {heroTitle}
           </motion.h1>
@@ -81,6 +83,7 @@ const Method: React.FC = () => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.1 }}
             className="mt-4 text-lg text-stone-600 max-w-3xl mx-auto"
+            data-nlv-field-path={`${methodFieldPath}.heroSubtitle`}
           >
             {heroSubtitle}
           </motion.p>
@@ -88,7 +91,10 @@ const Method: React.FC = () => {
       </header>
 
       <section className="py-16 sm:py-24">
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-3xl">
+        <div
+          className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-3xl"
+          data-nlv-field-path={`${methodFieldPath}.body`}
+        >
           {paragraphs.length > 0 ? (
             paragraphs.map((paragraph, index) => (
               <motion.p
@@ -104,7 +110,12 @@ const Method: React.FC = () => {
               </motion.p>
             ))
           ) : (
-            <p className="text-center text-stone-600">{t('common.loading')}</p>
+            <p
+              className="text-center text-stone-600"
+              data-nlv-field-path={`translations.${language}.common.loading`}
+            >
+              {t('common.loading')}
+            </p>
           )}
         </div>
       </section>
@@ -118,12 +129,16 @@ const Method: React.FC = () => {
               viewport={{ once: true }}
               transition={{ duration: 0.6 }}
               className="text-3xl font-semibold"
+              data-nlv-field-path={`${methodFieldPath}.testimonialsTitle`}
             >
               {testimonialsTitle}
             </motion.h2>
           </div>
           {testimonials.length > 0 ? (
-            <div className="mt-12 grid gap-8 md:grid-cols-2 lg:grid-cols-3">
+            <div
+              className="mt-12 grid gap-8 md:grid-cols-2 lg:grid-cols-3"
+              data-nlv-field-path={`${methodFieldPath}.testimonials`}
+            >
               {testimonials.map((testimonial, index) => (
                 <motion.blockquote
                   key={testimonial.id}
@@ -132,17 +147,38 @@ const Method: React.FC = () => {
                   viewport={{ once: true }}
                   transition={{ duration: 0.5, delay: index * 0.1 }}
                   className="h-full bg-white border border-stone-200 rounded-2xl p-6 shadow-sm flex flex-col"
+                  data-nlv-field-path={`${methodFieldPath}.testimonials.${index}`}
                 >
-                  <p className="text-stone-700 leading-relaxed flex-1">{testimonial.quote}</p>
+                  <p
+                    className="text-stone-700 leading-relaxed flex-1"
+                    data-nlv-field-path={`${methodFieldPath}.testimonials.${index}.quote`}
+                  >
+                    {testimonial.quote}
+                  </p>
                   <footer className="mt-6 text-sm text-stone-500">
-                    <span className="block font-semibold text-stone-700">{testimonial.name}</span>
-                    <span className="block">{testimonial.role}</span>
+                    <span
+                      className="block font-semibold text-stone-700"
+                      data-nlv-field-path={`${methodFieldPath}.testimonials.${index}.name`}
+                    >
+                      {testimonial.name}
+                    </span>
+                    <span
+                      className="block"
+                      data-nlv-field-path={`${methodFieldPath}.testimonials.${index}.role`}
+                    >
+                      {testimonial.role}
+                    </span>
                   </footer>
                 </motion.blockquote>
               ))}
             </div>
           ) : (
-            <p className="mt-8 text-center text-stone-600">{t('common.loading')}</p>
+            <p
+              className="mt-8 text-center text-stone-600"
+              data-nlv-field-path={`translations.${language}.common.loading`}
+            >
+              {t('common.loading')}
+            </p>
           )}
         </div>
       </section>

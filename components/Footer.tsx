@@ -12,7 +12,7 @@ const FooterLink: React.FC<{ to: string; children: React.ReactNode; fieldPath?: 
 );
 
 const Footer: React.FC = () => {
-    const { t } = useLanguage();
+    const { t, language } = useLanguage();
     const { settings } = useSiteSettings();
     const socialLinks = settings.footer?.socialLinks ?? [];
     const legalName = settings.footer?.legalName ?? 'Kapunka Skincare';
@@ -31,9 +31,16 @@ const Footer: React.FC = () => {
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
           <div>
             <h3 className="text-lg font-semibold mb-4" data-nlv-field-path="site.brand.name">{brandName}</h3>
-            <p className="text-sm text-stone-500" data-nlv-field-path="translations.en.footer.tagline">{t('footer.tagline')}</p>
+            <p className="text-sm text-stone-500" data-nlv-field-path={`translations.${language}.footer.tagline`}>
+              {t('footer.tagline')}
+            </p>
             <div className="mt-6">
-                <h4 className="font-semibold mb-3 text-sm" data-nlv-field-path="translations.en.footer.followUs">{t('footer.followUs')}</h4>
+                <h4
+                  className="font-semibold mb-3 text-sm"
+                  data-nlv-field-path={`translations.${language}.footer.followUs`}
+                >
+                  {t('footer.followUs')}
+                </h4>
                 {socialLinks.length > 0 && (
                     <div className="flex space-x-4">
                         {socialLinks.map((link, index) => {
@@ -58,26 +65,73 @@ const Footer: React.FC = () => {
             </div>
           </div>
           <div>
-            <h4 className="font-semibold mb-4" data-nlv-field-path="translations.en.footer.shop">{t('footer.shop')}</h4>
+            <h4
+              className="font-semibold mb-4"
+              data-nlv-field-path={`translations.${language}.footer.shop`}
+            >
+              {t('footer.shop')}
+            </h4>
             <ul className="space-y-3 text-sm">
-              <li><FooterLink to="/shop" fieldPath="translations.en.footer.allProducts">{t('footer.allProducts')}</FooterLink></li>
-              <li><FooterLink to="/learn" fieldPath="translations.en.footer.guides">{t('footer.guides')}</FooterLink></li>
+              <li>
+                <FooterLink to="/shop" fieldPath={`translations.${language}.footer.allProducts`}>
+                  {t('footer.allProducts')}
+                </FooterLink>
+              </li>
+              <li>
+                <FooterLink to="/learn" fieldPath={`translations.${language}.footer.guides`}>
+                  {t('footer.guides')}
+                </FooterLink>
+              </li>
             </ul>
           </div>
           <div>
-            <h4 className="font-semibold mb-4" data-nlv-field-path="translations.en.footer.about">{t('footer.about')}</h4>
+            <h4
+              className="font-semibold mb-4"
+              data-nlv-field-path={`translations.${language}.footer.about`}
+            >
+              {t('footer.about')}
+            </h4>
             <ul className="space-y-3 text-sm">
-              <li><FooterLink to="/about" fieldPath="translations.en.footer.ourStory">{t('footer.ourStory')}</FooterLink></li>
-              <li><FooterLink to="/contact" fieldPath="translations.en.footer.contact">{t('footer.contact')}</FooterLink></li>
+              <li>
+                <FooterLink to="/about" fieldPath={`translations.${language}.footer.ourStory`}>
+                  {t('footer.ourStory')}
+                </FooterLink>
+              </li>
+              <li>
+                <FooterLink to="/contact" fieldPath={`translations.${language}.footer.contact`}>
+                  {t('footer.contact')}
+                </FooterLink>
+              </li>
             </ul>
           </div>
           <div>
-            <h4 className="font-semibold mb-4" data-nlv-field-path="translations.en.footer.policies">{t('footer.policies')}</h4>
+            <h4
+              className="font-semibold mb-4"
+              data-nlv-field-path={`translations.${language}.footer.policies`}
+            >
+              {t('footer.policies')}
+            </h4>
             <ul className="space-y-3 text-sm">
-              <li><FooterLink to="/policy/shipping" fieldPath="translations.en.footer.shipping">{t('footer.shipping')}</FooterLink></li>
-              <li><FooterLink to="/policy/returns" fieldPath="translations.en.footer.returns">{t('footer.returns')}</FooterLink></li>
-              <li><FooterLink to="/policy/privacy" fieldPath="translations.en.footer.privacy">{t('footer.privacy')}</FooterLink></li>
-              <li><FooterLink to="/policy/terms" fieldPath="translations.en.footer.terms">{t('footer.terms')}</FooterLink></li>
+              <li>
+                <FooterLink to="/policy/shipping" fieldPath={`translations.${language}.footer.shipping`}>
+                  {t('footer.shipping')}
+                </FooterLink>
+              </li>
+              <li>
+                <FooterLink to="/policy/returns" fieldPath={`translations.${language}.footer.returns`}>
+                  {t('footer.returns')}
+                </FooterLink>
+              </li>
+              <li>
+                <FooterLink to="/policy/privacy" fieldPath={`translations.${language}.footer.privacy`}>
+                  {t('footer.privacy')}
+                </FooterLink>
+              </li>
+              <li>
+                <FooterLink to="/policy/terms" fieldPath={`translations.${language}.footer.terms`}>
+                  {t('footer.terms')}
+                </FooterLink>
+              </li>
             </ul>
           </div>
         </div>
