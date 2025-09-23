@@ -24,7 +24,7 @@ const Shop: React.FC = () => {
   const [categories, setCategories] = useState<ShopCategory[]>([]);
   const [activeCategoryId, setActiveCategoryId] = useState<string>('all');
   const [loading, setLoading] = useState(true);
-  const { t, translate } = useLanguage();
+  const { t, translate, language } = useLanguage();
 
   useEffect(() => {
     let isMounted = true;
@@ -123,18 +123,18 @@ const Shop: React.FC = () => {
     const tabs = categories.map((category, index) => ({
       id: category.id,
       label: translate(category.title),
-      fieldPath: `shop.categories.${index}.title.en`,
+      fieldPath: `shop.categories.${index}.title.${language}`,
     }));
 
     return [
       {
         id: 'all',
         label: t('shop.title'),
-        fieldPath: 'translations.en.shop.title',
+        fieldPath: `translations.${language}.shop.title`,
       },
       ...tabs,
     ];
-  }, [categories, t, translate]);
+  }, [categories, t, translate, language]);
 
   return (
     <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-16">
@@ -143,10 +143,16 @@ const Shop: React.FC = () => {
         <meta name="description" content={t('shop.metaDescription')} />
       </Helmet>
       <header className="text-center mb-12">
-        <h1 className="text-4xl sm:text-5xl font-semibold tracking-tight" data-nlv-field-path="translations.en.shop.title">
+        <h1
+          className="text-4xl sm:text-5xl font-semibold tracking-tight"
+          data-nlv-field-path={`translations.${language}.shop.title`}
+        >
           {t('shop.title')}
         </h1>
-        <p className="mt-4 text-lg text-stone-600 max-w-2xl mx-auto" data-nlv-field-path="translations.en.shop.subtitle">
+        <p
+          className="mt-4 text-lg text-stone-600 max-w-2xl mx-auto"
+          data-nlv-field-path={`translations.${language}.shop.subtitle`}
+        >
           {t('shop.subtitle')}
         </p>
       </header>
@@ -154,7 +160,9 @@ const Shop: React.FC = () => {
       <div className="flex flex-col gap-6 md:flex-row md:items-center md:justify-between mb-10">
         <div className="md:flex-1">
           <p className="text-xs uppercase tracking-widest text-stone-500">
-            <span data-nlv-field-path="translations.en.shop.categoryFilterLabel">{t('shop.categoryFilterLabel')}</span>
+            <span data-nlv-field-path={`translations.${language}.shop.categoryFilterLabel`}>
+              {t('shop.categoryFilterLabel')}
+            </span>
           </p>
           <div className="flex flex-wrap gap-2 mt-3">
             {categoryTabs.map((tab) => (
@@ -176,7 +184,9 @@ const Shop: React.FC = () => {
 
         <div className="md:w-60">
           <label htmlFor="shop-sort" className="sr-only">
-            <span data-nlv-field-path="translations.en.shop.sortLabel">{t('shop.sortLabel')}</span>
+            <span data-nlv-field-path={`translations.${language}.shop.sortLabel`}>
+              {t('shop.sortLabel')}
+            </span>
           </label>
           <select
             id="shop-sort"
@@ -184,19 +194,19 @@ const Shop: React.FC = () => {
             onChange={(e) => setSortOption(e.target.value)}
             className="w-full border-stone-300 rounded-md shadow-sm focus:border-stone-500 focus:ring-stone-500"
           >
-            <option value="featured" data-nlv-field-path="translations.en.shop.sortFeatured">
+            <option value="featured" data-nlv-field-path={`translations.${language}.shop.sortFeatured`}>
               {t('shop.sortFeatured')}
             </option>
-            <option value="price-asc" data-nlv-field-path="translations.en.shop.sortPriceAsc">
+            <option value="price-asc" data-nlv-field-path={`translations.${language}.shop.sortPriceAsc`}>
               {t('shop.sortPriceAsc')}
             </option>
-            <option value="price-desc" data-nlv-field-path="translations.en.shop.sortPriceDesc">
+            <option value="price-desc" data-nlv-field-path={`translations.${language}.shop.sortPriceDesc`}>
               {t('shop.sortPriceDesc')}
             </option>
-            <option value="name-asc" data-nlv-field-path="translations.en.shop.sortNameAsc">
+            <option value="name-asc" data-nlv-field-path={`translations.${language}.shop.sortNameAsc`}>
               {t('shop.sortNameAsc')}
             </option>
-            <option value="name-desc" data-nlv-field-path="translations.en.shop.sortNameDesc">
+            <option value="name-desc" data-nlv-field-path={`translations.${language}.shop.sortNameDesc`}>
               {t('shop.sortNameDesc')}
             </option>
           </select>
@@ -208,20 +218,26 @@ const Shop: React.FC = () => {
           <div className="bg-white border border-stone-200 rounded-xl p-6 sm:p-8 shadow-sm">
             <h2
               className="text-2xl font-semibold text-stone-900"
-              data-nlv-field-path={activeCategoryIndex >= 0 ? `shop.categories.${activeCategoryIndex}.title.en` : undefined}
+              data-nlv-field-path={
+                activeCategoryIndex >= 0 ? `shop.categories.${activeCategoryIndex}.title.${language}` : undefined
+              }
             >
               {translate(activeCategory.title)}
             </h2>
             <p
               className="mt-3 text-stone-600 leading-relaxed"
-              data-nlv-field-path={activeCategoryIndex >= 0 ? `shop.categories.${activeCategoryIndex}.intro.en` : undefined}
+              data-nlv-field-path={
+                activeCategoryIndex >= 0 ? `shop.categories.${activeCategoryIndex}.intro.${language}` : undefined
+              }
             >
               {translate(activeCategory.intro)}
             </p>
             {activeCategory.links.length > 0 && (
               <div className="mt-6">
                 <p className="text-xs uppercase tracking-widest text-stone-500 mb-3">
-                  <span data-nlv-field-path="translations.en.shop.relatedResources">{t('shop.relatedResources')}</span>
+                  <span data-nlv-field-path={`translations.${language}.shop.relatedResources`}>
+                    {t('shop.relatedResources')}
+                  </span>
                 </p>
                 <div className="flex flex-wrap gap-2">
                   {activeCategory.links.map((link, linkIndex) => {
@@ -233,7 +249,7 @@ const Shop: React.FC = () => {
                         className="inline-flex items-center gap-2 px-3 py-2 bg-stone-100 text-stone-700 rounded-full text-sm font-medium hover:bg-stone-200 transition-colors"
                         data-nlv-field-path={
                           activeCategoryIndex >= 0
-                            ? `shop.categories.${activeCategoryIndex}.links.${linkIndex}.label.en`
+                            ? `shop.categories.${activeCategoryIndex}.links.${linkIndex}.label.${language}`
                             : undefined
                         }
                       >
@@ -248,22 +264,28 @@ const Shop: React.FC = () => {
           </div>
         ) : (
           <div className="text-stone-600 leading-relaxed max-w-3xl">
-            <p data-nlv-field-path="translations.en.shop.subtitle">{t('shop.subtitle')}</p>
+            <p data-nlv-field-path={`translations.${language}.shop.subtitle`}>
+              {t('shop.subtitle')}
+            </p>
           </div>
         )}
       </div>
 
       {loading ? (
-        <p className="text-center py-10">{t('common.loadingProducts')}</p>
+        <p className="text-center py-10" data-nlv-field-path={`translations.${language}.common.loadingProducts`}>
+          {t('common.loadingProducts')}
+        </p>
       ) : displayedProducts.length === 0 ? (
-        <p className="text-center py-10" data-nlv-field-path="translations.en.shop.noProducts">
+        <p className="text-center py-10" data-nlv-field-path={`translations.${language}.shop.noProducts`}>
           {t('shop.noProducts')}
         </p>
       ) : (
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
-          {displayedProducts.map(product => (
-            <ProductCard key={product.id} product={product} />
-          ))}
+          {displayedProducts.map(product => {
+            const productIndex = products.findIndex((item) => item.id === product.id);
+            const productFieldPath = productIndex >= 0 ? `products.items.${productIndex}` : undefined;
+            return <ProductCard key={product.id} product={product} fieldPath={productFieldPath} />;
+          })}
         </div>
       )}
     </div>

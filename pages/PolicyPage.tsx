@@ -6,7 +6,7 @@ import type { Policy } from '../types';
 
 const PolicyPage: React.FC = () => {
     const { type } = useParams<{ type: string }>();
-    const { t, translate } = useLanguage();
+    const { t, translate, language } = useLanguage();
     const [policies, setPolicies] = useState<Policy[]>([]);
     const [loading, setLoading] = useState(true);
 
@@ -28,11 +28,19 @@ const PolicyPage: React.FC = () => {
     }, [policies, policyIndex]);
 
     if (loading) {
-        return <div className="text-center py-20">{t('policy.loading')}</div>;
+        return (
+            <div className="text-center py-20" data-nlv-field-path={`translations.${language}.policy.loading`}>
+                {t('policy.loading')}
+            </div>
+        );
     }
 
     if (!policy) {
-        return <div className="text-center py-20">{t('policy.notFound')}</div>;
+        return (
+            <div className="text-center py-20" data-nlv-field-path={`translations.${language}.policy.notFound`}>
+                {t('policy.notFound')}
+            </div>
+        );
     }
 
     const title = translate(policy.title);
@@ -46,20 +54,34 @@ const PolicyPage: React.FC = () => {
                 <title>{title} | Kapunka Skincare</title>
             </Helmet>
             <header className="mb-12">
-                <h1 className="text-4xl sm:text-5xl font-semibold tracking-tight" data-nlv-field-path={policyFieldPath ? `${policyFieldPath}.title.en` : undefined}>{title}</h1>
+                <h1
+                    className="text-4xl sm:text-5xl font-semibold tracking-tight"
+                    data-nlv-field-path={policyFieldPath ? `${policyFieldPath}.title.${language}` : undefined}
+                >
+                    {title}
+                </h1>
             </header>
             <div className="prose prose-stone lg:prose-lg max-w-none text-stone-700 leading-relaxed space-y-4">
                 {typeof content === 'string' ? (
-                    <p data-nlv-field-path={policyFieldPath ? `${policyFieldPath}.content.en` : undefined}>{content}</p>
+                    <p data-nlv-field-path={policyFieldPath ? `${policyFieldPath}.content.${language}` : undefined}>{content}</p>
                 ) : Array.isArray(content) ? (
                     content.map((paragraph: string, index: number) => (
-                        <p key={index} data-nlv-field-path={policyFieldPath ? `${policyFieldPath}.content.en.${index}` : undefined}>{paragraph}</p>
+                        <p
+                            key={index}
+                            data-nlv-field-path={policyFieldPath ? `${policyFieldPath}.content.${language}.${index}` : undefined}
+                        >
+                            {paragraph}
+                        </p>
                     ))
                 ) : null}
-                <p data-nlv-field-path="translations.en.policy.contactPrompt">{t('policy.contactPrompt')}</p>
+                <p data-nlv-field-path={`translations.${language}.policy.contactPrompt`}>
+                    {t('policy.contactPrompt')}
+                </p>
                 <p>
                     <Link to="/contact" className="text-stone-700 underline hover:text-stone-900">
-                        <span data-nlv-field-path="translations.en.footer.contact">{t('footer.contact')}</span>
+                        <span data-nlv-field-path={`translations.${language}.footer.contact`}>
+                            {t('footer.contact')}
+                        </span>
                     </Link>
                 </p>
             </div>

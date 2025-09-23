@@ -10,13 +10,14 @@ import type { Product } from '../types';
 
 interface ProductCardProps {
   product: Product;
+  fieldPath?: string;
 }
 
-const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
+const ProductCard: React.FC<ProductCardProps> = ({ product, fieldPath }) => {
   const [selectedSizeId, setSelectedSizeId] = useState(product.sizes[0].id);
   const { addToCart } = useCart();
   const { openCart } = useUI();
-  const { translate } = useLanguage();
+  const { translate, language } = useLanguage();
 
   const selectedSize = useMemo(() => {
     return product.sizes.find(s => s.id === selectedSizeId) || product.sizes[0];
@@ -39,6 +40,7 @@ const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
       viewport={{ once: true, amount: 0.3 }}
       transition={{ duration: 0.6 }}
       className="group"
+      data-nlv-field-path={fieldPath}
     >
       <Link to={`/product/${product.id}`} className="block">
         <div className="relative overflow-hidden rounded-lg">
@@ -46,6 +48,7 @@ const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
             src={product.imageUrl}
             alt={translate(product.name)}
             className="w-full h-auto aspect-[3/4] object-cover transition-transform duration-500 group-hover:scale-105"
+            data-nlv-field-path={fieldPath ? `${fieldPath}.imageUrl` : undefined}
           />
           <button
             onClick={handleAddToCart}
@@ -56,11 +59,21 @@ const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
           </button>
         </div>
         <div className="mt-4">
-          <h3 className="font-semibold text-stone-800">{translate(product.name)}</h3>
-          <p className="text-sm text-stone-500 mt-1">{translate(product.tagline)}</p>
+          <h3
+            className="font-semibold text-stone-800"
+            data-nlv-field-path={fieldPath ? `${fieldPath}.name.${language}` : undefined}
+          >
+            {translate(product.name)}
+          </h3>
+          <p
+            className="text-sm text-stone-500 mt-1"
+            data-nlv-field-path={fieldPath ? `${fieldPath}.tagline.${language}` : undefined}
+          >
+            {translate(product.tagline)}
+          </p>
           <div className="flex items-baseline justify-between mt-2">
             <div className="flex items-center space-x-2">
-              {product.sizes.map(size => (
+              {product.sizes.map((size, sizeIndex) => (
                 <button
                   key={size.id}
                   onClick={(e) => { e.preventDefault(); setSelectedSizeId(size.id); }}
@@ -69,13 +82,25 @@ const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
                       ? 'bg-stone-800 text-white border-stone-800'
                       : 'border-stone-300 text-stone-500 hover:border-stone-800 hover:text-stone-800'
                   }`}
+                  data-nlv-field-path={fieldPath ? `${fieldPath}.sizes.${sizeIndex}` : undefined}
                 >
-                  {size.size}ml
+                  <span data-nlv-field-path={fieldPath ? `${fieldPath}.sizes.${sizeIndex}.size` : undefined}>
+                    {size.size}
+                  </span>
+                  ml
                 </button>
               ))}
             </div>
             <p className="text-sm font-medium text-stone-800">
-              ${selectedSize.price.toFixed(2)}
+              <span
+                data-nlv-field-path={
+                  fieldPath && selectedSize
+                    ? `${fieldPath}.sizes.${product.sizes.findIndex((s) => s.id === selectedSize.id)}.price`
+                    : undefined
+                }
+              >
+                ${selectedSize.price.toFixed(2)}
+              </span>
               <span className="text-xs text-stone-400 ml-1">(${pricePerMl}/ml)</span>
             </p>
           </div>

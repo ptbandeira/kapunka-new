@@ -4,8 +4,10 @@ import { useLanguage } from '../contexts/LanguageContext';
 import type { Partner } from '../types';
 
 const PartnerCarousel: React.FC = () => {
-    const { t } = useLanguage();
+    const { t, language } = useLanguage();
     const [partners, setPartners] = useState<Partner[]>([]);
+
+    const clinicsFieldPath = `translations.${language}.clinics`;
 
     useEffect(() => {
         fetch('/content/partners.json')
@@ -35,7 +37,10 @@ const PartnerCarousel: React.FC = () => {
     return (
         <div className="py-16 sm:py-24 bg-white">
             <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-                <h2 className="text-2xl font-semibold text-center text-stone-600 mb-12">
+                <h2
+                    className="text-2xl font-semibold text-center text-stone-600 mb-12"
+                    data-nlv-field-path={`${clinicsFieldPath}.partnersTitle`}
+                >
                     {t('clinics.partnersTitle')}
                 </h2>
                 <motion.div
@@ -44,13 +49,20 @@ const PartnerCarousel: React.FC = () => {
                     initial="hidden"
                     whileInView="visible"
                     viewport={{ once: true, amount: 0.5 }}
+                    data-nlv-field-path="partners.partners"
                 >
-                    {partners.map(partner => (
-                        <motion.div key={partner.id} variants={itemVariants} className="flex-shrink-0">
+                    {partners.map((partner, index) => (
+                        <motion.div
+                            key={partner.id}
+                            variants={itemVariants}
+                            className="flex-shrink-0"
+                            data-nlv-field-path={`partners.partners.${index}`}
+                        >
                             <img
                                 src={partner.logoUrl}
                                 alt={partner.name}
                                 className="h-8 object-contain grayscale opacity-60 hover:opacity-100 hover:grayscale-0 transition-all duration-300"
+                                data-nlv-field-path={`partners.partners.${index}.logoUrl`}
                             />
                         </motion.div>
                     ))}
