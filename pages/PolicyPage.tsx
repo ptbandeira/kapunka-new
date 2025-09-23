@@ -22,9 +22,10 @@ const PolicyPage: React.FC = () => {
             .finally(() => setLoading(false));
     }, []);
 
+    const policyIndex = useMemo(() => policies.findIndex((item) => item.id === type), [policies, type]);
     const policy = useMemo(() => {
-        return policies.find((item) => item.id === type);
-    }, [policies, type]);
+        return policyIndex >= 0 ? policies[policyIndex] : undefined;
+    }, [policies, policyIndex]);
 
     if (loading) {
         return <div className="text-center py-20">{t('policy.loading')}</div>;
@@ -37,24 +38,28 @@ const PolicyPage: React.FC = () => {
     const title = translate(policy.title);
     const content = translate(policy.content);
 
+    const policyFieldPath = policyIndex >= 0 ? `policies.items.${policyIndex}` : undefined;
+
     return (
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-4xl py-12 sm:py-16">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-4xl py-12 sm:py-16" data-nlv-field-path={policyFieldPath}>
             <Helmet>
                 <title>{title} | Kapunka Skincare</title>
             </Helmet>
             <header className="mb-12">
-                <h1 className="text-4xl sm:text-5xl font-semibold tracking-tight">{title}</h1>
+                <h1 className="text-4xl sm:text-5xl font-semibold tracking-tight" data-nlv-field-path={policyFieldPath ? `${policyFieldPath}.title.en` : undefined}>{title}</h1>
             </header>
             <div className="prose prose-stone lg:prose-lg max-w-none text-stone-700 leading-relaxed space-y-4">
                 {typeof content === 'string' ? (
-                    <p>{content}</p>
+                    <p data-nlv-field-path={policyFieldPath ? `${policyFieldPath}.content.en` : undefined}>{content}</p>
                 ) : Array.isArray(content) ? (
-                    content.map((paragraph: string, index: number) => <p key={index}>{paragraph}</p>)
+                    content.map((paragraph: string, index: number) => (
+                        <p key={index} data-nlv-field-path={policyFieldPath ? `${policyFieldPath}.content.en.${index}` : undefined}>{paragraph}</p>
+                    ))
                 ) : null}
-                <p>{t('policy.contactPrompt')}</p>
+                <p data-nlv-field-path="translations.en.policy.contactPrompt">{t('policy.contactPrompt')}</p>
                 <p>
                     <Link to="/contact" className="text-stone-700 underline hover:text-stone-900">
-                        {t('footer.contact')}
+                        <span data-nlv-field-path="translations.en.footer.contact">{t('footer.contact')}</span>
                     </Link>
                 </p>
             </div>

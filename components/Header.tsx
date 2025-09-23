@@ -9,7 +9,7 @@ import { useUI } from '../contexts/UIContext';
 import type { Language } from '../types';
 import { useSiteSettings } from '../contexts/SiteSettingsContext';
 
-const NavItem: React.FC<{ to: string; children: React.ReactNode; onClick?: () => void }> = ({ to, children, onClick }) => (
+const NavItem: React.FC<{ to: string; label: string; fieldPath?: string; onClick?: () => void }> = ({ to, label, fieldPath, onClick }) => (
   <NavLink
     to={to}
     onClick={onClick}
@@ -21,7 +21,7 @@ const NavItem: React.FC<{ to: string; children: React.ReactNode; onClick?: () =>
   >
     {({ isActive }) => (
       <motion.div className="relative" whileHover={{ y: -2 }}>
-        {children}
+        <span data-nlv-field-path={fieldPath ?? undefined}>{label}</span>
         {isActive && (
           <motion.div
             className="absolute -bottom-1 left-0 right-0 h-0.5 bg-stone-900"
@@ -81,11 +81,11 @@ const Header: React.FC = () => {
   }, []);
 
   const navLinks = [
-    { to: '/shop', label: t('nav.shop') },
-    { to: '/learn', label: t('nav.learn') },
-    { to: '/for-clinics', label: t('nav.forClinics') },
-    { to: '/about', label: t('nav.about') },
-    { to: '/contact', label: t('nav.contact') },
+    { to: '/shop', label: t('nav.shop'), fieldPath: 'translations.en.nav.shop' },
+    { to: '/learn', label: t('nav.learn'), fieldPath: 'translations.en.nav.learn' },
+    { to: '/for-clinics', label: t('nav.forClinics'), fieldPath: 'translations.en.nav.forClinics' },
+    { to: '/about', label: t('nav.about'), fieldPath: 'translations.en.nav.about' },
+    { to: '/contact', label: t('nav.contact'), fieldPath: 'translations.en.nav.contact' },
   ];
 
   return (
@@ -109,14 +109,14 @@ const Header: React.FC = () => {
             {/* Left Nav for larger screens */}
             <nav className="hidden lg:flex items-center space-x-8 text-sm font-medium">
               {navLinks.slice(0, 2).map(link => (
-                <NavItem key={link.to} to={link.to}>{link.label}</NavItem>
+                <NavItem key={link.to} to={link.to} label={link.label} fieldPath={link.fieldPath} />
               ))}
             </nav>
 
             {/* Logo */}
             <div className="absolute left-1/2 -translate-x-1/2">
                 <Link to="/" className="text-2xl font-bold tracking-wider text-stone-900 transition-transform duration-300 hover:scale-105">
-                {brandName}
+                <span data-nlv-field-path="site.brand.name">{brandName}</span>
                 </Link>
             </div>
 
@@ -124,7 +124,7 @@ const Header: React.FC = () => {
             <div className="flex items-center space-x-4">
                 <nav className="hidden lg:flex items-center space-x-8 text-sm font-medium">
                     {navLinks.slice(2).map(link => (
-                        <NavItem key={link.to} to={link.to}>{link.label}</NavItem>
+                        <NavItem key={link.to} to={link.to} label={link.label} fieldPath={link.fieldPath} />
                     ))}
                 </nav>
 
@@ -162,7 +162,7 @@ const Header: React.FC = () => {
             <div className="container mx-auto px-4 sm:px-6 lg:px-8 pt-6 h-full flex flex-col">
               <div className="flex justify-between items-center mb-12">
                 <Link to="/" onClick={() => setIsMenuOpen(false)} className="text-2xl font-bold tracking-wider text-stone-900">
-                  {brandName}
+                  <span data-nlv-field-path="site.brand.name">{brandName}</span>
                 </Link>
                 <button onClick={() => setIsMenuOpen(false)} className="p-2">
                   <X size={24} />
@@ -170,7 +170,7 @@ const Header: React.FC = () => {
               </div>
               <nav className="flex flex-col items-center space-y-8 text-xl font-medium">
                 {navLinks.map(link => (
-                  <NavItem key={link.to} to={link.to} onClick={() => setIsMenuOpen(false)}>{link.label}</NavItem>
+                  <NavItem key={link.to} to={link.to} label={link.label} fieldPath={link.fieldPath} onClick={() => setIsMenuOpen(false)} />
                 ))}
               </nav>
               <div className="mt-auto mb-12 flex justify-center">

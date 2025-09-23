@@ -48,21 +48,21 @@ const Shop: React.FC = () => {
             <meta name="description" content={t('shop.metaDescription')} />
         </Helmet>
       <header className="text-center mb-12">
-        <h1 className="text-4xl sm:text-5xl font-semibold tracking-tight">{t('shop.title')}</h1>
-        <p className="mt-4 text-lg text-stone-600 max-w-2xl mx-auto">{t('shop.subtitle')}</p>
+        <h1 className="text-4xl sm:text-5xl font-semibold tracking-tight" data-nlv-field-path="translations.en.shop.title">{t('shop.title')}</h1>
+        <p className="mt-4 text-lg text-stone-600 max-w-2xl mx-auto" data-nlv-field-path="translations.en.shop.subtitle">{t('shop.subtitle')}</p>
       </header>
-      
+
       <div className="flex justify-end mb-8">
         <select
           value={sortOption}
           onChange={(e) => setSortOption(e.target.value)}
           className="border-stone-300 rounded-md shadow-sm focus:border-stone-500 focus:ring-stone-500"
         >
-          <option value="featured">{t('shop.sortFeatured')}</option>
-          <option value="price-asc">{t('shop.sortPriceAsc')}</option>
-          <option value="price-desc">{t('shop.sortPriceDesc')}</option>
-          <option value="name-asc">{t('shop.sortNameAsc')}</option>
-          <option value="name-desc">{t('shop.sortNameDesc')}</option>
+          <option value="featured" data-nlv-field-path="translations.en.shop.sortFeatured">{t('shop.sortFeatured')}</option>
+          <option value="price-asc" data-nlv-field-path="translations.en.shop.sortPriceAsc">{t('shop.sortPriceAsc')}</option>
+          <option value="price-desc" data-nlv-field-path="translations.en.shop.sortPriceDesc">{t('shop.sortPriceDesc')}</option>
+          <option value="name-asc" data-nlv-field-path="translations.en.shop.sortNameAsc">{t('shop.sortNameAsc')}</option>
+          <option value="name-desc" data-nlv-field-path="translations.en.shop.sortNameDesc">{t('shop.sortNameDesc')}</option>
         </select>
       </div>
 

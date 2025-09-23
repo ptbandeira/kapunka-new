@@ -1,5 +1,179 @@
 {
   "name": "Kapunka Argan",
   "description": "A modern, premium e-commerce website for Kapunka, a skincare brand focused on clean, minimal, and elegant products. Inspired by the smooth and fluid user experience of high-end web designs.",
-  "requestFramePermissions": []
+  "requestFramePermissions": [],
+  "sitemap": [
+    {
+      "id": "home",
+      "label": "Home",
+      "urlPath": "/",
+      "page": {
+        "type": "static",
+        "filePath": "pages/Home.tsx"
+      }
+    },
+    {
+      "id": "shop",
+      "label": "Shop",
+      "urlPath": "/shop",
+      "page": {
+        "type": "static",
+        "filePath": "pages/Shop.tsx"
+      }
+    },
+    {
+      "id": "product-detail",
+      "label": "Product Detail",
+      "urlPath": "/product/{id}",
+      "collectionId": "products"
+    },
+    {
+      "id": "learn",
+      "label": "Learn",
+      "urlPath": "/learn",
+      "page": {
+        "type": "static",
+        "filePath": "pages/Learn.tsx"
+      }
+    },
+    {
+      "id": "article-detail",
+      "label": "Article Detail",
+      "urlPath": "/learn/{slug}",
+      "collectionId": "articles",
+      "parentId": "learn"
+    },
+    {
+      "id": "for-clinics",
+      "label": "For Clinics",
+      "urlPath": "/for-clinics",
+      "page": {
+        "type": "static",
+        "filePath": "pages/ForClinics.tsx"
+      }
+    },
+    {
+      "id": "academy",
+      "label": "Academy",
+      "urlPath": "/academy",
+      "page": {
+        "type": "static",
+        "filePath": "pages/Academy.tsx"
+      }
+    },
+    {
+      "id": "about",
+      "label": "About",
+      "urlPath": "/about",
+      "page": {
+        "type": "static",
+        "filePath": "pages/About.tsx"
+      }
+    },
+    {
+      "id": "contact",
+      "label": "Contact",
+      "urlPath": "/contact",
+      "page": {
+        "type": "static",
+        "filePath": "pages/Contact.tsx"
+      }
+    },
+    {
+      "id": "cart",
+      "label": "Cart",
+      "urlPath": "/cart",
+      "page": {
+        "type": "static",
+        "filePath": "pages/CartPage.tsx"
+      }
+    },
+    {
+      "id": "policy",
+      "label": "Policies",
+      "urlPath": "/policy/{type}",
+      "collectionId": "policies"
+    }
+  ],
+  "collections": [
+    {
+      "id": "site",
+      "label": "Site Settings",
+      "type": "single",
+      "filePath": "content/site.json"
+    },
+    {
+      "id": "translations",
+      "label": "Translations",
+      "type": "single",
+      "filePath": "content/translations.json"
+    },
+    {
+      "id": "products",
+      "label": "Products",
+      "type": "collection",
+      "filePath": "content/products/index.json",
+      "itemsField": "items",
+      "primaryKeyField": "id",
+      "labelField": "name.en",
+      "urlPath": "/product/{id}"
+    },
+    {
+      "id": "articles",
+      "label": "Articles",
+      "type": "collection",
+      "filePath": "content/articles/index.json",
+      "itemsField": "items",
+      "primaryKeyField": "slug",
+      "labelField": "title.en",
+      "urlPath": "/learn/{slug}"
+    },
+    {
+      "id": "policies",
+      "label": "Policies",
+      "type": "collection",
+      "filePath": "content/policies.json",
+      "itemsField": "items",
+      "primaryKeyField": "id",
+      "labelField": "title.en",
+      "urlPath": "/policy/{id}"
+    },
+    {
+      "id": "courses",
+      "label": "Courses",
+      "type": "collection",
+      "filePath": "content/courses.json",
+      "itemsField": "courses",
+      "primaryKeyField": "id",
+      "labelField": "title.en",
+      "urlPath": "/academy"
+    },
+    {
+      "id": "reviews",
+      "label": "Reviews",
+      "type": "collection",
+      "filePath": "content/reviews/index.json",
+      "itemsField": "items",
+      "primaryKeyField": "id",
+      "labelField": "author.en"
+    },
+    {
+      "id": "doctors",
+      "label": "Doctors",
+      "type": "collection",
+      "filePath": "content/doctors.json",
+      "itemsField": "doctors",
+      "primaryKeyField": "id",
+      "labelField": "name"
+    },
+    {
+      "id": "partners",
+      "label": "Partners",
+      "type": "collection",
+      "filePath": "content/partners.json",
+      "itemsField": "partners",
+      "primaryKeyField": "id",
+      "labelField": "name"
+    }
+  ]
 }
