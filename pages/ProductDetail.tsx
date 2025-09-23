@@ -7,7 +7,7 @@ import { Plus } from 'lucide-react';
 import { useLanguage } from '../contexts/LanguageContext';
 import { useCart } from '../contexts/CartContext';
 import { useUI } from '../contexts/UIContext';
-import type { Product } from '../types';
+import type { Product, ProductKnowledge } from '../types';
 import ProductCard from '../components/ProductCard';
 
 const ProductDetail: React.FC = () => {
@@ -71,6 +71,14 @@ const ProductDetail: React.FC = () => {
         { id: 'howToUse', label: t('pdp.tabs.howToUse'), fieldPath: 'translations.en.pdp.tabs.howToUse' },
         { id: 'ingredients', label: t('pdp.tabs.ingredients'), fieldPath: 'translations.en.pdp.tabs.ingredients' },
         { id: 'labTested', label: t('pdp.tabs.labTested'), fieldPath: 'translations.en.pdp.tabs.labTested' },
+    ];
+
+    const knowledgeSectionConfigs: { id: string; field: keyof ProductKnowledge; titleKey: string }[] = [
+        { id: 'whatItIs', field: 'whatItIs', titleKey: 'pdp.knowledge.sections.whatItIs' },
+        { id: 'howItWorks', field: 'howItWorks', titleKey: 'pdp.knowledge.sections.howItWorks' },
+        { id: 'whoItsFor', field: 'whoItsFor', titleKey: 'pdp.knowledge.sections.whoItsFor' },
+        { id: 'scientificBacking', field: 'scientificBacking', titleKey: 'pdp.knowledge.sections.scientificBacking' },
+        { id: 'culturalContext', field: 'culturalContext', titleKey: 'pdp.knowledge.sections.culturalContext' },
     ];
 
     return (
@@ -190,7 +198,74 @@ const ProductDetail: React.FC = () => {
                     </div>
                 </div>
             </div>
-            
+
+            {product.knowledge && (
+                <section className="bg-stone-50 py-16 sm:py-24">
+                    <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+                        <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }} className="max-w-3xl">
+                            <h2 className="text-3xl sm:text-4xl font-semibold text-stone-900" data-nlv-field-path="translations.en.pdp.knowledge.title">{t('pdp.knowledge.title')}</h2>
+                            <p className="mt-4 text-lg text-stone-600" data-nlv-field-path="translations.en.pdp.knowledge.subtitle">{t('pdp.knowledge.subtitle')}</p>
+                        </motion.div>
+                        <div className="mt-12 grid gap-8 md:grid-cols-2">
+                            {knowledgeSectionConfigs.map(section => (
+                                <motion.div
+                                    key={section.id}
+                                    initial={{ opacity: 0, y: 20 }}
+                                    animate={{ opacity: 1, y: 0 }}
+                                    transition={{ duration: 0.6, delay: 0.1 }}
+                                    className="bg-white p-6 rounded-lg shadow-sm border border-stone-200"
+                                >
+                                    <h3 className="text-xl font-semibold text-stone-900" data-nlv-field-path={`translations.en.pdp.knowledge.sections.${section.field}`}>
+                                        {t(section.titleKey)}
+                                    </h3>
+                                    <p
+                                        className="mt-4 text-stone-700 leading-relaxed"
+                                        data-nlv-field-path={productFieldPath ? `${productFieldPath}.knowledge.${section.field}.en` : undefined}
+                                    >
+                                        {translate(product.knowledge[section.field])}
+                                    </p>
+                                </motion.div>
+                            ))}
+                        </div>
+                    </div>
+                </section>
+            )}
+
+            {product.faqs && product.faqs.length > 0 && (
+                <section className="py-16 sm:py-24">
+                    <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+                        <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }} className="max-w-3xl">
+                            <h2 className="text-3xl sm:text-4xl font-semibold text-stone-900" data-nlv-field-path="translations.en.pdp.faq.title">{t('pdp.faq.title')}</h2>
+                            <p className="mt-4 text-lg text-stone-600" data-nlv-field-path="translations.en.pdp.faq.subtitle">{t('pdp.faq.subtitle')}</p>
+                        </motion.div>
+                        <div className="mt-10 space-y-6">
+                            {product.faqs.map((faq, index) => (
+                                <motion.div
+                                    key={`${faq.question.en}-${index}`}
+                                    initial={{ opacity: 0, y: 20 }}
+                                    animate={{ opacity: 1, y: 0 }}
+                                    transition={{ duration: 0.6, delay: 0.1 * (index + 1) }}
+                                    className="border border-stone-200 rounded-lg p-6 bg-white shadow-sm"
+                                >
+                                    <h3
+                                        className="text-xl font-semibold text-stone-900"
+                                        data-nlv-field-path={productFieldPath ? `${productFieldPath}.faqs.${index}.question.en` : undefined}
+                                    >
+                                        {translate(faq.question)}
+                                    </h3>
+                                    <p
+                                        className="mt-3 text-stone-700 leading-relaxed"
+                                        data-nlv-field-path={productFieldPath ? `${productFieldPath}.faqs.${index}.answer.en` : undefined}
+                                    >
+                                        {translate(faq.answer)}
+                                    </p>
+                                </motion.div>
+                            ))}
+                        </div>
+                    </div>
+                </section>
+            )}
+
             {relatedProducts.length > 0 && (
                 <div className="py-16 sm:py-24 bg-stone-50">
                     <div className="container mx-auto px-4 sm:px-6 lg:px-8">
