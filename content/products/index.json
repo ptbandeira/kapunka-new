@@ -16,6 +16,11 @@
         "pt": "Certificado ECOCERT, Primeira Prensagem a Frio",
         "es": "Certificado ECOCERT, Primera Presión en Frío"
       },
+      "description": {
+        "en": "Kapunka Pure Argan Oil (100 ml) is cold-pressed, single-origin from Morocco. Certified by ECOCERT, 100% vegan, no additives. Rich in vitamin E and essential fatty acids, it deeply nourishes skin, supports hair shine, soothes stretch marks, and aids skin regeneration without clogging pores.",
+        "pt": "Óleo de Argan puro Kapunka (100 ml) é prensado a frio, de origem única do Marrocos. Certificado pela ECOCERT, 100 % vegano, sem aditivos. Rico em vitamina E e ácidos gordos essenciais, nutre profundamente a pele, dá brilho ao cabelo, suaviza estrias e favorece a regeneração cutânea sem obstruir os poros.",
+        "es": "Aceite de Argán puro Kapunka (100 ml) se obtiene por prensado en frío, origen único de Marruecos. Certificado por ECOCERT, 100 % vegano, sin aditivos. Rico en vitamina E y ácidos grasos esenciales, nutre profundamente la piel, da brillo al cabello, suaviza estrías y favorece la regeneración cutánea sin obstruir los poros."
+      },
       "badges": {
         "en": [
           "ECOCERT Certified",
@@ -37,6 +42,33 @@
         "en": "Our Argan Oil is ECOCERT certified, guaranteeing its organic purity and ethical sourcing from the women's cooperatives of Morocco.",
         "pt": "O nosso Óleo de Argan é certificado pela ECOCERT, garantindo a sua pureza orgânica e origem ética das cooperativas de mulheres de Marrocos.",
         "es": "Nuestro Aceite de Argán está certificado por ECOCERT, garantizando su pureza orgánica y su origen ético de las cooperativas de mujeres de Marruecos."
+      },
+      "goodToKnow": {
+        "title": {
+          "en": "Good to know",
+          "pt": "Bom saber",
+          "es": "Para tener en cuenta"
+        },
+        "items": {
+          "en": [
+            "Texture: lightweight, non-greasy",
+            "Absorption: fast absorb-in, leaves subtle glow",
+            "Recommended use: AM/PM, mix with moisturizer or use alone",
+            "Shelf life: 12 months after opening"
+          ],
+          "pt": [
+            "Textura: leve, não gordurosa",
+            "Absorção: rápida, deixa um brilho sutil",
+            "Uso recomendado: manhã/noite, misture ao hidratante ou use sozinho",
+            "Validade: 12 meses após a abertura"
+          ],
+          "es": [
+            "Textura: ligera, no grasa",
+            "Absorción: rápida, deja un brillo sutil",
+            "Uso recomendado: mañana/noche, mézclalo con hidratante o úsalo solo",
+            "Caducidad: 12 meses después de abrir"
+          ]
+        }
       },
       "sizes": [
         {
