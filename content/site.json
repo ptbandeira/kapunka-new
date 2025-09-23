@@ -6,7 +6,7 @@
     "heroImage": "/content/uploads/herobackoil.jpg"
   },
   "contact": {
-    "email": "hello@kapunka.com",
+    "email": "info@kapunka.com",
     "phone": "+1 (234) 567-890",
     "whatsapp": "https://wa.me/1234567890"
   },
@@ -16,13 +16,13 @@
       {
         "id": "facebook",
         "label": "Facebook",
-        "url": "https://facebook.com/kapunka",
+        "url": "https://www.facebook.com/kapunkargan",
         "icon": "facebook"
       },
       {
         "id": "instagram",
         "label": "Instagram",
-        "url": "https://instagram.com/kapunka",
+        "url": "https://www.instagram.com/kapunkarganoil/",
         "icon": "instagram"
       }
     ]
