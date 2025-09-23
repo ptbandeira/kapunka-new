@@ -2,24 +2,24 @@
   "items": [
     {
       "ingredients": {
-        "en": "100% Argania Spinosa (Argan) Kernel Oil.",
-        "pt": "100% Óleo de Caroço de Argania Spinosa (Argan).",
-        "es": "100% Aceite de Semilla de Argania Spinosa (Argán)."
+        "en": "Argania Spinosa (Argan) Kernel Oil",
+        "pt": "Argania Spinosa (Argan) Kernel Oil",
+        "es": "Argania Spinosa (Argan) Kernel Oil"
       },
       "name": {
-        "en": "100% Pure Argan Oil",
-        "pt": "Óleo de Argan 100% Puro",
-        "es": "Aceite de Argán Puro 100%"
+        "en": "Pure Moroccan Argan Oil",
+        "pt": "Óleo de Argan Puro",
+        "es": "Aceite de Argán Puro"
       },
       "tagline": {
-        "en": "ECOCERT Certified, First Cold Press",
-        "pt": "Certificado ECOCERT, Primeira Prensagem a Frio",
-        "es": "Certificado ECOCERT, Primera Presión en Frío"
+        "en": "Cold-pressed, single-origin. Face, body, hair.",
+        "pt": "Prensado a frio, origem única. Rosto, corpo, cabelo.",
+        "es": "Prensado en frío, origen único. Rostro, cuerpo, cabello."
       },
       "description": {
-        "en": "Kapunka Pure Argan Oil (100 ml) is cold-pressed, single-origin from Morocco. Certified by ECOCERT, 100% vegan, no additives. Rich in vitamin E and essential fatty acids, it deeply nourishes skin, supports hair shine, soothes stretch marks, and aids skin regeneration without clogging pores.",
-        "pt": "Óleo de Argan puro Kapunka (100 ml) é prensado a frio, de origem única do Marrocos. Certificado pela ECOCERT, 100 % vegano, sem aditivos. Rico em vitamina E e ácidos gordos essenciais, nutre profundamente a pele, dá brilho ao cabelo, suaviza estrias e favorece a regeneração cutânea sem obstruir os poros.",
-        "es": "Aceite de Argán puro Kapunka (100 ml) se obtiene por prensado en frío, origen único de Marruecos. Certificado por ECOCERT, 100 % vegano, sin aditivos. Rico en vitamina E y ácidos grasos esenciales, nutre profundamente la piel, da brillo al cabello, suaviza estrías y favorece la regeneración cutánea sin obstruir los poros."
+        "en": "Cold-pressed, single-origin oil from Morocco. Naturally rich in vitamin E and essential fatty acids, it comforts dryness, supports the skin barrier and leaves a soft, non-greasy glow. Suitable for sensitive skin and daily routines.",
+        "pt": "Óleo de origem única, prensado a frio em Marrocos. Naturalmente rico em vitamina E e ácidos gordos essenciais, conforta a secura, apoia a barreira cutânea e deixa um brilho suave sem oleosidade. Adequado para pele sensível e uso diário.",
+        "es": "Aceite de origen único, prensado en frío en Marruecos. Naturalmente rico en vitamina E y ácidos grasos esenciales, reconforta la sequedad, ayuda a la barrera cutánea y deja un brillo suave sin grasa. Apto para pieles sensibles y uso diario."
       },
       "badges": {
         "en": [
@@ -51,22 +51,22 @@
         },
         "items": {
           "en": [
-            "Texture: lightweight, non-greasy",
-            "Absorption: fast absorb-in, leaves subtle glow",
-            "Recommended use: AM/PM, mix with moisturizer or use alone",
-            "Shelf life: 12 months after opening"
+            "Texture: lightweight, fast-absorbing",
+            "Finish: soft glow, non-greasy",
+            "Suitable for all skin types",
+            "Vegan; no additives"
           ],
           "pt": [
-            "Textura: leve, não gordurosa",
-            "Absorção: rápida, deixa um brilho sutil",
-            "Uso recomendado: manhã/noite, misture ao hidratante ou use sozinho",
-            "Validade: 12 meses após a abertura"
+            "Textura: leve, de rápida absorção",
+            "Acabamento: brilho suave, não oleoso",
+            "Adequado para todos os tipos de pele",
+            "Vegan; sem aditivos"
           ],
           "es": [
-            "Textura: ligera, no grasa",
-            "Absorción: rápida, deja un brillo sutil",
-            "Uso recomendado: mañana/noche, mézclalo con hidratante o úsalo solo",
-            "Caducidad: 12 meses después de abrir"
+            "Textura: ligera, de rápida absorción",
+            "Acabado: brillo suave, no graso",
+            "Apto para todo tipo de piel",
+            "Vegano; sin aditivos"
           ]
         }
       },
@@ -95,28 +95,28 @@
       "imageUrl": "/content/uploads/aceite-argan-dosificador-250ml-300x300.jpg",
       "id": "pure-argan-oil",
       "howToUse": {
-        "en": "Apply a few drops to the face, body, or hair as needed. A little goes a long way. Can be used morning and night.",
-        "pt": "Aplique algumas gotas no rosto, corpo ou cabelo conforme necessário. Um pouco rende muito. Pode ser usado de manhã e à noite.",
-        "es": "Aplicar unas gotas en el rostro, cuerpo o cabello según sea necesario. Un poco es suficiente. Se puede usar por la mañana y por la noche."
+        "en": "Apply 2–3 drops to clean skin AM/PM. For hair, smooth a drop on mid-lengths and ends. For post-procedure routines, follow your clinician’s guidance.",
+        "pt": "Aplicar 2–3 gotas na pele limpa de manhã e à noite. No cabelo, espalhar uma gota nos comprimentos e pontas. Em rotinas pós-procedimento, seguir a orientação do profissional.",
+        "es": "Aplicar 2–3 gotas sobre la piel limpia mañana y noche. Para el cabello, aplicar una gota en medios y puntas. En rutinas post-procedimiento, seguir las indicaciones del profesional."
       },
       "benefits": {
         "en": [
-          "Deeply nourishes and moisturizes skin, hair, and nails",
-          "Rich in Vitamin E and essential fatty acids",
-          "Improves skin elasticity and reduces the appearance of fine lines",
-          "Soothes inflammation and supports the skin barrier"
+          "Deep hydration; soft, comfortable finish",
+          "Supports the skin barrier",
+          "Multi-use: face, body, hair, nails",
+          "Fragrance-free; suitable for sensitive skin"
         ],
         "pt": [
-          "Nutre e hidrata profundamente a pele, cabelo e unhas",
-          "Rico em Vitamina E e ácidos gordos essenciais",
-          "Melhora a elasticidade da pele e reduz a aparência de linhas finas",
-          "Acalma a inflamação e apoia a barreira da pele"
+          "Hidratação profunda; acabamento suave e confortável",
+          "Apoia a barreira cutânea",
+          "Multiuso: rosto, corpo, cabelo, unhas",
+          "Sem fragrância; adequado para pele sensível"
         ],
         "es": [
-          "Nutre e hidrata profundamente la piel, el cabello y las uñas",
-          "Rico en Vitamina E y ácidos grasos esenciales",
-          "Mejora la elasticidad de la piel y reduce la apariencia de líneas finas",
-          "Calma la inflamación y apoya la barrera cutánea"
+          "Hidratación profunda; acabado suave y confortable",
+          "Apoya la barrera cutánea",
+          "Multiuso: rostro, cuerpo, cabello, uñas",
+          "Sin fragancia; apto para piel sensible"
         ]
       },
       "knowledge": {
