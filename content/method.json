@@ -3,85 +3,139 @@
     "metaTitle": "Method Kapunka",
     "metaDescription": "Sensitive rituals rooted in Berber heritage, artisan extraction, and modern skin science.",
     "heroTitle": "Method Kapunka",
-    "heroSubtitle": "Berber heritage, artisan precision, and clinical rigor in one ritual.",
-    "body": "At Kapunka, we believe in caring with sensitivity. Our method blends centuries-old Berber argan cultivation, artisan extraction, and modern skin science.\n\nEvery drop of Kapunka Argan Oil is cold-pressed, additive-free, certified by ECOCERT, and lab-tested for purity. Used in post-procedure care, sensitive skin routines, and everyday wellness.",
+    "heroSubtitle": "Blending centuries-old Berber cultivation, artisan extraction and modern skin science.",
+    "body": "At Kapunka we believe reactive skin deserves rituals that feel restorative. Method Kapunka blends Berber cultivation, artisan extraction, and dermatological science to calm and replenish barrier-defended skin.\n\nFrom cleansing mists to final oil layering, each movement honours the ingredients' origin while supporting aesthetic teams and at-home routines after peels, lasers, or daily stress.",
     "testimonialsTitle": "Clinics that trust Method Kapunka",
     "testimonials": [
       {
-        "id": "teknon-laser",
-        "quote": "We integrate Method Kapunka after fractional lasers—the cold-pressed argan oil seals hydration without suffocating skin, so redness resolves faster.",
-        "name": "Dr. Víctor Hernández",
-        "role": "Medical Director, Teknon Laser Unit"
+        "id": "dermavita-clinic",
+        "quote": "Method Kapunka keeps my post-laser patients from flaring—the rose hydrosol and first-press argan seal hydration while we monitor recovery.",
+        "name": "Dr. Sofia Herrera",
+        "role": "Dermatologist, Instituto DermaVita"
       },
       {
-        "id": "canons-clinic",
-        "quote": "As an aesthetic nurse I trust Kapunka for rosacea-prone clients; the method's rose mist plus argan layering keeps their barrier calm on the journey home.",
-        "name": "Carmen López, RN",
-        "role": "Lead aesthetic nurse, Canons Clinic"
+        "id": "casa-lotus",
+        "quote": "Our aestheticians love the measured steps; the seasonal oil warms quickly and never pills beneath mineral SPF.",
+        "name": "Paulo Mendes",
+        "role": "Director of Aesthetics, Casa Lótus Spa"
       },
       {
-        "id": "sen-atelier",
-        "quote": "Our wellness members use Method Kapunka as a daily ritual—the lab-tested argan glides over scalp and body without residue, keeping adherence high.",
-        "name": "Marina Costa",
-        "role": "Founder, Sên Atelier de Piel"
+        "id": "ait-maouine",
+        "quote": "As part of the cooperative, I trust Kapunka's agreements—they reinvest in literacy and purchase every litre we craft.",
+        "name": "Nadia El Idrissi",
+        "role": "Coordinator, Cooperative Aït Maouine"
       }
-    ]
+    ],
+    "sections": {
+      "ourOrigins": {
+        "title": "Our Origins",
+        "body": "Our story began in 2011 when founder Laila Benkirane returned to her grandmother's argan groves in Morocco's Souss Valley seeking a simpler, gentler recovery ritual for her clinical clients.\n\nListening to Amazigh matriarchs who had tended the trees for generations, we committed to preserving their harvesting calendars, oral histories, and cooperative leadership within Method Kapunka."
+      },
+      "artisanExtraction": {
+        "title": "Artisan Extraction",
+        "body": "Each November, women from the Tazghlilt and Aït Maouine cooperatives hand-pick only fallen, sun-dried fruit to respect natural regeneration and wildlife.\n\nThe kernels are cracked with river stones, lightly roasted to release natural antioxidants, cold-pressed within four hours, and gravity-filtered three times so every bottle carries the season's first-press vitality."
+      },
+      "clinicalRigor": {
+        "title": "Clinical Rigor",
+        "body": "Since 2014 our oil has held ECOCERT COSMOS Organic certification, verifying traceability from grove to glass and safeguarding the cooperatives' regenerative methods.\n\nEach batch undergoes lipid profile, peroxide value, and microbiology testing in our Casablanca lab, and protocols are reviewed quarterly with dermatologists such as Dr. Sofia Herrera to ensure compatibility with post-procedure skin."
+      },
+      "sustainabilityImpact": {
+        "title": "Sustainability & Impact",
+        "body": "We maintain ten-year fair trade agreements that guarantee a 28% premium above market price and reliable purchase orders for 146 cooperative members, 87% of whom are first-generation wage earners.\n\nA share of every batch funds literacy circles, solar drying shelters, and the planting of 300 new argan saplings annually, while our glass supply chain offsets transport emissions through reforestation in the Anti-Atlas."
+      }
+    }
   },
   "pt": {
     "metaTitle": "Método Kapunka",
     "metaDescription": "Rituais sensíveis enraizados na herança berbere, na extração artesanal e na ciência moderna da pele.",
     "heroTitle": "Método Kapunka",
-    "heroSubtitle": "Herança berbere, precisão artesanal e rigor clínico em um único ritual.",
-    "body": "Na Kapunka acreditamos no cuidado com sensibilidade. Nosso método combina séculos de cultivo berbere, extração artesanal e ciência moderna de cuidados com a pele.\n\nCada gota de óleo de argan Kapunka é prensada a frio, livre de aditivos, certificada pela ECOCERT e testada em laboratório para pureza. É usado em cuidados pós-procedimento, rotinas de pele sensível e no bem-estar diário.",
+    "heroSubtitle": "Combinando séculos de cultivo berbere, extração artesanal e ciência moderna da pele.",
+    "body": "Na Kapunka acreditamos que peles reativas merecem rituais restauradores. O Método Kapunka combina cultivo berbere, extração artesanal e ciência dermatológica para acalmar e reforçar a barreira cutânea.\n\nDo vapor de limpeza às camadas finais de óleo, cada gesto honra a origem dos ingredientes e apoia equipes estéticas e rotinas domésticas após peelings, lasers ou o estresse diário.",
     "testimonialsTitle": "Clínicas que confiam no Método Kapunka",
     "testimonials": [
       {
-        "id": "teknon-laser",
-        "quote": "Integramos o Método Kapunka após lasers fracionados — o óleo de argan prensado a frio sela a hidratação sem sufocar a pele, então a vermelhidão desaparece mais rápido.",
-        "name": "Dr. Víctor Hernández",
-        "role": "Diretor médico, Unidade de Laser Teknon"
+        "id": "dermavita-clinic",
+        "quote": "O Método Kapunka evita que minhas pacientes pós-laser inflamem — a hidrossol de rosas e o argan de primeira prensagem selam a hidratação enquanto monitoramos a recuperação.",
+        "name": "Dra. Sofia Herrera",
+        "role": "Dermatologista, Instituto DermaVita"
       },
       {
-        "id": "canons-clinic",
-        "quote": "Como enfermeira estética, confio na Kapunka para clientes com rosácea; a névoa de rosas e as camadas de argan do método mantêm a barreira calma no caminho de volta.",
-        "name": "Carmen López, RN",
-        "role": "Enfermeira estética líder, Canons Clinic"
+        "id": "casa-lotus",
+        "quote": "Nossos esteticistas adoram as etapas medidas; o óleo sazonal aquece rápido e não forma resíduos sob o protetor solar mineral.",
+        "name": "Paulo Mendes",
+        "role": "Diretor de Estética, Casa Lótus Spa"
       },
       {
-        "id": "sen-atelier",
-        "quote": "Nossos membros de bem-estar usam o Método Kapunka como ritual diário — o argan testado em laboratório desliza sobre couro cabeludo e corpo sem resíduos, mantendo a adesão alta.",
-        "name": "Marina Costa",
-        "role": "Fundadora, Sên Atelier da Pele"
+        "id": "ait-maouine",
+        "quote": "Como parte da cooperativa, confio nos acordos da Kapunka — eles reinvestem em alfabetização e compram cada litro que produzimos.",
+        "name": "Nadia El Idrissi",
+        "role": "Coordenadora, Cooperativa Aït Maouine"
       }
-    ]
+    ],
+    "sections": {
+      "ourOrigins": {
+        "title": "Nossas Origens",
+        "body": "Nossa história começou em 2011, quando a fundadora Laila Benkirane voltou aos arganhais da avó no Vale do Souss, no Marrocos, em busca de um ritual de recuperação mais simples e gentil para suas clientes clínicas.\n\nOuvindo as matriarcas amazigh que cuidam das árvores há gerações, comprometemo-nos a preservar seus calendários de colheita, histórias orais e liderança cooperativa dentro do Método Kapunka."
+      },
+      "artisanExtraction": {
+        "title": "Extração Artesanal",
+        "body": "Todo mês de novembro, as mulheres das cooperativas Tazghlilt e Aït Maouine colhem à mão apenas os frutos caídos e secos ao sol, respeitando a regeneração natural e a fauna local.\n\nOs caroços são quebrados com pedras de rio, levemente torrados para liberar antioxidantes naturais, prensados a frio em até quatro horas e filtrados por gravidade três vezes para que cada frasco traga a vitalidade da primeira prensagem da estação."
+      },
+      "clinicalRigor": {
+        "title": "Rigor Clínico",
+        "body": "Desde 2014 nosso óleo mantém a certificação ECOCERT COSMOS Organic, garantindo rastreabilidade do bosque ao frasco e protegendo os métodos regenerativos das cooperativas.\n\nCada lote passa por análises de perfil lipídico, índice de peróxidos e microbiologia em nosso laboratório de Casablanca, e os protocolos são revisados trimestralmente com dermatologistas como a Dra. Sofia Herrera para assegurar compatibilidade com peles pós-procedimento."
+      },
+      "sustainabilityImpact": {
+        "title": "Sustentabilidade e Impacto",
+        "body": "Mantemos acordos de comércio justo de dez anos que asseguram um prêmio de 28% acima do preço de mercado e pedidos estáveis para 146 integrantes das cooperativas, 87% delas primeiras provedoras da família.\n\nParte de cada lote financia círculos de alfabetização, abrigos solares de secagem e o plantio anual de 300 novas mudas de argan, enquanto nossa cadeia de vidro compensa emissões de transporte com reflorestamento no Anti-Atlas."
+      }
+    }
   },
   "es": {
     "metaTitle": "Método Kapunka",
     "metaDescription": "Rituales sensibles arraigados en la herencia bereber, la extracción artesanal y la ciencia moderna de la piel.",
     "heroTitle": "Método Kapunka",
-    "heroSubtitle": "Herencia bereber, precisión artesanal y rigor clínico en un solo ritual.",
-    "body": "En Kapunka creemos en cuidar con sensibilidad. Nuestro método mezcla siglos de cultivo bereber, extracción artesanal y ciencia moderna de cuidados de la piel.\n\nCada gota de aceite de argán Kapunka está prensada en frío, libre de aditivos, certificada por ECOCERT y analizada en laboratorio para pureza. Se utiliza en cuidados post-procedimiento, piel sensible y bienestar diario.",
+    "heroSubtitle": "Mezclando siglos de cultivo bereber, extracción artesanal y ciencia moderna de la piel.",
+    "body": "En Kapunka creemos que las pieles reactivas merecen rituales restauradores. El Método Kapunka mezcla cultivo bereber, extracción artesanal y ciencia dermatológica para calmar y fortalecer la barrera cutánea.\n\nDesde la bruma limpiadora hasta el sellado final con aceite, cada gesto honra el origen de los ingredientes y acompaña a equipos estéticos y rutinas en casa tras peelings, láseres o el estrés cotidiano.",
     "testimonialsTitle": "Clínicas que confían en el Método Kapunka",
     "testimonials": [
       {
-        "id": "teknon-laser",
-        "quote": "Integramos el Método Kapunka tras láseres fraccionados: el aceite de argán prensado en frío sella la hidratación sin asfixiar la piel, así el enrojecimiento se resuelve antes.",
-        "name": "Dr. Víctor Hernández",
-        "role": "Director médico, Unidad Láser Teknon"
+        "id": "dermavita-clinic",
+        "quote": "El Método Kapunka evita que mis pacientes post-láser se inflamen; la hidrosol de rosas y el argán de primera prensada sellan la hidratación mientras seguimos su recuperación.",
+        "name": "Dra. Sofía Herrera",
+        "role": "Dermatóloga, Instituto DermaVita"
       },
       {
-        "id": "canons-clinic",
-        "quote": "Como enfermera estética confío en Kapunka para pacientes con rosácea; la bruma de rosas y las capas de argán del método mantienen la barrera tranquila camino a casa.",
-        "name": "Carmen López, RN",
-        "role": "Enfermera estética líder, Canons Clinic"
+        "id": "casa-lotus",
+        "quote": "A nuestras esteticistas les encantan los pasos medidos; el aceite estacional se entibia rápido y no forma residuos bajo el fotoprotector mineral.",
+        "name": "Paulo Mendes",
+        "role": "Director de Estética, Casa Lótus Spa"
       },
       {
-        "id": "sen-atelier",
-        "quote": "Nuestros miembros de bienestar usan el Método Kapunka como ritual diario: el argán testado en laboratorio se desliza sobre cuero cabelludo y cuerpo sin residuos, manteniendo la adherencia alta.",
-        "name": "Marina Costa",
-        "role": "Fundadora, Sên Atelier de Piel"
+        "id": "ait-maouine",
+        "quote": "Como parte de la cooperativa confío en los acuerdos de Kapunka: reinvierten en alfabetización y compran cada litro que elaboramos.",
+        "name": "Nadia El Idrissi",
+        "role": "Coordinadora, Cooperativa Aït Maouine"
       }
-    ]
+    ],
+    "sections": {
+      "ourOrigins": {
+        "title": "Nuestros Orígenes",
+        "body": "Nuestra historia comenzó en 2011 cuando la fundadora Laila Benkirane regresó a los arganales de su abuela en el Valle del Souss, Marruecos, en busca de un ritual de recuperación más simple y suave para sus pacientes clínicos.\n\nEscuchando a las matriarcas amazigh que han cuidado los árboles durante generaciones, nos comprometimos a preservar sus calendarios de cosecha, relatos orales y liderazgo cooperativo dentro del Método Kapunka."
+      },
+      "artisanExtraction": {
+        "title": "Extracción Artesanal",
+        "body": "Cada noviembre las mujeres de las cooperativas Tazghlilt y Aït Maouine recogen a mano únicamente el fruto caído y secado al sol, respetando la regeneración natural y la fauna.\n\nLos granos se rompen con piedras de río, se tuestan ligeramente para liberar antioxidantes naturales, se prensan en frío en menos de cuatro horas y se filtran por gravedad tres veces para que cada frasco conserve la vitalidad de la primera prensada de la temporada."
+      },
+      "clinicalRigor": {
+        "title": "Rigor Clínico",
+        "body": "Desde 2014 nuestro aceite cuenta con la certificación ECOCERT COSMOS Organic, que verifica la trazabilidad del bosque al vidrio y protege los métodos regenerativos de las cooperativas.\n\nCada lote se somete a pruebas de perfil lipídico, valor de peróxidos y microbiología en nuestro laboratorio de Casablanca, y los protocolos se revisan trimestralmente con dermatólogos como la Dra. Sofía Herrera para asegurar su compatibilidad con pieles post-procedimiento."
+      },
+      "sustainabilityImpact": {
+        "title": "Sostenibilidad e Impacto",
+        "body": "Sostenemos acuerdos de comercio justo a diez años que garantizan una prima del 28% sobre el precio de mercado y pedidos confiables para 146 integrantes de las cooperativas, 87% de ellas primeras proveedoras del hogar.\n\nUna parte de cada lote financia círculos de alfabetización, refugios solares de secado y la plantación anual de 300 nuevos retoños de argán, mientras nuestra cadena de vidrio compensa las emisiones de transporte con reforestación en el Anti-Atlas."
+      }
+    }
   },
   "type": "method"
 }

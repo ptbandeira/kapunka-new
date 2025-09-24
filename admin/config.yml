@@ -83,6 +83,34 @@ collections:
               - { label: Hero Title, name: heroTitle, widget: string }
               - { label: Hero Subtitle, name: heroSubtitle, widget: string }
               - { label: Body Copy, name: body, widget: text }
+              - label: Sections
+                name: sections
+                widget: object
+                fields:
+                  - label: Our Origins
+                    name: ourOrigins
+                    widget: object
+                    fields:
+                      - { label: Title, name: title, widget: string }
+                      - { label: Body, name: body, widget: text }
+                  - label: Artisan Extraction
+                    name: artisanExtraction
+                    widget: object
+                    fields:
+                      - { label: Title, name: title, widget: string }
+                      - { label: Body, name: body, widget: text }
+                  - label: Clinical Rigor
+                    name: clinicalRigor
+                    widget: object
+                    fields:
+                      - { label: Title, name: title, widget: string }
+                      - { label: Body, name: body, widget: text }
+                  - label: Sustainability & Impact
+                    name: sustainabilityImpact
+                    widget: object
+                    fields:
+                      - { label: Title, name: title, widget: string }
+                      - { label: Body, name: body, widget: text }
               - { label: Testimonials Title, name: testimonialsTitle, widget: string }
               - label: Testimonials
                 name: testimonials
@@ -101,6 +129,34 @@ collections:
               - { label: Hero Title, name: heroTitle, widget: string }
               - { label: Hero Subtitle, name: heroSubtitle, widget: string }
               - { label: Body Copy, name: body, widget: text }
+              - label: Sections
+                name: sections
+                widget: object
+                fields:
+                  - label: Our Origins
+                    name: ourOrigins
+                    widget: object
+                    fields:
+                      - { label: Title, name: title, widget: string }
+                      - { label: Body, name: body, widget: text }
+                  - label: Artisan Extraction
+                    name: artisanExtraction
+                    widget: object
+                    fields:
+                      - { label: Title, name: title, widget: string }
+                      - { label: Body, name: body, widget: text }
+                  - label: Clinical Rigor
+                    name: clinicalRigor
+                    widget: object
+                    fields:
+                      - { label: Title, name: title, widget: string }
+                      - { label: Body, name: body, widget: text }
+                  - label: Sustainability & Impact
+                    name: sustainabilityImpact
+                    widget: object
+                    fields:
+                      - { label: Title, name: title, widget: string }
+                      - { label: Body, name: body, widget: text }
               - { label: Testimonials Title, name: testimonialsTitle, widget: string }
               - label: Testimonials
                 name: testimonials
@@ -119,6 +175,34 @@ collections:
               - { label: Hero Title, name: heroTitle, widget: string }
               - { label: Hero Subtitle, name: heroSubtitle, widget: string }
               - { label: Body Copy, name: body, widget: text }
+              - label: Sections
+                name: sections
+                widget: object
+                fields:
+                  - label: Our Origins
+                    name: ourOrigins
+                    widget: object
+                    fields:
+                      - { label: Title, name: title, widget: string }
+                      - { label: Body, name: body, widget: text }
+                  - label: Artisan Extraction
+                    name: artisanExtraction
+                    widget: object
+                    fields:
+                      - { label: Title, name: title, widget: string }
+                      - { label: Body, name: body, widget: text }
+                  - label: Clinical Rigor
+                    name: clinicalRigor
+                    widget: object
+                    fields:
+                      - { label: Title, name: title, widget: string }
+                      - { label: Body, name: body, widget: text }
+                  - label: Sustainability & Impact
+                    name: sustainabilityImpact
+                    widget: object
+                    fields:
+                      - { label: Title, name: title, widget: string }
+                      - { label: Body, name: body, widget: text }
               - { label: Testimonials Title, name: testimonialsTitle, widget: string }
               - label: Testimonials
                 name: testimonials
