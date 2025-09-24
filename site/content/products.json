@@ -7,7 +7,7 @@
       "currency": "EUR",
       "vatIncluded": true,
       "name": {
-        "en": "Pure Argan Oil",
+        "en": "Pure Moroccan Argan Oil",
         "es": "Aceite de Argán Puro",
         "pt": "Óleo de Argan Puro"
       },
@@ -101,6 +101,73 @@
         "pt": [
           "sem fragrância"
         ]
+      },
+      "tagline": {
+        "en": "Cold-pressed, single-origin. Face, body, hair.",
+        "es": "Prensado en frío, origen único. Rostro, cuerpo, cabello.",
+        "pt": "Prensado a frio, origem única. Rosto, corpo, cabelo."
+      },
+      "description": {
+        "en": "Cold-pressed, single-origin oil from Morocco. Rich in vitamin E and essential fatty acids, it comforts dryness, supports the skin barrier and leaves a soft, non-greasy glow. Suitable for sensitive skin and daily routines. For cosmetic use only. Not intended to diagnose, treat, cure, or prevent disease.",
+        "es": "Aceite de origen único, prensado en frío en Marruecos. Rico en vitamina E y ácidos grasos esenciales, reconforta la sequedad, apoya la barrera cutánea y deja un brillo suave sin grasa. Apto para pieles sensibles y uso diario. Solo para uso cosmético. No está destinado a diagnosticar, tratar, curar ni prevenir enfermedades.",
+        "pt": "Óleo de origem única, prensado a frio em Marrocos. Rico em vitamina E e ácidos gordos essenciais, conforta a secura, apoia a barreira cutânea e deixa um brilho suave sem oleosidade. Adequado para pele sensível e uso diário. Apenas para uso cosmético. Não se destina a diagnosticar, tratar, curar ou prevenir doenças."
+      },
+      "benefits": {
+        "en": [
+          "Deep hydration; soft, comfortable finish",
+          "Supports the skin barrier",
+          "Multi-use: face, body, hair, nails",
+          "Fragrance-free; suitable for sensitive skin"
+        ],
+        "es": [
+          "Hidratación profunda; acabado suave y confortable",
+          "Apoya la barrera cutánea",
+          "Multiuso: rostro, cuerpo, cabello, uñas",
+          "Sin fragancia; apto para piel sensible"
+        ],
+        "pt": [
+          "Hidratação profunda; acabamento suave e confortável",
+          "Apoia a barreira cutânea",
+          "Multiuso: rosto, corpo, cabelo, unhas",
+          "Sem fragrância; adequado para pele sensível"
+        ]
+      },
+      "howToUse": {
+        "en": "Apply 2–3 drops to clean skin AM/PM. For hair, smooth a drop on mid-lengths and ends. Follow clinician guidance after procedures.",
+        "es": "Aplicar 2–3 gotas sobre la piel limpia mañana y noche. Para el cabello, aplicar una gota en medios y puntas. Seguir las indicaciones del profesional en post-procedimientos.",
+        "pt": "Aplicar 2–3 gotas na pele limpa de manhã e à noite. No cabelo, espalhar uma gota nos comprimentos e pontas. Seguir a orientação do profissional em pós-procedimentos."
+      },
+      "ingredients": {
+        "en": "Argania Spinosa (Argan) Kernel Oil",
+        "es": "Argania Spinosa (Argan) Kernel Oil",
+        "pt": "Argania Spinosa (Argan) Kernel Oil"
+      },
+      "goodToKnow": {
+        "title": {
+          "en": "Good to know",
+          "es": "Para tener en cuenta",
+          "pt": "Bom saber"
+        },
+        "items": {
+          "en": [
+            "Texture: lightweight, fast absorbing",
+            "Finish: soft glow, non greasy",
+            "Suitable for all skin types",
+            "Vegan; no additives"
+          ],
+          "es": [
+            "Textura: ligera, de rápida absorción",
+            "Acabado: brillo suave, no graso",
+            "Apto para todo tipo de piel",
+            "Vegano; sin aditivos"
+          ],
+          "pt": [
+            "Textura: leve, de rápida absorção",
+            "Acabamento: brilho suave, não oleoso",
+            "Adequado para todos os tipos de pele",
+            "Vegan; sem aditivos"
+          ]
+        }
       }
     },
     {
