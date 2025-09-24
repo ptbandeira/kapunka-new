@@ -11,17 +11,32 @@ interface MethodTestimonial {
   role: string;
 }
 
+interface MethodSectionContent {
+  title: string;
+  body: string;
+}
+
+interface MethodSections {
+  ourOrigins: MethodSectionContent;
+  artisanExtraction: MethodSectionContent;
+  clinicalRigor: MethodSectionContent;
+  sustainabilityImpact: MethodSectionContent;
+}
+
 interface MethodLocaleContent {
   metaTitle: string;
   metaDescription: string;
   heroTitle: string;
   heroSubtitle: string;
   body: string;
+  sections: MethodSections;
   testimonialsTitle: string;
   testimonials: MethodTestimonial[];
 }
 
 type MethodContent = Record<Language, MethodLocaleContent>;
+
+type MethodSectionKey = keyof MethodSections;
 
 const fallbackHeroTitles: Record<Language, string> = {
   en: 'Method Kapunka',
@@ -57,8 +72,57 @@ const Method: React.FC = () => {
   const metaTitle = localeContent?.metaTitle ?? heroTitle;
   const metaDescription = localeContent?.metaDescription ?? fallbackMetaDescriptions[language];
   const paragraphs = localeContent?.body.split('\n\n') ?? [];
+  const sectionsContent = localeContent?.sections;
   const testimonials = localeContent?.testimonials ?? [];
   const testimonialsTitle = localeContent?.testimonialsTitle ?? heroTitle;
+
+  const sectionOrder: MethodSectionKey[] = [
+    'ourOrigins',
+    'artisanExtraction',
+    'clinicalRigor',
+    'sustainabilityImpact',
+  ];
+
+  const fallbackSectionTitles: Record<MethodSectionKey, Record<Language, string>> = {
+    ourOrigins: {
+      en: 'Our Origins',
+      pt: 'Nossas Origens',
+      es: 'Nuestros Orígenes',
+    },
+    artisanExtraction: {
+      en: 'Artisan Extraction',
+      pt: 'Extração Artesanal',
+      es: 'Extracción Artesanal',
+    },
+    clinicalRigor: {
+      en: 'Clinical Rigor',
+      pt: 'Rigor Clínico',
+      es: 'Rigor Clínico',
+    },
+    sustainabilityImpact: {
+      en: 'Sustainability & Impact',
+      pt: 'Sustentabilidade e Impacto',
+      es: 'Sostenibilidad e Impacto',
+    },
+  };
+
+  const orderedSections = sectionOrder
+    .map((key) => {
+      const section = sectionsContent?.[key];
+      if (!section) {
+        return null;
+      }
+
+      const title = section.title || fallbackSectionTitles[key][language];
+      const sectionParagraphs = section.body ? section.body.split('\n\n') : [];
+
+      return {
+        key,
+        title,
+        paragraphs: sectionParagraphs,
+      };
+    })
+    .filter((section): section is { key: MethodSectionKey; title: string; paragraphs: string[] } => section !== null);
 
   return (
     <div>
@@ -119,6 +183,44 @@ const Method: React.FC = () => {
           )}
         </div>
       </section>
+
+      {orderedSections.length > 0 && (
+        <section className="py-16 sm:py-24">
+          <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-4xl space-y-16">
+            {orderedSections.map((section, index) => (
+              <motion.article
+                key={section.key}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: index * 0.05 }}
+                data-nlv-field-path={`${methodFieldPath}.sections.${section.key}`}
+              >
+                <h2
+                  className="text-3xl font-semibold text-stone-900"
+                  data-nlv-field-path={`${methodFieldPath}.sections.${section.key}.title`}
+                >
+                  {section.title}
+                </h2>
+                <div
+                  className="mt-4 space-y-6"
+                  data-nlv-field-path={`${methodFieldPath}.sections.${section.key}.body`}
+                >
+                  {section.paragraphs.map((paragraph, paragraphIndex) => (
+                    <p
+                      // eslint-disable-next-line react/no-array-index-key
+                      key={paragraphIndex}
+                      className="text-stone-700 leading-relaxed"
+                    >
+                      {paragraph}
+                    </p>
+                  ))}
+                </div>
+              </motion.article>
+            ))}
+          </div>
+        </section>
+      )}
 
       <section className="py-16 sm:py-24 bg-stone-50">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
