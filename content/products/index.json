@@ -38,6 +38,17 @@
           "Prensado en Frío"
         ]
       },
+      "tags": {
+        "en": [
+          "fragrance-free"
+        ],
+        "pt": [
+          "sem fragrância"
+        ],
+        "es": [
+          "sin fragancia"
+        ]
+      },
       "labTestedNote": {
         "en": "Our Argan Oil is ECOCERT certified, guaranteeing its organic purity and ethical sourcing from the women's cooperatives of Morocco.",
         "pt": "O nosso Óleo de Argan é certificado pela ECOCERT, garantindo a sua pureza orgânica e origem ética das cooperativas de mulheres de Marrocos.",
@@ -78,24 +89,34 @@
       },
       "sizes": [
         {
-          "id": "15ml",
-          "size": 15,
-          "price": 15
+          "id": "10ml-roll-on",
+          "size": 10,
+          "price": 12
         },
         {
-          "id": "30ml",
+          "id": "30ml-dropper",
           "size": 30,
           "price": 25
         },
         {
-          "id": "50ml",
+          "id": "50ml-pump",
           "size": 50,
           "price": 35
         },
         {
-          "id": "100ml",
+          "id": "100ml-pump",
           "size": 100,
           "price": 55
+        },
+        {
+          "id": "250ml-pump",
+          "size": 250,
+          "price": 95
+        },
+        {
+          "id": "500ml-pump",
+          "size": 500,
+          "price": 165
         }
       ],
       "imageUrl": "/content/uploads/aceite-argan-dosificador-250ml-300x300.jpg",
@@ -1225,6 +1246,17 @@
           "Cuidado del Cuero Cabelludo"
         ]
       },
+      "tags": {
+        "en": [
+          "rosemary scent"
+        ],
+        "pt": [
+          "aroma alecrim"
+        ],
+        "es": [
+          "aroma romero"
+        ]
+      },
       "labTestedNote": {
         "en": "Infused with pure, steam-distilled rosemary essential oil.",
         "pt": "Infundido com óleo essencial de alecrim puro, destilado a vapor.",
@@ -1375,6 +1407,17 @@
         "es": [
           "Estabilizador",
           "Piel Madura"
+        ]
+      },
+      "tags": {
+        "en": [
+          "patchouli scent"
+        ],
+        "pt": [
+          "aroma patchouli"
+        ],
+        "es": [
+          "aroma patchouli"
         ]
       },
       "labTestedNote": {
@@ -1534,6 +1577,17 @@
           "Reutilizable"
         ]
       },
+      "tags": {
+        "en": [
+          "hammam accessory"
+        ],
+        "pt": [
+          "acessório hammam"
+        ],
+        "es": [
+          "accesorio hammam"
+        ]
+      },
       "labTestedNote": {
         "en": "A durable, high-quality glove designed for repeated use. Rinse thoroughly after each use and hang to dry.",
         "pt": "Uma luva durável e de alta qualidade projetada para uso repetido. Enxágue bem após cada uso e pendure para secar.",
@@ -1653,6 +1707,192 @@
     },
     {
       "ingredients": {
+        "en": "Cotton canvas exterior, recycled polyester lining, metal zipper.",
+        "pt": "Exterior em lona de algodão, forro em poliéster reciclado, zíper metálico.",
+        "es": "Exterior de lona de algodón, forro de poliéster reciclado, cierre metálico."
+      },
+      "name": {
+        "en": "Kapunka Vanity Pouch",
+        "pt": "Necessaire Kapunka",
+        "es": "Neceser Kapunka"
+      },
+      "tagline": {
+        "en": "Organise your Kapunka ritual on the go",
+        "pt": "Organize o ritual Kapunka em movimento",
+        "es": "Organiza tu ritual Kapunka donde vayas"
+      },
+      "description": {
+        "en": "Durable pouch sized to hold Kapunka oils, the Kessa glove, and travel accessories. Keeps hammam essentials tidy at home or in your carry-on.",
+        "pt": "Necessaire resistente para acomodar os óleos Kapunka, a luva Kessa e acessórios de viagem. Mantém os essenciais do hammam organizados em casa ou na mala de mão.",
+        "es": "Neceser resistente para acomodar los aceites Kapunka, la manopla Kessa y accesorios de viaje. Mantiene los esenciales del hammam ordenados en casa o en el equipaje de mano."
+      },
+      "badges": {
+        "en": [
+          "Washable",
+          "Travel-Ready",
+          "Hammam Essential"
+        ],
+        "pt": [
+          "Lavável",
+          "Pronto para viagens",
+          "Essencial de hammam"
+        ],
+        "es": [
+          "Lavable",
+          "Listo para viajar",
+          "Esencial de hammam"
+        ]
+      },
+      "tags": {
+        "en": [
+          "travel accessory"
+        ],
+        "pt": [
+          "acessório de viagem"
+        ],
+        "es": [
+          "accesorio de viaje"
+        ]
+      },
+      "labTestedNote": {
+        "en": "Crafted from sturdy canvas with reinforced seams. Spot clean or hand-wash in cold water to preserve the structure and printed logo.",
+        "pt": "Feita em lona resistente com costuras reforçadas. Limpe com pano úmido ou lave à mão em água fria para preservar a estrutura e o logo estampado.",
+        "es": "Confeccionada en lona resistente con costuras reforzadas. Limpia con paño húmedo o lava a mano con agua fría para preservar la estructura y el logotipo estampado."
+      },
+      "sizes": [
+        {
+          "id": "medium-pouch",
+          "size": 1,
+          "price": 28
+        },
+        {
+          "id": "large-pouch",
+          "size": 2,
+          "price": 34
+        }
+      ],
+      "imageUrl": "/content/uploads/5b07cc3a-9b30-4a2d-b165-4781120e83b7.jpg",
+      "id": "kapunka-neceser",
+      "howToUse": {
+        "en": "Store oils upright with the pump locked. After each hammam ritual, wipe any residue before placing accessories back inside.",
+        "pt": "Guarde os óleos na posição vertical com o pump travado. Após cada ritual de hammam, limpe eventuais resíduos antes de guardar os acessórios novamente.",
+        "es": "Guarda los aceites en posición vertical con el dosificador bloqueado. Después de cada ritual hammam, limpia los restos antes de volver a colocar los accesorios."
+      },
+      "benefits": {
+        "en": [
+          "Keeps oils, gloves, and tools organised and easy to grab",
+          "Protects bathroom shelves and suitcases from leaks",
+          "Neutral aesthetic pairs with any vanity or travel kit",
+          "Washable design made to withstand frequent rituals"
+        ],
+        "pt": [
+          "Mantém óleos, luvas e ferramentas organizados e sempre à mão",
+          "Protege prateleiras do banheiro e malas contra vazamentos",
+          "Estética neutra que combina com qualquer bancada ou kit de viagem",
+          "Design lavável feito para suportar rituais frequentes"
+        ],
+        "es": [
+          "Mantiene aceites, manoplas y herramientas organizados y a mano",
+          "Protege las repisas del baño y las maletas de posibles derrames",
+          "Estética neutra que combina con cualquier tocador o kit de viaje",
+          "Diseño lavable pensado para soportar rituales frecuentes"
+        ]
+      },
+      "goodToKnow": {
+        "title": {
+          "en": "Good to know",
+          "pt": "Bom saber",
+          "es": "Para tener en cuenta"
+        },
+        "items": {
+          "en": [
+            "Allow accessories to dry completely before storing",
+            "Spot clean with mild soap or hand-wash in cold water",
+            "Avoid bleach to preserve the natural cotton tone",
+            "Store away from direct sunlight to prevent colour fading"
+          ],
+          "pt": [
+            "Deixe os acessórios secarem completamente antes de guardar",
+            "Limpe com sabão neutro ou lave à mão em água fria",
+            "Evite alvejante para preservar o tom natural do algodão",
+            "Guarde longe da luz direta para evitar desbotamento"
+          ],
+          "es": [
+            "Deja que los accesorios se sequen por completo antes de guardarlos",
+            "Limpia con jabón neutro o lava a mano con agua fría",
+            "Evita la lejía para preservar el tono natural del algodón",
+            "Guárdalo lejos de la luz directa para evitar que destiña"
+          ]
+        }
+      },
+      "knowledge": {
+        "whatItIs": {
+          "en": "A washable canvas vanity pouch designed to house Kapunka oils, the Kessa glove, and small hammam essentials.",
+          "pt": "Uma nécessaire de lona lavável desenhada para acomodar os óleos Kapunka, a luva Kessa e pequenos essenciais do hammam.",
+          "es": "Una neceser de lona lavable diseñada para guardar los aceites Kapunka, la manopla Kessa y pequeños esenciales del hammam."
+        },
+        "howItWorks": {
+          "en": "Structured cotton canvas protects glass bottles, while the coated interior catches spills. The zipper opens wide so you can see every item at a glance.",
+          "pt": "A lona de algodão estruturada protege frascos de vidro, enquanto o interior com revestimento retém possíveis vazamentos. O zíper abre amplamente para visualizar todos os itens de uma só vez.",
+          "es": "La lona de algodón estructurada protege los frascos de vidrio, mientras que el interior recubierto contiene posibles derrames. El cierre se abre ampliamente para ver todos los elementos de un vistazo."
+        },
+        "whoItsFor": {
+          "en": "Ideal for frequent flyers, spa professionals, or anyone keeping a dedicated hammam ritual kit ready between uses.",
+          "pt": "Ideal para quem viaja com frequência, profissionais de spa ou qualquer pessoa que mantenha um kit de ritual hammam pronto entre os usos.",
+          "es": "Ideal para viajeros frecuentes, profesionales de spa o cualquier persona que quiera mantener un kit de ritual hammam listo entre usos."
+        },
+        "scientificBacking": {
+          "en": "Organised storage keeps tools hygienic; studies show reducing bathroom humidity exposure helps textiles and formulas last longer.",
+          "pt": "Manter os acessórios organizados preserva a higiene; estudos mostram que reduzir a exposição à umidade do banheiro prolonga a vida útil de têxteis e fórmulas.",
+          "es": "Guardar los accesorios de forma organizada preserva la higiene; los estudios señalan que reducir la exposición a la humedad del baño prolonga la vida útil de textiles y fórmulas."
+        },
+        "culturalContext": {
+          "en": "In Morocco, hammam attendants often wrap oils and tools in cloth before guests travel home. The Kapunka pouch updates that tradition with durable materials made for modern routines.",
+          "pt": "No Marrocos, as atendentes dos hammams costumam embrulhar óleos e ferramentas em tecidos antes de as convidadas viajarem para casa. A nécessaire Kapunka atualiza essa tradição com materiais duráveis para rotinas modernas.",
+          "es": "En Marruecos, las asistentes de los hammams suelen envolver los aceites y herramientas en telas antes de que las invitadas regresen a casa. El neceser Kapunka actualiza esa tradición con materiales duraderos pensados para las rutinas modernas."
+        }
+      },
+      "faqs": [
+        {
+          "question": {
+            "en": "Can I machine-wash the pouch?",
+            "pt": "Posso lavar a nécessaire na máquina?",
+            "es": "¿Puedo lavar el neceser en la lavadora?"
+          },
+          "answer": {
+            "en": "Hand-wash is recommended to preserve the structure, but an occasional gentle cycle inside a laundry bag is acceptable. Always air-dry flat.",
+            "pt": "Recomendamos lavar à mão para preservar a estrutura, mas um ciclo delicado dentro de um saquinho de lavagem é aceitável. Sempre deixe secar ao ar na horizontal.",
+            "es": "Se recomienda lavar a mano para preservar la estructura, aunque un ciclo delicado dentro de una bolsa de lavado es aceptable. Sécalo siempre al aire en posición horizontal."
+          }
+        },
+        {
+          "question": {
+            "en": "How many bottles fit inside?",
+            "pt": "Quantos frascos cabem dentro?",
+            "es": "¿Cuántos frascos caben dentro?"
+          },
+          "answer": {
+            "en": "The medium size holds up to three 100 ml bottles plus the Kessa glove, while the large fits the 500 ml pump alongside smaller accessories.",
+            "pt": "O tamanho médio comporta até três frascos de 100 ml mais a luva Kessa, enquanto o grande acomoda o pump de 500 ml junto com acessórios menores.",
+            "es": "El tamaño mediano guarda hasta tres frascos de 100 ml más la manopla Kessa, mientras que el grande aloja el dosificador de 500 ml junto con accesorios pequeños."
+          }
+        },
+        {
+          "question": {
+            "en": "Does it have internal pockets?",
+            "pt": "Possui bolsos internos?",
+            "es": "¿Tiene bolsillos internos?"
+          },
+          "answer": {
+            "en": "Yes—the lining includes two slip pockets to separate small tools or keep the glove folded away from liquids.",
+            "pt": "Sim — o forro possui dois bolsos internos para separar acessórios pequenos ou manter a luva dobrada longe de líquidos.",
+            "es": "Sí; el forro incorpora dos bolsillos abiertos para separar accesorios pequeños o mantener la manopla doblada lejos de los líquidos."
+          }
+        }
+      ]
+    },
+    {
+      "ingredients": {
         "en": "Argania Spinosa (Argan) Kernel Oil. Viscose (Kessa) exfoliating glove.",
         "pt": "Óleo de Caroço de Argania Spinosa (Argan). Luva esfoliante de viscose (Kessa).",
         "es": "Aceite de semilla de Argania Spinosa (Argán). Manopla exfoliante de viscosa (Kessa)."
@@ -1701,6 +1941,17 @@
           "Set de 2 piezas",
           "Listo para regalar",
           "Ritual hammam"
+        ]
+      },
+      "tags": {
+        "en": [
+          "ritual kit"
+        ],
+        "pt": [
+          "kit ritual"
+        ],
+        "es": [
+          "kit ritual"
         ]
       },
       "labTestedNote": {
@@ -1837,6 +2088,396 @@
     },
     {
       "ingredients": {
+        "en": "Argania Spinosa (Argan) Kernel Oil. Viscose (Kessa) exfoliating glove.",
+        "pt": "Óleo de Caroço de Argania Spinosa (Argan). Luva esfoliante de viscose (Kessa).",
+        "es": "Aceite de semilla de Argania Spinosa (Argán). Manopla exfoliante de viscosa (Kessa)."
+      },
+      "name": {
+        "en": "Pure Argan Oil 100 ml + Kessa Glove",
+        "pt": "Óleo de Argan Puro 100 ml + Luva Kessa",
+        "es": "Aceite de Argán Puro 100 ml + Manopla Kessa"
+      },
+      "tagline": {
+        "en": "Weekly hammam ritual for luminous skin",
+        "pt": "Ritual hammam semanal para uma pele luminosa",
+        "es": "Ritual hammam semanal para una piel luminosa"
+      },
+      "description": {
+        "en": "Use the Kessa glove once or twice weekly to sweep away buildup, then seal skin with the 100 ml pump of Pure Argan Oil for a supple, comfortable glow from body to scalp.",
+        "pt": "Use a luva Kessa uma ou duas vezes por semana para remover o acúmulo e depois sele a pele com o pump de 100 ml do Óleo de Argan Puro para um brilho macio e confortável do corpo ao couro cabeludo.",
+        "es": "Utiliza la manopla Kessa una o dos veces por semana para eliminar la acumulación y después sella la piel con el dosificador de 100 ml de Aceite de Argán Puro para un brillo suave y confortable en cuerpo y cuero cabelludo."
+      },
+      "bundleIncludes": {
+        "en": [
+          "Pure Argan Oil 100 ml pump",
+          "Kessa exfoliating glove"
+        ],
+        "pt": [
+          "Óleo de Argan Puro 100 ml com pump",
+          "Luva esfoliante Kessa"
+        ],
+        "es": [
+          "Aceite de Argán Puro 100 ml con dosificador",
+          "Manopla exfoliante Kessa"
+        ]
+      },
+      "badges": {
+        "en": [
+          "2-Piece Bundle",
+          "Weekly Ritual",
+          "Gift-Ready"
+        ],
+        "pt": [
+          "Kit com 2 itens",
+          "Ritual semanal",
+          "Pronto para presente"
+        ],
+        "es": [
+          "Set de 2 piezas",
+          "Ritual semanal",
+          "Listo para regalar"
+        ]
+      },
+      "tags": {
+        "en": [
+          "ritual kit"
+        ],
+        "pt": [
+          "kit ritual"
+        ],
+        "es": [
+          "kit ritual"
+        ]
+      },
+      "labTestedNote": {
+        "en": "Our ECOCERT argan oil is cold-pressed and verified for purity; the 100 ml pump shields the formula from air and light so every ritual stays fresh.",
+        "pt": "Nosso óleo de argan com certificação ECOCERT é prensado a frio e testado para garantir pureza; o pump de 100 ml protege a fórmula do ar e da luz para que cada ritual permaneça fresco.",
+        "es": "Nuestro aceite de argán con certificación ECOCERT se prensa en frío y se analiza para garantizar su pureza; el dosificador de 100 ml protege la fórmula del aire y la luz para que cada ritual se mantenga fresco."
+      },
+      "sizes": [
+        {
+          "id": "100ml-bundle",
+          "size": 100,
+          "price": 65
+        }
+      ],
+      "imageUrl": "/content/uploads/aceite-argan-dosificador-250ml-300x300.jpg",
+      "id": "argan-100ml-kessa-bundle",
+      "howToUse": {
+        "en": "On damp skin, perform brisk upward strokes with the Kessa glove once or twice weekly. Rinse, pat dry, and dispense 2–3 pumps of argan oil from the 100 ml bottle to massage over the body while skin is still warm.",
+        "pt": "Na pele úmida, faça movimentos ascendentes firmes com a luva Kessa uma ou duas vezes por semana. Enxágue, seque suavemente e dispense 2–3 pumps do óleo de argan do frasco de 100 ml para massagear o corpo enquanto a pele ainda estiver aquecida.",
+        "es": "Sobre la piel húmeda, realiza pasadas ascendentes firmes con la manopla Kessa una o dos veces por semana. Aclara, seca con suavidad y dispensa 2–3 pulsaciones del aceite de argán del frasco de 100 ml para masajear el cuerpo mientras la piel aún está caliente."
+      },
+      "benefits": {
+        "en": [
+          "Combines mechanical exfoliation with a generous 100 ml supply of antioxidant argan oil",
+          "Pump format keeps the oil protected and easy to portion for body or scalp rituals",
+          "Leaves limbs, décolletage, and scalp noticeably softer after each weekly session",
+          "Ideal gift for hammam devotees, wellness retreats, or postpartum body care"
+        ],
+        "pt": [
+          "Combina esfoliação mecânica com uma generosa reserva de 100 ml de óleo de argan antioxidante",
+          "O pump mantém o óleo protegido e fácil de dosar para rituais de corpo ou couro cabeludo",
+          "Deixa braços, colo e couro cabeludo visivelmente mais macios após cada sessão semanal",
+          "Presente ideal para fãs de hammam, retiros de bem-estar ou cuidados corporais pós-parto"
+        ],
+        "es": [
+          "Combina la exfoliación mecánica con una generosa reserva de 100 ml de aceite de argán antioxidante",
+          "El dosificador mantiene el aceite protegido y fácil de dosificar para rituales corporales o capilares",
+          "Deja brazos, escote y cuero cabelludo visiblemente más suaves tras cada sesión semanal",
+          "Regalo ideal para amantes del hammam, retiros de bienestar o cuidados corporales posparto"
+        ]
+      },
+      "goodToKnow": {
+        "title": {
+          "en": "Good to know",
+          "pt": "Bom saber",
+          "es": "Para tener en cuenta"
+        },
+        "items": {
+          "en": [
+            "Work on softened, steamed skin for the smoothest polish",
+            "Wash the glove weekly with mild soap and hang to dry completely",
+            "Apply argan oil while skin is slightly damp to lock in moisture",
+            "With weekly use, the 100 ml pump lasts about two to three months"
+          ],
+          "pt": [
+            "Faça a esfoliação com a pele amolecida pelo vapor para um polimento mais suave",
+            "Lave a luva semanalmente com sabão suave e pendure para secar completamente",
+            "Aplique o óleo de argan com a pele levemente úmida para selar a hidratação",
+            "Com uso semanal, o pump de 100 ml dura cerca de dois a três meses"
+          ],
+          "es": [
+            "Realiza la exfoliación con la piel suavizada por el vapor para un pulido más uniforme",
+            "Lava la manopla cada semana con jabón suave y cuélgala para que se seque por completo",
+            "Aplica el aceite de argán con la piel ligeramente húmeda para sellar la hidratación",
+            "Con uso semanal, el dosificador de 100 ml dura alrededor de dos a tres meses"
+          ]
+        }
+      },
+      "knowledge": {
+        "whatItIs": {
+          "en": "A two-step hammam-inspired kit with a 100 ml ECOCERT argan oil pump and the traditional viscose Kessa glove for at-home exfoliation and nourishment.",
+          "pt": "Um kit inspirado no hammam com pump de 100 ml de óleo de argan ECOCERT e a tradicional luva Kessa de viscose para esfoliar e nutrir em casa.",
+          "es": "Un kit inspirado en el hammam con dosificador de 100 ml de aceite de argán ECOCERT y la tradicional manopla Kessa de viscosa para exfoliar y nutrir en casa."
+        },
+        "howItWorks": {
+          "en": "The glove's textured weave lifts dull cells and boosts circulation; sealing skin straight away with argan oil's tocopherols and squalene replenishes lipids and reinforces the barrier.",
+          "pt": "A trama texturizada da luva remove células opacas e estimula a circulação; selar a pele imediatamente com os tocoferóis e o esqualeno do óleo de argan repõe lipídios e reforça a barreira.",
+          "es": "La textura de la manopla desprende las células opacas y activa la circulación; sellar la piel de inmediato con los tocoferoles y el escualeno del aceite de argán repone lípidos y refuerza la barrera."
+        },
+        "whoItsFor": {
+          "en": "Perfect for dry limbs, keratosis-prone skin, athletic recovery, and households wanting a shared hammam ritual with more oil to go around.",
+          "pt": "Perfeito para braços e pernas secos, pele com tendência à queratose, recuperação pós-treino e famílias que desejam compartilhar um ritual de hammam com mais óleo disponível.",
+          "es": "Perfecto para extremidades secas, piel con tendencia a queratosis, recuperación deportiva y hogares que desean compartir un ritual hammam con más aceite para todos."
+        },
+        "scientificBacking": {
+          "en": "Dermatology studies show mechanical exfoliation can accelerate cell turnover up to 30%, while clinical data on argan oil document improved elasticity and hydration within four weeks. Layering both steps maximizes smoothness and resilience.",
+          "pt": "Estudos em dermatologia mostram que a esfoliação mecânica pode acelerar a renovação celular em até 30%, enquanto dados clínicos sobre o óleo de argan registram melhora na elasticidade e hidratação em quatro semanas. Combinar as duas etapas maximiza maciez e resiliência.",
+          "es": "Estudios dermatológicos indican que la exfoliación mecánica puede acelerar la renovación celular hasta un 30%, mientras que los datos clínicos sobre el aceite de argán documentan mayor elasticidad e hidratación en cuatro semanas. Combinar ambos pasos maximiza la suavidad y la resistencia."
+        },
+        "culturalContext": {
+          "en": "Moroccan hammams pair vigorous gommage with generous argan oil massage. This larger-format kit honours that tradition so couples, teams, or spa cabins can recreate it at home.",
+          "pt": "Os hammams marroquinos combinam gommage vigoroso com massagem abundante de óleo de argan. Este kit em formato maior honra essa tradição para que casais, equipes ou cabines de spa possam recriá-la em casa.",
+          "es": "Los hammams marroquíes combinan un gommage vigoroso con un masaje abundante de aceite de argán. Este kit de mayor formato honra esa tradición para que parejas, equipos o cabinas de spa la reproduzcan en casa."
+        }
+      },
+      "faqs": [
+        {
+          "question": {
+            "en": "How long will the 100 ml pump last?",
+            "pt": "Quanto tempo dura o pump de 100 ml?",
+            "es": "¿Cuánto dura el dosificador de 100 ml?"
+          },
+          "answer": {
+            "en": "Used on the full body two to three times per week, expect eight to ten weeks of product. Targeted use on limbs or scalp stretches the supply even further.",
+            "pt": "Usado no corpo todo duas a três vezes por semana, rende cerca de oito a dez semanas. O uso localizado em membros ou couro cabeludo prolonga ainda mais o rendimento.",
+            "es": "Aplicado en todo el cuerpo dos o tres veces por semana, dura entre ocho y diez semanas. El uso localizado en extremidades o cuero cabelludo alarga todavía más el rendimiento."
+          }
+        },
+        {
+          "question": {
+            "en": "Can I refill the bottle once it is empty?",
+            "pt": "Posso reutilizar o frasco quando terminar?",
+            "es": "¿Puedo rellenar el frasco cuando se acabe?"
+          },
+          "answer": {
+            "en": "Yes—wash the pump with warm soapy water, allow it to dry completely, and refill with bulk Kapunka Pure Argan Oil to maintain freshness.",
+            "pt": "Sim — lave o pump com água morna e sabão, deixe secar totalmente e reabasteça com o Óleo de Argan Puro Kapunka para manter a frescura.",
+            "es": "Sí: lava el dosificador con agua tibia y jabón, déjalo secar por completo y rellénalo con Aceite de Argán Puro Kapunka para conservar la frescura."
+          }
+        },
+        {
+          "question": {
+            "en": "Is the glove suitable for sensitive skin?",
+            "pt": "A luva é adequada para pele sensível?",
+            "es": "¿La manopla es adecuada para piel sensible?"
+          },
+          "answer": {
+            "en": "Start with light pressure on a small area to test tolerance. Avoid use over active eczema, open cuts, or freshly waxed skin.",
+            "pt": "Comece com pressão leve em uma área pequena para testar a tolerância. Evite usar sobre eczema ativo, cortes ou pele recém-depilada.",
+            "es": "Comienza con una presión suave en una zona pequeña para comprobar la tolerancia. Evita usarla sobre eccema activo, cortes o piel recién depilada."
+          }
+        }
+      ]
+    },
+    {
+      "ingredients": {
+        "en": "Set includes Pure Argan Oil (Argania Spinosa Kernel Oil) and Argan Oil + Lavender (Argania Spinosa Kernel Oil, Lavandula Angustifolia Oil).",
+        "pt": "O kit inclui Óleo de Argan Puro (Óleo de Semente de Argania Spinosa) e Óleo de Argan + Lavanda (Óleo de Semente de Argania Spinosa, Óleo de Lavandula Angustifolia).",
+        "es": "El pack incluye Aceite de Argán Puro (Aceite de semilla de Argania Spinosa) y Aceite de Argán + Lavanda (Aceite de semilla de Argania Spinosa, Aceite de Lavandula Angustifolia)."
+      },
+      "name": {
+        "en": "Lavender 50 ml + Pure Argan 30 ml Ritual Pack",
+        "pt": "Kit Ritual Lavanda 50 ml + Argan 30 ml",
+        "es": "Pack Ritual Lavanda 50 ml + Argán 30 ml"
+      },
+      "tagline": {
+        "en": "Evening relaxation and daytime nourishment",
+        "pt": "Relaxar à noite e nutrir de dia",
+        "es": "Relajar por la noche y nutrir de día"
+      },
+      "description": {
+        "en": "Pair the calming Argan Oil + Lavender pump for nighttime body and hair rituals with a precision 30 ml dropper of Pure Argan Oil for daytime barrier support and touch-ups.",
+        "pt": "Combine o pump calmante de Óleo de Argan + Lavanda para rituais noturnos de corpo e cabelo com o conta-gotas de 30 ml de Óleo de Argan Puro para reforçar a barreira e fazer retoques durante o dia.",
+        "es": "Combina el dosificador calmante de Aceite de Argán + Lavanda para los rituales nocturnos de cuerpo y cabello con el cuentagotas de 30 ml de Aceite de Argán Puro para reforzar la barrera y hacer retoques durante el día."
+      },
+      "bundleIncludes": {
+        "en": [
+          "Argan Oil + Lavender 50 ml pump",
+          "Pure Argan Oil 30 ml dropper"
+        ],
+        "pt": [
+          "Óleo de Argan + Lavanda 50 ml com pump",
+          "Óleo de Argan Puro 30 ml com conta-gotas"
+        ],
+        "es": [
+          "Aceite de Argán + Lavanda 50 ml con dosificador",
+          "Aceite de Argán Puro 30 ml con cuentagotas"
+        ]
+      },
+      "badges": {
+        "en": [
+          "Two-Step Ritual",
+          "Gift-Ready",
+          "Travel-Friendly"
+        ],
+        "pt": [
+          "Ritual em dois passos",
+          "Pronto para presente",
+          "Prático para viagens"
+        ],
+        "es": [
+          "Ritual en dos pasos",
+          "Listo para regalar",
+          "Práctico para viajar"
+        ]
+      },
+      "tags": {
+        "en": [
+          "ritual kit"
+        ],
+        "pt": [
+          "kit ritual"
+        ],
+        "es": [
+          "kit ritual"
+        ]
+      },
+      "labTestedNote": {
+        "en": "Both oils are ECOCERT certified. The lavender essential oil is diluted at spa-safe levels, while the pure argan oil remains fragrance-free for sensitive complexions.",
+        "pt": "Os dois óleos têm certificação ECOCERT. O óleo essencial de lavanda está diluído em nível seguro para spa, enquanto o óleo de argan puro permanece sem fragrância para peles sensíveis.",
+        "es": "Ambos los aceites cuentan con certificación ECOCERT. El aceite esencial de lavanda está diluido en niveles seguros para spa, mientras que el aceite de argán puro permanece sin fragancia para pieles sensibles."
+      },
+      "sizes": [
+        {
+          "id": "duo-pack",
+          "size": 1,
+          "price": 72
+        }
+      ],
+      "imageUrl": "/content/uploads/aceite-argan-puro-primera-prensada-frio-250ml-con-lavanda-300x300.jpg",
+      "id": "lavender-50ml-argan-30ml-pack",
+      "howToUse": {
+        "en": "In the evening, massage Argan Oil + Lavender into the body, scalp, or ends before rest. In the morning, press 2–3 drops of Pure Argan Oil onto face, nails, or dry patches. Layer the oils as needed, beginning with pure argan on sensitised zones.",
+        "pt": "À noite, massageie o Óleo de Argan + Lavanda no corpo, couro cabeludo ou pontas antes de descansar. Pela manhã, pressione 2–3 gotas de Óleo de Argan Puro no rosto, unhas ou áreas secas. Faça camadas conforme necessário, começando pelo óleo puro nas zonas sensibilizadas.",
+        "es": "Por la noche, masajea el Aceite de Argán + Lavanda en el cuerpo, el cuero cabelludo o las puntas antes de descansar. Por la mañana, presiona 2–3 gotas de Aceite de Argán Puro sobre rostro, uñas o zonas secas. Superpone los aceites según sea necesario, comenzando por el argán puro en las zonas sensibilizadas."
+      },
+      "benefits": {
+        "en": [
+          "Creates a soothing evening ritual with aromatic lavender",
+          "Keeps a fragrance-free option on hand for sensitive skin",
+          "Supports barrier repair on face, body, and scalp with versatile textures",
+          "Gift-ready duo for couples, new parents, or self-care retreats"
+        ],
+        "pt": [
+          "Cria um ritual noturno calmante com lavanda aromática",
+          "Mantém uma opção sem fragrância à disposição para peles sensíveis",
+          "Favorece a reparação da barreira no rosto, corpo e couro cabeludo com texturas versáteis",
+          "Duo pronto para presente para casais, novos pais ou retiros de autocuidado"
+        ],
+        "es": [
+          "Crea un ritual nocturno relajante con lavanda aromática",
+          "Mantiene una opción sin fragancia a mano para pieles sensibles",
+          "Apoya la reparación de la barrera en rostro, cuerpo y cuero cabelludo con texturas versátiles",
+          "Dúo listo para regalar a parejas, nuevos padres o retiros de autocuidado"
+        ]
+      },
+      "goodToKnow": {
+        "title": {
+          "en": "Good to know",
+          "pt": "Bom saber",
+          "es": "Para tener en cuenta"
+        },
+        "items": {
+          "en": [
+            "Keep the lavender blend away from the eye contour",
+            "Patch test if you are new to essential oils",
+            "Mix a drop of pure argan with lavender oil for a lighter finish",
+            "Store bottles upright and away from direct sunlight"
+          ],
+          "pt": [
+            "Mantenha a mistura de lavanda longe da área dos olhos",
+            "Faça um teste de toque se for novo em óleos essenciais",
+            "Misture uma gota de argan puro ao óleo de lavanda para um acabamento mais leve",
+            "Guarde os frascos na vertical e longe da luz direta"
+          ],
+          "es": [
+            "Mantén la mezcla de lavanda alejada del contorno de ojos",
+            "Realiza una prueba de parche si eres nuevo con aceites esenciales",
+            "Mezcla una gota de argán puro con el aceite de lavanda para un acabado más ligero",
+            "Guarda los frascos en posición vertical y lejos de la luz directa"
+          ]
+        }
+      },
+      "knowledge": {
+        "whatItIs": {
+          "en": "A complementary duo that pairs our calming Argan Oil + Lavender with the signature Pure Argan Oil dropper for a complete day-to-night ritual.",
+          "pt": "Um duo complementar que reúne o nosso Óleo de Argan + Lavanda calmante com o conta-gotas de Óleo de Argan Puro para um ritual completo do dia à noite.",
+          "es": "Un dúo complementario que combina nuestro Aceite de Argán + Lavanda calmante con el cuentagotas de Aceite de Argán Puro para un ritual completo de día y noche."
+        },
+        "howItWorks": {
+          "en": "Lavender's linalool and linalyl acetate promote relaxation, while pure argan oil delivers tocopherols and essential fatty acids to replenish the barrier without fragrance.",
+          "pt": "O linalol e o acetato de linalila da lavanda promovem relaxamento, enquanto o óleo de argan puro oferece tocoferóis e ácidos graxos essenciais para repor a barreira sem fragrância.",
+          "es": "El linalol y el acetato de linalilo de la lavanda fomentan la relajación, mientras que el aceite de argán puro aporta tocoferoles y ácidos grasos esenciales para reponer la barrera sin fragancia."
+        },
+        "whoItsFor": {
+          "en": "Designed for anyone craving a calming night oil alongside a neutral option for daytime layering—ideal for new parents, stressed professionals, and spa gift sets.",
+          "pt": "Pensado para quem deseja um óleo calmante para a noite e uma opção neutra para as camadas diurnas — ideal para novos pais, profissionais sob estresse e kits de spa.",
+          "es": "Pensado para quienes desean un aceite calmante nocturno junto a una opción neutra para las capas diurnas; ideal para nuevos padres, profesionales estresados y sets de spa."
+        },
+        "scientificBacking": {
+          "en": "Studies highlight lavender aromatherapy for improving sleep quality, while research on argan oil documents significant increases in skin hydration and elasticity. Combining them supports rest and barrier recovery.",
+          "pt": "Estudos destacam a aromaterapia com lavanda na melhora da qualidade do sono, enquanto pesquisas com óleo de argan registram aumento significativo na hidratação e elasticidade da pele. A combinação apoia o descanso e a recuperação da barreira.",
+          "es": "Los estudios destacan la aromaterapia con lavanda por mejorar la calidad del sueño, mientras que las investigaciones sobre el aceite de argán documentan aumentos significativos en hidratación y elasticidad cutánea. La combinación favorece el descanso y la recuperación de la barrera."
+        },
+        "culturalContext": {
+          "en": "Lavender has long soothed Moroccan hammam guests before rest, while pure argan oil is the daily staple that follows. This pack brings both traditions together in one edit.",
+          "pt": "A lavanda há muito acalma convidadas de hammams marroquinos antes do descanso, enquanto o óleo de argan puro é o básico diário que se segue. Este kit reúne as duas tradições em uma só curadoria.",
+          "es": "La lavanda lleva siglos relajando a las invitadas de los hammams marroquíes antes del descanso, mientras que el aceite de argán puro es el básico diario posterior. Este pack reúne ambas tradiciones en una sola selección."
+        }
+      },
+      "faqs": [
+        {
+          "question": {
+            "en": "Can I layer both oils together?",
+            "pt": "Posso usar os dois óleos em camadas?",
+            "es": "¿Puedo superponer ambos aceites?"
+          },
+          "answer": {
+            "en": "Yes—apply Pure Argan Oil first on sensitised areas, then add a drop of Argan + Lavender on top where you want the calming aroma.",
+            "pt": "Sim — aplique primeiro o Óleo de Argan Puro nas áreas sensibilizadas e, em seguida, adicione uma gota de Argan + Lavanda onde desejar o aroma calmante.",
+            "es": "Sí: aplica primero el Aceite de Argán Puro en las zonas sensibilizadas y después añade una gota de Argán + Lavanda donde quieras el aroma calmante."
+          }
+        },
+        {
+          "question": {
+            "en": "Is the lavender blend safe during pregnancy?",
+            "pt": "A mistura de lavanda é segura na gravidez?",
+            "es": "¿La mezcla de lavanda es segura durante el embarazo?"
+          },
+          "answer": {
+            "en": "The dilution is spa-safe, but consult your healthcare provider if you are pregnant or nursing before using essential oils.",
+            "pt": "A diluição é segura para spa, mas consulte seu profissional de saúde se estiver grávida ou amamentando antes de usar óleos essenciais.",
+            "es": "La dilución es segura para spa, pero consulta con tu profesional de salud si estás embarazada o en periodo de lactancia antes de usar aceites esenciales."
+          }
+        },
+        {
+          "question": {
+            "en": "Does the set work for all skin types?",
+            "pt": "O kit serve para todos os tipos de pele?",
+            "es": "¿El pack funciona para todo tipo de piel?"
+          },
+          "answer": {
+            "en": "Both oils suit dry, normal, and combination skin. If you are very oily, reserve the lavender blend for body massage and use the pure dropper sparingly on the face.",
+            "pt": "Ambos os óleos funcionam em peles secas, normais e mistas. Se a sua pele for muito oleosa, deixe a mistura de lavanda para a massagem corporal e use o conta-gotas puro com parcimônia no rosto.",
+            "es": "Ambos los aceites se adaptan a pieles secas, normales y mixtas. Si tu piel es muy grasa, reserva la mezcla de lavanda para masaje corporal y usa el cuentagotas puro con moderación en el rostro."
+          }
+        }
+      ]
+    },
+    {
+      "ingredients": {
         "en": "Argania Spinosa (Argan) Kernel Oil. Viscose (Kessa) exfoliating glove. Cotton travel pouch.",
         "pt": "Óleo de Caroço de Argania Spinosa (Argan). Luva esfoliante de viscose (Kessa). Nécessaire de algodão.",
         "es": "Aceite de semilla de Argania Spinosa (Argán). Manopla exfoliante de viscosa (Kessa). Neceser de algodón."
@@ -1888,6 +2529,17 @@
           "Set de 3 piezas",
           "Listo para viajar",
           "Formato profesional"
+        ]
+      },
+      "tags": {
+        "en": [
+          "ritual kit"
+        ],
+        "pt": [
+          "kit ritual"
+        ],
+        "es": [
+          "kit ritual"
         ]
       },
       "labTestedNote": {

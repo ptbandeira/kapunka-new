@@ -13,7 +13,7 @@
       },
       "sizes": [
         {
-          "slug": "pure-argan-oil-roll-on-10ml",
+          "slug": "pure-argan-oil-10ml",
           "active": true,
           "format": "roll-on",
           "label": {
@@ -26,7 +26,7 @@
           "price": null
         },
         {
-          "slug": "pure-argan-oil-dropper-30ml",
+          "slug": "pure-argan-oil-30ml",
           "active": true,
           "format": "dropper",
           "label": {
@@ -39,20 +39,7 @@
           "price": null
         },
         {
-          "slug": "pure-argan-oil-dispenser-30ml",
-          "active": true,
-          "format": "dispenser",
-          "label": {
-            "en": "Dispenser 30 ml",
-            "es": "Dosificador 30 ml",
-            "pt": "Dispensador 30 ml"
-          },
-          "size": 30,
-          "unit": "ml",
-          "price": null
-        },
-        {
-          "slug": "pure-argan-oil-dispenser-50ml",
+          "slug": "pure-argan-oil-50ml",
           "active": true,
           "format": "dispenser",
           "label": {
@@ -65,7 +52,7 @@
           "price": null
         },
         {
-          "slug": "pure-argan-oil-dispenser-100ml",
+          "slug": "pure-argan-oil-100ml",
           "active": true,
           "format": "dispenser",
           "label": {
@@ -78,7 +65,7 @@
           "price": null
         },
         {
-          "slug": "pure-argan-oil-dispenser-250ml",
+          "slug": "pure-argan-oil-250ml",
           "active": true,
           "format": "dispenser",
           "label": {
@@ -91,7 +78,7 @@
           "price": null
         },
         {
-          "slug": "pure-argan-oil-dispenser-500ml",
+          "slug": "pure-argan-oil-500ml",
           "active": true,
           "format": "dispenser",
           "label": {
@@ -103,12 +90,23 @@
           "unit": "ml",
           "price": null
         }
-      ]
+      ],
+      "tags": {
+        "en": [
+          "fragrance-free"
+        ],
+        "es": [
+          "sin fragancia"
+        ],
+        "pt": [
+          "sem fragrância"
+        ]
+      }
     },
     {
       "slug": "cotton-argan-oil",
       "active": true,
-      "category": "oil",
+      "category": "blend",
       "currency": "EUR",
       "vatIncluded": true,
       "name": {
@@ -118,7 +116,7 @@
       },
       "sizes": [
         {
-          "slug": "cotton-argan-oil-dispenser-250ml",
+          "slug": "cotton-argan-oil-250ml",
           "active": true,
           "format": "dispenser",
           "label": {
@@ -130,12 +128,23 @@
           "unit": "ml",
           "price": null
         }
-      ]
+      ],
+      "tags": {
+        "en": [
+          "Cotton scent"
+        ],
+        "es": [
+          "aroma algodón"
+        ],
+        "pt": [
+          "aroma algodão"
+        ]
+      }
     },
     {
       "slug": "agra-incense-argan-oil",
       "active": true,
-      "category": "oil",
+      "category": "blend",
       "currency": "EUR",
       "vatIncluded": true,
       "name": {
@@ -145,7 +154,7 @@
       },
       "sizes": [
         {
-          "slug": "agra-incense-argan-oil-dispenser-250ml",
+          "slug": "agra-incense-argan-oil-250ml",
           "active": true,
           "format": "dispenser",
           "label": {
@@ -157,12 +166,23 @@
           "unit": "ml",
           "price": null
         }
-      ]
+      ],
+      "tags": {
+        "en": [
+          "Agra incense scent"
+        ],
+        "es": [
+          "aroma incienso de Agra"
+        ],
+        "pt": [
+          "aroma incenso de Agra"
+        ]
+      }
     },
     {
       "slug": "jasmine-argan-oil",
       "active": true,
-      "category": "oil",
+      "category": "blend",
       "currency": "EUR",
       "vatIncluded": true,
       "name": {
@@ -172,7 +192,7 @@
       },
       "sizes": [
         {
-          "slug": "jasmine-argan-oil-dispenser-250ml",
+          "slug": "jasmine-argan-oil-250ml",
           "active": true,
           "format": "dispenser",
           "label": {
@@ -184,12 +204,23 @@
           "unit": "ml",
           "price": null
         }
-      ]
+      ],
+      "tags": {
+        "en": [
+          "Jasmine scent"
+        ],
+        "es": [
+          "aroma jazmín"
+        ],
+        "pt": [
+          "aroma jasmim"
+        ]
+      }
     },
     {
       "slug": "lavender-argan-oil",
       "active": true,
-      "category": "oil",
+      "category": "blend",
       "currency": "EUR",
       "vatIncluded": true,
       "name": {
@@ -199,7 +230,7 @@
       },
       "sizes": [
         {
-          "slug": "lavender-argan-oil-dispenser-250ml",
+          "slug": "lavender-argan-oil-250ml",
           "active": true,
           "format": "dispenser",
           "label": {
@@ -211,12 +242,23 @@
           "unit": "ml",
           "price": null
         }
-      ]
+      ],
+      "tags": {
+        "en": [
+          "Lavender scent"
+        ],
+        "es": [
+          "aroma lavanda"
+        ],
+        "pt": [
+          "aroma lavanda"
+        ]
+      }
     },
     {
       "slug": "patchouli-argan-oil",
       "active": true,
-      "category": "oil",
+      "category": "blend",
       "currency": "EUR",
       "vatIncluded": true,
       "name": {
@@ -226,7 +268,7 @@
       },
       "sizes": [
         {
-          "slug": "patchouli-argan-oil-dispenser-250ml",
+          "slug": "patchouli-argan-oil-250ml",
           "active": true,
           "format": "dispenser",
           "label": {
@@ -238,12 +280,23 @@
           "unit": "ml",
           "price": null
         }
-      ]
+      ],
+      "tags": {
+        "en": [
+          "Patchouli scent"
+        ],
+        "es": [
+          "aroma patchouli"
+        ],
+        "pt": [
+          "aroma patchouli"
+        ]
+      }
     },
     {
       "slug": "rosemary-argan-oil",
       "active": true,
-      "category": "oil",
+      "category": "blend",
       "currency": "EUR",
       "vatIncluded": true,
       "name": {
@@ -253,7 +306,7 @@
       },
       "sizes": [
         {
-          "slug": "rosemary-argan-oil-dispenser-250ml",
+          "slug": "rosemary-argan-oil-250ml",
           "active": true,
           "format": "dispenser",
           "label": {
@@ -265,12 +318,23 @@
           "unit": "ml",
           "price": null
         }
-      ]
+      ],
+      "tags": {
+        "en": [
+          "Rosemary scent"
+        ],
+        "es": [
+          "aroma romero"
+        ],
+        "pt": [
+          "aroma alecrim"
+        ]
+      }
     },
     {
       "slug": "argan-30ml-kessa-bundle",
       "active": true,
-      "category": "bundle",
+      "category": "kit",
       "currency": "EUR",
       "vatIncluded": true,
       "name": {
@@ -292,12 +356,23 @@
           "unit": "ml",
           "price": null
         }
-      ]
+      ],
+      "tags": {
+        "en": [
+          "ritual kit"
+        ],
+        "es": [
+          "kit ritual"
+        ],
+        "pt": [
+          "kit ritual"
+        ]
+      }
     },
     {
       "slug": "argan-100ml-kessa-bundle",
       "active": true,
-      "category": "bundle",
+      "category": "kit",
       "currency": "EUR",
       "vatIncluded": true,
       "name": {
@@ -319,12 +394,23 @@
           "unit": "ml",
           "price": null
         }
-      ]
+      ],
+      "tags": {
+        "en": [
+          "ritual kit"
+        ],
+        "es": [
+          "kit ritual"
+        ],
+        "pt": [
+          "kit ritual"
+        ]
+      }
     },
     {
       "slug": "argan-500ml-kessa-bundle",
       "active": true,
-      "category": "bundle",
+      "category": "kit",
       "currency": "EUR",
       "vatIncluded": true,
       "name": {
@@ -346,12 +432,23 @@
           "unit": "ml",
           "price": null
         }
-      ]
+      ],
+      "tags": {
+        "en": [
+          "ritual kit"
+        ],
+        "es": [
+          "kit ritual"
+        ],
+        "pt": [
+          "kit ritual"
+        ]
+      }
     },
     {
       "slug": "lavender-50ml-argan-30ml-pack",
       "active": true,
-      "category": "bundle",
+      "category": "kit",
       "currency": "EUR",
       "vatIncluded": true,
       "name": {
@@ -373,7 +470,18 @@
           "unit": "set",
           "price": null
         }
-      ]
+      ],
+      "tags": {
+        "en": [
+          "ritual kit"
+        ],
+        "es": [
+          "kit ritual"
+        ],
+        "pt": [
+          "kit ritual"
+        ]
+      }
     },
     {
       "slug": "manopla-kessa",
@@ -405,7 +513,18 @@
           "unit": "unit",
           "price": null
         }
-      ]
+      ],
+      "tags": {
+        "en": [
+          "hammam accessory"
+        ],
+        "es": [
+          "accesorio hammam"
+        ],
+        "pt": [
+          "acessório hammam"
+        ]
+      }
     },
     {
       "slug": "kapunka-neceser",
@@ -450,7 +569,18 @@
           "unit": "unit",
           "price": null
         }
-      ]
+      ],
+      "tags": {
+        "en": [
+          "travel accessory"
+        ],
+        "es": [
+          "accesorio de viaje"
+        ],
+        "pt": [
+          "acessório de viagem"
+        ]
+      }
     }
   ]
 }
