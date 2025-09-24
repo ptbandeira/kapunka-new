@@ -514,9 +514,9 @@
     },
     {
       "ingredients": {
-        "en": "Argania Spinosa (Argan) Kernel Oil, Parfum",
-        "es": "Argania Spinosa (Argan) Kernel Oil, Parfum",
-        "pt": "Argania Spinosa (Argan) Kernel Oil, Parfum"
+        "en": "Argania Spinosa Kernel Oil, Parfum",
+        "es": "Argania Spinosa Kernel Oil, Parfum",
+        "pt": "Argania Spinosa Kernel Oil, Parfum"
       },
       "name": {
         "en": "Argan Oil + Cotton",
@@ -529,9 +529,9 @@
         "pt": "Aroma ‘clean’ suave para um ritual reconfortante"
       },
       "description": {
-        "en": "Pure argan oil with a soft cotton-inspired aroma. The same lightweight nourishment with a cozy, clean scent.",
-        "es": "Aceite de argán puro con un aroma suave inspirado en el algodón. La misma nutrición ligera con un perfume limpio y reconfortante.",
-        "pt": "Óleo de argan puro com aroma suave inspirado no algodão. A mesma nutrição leve com um perfume limpo e confortável."
+        "en": "Pure argan oil with a soft cotton-inspired aroma. The same lightweight nourishment with a cozy, clean scent. For cosmetic use only.",
+        "es": "Aceite de argán puro con un aroma suave inspirado en el algodón. La misma nutrición ligera con un perfume limpio y reconfortante. Uso cosmético.",
+        "pt": "Óleo de argan puro com aroma suave inspirado no algodão. A mesma nutrição leve com um perfume limpo e confortável. Uso cosmético."
       },
       "badges": {
         "en": [
@@ -696,9 +696,9 @@
     },
     {
       "ingredients": {
-        "en": "Argania Spinosa (Argan) Kernel Oil, Boswellia Carterii (Frankincense) Oil",
-        "es": "Argania Spinosa (Argan) Kernel Oil, Boswellia Carterii (Frankincense) Oil",
-        "pt": "Argania Spinosa (Argan) Kernel Oil, Boswellia Carterii (Frankincense) Oil"
+        "en": "Argania Spinosa Kernel Oil, Boswellia Carterii Oil",
+        "es": "Argania Spinosa Kernel Oil, Boswellia Carterii Oil",
+        "pt": "Argania Spinosa Kernel Oil, Boswellia Carterii Oil"
       },
       "name": {
         "en": "Argan Oil + Agra Incense",
@@ -706,14 +706,14 @@
         "pt": "Óleo de Argan + Incenso de Agra"
       },
       "tagline": {
-        "en": "Warm, resinous aroma",
-        "es": "Aroma cálido y resinoso",
-        "pt": "Aroma quente e resinoso"
+        "en": "Warm incense aroma for a grounding ritual",
+        "es": "Aroma cálido de incienso para un ritual reconfortante",
+        "pt": "Aroma quente de incenso para um ritual acolhedor"
       },
       "description": {
-        "en": "Pure argan oil complemented by a warm, resinous note reminiscent of frankincense.",
-        "es": "Aceite de argán puro con una nota cálida y resinosa, inspirada en el incienso.",
-        "pt": "Óleo de argan puro com uma nota quente e resinosa, inspirada no incenso."
+        "en": "Pure argan oil with a warm frankincense-inspired aroma. The same lightweight nourishment with a grounding resinous scent. For cosmetic use only.",
+        "es": "Aceite de argán puro con un aroma cálido inspirado en el incienso. La misma nutrición ligera con un perfume resinoso y envolvente. Uso cosmético.",
+        "pt": "Óleo de argan puro com aroma quente inspirado no incenso. A mesma nutrição leve com um perfume resinoso e acolhedor. Uso cosmético."
       },
       "badges": {
         "en": [
@@ -878,9 +878,9 @@
     },
     {
       "ingredients": {
-        "en": "Argania Spinosa (Argan) Kernel Oil, Jasminum Officinale (Jasmine) Oil",
-        "es": "Argania Spinosa (Argan) Kernel Oil, Jasminum Officinale (Jasmine) Oil",
-        "pt": "Argania Spinosa (Argan) Kernel Oil, Jasminum Officinale (Jasmine) Oil"
+        "en": "Argania Spinosa Kernel Oil, Jasminum Officinale Flower Oil",
+        "es": "Argania Spinosa Kernel Oil, Jasminum Officinale Flower Oil",
+        "pt": "Argania Spinosa Kernel Oil, Jasminum Officinale Flower Oil"
       },
       "name": {
         "en": "Argan Oil + Jasmine",
@@ -888,14 +888,14 @@
         "pt": "Óleo de Argan + Jasmim"
       },
       "tagline": {
-        "en": "Floral and delicate",
-        "es": "Floral y delicado",
-        "pt": "Floral e delicado"
+        "en": "Delicate jasmine aroma for an uplifting ritual",
+        "es": "Aroma delicado de jazmín para un ritual revitalizante",
+        "pt": "Aroma delicado de jasmim para um ritual revigorante"
       },
       "description": {
-        "en": "A delicate jasmine note adds a soft floral touch to our lightweight argan base.",
-        "es": "Una nota delicada de jazmín aporta un toque floral suave a nuestra base ligera de argán.",
-        "pt": "Uma nota delicada de jasmim acrescenta um toque floral suave à nossa base leve de argan."
+        "en": "Pure argan oil with a soft jasmine-inspired aroma. The same lightweight nourishment with a luminous floral scent. For cosmetic use only.",
+        "es": "Aceite de argán puro con un aroma suave inspirado en el jazmín. La misma nutrición ligera con un perfume floral y luminoso. Uso cosmético.",
+        "pt": "Óleo de argan puro com aroma suave inspirado no jasmim. A mesma nutrição leve com um perfume floral e luminoso. Uso cosmético."
       },
       "badges": {
         "en": [
@@ -1060,9 +1060,9 @@
     },
     {
       "ingredients": {
-        "en": "Argania Spinosa (Argan) Kernel Oil, Lavandula Angustifolia (Lavender) Oil",
-        "es": "Argania Spinosa (Argan) Kernel Oil, Lavandula Angustifolia (Lavender) Oil",
-        "pt": "Argania Spinosa (Argan) Kernel Oil, Lavandula Angustifolia (Lavender) Oil"
+        "en": "Argania Spinosa Kernel Oil, Lavandula Angustifolia Oil",
+        "es": "Argania Spinosa Kernel Oil, Lavandula Angustifolia Oil",
+        "pt": "Argania Spinosa Kernel Oil, Lavandula Angustifolia Oil"
       },
       "name": {
         "en": "Argan Oil + Lavender",
@@ -1070,9 +1070,9 @@
         "es": "Aceite de Argán + Lavanda"
       },
       "tagline": {
-        "en": "Calming lavender aroma",
-        "es": "Aroma relajante de lavanda",
-        "pt": "Aroma calmante de lavanda"
+        "en": "Soothing lavender aroma for a restful night ritual",
+        "es": "Aroma calmante de lavanda para un ritual nocturno reparador",
+        "pt": "Aroma calmante de lavanda para um ritual noturno reparador"
       },
       "badges": {
         "en": [
@@ -1205,16 +1205,16 @@
         }
       ],
       "description": {
-        "en": "Pure argan oil with natural lavender aroma for a calming nightly ritual.",
-        "es": "Aceite de argán puro con aroma natural de lavanda para un ritual nocturno calmante.",
-        "pt": "Óleo de argan puro com aroma natural de lavanda para um ritual noturno calmante."
+        "en": "Pure argan oil with a calming lavender aroma. The same lightweight nourishment with a relaxing herbal scent. For cosmetic use only.",
+        "es": "Aceite de argán puro con un aroma calmante de lavanda. La misma nutrición ligera con un perfume herbal relajante. Uso cosmético.",
+        "pt": "Óleo de argan puro com aroma calmante de lavanda. A mesma nutrição leve com um perfume herbal relaxante. Uso cosmético."
       }
     },
     {
       "ingredients": {
-        "en": "Argania Spinosa (Argan) Kernel Oil, Rosmarinus Officinalis (Rosemary) Leaf Oil",
-        "es": "Argania Spinosa (Argan) Kernel Oil, Rosmarinus Officinalis (Rosemary) Leaf Oil",
-        "pt": "Argania Spinosa (Argan) Kernel Oil, Rosmarinus Officinalis (Rosemary) Leaf Oil"
+        "en": "Argania Spinosa Kernel Oil, Rosmarinus Officinalis Leaf Oil",
+        "es": "Argania Spinosa Kernel Oil, Rosmarinus Officinalis Leaf Oil",
+        "pt": "Argania Spinosa Kernel Oil, Rosmarinus Officinalis Leaf Oil"
       },
       "name": {
         "en": "Argan Oil + Rosemary",
@@ -1222,9 +1222,9 @@
         "es": "Aceite de Argán + Romero"
       },
       "tagline": {
-        "en": "Fresh rosemary note; popular for scalp rituals",
-        "es": "Nota fresca de romero; popular en rituales de cuero cabelludo",
-        "pt": "Nota fresca de alecrim; popular em rituais para o couro cabeludo"
+        "en": "Fresh rosemary aroma for energising scalp rituals",
+        "es": "Aroma fresco de romero para rituales energizantes del cuero cabelludo",
+        "pt": "Aroma fresco de alecrim para rituais estimulantes do couro cabeludo"
       },
       "badges": {
         "en": [
@@ -1368,16 +1368,16 @@
         }
       ],
       "description": {
-        "en": "Adds a fresh rosemary note to the nourishing argan base. Favored in scalp care routines.",
-        "es": "Aporta una nota fresca de romero a la base nutritiva de argán. Muy apreciado en rutinas para el cuero cabelludo.",
-        "pt": "Acrescenta uma nota fresca de alecrim à base nutritiva de argan. Muito apreciado em rotinas para o couro cabeludo."
+        "en": "Pure argan oil with a revitalising rosemary aroma. The same lightweight nourishment with an herbaceous, clarifying scent. For cosmetic use only.",
+        "es": "Aceite de argán puro con un aroma revitalizante de romero. La misma nutrición ligera con un perfume herbal y purificante. Uso cosmético.",
+        "pt": "Óleo de argan puro com aroma revitalizante de alecrim. A mesma nutrição leve com um perfume herbal e purificante. Uso cosmético."
       }
     },
     {
       "ingredients": {
-        "en": "Argania Spinosa (Argan) Kernel Oil, Pogostemon Cablin (Patchouli) Oil",
-        "es": "Argania Spinosa (Argan) Kernel Oil, Pogostemon Cablin (Patchouli) Oil",
-        "pt": "Argania Spinosa (Argan) Kernel Oil, Pogostemon Cablin (Patchouli) Oil"
+        "en": "Argania Spinosa Kernel Oil, Pogostemon Cablin Oil",
+        "es": "Argania Spinosa Kernel Oil, Pogostemon Cablin Oil",
+        "pt": "Argania Spinosa Kernel Oil, Pogostemon Cablin Oil"
       },
       "name": {
         "en": "Argan Oil + Patchouli",
@@ -1385,9 +1385,9 @@
         "es": "Aceite de Argán + Pachulí"
       },
       "tagline": {
-        "en": "Earthy, grounding note",
-        "es": "Nota terrosa y envolvente",
-        "pt": "Nota terrosa e envolvente"
+        "en": "Earthy patchouli aroma for a grounding self-care ritual",
+        "es": "Aroma terroso de pachulí para un ritual de autocuidado arraigado",
+        "pt": "Aroma terroso de patchouli para um ritual de autocuidado centrado"
       },
       "badges": {
         "en": [
@@ -1531,9 +1531,9 @@
         }
       ],
       "description": {
-        "en": "An earthy, grounding touch layered over our fast-absorbing argan base.",
-        "es": "Un matiz terroso y envolvente sobre nuestra base de argán de rápida absorción.",
-        "pt": "Um toque terroso e envolvente sobre a nossa base de argan de rápida absorção."
+        "en": "Pure argan oil with a rich patchouli aroma. The same lightweight nourishment with an earthy, enveloping scent. For cosmetic use only.",
+        "es": "Aceite de argán puro con un aroma intenso de pachulí. La misma nutrición ligera con un perfume terroso y envolvente. Uso cosmético.",
+        "pt": "Óleo de argan puro com aroma intenso de patchouli. A mesma nutrição leve com um perfume terroso e envolvente. Uso cosmético."
       }
     },
     {
