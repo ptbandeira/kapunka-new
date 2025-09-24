@@ -62,6 +62,11 @@ const ProductDetail: React.FC = () => {
         return <div className="text-center py-20">{t('pdp.notFound')}</div>;
     }
 
+    const translatedTitleAddition = product.titleAddition
+        ? (translate(product.titleAddition) as string)
+        : null;
+    const translatedTagline = translate(product.tagline) as string;
+
     const productIndex = allProducts.findIndex((p) => p.id === product.id);
     const productFieldPath = productIndex >= 0 ? `products.items.${productIndex}` : undefined;
     const selectedSizeIndex = product.sizes.findIndex((size) => size.id === selectedSizeId);
@@ -107,12 +112,22 @@ const ProductDetail: React.FC = () => {
                             >
                                 {translate(product.name)}
                             </h1>
-                            <p
-                                className="text-lg text-stone-500 mt-2"
-                                data-nlv-field-path={productFieldPath ? `${productFieldPath}.tagline.${language}` : undefined}
-                            >
-                                {translate(product.tagline)}
-                            </p>
+                            {translatedTitleAddition && (
+                                <p
+                                    className="text-sm uppercase tracking-wide text-stone-500 mt-3"
+                                    data-nlv-field-path={productFieldPath ? `${productFieldPath}.titleAddition.${language}` : undefined}
+                                >
+                                    {translatedTitleAddition}
+                                </p>
+                            )}
+                            {(!translatedTitleAddition || translatedTitleAddition !== translatedTagline) && (
+                                <p
+                                    className="text-lg text-stone-500 mt-2"
+                                    data-nlv-field-path={productFieldPath ? `${productFieldPath}.tagline.${language}` : undefined}
+                                >
+                                    {translatedTagline}
+                                </p>
+                            )}
                             {product.description && (
                                 <p
                                     className="mt-4 text-base text-stone-600 leading-relaxed"

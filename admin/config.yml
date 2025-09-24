@@ -202,6 +202,13 @@ collections:
                   - { label: English, name: en, widget: string }
                   - { label: Portuguese, name: pt, widget: string }
                   - { label: Spanish, name: es, widget: string }
+              - label: Title Addition
+                name: titleAddition
+                widget: object
+                fields:
+                  - { label: English, name: en, widget: string }
+                  - { label: Portuguese, name: pt, widget: string }
+                  - { label: Spanish, name: es, widget: string }
               - label: Tagline
                 name: tagline
                 widget: object

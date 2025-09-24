@@ -1553,9 +1553,9 @@
         "es": "La herramienta esencial para una piel suave"
       },
       "description": {
-        "en": "Traditional Moroccan glove to lift impurities and smooth roughness. Use with warm water before applying oil.",
-        "pt": "Luva marroquina tradicional para remover impurezas e suavizar asperezas. Usar com água morna antes do óleo.",
-        "es": "Manopla tradicional marroquí para retirar impurezas y suavizar asperezas. Usar con agua tibia antes del aceite."
+        "en": "Traditional Moroccan glove to lift impurities and smooth roughness. Use with warm water before applying oil. For cosmetic use only.",
+        "pt": "Luva marroquina tradicional para remover impurezas e suavizar asperezas. Usar com água morna antes do óleo. Uso cosmético.",
+        "es": "Manopla tradicional marroquí para retirar impurezas y suavizar asperezas. Usar con agua tibia antes del aceite. Uso cosmético."
       },
       "badges": {
         "en": [
@@ -1716,9 +1716,9 @@
         "es": "Organiza tu ritual Kapunka donde vayas"
       },
       "description": {
-        "en": "Durable pouch sized to hold Kapunka oils, the Kessa glove, and travel accessories. Keeps hammam essentials tidy at home or in your carry-on.",
-        "pt": "Necessaire resistente para acomodar os óleos Kapunka, a luva Kessa e acessórios de viagem. Mantém os essenciais do hammam organizados em casa ou na mala de mão.",
-        "es": "Neceser resistente para acomodar los aceites Kapunka, la manopla Kessa y accesorios de viaje. Mantiene los esenciales del hammam ordenados en casa o en el equipaje de mano."
+        "en": "Durable pouch for travel or daily carry. Fits argan sizes and Kessa glove.",
+        "pt": "Necessaire resistente para viagem ou dia a dia. Comporta tamanhos de argan e luva Kessa.",
+        "es": "Neceser resistente para viaje o uso diario. Acomoda tamaños de argán y manopla Kessa."
       },
       "badges": {
         "en": [
@@ -1896,15 +1896,20 @@
         "pt": "Óleo de Argan Puro 30 ml + Luva Kessa",
         "es": "Aceite de Argán Puro 30 ml + Manopla Kessa"
       },
+      "titleAddition": {
+        "en": "Exfoliate + Nourish Set",
+        "pt": "Esfoliar + Nutrir",
+        "es": "Exfoliar + Nutrir"
+      },
       "tagline": {
         "en": "Exfoliate + Nourish Set",
         "pt": "Esfoliar + Nutrir",
         "es": "Exfoliar + Nutrir"
       },
       "description": {
-        "en": "Use the Kessa glove once or twice weekly to lift impurities and smooth texture. Follow with Pure Argan Oil to seal in comfort and leave a soft glow.",
-        "pt": "Use a luva Kessa uma a duas vezes por semana para remover impurezas e suavizar a textura. Finalize com Óleo de Argan Puro para selar conforto e deixar um brilho suave.",
-        "es": "Usa la manopla Kessa una o dos veces por semana para retirar impurezas y suavizar la textura. Continúa con Aceite de Argán Puro para sellar confort y dejar un brillo suave."
+        "en": "Use the Kessa glove once or twice weekly to lift impurities and smooth texture. Follow with Pure Argan Oil to seal in comfort and leave a soft glow. For cosmetic use only.",
+        "pt": "Use a luva Kessa uma a duas vezes por semana para remover impurezas e suavizar a textura. Finalize com Óleo de Argan Puro para selar conforto e deixar um brilho suave. Uso cosmético.",
+        "es": "Usa la manopla Kessa una o dos veces por semana para retirar impurezas y suavizar la textura. Continúa con Aceite de Argán Puro para sellar confort y dejar un brillo suave. Uso cosmético."
       },
       "bundleIncludes": {
         "en": [
@@ -2091,27 +2096,32 @@
         "pt": "Óleo de Argan Puro 100 ml + Luva Kessa",
         "es": "Aceite de Argán Puro 100 ml + Manopla Kessa"
       },
+      "titleAddition": {
+        "en": "Exfoliate + Nourish Set",
+        "pt": "Esfoliar + Nutrir",
+        "es": "Exfoliar + Nutrir"
+      },
       "tagline": {
         "en": "Weekly hammam ritual for luminous skin",
         "pt": "Ritual hammam semanal para uma pele luminosa",
         "es": "Ritual hammam semanal para una piel luminosa"
       },
       "description": {
-        "en": "Use the Kessa glove once or twice weekly to sweep away buildup, then seal skin with the 100 ml pump of Pure Argan Oil for a supple, comfortable glow from body to scalp.",
-        "pt": "Use a luva Kessa uma ou duas vezes por semana para remover o acúmulo e depois sele a pele com o pump de 100 ml do Óleo de Argan Puro para um brilho macio e confortável do corpo ao couro cabeludo.",
-        "es": "Utiliza la manopla Kessa una o dos veces por semana para eliminar la acumulación y después sella la piel con el dosificador de 100 ml de Aceite de Argán Puro para un brillo suave y confortable en cuerpo y cuero cabelludo."
+        "en": "Use the Kessa glove once or twice weekly to lift impurities and smooth texture. Follow with Pure Argan Oil to seal in comfort and leave a soft glow. For cosmetic use only.",
+        "pt": "Use a luva Kessa uma a duas vezes por semana para remover impurezas e suavizar a textura. Finalize com Óleo de Argan Puro para selar conforto e deixar um brilho suave. Uso cosmético.",
+        "es": "Usa la manopla Kessa una o dos veces por semana para retirar impurezas y suavizar la textura. Continúa con Aceite de Argán Puro para sellar confort y dejar un brillo suave. Uso cosmético."
       },
       "bundleIncludes": {
         "en": [
-          "Pure Argan Oil 100 ml pump",
+          "Pure Argan Oil (size as selected)",
           "Kessa exfoliating glove"
         ],
         "pt": [
-          "Óleo de Argan Puro 100 ml com pump",
+          "Óleo de Argan Puro (tamanho selecionado)",
           "Luva esfoliante Kessa"
         ],
         "es": [
-          "Aceite de Argán Puro 100 ml con dosificador",
+          "Aceite de Argán Puro (tamaño seleccionado)",
           "Manopla exfoliante Kessa"
         ]
       },
@@ -2481,15 +2491,20 @@
         "pt": "Kit Óleo de Argan 500 ml com Dosificador + Nécessaire + Kessa",
         "es": "Dosificador 500 ml de Aceite de Argán + Neceser + Kessa"
       },
+      "titleAddition": {
+        "en": "Exfoliate + Nourish Set",
+        "pt": "Esfoliar + Nutrir",
+        "es": "Exfoliar + Nutrir"
+      },
       "tagline": {
         "en": "Exfoliate + Nourish Set",
         "pt": "Esfoliar + Nutrir",
         "es": "Exfoliar + Nutrir"
       },
       "description": {
-        "en": "Use the Kessa glove once or twice weekly to lift impurities and smooth texture. Follow with Pure Argan Oil to seal in comfort and leave a soft glow. Travel-ready set with selected argan sizes and Kessa glove in a Kapunka vanity pouch.",
-        "pt": "Use a luva Kessa uma a duas vezes por semana para remover impurezas e suavizar a textura. Finalize com Óleo de Argan Puro para selar conforto e deixar um brilho suave. Conjunto pronto para viagem com tamanhos selecionados de argan e luva Kessa num necessaire Kapunka.",
-        "es": "Usa la manopla Kessa una o dos veces por semana para retirar impurezas y suavizar la textura. Continúa con Aceite de Argán Puro para sellar confort y dejar un brillo suave. Set listo para viaje con tamaños seleccionados de argán y manopla Kessa en un neceser Kapunka."
+        "en": "Use the Kessa glove once or twice weekly to lift impurities and smooth texture. Follow with Pure Argan Oil to seal in comfort and leave a soft glow. Travel-ready set with selected argan sizes and Kessa glove in a Kapunka vanity pouch. For cosmetic use only.",
+        "pt": "Use a luva Kessa uma a duas vezes por semana para remover impurezas e suavizar a textura. Finalize com Óleo de Argan Puro para selar conforto e deixar um brilho suave. Conjunto pronto para viagem com tamanhos selecionados de argan e luva Kessa num necessaire Kapunka. Uso cosmético.",
+        "es": "Usa la manopla Kessa una o dos veces por semana para retirar impurezas y suavizar la textura. Continúa con Aceite de Argán Puro para sellar confort y dejar un brillo suave. Set listo para viaje con tamaños seleccionados de argán y manopla Kessa en un neceser Kapunka. Uso cosmético."
       },
       "bundleIncludes": {
         "en": [
