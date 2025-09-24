@@ -9,11 +9,10 @@
   package = "@netlify/plugin-visual-editor"
 
 [dev]
-  command = "npm run dev"
   framework = "#custom"
+  command = "npm run dev"
   targetPort = 5173
 
 [visual_editor]
-  # The Visual Editor proxies to the Vite dev server so editors see hot updates.
   devCommand = "npm run dev"
   previewPort = 5173
