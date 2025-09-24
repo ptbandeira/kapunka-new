@@ -670,6 +670,28 @@
                 ]
               },
               {
+                "name": "titleAddition",
+                "label": "Title Addition",
+                "type": "object",
+                "fields": [
+                  {
+                    "name": "en",
+                    "label": "English",
+                    "type": "string"
+                  },
+                  {
+                    "name": "pt",
+                    "label": "Portuguese",
+                    "type": "string"
+                  },
+                  {
+                    "name": "es",
+                    "label": "Spanish",
+                    "type": "string"
+                  }
+                ]
+              },
+              {
                 "name": "tagline",
                 "label": "Tagline",
                 "type": "object",

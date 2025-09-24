@@ -18,6 +18,10 @@ const ProductCard: React.FC<ProductCardProps> = ({ product, fieldPath }) => {
   const { addToCart } = useCart();
   const { openCart } = useUI();
   const { translate, language } = useLanguage();
+  const translatedTitleAddition = product.titleAddition
+    ? (translate(product.titleAddition) as string)
+    : null;
+  const translatedTagline = translate(product.tagline) as string;
 
   const selectedSize = useMemo(() => {
     return product.sizes.find(s => s.id === selectedSizeId) || product.sizes[0];
@@ -65,12 +69,22 @@ const ProductCard: React.FC<ProductCardProps> = ({ product, fieldPath }) => {
           >
             {translate(product.name)}
           </h3>
-          <p
-            className="text-sm text-stone-500 mt-1"
-            data-nlv-field-path={fieldPath ? `${fieldPath}.tagline.${language}` : undefined}
-          >
-            {translate(product.tagline)}
-          </p>
+          {translatedTitleAddition && (
+            <p
+              className="text-xs uppercase tracking-wide text-stone-500 mt-1"
+              data-nlv-field-path={fieldPath ? `${fieldPath}.titleAddition.${language}` : undefined}
+            >
+              {translatedTitleAddition}
+            </p>
+          )}
+          {(!translatedTitleAddition || translatedTitleAddition !== translatedTagline) && (
+            <p
+              className="text-sm text-stone-500 mt-1"
+              data-nlv-field-path={fieldPath ? `${fieldPath}.tagline.${language}` : undefined}
+            >
+              {translatedTagline}
+            </p>
+          )}
           <div className="flex items-baseline justify-between mt-2">
             <div className="flex items-center space-x-2">
               {product.sizes.map((size, sizeIndex) => (

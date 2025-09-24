@@ -44,6 +44,7 @@ export interface ProductGoodToKnow {
 export interface Product {
   id: string;
   name: Translatable;
+  titleAddition?: Translatable;
   tagline: Translatable;
   description?: Translatable;
   bundleIncludes?: TranslatableArray;
