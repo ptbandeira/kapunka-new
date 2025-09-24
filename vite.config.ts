@@ -14,17 +14,12 @@ export default defineConfig(({ mode }) => {
       'process.env.GEMINI_API_KEY': JSON.stringify(env.GEMINI_API_KEY)
     },
     server: {
-      // expose to the Netlify proxy
-      host: true,
-
-      // easiest: no host checks in Netlify Dev boxes
-      allowedHosts: isNetlifyDev ? true : [
+      host: true,                              // expose to Netlify proxy
+      allowedHosts: isNetlifyDev ? true : [    // permit Netlify dev hosts
         'devserver-preview--kapunka-new.netlify.app',
         'devserver-main--kapunka-new.netlify.app'
       ]
     },
-    resolve: {
-      alias: { '@': path.resolve(__dirname, '.') }
-    }
+    resolve: { alias: { '@': path.resolve(__dirname, '.') } }
   };
 });
