@@ -17,9 +17,9 @@
         "es": "Prensado en frío, origen único. Rostro, cuerpo, cabello."
       },
       "description": {
-        "en": "Cold-pressed, single-origin oil from Morocco. Naturally rich in vitamin E and essential fatty acids, it comforts dryness, supports the skin barrier and leaves a soft, non-greasy glow. Suitable for sensitive skin and daily routines.",
-        "pt": "Óleo de origem única, prensado a frio em Marrocos. Naturalmente rico em vitamina E e ácidos gordos essenciais, conforta a secura, apoia a barreira cutânea e deixa um brilho suave sem oleosidade. Adequado para pele sensível e uso diário.",
-        "es": "Aceite de origen único, prensado en frío en Marruecos. Naturalmente rico en vitamina E y ácidos grasos esenciales, reconforta la sequedad, ayuda a la barrera cutánea y deja un brillo suave sin grasa. Apto para pieles sensibles y uso diario."
+        "en": "Cold-pressed, single-origin oil from Morocco. Rich in vitamin E and essential fatty acids, it comforts dryness, supports the skin barrier and leaves a soft, non-greasy glow. Suitable for sensitive skin and daily routines. For cosmetic use only. Not intended to diagnose, treat, cure, or prevent disease.",
+        "pt": "Óleo de origem única, prensado a frio em Marrocos. Rico em vitamina E e ácidos gordos essenciais, conforta a secura, apoia a barreira cutânea e deixa um brilho suave sem oleosidade. Adequado para pele sensível e uso diário. Apenas para uso cosmético. Não se destina a diagnosticar, tratar, curar ou prevenir doenças.",
+        "es": "Aceite de origen único, prensado en frío en Marruecos. Rico en vitamina E y ácidos grasos esenciales, reconforta la sequedad, apoya la barrera cutánea y deja un brillo suave sin grasa. Apto para pieles sensibles y uso diario. Solo para uso cosmético. No está destinado a diagnosticar, tratar, curar ni prevenir enfermedades."
       },
       "badges": {
         "en": [
@@ -62,28 +62,22 @@
         },
         "items": {
           "en": [
-            "Texture: lightweight, fast-absorbing",
-            "Finish: soft glow, non-greasy",
+            "Texture: lightweight, fast absorbing",
+            "Finish: soft glow, non greasy",
             "Suitable for all skin types",
-            "Vegan; no additives",
-            "Targeted roll-on format for on-the-go areas (cuticles, dry patches).",
-            "Precision dropper for face care and scalp massages."
+            "Vegan; no additives"
           ],
           "pt": [
             "Textura: leve, de rápida absorção",
             "Acabamento: brilho suave, não oleoso",
             "Adequado para todos os tipos de pele",
-            "Vegan; sem aditivos",
-            "Formato roll-on para áreas pontuais e em movimento (cutículas, zonas secas).",
-            "Conta-gotas de precisão para cuidados do rosto e massagens no couro cabeludo."
+            "Vegan; sem aditivos"
           ],
           "es": [
             "Textura: ligera, de rápida absorción",
             "Acabado: brillo suave, no graso",
             "Apto para todo tipo de piel",
-            "Vegano; sin aditivos",
-            "Formato roll-on para zonas puntuales y sobre la marcha (cutículas, áreas secas).",
-            "Cuentagotas de precisión para el cuidado del rostro y masajes de cuero cabelludo."
+            "Vegano; sin aditivos"
           ]
         }
       },
@@ -122,9 +116,9 @@
       "imageUrl": "/content/uploads/aceite-argan-dosificador-250ml-300x300.jpg",
       "id": "pure-argan-oil",
       "howToUse": {
-        "en": "Apply 2–3 drops to clean skin AM/PM. For hair, smooth a drop on mid-lengths and ends. For post-procedure routines, follow your clinician’s guidance.",
-        "pt": "Aplicar 2–3 gotas na pele limpa de manhã e à noite. No cabelo, espalhar uma gota nos comprimentos e pontas. Em rotinas pós-procedimento, seguir a orientação do profissional.",
-        "es": "Aplicar 2–3 gotas sobre la piel limpia mañana y noche. Para el cabello, aplicar una gota en medios y puntas. En rutinas post-procedimiento, seguir las indicaciones del profesional."
+        "en": "Apply 2–3 drops to clean skin AM/PM. For hair, smooth a drop on mid-lengths and ends. Follow clinician guidance after procedures.",
+        "pt": "Aplicar 2–3 gotas na pele limpa de manhã e à noite. No cabelo, espalhar uma gota nos comprimentos e pontas. Seguir a orientação do profissional em pós-procedimentos.",
+        "es": "Aplicar 2–3 gotas sobre la piel limpia mañana y noche. Para el cabello, aplicar una gota en medios y puntas. Seguir las indicaciones del profesional en post-procedimientos."
       },
       "benefits": {
         "en": [
