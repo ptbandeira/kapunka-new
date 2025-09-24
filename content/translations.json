@@ -1084,5 +1084,6 @@
       "notFound": "La página de política solicitada no se encontró.",
       "contactPrompt": "Para obtener información más detallada o preguntas específicas, contáctanos."
     }
-  }
+  },
+  "type": "translations"
 }

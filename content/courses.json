@@ -33,5 +33,6 @@
       "price": 59.99,
       "enrollLink": "#"
     }
-  ]
+  ],
+  "type": "courses"
 }

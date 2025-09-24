@@ -17,6 +17,7 @@
     "react-router-dom": "6.23.1"
   },
   "devDependencies": {
+    "@stackbit/cms-git": "^1.0.35",
     "@stackbit/sdk": "^2.1.18",
     "@types/node": "^22.14.0",
     "@vitejs/plugin-react": "^5.0.0",
