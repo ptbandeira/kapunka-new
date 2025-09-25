@@ -19,6 +19,12 @@ const translationModules = import.meta.glob<TranslationModule>(
 ) as Record<string, TranslationModule>;
 
 const SUPPORTED_LANGUAGES: Language[] = ['en', 'pt', 'es'];
+const LANGUAGE_STORAGE_KEY = 'preferredLanguage';
+
+const normalizeLanguageCode = (code: string): Language | undefined => {
+  const normalized = code.toLowerCase().split('-')[0];
+  return SUPPORTED_LANGUAGES.find((lang) => lang === normalized);
+};
 
 const extractKeyFromPath = (filePath: string): string => {
   const parts = filePath.split('/');
@@ -89,6 +95,42 @@ export const LanguageProvider: React.FC<{ children: React.ReactNode }> = ({ chil
 
     void loadTranslations();
   }, []);
+
+  useEffect(() => {
+    if (typeof window === 'undefined') {
+      return;
+    }
+
+    const storedLanguage = window.localStorage.getItem(LANGUAGE_STORAGE_KEY);
+    if (storedLanguage && SUPPORTED_LANGUAGES.includes(storedLanguage as Language)) {
+      setLanguage(storedLanguage as Language);
+      return;
+    }
+
+    const navigatorLanguages = (navigator.languages && navigator.languages.length > 0)
+      ? navigator.languages
+      : navigator.language
+        ? [navigator.language]
+        : [];
+
+    for (const langCode of navigatorLanguages) {
+      const matched = normalizeLanguageCode(langCode);
+      if (matched) {
+        setLanguage(matched);
+        return;
+      }
+    }
+
+    setLanguage('en');
+  }, []);
+
+  useEffect(() => {
+    if (typeof window === 'undefined') {
+      return;
+    }
+
+    window.localStorage.setItem(LANGUAGE_STORAGE_KEY, language);
+  }, [language]);
 
   const t = useCallback(<T = string>(key: string): T => {
     const keys = key.split('.');
