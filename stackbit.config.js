@@ -3,7 +3,10 @@ import { dirname, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { FileSystemContentSource } from '@stackbit/cms-git';
 
-const projectRoot = dirname(fileURLToPath(import.meta.url));
+const projectRoot =
+  typeof __dirname === 'string'
+    ? __dirname
+    : dirname(fileURLToPath(import.meta.url));
 const metadataPath = resolve(projectRoot, 'metadata.json');
 const metadata = JSON.parse(readFileSync(metadataPath, 'utf8'));
 
