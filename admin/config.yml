@@ -47,6 +47,28 @@ collections:
               - { label: Email Address, name: email, widget: string }
               - { label: Phone Number, name: phone, widget: string }
               - { label: WhatsApp Link, name: whatsapp, widget: string }
+          - label: About Page Imagery
+            name: about
+            widget: object
+            fields:
+              - label: Brand Story Image
+                name: storyImage
+                widget: image
+                choose_url: true
+                hint: "Recommended minimum 2000×1300 JPG or WEBP to preserve the hero layout."
+              - label: Brand Story Alt Text
+                name: storyAlt
+                widget: string
+                hint: "Provide localized alt copy describing the hero image."
+              - label: Argan Sourcing Image
+                name: sourcingImage
+                widget: image
+                choose_url: true
+                hint: "Recommended minimum 2000×1300 JPG or WEBP to preserve the secondary layout."
+              - label: Argan Sourcing Alt Text
+                name: sourcingAlt
+                widget: string
+                hint: "Provide localized alt copy describing the sourcing photograph."
           - label: Footer
             name: footer
             widget: object

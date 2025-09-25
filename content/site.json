@@ -15,6 +15,12 @@
     "phone": "+1 (234) 567-890",
     "whatsapp": "https://wa.me/1234567890"
   },
+  "about": {
+    "storyImage": "https://images.unsplash.com/photo-1598555769781-8714b14a293f?q=80&w=1974&auto=format&fit=crop",
+    "sourcingImage": "https://images.unsplash.com/photo-1616893904984-7a57a3b35338?q=80&w=1964&auto=format&fit=crop",
+    "storyAlt": "Brand story",
+    "sourcingAlt": "Sourcing argan oil"
+  },
   "footer": {
     "legalName": "Kapunka Skincare",
     "socialLinks": [
