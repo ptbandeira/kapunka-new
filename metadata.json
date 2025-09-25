@@ -102,6 +102,24 @@
       "label": "Policies",
       "urlPath": "/policy/{id}",
       "collectionId": "policies"
+    },
+    {
+      "id": "videos",
+      "label": "Videos",
+      "urlPath": "/videos",
+      "page": {
+        "type": "static",
+        "filePath": "pages/Videos.tsx"
+      }
+    },
+    {
+      "id": "training",
+      "label": "Training",
+      "urlPath": "/training",
+      "page": {
+        "type": "static",
+        "filePath": "pages/Training.tsx"
+      }
     }
   ],
   "collections": [
@@ -425,6 +443,23 @@
                   "type": "text"
                 }
               ]
+            }
+          ]
+        },
+        {
+          "name": "featureFlags",
+          "label": "Feature Flags",
+          "type": "object",
+          "fields": [
+            {
+              "name": "videos",
+              "label": "Enable Videos Page",
+              "type": "boolean"
+            },
+            {
+              "name": "training",
+              "label": "Enable Training Page",
+              "type": "boolean"
             }
           ]
         }
@@ -2002,6 +2037,16 @@
               "type": "string"
             },
             {
+              "name": "videos",
+              "label": "Videos Link",
+              "type": "string"
+            },
+            {
+              "name": "training",
+              "label": "Training Link",
+              "type": "string"
+            },
+            {
               "name": "method",
               "label": "Method Link",
               "type": "string"
@@ -2039,6 +2084,16 @@
               "type": "string"
             },
             {
+              "name": "videos",
+              "label": "Videos Link",
+              "type": "string"
+            },
+            {
+              "name": "training",
+              "label": "Training Link",
+              "type": "string"
+            },
+            {
               "name": "method",
               "label": "Method Link",
               "type": "string"
@@ -2073,6 +2128,16 @@
             {
               "name": "learn",
               "label": "Learn Link",
+              "type": "string"
+            },
+            {
+              "name": "videos",
+              "label": "Videos Link",
+              "type": "string"
+            },
+            {
+              "name": "training",
+              "label": "Training Link",
               "type": "string"
             },
             {
@@ -5924,6 +5989,319 @@
             {
               "name": "partnersTitle",
               "label": "Partners Title",
+              "type": "string"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "videos",
+      "label": "Videos",
+      "type": "data",
+      "singleInstance": true,
+      "filePath": "content/videos.json",
+      "fields": [
+        {
+          "name": "videos",
+          "label": "Videos",
+          "type": "list",
+          "items": {
+            "type": "object",
+            "fields": [
+              {
+                "name": "title",
+                "label": "Title",
+                "type": "string"
+              },
+              {
+                "name": "description",
+                "label": "Description",
+                "type": "text"
+              },
+              {
+                "name": "videoUrl",
+                "label": "Video URL",
+                "type": "string"
+              },
+              {
+                "name": "thumbnail",
+                "label": "Thumbnail",
+                "type": "image"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "training",
+      "label": "Training",
+      "type": "data",
+      "singleInstance": true,
+      "filePath": "content/training.json",
+      "fields": [
+        {
+          "name": "trainings",
+          "label": "Trainings",
+          "type": "list",
+          "items": {
+            "type": "object",
+            "fields": [
+              {
+                "name": "courseTitle",
+                "label": "Course Title",
+                "type": "string"
+              },
+              {
+                "name": "courseSummary",
+                "label": "Course Summary",
+                "type": "text"
+              },
+              {
+                "name": "linkUrl",
+                "label": "Link URL",
+                "type": "string"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "translations_videos",
+      "label": "Videos Page",
+      "type": "data",
+      "singleInstance": true,
+      "filePath": "content/translations/videos.json",
+      "fields": [
+        {
+          "name": "en",
+          "label": "English",
+          "type": "object",
+          "fields": [
+            {
+              "name": "metaTitle",
+              "label": "Meta Title",
+              "type": "string"
+            },
+            {
+              "name": "metaDescription",
+              "label": "Meta Description",
+              "type": "text"
+            },
+            {
+              "name": "title",
+              "label": "Page Title",
+              "type": "string"
+            },
+            {
+              "name": "subtitle",
+              "label": "Subtitle",
+              "type": "text"
+            },
+            {
+              "name": "emptyState",
+              "label": "Empty State Copy",
+              "type": "text"
+            },
+            {
+              "name": "watchLabel",
+              "label": "Watch Label",
+              "type": "string"
+            }
+          ]
+        },
+        {
+          "name": "pt",
+          "label": "Portuguese",
+          "type": "object",
+          "fields": [
+            {
+              "name": "metaTitle",
+              "label": "Meta Title",
+              "type": "string"
+            },
+            {
+              "name": "metaDescription",
+              "label": "Meta Description",
+              "type": "text"
+            },
+            {
+              "name": "title",
+              "label": "Page Title",
+              "type": "string"
+            },
+            {
+              "name": "subtitle",
+              "label": "Subtitle",
+              "type": "text"
+            },
+            {
+              "name": "emptyState",
+              "label": "Empty State Copy",
+              "type": "text"
+            },
+            {
+              "name": "watchLabel",
+              "label": "Watch Label",
+              "type": "string"
+            }
+          ]
+        },
+        {
+          "name": "es",
+          "label": "Spanish",
+          "type": "object",
+          "fields": [
+            {
+              "name": "metaTitle",
+              "label": "Meta Title",
+              "type": "string"
+            },
+            {
+              "name": "metaDescription",
+              "label": "Meta Description",
+              "type": "text"
+            },
+            {
+              "name": "title",
+              "label": "Page Title",
+              "type": "string"
+            },
+            {
+              "name": "subtitle",
+              "label": "Subtitle",
+              "type": "text"
+            },
+            {
+              "name": "emptyState",
+              "label": "Empty State Copy",
+              "type": "text"
+            },
+            {
+              "name": "watchLabel",
+              "label": "Watch Label",
+              "type": "string"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "translations_training",
+      "label": "Training Page",
+      "type": "data",
+      "singleInstance": true,
+      "filePath": "content/translations/training.json",
+      "fields": [
+        {
+          "name": "en",
+          "label": "English",
+          "type": "object",
+          "fields": [
+            {
+              "name": "metaTitle",
+              "label": "Meta Title",
+              "type": "string"
+            },
+            {
+              "name": "metaDescription",
+              "label": "Meta Description",
+              "type": "text"
+            },
+            {
+              "name": "title",
+              "label": "Page Title",
+              "type": "string"
+            },
+            {
+              "name": "subtitle",
+              "label": "Subtitle",
+              "type": "text"
+            },
+            {
+              "name": "emptyState",
+              "label": "Empty State Copy",
+              "type": "text"
+            },
+            {
+              "name": "learnMore",
+              "label": "Learn More Label",
+              "type": "string"
+            }
+          ]
+        },
+        {
+          "name": "pt",
+          "label": "Portuguese",
+          "type": "object",
+          "fields": [
+            {
+              "name": "metaTitle",
+              "label": "Meta Title",
+              "type": "string"
+            },
+            {
+              "name": "metaDescription",
+              "label": "Meta Description",
+              "type": "text"
+            },
+            {
+              "name": "title",
+              "label": "Page Title",
+              "type": "string"
+            },
+            {
+              "name": "subtitle",
+              "label": "Subtitle",
+              "type": "text"
+            },
+            {
+              "name": "emptyState",
+              "label": "Empty State Copy",
+              "type": "text"
+            },
+            {
+              "name": "learnMore",
+              "label": "Learn More Label",
+              "type": "string"
+            }
+          ]
+        },
+        {
+          "name": "es",
+          "label": "Spanish",
+          "type": "object",
+          "fields": [
+            {
+              "name": "metaTitle",
+              "label": "Meta Title",
+              "type": "string"
+            },
+            {
+              "name": "metaDescription",
+              "label": "Meta Description",
+              "type": "text"
+            },
+            {
+              "name": "title",
+              "label": "Page Title",
+              "type": "string"
+            },
+            {
+              "name": "subtitle",
+              "label": "Subtitle",
+              "type": "text"
+            },
+            {
+              "name": "emptyState",
+              "label": "Empty State Copy",
+              "type": "text"
+            },
+            {
+              "name": "learnMore",
+              "label": "Learn More Label",
               "type": "string"
             }
           ]

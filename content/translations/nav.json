@@ -2,6 +2,8 @@
   "en": {
     "shop": "Shop",
     "learn": "Learn",
+    "videos": "Videos",
+    "training": "Training",
     "method": "Method",
     "forClinics": "For Clinics",
     "about": "About",
@@ -10,6 +12,8 @@
   "pt": {
     "shop": "Loja",
     "learn": "Aprender",
+    "videos": "Vídeos",
+    "training": "Treinamento",
     "method": "Método",
     "forClinics": "Para Clínicas",
     "about": "Sobre",
@@ -18,6 +22,8 @@
   "es": {
     "shop": "Tienda",
     "learn": "Aprender",
+    "videos": "Videos",
+    "training": "Formación",
     "method": "Método",
     "forClinics": "Para Clínicas",
     "about": "Nosotros",

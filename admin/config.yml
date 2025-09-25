@@ -81,6 +81,12 @@ collections:
                   - '^https://'
                   - "Please enter a secure HTTPS link."
                 required: false
+          - label: Feature Flags
+            name: featureFlags
+            widget: object
+            fields:
+              - { label: Enable Videos Page, name: videos, widget: boolean, default: false, required: false }
+              - { label: Enable Training Page, name: training, widget: boolean, default: false, required: false }
           - label: Footer
             name: footer
             widget: object
@@ -256,6 +262,147 @@ collections:
                       - { label: Title, name: title, widget: text }
                       - { label: Description, name: description, widget: markdown }
                       - { label: Image, name: image, widget: image, choose_url: true, required: false }
+      - name: videos_en
+        label: Videos Page (English)
+        file: content/pages/en/videos.json
+        format: json
+        fields:
+          - label: Sections
+            name: sections
+            widget: list
+            types:
+              - label: Video Gallery
+                name: videoGallery
+                widget: object
+                fields:
+                  - { label: Title, name: title, widget: string, required: false }
+                  - { label: Description, name: description, widget: text, required: false }
+                  - label: Videos
+                    name: entries
+                    widget: list
+                    summary: "{{fields.title}}"
+                    fields:
+                      - { label: Title, name: title, widget: string, required: false }
+                      - { label: Description, name: description, widget: text, required: false }
+                      - { label: Video URL, name: videoUrl, widget: string, required: false }
+                      - { label: Thumbnail, name: thumbnail, widget: image, choose_url: true, required: false }
+      - name: videos_pt
+        label: Videos Page (Portuguese)
+        file: content/pages/pt/videos.json
+        format: json
+        fields:
+          - label: Sections
+            name: sections
+            widget: list
+            types:
+              - label: Video Gallery
+                name: videoGallery
+                widget: object
+                fields:
+                  - { label: Title, name: title, widget: string, required: false }
+                  - { label: Description, name: description, widget: text, required: false }
+                  - label: Videos
+                    name: entries
+                    widget: list
+                    summary: "{{fields.title}}"
+                    fields:
+                      - { label: Title, name: title, widget: string, required: false }
+                      - { label: Description, name: description, widget: text, required: false }
+                      - { label: Video URL, name: videoUrl, widget: string, required: false }
+                      - { label: Thumbnail, name: thumbnail, widget: image, choose_url: true, required: false }
+      - name: videos_es
+        label: Videos Page (Spanish)
+        file: content/pages/es/videos.json
+        format: json
+        fields:
+          - label: Sections
+            name: sections
+            widget: list
+            types:
+              - label: Video Gallery
+                name: videoGallery
+                widget: object
+                fields:
+                  - { label: Title, name: title, widget: string, required: false }
+                  - { label: Description, name: description, widget: text, required: false }
+                  - label: Videos
+                    name: entries
+                    widget: list
+                    summary: "{{fields.title}}"
+                    fields:
+                      - { label: Title, name: title, widget: string, required: false }
+                      - { label: Description, name: description, widget: text, required: false }
+                      - { label: Video URL, name: videoUrl, widget: string, required: false }
+                      - { label: Thumbnail, name: thumbnail, widget: image, choose_url: true, required: false }
+      - name: training_en
+        label: Training Page (English)
+        file: content/pages/en/training.json
+        format: json
+        fields:
+          - label: Sections
+            name: sections
+            widget: list
+            types:
+              - label: Training List
+                name: trainingList
+                widget: object
+                fields:
+                  - { label: Title, name: title, widget: string, required: false }
+                  - { label: Description, name: description, widget: text, required: false }
+                  - label: Trainings
+                    name: entries
+                    widget: list
+                    summary: "{{fields.courseTitle}}"
+                    fields:
+                      - { label: Course Title, name: courseTitle, widget: string, required: false }
+                      - { label: Course Summary, name: courseSummary, widget: text, required: false }
+                      - { label: Link URL, name: linkUrl, widget: string, required: false }
+      - name: training_pt
+        label: Training Page (Portuguese)
+        file: content/pages/pt/training.json
+        format: json
+        fields:
+          - label: Sections
+            name: sections
+            widget: list
+            types:
+              - label: Training List
+                name: trainingList
+                widget: object
+                fields:
+                  - { label: Title, name: title, widget: string, required: false }
+                  - { label: Description, name: description, widget: text, required: false }
+                  - label: Trainings
+                    name: entries
+                    widget: list
+                    summary: "{{fields.courseTitle}}"
+                    fields:
+                      - { label: Course Title, name: courseTitle, widget: string, required: false }
+                      - { label: Course Summary, name: courseSummary, widget: text, required: false }
+                      - { label: Link URL, name: linkUrl, widget: string, required: false }
+      - name: training_es
+        label: Training Page (Spanish)
+        file: content/pages/es/training.json
+        format: json
+        fields:
+          - label: Sections
+            name: sections
+            widget: list
+            types:
+              - label: Training List
+                name: trainingList
+                widget: object
+                fields:
+                  - { label: Title, name: title, widget: string, required: false }
+                  - { label: Description, name: description, widget: text, required: false }
+                  - label: Trainings
+                    name: entries
+                    widget: list
+                    summary: "{{fields.courseTitle}}"
+                    fields:
+                      - { label: Course Title, name: courseTitle, widget: string, required: false }
+                      - { label: Course Summary, name: courseSummary, widget: text, required: false }
+                      - { label: Link URL, name: linkUrl, widget: string, required: false }
   - name: translations
     label: Translations
     files:
@@ -271,6 +418,8 @@ collections:
             fields:
               - { label: Shop Link, name: shop, widget: string }
               - { label: Learn Link, name: learn, widget: string }
+              - { label: Videos Link, name: videos, widget: string }
+              - { label: Training Link, name: training, widget: string }
               - { label: Method Link, name: method, widget: string }
               - { label: Clinics Link, name: forClinics, widget: string }
               - { label: About Link, name: about, widget: string }
@@ -645,6 +794,50 @@ collections:
             label: Portuguese
             name: pt
           - <<: *learn_fields
+            label: Spanish
+            name: es
+      - name: videos
+        label: Videos Page
+        file: content/translations/videos.json
+        format: json
+        fields:
+          - &videos_fields
+            label: English
+            name: en
+            widget: object
+            fields:
+              - { label: Meta Title, name: metaTitle, widget: string }
+              - { label: Meta Description, name: metaDescription, widget: text }
+              - { label: Page Title, name: title, widget: string }
+              - { label: Subtitle, name: subtitle, widget: text }
+              - { label: Empty State Copy, name: emptyState, widget: text }
+              - { label: Watch Label, name: watchLabel, widget: string }
+          - <<: *videos_fields
+            label: Portuguese
+            name: pt
+          - <<: *videos_fields
+            label: Spanish
+            name: es
+      - name: training
+        label: Training Page
+        file: content/translations/training.json
+        format: json
+        fields:
+          - &training_fields
+            label: English
+            name: en
+            widget: object
+            fields:
+              - { label: Meta Title, name: metaTitle, widget: string }
+              - { label: Meta Description, name: metaDescription, widget: text }
+              - { label: Page Title, name: title, widget: string }
+              - { label: Subtitle, name: subtitle, widget: text }
+              - { label: Empty State Copy, name: emptyState, widget: text }
+              - { label: Learn More Label, name: learnMore, widget: string }
+          - <<: *training_fields
+            label: Portuguese
+            name: pt
+          - <<: *training_fields
             label: Spanish
             name: es
       - name: about
@@ -1329,6 +1522,39 @@ collections:
               - { label: Image, name: imageUrl, widget: image, choose_url: true }
               - { label: Price, name: price, widget: number, value_type: float }
               - { label: Enroll Link, name: enrollLink, widget: string }
+  - name: videoEntries
+    label: Video Entries
+    files:
+      - name: videos
+        label: Video Library
+        file: content/videos.json
+        format: json
+        fields:
+          - label: Videos
+            name: videos
+            widget: list
+            summary: "{{fields.title}}"
+            fields:
+              - { label: Title, name: title, widget: string, required: false }
+              - { label: Description, name: description, widget: text, required: false }
+              - { label: Video URL, name: videoUrl, widget: string, required: false }
+              - { label: Thumbnail, name: thumbnail, widget: image, choose_url: true, required: false }
+  - name: trainingEntries
+    label: Training Entries
+    files:
+      - name: training
+        label: Training Catalog
+        file: content/training.json
+        format: json
+        fields:
+          - label: Trainings
+            name: trainings
+            widget: list
+            summary: "{{fields.courseTitle}}"
+            fields:
+              - { label: Course Title, name: courseTitle, widget: string, required: false }
+              - { label: Course Summary, name: courseSummary, widget: text, required: false }
+              - { label: Link URL, name: linkUrl, widget: string, required: false }
   - name: doctors
     label: Doctors
     files:

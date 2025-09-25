@@ -2,6 +2,8 @@ import React from 'react';
 import TimelineSection from './TimelineSection';
 import ImageTextHalf from './sections/ImageTextHalf';
 import ImageGrid from './sections/ImageGrid';
+import VideoGallery from './VideoGallery';
+import TrainingList from './TrainingList';
 import type { PageSection } from '../types';
 
 interface SectionRendererProps {
@@ -44,6 +46,26 @@ const SectionRenderer: React.FC<SectionRendererProps> = ({ sections, fieldPath }
               <ImageGrid
                 key={`image-grid-${index}`}
                 items={section.items}
+                fieldPath={sectionFieldPath}
+              />
+            );
+          case 'videoGallery':
+            return (
+              <VideoGallery
+                key={`video-gallery-${index}`}
+                title={section.title}
+                description={section.description}
+                entries={section.entries}
+                fieldPath={sectionFieldPath}
+              />
+            );
+          case 'trainingList':
+            return (
+              <TrainingList
+                key={`training-list-${index}`}
+                title={section.title}
+                description={section.description}
+                entries={section.entries}
                 fieldPath={sectionFieldPath}
               />
             );
