@@ -187,7 +187,28 @@ export interface TimelineSectionContent {
   entries: TimelineEntry[];
 }
 
-export type PageSection = TimelineSectionContent;
+export interface ImageTextHalfSectionContent {
+  type: 'imageTextHalf';
+  image?: string;
+  title?: string;
+  text?: string;
+}
+
+export interface ImageGridItem {
+  image?: string;
+  title?: string;
+  subtitle?: string;
+}
+
+export interface ImageGridSectionContent {
+  type: 'imageGrid';
+  items: ImageGridItem[];
+}
+
+export type PageSection =
+  | TimelineSectionContent
+  | ImageTextHalfSectionContent
+  | ImageGridSectionContent;
 
 export interface PageContent {
   sections: PageSection[];

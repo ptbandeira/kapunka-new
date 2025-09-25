@@ -1,0 +1,35 @@
+{
+  "sections": [
+    {
+      "type": "imageTextHalf",
+      "title": "De confianza en clínicas de dermatología",
+      "text": "Argán de origen único y rutinas minimalistas usadas en cuidados post-procedimiento. Packs y guía disponibles.",
+      "image": ""
+    },
+    {
+      "type": "imageGrid",
+      "items": [
+        {
+          "image": "",
+          "title": "Origen único, prensado en frío",
+          "subtitle": "Cooperativas de Marruecos con trazabilidad"
+        },
+        {
+          "image": "",
+          "title": "Fórmulas con foco en la barrera",
+          "subtitle": "Texturas confortables, sin pesadez"
+        },
+        {
+          "image": "",
+          "title": "Apto para piel sensible",
+          "subtitle": "Opciones sin fragancia"
+        },
+        {
+          "image": "",
+          "title": "Uso en clínicas",
+          "subtitle": "Elegido para rutinas post-procedimiento"
+        }
+      ]
+    }
+  ]
+}

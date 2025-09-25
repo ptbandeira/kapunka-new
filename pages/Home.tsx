@@ -1,12 +1,121 @@
 import React, { useState, useEffect, useMemo } from 'react';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import { Droplet, ShieldCheck, Leaf } from 'lucide-react';
 import { Helmet } from 'react-helmet-async';
 import ProductCard from '../components/ProductCard';
+import SectionRenderer from '../components/SectionRenderer';
 import { useLanguage } from '../contexts/LanguageContext';
 import { useSiteSettings } from '../contexts/SiteSettingsContext';
-import type { Product, Review } from '../types';
+import type {
+  Product,
+  Review,
+  PageSection,
+  TimelineEntry,
+  TimelineSectionContent,
+  ImageTextHalfSectionContent,
+  ImageGridItem,
+  ImageGridSectionContent,
+  PageContent,
+} from '../types';
+
+const isTimelineEntry = (value: unknown): value is TimelineEntry => {
+  if (!value || typeof value !== 'object') {
+    return false;
+  }
+
+  const entry = value as Record<string, unknown>;
+
+  return (
+    typeof entry.year === 'string'
+    && typeof entry.title === 'string'
+    && typeof entry.description === 'string'
+    && (entry.image === undefined || typeof entry.image === 'string')
+  );
+};
+
+const isTimelineSection = (value: unknown): value is TimelineSectionContent => {
+  if (!value || typeof value !== 'object') {
+    return false;
+  }
+
+  const section = value as Record<string, unknown>;
+  return section.type === 'timeline' && Array.isArray(section.entries) && section.entries.every(isTimelineEntry);
+};
+
+const isImageTextHalfSection = (value: unknown): value is ImageTextHalfSectionContent => {
+  if (!value || typeof value !== 'object') {
+    return false;
+  }
+
+  const section = value as Record<string, unknown>;
+
+  return (
+    section.type === 'imageTextHalf'
+    && (section.image === undefined || typeof section.image === 'string')
+    && (section.title === undefined || typeof section.title === 'string')
+    && (section.text === undefined || typeof section.text === 'string')
+  );
+};
+
+const isImageGridItem = (value: unknown): value is ImageGridItem => {
+  if (!value || typeof value !== 'object') {
+    return false;
+  }
+
+  const item = value as Record<string, unknown>;
+
+  return (
+    (item.image === undefined || typeof item.image === 'string')
+    && (item.title === undefined || typeof item.title === 'string')
+    && (item.subtitle === undefined || typeof item.subtitle === 'string')
+  );
+};
+
+const isImageGridSection = (value: unknown): value is ImageGridSectionContent => {
+  if (!value || typeof value !== 'object') {
+    return false;
+  }
+
+  const section = value as Record<string, unknown>;
+
+  return section.type === 'imageGrid' && Array.isArray(section.items) && section.items.every(isImageGridItem);
+};
+
+const isPageSection = (value: unknown): value is PageSection => {
+  if (!value || typeof value !== 'object') {
+    return false;
+  }
+
+  const section = value as Record<string, unknown>;
+
+  if (section.type === 'timeline') {
+    return isTimelineSection(section);
+  }
+
+  if (section.type === 'imageTextHalf') {
+    return isImageTextHalfSection(section);
+  }
+
+  if (section.type === 'imageGrid') {
+    return isImageGridSection(section);
+  }
+
+  return false;
+};
+
+const isPageContent = (value: unknown): value is PageContent => {
+  if (!value || typeof value !== 'object') {
+    return false;
+  }
+
+  const content = value as Record<string, unknown>;
+
+  if (!Array.isArray(content.sections)) {
+    return false;
+  }
+
+  return content.sections.every(isPageSection);
+};
 
 const Bestsellers: React.FC = () => {
     const { t, language } = useLanguage();
@@ -71,35 +180,6 @@ const Bestsellers: React.FC = () => {
                         {t('common.loadingBestsellers')}
                     </p>
                 )}
-            </div>
-        </div>
-    );
-};
-
-const ValueProps: React.FC = () => {
-    const { t, language } = useLanguage();
-    const props = [
-        { icon: Droplet, text: t('home.value1'), fieldPath: `translations.${language}.home.value1` },
-        { icon: ShieldCheck, text: t('home.value2'), fieldPath: `translations.${language}.home.value2` },
-        { icon: Leaf, text: t('home.value3'), fieldPath: `translations.${language}.home.value3` },
-    ];
-    return (
-        <div className="py-16 sm:py-24">
-            <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
-                    {props.map((prop, index) => (
-                        <motion.div
-                            key={index}
-                            initial={{ opacity: 0, y: 20 }}
-                            whileInView={{ opacity: 1, y: 0 }}
-                            viewport={{ once: true }}
-                            transition={{ duration: 0.6, delay: index * 0.1 }}
-                        >
-                            <prop.icon className="mx-auto h-10 w-10 text-stone-600 mb-4" />
-                            <p className="text-stone-600" data-nlv-field-path={prop.fieldPath}>{prop.text}</p>
-                        </motion.div>
-                    ))}
-                </div>
             </div>
         </div>
     );
@@ -245,6 +325,52 @@ const Home: React.FC = () => {
   const { t, language } = useLanguage();
   const { settings } = useSiteSettings();
   const heroImage = settings.home?.heroImage ?? '/content/uploads/hero-abstract.jpg';
+  const [homeSections, setHomeSections] = useState<PageSection[]>([]);
+
+  useEffect(() => {
+    let isMounted = true;
+    setHomeSections([]);
+
+    const loadSections = async () => {
+      const localesToTry = [language, 'en'].filter((locale, index, arr) => arr.indexOf(locale) === index);
+
+      for (const locale of localesToTry) {
+        try {
+          const response = await fetch(`/content/pages/${locale}/home.json`);
+          if (!response.ok) {
+            continue;
+          }
+
+          const data = (await response.json()) as unknown;
+
+          if (!isMounted) {
+            return;
+          }
+
+          if (isPageContent(data)) {
+            setHomeSections(data.sections);
+            return;
+          }
+        } catch (error) {
+          if (locale === localesToTry[localesToTry.length - 1]) {
+            console.error('Failed to load home sections', error);
+          }
+        }
+      }
+
+      if (isMounted) {
+        setHomeSections([]);
+      }
+    };
+
+    void loadSections();
+
+    return () => {
+      isMounted = false;
+    };
+  }, [language]);
+
+  const homeSectionsFieldPath = `pages.home_${language}.sections`;
 
   return (
     <div>
@@ -288,7 +414,9 @@ const Home: React.FC = () => {
           </motion.div>
         </div>
       </div>
-      <ValueProps />
+      {homeSections.length > 0 && (
+        <SectionRenderer sections={homeSections} fieldPath={homeSectionsFieldPath} />
+      )}
       <Bestsellers />
       <Reviews />
       <NewsletterSignup />
