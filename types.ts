@@ -173,3 +173,23 @@ export interface SiteSettings {
     };
     seo?: SeoSettings;
 }
+
+export interface TimelineEntry {
+  year: string;
+  title: string;
+  description: string;
+  image?: string;
+}
+
+export interface TimelineSectionContent {
+  type: 'timeline';
+  title?: string;
+  entries: TimelineEntry[];
+}
+
+export type PageSection = TimelineSectionContent;
+
+export interface PageContent {
+  sections: PageSection[];
+  type?: string;
+}
