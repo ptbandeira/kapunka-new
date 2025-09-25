@@ -103,49 +103,48 @@ const Header: React.FC = () => {
       >
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
-            className="flex items-center justify-between"
+            className="flex items-center justify-between lg:grid lg:grid-cols-[auto_1fr_auto]"
             animate={{ height: isScrolled ? '60px' : '90px' }}
             transition={{ duration: 0.3, ease: 'easeInOut' }}
           >
-            {/* Left Nav for larger screens */}
-            <nav className="hidden lg:flex items-center space-x-8 text-sm font-medium">
-              {navLinks.slice(0, 2).map(link => (
+            {/* Brand */}
+            <div className="flex flex-1 items-center justify-center lg:flex-none lg:justify-start">
+              <Link
+                to="/"
+                className="text-2xl font-bold tracking-wider text-stone-900 transition-transform duration-300 hover:scale-105 text-center lg:text-left"
+              >
+                <span data-nlv-field-path="site.brand.name">{brandName}</span>
+              </Link>
+            </div>
+
+            {/* Centered Navigation */}
+            <nav className="hidden lg:flex items-center justify-center space-x-8 text-sm font-medium">
+              {navLinks.map(link => (
                 <NavItem key={link.to} to={link.to} label={link.label} fieldPath={link.fieldPath} />
               ))}
             </nav>
 
-            {/* Logo */}
-            <div className="absolute left-1/2 -translate-x-1/2">
-                <Link to="/" className="text-2xl font-bold tracking-wider text-stone-900 transition-transform duration-300 hover:scale-105">
-                <span data-nlv-field-path="site.brand.name">{brandName}</span>
-                </Link>
-            </div>
-
             {/* Right Side Items */}
-            <div className="flex items-center space-x-4">
-                <nav className="hidden lg:flex items-center space-x-8 text-sm font-medium">
-                    {navLinks.slice(2).map(link => (
-                        <NavItem key={link.to} to={link.to} label={link.label} fieldPath={link.fieldPath} />
-                    ))}
-                </nav>
+            <div className="flex flex-1 items-center justify-end space-x-4 lg:flex-none">
+              <div className="hidden lg:block">
+                <LanguageSelector />
+              </div>
 
-                <div className="hidden lg:block"><LanguageSelector /></div>
-                
-                <button onClick={toggleCart} className="relative p-2 transition-transform duration-300 hover:scale-110">
-                    <ShoppingBag size={20} />
-                    {cartCount > 0 && (
-                        <span className="absolute top-0 right-0 block h-4 w-4 rounded-full bg-stone-800 text-white text-xs font-bold flex items-center justify-center">
-                            {cartCount}
-                        </span>
-                    )}
+              <button onClick={toggleCart} className="relative p-2 transition-transform duration-300 hover:scale-110">
+                <ShoppingBag size={20} />
+                {cartCount > 0 && (
+                  <span className="absolute top-0 right-0 block h-4 w-4 rounded-full bg-stone-800 text-white text-xs font-bold flex items-center justify-center">
+                    {cartCount}
+                  </span>
+                )}
+              </button>
+
+              {/* Mobile Menu Button */}
+              <div className="lg:hidden">
+                <button onClick={() => setIsMenuOpen(!isMenuOpen)} className="p-2">
+                  <Menu size={24} />
                 </button>
-
-                {/* Mobile Menu Button */}
-                <div className="lg:hidden">
-                    <button onClick={() => setIsMenuOpen(!isMenuOpen)} className="p-2">
-                        <Menu size={24} />
-                    </button>
-                </div>
+              </div>
             </div>
           </motion.div>
         </div>
