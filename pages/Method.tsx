@@ -21,6 +21,7 @@ interface MethodSections {
   artisanExtraction: MethodSectionContent;
   clinicalRigor: MethodSectionContent;
   sustainabilityImpact: MethodSectionContent;
+  timeline: MethodSectionContent;
 }
 
 interface MethodLocaleContent {
@@ -81,6 +82,7 @@ const Method: React.FC = () => {
     'artisanExtraction',
     'clinicalRigor',
     'sustainabilityImpact',
+    'timeline',
   ];
 
   const fallbackSectionTitles: Record<MethodSectionKey, Record<Language, string>> = {
@@ -103,6 +105,11 @@ const Method: React.FC = () => {
       en: 'Sustainability & Impact',
       pt: 'Sustentabilidade e Impacto',
       es: 'Sostenibilidad e Impacto',
+    },
+    timeline: {
+      en: 'Timeline',
+      pt: 'Linha do Tempo',
+      es: 'Cronología',
     },
   };
 
