@@ -106,14 +106,549 @@ collections:
   - name: translations
     label: Translations
     files:
-      - name: translations
-        label: All Translations
-        file: content/translations.json
+      - name: nav
+        label: Navigation
+        file: content/translations/nav.json
         format: json
         fields:
-          - { label: English, name: en, widget: json }
-          - { label: Portuguese, name: pt, widget: json }
-          - { label: Spanish, name: es, widget: json }
+          - &nav_fields
+            label: English
+            name: en
+            widget: object
+            fields:
+              - { label: Shop Link, name: shop, widget: string }
+              - { label: Learn Link, name: learn, widget: string }
+              - { label: Method Link, name: method, widget: string }
+              - { label: Clinics Link, name: forClinics, widget: string }
+              - { label: About Link, name: about, widget: string }
+              - { label: Contact Link, name: contact, widget: string }
+          - <<: *nav_fields
+            label: Portuguese
+            name: pt
+          - <<: *nav_fields
+            label: Spanish
+            name: es
+      - name: common
+        label: Loading States
+        file: content/translations/common.json
+        format: json
+        fields:
+          - &common_fields
+            label: English
+            name: en
+            widget: object
+            fields:
+              - { label: Loading, name: loading, widget: string }
+              - { label: Loading Products, name: loadingProducts, widget: string }
+              - { label: Loading Bestsellers, name: loadingBestsellers, widget: string }
+              - { label: Loading Reviews, name: loadingReviews, widget: string }
+              - { label: Loading Courses, name: loadingCourses, widget: string }
+              - { label: Loading Professionals, name: loadingProfessionals, widget: string }
+              - { label: Loading Article, name: loadingArticle, widget: string }
+              - { label: Loading Policies, name: loadingPolicies, widget: string }
+              - { label: Loading Cart, name: loadingCart, widget: string }
+              - { label: Loading Product, name: loadingProduct, widget: string }
+          - <<: *common_fields
+            label: Portuguese
+            name: pt
+          - <<: *common_fields
+            label: Spanish
+            name: es
+      - name: footer
+        label: Footer
+        file: content/translations/footer.json
+        format: json
+        fields:
+          - &footer_fields
+            label: English
+            name: en
+            widget: object
+            fields:
+              - { label: Tagline, name: tagline, widget: string }
+              - { label: Follow Us, name: followUs, widget: string }
+              - { label: Shop, name: shop, widget: string }
+              - { label: All Products, name: allProducts, widget: string }
+              - { label: Guides, name: guides, widget: string }
+              - { label: About, name: about, widget: string }
+              - { label: Our Story, name: ourStory, widget: string }
+              - { label: Contact, name: contact, widget: string }
+              - { label: Policies, name: policies, widget: string }
+              - { label: Shipping Policy, name: shipping, widget: string }
+              - { label: Return Policy, name: returns, widget: string }
+              - { label: Privacy Policy, name: privacy, widget: string }
+              - { label: Terms of Service, name: terms, widget: string }
+          - <<: *footer_fields
+            label: Portuguese
+            name: pt
+          - <<: *footer_fields
+            label: Spanish
+            name: es
+      - name: cookies
+        label: Cookies Banner
+        file: content/translations/cookies.json
+        format: json
+        fields:
+          - &cookies_fields
+            label: English
+            name: en
+            widget: object
+            fields:
+              - { label: Message, name: message, widget: text }
+              - { label: Learn More Label, name: learnMore, widget: string }
+              - { label: Decline Label, name: decline, widget: string }
+              - { label: Accept Label, name: accept, widget: string }
+          - <<: *cookies_fields
+            label: Portuguese
+            name: pt
+          - <<: *cookies_fields
+            label: Spanish
+            name: es
+      - name: policy
+        label: Policy Pages
+        file: content/translations/policy.json
+        format: json
+        fields:
+          - &policy_fields
+            label: English
+            name: en
+            widget: object
+            fields:
+              - { label: Loading Copy, name: loading, widget: string }
+              - { label: Not Found Copy, name: notFound, widget: string }
+              - { label: Contact Prompt, name: contactPrompt, widget: text }
+          - <<: *policy_fields
+            label: Portuguese
+            name: pt
+          - <<: *policy_fields
+            label: Spanish
+            name: es
+      - name: article
+        label: Article Page
+        file: content/translations/article.json
+        format: json
+        fields:
+          - &article_fields
+            label: English
+            name: en
+            widget: object
+            fields:
+              - { label: Featured Product Label, name: featuredProduct, widget: string }
+              - { label: FAQ Title, name: faqTitle, widget: string }
+              - { label: Back to Library Label, name: backToLibrary, widget: string }
+              - { label: Not Found Copy, name: notFound, widget: string }
+              - { label: Loading Copy, name: loading, widget: string }
+          - <<: *article_fields
+            label: Portuguese
+            name: pt
+          - <<: *article_fields
+            label: Spanish
+            name: es
+      - name: academy
+        label: Academy Page
+        file: content/translations/academy.json
+        format: json
+        fields:
+          - &academy_fields
+            label: English
+            name: en
+            widget: object
+            fields:
+              - { label: Header Title, name: headerTitle, widget: string }
+              - { label: Header Subtitle, name: headerSubtitle, widget: text }
+              - { label: Courses Title, name: coursesTitle, widget: string }
+              - { label: Enroll Button, name: enrollNow, widget: string }
+          - <<: *academy_fields
+            label: Portuguese
+            name: pt
+          - <<: *academy_fields
+            label: Spanish
+            name: es
+      - name: cart
+        label: Cart & Checkout
+        file: content/translations/cart.json
+        format: json
+        fields:
+          - &cart_fields
+            label: English
+            name: en
+            widget: object
+            fields:
+              - { label: Cart Title, name: title, widget: string }
+              - { label: Subtotal Label, name: subtotal, widget: string }
+              - { label: Shipping Note, name: shippingNote, widget: text }
+              - { label: View Cart Button, name: viewCart, widget: string }
+              - { label: Empty Cart Copy, name: empty, widget: string }
+              - { label: Continue Shopping Button, name: continueShopping, widget: string }
+              - { label: Page Title, name: pageTitle, widget: string }
+              - { label: Summary Heading, name: summary, widget: string }
+              - { label: Shipping Label, name: shipping, widget: string }
+              - { label: Shipping Calculated Copy, name: shippingCalculated, widget: string }
+              - { label: Total Label, name: total, widget: string }
+              - { label: Checkout Button, name: checkout, widget: string }
+              - { label: Checkout Redirect Copy, name: checkoutRedirect, widget: text }
+          - <<: *cart_fields
+            label: Portuguese
+            name: pt
+          - <<: *cart_fields
+            label: Spanish
+            name: es
+      - name: shop
+        label: Shop Page
+        file: content/translations/shop.json
+        format: json
+        fields:
+          - &shop_fields
+            label: English
+            name: en
+            widget: object
+            fields:
+              - { label: Page Title, name: title, widget: string }
+              - { label: Meta Description, name: metaDescription, widget: text }
+              - { label: Subtitle, name: subtitle, widget: text }
+              - { label: Sort Featured, name: sortFeatured, widget: string }
+              - { label: Sort Price Ascending, name: sortPriceAsc, widget: string }
+              - { label: Sort Price Descending, name: sortPriceDesc, widget: string }
+              - { label: Sort Name Ascending, name: sortNameAsc, widget: string }
+              - { label: Sort Name Descending, name: sortNameDesc, widget: string }
+              - { label: Sort Dropdown Label, name: sortLabel, widget: string }
+              - { label: Category Filter Label, name: categoryFilterLabel, widget: string }
+              - { label: Related Resources Heading, name: relatedResources, widget: string }
+              - { label: No Products Copy, name: noProducts, widget: string }
+          - <<: *shop_fields
+            label: Portuguese
+            name: pt
+          - <<: *shop_fields
+            label: Spanish
+            name: es
+      - name: pdp
+        label: Product Detail Page
+        file: content/translations/pdp.json
+        format: json
+        fields:
+          - &pdp_fields
+            label: English
+            name: en
+            widget: object
+            fields:
+              - { label: Not Found Copy, name: notFound, widget: string }
+              - { label: Size Label, name: size, widget: string }
+              - { label: Add to Cart Button, name: addToCart, widget: string }
+              - label: Tabs
+                name: tabs
+                widget: object
+                fields:
+                  - { label: Benefits Tab, name: benefits, widget: string }
+                  - { label: How To Use Tab, name: howToUse, widget: string }
+                  - { label: Ingredients Tab, name: ingredients, widget: string }
+                  - { label: Origin & Purity Tab, name: labTested, widget: string }
+              - { label: Bundle Includes Heading, name: bundleIncludes, widget: string }
+              - { label: Related Products Heading, name: relatedProducts, widget: string }
+              - label: Knowledge Section
+                name: knowledge
+                widget: object
+                fields:
+                  - { label: Section Title, name: title, widget: string }
+                  - { label: Section Subtitle, name: subtitle, widget: text }
+                  - label: Sub-sections
+                    name: sections
+                    widget: object
+                    fields:
+                      - { label: What It Is, name: whatItIs, widget: string }
+                      - { label: How It Works, name: howItWorks, widget: string }
+                      - { label: Who It's For, name: whoItsFor, widget: string }
+                      - { label: Scientific Backing, name: scientificBacking, widget: string }
+                      - { label: Cultural Context, name: culturalContext, widget: string }
+              - label: FAQ Section
+                name: faq
+                widget: object
+                fields:
+                  - { label: FAQ Title, name: title, widget: string }
+                  - { label: FAQ Subtitle, name: subtitle, widget: text }
+          - <<: *pdp_fields
+            label: Portuguese
+            name: pt
+          - <<: *pdp_fields
+            label: Spanish
+            name: es
+      - name: home
+        label: Home Page
+        file: content/translations/home.json
+        format: json
+        fields:
+          - &home_fields
+            label: English
+            name: en
+            widget: object
+            fields:
+              - { label: Meta Title, name: metaTitle, widget: string }
+              - { label: Meta Description, name: metaDescription, widget: text }
+              - label: Meta Tags
+                name: meta
+                widget: object
+                fields:
+                  - { label: Title, name: title, widget: string }
+                  - { label: Description, name: description, widget: text }
+              - { label: Hero Title, name: heroTitle, widget: string }
+              - { label: Hero Subtitle, name: heroSubtitle, widget: text }
+              - label: Hero Section
+                name: hero
+                widget: object
+                fields:
+                  - { label: Title, name: title, widget: string }
+                  - { label: Subtitle, name: subtitle, widget: text }
+                  - { label: Primary CTA, name: ctaPrimary, widget: string }
+                  - { label: Secondary CTA, name: ctaSecondary, widget: string }
+              - { label: Shop CTA, name: ctaShop, widget: string }
+              - { label: Clinics CTA, name: ctaClinics, widget: string }
+              - { label: Bestsellers Title, name: bestsellersTitle, widget: string }
+              - label: Bestsellers Section
+                name: bestsellers
+                widget: object
+                fields:
+                  - { label: Intro Copy, name: intro, widget: text }
+                  - label: Cards
+                    name: cards
+                    widget: list
+                    summary: "{{fields.slug}}"
+                    fields:
+                      - { label: Product Slug, name: slug, widget: string }
+                      - { label: Blurb, name: blurb, widget: string }
+              - { label: Value Proposition 1, name: value1, widget: string }
+              - { label: Value Proposition 2, name: value2, widget: string }
+              - { label: Value Proposition 3, name: value3, widget: string }
+              - { label: Value Proposition 4, name: value4, widget: string }
+              - label: Value Props Grid
+                name: valueProps
+                widget: list
+                summary: "{{fields.title}}"
+                fields:
+                  - { label: Title, name: title, widget: string }
+                  - { label: Subtitle, name: subtitle, widget: string }
+              - { label: Reviews Title, name: reviewsTitle, widget: string }
+              - label: Clinics Highlight
+                name: clinics
+                widget: object
+                fields:
+                  - { label: Title, name: title, widget: string }
+                  - { label: Copy, name: copy, widget: text }
+                  - { label: CTA Label, name: cta, widget: string }
+              - label: Social Proof
+                name: socialProof
+                widget: object
+                fields:
+                  - { label: Line, name: line, widget: string }
+              - label: Learn Section
+                name: learn
+                widget: object
+                fields:
+                  - { label: Teaser, name: teaser, widget: string }
+              - { label: Newsletter Title, name: newsletterTitle, widget: string }
+              - { label: Newsletter Subtitle, name: newsletterSubtitle, widget: text }
+              - label: Newsletter Pitch
+                name: newsletter
+                widget: object
+                fields:
+                  - { label: Pitch, name: pitch, widget: text }
+              - { label: Newsletter Success Copy, name: newsletterThanks, widget: string }
+              - { label: Newsletter Placeholder, name: newsletterPlaceholder, widget: string }
+              - { label: Newsletter Submit Label, name: newsletterSubmit, widget: string }
+              - label: Footer Callout
+                name: footer
+                widget: object
+                fields:
+                  - { label: Compliance Note, name: complianceNote, widget: text }
+          - <<: *home_fields
+            label: Portuguese
+            name: pt
+          - <<: *home_fields
+            label: Spanish
+            name: es
+      - name: learn
+        label: Learn Page
+        file: content/translations/learn.json
+        format: json
+        fields:
+          - &learn_fields
+            label: English
+            name: en
+            widget: object
+            fields:
+              - { label: Meta Title, name: metaTitle, widget: string }
+              - { label: Meta Description, name: metaDescription, widget: text }
+              - { label: Page Title, name: title, widget: string }
+              - { label: Subtitle, name: subtitle, widget: text }
+              - label: Categories
+                name: categories
+                widget: object
+                fields:
+                  - { label: All Topics, name: all, widget: string }
+                  - { label: Argan Oil, name: 'argan-oil', widget: string }
+                  - { label: Uses & Applications, name: 'uses-applications', widget: string }
+                  - { label: Post-Procedure, name: 'post-procedure', widget: string }
+                  - { label: Skin Barrier, name: 'skin-barrier', widget: string }
+                  - { label: Baby Care, name: baby, widget: string }
+                  - { label: Scars & Recovery, name: scars, widget: string }
+          - <<: *learn_fields
+            label: Portuguese
+            name: pt
+          - <<: *learn_fields
+            label: Spanish
+            name: es
+      - name: about
+        label: About Page
+        file: content/translations/about.json
+        format: json
+        fields:
+          - &about_fields
+            label: English
+            name: en
+            widget: object
+            fields:
+              - { label: Section Title, name: title, widget: string }
+              - { label: Meta Description, name: metaDescription, widget: text }
+              - { label: Header Title, name: headerTitle, widget: string }
+              - { label: Header Subtitle, name: headerSubtitle, widget: text }
+              - { label: Story Title, name: storyTitle, widget: string }
+              - { label: Story Paragraph 1, name: storyText1, widget: text }
+              - { label: Story Paragraph 2, name: storyText2, widget: text }
+              - { label: Sourcing Title, name: sourcingTitle, widget: string }
+              - { label: Sourcing Paragraph 1, name: sourcingText1, widget: text }
+              - { label: Sourcing Paragraph 2, name: sourcingText2, widget: text }
+              - { label: Sourcing Image Alt, name: sourcingImageAlt, widget: string }
+          - <<: *about_fields
+            label: Portuguese
+            name: pt
+          - <<: *about_fields
+            label: Spanish
+            name: es
+      - name: contact
+        label: Contact Page
+        file: content/translations/contact.json
+        format: json
+        fields:
+          - &contact_fields
+            label: English
+            name: en
+            widget: object
+            fields:
+              - { label: Page Title, name: title, widget: string }
+              - { label: Meta Description, name: metaDescription, widget: text }
+              - { label: Header Title, name: headerTitle, widget: string }
+              - { label: Header Subtitle, name: headerSubtitle, widget: text }
+              - { label: Form Title, name: formTitle, widget: string }
+              - label: Form Labels
+                name: form
+                widget: object
+                fields:
+                  - { label: Name Field, name: name, widget: string }
+                  - { label: Email Field, name: email, widget: string }
+                  - { label: Message Field, name: message, widget: string }
+                  - { label: Sending State, name: sending, widget: string }
+                  - { label: Submit Button, name: submit, widget: string }
+                  - { label: Success Message, name: success, widget: text }
+                  - { label: Error Message, name: error, widget: text }
+              - { label: Info Title, name: infoTitle, widget: string }
+              - { label: Email Heading, name: emailTitle, widget: string }
+              - { label: Phone Heading, name: phoneTitle, widget: string }
+              - { label: WhatsApp Heading, name: whatsappTitle, widget: string }
+              - { label: WhatsApp Action, name: whatsappAction, widget: string }
+          - <<: *contact_fields
+            label: Portuguese
+            name: pt
+          - <<: *contact_fields
+            label: Spanish
+            name: es
+      - name: clinics
+        label: Clinics Page
+        file: content/translations/clinics.json
+        format: json
+        fields:
+          - &clinics_fields
+            label: English
+            name: en
+            widget: object
+            fields:
+              - { label: Page Title, name: title, widget: string }
+              - { label: Meta Description, name: metaDescription, widget: text }
+              - { label: Header Title, name: headerTitle, widget: string }
+              - { label: Header Subtitle, name: headerSubtitle, widget: text }
+              - { label: Section 1 Title, name: section1Title, widget: string }
+              - { label: Section 1 Paragraph 1, name: section1Text1, widget: text }
+              - { label: Section 1 Paragraph 2, name: section1Text2, widget: text }
+              - label: Protocol Section
+                name: protocolSection
+                widget: object
+                fields:
+                  - { label: Title, name: title, widget: string }
+                  - { label: Subtitle, name: subtitle, widget: text }
+                  - label: Cards
+                    name: cards
+                    widget: list
+                    summary: "{{fields.title}}"
+                    fields:
+                      - { label: Card Title, name: title, widget: string }
+                      - { label: Focus Copy, name: focus, widget: text }
+                      - label: Steps
+                        name: steps
+                        widget: list
+                        field: { label: Step, name: step, widget: text }
+                      - { label: Evidence, name: evidence, widget: text }
+              - label: References Section
+                name: referencesSection
+                widget: object
+                fields:
+                  - { label: Title, name: title, widget: string }
+                  - { label: Studies Title, name: studiesTitle, widget: string }
+                  - label: Studies
+                    name: studies
+                    widget: list
+                    summary: "{{fields.title}}"
+                    fields:
+                      - { label: Study Title, name: title, widget: string }
+                      - { label: Study Details, name: details, widget: text }
+                  - { label: Testimonials Title, name: testimonialsTitle, widget: string }
+                  - label: Testimonials
+                    name: testimonials
+                    widget: list
+                    summary: "{{fields.name}}"
+                    fields:
+                      - { label: Quote, name: quote, widget: text }
+                      - { label: Name, name: name, widget: string }
+                      - { label: Credentials, name: credentials, widget: string }
+              - label: Keyword Section
+                name: keywordSection
+                widget: object
+                fields:
+                  - { label: Title, name: title, widget: string }
+                  - { label: Subtitle, name: subtitle, widget: text }
+                  - label: Keywords
+                    name: keywords
+                    widget: list
+                    field: { label: Keyword, name: keyword, widget: string }
+              - label: FAQ Section
+                name: faqSection
+                widget: object
+                fields:
+                  - { label: Title, name: title, widget: string }
+                  - { label: Subtitle, name: subtitle, widget: text }
+                  - label: Items
+                    name: items
+                    widget: list
+                    summary: "{{fields.question}}"
+                    fields:
+                      - { label: Question, name: question, widget: string }
+                      - { label: Answer, name: answer, widget: text }
+              - { label: Doctors Title, name: doctorsTitle, widget: string }
+              - { label: CTA Title, name: ctaTitle, widget: string }
+              - { label: CTA Subtitle, name: ctaSubtitle, widget: text }
+              - { label: CTA Button, name: ctaButton, widget: string }
+              - { label: Partners Title, name: partnersTitle, widget: string }
+          - <<: *clinics_fields
+            label: Portuguese
+            name: pt
+          - <<: *clinics_fields
+            label: Spanish
+            name: es
   - name: method
     label: Method Page
     files:

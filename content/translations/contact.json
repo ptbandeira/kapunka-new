@@ -1,0 +1,65 @@
+{
+  "en": {
+    "title": "Contact Us",
+    "metaDescription": "Get in touch with the Kapunka Skincare team for questions, partnership inquiries, or customer support.",
+    "headerTitle": "Get in Touch",
+    "headerSubtitle": "We're here to help. Whether you have a question about our products or want to share your skin journey, we'd love to hear from you.",
+    "formTitle": "Send us a message",
+    "form": {
+      "name": "Full Name",
+      "email": "Email Address",
+      "message": "Your Message",
+      "sending": "Sending...",
+      "submit": "Send Message",
+      "success": "Thank you! Your message has been sent.",
+      "error": "Sorry, something went wrong. Please try again."
+    },
+    "infoTitle": "Other ways to connect",
+    "emailTitle": "Email",
+    "phoneTitle": "Phone",
+    "whatsappTitle": "WhatsApp",
+    "whatsappAction": "Chat with us"
+  },
+  "pt": {
+    "title": "Fale Conosco",
+    "metaDescription": "Entre em contato com a equipe da Kapunka Skincare para perguntas, parcerias ou suporte ao cliente.",
+    "headerTitle": "Entre em Contato",
+    "headerSubtitle": "Estamos aqui para ajudar. Se você tem uma pergunta sobre nossos produtos ou quer compartilhar sua jornada com a pele, adoraríamos ouvir de você.",
+    "formTitle": "Envie-nos uma mensagem",
+    "form": {
+      "name": "Nome Completo",
+      "email": "Endereço de E-mail",
+      "message": "Sua Mensagem",
+      "sending": "Enviando...",
+      "submit": "Enviar Mensagem",
+      "success": "Obrigado! Sua mensagem foi enviada.",
+      "error": "Desculpe, algo deu errado. Por favor, tente novamente."
+    },
+    "infoTitle": "Outras formas de conectar",
+    "emailTitle": "E-mail",
+    "phoneTitle": "Telefone",
+    "whatsappTitle": "WhatsApp",
+    "whatsappAction": "Converse conosco"
+  },
+  "es": {
+    "title": "Contáctanos",
+    "metaDescription": "Ponte en contacto con el equipo de Kapunka Skincare para preguntas, consultas sobre asociaciones o soporte al cliente.",
+    "headerTitle": "Ponte en Contacto",
+    "headerSubtitle": "Estamos aquí para ayudar. Ya sea que tengas una pregunta sobre nuestros productos o quieras compartir tu viaje con la piel, nos encantaría saber de ti.",
+    "formTitle": "Envíanos un mensaje",
+    "form": {
+      "name": "Nombre Completo",
+      "email": "Correo Electrónico",
+      "message": "Tu Mensaje",
+      "sending": "Enviando...",
+      "submit": "Enviar Mensaje",
+      "success": "¡Gracias! Tu mensaje ha sido enviado.",
+      "error": "Lo sentimos, algo salió mal. Por favor, inténtalo de nuevo."
+    },
+    "infoTitle": "Otras formas de conectar",
+    "emailTitle": "Correo electrónico",
+    "phoneTitle": "Teléfono",
+    "whatsappTitle": "WhatsApp",
+    "whatsappAction": "Chatea con nosotros"
+  }
+}

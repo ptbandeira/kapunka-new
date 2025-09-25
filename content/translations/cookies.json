@@ -1,0 +1,20 @@
+{
+  "en": {
+    "message": "We use cookies to enhance your experience.",
+    "learnMore": "Learn more",
+    "decline": "Decline",
+    "accept": "Accept"
+  },
+  "pt": {
+    "message": "Usamos cookies para melhorar sua experiência.",
+    "learnMore": "Saiba mais",
+    "decline": "Recusar",
+    "accept": "Aceitar"
+  },
+  "es": {
+    "message": "Usamos cookies para mejorar tu experiencia.",
+    "learnMore": "Saber más",
+    "decline": "Rechazar",
+    "accept": "Aceptar"
+  }
+}

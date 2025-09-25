@@ -1,0 +1,47 @@
+{
+  "en": {
+    "tagline": "Science-backed skincare for a healthy barrier.",
+    "followUs": "Follow Us",
+    "shop": "Shop",
+    "allProducts": "All Products",
+    "guides": "Skincare Guides",
+    "about": "About Kapunka",
+    "ourStory": "Our Story",
+    "contact": "Contact Us",
+    "policies": "Policies",
+    "shipping": "Shipping Policy",
+    "returns": "Return Policy",
+    "privacy": "Privacy Policy",
+    "terms": "Terms of Service"
+  },
+  "pt": {
+    "tagline": "Cuidados com a pele baseados na ciência para uma barreira saudável.",
+    "followUs": "Siga-nos",
+    "shop": "Loja",
+    "allProducts": "Todos os Produtos",
+    "guides": "Guias de Skincare",
+    "about": "Sobre a Kapunka",
+    "ourStory": "Nossa História",
+    "contact": "Contate-nos",
+    "policies": "Políticas",
+    "shipping": "Política de Envio",
+    "returns": "Política de Devolução",
+    "privacy": "Política de Privacidade",
+    "terms": "Termos de Serviço"
+  },
+  "es": {
+    "tagline": "Cuidado de la piel respaldado por la ciencia para una barrera saludable.",
+    "followUs": "Síguenos",
+    "shop": "Tienda",
+    "allProducts": "Todos los Productos",
+    "guides": "Guías de Skincare",
+    "about": "Sobre Kapunka",
+    "ourStory": "Nuestra Historia",
+    "contact": "Contáctanos",
+    "policies": "Políticas",
+    "shipping": "Política de Envío",
+    "returns": "Política de Devolución",
+    "privacy": "Política de Privacidad",
+    "terms": "Términos de Servicio"
+  }
+}

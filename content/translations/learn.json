@@ -1,0 +1,47 @@
+{
+  "en": {
+    "metaTitle": "Skincare Library",
+    "metaDescription": "Explore articles and guides on skincare, ingredients, and maintaining a healthy skin barrier.",
+    "title": "Skincare Library",
+    "subtitle": "Guides and insights to help you understand your skin better.",
+    "categories": {
+      "all": "All topics",
+      "argan-oil": "Argan Oil",
+      "uses-applications": "Uses & Applications",
+      "post-procedure": "Post-Procedure",
+      "skin-barrier": "Skin Barrier",
+      "baby": "Baby Care",
+      "scars": "Scars & Recovery"
+    }
+  },
+  "pt": {
+    "metaTitle": "Biblioteca de Skincare",
+    "metaDescription": "Explore artigos e guias sobre skincare, ingredientes e como manter uma barreira cutânea saudável.",
+    "title": "Biblioteca de Skincare",
+    "subtitle": "Guias e insights para ajudar você a entender melhor a sua pele.",
+    "categories": {
+      "all": "Todos os temas",
+      "argan-oil": "Óleo de Argan",
+      "uses-applications": "Usos e Aplicações",
+      "post-procedure": "Pós-Procedimento",
+      "skin-barrier": "Barreira Cutânea",
+      "baby": "Cuidados com Bebês",
+      "scars": "Cicatrizes e Recuperação"
+    }
+  },
+  "es": {
+    "metaTitle": "Biblioteca de Skincare",
+    "metaDescription": "Explora artículos y guías sobre skincare, ingredientes y cómo mantener una barrera cutánea saludable.",
+    "title": "Biblioteca de Skincare",
+    "subtitle": "Guías e ideas para ayudarte a entender mejor tu piel.",
+    "categories": {
+      "all": "Todos los temas",
+      "argan-oil": "Aceite de Argán",
+      "uses-applications": "Usos y Aplicaciones",
+      "post-procedure": "Post-Procedimiento",
+      "skin-barrier": "Barrera Cutánea",
+      "baby": "Cuidado del Bebé",
+      "scars": "Cicatrices y Recuperación"
+    }
+  }
+}
