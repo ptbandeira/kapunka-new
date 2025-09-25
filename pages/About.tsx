@@ -1,8 +1,50 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Helmet } from 'react-helmet-async';
 import { motion } from 'framer-motion';
 import { useLanguage } from '../contexts/LanguageContext';
 import { useSiteSettings } from '../contexts/SiteSettingsContext';
+import SectionRenderer from '../components/SectionRenderer';
+import type { PageContent, PageSection, TimelineEntry, TimelineSectionContent } from '../types';
+
+const isTimelineEntry = (value: unknown): value is TimelineEntry => {
+  if (!value || typeof value !== 'object') {
+    return false;
+  }
+
+  const entry = value as Record<string, unknown>;
+  return (
+    typeof entry.year === 'string'
+    && typeof entry.title === 'string'
+    && typeof entry.description === 'string'
+    && (entry.image === undefined || typeof entry.image === 'string')
+  );
+};
+
+const isTimelineSection = (value: unknown): value is TimelineSectionContent => {
+  if (!value || typeof value !== 'object') {
+    return false;
+  }
+
+  const section = value as Record<string, unknown>;
+  if (section.type !== 'timeline' || !Array.isArray(section.entries)) {
+    return false;
+  }
+
+  return section.entries.every(isTimelineEntry);
+};
+
+const isPageContent = (value: unknown): value is PageContent => {
+  if (!value || typeof value !== 'object') {
+    return false;
+  }
+
+  const content = value as Record<string, unknown>;
+  if (!Array.isArray(content.sections)) {
+    return false;
+  }
+
+  return content.sections.every(isTimelineSection);
+};
 
 const About: React.FC = () => {
     const { t, language } = useLanguage();
@@ -14,6 +56,51 @@ const About: React.FC = () => {
     const sourcingImage = settings.about?.sourcingImage || defaultSourcingImage;
     const storyAlt = settings.about?.storyAlt || 'Brand story';
     const sourcingAlt = settings.about?.sourcingAlt || t('about.sourcingImageAlt');
+    const [storySections, setStorySections] = useState<PageSection[]>([]);
+
+    useEffect(() => {
+        let isMounted = true;
+        setStorySections([]);
+
+        const loadStorySections = async () => {
+            const localesToTry = [language, 'en'].filter((locale, index, arr) => arr.indexOf(locale) === index);
+
+            for (const locale of localesToTry) {
+                try {
+                    const response = await fetch(`/content/pages/${locale}/story.json`);
+                    if (!response.ok) {
+                        continue;
+                    }
+
+                    const data = (await response.json()) as unknown;
+                    if (!isMounted) {
+                        return;
+                    }
+
+                    if (isPageContent(data)) {
+                        setStorySections(data.sections);
+                        return;
+                    }
+                } catch (error) {
+                    if (locale === localesToTry[localesToTry.length - 1]) {
+                        console.error('Failed to load story timeline content', error);
+                    }
+                }
+            }
+
+            if (isMounted) {
+                setStorySections([]);
+            }
+        };
+
+        void loadStorySections();
+
+        return () => {
+            isMounted = false;
+        };
+    }, [language]);
+
+    const timelineFieldPath = `pages.story_${language}.sections`;
   return (
     <div>
         <Helmet>
@@ -81,6 +168,12 @@ const About: React.FC = () => {
               />
             </motion.div>
           </div>
+
+          {storySections.length > 0 && (
+            <div className="mt-20 sm:mt-28">
+              <SectionRenderer sections={storySections} fieldPath={timelineFieldPath} />
+            </div>
+          )}
 
           <div className="grid md:grid-cols-2 gap-12 items-center mt-20 sm:mt-28">
             <motion.div

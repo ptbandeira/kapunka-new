@@ -103,6 +103,78 @@ collections:
                       - { label: LinkedIn, value: linkedin }
                       - { label: YouTube, value: youtube }
                       - { label: Globe, value: globe }
+  - name: pages
+    label: Pages
+    files:
+      - name: story_en
+        label: Story Page (English)
+        file: content/pages/en/story.json
+        format: json
+        fields:
+          - label: Sections
+            name: sections
+            widget: list
+            types:
+              - label: Timeline
+                name: timeline
+                widget: object
+                fields:
+                  - { label: Title, name: title, widget: string, required: false }
+                  - label: Entries
+                    name: entries
+                    widget: list
+                    summary: "{{fields.year}} — {{fields.title}}"
+                    fields:
+                      - { label: Year, name: year, widget: string }
+                      - { label: Title, name: title, widget: text }
+                      - { label: Description, name: description, widget: markdown }
+                      - { label: Image, name: image, widget: image, choose_url: true, required: false }
+      - name: story_pt
+        label: Story Page (Portuguese)
+        file: content/pages/pt/story.json
+        format: json
+        fields:
+          - label: Sections
+            name: sections
+            widget: list
+            types:
+              - label: Timeline
+                name: timeline
+                widget: object
+                fields:
+                  - { label: Title, name: title, widget: string, required: false }
+                  - label: Entries
+                    name: entries
+                    widget: list
+                    summary: "{{fields.year}} — {{fields.title}}"
+                    fields:
+                      - { label: Year, name: year, widget: string }
+                      - { label: Title, name: title, widget: text }
+                      - { label: Description, name: description, widget: markdown }
+                      - { label: Image, name: image, widget: image, choose_url: true, required: false }
+      - name: story_es
+        label: Story Page (Spanish)
+        file: content/pages/es/story.json
+        format: json
+        fields:
+          - label: Sections
+            name: sections
+            widget: list
+            types:
+              - label: Timeline
+                name: timeline
+                widget: object
+                fields:
+                  - { label: Title, name: title, widget: string, required: false }
+                  - label: Entries
+                    name: entries
+                    widget: list
+                    summary: "{{fields.year}} — {{fields.title}}"
+                    fields:
+                      - { label: Year, name: year, widget: string }
+                      - { label: Title, name: title, widget: text }
+                      - { label: Description, name: description, widget: markdown }
+                      - { label: Image, name: image, widget: image, choose_url: true, required: false }
   - name: translations
     label: Translations
     files:

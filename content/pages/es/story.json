@@ -1,0 +1,28 @@
+{
+  "sections": [
+    {
+      "type": "timeline",
+      "title": "Kapunka a través de los años",
+      "entries": [
+        {
+          "year": "2014",
+          "title": "Orígenes en el Valle del Souss",
+          "description": "Kapunka surge cuando nuestras fundadoras regresan a las cooperativas de argán de Tazghlilt.\n\nComenzamos a envasar los primeros lotes prensados en frío trabajando codo a codo con las artesanas que nos enseñan sus rituales de extracción.",
+          "image": ""
+        },
+        {
+          "year": "2017",
+          "title": "Alianzas que amplían el impacto",
+          "description": "El Método Kapunka gana la confianza de equipos de dermatología en Lisboa, Barcelona y Casablanca.\n\nLas cooperativas suman nuevas integrantes y formalizamos acuerdos de compra a largo plazo que aseguran precios equitativos.",
+          "image": ""
+        },
+        {
+          "year": "2021",
+          "title": "Lanzamiento de la versión 2.0",
+          "description": "Presentamos la segunda generación de fórmulas Kapunka, combinando validación clínica con abastecimiento regenerativo.\n\nNuestro ritual híbrido de cuidado en casa y recuperación en clínica llega ahora a pacientes en tres continentes.",
+          "image": ""
+        }
+      ]
+    }
+  ]
+}
