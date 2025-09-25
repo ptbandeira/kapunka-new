@@ -1,20 +1,22 @@
-import type { StackbitConfig } from '@stackbit/types';
 import { readFileSync } from 'node:fs';
-import { resolve } from 'node:path';
+import { dirname, resolve } from 'node:path';
+import { fileURLToPath } from 'node:url';
 import { FileSystemContentSource } from '@stackbit/cms-git';
 
-const metadataPath = resolve(process.cwd(), 'metadata.json');
-const metadata = JSON.parse(readFileSync(metadataPath, 'utf8')) as {
-  models: Array<{ name: string }>;
-};
+const projectRoot =
+  typeof __dirname === 'string'
+    ? __dirname
+    : dirname(fileURLToPath(import.meta.url));
+const metadataPath = resolve(projectRoot, 'metadata.json');
+const metadata = JSON.parse(readFileSync(metadataPath, 'utf8'));
 
 const contentSource = new FileSystemContentSource({
-  rootPath: process.cwd(),
+  rootPath: projectRoot,
   contentDirs: ['content'],
   models: metadata.models,
 });
 
-const pageModels: { name: string; type: 'page'; urlPath: string }[] = [
+const pageModels = [
   {
     name: 'shop',
     type: 'page',
@@ -47,6 +49,7 @@ const pageModels: { name: string; type: 'page'; urlPath: string }[] = [
   },
 ];
 
+/** @type {import('@stackbit/types').StackbitConfig} */
 const config = {
   stackbitVersion: '~0.6.0',
   contentSources: [contentSource],
@@ -59,6 +62,6 @@ const config = {
     return [...models, ...additional];
   },
   modelExtensions: pageModels,
-} satisfies StackbitConfig;
+};
 
 export default config;
