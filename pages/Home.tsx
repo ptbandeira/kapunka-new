@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useMemo } from 'react';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { Droplet, ShieldCheck, Leaf } from 'lucide-react';
@@ -11,6 +11,7 @@ import type { Product, Review } from '../types';
 const Bestsellers: React.FC = () => {
     const { t, language } = useLanguage();
     const [products, setProducts] = useState<Product[]>([]);
+    const { settings } = useSiteSettings();
 
     useEffect(() => {
         fetch('/content/products/index.json')
@@ -18,7 +19,28 @@ const Bestsellers: React.FC = () => {
             .then(data => setProducts(data.items ?? []));
     }, []);
 
-    const featuredProducts = products.slice(0, 3);
+    const featuredProductIds = useMemo(() => {
+        const ids = settings.home?.featuredProductIds ?? [];
+
+        return ids.filter((id): id is string => typeof id === 'string' && id.trim().length > 0);
+    }, [settings]);
+
+    const curatedProducts = useMemo(() => {
+        if (featuredProductIds.length === 0 || products.length === 0) {
+            return [];
+        }
+
+        const productMap = new Map(products.map(product => [product.id, product]));
+        const uniqueIds = Array.from(new Set(featuredProductIds));
+
+        return uniqueIds
+            .map(id => productMap.get(id))
+            .filter((product): product is Product => Boolean(product));
+    }, [products, featuredProductIds]);
+
+    const fallbackProducts = useMemo(() => products.slice(0, 3), [products]);
+
+    const featuredProducts = curatedProducts.length > 0 ? curatedProducts : fallbackProducts;
 
     return (
         <div className="py-16 sm:py-24 bg-stone-100">

@@ -3,7 +3,12 @@
     "name": "KAPUNKA"
   },
   "home": {
-    "heroImage": "/content/uploads/herobackoil.jpg"
+    "heroImage": "/content/uploads/herobackoil.jpg",
+    "featuredProductIds": [
+      "pure-argan-oil",
+      "rose-water",
+      "black-soap"
+    ]
   },
   "contact": {
     "email": "info@kapunka.com",
