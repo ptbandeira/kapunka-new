@@ -23,7 +23,7 @@
           },
           "size": 10,
           "unit": "ml",
-          "price": null
+          "price": 12
         },
         {
           "slug": "pure-argan-oil-30ml",
@@ -36,7 +36,7 @@
           },
           "size": 30,
           "unit": "ml",
-          "price": null
+          "price": 25
         },
         {
           "slug": "pure-argan-oil-50ml",
@@ -49,7 +49,7 @@
           },
           "size": 50,
           "unit": "ml",
-          "price": null
+          "price": 35
         },
         {
           "slug": "pure-argan-oil-100ml",
@@ -62,7 +62,7 @@
           },
           "size": 100,
           "unit": "ml",
-          "price": null
+          "price": 55
         },
         {
           "slug": "pure-argan-oil-250ml",
@@ -75,7 +75,7 @@
           },
           "size": 250,
           "unit": "ml",
-          "price": null
+          "price": 95
         },
         {
           "slug": "pure-argan-oil-500ml",
@@ -88,7 +88,7 @@
           },
           "size": 500,
           "unit": "ml",
-          "price": null
+          "price": 165
         }
       ],
       "tags": {
@@ -168,7 +168,8 @@
             "Vegan; sem aditivos"
           ]
         }
-      }
+      },
+      "updatedAt": "2024-05-30T00:00:00.000Z"
     },
     {
       "slug": "cotton-argan-oil",
@@ -193,18 +194,18 @@
           },
           "size": 250,
           "unit": "ml",
-          "price": null
+          "price": 40
         }
       ],
       "tags": {
         "en": [
-          "Cotton scent"
+          "scented"
         ],
         "es": [
-          "aroma algodón"
+          "perfumado"
         ],
         "pt": [
-          "aroma algodão"
+          "perfumado"
         ]
       },
       "tagline": {
@@ -221,7 +222,8 @@
         "en": "Argania Spinosa Kernel Oil, Parfum",
         "es": "Argania Spinosa Kernel Oil, Parfum",
         "pt": "Argania Spinosa Kernel Oil, Parfum"
-      }
+      },
+      "updatedAt": "2024-05-30T00:00:00.000Z"
     },
     {
       "slug": "agra-incense-argan-oil",
@@ -246,18 +248,18 @@
           },
           "size": 250,
           "unit": "ml",
-          "price": null
+          "price": 40
         }
       ],
       "tags": {
         "en": [
-          "Agra incense scent"
+          "scented"
         ],
         "es": [
-          "aroma incienso de Agra"
+          "perfumado"
         ],
         "pt": [
-          "aroma incenso de Agra"
+          "perfumado"
         ]
       },
       "tagline": {
@@ -274,7 +276,8 @@
         "en": "Argania Spinosa Kernel Oil, Boswellia Carterii Oil",
         "es": "Argania Spinosa Kernel Oil, Boswellia Carterii Oil",
         "pt": "Argania Spinosa Kernel Oil, Boswellia Carterii Oil"
-      }
+      },
+      "updatedAt": "2024-05-30T00:00:00.000Z"
     },
     {
       "slug": "jasmine-argan-oil",
@@ -299,18 +302,18 @@
           },
           "size": 250,
           "unit": "ml",
-          "price": null
+          "price": 40
         }
       ],
       "tags": {
         "en": [
-          "Jasmine scent"
+          "scented"
         ],
         "es": [
-          "aroma jazmín"
+          "perfumado"
         ],
         "pt": [
-          "aroma jasmim"
+          "perfumado"
         ]
       },
       "tagline": {
@@ -327,7 +330,8 @@
         "en": "Argania Spinosa Kernel Oil, Jasminum Officinale Flower Oil",
         "es": "Argania Spinosa Kernel Oil, Jasminum Officinale Flower Oil",
         "pt": "Argania Spinosa Kernel Oil, Jasminum Officinale Flower Oil"
-      }
+      },
+      "updatedAt": "2024-05-30T00:00:00.000Z"
     },
     {
       "slug": "lavender-argan-oil",
@@ -352,18 +356,18 @@
           },
           "size": 250,
           "unit": "ml",
-          "price": null
+          "price": 40
         }
       ],
       "tags": {
         "en": [
-          "Lavender scent"
+          "scented"
         ],
         "es": [
-          "aroma lavanda"
+          "perfumado"
         ],
         "pt": [
-          "aroma lavanda"
+          "perfumado"
         ]
       },
       "tagline": {
@@ -380,7 +384,8 @@
         "en": "Argania Spinosa Kernel Oil, Lavandula Angustifolia Oil",
         "es": "Argania Spinosa Kernel Oil, Lavandula Angustifolia Oil",
         "pt": "Argania Spinosa Kernel Oil, Lavandula Angustifolia Oil"
-      }
+      },
+      "updatedAt": "2024-05-30T00:00:00.000Z"
     },
     {
       "slug": "patchouli-argan-oil",
@@ -405,18 +410,18 @@
           },
           "size": 250,
           "unit": "ml",
-          "price": null
+          "price": 40
         }
       ],
       "tags": {
         "en": [
-          "Patchouli scent"
+          "scented"
         ],
         "es": [
-          "aroma patchouli"
+          "perfumado"
         ],
         "pt": [
-          "aroma patchouli"
+          "perfumado"
         ]
       },
       "tagline": {
@@ -433,7 +438,8 @@
         "en": "Argania Spinosa Kernel Oil, Pogostemon Cablin Oil",
         "es": "Argania Spinosa Kernel Oil, Pogostemon Cablin Oil",
         "pt": "Argania Spinosa Kernel Oil, Pogostemon Cablin Oil"
-      }
+      },
+      "updatedAt": "2024-05-30T00:00:00.000Z"
     },
     {
       "slug": "rosemary-argan-oil",
@@ -458,18 +464,18 @@
           },
           "size": 250,
           "unit": "ml",
-          "price": null
+          "price": 40
         }
       ],
       "tags": {
         "en": [
-          "Rosemary scent"
+          "scented"
         ],
         "es": [
-          "aroma romero"
+          "perfumado"
         ],
         "pt": [
-          "aroma alecrim"
+          "perfumado"
         ]
       },
       "tagline": {
@@ -486,7 +492,8 @@
         "en": "Argania Spinosa Kernel Oil, Rosmarinus Officinalis Leaf Oil",
         "es": "Argania Spinosa Kernel Oil, Rosmarinus Officinalis Leaf Oil",
         "pt": "Argania Spinosa Kernel Oil, Rosmarinus Officinalis Leaf Oil"
-      }
+      },
+      "updatedAt": "2024-05-30T00:00:00.000Z"
     },
     {
       "slug": "argan-30ml-kessa-bundle",
@@ -511,20 +518,21 @@
           },
           "size": 30,
           "unit": "ml",
-          "price": null
+          "price": 37
         }
       ],
       "tags": {
         "en": [
-          "ritual kit"
+          "fragrance-free"
         ],
         "es": [
-          "kit ritual"
+          "sin fragancia"
         ],
         "pt": [
-          "kit ritual"
+          "sem fragrância"
         ]
-      }
+      },
+      "updatedAt": "2024-05-30T00:00:00.000Z"
     },
     {
       "slug": "argan-100ml-kessa-bundle",
@@ -549,20 +557,21 @@
           },
           "size": 100,
           "unit": "ml",
-          "price": null
+          "price": 65
         }
       ],
       "tags": {
         "en": [
-          "ritual kit"
+          "fragrance-free"
         ],
         "es": [
-          "kit ritual"
+          "sin fragancia"
         ],
         "pt": [
-          "kit ritual"
+          "sem fragrância"
         ]
-      }
+      },
+      "updatedAt": "2024-05-30T00:00:00.000Z"
     },
     {
       "slug": "argan-500ml-kessa-bundle",
@@ -587,20 +596,21 @@
           },
           "size": 500,
           "unit": "ml",
-          "price": null
+          "price": 120
         }
       ],
       "tags": {
         "en": [
-          "ritual kit"
+          "fragrance-free"
         ],
         "es": [
-          "kit ritual"
+          "sin fragancia"
         ],
         "pt": [
-          "kit ritual"
+          "sem fragrância"
         ]
-      }
+      },
+      "updatedAt": "2024-05-30T00:00:00.000Z"
     },
     {
       "slug": "lavender-50ml-argan-30ml-pack",
@@ -625,20 +635,21 @@
           },
           "size": 1,
           "unit": "set",
-          "price": null
+          "price": 72
         }
       ],
       "tags": {
         "en": [
-          "ritual kit"
+          "scented"
         ],
         "es": [
-          "kit ritual"
+          "perfumado"
         ],
         "pt": [
-          "kit ritual"
+          "perfumado"
         ]
-      }
+      },
+      "updatedAt": "2024-05-30T00:00:00.000Z"
     },
     {
       "slug": "manopla-kessa",
@@ -668,20 +679,15 @@
           },
           "size": 1,
           "unit": "unit",
-          "price": null
+          "price": 12
         }
       ],
       "tags": {
-        "en": [
-          "hammam accessory"
-        ],
-        "es": [
-          "accesorio hammam"
-        ],
-        "pt": [
-          "acessório hammam"
-        ]
-      }
+        "en": [],
+        "es": [],
+        "pt": []
+      },
+      "updatedAt": "2024-05-30T00:00:00.000Z"
     },
     {
       "slug": "kapunka-neceser",
@@ -711,7 +717,7 @@
           },
           "size": 1,
           "unit": "unit",
-          "price": null
+          "price": 28
         },
         {
           "slug": "kapunka-neceser-large",
@@ -722,22 +728,17 @@
             "es": "Neceser grande",
             "pt": "Nécessaire grande"
           },
-          "size": 1,
+          "size": 2,
           "unit": "unit",
-          "price": null
+          "price": 34
         }
       ],
       "tags": {
-        "en": [
-          "travel accessory"
-        ],
-        "es": [
-          "accesorio de viaje"
-        ],
-        "pt": [
-          "acessório de viagem"
-        ]
-      }
+        "en": [],
+        "es": [],
+        "pt": []
+      },
+      "updatedAt": "2024-05-30T00:00:00.000Z"
     }
   ]
 }
