@@ -69,6 +69,18 @@ collections:
                 name: sourcingAlt
                 widget: string
                 hint: "Provide localized alt copy describing the sourcing photograph."
+          - label: For Clinics
+            name: clinics
+            widget: object
+            fields:
+              - label: CTA Link
+                name: ctaLink
+                widget: string
+                hint: "Paste the full URL for the For Clinics button (HTTPS only)."
+                pattern:
+                  - '^https://'
+                  - "Please enter a secure HTTPS link."
+                required: false
           - label: Footer
             name: footer
             widget: object

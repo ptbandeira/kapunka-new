@@ -157,6 +157,9 @@ export interface SiteSettings {
         storyAlt?: string;
         sourcingAlt?: string;
     };
+    clinics?: {
+        ctaLink?: string;
+    };
     footer?: {
         legalName?: string;
         socialLinks?: SocialLink[];
