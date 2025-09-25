@@ -1,3 +1,5 @@
+import type { ReactNode } from 'react';
+
 export type Language = 'en' | 'pt' | 'es';
 
 export type Translatable = {
@@ -63,6 +65,9 @@ export interface Product {
   ingredients: Translatable;
   labTestedNote: Translatable;
   knowledge: ProductKnowledge;
+  originStory?: Translatable;
+  scientificEvidence?: Translatable;
+  multiUseTips?: TranslatableArray;
   faqs: ProductFaq[];
   goodToKnow?: ProductGoodToKnow;
 }
@@ -113,10 +118,19 @@ export interface Partner {
     logoUrl: string;
 }
 
+export interface PolicySection {
+    id: string;
+    title: Translatable;
+    body: Translatable;
+}
+
 export interface Policy {
     id: string;
     title: Translatable;
-    content: Translatable;
+    content?: Translatable;
+    sections?: PolicySection[];
+    metaTitle?: Translatable;
+    metaDescription?: Translatable;
 }
 
 export interface ShopCategoryLink {
@@ -236,16 +250,32 @@ export interface TrainingListSectionContent {
   entries?: TrainingEntry[];
 }
 
+export interface ProductTab {
+  id: string;
+  label: string;
+  labelFieldPath?: string;
+  content: ReactNode | (() => ReactNode);
+}
+
+export interface ProductTabsSectionContent {
+  type: 'productTabs';
+  tabs: ProductTab[];
+  initialActiveTab?: string;
+}
+
 export type PageSection =
   | TimelineSectionContent
   | ImageTextHalfSectionContent
   | ImageGridSectionContent
   | VideoGallerySectionContent
-  | TrainingListSectionContent;
+  | TrainingListSectionContent
+  | ProductTabsSectionContent;
 
 export interface PageContent {
   sections: PageSection[];
   type?: string;
+  metaTitle?: string;
+  metaDescription?: string;
 }
 
 export interface VideoLibraryContent {

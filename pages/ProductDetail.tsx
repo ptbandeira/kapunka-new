@@ -7,7 +7,8 @@ import { Plus } from 'lucide-react';
 import { useLanguage } from '../contexts/LanguageContext';
 import { useCart } from '../contexts/CartContext';
 import { useUI } from '../contexts/UIContext';
-import type { Product, ProductKnowledge } from '../types';
+import SectionRenderer from '../components/SectionRenderer';
+import type { Product, ProductKnowledge, ProductTabsSectionContent } from '../types';
 import ProductCard from '../components/ProductCard';
 
 const ProductDetail: React.FC = () => {
@@ -20,7 +21,6 @@ const ProductDetail: React.FC = () => {
     const [allProducts, setAllProducts] = useState<Product[]>([]);
     const [loading, setLoading] = useState(true);
     const [selectedSizeId, setSelectedSizeId] = useState<string | null>(null);
-    const [activeTab, setActiveTab] = useState('benefits');
 
     useEffect(() => {
         fetch('/content/products/index.json')
@@ -71,12 +71,189 @@ const ProductDetail: React.FC = () => {
     const productFieldPath = productIndex >= 0 ? `products.items.${productIndex}` : undefined;
     const selectedSizeIndex = product.sizes.findIndex((size) => size.id === selectedSizeId);
 
-    const tabs = [
-        { id: 'benefits', label: t('pdp.tabs.benefits'), fieldPath: `translations.${language}.pdp.tabs.benefits` },
-        { id: 'howToUse', label: t('pdp.tabs.howToUse'), fieldPath: `translations.${language}.pdp.tabs.howToUse` },
-        { id: 'ingredients', label: t('pdp.tabs.ingredients'), fieldPath: `translations.${language}.pdp.tabs.ingredients` },
-        { id: 'labTested', label: t('pdp.tabs.labTested'), fieldPath: `translations.${language}.pdp.tabs.labTested` },
-    ];
+    const productTabsSection = useMemo<ProductTabsSectionContent | null>(() => {
+        if (!product) {
+            return null;
+        }
+
+        const tabs: ProductTabsSectionContent['tabs'] = [];
+
+        const benefits = translate(product.benefits) as string[] | undefined;
+        if (benefits && benefits.length > 0) {
+            tabs.push({
+                id: 'benefits',
+                label: t('pdp.tabs.benefits'),
+                labelFieldPath: `translations.${language}.pdp.tabs.benefits`,
+                content: (
+                    <ul className="list-disc pl-5 space-y-2">
+                        {benefits.map((benefit: string, index: number) => (
+                            <li
+                                key={`benefit-${index}`}
+                                data-nlv-field-path={
+                                    productFieldPath
+                                        ? `${productFieldPath}.benefits.${language}.${index}`
+                                        : undefined
+                                }
+                            >
+                                {benefit}
+                            </li>
+                        ))}
+                    </ul>
+                ),
+            });
+        }
+
+        const howToUse = translate(product.howToUse) as string | undefined;
+        if (howToUse) {
+            tabs.push({
+                id: 'howToUse',
+                label: t('pdp.tabs.howToUse'),
+                labelFieldPath: `translations.${language}.pdp.tabs.howToUse`,
+                content: (
+                    <p data-nlv-field-path={productFieldPath ? `${productFieldPath}.howToUse.${language}` : undefined}>
+                        {howToUse}
+                    </p>
+                ),
+            });
+        }
+
+        const ingredients = translate(product.ingredients) as string | undefined;
+        if (ingredients) {
+            tabs.push({
+                id: 'ingredients',
+                label: t('pdp.tabs.ingredients'),
+                labelFieldPath: `translations.${language}.pdp.tabs.ingredients`,
+                content: (
+                    <p data-nlv-field-path={productFieldPath ? `${productFieldPath}.ingredients.${language}` : undefined}>
+                        {ingredients}
+                    </p>
+                ),
+            });
+        }
+
+        const labTestedNote = translate(product.labTestedNote) as string | undefined;
+        if (labTestedNote) {
+            tabs.push({
+                id: 'labTested',
+                label: t('pdp.tabs.labTested'),
+                labelFieldPath: `translations.${language}.pdp.tabs.labTested`,
+                content: (
+                    <p data-nlv-field-path={productFieldPath ? `${productFieldPath}.labTestedNote.${language}` : undefined}>
+                        {labTestedNote}
+                    </p>
+                ),
+            });
+        }
+
+        if (product.originStory) {
+            const originStory = translate(product.originStory) as string | undefined;
+            if (originStory) {
+                tabs.push({
+                    id: 'originStory',
+                    label: t('pdp.tabs.originStory'),
+                    labelFieldPath: `translations.${language}.pdp.tabs.originStory`,
+                    content: (
+                        <p data-nlv-field-path={productFieldPath ? `${productFieldPath}.originStory.${language}` : undefined}>
+                            {originStory}
+                        </p>
+                    ),
+                });
+            }
+        }
+
+        if (product.scientificEvidence) {
+            const scientificEvidence = translate(product.scientificEvidence) as string | undefined;
+            if (scientificEvidence) {
+                tabs.push({
+                    id: 'scientificEvidence',
+                    label: t('pdp.tabs.scientificEvidence'),
+                    labelFieldPath: `translations.${language}.pdp.tabs.scientificEvidence`,
+                    content: (
+                        <p
+                            data-nlv-field-path={
+                                productFieldPath ? `${productFieldPath}.scientificEvidence.${language}` : undefined
+                            }
+                        >
+                            {scientificEvidence}
+                        </p>
+                    ),
+                });
+            }
+        }
+
+        if (product.multiUseTips) {
+            const tips = translate(product.multiUseTips) as string[] | undefined;
+            if (tips && tips.length > 0) {
+                tabs.push({
+                    id: 'multiUseTips',
+                    label: t('pdp.tabs.multiUseTips'),
+                    labelFieldPath: `translations.${language}.pdp.tabs.multiUseTips`,
+                    content: (
+                        <ul className="list-disc pl-5 space-y-2">
+                            {tips.map((tip: string, index: number) => (
+                                <li
+                                    key={`multi-tip-${index}`}
+                                    data-nlv-field-path={
+                                        productFieldPath
+                                            ? `${productFieldPath}.multiUseTips.${language}.${index}`
+                                            : undefined
+                                    }
+                                >
+                                    {tip}
+                                </li>
+                            ))}
+                        </ul>
+                    ),
+                });
+            }
+        }
+
+        if (product.faqs && product.faqs.length > 0) {
+            tabs.push({
+                id: 'faqs',
+                label: t('pdp.tabs.faqs'),
+                labelFieldPath: `translations.${language}.pdp.tabs.faqs`,
+                content: (
+                    <div className="space-y-6">
+                        {product.faqs.map((faq, index) => (
+                            <div key={`${faq.question.en}-${index}`} className="border border-stone-200 rounded-lg p-6">
+                                <h3
+                                    className="text-lg font-semibold text-stone-900"
+                                    data-nlv-field-path={
+                                        productFieldPath
+                                            ? `${productFieldPath}.faqs.${index}.question.${language}`
+                                            : undefined
+                                    }
+                                >
+                                    {translate(faq.question) as string}
+                                </h3>
+                                <p
+                                    className="mt-2 text-stone-700 leading-relaxed"
+                                    data-nlv-field-path={
+                                        productFieldPath
+                                            ? `${productFieldPath}.faqs.${index}.answer.${language}`
+                                            : undefined
+                                    }
+                                >
+                                    {translate(faq.answer) as string}
+                                </p>
+                            </div>
+                        ))}
+                    </div>
+                ),
+            });
+        }
+
+        if (tabs.length === 0) {
+            return null;
+        }
+
+        return {
+            type: 'productTabs',
+            tabs,
+            initialActiveTab: tabs[0].id,
+        };
+    }, [product, translate, t, language, productFieldPath]);
 
     const knowledgeSectionConfigs: { id: string; field: keyof ProductKnowledge; titleKey: string }[] = [
         { id: 'whatItIs', field: 'whatItIs', titleKey: 'pdp.knowledge.sections.whatItIs' },
@@ -223,75 +400,38 @@ const ProductDetail: React.FC = () => {
                             </div>
                         </motion.div>
                         
-                        <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6, delay: 0.4 }}>
-                            <div className="border-b border-stone-200">
-                                <nav className="-mb-px flex space-x-8" aria-label="Tabs">
-                                    {tabs.map(tab => (
-                                        <button
-                                            key={tab.id}
-                                            onClick={() => setActiveTab(tab.id)}
-                                            className={`${
-                                                activeTab === tab.id
-                                                    ? 'border-stone-800 text-stone-900'
-                                                    : 'border-transparent text-stone-500 hover:text-stone-700 hover:border-stone-300'
-                                            } whitespace-nowrap py-4 px-1 border-b-2 font-medium text-sm`}
-                                        >
-                                            <span data-nlv-field-path={tab.fieldPath}>{tab.label}</span>
-                                        </button>
-                                    ))}
-                                </nav>
-                            </div>
-                            <div className="mt-6 prose prose-stone max-w-none text-stone-700">
-                                {activeTab === 'benefits' && (
-                                    <ul className="list-disc pl-5 space-y-2">
-                                        {(translate(product.benefits) as string[]).map((benefit: string, index: number) => (
+                        <motion.div
+                            initial={{ opacity: 0, y: 20 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            transition={{ duration: 0.6, delay: 0.4 }}
+                        >
+                            {productTabsSection && (
+                                <SectionRenderer sections={[productTabsSection]} />
+                            )}
+                            {product.goodToKnow && (
+                                <div className="mt-8">
+                                    <h4
+                                        className="text-sm font-semibold uppercase tracking-wide text-stone-500"
+                                        data-nlv-field-path={productFieldPath ? `${productFieldPath}.goodToKnow.title.${language}` : undefined}
+                                    >
+                                        {translate(product.goodToKnow.title)}
+                                    </h4>
+                                    <ul className="mt-3 list-disc pl-5 space-y-2">
+                                        {(translate(product.goodToKnow.items) as string[]).map((item: string, index: number) => (
                                             <li
                                                 key={index}
                                                 data-nlv-field-path={
                                                     productFieldPath
-                                                        ? `${productFieldPath}.benefits.${language}.${index}`
+                                                        ? `${productFieldPath}.goodToKnow.items.${language}.${index}`
                                                         : undefined
                                                 }
                                             >
-                                                {benefit}
+                                                {item}
                                             </li>
                                         ))}
                                     </ul>
-                                )}
-                                {activeTab === 'howToUse' && (
-                                    <p data-nlv-field-path={productFieldPath ? `${productFieldPath}.howToUse.${language}` : undefined}>{translate(product.howToUse)}</p>
-                                )}
-                                {activeTab === 'ingredients' && (
-                                    <p data-nlv-field-path={productFieldPath ? `${productFieldPath}.ingredients.${language}` : undefined}>{translate(product.ingredients)}</p>
-                                )}
-                                {activeTab === 'labTested' && (
-                                    <p data-nlv-field-path={productFieldPath ? `${productFieldPath}.labTestedNote.${language}` : undefined}>{translate(product.labTestedNote)}</p>
-                                )}
-                                {product.goodToKnow && (
-                                    <div className="mt-8">
-                                        <h4
-                                            className="text-sm font-semibold uppercase tracking-wide text-stone-500"
-                                            data-nlv-field-path={productFieldPath ? `${productFieldPath}.goodToKnow.title.${language}` : undefined}
-                                        >
-                                            {translate(product.goodToKnow.title)}
-                                        </h4>
-                                        <ul className="mt-3 list-disc pl-5 space-y-2">
-                                            {(translate(product.goodToKnow.items) as string[]).map((item: string, index: number) => (
-                                                <li
-                                                    key={index}
-                                                    data-nlv-field-path={
-                                                        productFieldPath
-                                                            ? `${productFieldPath}.goodToKnow.items.${language}.${index}`
-                                                            : undefined
-                                                    }
-                                                >
-                                                    {item}
-                                                </li>
-                                            ))}
-                                        </ul>
-                                    </div>
-                                )}
-                            </div>
+                                </div>
+                            )}
                         </motion.div>
                     </div>
                 </div>
@@ -346,7 +486,7 @@ const ProductDetail: React.FC = () => {
                 </section>
             )}
 
-            {product.faqs && product.faqs.length > 0 && (
+            {product.faqs && product.faqs.length > 0 && !(productTabsSection?.tabs.some((tab) => tab.id === 'faqs')) && (
                 <section className="py-16 sm:py-24">
                     <div className="container mx-auto px-4 sm:px-6 lg:px-8">
                         <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }} className="max-w-3xl">
