@@ -1,0 +1,86 @@
+{
+  "en": {
+    "notFound": "Product not found.",
+    "size": "Size",
+    "addToCart": "Add to Cart",
+    "tabs": {
+      "benefits": "Benefits",
+      "howToUse": "How to Use",
+      "ingredients": "Ingredients",
+      "labTested": "Origin & Purity"
+    },
+    "bundleIncludes": "Bundle includes",
+    "relatedProducts": "You Might Also Like",
+    "knowledge": {
+      "title": "Deep dive into the formula",
+      "subtitle": "Explore how this product fits into modern dermal science and time-honored rituals.",
+      "sections": {
+        "whatItIs": "What it is",
+        "howItWorks": "How it works on skin & scalp",
+        "whoItsFor": "Who it's for",
+        "scientificBacking": "Scientific backing",
+        "culturalContext": "Cultural & traditional context"
+      }
+    },
+    "faq": {
+      "title": "Product FAQs",
+      "subtitle": "Answers to the most searched questions about this treatment."
+    }
+  },
+  "pt": {
+    "notFound": "Produto não encontrado.",
+    "size": "Tamanho",
+    "addToCart": "Adicionar ao Carrinho",
+    "tabs": {
+      "benefits": "Benefícios",
+      "howToUse": "Como Usar",
+      "ingredients": "Ingredientes",
+      "labTested": "Origem e Pureza"
+    },
+    "bundleIncludes": "O conjunto inclui",
+    "relatedProducts": "Você Também Pode Gostar",
+    "knowledge": {
+      "title": "Mergulho na fórmula",
+      "subtitle": "Descubra como este produto se encaixa na ciência dérmica moderna e nos rituais ancestrais.",
+      "sections": {
+        "whatItIs": "O que é",
+        "howItWorks": "Como atua na pele e no couro cabeludo",
+        "whoItsFor": "Para quem é indicado",
+        "scientificBacking": "Comprovação científica",
+        "culturalContext": "Contexto cultural e tradicional"
+      }
+    },
+    "faq": {
+      "title": "Perguntas frequentes",
+      "subtitle": "Respostas para as dúvidas mais buscadas sobre este tratamento."
+    }
+  },
+  "es": {
+    "notFound": "Producto no encontrado.",
+    "size": "Tamaño",
+    "addToCart": "Añadir al Carrito",
+    "tabs": {
+      "benefits": "Beneficios",
+      "howToUse": "Modo de Uso",
+      "ingredients": "Ingredientes",
+      "labTested": "Origen y Pureza"
+    },
+    "bundleIncludes": "El pack incluye",
+    "relatedProducts": "También te podría gustar",
+    "knowledge": {
+      "title": "Profundiza en la fórmula",
+      "subtitle": "Descubre cómo este producto se integra a la ciencia dérmica moderna y a los rituales ancestrales.",
+      "sections": {
+        "whatItIs": "Qué es",
+        "howItWorks": "Cómo actúa en piel y cuero cabelludo",
+        "whoItsFor": "Para quién es",
+        "scientificBacking": "Respaldo científico",
+        "culturalContext": "Contexto cultural y tradicional"
+      }
+    },
+    "faq": {
+      "title": "Preguntas frecuentes",
+      "subtitle": "Respuestas a las preguntas más buscadas sobre este tratamiento."
+    }
+  }
+}

@@ -1,0 +1,20 @@
+{
+  "en": {
+    "headerTitle": "Kapunka Academy",
+    "headerSubtitle": "Professional education for dermatologists and estheticians to master advanced skincare techniques with our products.",
+    "coursesTitle": "Available Courses",
+    "enrollNow": "Enroll Now"
+  },
+  "pt": {
+    "headerTitle": "Academia Kapunka",
+    "headerSubtitle": "Educação profissional para dermatologistas e esteticistas para dominar técnicas avançadas de cuidados com a pele com nossos produtos.",
+    "coursesTitle": "Cursos Disponíveis",
+    "enrollNow": "Inscreva-se Agora"
+  },
+  "es": {
+    "headerTitle": "Academia Kapunka",
+    "headerSubtitle": "Educación profesional para dermatólogos y esteticistas para dominar técnicas avanzadas de cuidado de la piel con nuestros productos.",
+    "coursesTitle": "Cursos Disponibles",
+    "enrollNow": "Inscribirse Ahora"
+  }
+}

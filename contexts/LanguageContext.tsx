@@ -8,7 +8,46 @@ import React, {
   useEffect,
 } from 'react';
 import type { Language } from '../types';
-import translationsData from '@/content/translations.json';
+type TranslationModule = Record<Language, TranslationTree>;
+
+const translationModules = import.meta.glob<TranslationModule>(
+  '@/content/translations/*.json',
+  {
+    eager: true,
+    import: 'default',
+  },
+) as Record<string, TranslationModule>;
+
+const SUPPORTED_LANGUAGES: Language[] = ['en', 'pt', 'es'];
+
+const extractKeyFromPath = (filePath: string): string => {
+  const parts = filePath.split('/');
+  const filename = parts[parts.length - 1];
+  return filename.replace(/\.json$/, '');
+};
+
+const buildTranslations = (
+  entries: Array<[string, TranslationModule]>,
+): Translations => {
+  const merged: Translations = SUPPORTED_LANGUAGES.reduce((acc, lang) => {
+    acc[lang] = {};
+    return acc;
+  }, {} as Translations);
+
+  for (const [key, module] of entries) {
+    for (const lang of SUPPORTED_LANGUAGES) {
+      merged[lang][key] = module?.[lang];
+    }
+  }
+
+  return merged;
+};
+
+const translationEntries = Object.entries(translationModules).map(
+  ([path, module]) => [extractKeyFromPath(path), module] as [string, TranslationModule],
+);
+
+const initialTranslations = buildTranslations(translationEntries);
 
 type TranslationTree = Record<string, any>;
 type Translations = Record<Language, TranslationTree>;
@@ -25,18 +64,30 @@ const LanguageContext = createContext<LanguageContextType | undefined>(undefined
 export const LanguageProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const [language, setLanguage] = useState<Language>('en');
   const [translations, setTranslations] = useState<Translations>(
-    translationsData as Translations,
+    initialTranslations,
   );
 
   useEffect(() => {
-    fetch('/content/translations.json')
-      .then((res) => res.json())
-      .then((data) => {
-        setTranslations(data as Translations);
-      })
-      .catch((error) => {
+    const loadTranslations = async () => {
+      try {
+        const responses = await Promise.all(
+          translationEntries.map(async ([key]) => {
+            const res = await fetch(`/content/translations/${key}.json`);
+            if (!res.ok) {
+              throw new Error(`Failed to load ${key} translations`);
+            }
+            const data = (await res.json()) as TranslationModule;
+            return [key, data] as [string, TranslationModule];
+          }),
+        );
+
+        setTranslations(buildTranslations(responses));
+      } catch (error) {
         console.error('Failed to load translations', error);
-      });
+      }
+    };
+
+    void loadTranslations();
   }, []);
 
   const t = useCallback(<T = string>(key: string): T => {
