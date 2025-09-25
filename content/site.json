@@ -21,6 +21,9 @@
     "storyAlt": "Brand story",
     "sourcingAlt": "Sourcing argan oil"
   },
+  "clinics": {
+    "ctaLink": "https://kapunka.com/#/contact"
+  },
   "footer": {
     "legalName": "Kapunka Skincare",
     "socialLinks": [

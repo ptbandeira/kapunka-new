@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Helmet } from 'react-helmet-async';
 import { motion } from 'framer-motion';
 import { useLanguage } from '../contexts/LanguageContext';
+import { useSiteSettings } from '../contexts/SiteSettingsContext';
 import PartnerCarousel from '../components/PartnerCarousel';
 import type { Doctor } from '../types';
 
@@ -106,10 +107,15 @@ const isKeywordSection = (value: unknown): value is ClinicKeywordSection => {
 
 const ForClinics: React.FC = () => {
   const { t, language } = useLanguage();
+  const {
+    settings: { clinics },
+  } = useSiteSettings();
   const [doctors, setDoctors] = useState<Doctor[]>([]);
 
   const clinicsFieldPath = `translations.${language}.clinics`;
   const commonFieldPath = `translations.${language}.common`;
+
+  const clinicsCtaLink = clinics?.ctaLink ?? '#/contact';
 
   const protocolSection = t<unknown>('clinics.protocolSection');
   const referencesSection = t<unknown>('clinics.referencesSection');
@@ -505,7 +511,7 @@ const ForClinics: React.FC = () => {
             {t('clinics.ctaSubtitle')}
           </p>
           <a
-            href="#/contact"
+            href={clinicsCtaLink}
             className="px-8 py-3 bg-stone-900 text-white font-semibold rounded-md hover:bg-stone-700 transition-colors"
           >
             <span data-nlv-field-path={`${clinicsFieldPath}.ctaButton`}>
