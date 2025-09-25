@@ -151,6 +151,12 @@ export interface SiteSettings {
         phone: string;
         whatsapp: string;
     };
+    about?: {
+        storyImage?: string;
+        sourcingImage?: string;
+        storyAlt?: string;
+        sourcingAlt?: string;
+    };
     footer?: {
         legalName?: string;
         socialLinks?: SocialLink[];

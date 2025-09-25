@@ -2,10 +2,18 @@ import React from 'react';
 import { Helmet } from 'react-helmet-async';
 import { motion } from 'framer-motion';
 import { useLanguage } from '../contexts/LanguageContext';
+import { useSiteSettings } from '../contexts/SiteSettingsContext';
 
 const About: React.FC = () => {
     const { t, language } = useLanguage();
+    const { settings } = useSiteSettings();
     const aboutFieldPath = `translations.${language}.about`;
+    const defaultStoryImage = 'https://images.unsplash.com/photo-1598555769781-8714b14a293f?q=80&w=1974&auto=format&fit=crop';
+    const defaultSourcingImage = 'https://images.unsplash.com/photo-1616893904984-7a57a3b35338?q=80&w=1964&auto=format&fit=crop';
+    const storyImage = settings.about?.storyImage || defaultStoryImage;
+    const sourcingImage = settings.about?.sourcingImage || defaultSourcingImage;
+    const storyAlt = settings.about?.storyAlt || 'Brand story';
+    const sourcingAlt = settings.about?.sourcingAlt || t('about.sourcingImageAlt');
   return (
     <div>
         <Helmet>
@@ -66,9 +74,10 @@ const About: React.FC = () => {
                 transition={{ duration: 0.6 }}
             >
               <img
-                src="https://images.unsplash.com/photo-1598555769781-8714b14a293f?q=80&w=1974&auto=format&fit=crop"
-                alt="Brand story"
+                src={storyImage}
+                alt={storyAlt}
                 className="rounded-lg shadow-lg"
+                data-nlv-field-path="site.about.storyImage"
               />
             </motion.div>
           </div>
@@ -104,10 +113,10 @@ const About: React.FC = () => {
                 className="md:order-1"
             >
               <img
-                src="https://images.unsplash.com/photo-1616893904984-7a57a3b35338?q=80&w=1964&auto=format&fit=crop"
-                alt={t('about.sourcingImageAlt')}
+                src={sourcingImage}
+                alt={sourcingAlt}
                 className="rounded-lg shadow-lg"
-                data-nlv-field-path={`${aboutFieldPath}.sourcingImageAlt`}
+                data-nlv-field-path="site.about.sourcingImage"
               />
             </motion.div>
           </div>
