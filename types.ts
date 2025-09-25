@@ -12,6 +12,13 @@ export type TranslatableArray = {
   es: string[];
 };
 
+export type LocalizedText = string | Partial<Record<Language, string>>;
+
+export interface SeoSettings {
+    defaultTitle?: LocalizedText;
+    defaultDescription?: LocalizedText;
+}
+
 export interface ProductSize {
   id: string;
   size: number;
@@ -164,4 +171,5 @@ export interface SiteSettings {
         legalName?: string;
         socialLinks?: SocialLink[];
     };
+    seo?: SeoSettings;
 }

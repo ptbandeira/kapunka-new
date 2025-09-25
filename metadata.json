@@ -292,6 +292,57 @@
               }
             }
           ]
+        },
+        {
+          "name": "seo",
+          "label": "SEO",
+          "type": "object",
+          "fields": [
+            {
+              "name": "defaultTitle",
+              "label": "Default Title",
+              "type": "object",
+              "fields": [
+                {
+                  "name": "en",
+                  "label": "English",
+                  "type": "string"
+                },
+                {
+                  "name": "pt",
+                  "label": "Portuguese",
+                  "type": "string"
+                },
+                {
+                  "name": "es",
+                  "label": "Spanish",
+                  "type": "string"
+                }
+              ]
+            },
+            {
+              "name": "defaultDescription",
+              "label": "Default Description",
+              "type": "object",
+              "fields": [
+                {
+                  "name": "en",
+                  "label": "English",
+                  "type": "text"
+                },
+                {
+                  "name": "pt",
+                  "label": "Portuguese",
+                  "type": "text"
+                },
+                {
+                  "name": "es",
+                  "label": "Spanish",
+                  "type": "text"
+                }
+              ]
+            }
+          ]
         }
       ]
     },
