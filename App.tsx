@@ -7,6 +7,9 @@ import Header from './components/Header';
 import Footer from './components/Footer';
 import MiniCart from './components/MiniCart';
 import CookieConsent from './components/CookieConsent';
+import { useSiteSettings } from './contexts/SiteSettingsContext';
+import { useLanguage } from './contexts/LanguageContext';
+import type { Language, LocalizedText } from './types';
 
 import Home from './pages/Home';
 import Shop from './pages/Shop';
@@ -45,6 +48,38 @@ const pageTransition = {
   duration: 0.7,
 } as const;
 
+const FALLBACK_TITLE = 'Kapunka Skincare';
+const FALLBACK_DESCRIPTION =
+  'Premium skincare for a healthy skin barrier. Clean, minimal, and elegant products.';
+
+const languageFallbackOrder: Language[] = ['en', 'pt', 'es'];
+
+const getLocalizedValue = (
+  value: LocalizedText | undefined,
+  language: Language,
+): string | undefined => {
+  if (!value) {
+    return undefined;
+  }
+
+  if (typeof value === 'string') {
+    const trimmed = value.trim();
+    return trimmed.length > 0 ? trimmed : undefined;
+  }
+
+  const candidates: Language[] = [language, ...languageFallbackOrder.filter((lang) => lang !== language)];
+  for (const lang of candidates) {
+    const localized = value[lang];
+    if (localized) {
+      const trimmed = localized.trim();
+      if (trimmed.length > 0) {
+        return trimmed;
+      }
+    }
+  }
+
+  return undefined;
+};
 
 const PageWrapper: React.FC<{ children: React.ReactNode; pageKey: string; }> = ({ children, pageKey }) => (
   <motion.div
@@ -83,13 +118,19 @@ const AnimatedRoutes: React.FC = () => {
 };
 
 const App: React.FC = () => {
+  const { settings } = useSiteSettings();
+  const { language } = useLanguage();
+  const defaultTitle = getLocalizedValue(settings.seo?.defaultTitle, language) ?? FALLBACK_TITLE;
+  const defaultDescription =
+    getLocalizedValue(settings.seo?.defaultDescription, language) ?? FALLBACK_DESCRIPTION;
+
   return (
     <HelmetProvider>
       <HashRouter>
         <div className="bg-stone-50 text-stone-800 min-h-screen flex flex-col">
           <Helmet>
-            <title>Kapunka Skincare</title>
-            <meta name="description" content="Premium skincare for a healthy skin barrier. Clean, minimal, and elegant products." />
+            <title>{defaultTitle}</title>
+            <meta name="description" content={defaultDescription} />
           </Helmet>
           <Header />
           <main className="flex-grow pt-[72px]">

@@ -41,5 +41,17 @@
       }
     ]
   },
+  "seo": {
+    "defaultTitle": {
+      "en": "Kapunka Skincare",
+      "pt": "Kapunka Skincare",
+      "es": "Kapunka Skincare"
+    },
+    "defaultDescription": {
+      "en": "Premium skincare for a healthy skin barrier. Clean, minimal, and elegant products.",
+      "pt": "Premium skincare for a healthy skin barrier. Clean, minimal, and elegant products.",
+      "es": "Premium skincare for a healthy skin barrier. Clean, minimal, and elegant products."
+    }
+  },
   "type": "site"
 }
