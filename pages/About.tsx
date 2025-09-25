@@ -56,11 +56,11 @@ const About: React.FC = () => {
     const sourcingImage = settings.about?.sourcingImage || defaultSourcingImage;
     const storyAlt = settings.about?.storyAlt || 'Brand story';
     const sourcingAlt = settings.about?.sourcingAlt || t('about.sourcingImageAlt');
-    const [storySections, setStorySections] = useState<PageSection[]>([]);
+    const [storyContent, setStoryContent] = useState<PageContent | null>(null);
 
     useEffect(() => {
         let isMounted = true;
-        setStorySections([]);
+        setStoryContent(null);
 
         const loadStorySections = async () => {
             const localesToTry = [language, 'en'].filter((locale, index, arr) => arr.indexOf(locale) === index);
@@ -78,7 +78,7 @@ const About: React.FC = () => {
                     }
 
                     if (isPageContent(data)) {
-                        setStorySections(data.sections);
+                        setStoryContent(data);
                         return;
                     }
                 } catch (error) {
@@ -89,7 +89,7 @@ const About: React.FC = () => {
             }
 
             if (isMounted) {
-                setStorySections([]);
+                setStoryContent(null);
             }
         };
 
@@ -101,11 +101,14 @@ const About: React.FC = () => {
     }, [language]);
 
     const timelineFieldPath = `pages.story_${language}.sections`;
+    const storySections = storyContent?.sections ?? [];
+    const computedTitle = storyContent?.metaTitle ?? `${t('about.title')} | Kapunka Skincare`;
+    const computedDescription = storyContent?.metaDescription ?? t('about.metaDescription');
   return (
     <div>
         <Helmet>
-            <title>{t('about.title')} | Kapunka Skincare</title>
-            <meta name="description" content={t('about.metaDescription')} />
+            <title>{computedTitle}</title>
+            <meta name="description" content={computedDescription} />
         </Helmet>
       <header className="py-20 sm:py-32 bg-stone-100 text-center">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">

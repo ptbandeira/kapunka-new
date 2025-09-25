@@ -63,11 +63,11 @@ const isPageContent = (value: unknown): value is PageContent => {
 
 const Videos: React.FC = () => {
   const { t, language } = useLanguage();
-  const [sections, setSections] = useState<PageSection[]>([]);
+  const [pageContent, setPageContent] = useState<PageContent | null>(null);
 
   useEffect(() => {
     let isMounted = true;
-    setSections([]);
+    setPageContent(null);
 
     const loadSections = async () => {
       const localesToTry = [language, 'en'].filter((locale, index, arr) => arr.indexOf(locale) === index);
@@ -85,7 +85,7 @@ const Videos: React.FC = () => {
           }
 
           if (isPageContent(data)) {
-            setSections(data.sections);
+            setPageContent(data);
             return;
           }
         } catch (error) {
@@ -96,7 +96,7 @@ const Videos: React.FC = () => {
       }
 
       if (isMounted) {
-        setSections([]);
+        setPageContent(null);
       }
     };
 
@@ -107,13 +107,16 @@ const Videos: React.FC = () => {
     };
   }, [language]);
 
+  const sections = pageContent?.sections ?? [];
   const sectionsFieldPath = `pages.videos_${language}.sections`;
+  const computedTitle = pageContent?.metaTitle ?? `${t('videos.metaTitle')} | Kapunka Skincare`;
+  const computedDescription = pageContent?.metaDescription ?? t('videos.metaDescription');
 
   return (
     <div>
       <Helmet>
-        <title>{`${t('videos.metaTitle')} | Kapunka Skincare`}</title>
-        <meta name="description" content={t('videos.metaDescription')} />
+        <title>{computedTitle}</title>
+        <meta name="description" content={computedDescription} />
       </Helmet>
 
       <header className="py-20 sm:py-28 bg-stone-100">

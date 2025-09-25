@@ -1,8 +1,9 @@
 import React, { useEffect, useMemo, useState } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { Helmet } from 'react-helmet-async';
+import ReactMarkdown from 'react-markdown';
 import { useLanguage } from '../contexts/LanguageContext';
-import type { Policy } from '../types';
+import type { Policy, PolicySection } from '../types';
 
 const PolicyPage: React.FC = () => {
     const { type } = useParams<{ type: string }>();
@@ -44,14 +45,26 @@ const PolicyPage: React.FC = () => {
     }
 
     const title = translate(policy.title);
-    const content = translate(policy.content);
+    const introContent = policy.content ? translate(policy.content) : null;
+    const sections = (policy.sections ?? []).filter((section): section is PolicySection => Boolean(section));
 
     const policyFieldPath = policyIndex >= 0 ? `policies.items.${policyIndex}` : undefined;
+
+    const metaTitle = policy.metaTitle ? (translate(policy.metaTitle) as string) : undefined;
+    const metaDescription = policy.metaDescription ? (translate(policy.metaDescription) as string) : undefined;
+    const fallbackDescription = typeof introContent === 'string'
+        ? introContent
+        : Array.isArray(introContent)
+            ? introContent.join(' ')
+            : undefined;
+    const helmetTitle = metaTitle || `${title} | Kapunka Skincare`;
+    const helmetDescription = metaDescription || fallbackDescription;
 
     return (
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-4xl py-12 sm:py-16" data-nlv-field-path={policyFieldPath}>
             <Helmet>
-                <title>{title} | Kapunka Skincare</title>
+                <title>{helmetTitle}</title>
+                {helmetDescription && <meta name="description" content={helmetDescription} />}
             </Helmet>
             <header className="mb-12">
                 <h1
@@ -61,19 +74,27 @@ const PolicyPage: React.FC = () => {
                     {title}
                 </h1>
             </header>
-            <div className="prose prose-stone lg:prose-lg max-w-none text-stone-700 leading-relaxed space-y-4">
-                {typeof content === 'string' ? (
-                    <p data-nlv-field-path={policyFieldPath ? `${policyFieldPath}.content.${language}` : undefined}>{content}</p>
-                ) : Array.isArray(content) ? (
-                    content.map((paragraph: string, index: number) => (
-                        <p
-                            key={index}
-                            data-nlv-field-path={policyFieldPath ? `${policyFieldPath}.content.${language}.${index}` : undefined}
-                        >
-                            {paragraph}
-                        </p>
-                    ))
-                ) : null}
+            <div className="prose prose-stone lg:prose-lg max-w-none text-stone-700 leading-relaxed space-y-8">
+                {typeof introContent === 'string' && introContent.trim().length > 0 && (
+                    <ReactMarkdown data-nlv-field-path={policyFieldPath ? `${policyFieldPath}.content.${language}` : undefined}>
+                        {introContent}
+                    </ReactMarkdown>
+                )}
+                {sections.map((section, index) => {
+                    const translatedHeading = translate(section.title) as string;
+                    const translatedBody = translate(section.body) as string;
+                    const sectionFieldPath = policyFieldPath ? `${policyFieldPath}.sections.${index}` : undefined;
+                    return (
+                        <div key={section.id || index} className="space-y-3" data-nlv-field-path={sectionFieldPath}>
+                            <h2 className="text-2xl font-semibold text-stone-900" data-nlv-field-path={sectionFieldPath ? `${sectionFieldPath}.title.${language}` : undefined}>
+                                {translatedHeading}
+                            </h2>
+                            <ReactMarkdown className="leading-relaxed" data-nlv-field-path={sectionFieldPath ? `${sectionFieldPath}.body.${language}` : undefined}>
+                                {translatedBody}
+                            </ReactMarkdown>
+                        </div>
+                    );
+                })}
                 <p data-nlv-field-path={`translations.${language}.policy.contactPrompt`}>
                     {t('policy.contactPrompt')}
                 </p>

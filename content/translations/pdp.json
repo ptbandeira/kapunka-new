@@ -7,7 +7,11 @@
       "benefits": "Benefits",
       "howToUse": "How to Use",
       "ingredients": "Ingredients",
-      "labTested": "Origin & Purity"
+      "labTested": "Origin & Purity",
+      "originStory": "Origin story",
+      "scientificEvidence": "Research & clinical notes",
+      "multiUseTips": "Multi-use tips",
+      "faqs": "FAQs"
     },
     "bundleIncludes": "Bundle includes",
     "relatedProducts": "You Might Also Like",
@@ -35,7 +39,11 @@
       "benefits": "Benefícios",
       "howToUse": "Como Usar",
       "ingredients": "Ingredientes",
-      "labTested": "Origem e Pureza"
+      "labTested": "Origem e Pureza",
+      "originStory": "História da origem",
+      "scientificEvidence": "Pesquisa e notas clínicas",
+      "multiUseTips": "Dicas multiuso",
+      "faqs": "Perguntas frequentes"
     },
     "bundleIncludes": "O conjunto inclui",
     "relatedProducts": "Você Também Pode Gostar",
@@ -63,7 +71,11 @@
       "benefits": "Beneficios",
       "howToUse": "Modo de Uso",
       "ingredients": "Ingredientes",
-      "labTested": "Origen y Pureza"
+      "labTested": "Origen y Pureza",
+      "originStory": "Historia de origen",
+      "scientificEvidence": "Investigación y notas clínicas",
+      "multiUseTips": "Consejos multiuso",
+      "faqs": "Preguntas frecuentes"
     },
     "bundleIncludes": "El pack incluye",
     "relatedProducts": "También te podría gustar",

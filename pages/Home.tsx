@@ -325,11 +325,11 @@ const Home: React.FC = () => {
   const { t, language } = useLanguage();
   const { settings } = useSiteSettings();
   const heroImage = settings.home?.heroImage ?? '/content/uploads/hero-abstract.jpg';
-  const [homeSections, setHomeSections] = useState<PageSection[]>([]);
+  const [pageContent, setPageContent] = useState<PageContent | null>(null);
 
   useEffect(() => {
     let isMounted = true;
-    setHomeSections([]);
+    setPageContent(null);
 
     const loadSections = async () => {
       const localesToTry = [language, 'en'].filter((locale, index, arr) => arr.indexOf(locale) === index);
@@ -348,7 +348,7 @@ const Home: React.FC = () => {
           }
 
           if (isPageContent(data)) {
-            setHomeSections(data.sections);
+            setPageContent(data);
             return;
           }
         } catch (error) {
@@ -359,7 +359,7 @@ const Home: React.FC = () => {
       }
 
       if (isMounted) {
-        setHomeSections([]);
+        setPageContent(null);
       }
     };
 
@@ -370,13 +370,16 @@ const Home: React.FC = () => {
     };
   }, [language]);
 
+  const homeSections = pageContent?.sections ?? [];
   const homeSectionsFieldPath = `pages.home_${language}.sections`;
+  const computedTitle = pageContent?.metaTitle ?? `Kapunka Skincare | ${t('home.metaTitle')}`;
+  const computedDescription = pageContent?.metaDescription ?? t('home.metaDescription');
 
   return (
     <div>
         <Helmet>
-            <title>Kapunka Skincare | {t('home.metaTitle')}</title>
-            <meta name="description" content={t('home.metaDescription')} />
+            <title>{computedTitle}</title>
+            <meta name="description" content={computedDescription} />
         </Helmet>
       <div className="relative h-screen bg-cover bg-center" style={{ backgroundImage: `url('${heroImage}')` }} data-nlv-field-path="site.home.heroImage">
         <div className="absolute inset-0 bg-stone-50/30"></div>
