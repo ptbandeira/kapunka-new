@@ -144,6 +144,7 @@ export interface SiteSettings {
     };
     home?: {
         heroImage: string;
+        featuredProductIds?: string[];
     };
     contact?: {
         email: string;

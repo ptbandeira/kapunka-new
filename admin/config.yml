@@ -26,6 +26,20 @@ collections:
             widget: object
             fields:
               - { label: Hero Image, name: heroImage, widget: image, choose_url: true }
+              - label: Featured Bestsellers
+                name: featuredProductIds
+                widget: relation
+                collection: products
+                file: catalog
+                search_fields:
+                  - items.*.name.en
+                  - items.*.name.pt
+                  - items.*.name.es
+                display_fields:
+                  - items.*.name.en
+                value_field: items.*.id
+                multiple: true
+                required: false
           - label: Contact
             name: contact
             widget: object
