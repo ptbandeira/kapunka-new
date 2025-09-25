@@ -24,6 +24,10 @@
   "clinics": {
     "ctaLink": "https://kapunka.com/#/contact"
   },
+  "featureFlags": {
+    "videos": false,
+    "training": false
+  },
   "footer": {
     "legalName": "Kapunka Skincare",
     "socialLinks": [

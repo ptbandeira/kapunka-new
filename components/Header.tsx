@@ -80,14 +80,22 @@ const Header: React.FC = () => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
+  const featureFlags = settings.featureFlags ?? {};
+
   const navLinks = [
     { to: '/shop', label: t('nav.shop'), fieldPath: `translations.${language}.nav.shop` },
     { to: '/learn', label: t('nav.learn'), fieldPath: `translations.${language}.nav.learn` },
+    featureFlags.videos
+      ? { to: '/videos', label: t('nav.videos'), fieldPath: `translations.${language}.nav.videos` }
+      : null,
+    featureFlags.training
+      ? { to: '/training', label: t('nav.training'), fieldPath: `translations.${language}.nav.training` }
+      : null,
     { to: '/method', label: t('nav.method'), fieldPath: `translations.${language}.nav.method` },
     { to: '/for-clinics', label: t('nav.forClinics'), fieldPath: `translations.${language}.nav.forClinics` },
     { to: '/about', label: t('nav.about'), fieldPath: `translations.${language}.nav.about` },
     { to: '/contact', label: t('nav.contact'), fieldPath: `translations.${language}.nav.contact` },
-  ];
+  ].filter((link): link is { to: string; label: string; fieldPath: string } => link !== null);
 
   return (
     <>

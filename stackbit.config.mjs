@@ -33,6 +33,16 @@ const pageModels = [
     urlPath: '/learn/{slug}',
   },
   {
+    name: 'videos',
+    type: 'page',
+    urlPath: '/videos',
+  },
+  {
+    name: 'training',
+    type: 'page',
+    urlPath: '/training',
+  },
+  {
     name: 'policies',
     type: 'page',
     urlPath: '/policy/{id}',

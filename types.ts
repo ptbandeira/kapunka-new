@@ -172,6 +172,10 @@ export interface SiteSettings {
         socialLinks?: SocialLink[];
     };
     seo?: SeoSettings;
+    featureFlags?: {
+        videos?: boolean;
+        training?: boolean;
+    };
 }
 
 export interface TimelineEntry {
@@ -205,12 +209,49 @@ export interface ImageGridSectionContent {
   items: ImageGridItem[];
 }
 
+export interface VideoEntry {
+  title?: string;
+  description?: string;
+  videoUrl?: string;
+  thumbnail?: string;
+}
+
+export interface VideoGallerySectionContent {
+  type: 'videoGallery';
+  title?: string;
+  description?: string;
+  entries?: VideoEntry[];
+}
+
+export interface TrainingEntry {
+  courseTitle?: string;
+  courseSummary?: string;
+  linkUrl?: string;
+}
+
+export interface TrainingListSectionContent {
+  type: 'trainingList';
+  title?: string;
+  description?: string;
+  entries?: TrainingEntry[];
+}
+
 export type PageSection =
   | TimelineSectionContent
   | ImageTextHalfSectionContent
-  | ImageGridSectionContent;
+  | ImageGridSectionContent
+  | VideoGallerySectionContent
+  | TrainingListSectionContent;
 
 export interface PageContent {
   sections: PageSection[];
   type?: string;
+}
+
+export interface VideoLibraryContent {
+  videos?: VideoEntry[];
+}
+
+export interface TrainingCatalogContent {
+  trainings?: TrainingEntry[];
 }
