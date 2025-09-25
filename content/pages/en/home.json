@@ -1,0 +1,35 @@
+{
+  "sections": [
+    {
+      "type": "imageTextHalf",
+      "title": "Trusted by dermatology clinics",
+      "text": "Single-origin argan and minimalist routines used in post-procedure care. Packs and guidance available.",
+      "image": ""
+    },
+    {
+      "type": "imageGrid",
+      "items": [
+        {
+          "image": "",
+          "title": "Single-origin, cold-pressed",
+          "subtitle": "Traceable Moroccan cooperatives"
+        },
+        {
+          "image": "",
+          "title": "Barrier-first formulas",
+          "subtitle": "Comfortable textures, no heavy residue"
+        },
+        {
+          "image": "",
+          "title": "Sensitive-skin friendly",
+          "subtitle": "Fragrance-free options available"
+        },
+        {
+          "image": "",
+          "title": "Clinic-tested use",
+          "subtitle": "Chosen for post-procedure routines"
+        }
+      ]
+    }
+  ]
+}

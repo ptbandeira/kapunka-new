@@ -1,5 +1,7 @@
 import React from 'react';
 import TimelineSection from './TimelineSection';
+import ImageTextHalf from './sections/ImageTextHalf';
+import ImageGrid from './sections/ImageGrid';
 import type { PageSection } from '../types';
 
 interface SectionRendererProps {
@@ -15,18 +17,39 @@ const SectionRenderer: React.FC<SectionRendererProps> = ({ sections, fieldPath }
   return (
     <>
       {sections.map((section, index) => {
-        if (section.type === 'timeline') {
-          return (
-            <TimelineSection
-              key={`timeline-${index}`}
-              title={section.title}
-              entries={section.entries}
-              fieldPath={fieldPath ? `${fieldPath}.${index}` : undefined}
-            />
-          );
-        }
+        const sectionFieldPath = fieldPath ? `${fieldPath}.${index}` : undefined;
 
-        return null;
+        switch (section.type) {
+          case 'timeline':
+            return (
+              <TimelineSection
+                key={`timeline-${index}`}
+                title={section.title}
+                entries={section.entries}
+                fieldPath={sectionFieldPath}
+              />
+            );
+          case 'imageTextHalf':
+            return (
+              <ImageTextHalf
+                key={`image-text-half-${index}`}
+                image={section.image}
+                title={section.title}
+                text={section.text}
+                fieldPath={sectionFieldPath}
+              />
+            );
+          case 'imageGrid':
+            return (
+              <ImageGrid
+                key={`image-grid-${index}`}
+                items={section.items}
+                fieldPath={sectionFieldPath}
+              />
+            );
+          default:
+            return null;
+        }
       })}
     </>
   );

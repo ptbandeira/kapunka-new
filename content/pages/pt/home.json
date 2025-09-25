@@ -1,0 +1,35 @@
+{
+  "sections": [
+    {
+      "type": "imageTextHalf",
+      "title": "A confiança de clínicas de dermatologia",
+      "text": "Argan de origem única e rotinas minimalistas usadas em pós-procedimento. Packs e guia disponíveis.",
+      "image": ""
+    },
+    {
+      "type": "imageGrid",
+      "items": [
+        {
+          "image": "",
+          "title": "Origem única, prensado a frio",
+          "subtitle": "Cooperativas marroquinas com rastreabilidade"
+        },
+        {
+          "image": "",
+          "title": "Foco na barreira cutânea",
+          "subtitle": "Texturas confortáveis, sem peso"
+        },
+        {
+          "image": "",
+          "title": "Adequado a pele sensível",
+          "subtitle": "Opções sem fragrância"
+        },
+        {
+          "image": "",
+          "title": "Uso em clínicas",
+          "subtitle": "Escolhido para rotinas pós-procedimento"
+        }
+      ]
+    }
+  ]
+}

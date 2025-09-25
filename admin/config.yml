@@ -106,6 +106,87 @@ collections:
   - name: pages
     label: Pages
     files:
+      - name: home_en
+        label: Home Page (English)
+        file: content/pages/en/home.json
+        format: json
+        fields:
+          - label: Sections
+            name: sections
+            widget: list
+            types:
+              - label: Image + Text (Half)
+                name: imageTextHalf
+                widget: object
+                fields:
+                  - { label: Image, name: image, widget: image, choose_url: true, required: false }
+                  - { label: Title, name: title, widget: string, required: false }
+                  - { label: Text, name: text, widget: markdown, required: false }
+              - label: Image Grid
+                name: imageGrid
+                widget: object
+                fields:
+                  - label: Items
+                    name: items
+                    widget: list
+                    fields:
+                      - { label: Image, name: image, widget: image, choose_url: true, required: false }
+                      - { label: Title, name: title, widget: string, required: false }
+                      - { label: Subtitle, name: subtitle, widget: string, required: false }
+      - name: home_pt
+        label: Home Page (Portuguese)
+        file: content/pages/pt/home.json
+        format: json
+        fields:
+          - label: Sections
+            name: sections
+            widget: list
+            types:
+              - label: Image + Text (Half)
+                name: imageTextHalf
+                widget: object
+                fields:
+                  - { label: Image, name: image, widget: image, choose_url: true, required: false }
+                  - { label: Title, name: title, widget: string, required: false }
+                  - { label: Text, name: text, widget: markdown, required: false }
+              - label: Image Grid
+                name: imageGrid
+                widget: object
+                fields:
+                  - label: Items
+                    name: items
+                    widget: list
+                    fields:
+                      - { label: Image, name: image, widget: image, choose_url: true, required: false }
+                      - { label: Title, name: title, widget: string, required: false }
+                      - { label: Subtitle, name: subtitle, widget: string, required: false }
+      - name: home_es
+        label: Home Page (Spanish)
+        file: content/pages/es/home.json
+        format: json
+        fields:
+          - label: Sections
+            name: sections
+            widget: list
+            types:
+              - label: Image + Text (Half)
+                name: imageTextHalf
+                widget: object
+                fields:
+                  - { label: Image, name: image, widget: image, choose_url: true, required: false }
+                  - { label: Title, name: title, widget: string, required: false }
+                  - { label: Text, name: text, widget: markdown, required: false }
+              - label: Image Grid
+                name: imageGrid
+                widget: object
+                fields:
+                  - label: Items
+                    name: items
+                    widget: list
+                    fields:
+                      - { label: Image, name: image, widget: image, choose_url: true, required: false }
+                      - { label: Title, name: title, widget: string, required: false }
+                      - { label: Subtitle, name: subtitle, widget: string, required: false }
       - name: story_en
         label: Story Page (English)
         file: content/pages/en/story.json
