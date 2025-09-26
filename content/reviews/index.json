@@ -3,9 +3,9 @@
     {
       "id": "1",
       "text": {
-        "en": "This serum is a game changer. My skin has never felt so calm and looked so even. I use it after my laser treatments and the difference is incredible.",
-        "pt": "Este sérum mudou o jogo. Minha pele nunca esteve tão calma e com um tom tão uniforme. Eu uso após meus tratamentos a laser e a diferença é incrível.",
-        "es": "Este sérum es un antes y un después. Mi piel nunca se ha sentido tan calmada ni se ha visto tan uniforme. Lo uso después de mis tratamientos con láser y la diferencia es increíble."
+        "en": "After laser treatments, I recommend Kapunka’s pure argan for faster barrier repair. My patients notice less tightness and redness.",
+        "pt": "Após tratamentos a laser, recomendo o argan puro da Kapunka para uma reparação mais rápida da barreira. Minhas pacientes percebem menos repuxamento e vermelhidão.",
+        "es": "Después de tratamientos con láser, recomiendo el argán puro de Kapunka para una reparación más rápida de la barrera. Mis pacientes notan menos tirantez y enrojecimiento."
       },
       "author": {
         "en": "Dr. Isabella Rossi",
@@ -21,9 +21,9 @@
     {
       "id": "2",
       "text": {
-        "en": "Finally, a cleanser that doesn't leave my dry skin feeling tight. It's so gentle but removes all my makeup. I recommend it to all my clients.",
-        "pt": "Finalmente, um limpador que não deixa minha pele seca repuxando. É tão suave, mas remove toda a minha maquiagem. Recomendo a todos os meus clientes.",
-        "es": "Por fin, un limpiador que no deja mi piel seca con sensación de tirantez. Es muy suave pero elimina todo mi maquillaje. Se lo recomiendo a todos mis clientes."
+        "en": "Finally, a cleanser that respects sensitive skin while effectively removing makeup.",
+        "pt": "Finalmente, um limpador que respeita a pele sensível enquanto remove a maquiagem de forma eficaz.",
+        "es": "Por fin, un limpiador que respeta la piel sensible y elimina el maquillaje de forma eficaz."
       },
       "author": {
         "en": "Chloe Davis",
@@ -34,24 +34,6 @@
         "en": "Esthetician",
         "pt": "Esteticista",
         "es": "Esteticista"
-      }
-    },
-    {
-      "id": "3",
-      "text": {
-        "en": "The Recovery Cream saved my skin barrier after I over-exfoliated. It's rich without being greasy and feels incredibly soothing.",
-        "pt": "O Creme de Recuperação salvou a barreira da minha pele depois que eu exagerei na esfoliação. É rico sem ser oleoso e tem uma sensação incrivelmente calmante.",
-        "es": "La Crema de Recuperación salvó mi barrera cutánea después de una exfoliación excesiva. Es rica sin ser grasa y se siente increíblemente calmante."
-      },
-      "author": {
-        "en": "Liam Chen",
-        "pt": "Liam Chen",
-        "es": "Liam Chen"
-      },
-      "role": {
-        "en": "Skincare Enthusiast",
-        "pt": "Entusiasta de Skincare",
-        "es": "Entusiasta del Cuidado de la Piel"
       }
     }
   ],

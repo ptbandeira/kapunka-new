@@ -1,11 +1,11 @@
 {
-  "metaTitle": "Kapunka Skincare – Rituais de argan em nível dermatológico",
-  "metaDescription": "Descubra tratamentos de argan de origem única, rotinas testadas em clínica e acessórios reutilizáveis para fortalecer a barreira cutânea.",
+  "metaTitle": "Kapunka Skincare — Óleos de argan marroquinos confiáveis para pele sensível e pós-tratamento",
+  "metaDescription": "Descubra óleos de argan marroquinos puros, águas florais e tratamentos tradicionais otimizados para pele sensível e pós-procedimento. Confiado clinicamente, com origem sustentável.",
   "sections": [
     {
       "type": "imageTextHalf",
-      "title": "A confiança de clínicas de dermatologia",
-      "text": "Argan de origem única e rotinas minimalistas usadas em pós-procedimento. Packs e guia disponíveis.",
+      "title": "Confiado por dermatologistas e clínicas estéticas",
+      "text": "As clínicas escolhem a Kapunka pela pureza e performance no cuidado pós-laser e pele sensível. Nossas rotinas minimalistas favorecem recuperação mais rápida, integridade da barreira e conforto duradouro.",
       "image": ""
     },
     {
@@ -13,23 +13,23 @@
       "items": [
         {
           "image": "",
-          "title": "Origem única, prensado a frio",
-          "subtitle": "Cooperativas marroquinas com rastreabilidade"
+          "title": "Origem com tradição",
+          "subtitle": "Argan de origem única, rastreável a cooperativas marroquinas."
         },
         {
           "image": "",
-          "title": "Foco na barreira cutânea",
-          "subtitle": "Texturas confortáveis, sem peso"
+          "title": "Ciência focada na barreira",
+          "subtitle": "Formulado para fortalecer e acalmar sem peso."
         },
         {
           "image": "",
-          "title": "Adequado a pele sensível",
-          "subtitle": "Opções sem fragrância"
+          "title": "Seguro para pele sensível",
+          "subtitle": "Opções sem fragrância, testadas dermatologicamente."
         },
         {
           "image": "",
-          "title": "Uso em clínicas",
-          "subtitle": "Escolhido para rotinas pós-procedimento"
+          "title": "Integrado à clínica",
+          "subtitle": "Adotado em protocolos estéticos no mundo todo."
         }
       ]
     }
