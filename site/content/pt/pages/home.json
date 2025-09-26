@@ -1,44 +1,44 @@
 {
-  "metaTitle": "Kapunka Skincare | Rituais de argan marroquino para clínicas e pele sensível",
-  "metaDescription": "A Kapunka formula óleos de argan, névoas e tratamentos de hammam marroquinos confiados por clínicas estéticas para recuperação pós-procedimento, reparo da barreira e rituais diários.",
+  "metaTitle": "Kapunka — Cuidado com argão para pele sensível e pós-procedimento",
+  "metaDescription": "Óleos de argão de origem única, águas florais e tratamentos tradicionais para pele sensível e pós-procedimento. Confiança clínica, origem com herança.",
   "meta": {
-    "metaTitle": "Kapunka Skincare | Rituais de argan marroquino para clínicas e pele sensível",
-    "metaDescription": "A Kapunka formula óleos de argan, névoas e tratamentos de hammam marroquinos confiados por clínicas estéticas para recuperação pós-procedimento, reparo da barreira e rituais diários."
+    "metaTitle": "Kapunka — Cuidado com argão para pele sensível e pós-procedimento",
+    "metaDescription": "Óleos de argão de origem única, águas florais e tratamentos tradicionais para pele sensível e pós-procedimento. Confiança clínica, origem com herança."
   },
-  "heroHeadline": "Rituais de argan marroquino de padrão clínico para pele sensível e em recuperação",
-  "heroSubheadline": "Dos óleos de argan de origem única às névoas dérmicas e clássicos do hammam, a Kapunka une herança marroquina e expertise estética para manter a pele pós-procedimento calma, nutrida e resiliente.",
-  "heroPrimaryCta": "Comprar rituais de argan",
-  "heroSecondaryCta": "Parceria para clínicas",
+  "heroHeadline": "Cuidado com argão, enraizado em Marrocos, confiado em clínicas",
+  "heroSubheadline": "Óleos de argão de origem única e blends para pele sensível, pós-procedimento e uso diário. Leves, não comedogénicos, feitos para conforto da barreira.",
+  "heroPrimaryCta": "Ver best-sellers",
+  "heroSecondaryCta": "Para Clínicas",
   "heroOverlay": "rgba(0,0,0,0.48)",
   "heroImageLeft": "",
   "heroImageRight": "",
   "heroLayoutHint": "image-right",
   "clinicsBlock": {
-    "clinicsTitle": "Preferido por dermatologistas, medspas e clínicas holísticas",
-    "clinicsBody": "Nossos tratamentos se encaixam em protocolos de peeling, laser e microagulhamento com absorção rápida, envase estéril e tolerância comprovada. Treinamentos dedicados e suporte em atacado mantêm as equipes confiantes.",
-    "clinicsCtaLabel": "Conheça o suporte para clínicas",
-    "clinicsCtaHref": "#/for-clinics",
+    "clinicsTitle": "Confiado por dermatologistas e clínicas estéticas",
+    "clinicsBody": "As clínicas escolhem Kapunka pela pureza e desempenho no pós-laser e no cuidado de peles sensíveis. Nossas rutinas minimalistas favorecem conforto, integridade da barreira e calma visível.",
+    "clinicsCtaLabel": "Torne-se parceiro",
+    "clinicsCtaHref": "/for-clinics",
     "clinicsImage": ""
   },
   "valueProps": [
     {
-      "title": "Origem marroquina rastreável",
-      "subtitle": "Sementes de argan colhidas à mão e prensadas em até 24 horas para preservar o perfil de ômegas."
+      "title": "Origem com rastreabilidade",
+      "subtitle": "Argão de origem única, cooperativas marroquinas."
     },
     {
-      "title": "Seguro pós-tratamento",
-      "subtitle": "Fórmulas avaliadas por dermatologistas e envasadas em instalações GMP para máxima pureza."
+      "title": "Ciência focada na barreira",
+      "subtitle": "Fortalece e acalma sem peso."
     },
     {
-      "title": "Rituais multifuncionais",
-      "subtitle": "Um único óleo para reparar a barreira, aliviar o couro cabeludo e iluminar o corpo sem resíduos."
+      "title": "Seguro para pele sensível",
+      "subtitle": "Opções sem fragrância, testadas por dermatologia."
     },
     {
-      "title": "Impacto sustentável",
-      "subtitle": "Parceria com cooperativas de Essaouira lideradas por mulheres que sustentam a agricultura local."
+      "title": "Integração clínica",
+      "subtitle": "Usado em protocolos estéticos."
     }
   ],
-  "bestsellersIntro": "Conheça o ritual em três etapas mais vendido nas clínicas—limpar, repor e selar com cuidados nutritivos de argan.",
+  "bestsellersIntro": "Escolha o seu ritual diário: argão puro, águas florais e tratamentos tradicionais marroquinos.",
   "galleryRows": [
     {
       "layout": "thirds",
@@ -78,35 +78,36 @@
   ],
   "testimonials": [
     {
-      "quote": "O óleo de argan da Kapunka é o único lipídico que enviamos para casa após resurfacing a laser—os pacientes sentem a pele acalmada da noite para o dia.",
-      "author": "Dra. Lina Haddad",
-      "role": "Dermatologista, Paris"
+      "quote": "Após laser, recomendo o argão puro da Kapunka para maior conforto da barreira. Os meus pacientes referem menos repuxar e vermelhidão.",
+      "author": "Dra. Isabella Rossi",
+      "role": "Dermatologista"
     },
     {
-      "quote": "Nosso varejo de medspa dobrou depois de apresentar o trio da Kapunka; clientes adoram a fusão entre herança e validação clínica.",
-      "author": "Sofia Martins",
-      "role": "Fundadora, Lumina Aesthetics"
+      "quote": "Por fim, limpeza e óleo que respeitam pele sensível e removem maquilhagem com eficácia.",
+      "author": "Chloe Davis",
+      "role": "Esteticista"
     }
   ],
-  "newsletterPitch": "Receba atualizações mensais sobre protocolos clínicos, origem dos ingredientes e lançamentos pensados para profissionais de pele sensível.",
+  "newsletterPitch": "Orientação mensal sobre saúde da barreira e cuidados pós-tratamento. Sem spam.",
   "brandMini": {
-    "title": "Por que Kapunka",
-    "body": "Nascida em Marrakech, a Kapunka une tradições de hammam marroquino à formulação clínica. Cada lote é prensado em pequenas quantidades, testado em laboratório e envasado em vidro reciclável.",
+    "title": "Da origem à saúde da pele",
+    "body": "A Kapunka nasceu nas cooperativas marroquinas e cresceu nas clínicas. Cuidado transparente que conforta a barreira e cabe nas rotinas reais.",
     "image": ""
   },
   "methodMini": {
-    "title": "Nosso Método: Limpar · Repor · Proteger",
+    "title": "O Método Kapunka",
     "bullets": [
-      "Nutrir com argan prensado a frio, rico em tocoferóis e ácidos graxos essenciais.",
-      "Aplicar águas florais calmantes para reequilibrar o pH e preparar para ativos.",
-      "Finalizar com tratamentos de hammam que estimulam circulação e luminosidade."
+      "Pré-limpeza e limpeza suave",
+      "Hidratar com águas florais",
+      "Selar conforto com argão puro ou blends",
+      "Pós-procedimento: apoiar a barreira"
     ],
-    "ctaLabel": "Conheça o método Kapunka",
-    "ctaHref": "#/method"
+    "ctaLabel": "Conheça o método",
+    "ctaHref": "/method"
   },
   "founderMini": {
-    "title": "Conheça a fundadora Kenza Khouchach",
-    "body": "Kenza cresceu entre Casablanca e Paris, abastecendo-se diretamente da rede de cooperativas de sua família. Criou a Kapunka para oferecer às clínicas rituais rastreáveis e seguros para pacientes, enraizados no bem-estar marroquino.",
+    "title": "Guiado pela prática clínica",
+    "body": "O trabalho da fundadora com equipas de dermatologia e estética inspirou cada rotina. Reivindicações cosméticas, resultados realistas: conforto, suavidade, calma visível.",
     "image": ""
   },
   "sections": [
