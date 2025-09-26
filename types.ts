@@ -223,6 +223,50 @@ export interface ImageGridSectionContent {
   items: ImageGridItem[];
 }
 
+export interface ClinicsBlockContent {
+  clinicsTitle?: string;
+  clinicsBody?: string;
+  clinicsCtaLabel?: string;
+  clinicsCtaHref?: string;
+  clinicsImage?: string;
+}
+
+export interface ValuePropItem {
+  title?: string;
+  subtitle?: string;
+  iconName?: string;
+}
+
+export interface GalleryRowItem {
+  image?: string;
+  alt?: string;
+  caption?: string;
+}
+
+export interface GalleryRowContent {
+  layout?: 'half' | 'thirds' | 'quarters';
+  items?: GalleryRowItem[];
+}
+
+export interface TestimonialContent {
+  quote?: string;
+  author?: string;
+  role?: string;
+}
+
+export interface MiniHighlightContent {
+  title?: string;
+  body?: string;
+  image?: string;
+}
+
+export interface MethodMiniContent {
+  title?: string;
+  bullets?: string[];
+  ctaLabel?: string;
+  ctaHref?: string;
+}
+
 export interface VideoEntry {
   title?: string;
   description?: string;
@@ -276,6 +320,23 @@ export interface PageContent {
   type?: string;
   metaTitle?: string;
   metaDescription?: string;
+  heroHeadline?: string;
+  heroSubheadline?: string;
+  heroPrimaryCta?: string;
+  heroSecondaryCta?: string;
+  heroOverlay?: string;
+  heroImageLeft?: string;
+  heroImageRight?: string;
+  heroLayoutHint?: 'image-left' | 'image-right' | 'image-full';
+  clinicsBlock?: ClinicsBlockContent;
+  valueProps?: ValuePropItem[];
+  bestsellersIntro?: string;
+  galleryRows?: GalleryRowContent[];
+  testimonials?: TestimonialContent[];
+  newsletterPitch?: string;
+  brandMini?: MiniHighlightContent;
+  methodMini?: MethodMiniContent;
+  founderMini?: MiniHighlightContent;
 }
 
 export interface VideoLibraryContent {
