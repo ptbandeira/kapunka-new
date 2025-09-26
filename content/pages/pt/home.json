@@ -1,11 +1,125 @@
 {
-  "metaTitle": "Kapunka Skincare — Óleos de argan marroquinos confiáveis para pele sensível e pós-tratamento",
-  "metaDescription": "Descubra óleos de argan marroquinos puros, águas florais e tratamentos tradicionais otimizados para pele sensível e pós-procedimento. Confiado clinicamente, com origem sustentável.",
+  "metaTitle": "Kapunka Skincare | Rituais de argan marroquino para clínicas e pele sensível",
+  "metaDescription": "A Kapunka formula óleos de argan, névoas e tratamentos de hammam marroquinos confiados por clínicas estéticas para recuperação pós-procedimento, reparo da barreira e rituais diários.",
+  "meta": {
+    "metaTitle": "Kapunka Skincare | Rituais de argan marroquino para clínicas e pele sensível",
+    "metaDescription": "A Kapunka formula óleos de argan, névoas e tratamentos de hammam marroquinos confiados por clínicas estéticas para recuperação pós-procedimento, reparo da barreira e rituais diários."
+  },
+  "heroHeadline": "Rituais de argan marroquino de padrão clínico para pele sensível e em recuperação",
+  "heroSubheadline": "Dos óleos de argan de origem única às névoas dérmicas e clássicos do hammam, a Kapunka une herança marroquina e expertise estética para manter a pele pós-procedimento calma, nutrida e resiliente.",
+  "heroPrimaryCta": "Comprar rituais de argan",
+  "heroSecondaryCta": "Parceria para clínicas",
+  "heroOverlay": "rgba(0,0,0,0.48)",
+  "heroImageLeft": "",
+  "heroImageRight": "",
+  "heroLayoutHint": "image-right",
+  "clinicsBlock": {
+    "clinicsTitle": "Preferido por dermatologistas, medspas e clínicas holísticas",
+    "clinicsBody": "Nossos tratamentos se encaixam em protocolos de peeling, laser e microagulhamento com absorção rápida, envase estéril e tolerância comprovada. Treinamentos dedicados e suporte em atacado mantêm as equipes confiantes.",
+    "clinicsCtaLabel": "Conheça o suporte para clínicas",
+    "clinicsCtaHref": "#/for-clinics",
+    "clinicsImage": ""
+  },
+  "valueProps": [
+    {
+      "title": "Origem marroquina rastreável",
+      "subtitle": "Sementes de argan colhidas à mão e prensadas em até 24 horas para preservar o perfil de ômegas."
+    },
+    {
+      "title": "Seguro pós-tratamento",
+      "subtitle": "Fórmulas avaliadas por dermatologistas e envasadas em instalações GMP para máxima pureza."
+    },
+    {
+      "title": "Rituais multifuncionais",
+      "subtitle": "Um único óleo para reparar a barreira, aliviar o couro cabeludo e iluminar o corpo sem resíduos."
+    },
+    {
+      "title": "Impacto sustentável",
+      "subtitle": "Parceria com cooperativas de Essaouira lideradas por mulheres que sustentam a agricultura local."
+    }
+  ],
+  "bestsellersIntro": "Conheça o ritual em três etapas mais vendido nas clínicas—limpar, repor e selar com cuidados nutritivos de argan.",
+  "galleryRows": [
+    {
+      "layout": "thirds",
+      "items": [
+        {
+          "image": "",
+          "alt": "Frasco conta-gotas de óleo de argan Kapunka sobre linho macio",
+          "caption": "Óleo de argan de origem única envasado em Marrakech."
+        },
+        {
+          "image": "",
+          "alt": "Esteticista aplicando óleo de argan em uma cliente após tratamento a laser",
+          "caption": "Querido após sessões de peeling e laser pelo conforto imediato."
+        },
+        {
+          "image": "",
+          "alt": "Nascer do sol sobre bosques de argan no Marrocos",
+          "caption": "Colheita ética por cooperativas lideradas por mulheres."
+        }
+      ]
+    },
+    {
+      "layout": "half",
+      "items": [
+        {
+          "image": "",
+          "alt": "Névoa de água de rosas e óleo de argan em uma prateleira de varejo de clínica",
+          "caption": "Embalagens prontas para varejo com cartas educativas bilíngues."
+        },
+        {
+          "image": "",
+          "alt": "Sabão preto e luva kessa preparados para um ritual de hammam",
+          "caption": "Cuidado tradicional de hammam reinventado para rotinas modernas."
+        }
+      ]
+    }
+  ],
+  "testimonials": [
+    {
+      "quote": "O óleo de argan da Kapunka é o único lipídico que enviamos para casa após resurfacing a laser—os pacientes sentem a pele acalmada da noite para o dia.",
+      "author": "Dra. Lina Haddad",
+      "role": "Dermatologista, Paris"
+    },
+    {
+      "quote": "Nosso varejo de medspa dobrou depois de apresentar o trio da Kapunka; clientes adoram a fusão entre herança e validação clínica.",
+      "author": "Sofia Martins",
+      "role": "Fundadora, Lumina Aesthetics"
+    }
+  ],
+  "newsletterPitch": "Receba atualizações mensais sobre protocolos clínicos, origem dos ingredientes e lançamentos pensados para profissionais de pele sensível.",
+  "brandMini": {
+    "title": "Por que Kapunka",
+    "body": "Nascida em Marrakech, a Kapunka une tradições de hammam marroquino à formulação clínica. Cada lote é prensado em pequenas quantidades, testado em laboratório e envasado em vidro reciclável.",
+    "image": ""
+  },
+  "methodMini": {
+    "title": "Nosso Método: Limpar · Repor · Proteger",
+    "bullets": [
+      "Nutrir com argan prensado a frio, rico em tocoferóis e ácidos graxos essenciais.",
+      "Aplicar águas florais calmantes para reequilibrar o pH e preparar para ativos.",
+      "Finalizar com tratamentos de hammam que estimulam circulação e luminosidade."
+    ],
+    "ctaLabel": "Conheça o método Kapunka",
+    "ctaHref": "#/method"
+  },
+  "founderMini": {
+    "title": "Conheça a fundadora Kenza Khouchach",
+    "body": "Kenza cresceu entre Casablanca e Paris, abastecendo-se diretamente da rede de cooperativas de sua família. Criou a Kapunka para oferecer às clínicas rituais rastreáveis e seguros para pacientes, enraizados no bem-estar marroquino.",
+    "image": ""
+  },
   "sections": [
     {
       "type": "imageTextHalf",
-      "title": "Confiado por dermatologistas e clínicas estéticas",
-      "text": "As clínicas escolhem a Kapunka pela pureza e performance no cuidado pós-laser e pele sensível. Nossas rotinas minimalistas favorecem recuperação mais rápida, integridade da barreira e conforto duradouro.",
+      "title": "Origem com herança, padrão de clínica",
+      "text": "Envasamos óleo de argan de origem única poucas horas após a prensagem para preservar antioxidantes. Cada lote é testado microbiologicamente e rastreável da semente ao frasco para segurança em spas e clínicas.",
+      "image": ""
+    },
+    {
+      "type": "imageTextHalf",
+      "title": "Do hammam moderno à recuperação profissional",
+      "text": "Combine nosso sabão preto de limpeza, névoa de água de rosas e concentrado de argan em um ritual de três etapas que acalma a inflamação, apoia a barreira e não deixa filme pesado.",
       "image": ""
     },
     {
@@ -13,23 +127,23 @@
       "items": [
         {
           "image": "",
-          "title": "Origem com tradição",
-          "subtitle": "Argan de origem única, rastreável a cooperativas marroquinas."
+          "title": "Produção pronta para clínicas",
+          "subtitle": "Envase estéril, dossiês de segurança e protocolos bilíngues para as equipes."
         },
         {
           "image": "",
-          "title": "Ciência focada na barreira",
-          "subtitle": "Formulado para fortalecer e acalmar sem peso."
+          "title": "Cuidado sensorial holístico",
+          "subtitle": "Aromas leves de botânicos nativos sem fragrâncias sintéticas."
         },
         {
           "image": "",
-          "title": "Seguro para pele sensível",
-          "subtitle": "Opções sem fragrância, testadas dermatologicamente."
+          "title": "Histórias flexíveis no varejo",
+          "subtitle": "Kits de merchandising e educação por QR code para cada sala de tratamento."
         },
         {
           "image": "",
-          "title": "Integrado à clínica",
-          "subtitle": "Adotado em protocolos estéticos no mundo todo."
+          "title": "Parceria sustentável",
+          "subtitle": "Receitas reinvestidas em cooperativas marroquinas lideradas por mulheres e reflorestamento."
         }
       ]
     }

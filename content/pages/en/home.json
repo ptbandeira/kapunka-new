@@ -1,11 +1,125 @@
 {
-  "metaTitle": "Kapunka Skincare — Moroccan Argan Oils Trusted for Sensitive & Post-Care Skin",
-  "metaDescription": "Discover pure Moroccan argan oils, floral waters, and traditional treatments optimized for sensitive and post-procedure skin. Clinically trusted, sustainably sourced.",
+  "metaTitle": "Kapunka Skincare | Moroccan Argan Rituals for Clinics & Sensitive Skin",
+  "metaDescription": "Kapunka formulates Moroccan argan oils, mists, and hammam treatments trusted by aesthetic clinics for post-procedure recovery, barrier repair, and daily rituals.",
+  "meta": {
+    "metaTitle": "Kapunka Skincare | Moroccan Argan Rituals for Clinics & Sensitive Skin",
+    "metaDescription": "Kapunka formulates Moroccan argan oils, mists, and hammam treatments trusted by aesthetic clinics for post-procedure recovery, barrier repair, and daily rituals."
+  },
+  "heroHeadline": "Clinical-grade Moroccan argan rituals for sensitive, recovering skin",
+  "heroSubheadline": "From single-origin argan oil to dermal mists and hammam staples, Kapunka pairs Moroccan heritage with aesthetic expertise so post-procedure and delicate skin stays calm, nourished, and resilient.",
+  "heroPrimaryCta": "Shop argan rituals",
+  "heroSecondaryCta": "Clinics partnership",
+  "heroOverlay": "rgba(0,0,0,0.48)",
+  "heroImageLeft": "",
+  "heroImageRight": "",
+  "heroLayoutHint": "image-right",
+  "clinicsBlock": {
+    "clinicsTitle": "Preferred by dermatologists, medspas, and holistic clinics",
+    "clinicsBody": "Our treatments slot seamlessly into peel, laser, and microneedling protocols with fast absorption, sterile bottling, and proven tolerance. Dedicated training and wholesale support keep your teams confident.",
+    "clinicsCtaLabel": "Explore clinic support",
+    "clinicsCtaHref": "#/for-clinics",
+    "clinicsImage": ""
+  },
+  "valueProps": [
+    {
+      "title": "Traceable Moroccan sourcing",
+      "subtitle": "Hand-harvested argan kernels pressed within 24 hours to preserve omega profile."
+    },
+    {
+      "title": "Post-treatment safe",
+      "subtitle": "Dermatology reviewed formulas bottled in GMP facilities for maximum purity."
+    },
+    {
+      "title": "Multifunction rituals",
+      "subtitle": "One oil for barrier repair, scalp relief, and body gloss without residue."
+    },
+    {
+      "title": "Sustainable impact",
+      "subtitle": "Partnership with Essaouira cooperatives supporting women-led agriculture."
+    }
+  ],
+  "bestsellersIntro": "Meet the three-step ritual clinics retail most—cleanse, replenish, and seal with nutrient-dense argan care.",
+  "galleryRows": [
+    {
+      "layout": "thirds",
+      "items": [
+        {
+          "image": "",
+          "alt": "Glass dropper bottle of Kapunka argan oil on soft linen",
+          "caption": "Single-origin argan oil bottled in Marrakech."
+        },
+        {
+          "image": "",
+          "alt": "Aesthetician applying argan oil to a client after a laser treatment",
+          "caption": "Loved after peel and laser sessions for instant comfort."
+        },
+        {
+          "image": "",
+          "alt": "Sunrise over Moroccan argan groves",
+          "caption": "Ethically harvested by women-led cooperatives."
+        }
+      ]
+    },
+    {
+      "layout": "half",
+      "items": [
+        {
+          "image": "",
+          "alt": "Rose water mist and argan oil displayed in a clinic retail shelf",
+          "caption": "Retail-ready packaging with bilingual education cards."
+        },
+        {
+          "image": "",
+          "alt": "Black soap and kessa glove prepared for a hammam ritual",
+          "caption": "Traditional hammam care reimagined for modern routines."
+        }
+      ]
+    }
+  ],
+  "testimonials": [
+    {
+      "quote": "Kapunka's argan oil is the only lipid treatment we send home after laser resurfacing—patients notice soothed skin overnight.",
+      "author": "Dr. Lina Haddad",
+      "role": "Dermatologist, Paris"
+    },
+    {
+      "quote": "Our medspa retail doubled after introducing Kapunka's trio; clients love that it's heritage-driven and clinically vetted.",
+      "author": "Sofia Martins",
+      "role": "Founder, Lumina Aesthetics"
+    }
+  ],
+  "newsletterPitch": "Get monthly updates on clinic protocols, ingredient sourcing, and new product drops tailored for sensitive skin pros.",
+  "brandMini": {
+    "title": "Why Kapunka",
+    "body": "Born in Marrakech, Kapunka merges Moroccan hammam traditions with clinical formulation. Every batch is pressed in small lots, lab-tested, and bottled in recyclable glass.",
+    "image": ""
+  },
+  "methodMini": {
+    "title": "Our Method: Cleanse · Replenish · Protect",
+    "bullets": [
+      "Nourish with cold-pressed argan rich in tocopherols and essential fatty acids.",
+      "Layer calming floral waters to rebalance pH and prep for actives.",
+      "Finish with purposeful hammam treatments that boost circulation and glow."
+    ],
+    "ctaLabel": "See the Kapunka method",
+    "ctaHref": "#/method"
+  },
+  "founderMini": {
+    "title": "Meet Founder Kenza Khouchach",
+    "body": "Kenza grew up between Casablanca and Paris, sourcing argan oil directly from her family’s network of cooperatives. She created Kapunka to give clinics traceable, patient-safe rituals rooted in Moroccan wellbeing.",
+    "image": ""
+  },
   "sections": [
     {
       "type": "imageTextHalf",
-      "title": "Trusted by dermatologists and aesthetic clinics",
-      "text": "Clinics select Kapunka for its purity and performance in post-laser and sensitive-skin care. Our minimalist routines support faster recovery, barrier integrity, and lasting comfort.",
+      "title": "Heritage sourcing, clinic-grade standards",
+      "text": "We bottle single-origin argan oil within hours of pressing to lock in antioxidants. Every lot is microbiologically tested and traceable from kernel to bottle for spa and medical safety.",
+      "image": ""
+    },
+    {
+      "type": "imageTextHalf",
+      "title": "From hammam rituals to modern recovery",
+      "text": "Pair our black soap cleanse, rose water mist, and argan concentrate for a three-step routine that calms inflammation, supports barrier repair, and leaves no heavy film.",
       "image": ""
     },
     {
@@ -13,23 +127,23 @@
       "items": [
         {
           "image": "",
-          "title": "Heritage sourcing",
-          "subtitle": "Single-origin argan, traceable to Moroccan cooperatives."
+          "title": "Clinic-ready batching",
+          "subtitle": "Sterile filling, safety dossiers, and bilingual protocols for teams."
         },
         {
           "image": "",
-          "title": "Barrier-first science",
-          "subtitle": "Formulated to strengthen and soothe without heaviness."
+          "title": "Holistic sensorial care",
+          "subtitle": "Light aromatics from native botanicals without synthetic fragrance."
         },
         {
           "image": "",
-          "title": "Sensitive-skin safe",
-          "subtitle": "Fragrance-free options, dermatology tested."
+          "title": "Flexible retail stories",
+          "subtitle": "Merchandising kits and QR education for every treatment room."
         },
         {
           "image": "",
-          "title": "Clinically integrated",
-          "subtitle": "Adopted in aesthetic protocols worldwide."
+          "title": "Sustainable partnership",
+          "subtitle": "Revenue reinvested into Moroccan women’s cooperatives and reforestation."
         }
       ]
     }

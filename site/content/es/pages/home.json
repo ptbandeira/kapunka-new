@@ -1,0 +1,152 @@
+{
+  "metaTitle": "Kapunka — Cuidado con argán para piel sensible y post-procedimiento",
+  "metaDescription": "Aceites de argán de origen único, aguas florales y tratamientos tradicionales para piel sensible y post-procedimiento. Confianza clínica, origen con herencia.",
+  "meta": {
+    "metaTitle": "Kapunka — Cuidado con argán para piel sensible y post-procedimiento",
+    "metaDescription": "Aceites de argán de origen único, aguas florales y tratamientos tradicionales para piel sensible y post-procedimiento. Confianza clínica, origen con herencia."
+  },
+  "heroHeadline": "Cuidado con argán, arraigado en Marruecos, confiado en clínicas",
+  "heroSubheadline": "Aceites de argán de origen único y blends para piel sensible, post-procedimiento y uso diario. Texturas ligeras, no comedogénicas, hechas para el confort de la barrera.",
+  "heroPrimaryCta": "Ver bestsellers",
+  "heroSecondaryCta": "Para Clínicas",
+  "heroOverlay": "rgba(0,0,0,0.48)",
+  "heroImageLeft": "",
+  "heroImageRight": "",
+  "heroLayoutHint": "image-right",
+  "clinicsBlock": {
+    "clinicsTitle": "Confiado por dermatólogos y clínicas estéticas",
+    "clinicsBody": "Las clínicas eligen Kapunka por su pureza y rendimiento en cuidados post-láser y piel sensible. Nuestras rutinas minimalistas favorecen confort, integridad de la barrera y calma visible.",
+    "clinicsCtaLabel": "Colabora con nosotros",
+    "clinicsCtaHref": "/for-clinics",
+    "clinicsImage": ""
+  },
+  "valueProps": [
+    {
+      "title": "Origen con trazabilidad",
+      "subtitle": "Argán de origen único, cooperativas marroquíes."
+    },
+    {
+      "title": "Ciencia para la barrera",
+      "subtitle": "Fortalece y calma sin pesadez."
+    },
+    {
+      "title": "Apta para piel sensible",
+      "subtitle": "Opciones sin fragancia, testado dermatológicamente."
+    },
+    {
+      "title": "Integración clínica",
+      "subtitle": "Usado en protocolos estéticos."
+    }
+  ],
+  "bestsellersIntro": "Elige tu ritual diario: argán puro, aguas florales y tratamientos tradicionales marroquíes.",
+  "galleryRows": [
+    {
+      "layout": "thirds",
+      "items": [
+        {
+          "image": "",
+          "alt": "Frasco cuentagotas de aceite de argán Kapunka sobre lino suave",
+          "caption": "Aceite de argán de origen único envasado en Marrakech."
+        },
+        {
+          "image": "",
+          "alt": "Esteticista aplicando aceite de argán a una clienta tras un tratamiento láser",
+          "caption": "Adorado después de peelings y láser por el confort inmediato."
+        },
+        {
+          "image": "",
+          "alt": "Amanecer sobre los bosques de argán en Marruecos",
+          "caption": "Cosecha ética por cooperativas dirigidas por mujeres."
+        }
+      ]
+    },
+    {
+      "layout": "half",
+      "items": [
+        {
+          "image": "",
+          "alt": "Bruma de agua de rosas y aceite de argán en una estantería de clínica",
+          "caption": "Empaques listos para retail con fichas educativas bilingües."
+        },
+        {
+          "image": "",
+          "alt": "Jabón negro y guante kessa listos para un ritual de hammam",
+          "caption": "Cuidado tradicional de hammam reinventado para rutinas modernas."
+        }
+      ]
+    }
+  ],
+  "testimonials": [
+    {
+      "quote": "Tras láser, recomiendo el argán puro de Kapunka para mayor confort de la barrera. Mis pacientes refieren menos tirantez y enrojecimiento.",
+      "author": "Dra. Isabella Rossi",
+      "role": "Dermatóloga"
+    },
+    {
+      "quote": "Por fin, limpieza y aceite que respetan la piel sensible y desmaquillan bien.",
+      "author": "Chloe Davis",
+      "role": "Esteticista"
+    }
+  ],
+  "newsletterPitch": "Guía mensual sobre salud de la barrera y cuidados post-tratamiento. Sin spam.",
+  "brandMini": {
+    "title": "Del origen a la salud de la piel",
+    "body": "Kapunka nació en las cooperativas marroquíes y creció en las clínicas. Cuidado transparente que reconforta la barrera y encaja en rutinas reales.",
+    "image": ""
+  },
+  "methodMini": {
+    "title": "El Método Kapunka",
+    "bullets": [
+      "Pre-limpieza y limpieza suave",
+      "Hidrata con aguas florales",
+      "Sella confort con argán puro o mezclas",
+      "Post-procedimiento: apoya la barrera"
+    ],
+    "ctaLabel": "Conoce el método",
+    "ctaHref": "/method"
+  },
+  "founderMini": {
+    "title": "Guiado por la práctica clínica",
+    "body": "El trabajo de nuestra fundadora con equipos de dermatología y estética inspiró cada rutina. Reivindicaciones cosméticas, resultados realistas: confort, suavidad, calma visible.",
+    "image": ""
+  },
+  "sections": [
+    {
+      "type": "imageTextHalf",
+      "title": "Origen con herencia, estándares clínicos",
+      "text": "Envasamos el aceite de argán de origen único pocas horas después del prensado para conservar los antioxidantes. Cada lote se analiza microbiológicamente y es trazable de la semilla al frasco para la seguridad de spas y clínicas.",
+      "image": ""
+    },
+    {
+      "type": "imageTextHalf",
+      "title": "Del hammam a la recuperación moderna",
+      "text": "Combina nuestro jabón negro limpiador, la bruma de agua de rosas y el concentrado de argán en un ritual de tres pasos que calma la inflamación, refuerza la barrera y no deja película pesada.",
+      "image": ""
+    },
+    {
+      "type": "imageGrid",
+      "items": [
+        {
+          "image": "",
+          "title": "Producción lista para clínicas",
+          "subtitle": "Envasado estéril, dossiers de seguridad y protocolos bilingües para los equipos."
+        },
+        {
+          "image": "",
+          "title": "Cuidado sensorial holístico",
+          "subtitle": "Aromas ligeros de botánicos nativos sin fragancias sintéticas."
+        },
+        {
+          "image": "",
+          "title": "Historias flexibles en retail",
+          "subtitle": "Kits de merchandising y educación con QR para cada sala de tratamiento."
+        },
+        {
+          "image": "",
+          "title": "Alianza sostenible",
+          "subtitle": "Ingresos reinvertidos en cooperativas marroquíes lideradas por mujeres y reforestación."
+        }
+      ]
+    }
+  ]
+}
