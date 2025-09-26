@@ -23,7 +23,7 @@
           },
           "size": 10,
           "unit": "ml",
-          "price": 12
+          "price": 17
         },
         {
           "slug": "pure-argan-oil-30ml",
@@ -36,7 +36,7 @@
           },
           "size": 30,
           "unit": "ml",
-          "price": 25
+          "price": 30
         },
         {
           "slug": "pure-argan-oil-50ml",
@@ -49,7 +49,7 @@
           },
           "size": 50,
           "unit": "ml",
-          "price": 35
+          "price": 55
         },
         {
           "slug": "pure-argan-oil-100ml",
@@ -62,7 +62,7 @@
           },
           "size": 100,
           "unit": "ml",
-          "price": 55
+          "price": 95
         },
         {
           "slug": "pure-argan-oil-250ml",
@@ -75,20 +75,7 @@
           },
           "size": 250,
           "unit": "ml",
-          "price": 95
-        },
-        {
-          "slug": "pure-argan-oil-500ml",
-          "active": true,
-          "format": "dispenser",
-          "label": {
-            "en": "Dispenser 500 ml",
-            "es": "Dosificador 500 ml",
-            "pt": "Dispensador 500 ml"
-          },
-          "size": 500,
-          "unit": "ml",
-          "price": 165
+          "price": 155
         }
       ],
       "tags": {
@@ -172,6 +159,588 @@
       "updatedAt": "2024-05-30T00:00:00.000Z"
     },
     {
+      "slug": "kapunka-cicatrices",
+      "active": true,
+      "category": "oil",
+      "currency": "EUR",
+      "vatIncluded": true,
+      "name": {
+        "es": "Kapunka Cicatrices",
+        "en": "Kapunka Scar Care",
+        "pt": "Kapunka Cicatrizes"
+      },
+      "sizes": [
+        {
+          "slug": "kapunka-cicatrices-10ml",
+          "active": true,
+          "format": "roll-on",
+          "label": {
+            "en": "Roll-on 10 ml",
+            "es": "Roll-on 10 ml",
+            "pt": "Roll-on 10 ml"
+          },
+          "size": 10,
+          "unit": "ml",
+          "price": 17
+        },
+        {
+          "slug": "kapunka-cicatrices-30ml",
+          "active": true,
+          "format": "dropper",
+          "label": {
+            "en": "Dropper 30 ml",
+            "es": "Gotero 30 ml",
+            "pt": "Conta-gotas 30 ml"
+          },
+          "size": 30,
+          "unit": "ml",
+          "price": 30
+        },
+        {
+          "slug": "kapunka-cicatrices-50ml",
+          "active": true,
+          "format": "dispenser",
+          "label": {
+            "en": "Dispenser 50 ml",
+            "es": "Dosificador 50 ml",
+            "pt": "Dispensador 50 ml"
+          },
+          "size": 50,
+          "unit": "ml",
+          "price": 55
+        },
+        {
+          "slug": "kapunka-cicatrices-100ml",
+          "active": true,
+          "format": "dispenser",
+          "label": {
+            "en": "Dispenser 100 ml",
+            "es": "Dosificador 100 ml",
+            "pt": "Dispensador 100 ml"
+          },
+          "size": 100,
+          "unit": "ml",
+          "price": 95
+        },
+        {
+          "slug": "kapunka-cicatrices-250ml",
+          "active": true,
+          "format": "dispenser",
+          "label": {
+            "en": "Dispenser 250 ml",
+            "es": "Dosificador 250 ml",
+            "pt": "Dispensador 250 ml"
+          },
+          "size": 250,
+          "unit": "ml",
+          "price": 155
+        }
+      ],
+      "tags": {
+        "en": [
+          "scar care"
+        ],
+        "es": [
+          "cicatrices"
+        ],
+        "pt": [
+          "cicatrizes"
+        ]
+      },
+      "tagline": {
+        "es": "Aceite de argán reparador para cicatrices y marcas.",
+        "en": "Repairing argan treatment for scars and marks.",
+        "pt": "Tratamento reparador com óleo de argan para cicatrizes."
+      },
+      "description": {
+        "es": "Nuestro aceite cicatrizante combina argán prensado en frío con extractos calmantes de lavanda y geranio para masajear cicatrices, estrías y marcas post-procedimiento. La textura ligera se absorbe sin residuos y mantiene la piel flexible mientras protege la barrera.",
+        "en": "Our scar treatment oil blends cold-pressed argan with soothing lavender and geranium extracts to massage scars, stretch marks, and post-procedure marks. The lightweight texture absorbs without residue and keeps skin supple while protecting the barrier.",
+        "pt": "O nosso óleo cicatrizante combina argan prensado a frio com extratos calmantes de lavanda e gerânio para massagear cicatrizes, estrias e marcas pós-procedimento. A textura leve é absorvida sem resíduos e mantém a pele flexível enquanto protege a barreira."
+      },
+      "benefits": {
+        "en": [
+          "Deep hydration; soft, comfortable finish",
+          "Supports the skin barrier",
+          "Multi-use: face, body, hair, nails",
+          "Fragrance-free; suitable for sensitive skin"
+        ],
+        "es": [
+          "Hidratación profunda; acabado suave y confortable",
+          "Apoya la barrera cutánea",
+          "Multiuso: rostro, cuerpo, cabello, uñas",
+          "Sin fragancia; apto para piel sensible"
+        ],
+        "pt": [
+          "Hidratação profunda; acabamento suave e confortável",
+          "Apoia a barreira cutânea",
+          "Multiuso: rosto, corpo, cabelo, unhas",
+          "Sem fragrância; adequado para pele sensível"
+        ]
+      },
+      "howToUse": {
+        "en": "Apply 2–3 drops to clean skin AM/PM. For hair, smooth a drop on mid-lengths and ends. Follow clinician guidance after procedures.",
+        "es": "Aplicar 2–3 gotas sobre la piel limpia mañana y noche. Para el cabello, aplicar una gota en medios y puntas. Seguir las indicaciones del profesional en post-procedimientos.",
+        "pt": "Aplicar 2–3 gotas na pele limpa de manhã e à noite. No cabelo, espalhar uma gota nos comprimentos e pontas. Seguir a orientação do profissional em pós-procedimentos."
+      },
+      "ingredients": {
+        "en": "Argania Spinosa (Argan) Kernel Oil",
+        "es": "Argania Spinosa (Argan) Kernel Oil",
+        "pt": "Argania Spinosa (Argan) Kernel Oil"
+      },
+      "goodToKnow": {
+        "title": {
+          "en": "Good to know",
+          "es": "Para tener en cuenta",
+          "pt": "Bom saber"
+        },
+        "items": {
+          "en": [
+            "Texture: lightweight, fast absorbing",
+            "Finish: soft glow, non greasy",
+            "Suitable for all skin types",
+            "Vegan; no additives"
+          ],
+          "es": [
+            "Textura: ligera, de rápida absorción",
+            "Acabado: brillo suave, no graso",
+            "Apto para todo tipo de piel",
+            "Vegano; sin aditivos"
+          ],
+          "pt": [
+            "Textura: leve, de rápida absorção",
+            "Acabamento: brilho suave, não oleoso",
+            "Adequado para todos os tipos de pele",
+            "Vegan; sem aditivos"
+          ]
+        }
+      },
+      "updatedAt": "2025-09-26T14:14:15.062213+00:00"
+    },
+    {
+      "slug": "kapunka-cicatrices-roll-on-10ml",
+      "active": true,
+      "category": "oil",
+      "currency": "EUR",
+      "vatIncluded": true,
+      "name": {
+        "es": "Kapunka aceite de argán cicatrizante roll-on 10ml",
+        "en": "Kapunka scar-care argan oil roll-on 10 ml",
+        "pt": "Kapunka óleo de argan cicatrizante roll-on 10 ml"
+      },
+      "sizes": [
+        {
+          "slug": "kapunka-cicatrices-roll-on-10ml-size",
+          "active": true,
+          "format": "roll-on",
+          "label": {
+            "en": "Roll-on 10 ml",
+            "es": "Roll-on 10 ml",
+            "pt": "Roll-on 10 ml"
+          },
+          "size": 10,
+          "unit": "ml",
+          "price": 17
+        }
+      ],
+      "tags": {
+        "en": [
+          "scar care"
+        ],
+        "es": [
+          "cicatrices"
+        ],
+        "pt": [
+          "cicatrizes"
+        ]
+      },
+      "tagline": {
+        "es": "Roll-on cicatrizante de viaje.",
+        "en": "Travel scar-care roll-on.",
+        "pt": "Roll-on cicatrizante para viagem."
+      },
+      "description": {
+        "es": "Nuestro aceite cicatrizante combina argán prensado en frío con extractos calmantes de lavanda y geranio para masajear cicatrices, estrías y marcas post-procedimiento. La textura ligera se absorbe sin residuos y mantiene la piel flexible mientras protege la barrera. Roll-on de 10 ml para retoques localizados en cicatrices y puntos sensibles.",
+        "en": "Our scar treatment oil blends cold-pressed argan with soothing lavender and geranium extracts to massage scars, stretch marks, and post-procedure marks. The lightweight texture absorbs without residue and keeps skin supple while protecting the barrier. 10 ml roll-on for targeted touch-ups on scars and sensitive spots.",
+        "pt": "O nosso óleo cicatrizante combina argan prensado a frio com extratos calmantes de lavanda e gerânio para massagear cicatrizes, estrias e marcas pós-procedimento. A textura leve é absorvida sem resíduos e mantém a pele flexível enquanto protege a barreira. Roll-on de 10 ml para retoques localizados em cicatrizes e pontos sensíveis."
+      },
+      "benefits": {
+        "en": [
+          "Deep hydration; soft, comfortable finish",
+          "Supports the skin barrier",
+          "Multi-use: face, body, hair, nails",
+          "Fragrance-free; suitable for sensitive skin"
+        ],
+        "es": [
+          "Hidratación profunda; acabado suave y confortable",
+          "Apoya la barrera cutánea",
+          "Multiuso: rostro, cuerpo, cabello, uñas",
+          "Sin fragancia; apto para piel sensible"
+        ],
+        "pt": [
+          "Hidratação profunda; acabamento suave e confortável",
+          "Apoia a barreira cutânea",
+          "Multiuso: rosto, corpo, cabelo, unhas",
+          "Sem fragrância; adequado para pele sensível"
+        ]
+      },
+      "howToUse": {
+        "en": "Apply 2–3 drops to clean skin AM/PM. For hair, smooth a drop on mid-lengths and ends. Follow clinician guidance after procedures.",
+        "es": "Aplicar 2–3 gotas sobre la piel limpia mañana y noche. Para el cabello, aplicar una gota en medios y puntas. Seguir las indicaciones del profesional en post-procedimientos.",
+        "pt": "Aplicar 2–3 gotas na pele limpa de manhã e à noite. No cabelo, espalhar uma gota nos comprimentos e pontas. Seguir a orientação do profissional em pós-procedimentos."
+      },
+      "ingredients": {
+        "en": "Argania Spinosa (Argan) Kernel Oil",
+        "es": "Argania Spinosa (Argan) Kernel Oil",
+        "pt": "Argania Spinosa (Argan) Kernel Oil"
+      },
+      "goodToKnow": {
+        "title": {
+          "en": "Good to know",
+          "es": "Para tener en cuenta",
+          "pt": "Bom saber"
+        },
+        "items": {
+          "en": [
+            "Texture: lightweight, fast absorbing",
+            "Finish: soft glow, non greasy",
+            "Suitable for all skin types",
+            "Vegan; no additives"
+          ],
+          "es": [
+            "Textura: ligera, de rápida absorción",
+            "Acabado: brillo suave, no graso",
+            "Apto para todo tipo de piel",
+            "Vegano; sin aditivos"
+          ],
+          "pt": [
+            "Textura: leve, de rápida absorção",
+            "Acabamento: brilho suave, não oleoso",
+            "Adequado para todos os tipos de pele",
+            "Vegan; sem aditivos"
+          ]
+        }
+      },
+      "updatedAt": "2025-09-26T14:14:15.062213+00:00"
+    },
+    {
+      "slug": "kapunka-cicatrices-30ml",
+      "active": true,
+      "category": "oil",
+      "currency": "EUR",
+      "vatIncluded": true,
+      "name": {
+        "es": "Kapunka aceite de argán cicatrizante 30ml",
+        "en": "Kapunka scar-care argan oil 30 ml",
+        "pt": "Kapunka óleo de argan cicatrizante 30 ml"
+      },
+      "sizes": [
+        {
+          "slug": "kapunka-cicatrices-30ml-size",
+          "active": true,
+          "format": "dropper",
+          "label": {
+            "en": "Dropper 30 ml",
+            "es": "Gotero 30 ml",
+            "pt": "Conta-gotas 30 ml"
+          },
+          "size": 30,
+          "unit": "ml",
+          "price": 30
+        }
+      ],
+      "tags": {
+        "en": [
+          "scar care"
+        ],
+        "es": [
+          "cicatrices"
+        ],
+        "pt": [
+          "cicatrizes"
+        ]
+      },
+      "tagline": {
+        "es": "Goteador cicatrizante de 30 ml.",
+        "en": "30 ml scar-care dropper.",
+        "pt": "Conta-gotas cicatrizante de 30 ml."
+      },
+      "description": {
+        "es": "Nuestro aceite cicatrizante combina argán prensado en frío con extractos calmantes de lavanda y geranio para masajear cicatrices, estrías y marcas post-procedimiento. La textura ligera se absorbe sin residuos y mantiene la piel flexible mientras protege la barrera. Goteador de 30 ml ideal para rutinas diarias de masaje en cicatrices.",
+        "en": "Our scar treatment oil blends cold-pressed argan with soothing lavender and geranium extracts to massage scars, stretch marks, and post-procedure marks. The lightweight texture absorbs without residue and keeps skin supple while protecting the barrier. 30 ml dropper ideal for daily scar massage routines.",
+        "pt": "O nosso óleo cicatrizante combina argan prensado a frio com extratos calmantes de lavanda e gerânio para massagear cicatrizes, estrias e marcas pós-procedimento. A textura leve é absorvida sem resíduos e mantém a pele flexível enquanto protege a barreira. Conta-gotas de 30 ml ideal para massagens diárias em cicatrizes."
+      },
+      "benefits": {
+        "en": [
+          "Deep hydration; soft, comfortable finish",
+          "Supports the skin barrier",
+          "Multi-use: face, body, hair, nails",
+          "Fragrance-free; suitable for sensitive skin"
+        ],
+        "es": [
+          "Hidratación profunda; acabado suave y confortable",
+          "Apoya la barrera cutánea",
+          "Multiuso: rostro, cuerpo, cabello, uñas",
+          "Sin fragancia; apto para piel sensible"
+        ],
+        "pt": [
+          "Hidratação profunda; acabamento suave e confortável",
+          "Apoia a barreira cutânea",
+          "Multiuso: rosto, corpo, cabelo, unhas",
+          "Sem fragrância; adequado para pele sensível"
+        ]
+      },
+      "howToUse": {
+        "en": "Apply 2–3 drops to clean skin AM/PM. For hair, smooth a drop on mid-lengths and ends. Follow clinician guidance after procedures.",
+        "es": "Aplicar 2–3 gotas sobre la piel limpia mañana y noche. Para el cabello, aplicar una gota en medios y puntas. Seguir las indicaciones del profesional en post-procedimientos.",
+        "pt": "Aplicar 2–3 gotas na pele limpa de manhã e à noite. No cabelo, espalhar uma gota nos comprimentos e pontas. Seguir a orientação do profissional em pós-procedimentos."
+      },
+      "ingredients": {
+        "en": "Argania Spinosa (Argan) Kernel Oil",
+        "es": "Argania Spinosa (Argan) Kernel Oil",
+        "pt": "Argania Spinosa (Argan) Kernel Oil"
+      },
+      "goodToKnow": {
+        "title": {
+          "en": "Good to know",
+          "es": "Para tener en cuenta",
+          "pt": "Bom saber"
+        },
+        "items": {
+          "en": [
+            "Texture: lightweight, fast absorbing",
+            "Finish: soft glow, non greasy",
+            "Suitable for all skin types",
+            "Vegan; no additives"
+          ],
+          "es": [
+            "Textura: ligera, de rápida absorción",
+            "Acabado: brillo suave, no graso",
+            "Apto para todo tipo de piel",
+            "Vegano; sin aditivos"
+          ],
+          "pt": [
+            "Textura: leve, de rápida absorção",
+            "Acabamento: brilho suave, não oleoso",
+            "Adequado para todos os tipos de pele",
+            "Vegan; sem aditivos"
+          ]
+        }
+      },
+      "updatedAt": "2025-09-26T14:14:15.062213+00:00"
+    },
+    {
+      "slug": "kapunka-cicatrices-50ml",
+      "active": true,
+      "category": "oil",
+      "currency": "EUR",
+      "vatIncluded": true,
+      "name": {
+        "es": "Kapunka aceite de argán cicatrizante 50ml",
+        "en": "Kapunka scar-care argan oil 50 ml",
+        "pt": "Kapunka óleo de argan cicatrizante 50 ml"
+      },
+      "sizes": [
+        {
+          "slug": "kapunka-cicatrices-50ml-size",
+          "active": true,
+          "format": "dispenser",
+          "label": {
+            "en": "Dispenser 50 ml",
+            "es": "Dosificador 50 ml",
+            "pt": "Dispensador 50 ml"
+          },
+          "size": 50,
+          "unit": "ml",
+          "price": 55
+        }
+      ],
+      "tags": {
+        "en": [
+          "scar care"
+        ],
+        "es": [
+          "cicatrices"
+        ],
+        "pt": [
+          "cicatrizes"
+        ]
+      },
+      "tagline": {
+        "es": "Dosificador cicatrizante de 50 ml.",
+        "en": "50 ml scar-care pump.",
+        "pt": "Pump cicatrizante de 50 ml."
+      },
+      "description": {
+        "es": "Nuestro aceite cicatrizante combina argán prensado en frío con extractos calmantes de lavanda y geranio para masajear cicatrices, estrías y marcas post-procedimiento. La textura ligera se absorbe sin residuos y mantiene la piel flexible mientras protege la barrera. Dosificador de 50 ml pensado para cubrir áreas extensas y estrías.",
+        "en": "Our scar treatment oil blends cold-pressed argan with soothing lavender and geranium extracts to massage scars, stretch marks, and post-procedure marks. The lightweight texture absorbs without residue and keeps skin supple while protecting the barrier. 50 ml pump designed to cover larger areas and stretch marks.",
+        "pt": "O nosso óleo cicatrizante combina argan prensado a frio com extratos calmantes de lavanda e gerânio para massagear cicatrizes, estrias e marcas pós-procedimento. A textura leve é absorvida sem resíduos e mantém a pele flexível enquanto protege a barreira. Pump de 50 ml pensado para cobrir áreas maiores e estrias."
+      },
+      "benefits": {
+        "en": [
+          "Deep hydration; soft, comfortable finish",
+          "Supports the skin barrier",
+          "Multi-use: face, body, hair, nails",
+          "Fragrance-free; suitable for sensitive skin"
+        ],
+        "es": [
+          "Hidratación profunda; acabado suave y confortable",
+          "Apoya la barrera cutánea",
+          "Multiuso: rostro, cuerpo, cabello, uñas",
+          "Sin fragancia; apto para piel sensible"
+        ],
+        "pt": [
+          "Hidratação profunda; acabamento suave e confortável",
+          "Apoia a barreira cutânea",
+          "Multiuso: rosto, corpo, cabelo, unhas",
+          "Sem fragrância; adequado para pele sensível"
+        ]
+      },
+      "howToUse": {
+        "en": "Apply 2–3 drops to clean skin AM/PM. For hair, smooth a drop on mid-lengths and ends. Follow clinician guidance after procedures.",
+        "es": "Aplicar 2–3 gotas sobre la piel limpia mañana y noche. Para el cabello, aplicar una gota en medios y puntas. Seguir las indicaciones del profesional en post-procedimientos.",
+        "pt": "Aplicar 2–3 gotas na pele limpa de manhã e à noite. No cabelo, espalhar uma gota nos comprimentos e pontas. Seguir a orientação do profissional em pós-procedimentos."
+      },
+      "ingredients": {
+        "en": "Argania Spinosa (Argan) Kernel Oil",
+        "es": "Argania Spinosa (Argan) Kernel Oil",
+        "pt": "Argania Spinosa (Argan) Kernel Oil"
+      },
+      "goodToKnow": {
+        "title": {
+          "en": "Good to know",
+          "es": "Para tener en cuenta",
+          "pt": "Bom saber"
+        },
+        "items": {
+          "en": [
+            "Texture: lightweight, fast absorbing",
+            "Finish: soft glow, non greasy",
+            "Suitable for all skin types",
+            "Vegan; no additives"
+          ],
+          "es": [
+            "Textura: ligera, de rápida absorción",
+            "Acabado: brillo suave, no graso",
+            "Apto para todo tipo de piel",
+            "Vegano; sin aditivos"
+          ],
+          "pt": [
+            "Textura: leve, de rápida absorção",
+            "Acabamento: brilho suave, não oleoso",
+            "Adequado para todos os tipos de pele",
+            "Vegan; sem aditivos"
+          ]
+        }
+      },
+      "updatedAt": "2025-09-26T14:14:15.062213+00:00"
+    },
+    {
+      "slug": "kapunka-cicatrices-100ml",
+      "active": true,
+      "category": "oil",
+      "currency": "EUR",
+      "vatIncluded": true,
+      "name": {
+        "es": "Kapunka aceite de argán cicatrizante 100ml",
+        "en": "Kapunka scar-care argan oil 100 ml",
+        "pt": "Kapunka óleo de argan cicatrizante 100 ml"
+      },
+      "sizes": [
+        {
+          "slug": "kapunka-cicatrices-100ml-size",
+          "active": true,
+          "format": "dispenser",
+          "label": {
+            "en": "Dispenser 100 ml",
+            "es": "Dosificador 100 ml",
+            "pt": "Dispensador 100 ml"
+          },
+          "size": 100,
+          "unit": "ml",
+          "price": 95
+        }
+      ],
+      "tags": {
+        "en": [
+          "scar care"
+        ],
+        "es": [
+          "cicatrices"
+        ],
+        "pt": [
+          "cicatrizes"
+        ]
+      },
+      "tagline": {
+        "es": "Dosificador cicatrizante de 100 ml.",
+        "en": "100 ml scar-care pump.",
+        "pt": "Pump cicatrizante de 100 ml."
+      },
+      "description": {
+        "es": "Nuestro aceite cicatrizante combina argán prensado en frío con extractos calmantes de lavanda y geranio para masajear cicatrices, estrías y marcas post-procedimiento. La textura ligera se absorbe sin residuos y mantiene la piel flexible mientras protege la barrera. Dosificador de 100 ml para protocolos profesionales y uso compartido.",
+        "en": "Our scar treatment oil blends cold-pressed argan with soothing lavender and geranium extracts to massage scars, stretch marks, and post-procedure marks. The lightweight texture absorbs without residue and keeps skin supple while protecting the barrier. 100 ml pump suited to professional protocols and shared use.",
+        "pt": "O nosso óleo cicatrizante combina argan prensado a frio com extratos calmantes de lavanda e gerânio para massagear cicatrizes, estrias e marcas pós-procedimento. A textura leve é absorvida sem resíduos e mantém a pele flexível enquanto protege a barreira. Pump de 100 ml adequado para protocolos profissionais e uso partilhado."
+      },
+      "benefits": {
+        "en": [
+          "Deep hydration; soft, comfortable finish",
+          "Supports the skin barrier",
+          "Multi-use: face, body, hair, nails",
+          "Fragrance-free; suitable for sensitive skin"
+        ],
+        "es": [
+          "Hidratación profunda; acabado suave y confortable",
+          "Apoya la barrera cutánea",
+          "Multiuso: rostro, cuerpo, cabello, uñas",
+          "Sin fragancia; apto para piel sensible"
+        ],
+        "pt": [
+          "Hidratação profunda; acabamento suave e confortável",
+          "Apoia a barreira cutânea",
+          "Multiuso: rosto, corpo, cabelo, unhas",
+          "Sem fragrância; adequado para pele sensível"
+        ]
+      },
+      "howToUse": {
+        "en": "Apply 2–3 drops to clean skin AM/PM. For hair, smooth a drop on mid-lengths and ends. Follow clinician guidance after procedures.",
+        "es": "Aplicar 2–3 gotas sobre la piel limpia mañana y noche. Para el cabello, aplicar una gota en medios y puntas. Seguir las indicaciones del profesional en post-procedimientos.",
+        "pt": "Aplicar 2–3 gotas na pele limpa de manhã e à noite. No cabelo, espalhar uma gota nos comprimentos e pontas. Seguir a orientação do profissional em pós-procedimentos."
+      },
+      "ingredients": {
+        "en": "Argania Spinosa (Argan) Kernel Oil",
+        "es": "Argania Spinosa (Argan) Kernel Oil",
+        "pt": "Argania Spinosa (Argan) Kernel Oil"
+      },
+      "goodToKnow": {
+        "title": {
+          "en": "Good to know",
+          "es": "Para tener en cuenta",
+          "pt": "Bom saber"
+        },
+        "items": {
+          "en": [
+            "Texture: lightweight, fast absorbing",
+            "Finish: soft glow, non greasy",
+            "Suitable for all skin types",
+            "Vegan; no additives"
+          ],
+          "es": [
+            "Textura: ligera, de rápida absorción",
+            "Acabado: brillo suave, no graso",
+            "Apto para todo tipo de piel",
+            "Vegano; sin aditivos"
+          ],
+          "pt": [
+            "Textura: leve, de rápida absorção",
+            "Acabamento: brilho suave, não oleoso",
+            "Adequado para todos os tipos de pele",
+            "Vegan; sem aditivos"
+          ]
+        }
+      },
+      "updatedAt": "2025-09-26T14:14:15.062213+00:00"
+    },
+    {
       "slug": "cotton-argan-oil",
       "active": true,
       "category": "blend",
@@ -179,10 +748,62 @@
       "vatIncluded": true,
       "name": {
         "en": "Argan Oil + Cotton",
-        "es": "Aceite de Argán + Algodón",
+        "es": "Aceite de Argán Puro con Algodón",
         "pt": "Óleo de Argan + Algodão"
       },
       "sizes": [
+        {
+          "slug": "cotton-argan-oil-10ml",
+          "active": true,
+          "format": "roll-on",
+          "label": {
+            "en": "Roll-on 10 ml",
+            "es": "Roll-on 10 ml",
+            "pt": "Roll-on 10 ml"
+          },
+          "size": 10,
+          "unit": "ml",
+          "price": 17
+        },
+        {
+          "slug": "cotton-argan-oil-30ml",
+          "active": true,
+          "format": "dropper",
+          "label": {
+            "en": "Dropper 30 ml",
+            "es": "Gotero 30 ml",
+            "pt": "Conta-gotas 30 ml"
+          },
+          "size": 30,
+          "unit": "ml",
+          "price": 30
+        },
+        {
+          "slug": "cotton-argan-oil-50ml",
+          "active": true,
+          "format": "dispenser",
+          "label": {
+            "en": "Dispenser 50 ml",
+            "es": "Dosificador 50 ml",
+            "pt": "Dispensador 50 ml"
+          },
+          "size": 50,
+          "unit": "ml",
+          "price": 55
+        },
+        {
+          "slug": "cotton-argan-oil-100ml",
+          "active": true,
+          "format": "dispenser",
+          "label": {
+            "en": "Dispenser 100 ml",
+            "es": "Dosificador 100 ml",
+            "pt": "Dispensador 100 ml"
+          },
+          "size": 100,
+          "unit": "ml",
+          "price": 95
+        },
         {
           "slug": "cotton-argan-oil-250ml",
           "active": true,
@@ -194,7 +815,7 @@
           },
           "size": 250,
           "unit": "ml",
-          "price": 40
+          "price": 155
         }
       ],
       "tags": {
@@ -233,10 +854,62 @@
       "vatIncluded": true,
       "name": {
         "en": "Argan Oil + Agra Incense",
-        "es": "Aceite de Argán + Incienso de Agra",
+        "es": "Aceite de Argán Puro con Incienso de Agra",
         "pt": "Óleo de Argan + Incenso de Agra"
       },
       "sizes": [
+        {
+          "slug": "agra-incense-argan-oil-10ml",
+          "active": true,
+          "format": "roll-on",
+          "label": {
+            "en": "Roll-on 10 ml",
+            "es": "Roll-on 10 ml",
+            "pt": "Roll-on 10 ml"
+          },
+          "size": 10,
+          "unit": "ml",
+          "price": 17
+        },
+        {
+          "slug": "agra-incense-argan-oil-30ml",
+          "active": true,
+          "format": "dropper",
+          "label": {
+            "en": "Dropper 30 ml",
+            "es": "Gotero 30 ml",
+            "pt": "Conta-gotas 30 ml"
+          },
+          "size": 30,
+          "unit": "ml",
+          "price": 30
+        },
+        {
+          "slug": "agra-incense-argan-oil-50ml",
+          "active": true,
+          "format": "dispenser",
+          "label": {
+            "en": "Dispenser 50 ml",
+            "es": "Dosificador 50 ml",
+            "pt": "Dispensador 50 ml"
+          },
+          "size": 50,
+          "unit": "ml",
+          "price": 55
+        },
+        {
+          "slug": "agra-incense-argan-oil-100ml",
+          "active": true,
+          "format": "dispenser",
+          "label": {
+            "en": "Dispenser 100 ml",
+            "es": "Dosificador 100 ml",
+            "pt": "Dispensador 100 ml"
+          },
+          "size": 100,
+          "unit": "ml",
+          "price": 95
+        },
         {
           "slug": "agra-incense-argan-oil-250ml",
           "active": true,
@@ -248,7 +921,7 @@
           },
           "size": 250,
           "unit": "ml",
-          "price": 40
+          "price": 155
         }
       ],
       "tags": {
@@ -287,10 +960,62 @@
       "vatIncluded": true,
       "name": {
         "en": "Argan Oil + Jasmine",
-        "es": "Aceite de Argán + Jazmín",
+        "es": "Aceite de Argán Puro con Jazmín",
         "pt": "Óleo de Argan + Jasmim"
       },
       "sizes": [
+        {
+          "slug": "jasmine-argan-oil-10ml",
+          "active": true,
+          "format": "roll-on",
+          "label": {
+            "en": "Roll-on 10 ml",
+            "es": "Roll-on 10 ml",
+            "pt": "Roll-on 10 ml"
+          },
+          "size": 10,
+          "unit": "ml",
+          "price": 17
+        },
+        {
+          "slug": "jasmine-argan-oil-30ml",
+          "active": true,
+          "format": "dropper",
+          "label": {
+            "en": "Dropper 30 ml",
+            "es": "Gotero 30 ml",
+            "pt": "Conta-gotas 30 ml"
+          },
+          "size": 30,
+          "unit": "ml",
+          "price": 30
+        },
+        {
+          "slug": "jasmine-argan-oil-50ml",
+          "active": true,
+          "format": "dispenser",
+          "label": {
+            "en": "Dispenser 50 ml",
+            "es": "Dosificador 50 ml",
+            "pt": "Dispensador 50 ml"
+          },
+          "size": 50,
+          "unit": "ml",
+          "price": 55
+        },
+        {
+          "slug": "jasmine-argan-oil-100ml",
+          "active": true,
+          "format": "dispenser",
+          "label": {
+            "en": "Dispenser 100 ml",
+            "es": "Dosificador 100 ml",
+            "pt": "Dispensador 100 ml"
+          },
+          "size": 100,
+          "unit": "ml",
+          "price": 95
+        },
         {
           "slug": "jasmine-argan-oil-250ml",
           "active": true,
@@ -302,7 +1027,7 @@
           },
           "size": 250,
           "unit": "ml",
-          "price": 40
+          "price": 155
         }
       ],
       "tags": {
@@ -341,10 +1066,62 @@
       "vatIncluded": true,
       "name": {
         "en": "Argan Oil + Lavender",
-        "es": "Aceite de Argán + Lavanda",
+        "es": "Aceite de Argán Puro con Lavanda",
         "pt": "Óleo de Argan + Lavanda"
       },
       "sizes": [
+        {
+          "slug": "lavender-argan-oil-10ml",
+          "active": true,
+          "format": "roll-on",
+          "label": {
+            "en": "Roll-on 10 ml",
+            "es": "Roll-on 10 ml",
+            "pt": "Roll-on 10 ml"
+          },
+          "size": 10,
+          "unit": "ml",
+          "price": 17
+        },
+        {
+          "slug": "lavender-argan-oil-30ml",
+          "active": true,
+          "format": "dropper",
+          "label": {
+            "en": "Dropper 30 ml",
+            "es": "Gotero 30 ml",
+            "pt": "Conta-gotas 30 ml"
+          },
+          "size": 30,
+          "unit": "ml",
+          "price": 30
+        },
+        {
+          "slug": "lavender-argan-oil-50ml",
+          "active": true,
+          "format": "dispenser",
+          "label": {
+            "en": "Dispenser 50 ml",
+            "es": "Dosificador 50 ml",
+            "pt": "Dispensador 50 ml"
+          },
+          "size": 50,
+          "unit": "ml",
+          "price": 55
+        },
+        {
+          "slug": "lavender-argan-oil-100ml",
+          "active": true,
+          "format": "dispenser",
+          "label": {
+            "en": "Dispenser 100 ml",
+            "es": "Dosificador 100 ml",
+            "pt": "Dispensador 100 ml"
+          },
+          "size": 100,
+          "unit": "ml",
+          "price": 95
+        },
         {
           "slug": "lavender-argan-oil-250ml",
           "active": true,
@@ -356,7 +1133,7 @@
           },
           "size": 250,
           "unit": "ml",
-          "price": 40
+          "price": 155
         }
       ],
       "tags": {
@@ -395,10 +1172,62 @@
       "vatIncluded": true,
       "name": {
         "en": "Argan Oil + Patchouli",
-        "es": "Aceite de Argán + Patchouli",
+        "es": "Aceite de Argán Puro con Patchouli",
         "pt": "Óleo de Argan + Patchouli"
       },
       "sizes": [
+        {
+          "slug": "patchouli-argan-oil-10ml",
+          "active": true,
+          "format": "roll-on",
+          "label": {
+            "en": "Roll-on 10 ml",
+            "es": "Roll-on 10 ml",
+            "pt": "Roll-on 10 ml"
+          },
+          "size": 10,
+          "unit": "ml",
+          "price": 17
+        },
+        {
+          "slug": "patchouli-argan-oil-30ml",
+          "active": true,
+          "format": "dropper",
+          "label": {
+            "en": "Dropper 30 ml",
+            "es": "Gotero 30 ml",
+            "pt": "Conta-gotas 30 ml"
+          },
+          "size": 30,
+          "unit": "ml",
+          "price": 30
+        },
+        {
+          "slug": "patchouli-argan-oil-50ml",
+          "active": true,
+          "format": "dispenser",
+          "label": {
+            "en": "Dispenser 50 ml",
+            "es": "Dosificador 50 ml",
+            "pt": "Dispensador 50 ml"
+          },
+          "size": 50,
+          "unit": "ml",
+          "price": 55
+        },
+        {
+          "slug": "patchouli-argan-oil-100ml",
+          "active": true,
+          "format": "dispenser",
+          "label": {
+            "en": "Dispenser 100 ml",
+            "es": "Dosificador 100 ml",
+            "pt": "Dispensador 100 ml"
+          },
+          "size": 100,
+          "unit": "ml",
+          "price": 95
+        },
         {
           "slug": "patchouli-argan-oil-250ml",
           "active": true,
@@ -410,7 +1239,7 @@
           },
           "size": 250,
           "unit": "ml",
-          "price": 40
+          "price": 155
         }
       ],
       "tags": {
@@ -449,10 +1278,62 @@
       "vatIncluded": true,
       "name": {
         "en": "Argan Oil + Rosemary",
-        "es": "Aceite de Argán + Romero",
+        "es": "Aceite de Argán Puro con Romero",
         "pt": "Óleo de Argan + Alecrim"
       },
       "sizes": [
+        {
+          "slug": "rosemary-argan-oil-10ml",
+          "active": true,
+          "format": "roll-on",
+          "label": {
+            "en": "Roll-on 10 ml",
+            "es": "Roll-on 10 ml",
+            "pt": "Roll-on 10 ml"
+          },
+          "size": 10,
+          "unit": "ml",
+          "price": 17
+        },
+        {
+          "slug": "rosemary-argan-oil-30ml",
+          "active": true,
+          "format": "dropper",
+          "label": {
+            "en": "Dropper 30 ml",
+            "es": "Gotero 30 ml",
+            "pt": "Conta-gotas 30 ml"
+          },
+          "size": 30,
+          "unit": "ml",
+          "price": 30
+        },
+        {
+          "slug": "rosemary-argan-oil-50ml",
+          "active": true,
+          "format": "dispenser",
+          "label": {
+            "en": "Dispenser 50 ml",
+            "es": "Dosificador 50 ml",
+            "pt": "Dispensador 50 ml"
+          },
+          "size": 50,
+          "unit": "ml",
+          "price": 55
+        },
+        {
+          "slug": "rosemary-argan-oil-100ml",
+          "active": true,
+          "format": "dispenser",
+          "label": {
+            "en": "Dispenser 100 ml",
+            "es": "Dosificador 100 ml",
+            "pt": "Dispensador 100 ml"
+          },
+          "size": 100,
+          "unit": "ml",
+          "price": 95
+        },
         {
           "slug": "rosemary-argan-oil-250ml",
           "active": true,
@@ -464,7 +1345,7 @@
           },
           "size": 250,
           "unit": "ml",
-          "price": 40
+          "price": 155
         }
       ],
       "tags": {
@@ -496,171 +1377,15 @@
       "updatedAt": "2024-05-30T00:00:00.000Z"
     },
     {
-      "slug": "argan-30ml-kessa-bundle",
-      "active": true,
-      "category": "kit",
-      "currency": "EUR",
-      "vatIncluded": true,
-      "name": {
-        "en": "30 ml Argan Oil + Kessa Glove",
-        "es": "Pack 30 ml Aceite de Argán + Manopla Kessa",
-        "pt": "Kit 30 ml Óleo de Argan + Luva Kessa"
-      },
-      "sizes": [
-        {
-          "slug": "argan-30ml-kessa-bundle-set",
-          "active": true,
-          "format": "bundle",
-          "label": {
-            "en": "Set 30 ml + Kessa",
-            "es": "Set 30 ml + Kessa",
-            "pt": "Set 30 ml + Kessa"
-          },
-          "size": 30,
-          "unit": "ml",
-          "price": 37
-        }
-      ],
-      "tags": {
-        "en": [
-          "fragrance-free"
-        ],
-        "es": [
-          "sin fragancia"
-        ],
-        "pt": [
-          "sem fragrância"
-        ]
-      },
-      "updatedAt": "2024-05-30T00:00:00.000Z"
-    },
-    {
-      "slug": "argan-100ml-kessa-bundle",
-      "active": true,
-      "category": "kit",
-      "currency": "EUR",
-      "vatIncluded": true,
-      "name": {
-        "en": "100 ml Argan Oil + Kessa Glove",
-        "es": "Pack 100 ml Aceite de Argán + Manopla Kessa",
-        "pt": "Kit 100 ml Óleo de Argan + Luva Kessa"
-      },
-      "sizes": [
-        {
-          "slug": "argan-100ml-kessa-bundle-set",
-          "active": true,
-          "format": "bundle",
-          "label": {
-            "en": "Set 100 ml + Kessa",
-            "es": "Set 100 ml + Kessa",
-            "pt": "Set 100 ml + Kessa"
-          },
-          "size": 100,
-          "unit": "ml",
-          "price": 65
-        }
-      ],
-      "tags": {
-        "en": [
-          "fragrance-free"
-        ],
-        "es": [
-          "sin fragancia"
-        ],
-        "pt": [
-          "sem fragrância"
-        ]
-      },
-      "updatedAt": "2024-05-30T00:00:00.000Z"
-    },
-    {
-      "slug": "argan-500ml-kessa-bundle",
-      "active": true,
-      "category": "kit",
-      "currency": "EUR",
-      "vatIncluded": true,
-      "name": {
-        "en": "500 ml Argan Oil + Kessa + Pouch",
-        "es": "Pack 500 ml Aceite de Argán + Kessa + Neceser",
-        "pt": "Kit 500 ml Óleo de Argan + Kessa + Nécessaire"
-      },
-      "sizes": [
-        {
-          "slug": "argan-500ml-kessa-bundle-set",
-          "active": true,
-          "format": "bundle",
-          "label": {
-            "en": "Set 500 ml + Kessa",
-            "es": "Set 500 ml + Kessa",
-            "pt": "Set 500 ml + Kessa"
-          },
-          "size": 500,
-          "unit": "ml",
-          "price": 120
-        }
-      ],
-      "tags": {
-        "en": [
-          "fragrance-free"
-        ],
-        "es": [
-          "sin fragancia"
-        ],
-        "pt": [
-          "sem fragrância"
-        ]
-      },
-      "updatedAt": "2024-05-30T00:00:00.000Z"
-    },
-    {
-      "slug": "lavender-50ml-argan-30ml-pack",
-      "active": true,
-      "category": "kit",
-      "currency": "EUR",
-      "vatIncluded": true,
-      "name": {
-        "en": "Lavender 50 ml + Argan 30 ml Pack",
-        "es": "Pack Lavanda 50 ml + Argán 30 ml",
-        "pt": "Kit Lavanda 50 ml + Argan 30 ml"
-      },
-      "sizes": [
-        {
-          "slug": "lavender-50ml-argan-30ml-pack-set",
-          "active": true,
-          "format": "bundle",
-          "label": {
-            "en": "Lavender 50 ml + Argan 30 ml",
-            "es": "Lavanda 50 ml + Argán 30 ml",
-            "pt": "Lavanda 50 ml + Argan 30 ml"
-          },
-          "size": 1,
-          "unit": "set",
-          "price": 72
-        }
-      ],
-      "tags": {
-        "en": [
-          "scented"
-        ],
-        "es": [
-          "perfumado"
-        ],
-        "pt": [
-          "perfumado"
-        ]
-      },
-      "updatedAt": "2024-05-30T00:00:00.000Z"
-    },
-    {
       "slug": "manopla-kessa",
       "active": true,
       "category": "accessory",
       "currency": "EUR",
       "vatIncluded": true,
       "name": {
-        "en": "Kessa Exfoliating Glove",
-        "es": "Manopla Exfoliante Kessa",
-        "pt": "Luva Esfoliante Kessa"
+        "en": "Kapunka Kessa Mitt",
+        "es": "Manopla Kessa Kapunka",
+        "pt": "Luva Kessa Kapunka"
       },
       "description": {
         "en": "Traditional Moroccan glove to lift impurities and smooth roughness. Use with warm water before applying oil.",
@@ -739,6 +1464,97 @@
         "pt": []
       },
       "updatedAt": "2024-05-30T00:00:00.000Z"
+    },
+    {
+      "slug": "pack-kapunka",
+      "active": true,
+      "category": "kit",
+      "currency": "EUR",
+      "vatIncluded": true,
+      "name": {
+        "es": "Pack Kapunka",
+        "en": "Kapunka Ritual Pack",
+        "pt": "Pack Kapunka"
+      },
+      "sizes": [
+        {
+          "slug": "pack-kapunka-30ml",
+          "active": true,
+          "format": "kit",
+          "label": {
+            "en": "Pack 30 ml",
+            "es": "Pack 30 ml",
+            "pt": "Pack 30 ml"
+          },
+          "size": 30,
+          "unit": "ml",
+          "price": 59
+        },
+        {
+          "slug": "pack-kapunka-50ml",
+          "active": true,
+          "format": "kit",
+          "label": {
+            "en": "Pack 50 ml",
+            "es": "Pack 50 ml",
+            "pt": "Pack 50 ml"
+          },
+          "size": 50,
+          "unit": "ml",
+          "price": 79
+        },
+        {
+          "slug": "pack-kapunka-100ml",
+          "active": true,
+          "format": "kit",
+          "label": {
+            "en": "Pack 100 ml",
+            "es": "Pack 100 ml",
+            "pt": "Pack 100 ml"
+          },
+          "size": 100,
+          "unit": "ml",
+          "price": 119
+        },
+        {
+          "slug": "pack-kapunka-250ml",
+          "active": true,
+          "format": "kit",
+          "label": {
+            "en": "Pack 250 ml",
+            "es": "Pack 250 ml",
+            "pt": "Pack 250 ml"
+          },
+          "size": 250,
+          "unit": "ml",
+          "price": 189
+        }
+      ],
+      "tags": {
+        "en": [
+          "bundle",
+          "hammam"
+        ],
+        "es": [
+          "pack",
+          "hammam"
+        ],
+        "pt": [
+          "pack",
+          "hammam"
+        ]
+      },
+      "updatedAt": "2025-09-26T14:14:15.062213+00:00",
+      "tagline": {
+        "es": "Aceite de argán con manopla Kessa y neceser para ritual hammam en casa.",
+        "en": "Argan oil with Kessa mitt and pouch for a home hammam ritual.",
+        "pt": "Óleo de argan com luva Kessa e nécessaire para um ritual hammam em casa."
+      },
+      "description": {
+        "es": "Selecciona el tamaño de aceite de argán y recibe la manopla Kessa y el neceser Kapunka para recrear el ritual completo. Todo cabe en un estuche lavable pensado para viajar o regalar.",
+        "en": "Choose your argan oil size and receive the Kapunka Kessa mitt and pouch to recreate the full ritual. Everything fits inside a washable pouch designed for travel or gifting.",
+        "pt": "Escolha o tamanho do óleo de argan e receba a luva Kessa e a nécessaire Kapunka para recriar o ritual completo. Tudo cabe numa bolsa lavável pensada para viajar ou presentear."
+      }
     }
   ]
 }
