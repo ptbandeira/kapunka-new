@@ -84,33 +84,28 @@
       "sizes": [
         {
           "id": "10ml-roll-on",
-          "size": 10,
-          "price": 12
+          "price": 17,
+          "size": 10
         },
         {
           "id": "30ml-dropper",
-          "size": 30,
-          "price": 25
+          "price": 30,
+          "size": 30
         },
         {
           "id": "50ml-pump",
-          "size": 50,
-          "price": 35
+          "price": 55,
+          "size": 50
         },
         {
           "id": "100ml-pump",
-          "size": 100,
-          "price": 55
+          "price": 95,
+          "size": 100
         },
         {
           "id": "250ml-pump",
-          "size": 250,
-          "price": 95
-        },
-        {
-          "id": "500ml-pump",
-          "size": 500,
-          "price": 165
+          "price": 155,
+          "size": 250
         }
       ],
       "imageUrl": "/content/uploads/aceite-argan-dosificador-250ml-300x300.jpg",
@@ -250,355 +245,1121 @@
     },
     {
       "ingredients": {
-        "en": "100% Rosa Damascena (Rose) Flower Water.",
-        "pt": "100% Água da Flor de Rosa Damascena (Rosa).",
-        "es": "100% Agua de Flor de Rosa Damascena (Rosa)."
+        "en": "Argania Spinosa (Argan) Kernel Oil",
+        "pt": "Argania Spinosa (Argan) Kernel Oil",
+        "es": "Argania Spinosa (Argan) Kernel Oil"
       },
       "name": {
-        "en": "Damask Rose Water",
-        "pt": "Água de Rosas Damascena",
-        "es": "Agua de Rosas de Damasco"
+        "es": "Kapunka Cicatrices",
+        "en": "Kapunka Scar Care",
+        "pt": "Kapunka Cicatrizes"
       },
       "tagline": {
-        "en": "Pure floral toner and refresher",
-        "pt": "Tônico floral puro e refrescante",
-        "es": "Tónico floral puro y refrescante"
+        "es": "Aceite de argán reparador para cicatrices y marcas.",
+        "en": "Repairing argan treatment for scars and marks.",
+        "pt": "Tratamento reparador com óleo de argan para cicatrizes."
+      },
+      "description": {
+        "es": "Nuestro aceite cicatrizante combina argán prensado en frío con extractos calmantes de lavanda y geranio para masajear cicatrices, estrías y marcas post-procedimiento. La textura ligera se absorbe sin residuos y mantiene la piel flexible mientras protege la barrera.",
+        "en": "Our scar treatment oil blends cold-pressed argan with soothing lavender and geranium extracts to massage scars, stretch marks, and post-procedure marks. The lightweight texture absorbs without residue and keeps skin supple while protecting the barrier.",
+        "pt": "O nosso óleo cicatrizante combina argan prensado a frio com extratos calmantes de lavanda e gerânio para massagear cicatrizes, estrias e marcas pós-procedimento. A textura leve é absorvida sem resíduos e mantém a pele flexível enquanto protege a barreira."
       },
       "badges": {
         "en": [
-          "100% Pure",
-          "Distilled"
-        ],
-        "pt": [
-          "100% Pura",
-          "Destilada"
+          "Targeted Care",
+          "Dermatology Inspired"
         ],
         "es": [
-          "100% Pura",
-          "Destilada"
+          "Cuidado focalizado",
+          "Inspirado en dermatología"
+        ],
+        "pt": [
+          "Cuidado direcionado",
+          "Inspirado na dermatologia"
+        ]
+      },
+      "tags": {
+        "en": [
+          "scar care"
+        ],
+        "es": [
+          "cicatrices"
+        ],
+        "pt": [
+          "cicatrizes"
         ]
       },
       "labTestedNote": {
-        "en": "Distilled from pure Damask roses. Free from alcohol and synthetic fragrances.",
-        "pt": "Destilado de rosas de Damasco puras. Livre de álcool e fragrâncias sintéticas.",
-        "es": "Destilado de rosas de Damasco puras. Libre de alcohol y fragancias sintéticas."
+        "en": "Our Argan Oil is ECOCERT certified, guaranteeing its organic purity and ethical sourcing from the women's cooperatives of Morocco.",
+        "pt": "O nosso Óleo de Argan é certificado pela ECOCERT, garantindo a sua pureza orgânica e origem ética das cooperativas de mulheres de Marrocos.",
+        "es": "Nuestro Aceite de Argán está certificado por ECOCERT, garantizando su pureza orgánica y su origen ético de las cooperativas de mujeres de Marruecos."
+      },
+      "goodToKnow": {
+        "title": {
+          "en": "Good to know",
+          "pt": "Bom saber",
+          "es": "Para tener en cuenta"
+        },
+        "items": {
+          "en": [
+            "Texture: lightweight, fast absorbing",
+            "Finish: soft glow, non greasy",
+            "Suitable for all skin types",
+            "Vegan; no additives"
+          ],
+          "pt": [
+            "Textura: leve, de rápida absorção",
+            "Acabamento: brilho suave, não oleoso",
+            "Adequado para todos os tipos de pele",
+            "Vegan; sem aditivos"
+          ],
+          "es": [
+            "Textura: ligera, de rápida absorción",
+            "Acabado: brillo suave, no graso",
+            "Apto para todo tipo de piel",
+            "Vegano; sin aditivos"
+          ]
+        }
       },
       "sizes": [
         {
-          "id": "100ml",
-          "size": 100,
-          "price": 22
+          "id": "10ml-roll-on",
+          "price": 17,
+          "size": 10
+        },
+        {
+          "id": "30ml-dropper",
+          "price": 30,
+          "size": 30
+        },
+        {
+          "id": "50ml-pump",
+          "price": 55,
+          "size": 50
+        },
+        {
+          "id": "100ml-pump",
+          "price": 95,
+          "size": 100
+        },
+        {
+          "id": "250ml-pump",
+          "price": 155,
+          "size": 250
         }
       ],
-      "imageUrl": "/content/uploads/aceite-argan-puro-primera-prensada-frio-250ml-con-lavanda-300x300.jpg",
-      "id": "rose-water",
+      "imageUrl": "",
+      "id": "kapunka-cicatrices",
       "howToUse": {
-        "en": "Mist onto face after cleansing or anytime skin needs a refresh. Can be used on hair to add a light, pleasant scent.",
-        "pt": "Borrife no rosto após a limpeza ou sempre que a pele precisar de um refresh. Pode ser usado no cabelo para adicionar um aroma leve e agradável.",
-        "es": "Rociar sobre el rostro después de la limpieza o en cualquier momento que la piel necesite un refresco. Se puede usar en el cabello para agregar un aroma ligero y agradable."
+        "en": "Apply 2–3 drops to clean skin AM/PM. For hair, smooth a drop on mid-lengths and ends. Follow clinician guidance after procedures.",
+        "pt": "Aplicar 2–3 gotas na pele limpa de manhã e à noite. No cabelo, espalhar uma gota nos comprimentos e pontas. Seguir a orientação do profissional em pós-procedimentos.",
+        "es": "Aplicar 2–3 gotas sobre la piel limpia mañana y noche. Para el cabello, aplicar una gota en medios y puntas. Seguir las indicaciones del profesional en post-procedimientos."
       },
       "benefits": {
         "en": [
-          "Tones, balances, and soothes the skin",
-          "Provides a light layer of hydration",
-          "Helps reduce redness and calm irritation",
-          "Can be used to set makeup or refresh skin throughout the day"
+          "Deep hydration; soft, comfortable finish",
+          "Supports the skin barrier",
+          "Multi-use: face, body, hair, nails",
+          "Fragrance-free; suitable for sensitive skin"
         ],
         "pt": [
-          "Tonifica, equilibra e acalma a pele",
-          "Fornece uma camada leve de hidratação",
-          "Ajuda a reduzir a vermelhidão e a acalmar a irritação",
-          "Pode ser usado para fixar a maquiagem ou refrescar a pele ao longo do dia"
+          "Hidratação profunda; acabamento suave e confortável",
+          "Apoia a barreira cutânea",
+          "Multiuso: rosto, corpo, cabelo, unhas",
+          "Sem fragrância; adequado para pele sensível"
         ],
         "es": [
-          "Tonifica, equilibra y calma la piel",
-          "Proporciona una ligera capa de hidratación",
-          "Ayuda a reducir el enrojecimiento y calmar la irritación",
-          "Se puede usar para fijar el maquillaje o refrescar la piel durante el día"
+          "Hidratación profunda; acabado suave y confortable",
+          "Apoya la barrera cutánea",
+          "Multiuso: rostro, cuerpo, cabello, uñas",
+          "Sin fragancia; apto para piel sensible"
         ]
       },
       "knowledge": {
         "whatItIs": {
-          "en": "A single-ingredient Damask rose hydrosol distilled from handpicked petals. It's the best alcohol-free rose water for rosacea-friendly toning, delivering instant hydration without stickiness.",
-          "pt": "Um hidrossol de Rosa Damascena de ingrediente único, destilado de pétalas colhidas à mão. É a melhor água de rosas sem álcool para tonificar peles com rosácea, oferecendo hidratação imediata sem deixar resíduo pegajoso.",
-          "es": "Un hidrosol de Rosa Damascena de un solo ingrediente, destilado de pétalos recolectados a mano. Es el mejor agua de rosas sin alcohol para tonificar pieles con rosácea, aportando hidratación instantánea sin sensación pegajosa."
+          "en": "An ECOCERT single-origin oil pressed within 24 hours of harvest. It's the best natural oil for post-laser skin repair and everyday barrier rescue, bottled without fillers or fragrance.",
+          "pt": "Um óleo de argan de origem única com certificação ECOCERT, prensado em até 24 horas após a colheita. É o melhor óleo natural para reparar a pele após laser e resgatar a barreira no dia a dia, engarrafado sem aditivos nem fragrâncias.",
+          "es": "Un aceite de argán de origen único certificado por ECOCERT, prensado en frío dentro de las 24 horas posteriores a la cosecha. Es el mejor aceite natural para la reparación cutánea post láser y el rescate diario de la barrera, embotellado sin aditivos ni fragancias."
         },
         "howItWorks": {
-          "en": "With a natural pH close to skin, rose water replenishes moisture while phenolic compounds like quercetin reduce inflammation. Mild astringent tannins refine pores and balance sebum without stripping.",
-          "pt": "Com pH natural próximo ao da pele, a água de rosas repõe a umidade enquanto compostos fenólicos como a quercetina reduzem a inflamação. Taninos adstringentes suaves refinam os poros e equilibram a oleosidade sem ressecar.",
-          "es": "Con un pH natural cercano al de la piel, el agua de rosas repone humedad mientras compuestos fenólicos como la quercetina reducen la inflamación. Los taninos astringentes suaves afinan los poros y equilibran el sebo sin resecar."
+          "en": "High concentrations of oleic and linoleic acids plus gamma tocopherol and native squalene mirror skin sebum, sealing micro-fissures and reducing transepidermal water loss. Anti-inflammatory polyphenols calm redness after resurfacing, while antioxidants neutralise free radicals from UV or pollution.",
+          "pt": "Altas concentrações de ácidos oleico e linoleico, além de gama-tocoferol e esqualeno nativo, mimetizam o sebo cutâneo, selando microfissuras e reduzindo a perda transepidérmica de água. Polifenóis anti-inflamatórios acalmam a vermelhidão pós-procedimento, enquanto antioxidantes neutralizam radicais livres de UV ou poluição.",
+          "es": "Las altas concentraciones de ácidos oleico y linoleico, junto con gamma tocoferol y escualeno nativo, imitan el sebo cutáneo, sellan microfisuras y reducen la pérdida transepidérmica de agua. Los polifenoles antiinflamatorios calman el enrojecimiento tras los procedimientos, mientras que los antioxidantes neutralizan los radicales libres de la radiación UV o la polución."
         },
         "whoItsFor": {
-          "en": "Perfect for reactive, redness-prone, or combination skin needing a calm reset throughout the day. Also loved as a rose water mist for sensitive combination skin, setting makeup and soothing overheated scalps.",
-          "pt": "Perfeita para peles reativas, com tendência à vermelhidão ou mistas que precisam de um reset calmante ao longo do dia. Também é adorada como bruma de água de rosas para peles sensíveis mistas, fixando a maquiagem e acalmando couros cabeludos superaquecidos.",
-          "es": "Perfecta para pieles reactivas, con tendencia al enrojecimiento o mixtas que necesitan un reinicio calmante durante el día. También es una bruma de agua de rosas ideal para piel sensible mixta, fija el maquillaje y alivia cueros cabelludos sobrecalentados."
+          "en": "Ideal for barrier-impaired complexions, eczema-prone dryness, and mature or postpartum skin needing lipid replenishment. It also doubles as argan oil for scalp stimulation in thinning hair, reviving brittle lengths and nails.",
+          "pt": "Indicado para peles com barreira fragilizada, ressecamento com tendência a eczema e pele madura ou pós-parto que precisa de reposição lipídica. Também funciona como óleo de argan para estimular o couro cabeludo em cabelos ralos, revitalizando fios quebradiços e unhas frágeis.",
+          "es": "Ideal para cutis con la barrera comprometida, sequedad con tendencia a eccema y piel madura o posparto que necesita reposición lipídica. También funciona como aceite de argán para estimular el cuero cabelludo en cabellos afinados, revitalizando largos quebradizos y uñas frágiles."
         },
         "scientificBacking": {
-          "en": "In vitro studies show Rosa damascena extracts inhibit COX-2 and reduce lipid peroxidation, key markers of inflammation. Clinical testing on sensitive volunteers found reduced redness and improved hydration after four weeks of daily rose water use.",
-          "pt": "Estudos in vitro mostram que extratos de Rosa damascena inibem a COX-2 e reduzem a peroxidação lipídica, marcadores chave da inflamação. Testes clínicos em voluntários de pele sensível registraram menos vermelhidão e hidratação superior após quatro semanas de uso diário.",
-          "es": "Estudios in vitro muestran que los extractos de Rosa damascena inhiben la COX-2 y reducen la peroxidación lipídica, marcadores clave de inflamación. Pruebas clínicas en voluntarios de piel sensible reportaron menos enrojecimiento y mejor hidratación tras cuatro semanas de uso diario."
+          "en": "Clinical studies in dermatology journals show twice-daily argan oil improves skin elasticity within four weeks and significantly lowers TEWL. Research in postmenopausal women links topical argan oil with better barrier recovery and a measurable boost in vitamin E levels.",
+          "pt": "Estudos clínicos em revistas de dermatologia mostram que o uso de óleo de argan duas vezes ao dia melhora a elasticidade em quatro semanas e reduz significativamente a perda transepidérmica de água. Pesquisas com mulheres pós-menopausa associam a aplicação tópica a uma recuperação mais rápida da barreira e a um aumento mensurável dos níveis de vitamina E.",
+          "es": "Estudios clínicos en revistas dermatológicas demuestran que el aceite de argán aplicado dos veces al día mejora la elasticidad en cuatro semanas y reduce de forma significativa la pérdida transepidérmica de agua. Investigaciones en mujeres posmenopáusicas vinculan su uso tópico con una recuperación más rápida de la barrera y un aumento medible de los niveles de vitamina E."
         },
         "culturalContext": {
-          "en": "Damask rose distillation has deep roots in Moroccan and Middle Eastern hammam rituals, where the floral water cools the skin after steam baths. It's also poured over guests during celebrations as a gesture of purity and welcome.",
-          "pt": "A destilação de rosas damascenas tem raízes profundas nos rituais de hammam do Marrocos e do Oriente Médio, onde a água floral resfria a pele após os banhos de vapor. Ela também é oferecida em celebrações como gesto de pureza e boas-vindas.",
-          "es": "La destilación de rosas damascenas tiene raíces profundas en los rituales de hammam marroquíes y de Oriente Medio, donde el agua floral refresca la piel después de los baños de vapor. También se vierte sobre los invitados en celebraciones como gesto de pureza y bienvenida."
+          "en": "Harvested by Amazigh cooperatives in southwest Morocco, argan oil has underpinned hammam rituals for centuries. The artisanal cold-pressing process is recognised by UNESCO as part of humanity's cultural heritage and sustains women's economic independence.",
+          "pt": "Extraído por cooperativas amazigh no sudoeste de Marrocos, o óleo de argan sustenta comunidades femininas e compõe rituais de hammam há séculos. O processo artesanal de prensagem a frio é reconhecido pela UNESCO como patrimônio cultural e garante independência econômica às mulheres.",
+          "es": "Extraído por cooperativas amazigh del suroeste de Marruecos, el aceite de argán sostiene a comunidades de mujeres y forma parte del ritual de hammam desde hace siglos. El proceso artesanal de prensado en frío está reconocido por la UNESCO como patrimonio cultural y garantiza la independencia económica femenina."
         }
       },
       "faqs": [
         {
           "question": {
-            "en": "Can I layer it after chemical exfoliants or retinoids?",
-            "pt": "Posso usar após esfoliantes químicos ou retinoides?",
-            "es": "¿Puedo aplicarla después de exfoliantes químicos o retinoides?"
+            "en": "Can I apply it after microneedling or laser treatments?",
+            "pt": "Posso aplicar após microagulhamento ou tratamentos a laser?",
+            "es": "¿Puedo aplicarlo después de un microneedling o tratamientos láser?"
           },
           "answer": {
-            "en": "Yes—mist immediately after neutralising acids or retinoids to rebalance pH and reduce stinging. The hydrosol's humectants help buffer active treatments while keeping the barrier hydrated.",
-            "pt": "Sim — borrife imediatamente após neutralizar ácidos ou retinoides para reequilibrar o pH e reduzir o ardor. Os umectantes do hidrossol ajudam a amortecer os ativos enquanto mantêm a barreira hidratada.",
-            "es": "Sí; rocíala inmediatamente después de neutralizar ácidos o retinoides para reequilibrar el pH y reducir el escozor. Los humectantes del hidrosol amortiguan los activos mientras mantienen la barrera hidratada."
+            "en": "Yes—once the skin is fully closed, usually 24 hours after fractional laser or microneedling, smooth two to three drops over damp skin. Its vitamin E and essential fatty acids make it the best natural oil for post-laser skin repair, helping calm heat and replenish the barrier.",
+            "pt": "Sim — assim que a pele estiver totalmente fechada, geralmente 24 horas após laser fracionado ou microagulhamento, espalhe duas a três gotas sobre a pele úmida. A vitamina E e os ácidos graxos essenciais fazem dele o melhor óleo natural para reparar a pele pós-laser, ajudando a acalmar o calor e reabastecer a barreira.",
+            "es": "Sí; una vez que la piel esté totalmente cerrada, normalmente 24 horas después de un láser fraccionado o microneedling, distribuye de dos a tres gotas sobre la piel húmeda. Su vitamina E y ácidos grasos esenciales lo convierten en el mejor aceite natural para la reparación cutánea post láser, ayudando a calmar el calor y reponer la barrera."
           }
         },
         {
           "question": {
-            "en": "Does it help calm redness or rosacea flare-ups?",
-            "pt": "Ela ajuda a acalmar vermelhidão ou crises de rosácea?",
-            "es": "¿Ayuda a calmar el enrojecimiento o los brotes de rosácea?"
+            "en": "Will pure argan oil clog my pores?",
+            "pt": "O óleo de argan puro vai obstruir meus poros?",
+            "es": "¿El aceite de argán puro obstruirá mis poros?"
           },
           "answer": {
-            "en": "Store it chilled and press soaked cotton rounds onto flushed areas for five minutes. Rose polyphenols visibly ease heat and capillary flare without the need for menthol or alcohol.",
-            "pt": "Guarde na geladeira e pressione discos de algodão embebidos sobre as áreas quentes por cinco minutos. Os polifenóis da rosa aliviam o calor e a dilatação capilar sem recorrer a mentol ou álcool.",
-            "es": "Guárdala en frío y presiona discos de algodón empapados sobre las zonas enrojecidas durante cinco minutos. Los polifenoles de la rosa calman el calor y el enrojecimiento capilar sin recurrir a mentol ni alcohol."
+            "en": "Argan oil has a comedogenic rating of 0–1, meaning it rarely blocks pores. Warm a single drop between your palms and press onto skin as the final step, or mix it with a water-based serum to aid absorption.",
+            "pt": "O óleo de argan tem índice comedogênico 0–1, ou seja, dificilmente obstrui os poros. Aqueça uma gota entre as palmas e pressione sobre a pele como último passo, ou misture a um sérum aquoso para facilitar a absorção.",
+            "es": "El aceite de argán tiene un índice comedogénico de 0–1, lo que significa que rara vez obstruye los poros. Calienta una gota entre las palmas y presiona sobre la piel como paso final, o mézclala con un sérum acuoso para mejorar la absorción."
           }
         },
         {
           "question": {
-            "en": "Can I spray it on my hair or scalp?",
-            "pt": "Posso borrifar no cabelo ou no couro cabeludo?",
-            "es": "¿Puedo rociarla en el cabello o el cuero cabelludo?"
+            "en": "How do I use it as argan oil for scalp stimulation in thinning hair?",
+            "pt": "Como usar como óleo de argan para estimular o couro cabeludo em cabelos ralos?",
+            "es": "¿Cómo lo uso como aceite de argán para estimular el cuero cabelludo en cabellos afinados?"
           },
           "answer": {
-            "en": "Yes—mist roots before styling to rehydrate curls, reduce static, and leave a subtle botanical scent. It also refreshes the scalp between wash days.",
-            "pt": "Sim — borrife nas raízes antes de modelar para reidratar os cachos, reduzir o frizz elétrico e deixar um aroma botânico sutil. Também refresca o couro cabeludo entre as lavagens.",
-            "es": "Sí; rocíala en las raíces antes de peinar para rehidratar rizos, reducir la estática y dejar un aroma botánico sutil. También refresca el cuero cabelludo entre lavados."
+            "en": "Section clean hair, apply the dropper along partings, and massage the scalp for three minutes. Leave overnight and cleanse in the morning; consistent use three nights a week supports circulation and stronger growth.",
+            "pt": "Separe o cabelo limpo, aplique o conta-gotas nas divisões e massageie o couro cabeludo por três minutos. Deixe agir durante a noite e lave de manhã; o uso constante três noites por semana estimula a circulação e fortalece o crescimento.",
+            "es": "Divide el cabello limpio, aplica el gotero sobre las secciones y masajea el cuero cabelludo durante tres minutos. Déjalo actuar toda la noche y lava por la mañana; usarlo tres noches por semana estimula la circulación y refuerza el crecimiento."
           }
         },
         {
           "question": {
-            "en": "How long does pure rose water stay fresh once opened?",
-            "pt": "Quanto tempo a água de rosas pura permanece fresca depois de aberta?",
-            "es": "¿Cuánto tiempo se mantiene fresca el agua de rosas pura después de abrirla?"
+            "en": "Can it replace my moisturiser?",
+            "pt": "Ele pode substituir o meu hidratante?",
+            "es": "¿Puede reemplazar mi hidratante?"
           },
           "answer": {
-            "en": "Use within six months for optimal potency. Keep the cap tightly closed, store away from direct light, and refrigerate in hot climates to extend freshness.",
-            "pt": "Use em até seis meses para garantir a potência. Mantenha a tampa bem fechada, longe da luz direta, e refrigere em climas quentes para prolongar a frescura.",
-            "es": "Úsala dentro de seis meses para conservar su potencia. Mantén la tapa bien cerrada, resguárdala de la luz directa y refrigérala en climas cálidos para prolongar la frescura."
+            "en": "Use it as the final occlusive layer over humectants or blend a drop into your ceramide cream. It locks in water but does not replace water-based hydration, so keep your toner or essence in the routine.",
+            "pt": "Use como camada oclusiva final sobre umectantes ou misture uma gota ao seu creme com ceramidas. Ele retém a água, mas não substitui a hidratação à base de água, portanto mantenha seu tônico ou essência na rotina.",
+            "es": "Úsalo como capa oclusiva final sobre humectantes o mezcla una gota con tu crema de ceramidas. Sella el agua, pero no sustituye la hidratación acuosa, así que conserva tu tónico o esencia en la rutina."
           }
         }
       ],
       "originStory": {
-        "en": "Our rose water is distilled in El Kelaa M'Gouna during the six-week Valley of Roses harvest. Third-generation artisans load dawn-picked Rosa damascena petals into copper alembics, capturing the first aromatic condensate that Kapunka reserves for clinic protocols and daily mists alike.",
-        "pt": "A nossa água de rosas é destilada em El Kelaa M'Gouna durante as seis semanas da colheita no Vale das Rosas. Artesãos de terceira geração colocam pétalas de Rosa damascena colhidas ao amanhecer em alambiques de cobre, capturando o primeiro condensado aromático que a Kapunka reserva tanto para protocolos clínicos como para brumas diárias.",
-        "es": "Nuestra agua de rosas se destila en El Kelaa M'Gouna durante las seis semanas de cosecha en el Valle de las Rosas. Artesanos de tercera generación cargan pétalos de Rosa damascena recolectados al amanecer en alambiques de cobre, capturando el primer condensado aromático que Kapunka reserva para protocolos clínicos y brumas diarias por igual."
+        "en": "Each bottle traces back to the Tighanimine women's cooperative outside Agadir, where kernels are cracked by hand and cold-pressed within 24 hours of harvest. Kapunka first bottled this single-origin oil for dermatology partners seeking a traceable post-procedure lipid, and the same batchwork now fills every customer order.",
+        "pt": "Cada frasco remonta à cooperativa feminina Tighanimine, nos arredores de Agadir, onde os caroços são partidos à mão e prensados a frio em até 24 horas após a colheita. A Kapunka começou a envasar este óleo de origem única para parceiros dermatológicos que buscavam um lipídio rastreável para o pós-procedimento, e esse mesmo trabalho em lotes agora abastece cada pedido.",
+        "es": "Cada frasco se remonta a la cooperativa femenina Tighanimine, a las afueras de Agadir, donde las semillas se abren a mano y se prensan en frío en las 24 horas posteriores a la cosecha. Kapunka empezó a embotellar este aceite de origen único para clínicas dermatológicas que necesitaban un lípido rastreable para el postratamiento, y ese mismo trabajo por lotes hoy llena cada pedido."
       },
       "scientificEvidence": {
-        "en": "Dermatology researchers in Tehran (2017) observed that Rosa damascena hydrosol significantly calmed post-laser erythema within 48 hours compared with saline compresses. Bulgarian Academy of Sciences analyses (2021) further documented its high flavonoid content, supporting antioxidant protection against pollution-induced oxidative stress.",
-        "pt": "Pesquisadores em dermatologia de Teerão (2017) observaram que o hidrossol de Rosa damascena acalmou significativamente o eritema pós-laser em 48 horas quando comparado a compressas salinas. Análises da Academia de Ciências da Bulgária (2021) documentaram ainda o elevado teor de flavonoides, sustentando a proteção antioxidante contra o stress oxidativo induzido pela poluição.",
-        "es": "Investigadores en dermatología de Teherán (2017) observaron que el hidrosol de Rosa damascena calmó de forma significativa el eritema posláser en 48 horas frente a las compresas salinas. Los análisis de la Academia de Ciencias de Bulgaria (2021) documentaron además su alto contenido en flavonoides, lo que respalda la protección antioxidante frente al estrés oxidativo inducido por la polución."
+        "en": "A clinical trial published in the *Journal of Cosmetic Dermatology* (2015) reported a 48% reduction in transepidermal water loss after four weeks of twice-daily argan oil use. Follow-up research from the University of Marrakech (2018) measured a significant rise in cutaneous vitamin E levels and elasticity, confirming its barrier-repairing role in sensitive skin routines.",
+        "pt": "Um estudo clínico publicado no *Journal of Cosmetic Dermatology* (2015) relatou redução de 48% na perda transepidérmica de água após quatro semanas de uso de óleo de argan duas vezes ao dia. Pesquisas subsequentes da Universidade de Marraquexe (2018) mediram um aumento significativo nos níveis cutâneos de vitamina E e na elasticidade, confirmando o seu papel reparador da barreira em rotinas para peles sensíveis.",
+        "es": "Un ensayo clínico publicado en el *Journal of Cosmetic Dermatology* (2015) registró una reducción del 48 % en la pérdida transepidérmica de agua tras cuatro semanas de uso de aceite de argán dos veces al día. Investigaciones posteriores de la Universidad de Marrakech (2018) midieron un incremento significativo de los niveles cutáneos de vitamina E y de la elasticidad, confirmando su papel reparador de la barrera en rutinas para pieles sensibles."
       },
       "multiUseTips": {
         "en": [
-          "Mist generously before serums to hydrate and buffer active ingredients.",
-          "Mix one teaspoon with clay masks to keep them flexible and prevent overdrying.",
-          "Chill the bottle and saturate cotton pads as a calming eye compress after screens.",
-          "Spritz onto scalp partings before argan oil massages to refresh roots between washes."
+          "Press two drops over a hydrating serum to seal in water without leaving a heavy film.",
+          "Blend a drop into mineral foundation to create a satin finish on dry or mature skin.",
+          "Massage into nails and cuticles nightly to prevent brittleness after gel manicures.",
+          "Smooth through mid-lengths of hair as an overnight treatment, then shampoo as usual."
         ],
         "pt": [
-          "Borrife generosamente antes dos séruns para hidratar e amortecer ativos.",
-          "Misture uma colher de chá com máscaras de argila para mantê-las flexíveis e evitar ressecamento excessivo.",
-          "Refrigere o frasco e umedeça discos de algodão para uma compressa calmante nos olhos após horas de ecrã.",
-          "Pulverize nas riscas do couro cabeludo antes de massagens com óleo de argan para refrescar as raízes entre lavagens."
+          "Pressione duas gotas sobre um sérum hidratante para selar a água sem deixar película pesada.",
+          "Misture uma gota à base mineral para criar acabamento acetinado em peles secas ou maduras.",
+          "Massageie em unhas e cutículas todas as noites para evitar quebras após manicures em gel.",
+          "Espalhe no comprimento do cabelo como tratamento noturno e lave normalmente na manhã seguinte."
         ],
         "es": [
-          "Rocía generosamente antes de los sérums para hidratar y amortiguar los activos.",
-          "Mezcla una cucharadita con mascarillas de arcilla para mantenerlas flexibles y evitar el exceso de sequedad.",
-          "Enfría el frasco y empapa discos de algodón como compresa calmante para los ojos tras horas frente a pantallas.",
-          "Pulveriza en las secciones del cuero cabelludo antes de los masajes con aceite de argán para refrescar las raíces entre lavados."
+          "Presiona dos gotas sobre un sérum hidratante para sellar el agua sin dejar una película pesada.",
+          "Mezcla una gota con tu base mineral para lograr un acabado satinado en pieles secas o maduras.",
+          "Masajea en uñas y cutículas cada noche para evitar la fragilidad tras manicuras con gel.",
+          "Distribuye en medios y puntas como tratamiento nocturno y lava como de costumbre al día siguiente."
         ]
       }
     },
     {
       "ingredients": {
-        "en": "Aqua, Olea Europaea (Olive) Fruit Oil, Potassium Hydroxide, Eucalyptus Globulus Leaf Oil.",
-        "pt": "Água, Óleo de Fruta Olea Europaea (Azeitona), Hidróxido de Potássio, Óleo da Folha de Eucalyptus Globulus.",
-        "es": "Agua, Aceite de Fruta Olea Europaea (Oliva), Hidróxido de Potasio, Aceite de Hoja de Eucalyptus Globulus."
+        "en": "Argania Spinosa (Argan) Kernel Oil",
+        "pt": "Argania Spinosa (Argan) Kernel Oil",
+        "es": "Argania Spinosa (Argan) Kernel Oil"
       },
       "name": {
-        "en": "Moroccan Black Soap",
-        "pt": "Sabão Preto Marroquino",
-        "es": "Jabón Negro de Marruecos"
+        "es": "Kapunka aceite de argán cicatrizante roll-on 10ml",
+        "en": "Kapunka scar-care argan oil roll-on 10 ml",
+        "pt": "Kapunka óleo de argan cicatrizante roll-on 10 ml"
       },
       "tagline": {
-        "en": "Deep cleansing body treatment",
-        "pt": "Tratamento corporal de limpeza profunda",
-        "es": "Tratamiento corporal de limpieza profunda"
+        "es": "Roll-on cicatrizante de viaje.",
+        "en": "Travel scar-care roll-on.",
+        "pt": "Roll-on cicatrizante para viagem."
+      },
+      "description": {
+        "es": "Nuestro aceite cicatrizante combina argán prensado en frío con extractos calmantes de lavanda y geranio para masajear cicatrices, estrías y marcas post-procedimiento. La textura ligera se absorbe sin residuos y mantiene la piel flexible mientras protege la barrera. Roll-on de 10 ml para retoques localizados en cicatrices y puntos sensibles.",
+        "en": "Our scar treatment oil blends cold-pressed argan with soothing lavender and geranium extracts to massage scars, stretch marks, and post-procedure marks. The lightweight texture absorbs without residue and keeps skin supple while protecting the barrier. 10 ml roll-on for targeted touch-ups on scars and sensitive spots.",
+        "pt": "O nosso óleo cicatrizante combina argan prensado a frio com extratos calmantes de lavanda e gerânio para massagear cicatrizes, estrias e marcas pós-procedimento. A textura leve é absorvida sem resíduos e mantém a pele flexível enquanto protege a barreira. Roll-on de 10 ml para retoques localizados em cicatrizes e pontos sensíveis."
       },
       "badges": {
         "en": [
-          "Traditional Recipe",
-          "Exfoliating"
-        ],
-        "pt": [
-          "Receita Tradicional",
-          "Esfoliante"
+          "Targeted Care",
+          "Dermatology Inspired"
         ],
         "es": [
-          "Receta Tradicional",
-          "Exfoliante"
+          "Cuidado focalizado",
+          "Inspirado en dermatología"
+        ],
+        "pt": [
+          "Cuidado direcionado",
+          "Inspirado na dermatologia"
+        ]
+      },
+      "tags": {
+        "en": [
+          "scar care"
+        ],
+        "es": [
+          "cicatrices"
+        ],
+        "pt": [
+          "cicatrizes"
         ]
       },
       "labTestedNote": {
-        "en": "Made with traditional methods. Its unique gel-like consistency is a hallmark of its authenticity.",
-        "pt": "Feito com métodos tradicionais. A sua consistência única em gel é uma marca da sua autenticidade.",
-        "es": "Elaborado con métodos tradicionales. Su consistencia única tipo gel es un sello de su autenticidad."
+        "en": "Our Argan Oil is ECOCERT certified, guaranteeing its organic purity and ethical sourcing from the women's cooperatives of Morocco.",
+        "pt": "O nosso Óleo de Argan é certificado pela ECOCERT, garantindo a sua pureza orgânica e origem ética das cooperativas de mulheres de Marrocos.",
+        "es": "Nuestro Aceite de Argán está certificado por ECOCERT, garantizando su pureza orgánica y su origen ético de las cooperativas de mujeres de Marruecos."
+      },
+      "goodToKnow": {
+        "title": {
+          "en": "Good to know",
+          "pt": "Bom saber",
+          "es": "Para tener en cuenta"
+        },
+        "items": {
+          "en": [
+            "Texture: lightweight, fast absorbing",
+            "Finish: soft glow, non greasy",
+            "Suitable for all skin types",
+            "Vegan; no additives"
+          ],
+          "pt": [
+            "Textura: leve, de rápida absorção",
+            "Acabamento: brilho suave, não oleoso",
+            "Adequado para todos os tipos de pele",
+            "Vegan; sem aditivos"
+          ],
+          "es": [
+            "Textura: ligera, de rápida absorción",
+            "Acabado: brillo suave, no graso",
+            "Apto para todo tipo de piel",
+            "Vegano; sin aditivos"
+          ]
+        }
       },
       "sizes": [
         {
-          "id": "200g",
-          "size": 200,
-          "price": 28
+          "id": "10ml-roll-on",
+          "price": 17,
+          "size": 10
         }
       ],
-      "imageUrl": "https://images.unsplash.com/photo-1599351548093-2ff58f705a6b?q=80&w=1887&auto=format&fit=crop",
-      "id": "black-soap",
+      "imageUrl": "",
+      "id": "kapunka-cicatrices-roll-on-10ml",
       "howToUse": {
-        "en": "In a warm bath or shower, apply to damp skin. Leave on for a few minutes, then rinse. For best results, exfoliate with a Kessa glove.",
-        "pt": "Num banho quente, aplique na pele úmida. Deixe agir por alguns minutos e enxágue. Para melhores resultados, esfolie com uma luva Kessa.",
-        "es": "En un baño o ducha tibia, aplicar sobre la piel húmeda. Dejar actuar unos minutos y aclarar. Para mejores resultados, exfoliar con un guante Kessa."
+        "en": "Apply 2–3 drops to clean skin AM/PM. For hair, smooth a drop on mid-lengths and ends. Follow clinician guidance after procedures.",
+        "pt": "Aplicar 2–3 gotas na pele limpa de manhã e à noite. No cabelo, espalhar uma gota nos comprimentos e pontas. Seguir a orientação do profissional em pós-procedimentos.",
+        "es": "Aplicar 2–3 gotas sobre la piel limpia mañana y noche. Para el cabello, aplicar una gota en medios y puntas. Seguir las indicaciones del profesional en post-procedimientos."
       },
       "benefits": {
         "en": [
-          "Purifies skin by removing impurities and dead cells",
-          "Softens and nourishes the skin, preparing it for exfoliation",
-          "Rich in Vitamin E",
-          "Essential part of the traditional Hammam ritual"
+          "Deep hydration; soft, comfortable finish",
+          "Supports the skin barrier",
+          "Multi-use: face, body, hair, nails",
+          "Fragrance-free; suitable for sensitive skin"
         ],
         "pt": [
-          "Purifica a pele removendo impurezas e células mortas",
-          "Amacia e nutre a pele, preparando-a para a esfoliação",
-          "Rico em Vitamina E",
-          "Parte essencial do ritual tradicional do Hammam"
+          "Hidratação profunda; acabamento suave e confortável",
+          "Apoia a barreira cutânea",
+          "Multiuso: rosto, corpo, cabelo, unhas",
+          "Sem fragrância; adequado para pele sensível"
         ],
         "es": [
-          "Purifica la piel eliminando impurezas y células muertas",
-          "Suaviza y nutre la piel, preparándola para la exfoliación",
-          "Rico en Vitamina E",
-          "Parte esencial del ritual tradicional del Hammam"
+          "Hidratación profunda; acabado suave y confortable",
+          "Apoya la barrera cutánea",
+          "Multiuso: rostro, cuerpo, cabello, uñas",
+          "Sin fragancia; apto para piel sensible"
         ]
       },
       "knowledge": {
         "whatItIs": {
-          "en": "A traditional Moroccan beldi black soap made from saponified olive pulp and eucalyptus. It's the best pre-exfoliation gel for ingrown-prone body skin, melting buildup before the Kessa glove.",
-          "pt": "Um sabão preto marroquino tradicional beldi feito de polpa de oliva saponificada com eucalipto. É o melhor gel de pré-esfoliação para pele corporal com pelos encravados, dissolvendo o acúmulo antes da luva Kessa.",
-          "es": "Un jabón negro marroquí tradicional beldi elaborado con pulpa de oliva saponificada y eucalipto. Es el mejor gel de preexfoliación para piel corporal con vellos encarnados, disolviendo la acumulación antes del guante Kessa."
+          "en": "An ECOCERT single-origin oil pressed within 24 hours of harvest. It's the best natural oil for post-laser skin repair and everyday barrier rescue, bottled without fillers or fragrance.",
+          "pt": "Um óleo de argan de origem única com certificação ECOCERT, prensado em até 24 horas após a colheita. É o melhor óleo natural para reparar a pele após laser e resgatar a barreira no dia a dia, engarrafado sem aditivos nem fragrâncias.",
+          "es": "Un aceite de argán de origen único certificado por ECOCERT, prensado en frío dentro de las 24 horas posteriores a la cosecha. Es el mejor aceite natural para la reparación cutánea post láser y el rescate diario de la barrera, embotellado sin aditivos ni fragancias."
         },
         "howItWorks": {
-          "en": "Potassium-based saponification creates a low-foaming paste rich in oleic acid to soften keratin and loosen debris. Humectant glycerin draws moisture into the stratum corneum, while eucalyptus oil increases circulation and offers purifying aromatherapy.",
-          "pt": "A saponificação à base de potássio cria uma pasta de baixa espuma rica em ácido oleico que amacia a queratina e desprende resíduos. A glicerina umectante atrai água para o estrato córneo, enquanto o óleo de eucalipto ativa a circulação e oferece aromaterapia purificante.",
-          "es": "La saponificación a base de potasio crea una pasta de poca espuma rica en ácido oleico que suaviza la queratina y afloja los residuos. La glicerina humectante atrae agua hacia el estrato córneo, mientras el aceite de eucalipto activa la circulación y aporta aromaterapia purificante."
+          "en": "High concentrations of oleic and linoleic acids plus gamma tocopherol and native squalene mirror skin sebum, sealing micro-fissures and reducing transepidermal water loss. Anti-inflammatory polyphenols calm redness after resurfacing, while antioxidants neutralise free radicals from UV or pollution.",
+          "pt": "Altas concentrações de ácidos oleico e linoleico, além de gama-tocoferol e esqualeno nativo, mimetizam o sebo cutâneo, selando microfissuras e reduzindo a perda transepidérmica de água. Polifenóis anti-inflamatórios acalmam a vermelhidão pós-procedimento, enquanto antioxidantes neutralizam radicais livres de UV ou poluição.",
+          "es": "Las altas concentraciones de ácidos oleico y linoleico, junto con gamma tocoferol y escualeno nativo, imitan el sebo cutáneo, sellan microfisuras y reducen la pérdida transepidérmica de agua. Los polifenoles antiinflamatorios calman el enrojecimiento tras los procedimientos, mientras que los antioxidantes neutralizan los radicales libres de la radiación UV o la polución."
         },
         "whoItsFor": {
-          "en": "Ideal for dull, rough texture on arms, legs, and backs, including keratosis pilaris, ingrown hairs, or athletes needing deep cleansing. Not recommended for the face or broken skin.",
-          "pt": "Ideal para textura opaca e áspera em braços, pernas e costas, incluindo queratose pilar, pelos encravados ou atletas que precisam de limpeza profunda. Não é recomendado para o rosto ou pele lesionada.",
-          "es": "Ideal para textura apagada y áspera en brazos, piernas y espalda, incluida la queratosis pilaris, los vellos encarnados o atletas que necesitan limpieza profunda. No se recomienda para el rostro ni para piel lesionada."
+          "en": "Ideal for barrier-impaired complexions, eczema-prone dryness, and mature or postpartum skin needing lipid replenishment. It also doubles as argan oil for scalp stimulation in thinning hair, reviving brittle lengths and nails.",
+          "pt": "Indicado para peles com barreira fragilizada, ressecamento com tendência a eczema e pele madura ou pós-parto que precisa de reposição lipídica. Também funciona como óleo de argan para estimular o couro cabeludo em cabelos ralos, revitalizando fios quebradiços e unhas frágeis.",
+          "es": "Ideal para cutis con la barrera comprometida, sequedad con tendencia a eccema y piel madura o posparto que necesita reposición lipídica. También funciona como aceite de argán para estimular el cuero cabelludo en cabellos afinados, revitalizando largos quebradizos y uñas frágiles."
         },
         "scientificBacking": {
-          "en": "Spa therapy research shows that warm occlusive cleansers like Moroccan black soap increase stratum corneum water content by up to 20%, making mechanical exfoliation more effective. Olive-derived saponins are naturally rich in vitamin E and have documented antioxidant activity.",
-          "pt": "Pesquisas em terapias de spa mostram que limpadores quentes e oclusivos como o sabão preto marroquino aumentam em até 20% o conteúdo hídrico do estrato córneo, potencializando a esfoliação mecânica. Saponinas derivadas da oliva são naturalmente ricas em vitamina E e apresentam atividade antioxidante documentada.",
-          "es": "Investigaciones en terapias de spa muestran que limpiadores tibios y oclusivos como el jabón negro marroquí aumentan hasta un 20% el contenido hídrico del estrato córneo, potenciando la exfoliación mecánica. Las saponinas derivadas de la oliva son naturalmente ricas en vitamina E y poseen actividad antioxidante documentada."
+          "en": "Clinical studies in dermatology journals show twice-daily argan oil improves skin elasticity within four weeks and significantly lowers TEWL. Research in postmenopausal women links topical argan oil with better barrier recovery and a measurable boost in vitamin E levels.",
+          "pt": "Estudos clínicos em revistas de dermatologia mostram que o uso de óleo de argan duas vezes ao dia melhora a elasticidade em quatro semanas e reduz significativamente a perda transepidérmica de água. Pesquisas com mulheres pós-menopausa associam a aplicação tópica a uma recuperação mais rápida da barreira e a um aumento mensurável dos níveis de vitamina E.",
+          "es": "Estudios clínicos en revistas dermatológicas demuestran que el aceite de argán aplicado dos veces al día mejora la elasticidad en cuatro semanas y reduce de forma significativa la pérdida transepidérmica de agua. Investigaciones en mujeres posmenopáusicas vinculan su uso tópico con una recuperación más rápida de la barrera y un aumento medible de los niveles de vitamina E."
         },
         "culturalContext": {
-          "en": "Known as savon noir or beldi soap, this gel has anchored hammam rituals for centuries. Applied in steamy bathhouses before vigorous gommage, it symbolises purification and communal care across North Africa.",
-          "pt": "Conhecido como savon noir ou sabão beldi, esse gel sustenta os rituais de hammam há séculos. Aplicado em banhos de vapor antes do vigoroso gommage, simboliza purificação e cuidado coletivo em todo o Norte da África.",
-          "es": "Conocido como savon noir o jabón beldi, este gel sostiene los rituales de hammam desde hace siglos. Aplicado en baños de vapor antes del vigoroso gommage, simboliza purificación y cuidado comunitario en todo el norte de África."
+          "en": "Harvested by Amazigh cooperatives in southwest Morocco, argan oil has underpinned hammam rituals for centuries. The artisanal cold-pressing process is recognised by UNESCO as part of humanity's cultural heritage and sustains women's economic independence.",
+          "pt": "Extraído por cooperativas amazigh no sudoeste de Marrocos, o óleo de argan sustenta comunidades femininas e compõe rituais de hammam há séculos. O processo artesanal de prensagem a frio é reconhecido pela UNESCO como patrimônio cultural e garante independência econômica às mulheres.",
+          "es": "Extraído por cooperativas amazigh del suroeste de Marruecos, el aceite de argán sostiene a comunidades de mujeres y forma parte del ritual de hammam desde hace siglos. El proceso artesanal de prensado en frío está reconocido por la UNESCO como patrimonio cultural y garantiza la independencia económica femenina."
         }
       },
       "faqs": [
         {
           "question": {
-            "en": "How long should I leave it on before exfoliating?",
-            "pt": "Quanto tempo devo deixar agir antes de esfoliar?",
-            "es": "¿Cuánto tiempo debo dejarlo actuar antes de exfoliar?"
+            "en": "Can I apply it after microneedling or laser treatments?",
+            "pt": "Posso aplicar após microagulhamento ou tratamentos a laser?",
+            "es": "¿Puedo aplicarlo después de un microneedling o tratamientos láser?"
           },
           "answer": {
-            "en": "Massage onto damp skin and let the steam work for five to seven minutes without letting it dry. Rinse lightly, then scrub with a Kessa glove to lift the softened buildup.",
-            "pt": "Massageie na pele úmida e deixe o vapor agir por cinco a sete minutos sem deixar secar. Enxágue levemente e, em seguida, esfolie com a luva Kessa para remover o acúmulo amolecido.",
-            "es": "Masajea sobre la piel húmeda y deja que el vapor actúe entre cinco y siete minutos sin permitir que se seque. Aclara ligeramente y luego exfolia con el guante Kessa para retirar la acumulación ablandada."
+            "en": "Yes—once the skin is fully closed, usually 24 hours after fractional laser or microneedling, smooth two to three drops over damp skin. Its vitamin E and essential fatty acids make it the best natural oil for post-laser skin repair, helping calm heat and replenish the barrier.",
+            "pt": "Sim — assim que a pele estiver totalmente fechada, geralmente 24 horas após laser fracionado ou microagulhamento, espalhe duas a três gotas sobre a pele úmida. A vitamina E e os ácidos graxos essenciais fazem dele o melhor óleo natural para reparar a pele pós-laser, ajudando a acalmar o calor e reabastecer a barreira.",
+            "es": "Sí; una vez que la piel esté totalmente cerrada, normalmente 24 horas después de un láser fraccionado o microneedling, distribuye de dos a tres gotas sobre la piel húmeda. Su vitamina E y ácidos grasos esenciales lo convierten en el mejor aceite natural para la reparación cutánea post láser, ayudando a calmar el calor y reponer la barrera."
           }
         },
         {
           "question": {
-            "en": "Can I use it on my face?",
-            "pt": "Posso usar no rosto?",
-            "es": "¿Puedo usarlo en el rostro?"
+            "en": "Will pure argan oil clog my pores?",
+            "pt": "O óleo de argan puro vai obstruir meus poros?",
+            "es": "¿El aceite de argán puro obstruirá mis poros?"
           },
           "answer": {
-            "en": "We recommend keeping it for the body only. Its higher alkaline pH and eucalyptus essential oil can be too stimulating for delicate facial skin—choose a gentler cleanser for the face.",
-            "pt": "Recomendamos reservar o uso para o corpo. O pH mais alcalino e o óleo essencial de eucalipto podem ser estimulantes demais para a pele delicada do rosto — prefira um limpador mais suave para essa área.",
-            "es": "Recomendamos reservarlo solo para el cuerpo. Su pH más alcalino y el aceite esencial de eucalipto pueden resultar demasiado estimulantes para la piel facial delicada; elige un limpiador más suave para el rostro."
+            "en": "Argan oil has a comedogenic rating of 0–1, meaning it rarely blocks pores. Warm a single drop between your palms and press onto skin as the final step, or mix it with a water-based serum to aid absorption.",
+            "pt": "O óleo de argan tem índice comedogênico 0–1, ou seja, dificilmente obstrui os poros. Aqueça uma gota entre as palmas e pressione sobre a pele como último passo, ou misture a um sérum aquoso para facilitar a absorção.",
+            "es": "El aceite de argán tiene un índice comedogénico de 0–1, lo que significa que rara vez obstruye los poros. Calienta una gota entre las palmas y presiona sobre la piel como paso final, o mézclala con un sérum acuoso para mejorar la absorción."
           }
         },
         {
           "question": {
-            "en": "Is it safe for eczema or psoriasis patches?",
-            "pt": "É seguro em áreas com eczema ou psoríase?",
-            "es": "¿Es seguro en zonas con eccema o psoriasis?"
+            "en": "How do I use it as argan oil for scalp stimulation in thinning hair?",
+            "pt": "Como usar como óleo de argan para estimular o couro cabeludo em cabelos ralos?",
+            "es": "¿Cómo lo uso como aceite de argán para estimular el cuero cabelludo en cabellos afinados?"
           },
           "answer": {
-            "en": "On eczema or psoriasis-prone areas, patch-test first and limit use to calm phases. Avoid applying on active flares, open cuts, or freshly shaved skin.",
-            "pt": "Em áreas com eczema ou psoríase, faça um teste de toque e limite o uso a fases controladas. Evite aplicar sobre surtos ativos, cortes abertos ou pele recém-depilada.",
-            "es": "En zonas propensas a eccema o psoriasis, realiza una prueba en parche y úsalo solo en fases controladas. Evita aplicarlo sobre brotes activos, cortes abiertos o piel recién depilada."
+            "en": "Section clean hair, apply the dropper along partings, and massage the scalp for three minutes. Leave overnight and cleanse in the morning; consistent use three nights a week supports circulation and stronger growth.",
+            "pt": "Separe o cabelo limpo, aplique o conta-gotas nas divisões e massageie o couro cabeludo por três minutos. Deixe agir durante a noite e lave de manhã; o uso constante três noites por semana estimula a circulação e fortalece o crescimento.",
+            "es": "Divide el cabello limpio, aplica el gotero sobre las secciones y masajea el cuero cabelludo durante tres minutos. Déjalo actuar toda la noche y lava por la mañana; usarlo tres noches por semana estimula la circulación y refuerza el crecimiento."
           }
         },
         {
           "question": {
-            "en": "How often should I use it for keratosis pilaris or ingrown hairs?",
-            "pt": "Com que frequência devo usar para queratose pilar ou pelos encravados?",
-            "es": "¿Con qué frecuencia debo usarlo para queratosis pilaris o vellos encarnados?"
+            "en": "Can it replace my moisturiser?",
+            "pt": "Ele pode substituir o meu hidratante?",
+            "es": "¿Puede reemplazar mi hidratante?"
           },
           "answer": {
-            "en": "Use once or twice a week alongside your shower routine. Pair with daily moisturisers containing lactic acid or urea to keep bumps smooth between sessions.",
-            "pt": "Use uma ou duas vezes por semana durante o banho. Combine com hidratantes diários contendo ácido lático ou ureia para manter as protuberâncias lisas entre as sessões.",
-            "es": "Úsalo una o dos veces por semana durante la ducha. Combínalo con hidratantes diarios que contengan ácido láctico o urea para mantener la piel lisa entre sesiones."
+            "en": "Use it as the final occlusive layer over humectants or blend a drop into your ceramide cream. It locks in water but does not replace water-based hydration, so keep your toner or essence in the routine.",
+            "pt": "Use como camada oclusiva final sobre umectantes ou misture uma gota ao seu creme com ceramidas. Ele retém a água, mas não substitui a hidratação à base de água, portanto mantenha seu tônico ou essência na rotina.",
+            "es": "Úsalo como capa oclusiva final sobre humectantes o mezcla una gota con tu crema de ceramidas. Sella el agua, pero no sustituye la hidratación acuosa, así que conserva tu tónico o esencia en la rutina."
           }
         }
       ],
       "originStory": {
-        "en": "The paste is cooked in Marrakech using sun-dried olives, eucalyptus, and a week-long saponification in clay vessels. Kapunka partners with the Bensalah family, who have supplied hammams since the 1960s, to create a batch that stays soft enough for clinic treatment rooms yet rinses clean at home.",
-        "pt": "A pasta é cozida em Marraquexe com azeitonas secas ao sol, eucalipto e uma saponificação de uma semana em vasos de argila. A Kapunka colabora com a família Bensalah, que abastece os hammams desde a década de 1960, para criar um lote macio o suficiente para cabines clínicas e que, ainda assim, enxágua com facilidade em casa.",
-        "es": "La pasta se cocina en Marrakech con aceitunas secadas al sol, eucalipto y una saponificación de una semana en vasijas de arcilla. Kapunka colabora con la familia Bensalah, que abastece a los hammams desde la década de 1960, para crear un lote lo bastante suave para las cabinas clínicas y que aun así se enjuaga con facilidad en casa."
+        "en": "Each bottle traces back to the Tighanimine women's cooperative outside Agadir, where kernels are cracked by hand and cold-pressed within 24 hours of harvest. Kapunka first bottled this single-origin oil for dermatology partners seeking a traceable post-procedure lipid, and the same batchwork now fills every customer order.",
+        "pt": "Cada frasco remonta à cooperativa feminina Tighanimine, nos arredores de Agadir, onde os caroços são partidos à mão e prensados a frio em até 24 horas após a colheita. A Kapunka começou a envasar este óleo de origem única para parceiros dermatológicos que buscavam um lipídio rastreável para o pós-procedimento, e esse mesmo trabalho em lotes agora abastece cada pedido.",
+        "es": "Cada frasco se remonta a la cooperativa femenina Tighanimine, a las afueras de Agadir, donde las semillas se abren a mano y se prensan en frío en las 24 horas posteriores a la cosecha. Kapunka empezó a embotellar este aceite de origen único para clínicas dermatológicas que necesitaban un lípido rastreable para el postratamiento, y ese mismo trabajo por lotes hoy llena cada pedido."
       },
       "scientificEvidence": {
-        "en": "Studies presented at the 2019 International Spa & Beauty Conference showed that traditional black soap exfoliation increased subsequent argan oil penetration by 32%. The combination of potassium-rich olive paste and steam was also linked to a measurable decrease in skin roughness in a 2020 Moroccan dermocosmetic trial.",
-        "pt": "Estudos apresentados na Conferência Internacional de Spa & Beleza de 2019 mostraram que a esfoliação tradicional com sabão preto aumentou em 32% a penetração subsequente do óleo de argan. A combinação da pasta de azeitona rica em potássio com o vapor também foi associada a uma diminuição mensurável da aspereza da pele num ensaio dermocosmético marroquino de 2020.",
-        "es": "Estudios presentados en la International Spa & Beauty Conference de 2019 demostraron que la exfoliación tradicional con jabón negro aumentó en un 32 % la penetración posterior del aceite de argán. La combinación de la pasta de aceituna rica en potasio con el vapor también se vinculó a una disminución medible de la aspereza de la piel en un ensayo dermocosmético marroquí de 2020."
+        "en": "A clinical trial published in the *Journal of Cosmetic Dermatology* (2015) reported a 48% reduction in transepidermal water loss after four weeks of twice-daily argan oil use. Follow-up research from the University of Marrakech (2018) measured a significant rise in cutaneous vitamin E levels and elasticity, confirming its barrier-repairing role in sensitive skin routines.",
+        "pt": "Um estudo clínico publicado no *Journal of Cosmetic Dermatology* (2015) relatou redução de 48% na perda transepidérmica de água após quatro semanas de uso de óleo de argan duas vezes ao dia. Pesquisas subsequentes da Universidade de Marraquexe (2018) mediram um aumento significativo nos níveis cutâneos de vitamina E e na elasticidade, confirmando o seu papel reparador da barreira em rotinas para peles sensíveis.",
+        "es": "Un ensayo clínico publicado en el *Journal of Cosmetic Dermatology* (2015) registró una reducción del 48 % en la pérdida transepidérmica de agua tras cuatro semanas de uso de aceite de argán dos veces al día. Investigaciones posteriores de la Universidad de Marrakech (2018) midieron un incremento significativo de los niveles cutáneos de vitamina E y de la elasticidad, confirmando su papel reparador de la barrera en rutinas para pieles sensibles."
       },
       "multiUseTips": {
         "en": [
-          "Apply to damp skin and allow steam or shower heat to soften the paste for five minutes before rinsing.",
-          "Pair with the Kessa glove once a week to dislodge buildup without tearing the moisture barrier.",
-          "Massage over elbows, knees, and heels before pedicures to loosen calloused areas.",
-          "Add a teaspoon to a foot bath with warm water and rose water for a spa-grade soak."
+          "Press two drops over a hydrating serum to seal in water without leaving a heavy film.",
+          "Blend a drop into mineral foundation to create a satin finish on dry or mature skin.",
+          "Massage into nails and cuticles nightly to prevent brittleness after gel manicures.",
+          "Smooth through mid-lengths of hair as an overnight treatment, then shampoo as usual."
         ],
         "pt": [
-          "Aplique sobre a pele húmida e deixe o vapor ou o calor do banho amolecer a pasta por cinco minutos antes de enxaguar.",
-          "Combine com a luva Kessa uma vez por semana para remover acúmulos sem agredir a barreira de hidratação.",
-          "Massageie em cotovelos, joelhos e calcanhares antes da pedicure para soltar áreas calosas.",
-          "Adicione uma colher de chá a uma bacia para os pés com água morna e água de rosas para um escalda-pés de spa."
+          "Pressione duas gotas sobre um sérum hidratante para selar a água sem deixar película pesada.",
+          "Misture uma gota à base mineral para criar acabamento acetinado em peles secas ou maduras.",
+          "Massageie em unhas e cutículas todas as noites para evitar quebras após manicures em gel.",
+          "Espalhe no comprimento do cabelo como tratamento noturno e lave normalmente na manhã seguinte."
         ],
         "es": [
-          "Aplica sobre la piel húmeda y deja que el vapor o el calor de la ducha ablanden la pasta durante cinco minutos antes de enjuagar.",
-          "Combínalo con la manopla Kessa una vez por semana para retirar la acumulación sin dañar la barrera de hidratación.",
-          "Masajea en codos, rodillas y talones antes de la pedicura para ablandar las zonas callosas.",
-          "Añade una cucharadita a un baño de pies con agua tibia y agua de rosas para un remojo de spa."
+          "Presiona dos gotas sobre un sérum hidratante para sellar el agua sin dejar una película pesada.",
+          "Mezcla una gota con tu base mineral para lograr un acabado satinado en pieles secas o maduras.",
+          "Masajea en uñas y cutículas cada noche para evitar la fragilidad tras manicuras con gel.",
+          "Distribuye en medios y puntas como tratamiento nocturno y lava como de costumbre al día siguiente."
+        ]
+      }
+    },
+    {
+      "ingredients": {
+        "en": "Argania Spinosa (Argan) Kernel Oil",
+        "pt": "Argania Spinosa (Argan) Kernel Oil",
+        "es": "Argania Spinosa (Argan) Kernel Oil"
+      },
+      "name": {
+        "es": "Kapunka aceite de argán cicatrizante 30ml",
+        "en": "Kapunka scar-care argan oil 30 ml",
+        "pt": "Kapunka óleo de argan cicatrizante 30 ml"
+      },
+      "tagline": {
+        "es": "Goteador cicatrizante de 30 ml.",
+        "en": "30 ml scar-care dropper.",
+        "pt": "Conta-gotas cicatrizante de 30 ml."
+      },
+      "description": {
+        "es": "Nuestro aceite cicatrizante combina argán prensado en frío con extractos calmantes de lavanda y geranio para masajear cicatrices, estrías y marcas post-procedimiento. La textura ligera se absorbe sin residuos y mantiene la piel flexible mientras protege la barrera. Goteador de 30 ml ideal para rutinas diarias de masaje en cicatrices.",
+        "en": "Our scar treatment oil blends cold-pressed argan with soothing lavender and geranium extracts to massage scars, stretch marks, and post-procedure marks. The lightweight texture absorbs without residue and keeps skin supple while protecting the barrier. 30 ml dropper ideal for daily scar massage routines.",
+        "pt": "O nosso óleo cicatrizante combina argan prensado a frio com extratos calmantes de lavanda e gerânio para massagear cicatrizes, estrias e marcas pós-procedimento. A textura leve é absorvida sem resíduos e mantém a pele flexível enquanto protege a barreira. Conta-gotas de 30 ml ideal para massagens diárias em cicatrizes."
+      },
+      "badges": {
+        "en": [
+          "Targeted Care",
+          "Dermatology Inspired"
+        ],
+        "es": [
+          "Cuidado focalizado",
+          "Inspirado en dermatología"
+        ],
+        "pt": [
+          "Cuidado direcionado",
+          "Inspirado na dermatologia"
+        ]
+      },
+      "tags": {
+        "en": [
+          "scar care"
+        ],
+        "es": [
+          "cicatrices"
+        ],
+        "pt": [
+          "cicatrizes"
+        ]
+      },
+      "labTestedNote": {
+        "en": "Our Argan Oil is ECOCERT certified, guaranteeing its organic purity and ethical sourcing from the women's cooperatives of Morocco.",
+        "pt": "O nosso Óleo de Argan é certificado pela ECOCERT, garantindo a sua pureza orgânica e origem ética das cooperativas de mulheres de Marrocos.",
+        "es": "Nuestro Aceite de Argán está certificado por ECOCERT, garantizando su pureza orgánica y su origen ético de las cooperativas de mujeres de Marruecos."
+      },
+      "goodToKnow": {
+        "title": {
+          "en": "Good to know",
+          "pt": "Bom saber",
+          "es": "Para tener en cuenta"
+        },
+        "items": {
+          "en": [
+            "Texture: lightweight, fast absorbing",
+            "Finish: soft glow, non greasy",
+            "Suitable for all skin types",
+            "Vegan; no additives"
+          ],
+          "pt": [
+            "Textura: leve, de rápida absorção",
+            "Acabamento: brilho suave, não oleoso",
+            "Adequado para todos os tipos de pele",
+            "Vegan; sem aditivos"
+          ],
+          "es": [
+            "Textura: ligera, de rápida absorción",
+            "Acabado: brillo suave, no graso",
+            "Apto para todo tipo de piel",
+            "Vegano; sin aditivos"
+          ]
+        }
+      },
+      "sizes": [
+        {
+          "id": "30ml-dropper",
+          "price": 30,
+          "size": 30
+        }
+      ],
+      "imageUrl": "",
+      "id": "kapunka-cicatrices-30ml",
+      "howToUse": {
+        "en": "Apply 2–3 drops to clean skin AM/PM. For hair, smooth a drop on mid-lengths and ends. Follow clinician guidance after procedures.",
+        "pt": "Aplicar 2–3 gotas na pele limpa de manhã e à noite. No cabelo, espalhar uma gota nos comprimentos e pontas. Seguir a orientação do profissional em pós-procedimentos.",
+        "es": "Aplicar 2–3 gotas sobre la piel limpia mañana y noche. Para el cabello, aplicar una gota en medios y puntas. Seguir las indicaciones del profesional en post-procedimientos."
+      },
+      "benefits": {
+        "en": [
+          "Deep hydration; soft, comfortable finish",
+          "Supports the skin barrier",
+          "Multi-use: face, body, hair, nails",
+          "Fragrance-free; suitable for sensitive skin"
+        ],
+        "pt": [
+          "Hidratação profunda; acabamento suave e confortável",
+          "Apoia a barreira cutânea",
+          "Multiuso: rosto, corpo, cabelo, unhas",
+          "Sem fragrância; adequado para pele sensível"
+        ],
+        "es": [
+          "Hidratación profunda; acabado suave y confortable",
+          "Apoya la barrera cutánea",
+          "Multiuso: rostro, cuerpo, cabello, uñas",
+          "Sin fragancia; apto para piel sensible"
+        ]
+      },
+      "knowledge": {
+        "whatItIs": {
+          "en": "An ECOCERT single-origin oil pressed within 24 hours of harvest. It's the best natural oil for post-laser skin repair and everyday barrier rescue, bottled without fillers or fragrance.",
+          "pt": "Um óleo de argan de origem única com certificação ECOCERT, prensado em até 24 horas após a colheita. É o melhor óleo natural para reparar a pele após laser e resgatar a barreira no dia a dia, engarrafado sem aditivos nem fragrâncias.",
+          "es": "Un aceite de argán de origen único certificado por ECOCERT, prensado en frío dentro de las 24 horas posteriores a la cosecha. Es el mejor aceite natural para la reparación cutánea post láser y el rescate diario de la barrera, embotellado sin aditivos ni fragancias."
+        },
+        "howItWorks": {
+          "en": "High concentrations of oleic and linoleic acids plus gamma tocopherol and native squalene mirror skin sebum, sealing micro-fissures and reducing transepidermal water loss. Anti-inflammatory polyphenols calm redness after resurfacing, while antioxidants neutralise free radicals from UV or pollution.",
+          "pt": "Altas concentrações de ácidos oleico e linoleico, além de gama-tocoferol e esqualeno nativo, mimetizam o sebo cutâneo, selando microfissuras e reduzindo a perda transepidérmica de água. Polifenóis anti-inflamatórios acalmam a vermelhidão pós-procedimento, enquanto antioxidantes neutralizam radicais livres de UV ou poluição.",
+          "es": "Las altas concentraciones de ácidos oleico y linoleico, junto con gamma tocoferol y escualeno nativo, imitan el sebo cutáneo, sellan microfisuras y reducen la pérdida transepidérmica de agua. Los polifenoles antiinflamatorios calman el enrojecimiento tras los procedimientos, mientras que los antioxidantes neutralizan los radicales libres de la radiación UV o la polución."
+        },
+        "whoItsFor": {
+          "en": "Ideal for barrier-impaired complexions, eczema-prone dryness, and mature or postpartum skin needing lipid replenishment. It also doubles as argan oil for scalp stimulation in thinning hair, reviving brittle lengths and nails.",
+          "pt": "Indicado para peles com barreira fragilizada, ressecamento com tendência a eczema e pele madura ou pós-parto que precisa de reposição lipídica. Também funciona como óleo de argan para estimular o couro cabeludo em cabelos ralos, revitalizando fios quebradiços e unhas frágeis.",
+          "es": "Ideal para cutis con la barrera comprometida, sequedad con tendencia a eccema y piel madura o posparto que necesita reposición lipídica. También funciona como aceite de argán para estimular el cuero cabelludo en cabellos afinados, revitalizando largos quebradizos y uñas frágiles."
+        },
+        "scientificBacking": {
+          "en": "Clinical studies in dermatology journals show twice-daily argan oil improves skin elasticity within four weeks and significantly lowers TEWL. Research in postmenopausal women links topical argan oil with better barrier recovery and a measurable boost in vitamin E levels.",
+          "pt": "Estudos clínicos em revistas de dermatologia mostram que o uso de óleo de argan duas vezes ao dia melhora a elasticidade em quatro semanas e reduz significativamente a perda transepidérmica de água. Pesquisas com mulheres pós-menopausa associam a aplicação tópica a uma recuperação mais rápida da barreira e a um aumento mensurável dos níveis de vitamina E.",
+          "es": "Estudios clínicos en revistas dermatológicas demuestran que el aceite de argán aplicado dos veces al día mejora la elasticidad en cuatro semanas y reduce de forma significativa la pérdida transepidérmica de agua. Investigaciones en mujeres posmenopáusicas vinculan su uso tópico con una recuperación más rápida de la barrera y un aumento medible de los niveles de vitamina E."
+        },
+        "culturalContext": {
+          "en": "Harvested by Amazigh cooperatives in southwest Morocco, argan oil has underpinned hammam rituals for centuries. The artisanal cold-pressing process is recognised by UNESCO as part of humanity's cultural heritage and sustains women's economic independence.",
+          "pt": "Extraído por cooperativas amazigh no sudoeste de Marrocos, o óleo de argan sustenta comunidades femininas e compõe rituais de hammam há séculos. O processo artesanal de prensagem a frio é reconhecido pela UNESCO como patrimônio cultural e garante independência econômica às mulheres.",
+          "es": "Extraído por cooperativas amazigh del suroeste de Marruecos, el aceite de argán sostiene a comunidades de mujeres y forma parte del ritual de hammam desde hace siglos. El proceso artesanal de prensado en frío está reconocido por la UNESCO como patrimonio cultural y garantiza la independencia económica femenina."
+        }
+      },
+      "faqs": [
+        {
+          "question": {
+            "en": "Can I apply it after microneedling or laser treatments?",
+            "pt": "Posso aplicar após microagulhamento ou tratamentos a laser?",
+            "es": "¿Puedo aplicarlo después de un microneedling o tratamientos láser?"
+          },
+          "answer": {
+            "en": "Yes—once the skin is fully closed, usually 24 hours after fractional laser or microneedling, smooth two to three drops over damp skin. Its vitamin E and essential fatty acids make it the best natural oil for post-laser skin repair, helping calm heat and replenish the barrier.",
+            "pt": "Sim — assim que a pele estiver totalmente fechada, geralmente 24 horas após laser fracionado ou microagulhamento, espalhe duas a três gotas sobre a pele úmida. A vitamina E e os ácidos graxos essenciais fazem dele o melhor óleo natural para reparar a pele pós-laser, ajudando a acalmar o calor e reabastecer a barreira.",
+            "es": "Sí; una vez que la piel esté totalmente cerrada, normalmente 24 horas después de un láser fraccionado o microneedling, distribuye de dos a tres gotas sobre la piel húmeda. Su vitamina E y ácidos grasos esenciales lo convierten en el mejor aceite natural para la reparación cutánea post láser, ayudando a calmar el calor y reponer la barrera."
+          }
+        },
+        {
+          "question": {
+            "en": "Will pure argan oil clog my pores?",
+            "pt": "O óleo de argan puro vai obstruir meus poros?",
+            "es": "¿El aceite de argán puro obstruirá mis poros?"
+          },
+          "answer": {
+            "en": "Argan oil has a comedogenic rating of 0–1, meaning it rarely blocks pores. Warm a single drop between your palms and press onto skin as the final step, or mix it with a water-based serum to aid absorption.",
+            "pt": "O óleo de argan tem índice comedogênico 0–1, ou seja, dificilmente obstrui os poros. Aqueça uma gota entre as palmas e pressione sobre a pele como último passo, ou misture a um sérum aquoso para facilitar a absorção.",
+            "es": "El aceite de argán tiene un índice comedogénico de 0–1, lo que significa que rara vez obstruye los poros. Calienta una gota entre las palmas y presiona sobre la piel como paso final, o mézclala con un sérum acuoso para mejorar la absorción."
+          }
+        },
+        {
+          "question": {
+            "en": "How do I use it as argan oil for scalp stimulation in thinning hair?",
+            "pt": "Como usar como óleo de argan para estimular o couro cabeludo em cabelos ralos?",
+            "es": "¿Cómo lo uso como aceite de argán para estimular el cuero cabelludo en cabellos afinados?"
+          },
+          "answer": {
+            "en": "Section clean hair, apply the dropper along partings, and massage the scalp for three minutes. Leave overnight and cleanse in the morning; consistent use three nights a week supports circulation and stronger growth.",
+            "pt": "Separe o cabelo limpo, aplique o conta-gotas nas divisões e massageie o couro cabeludo por três minutos. Deixe agir durante a noite e lave de manhã; o uso constante três noites por semana estimula a circulação e fortalece o crescimento.",
+            "es": "Divide el cabello limpio, aplica el gotero sobre las secciones y masajea el cuero cabelludo durante tres minutos. Déjalo actuar toda la noche y lava por la mañana; usarlo tres noches por semana estimula la circulación y refuerza el crecimiento."
+          }
+        },
+        {
+          "question": {
+            "en": "Can it replace my moisturiser?",
+            "pt": "Ele pode substituir o meu hidratante?",
+            "es": "¿Puede reemplazar mi hidratante?"
+          },
+          "answer": {
+            "en": "Use it as the final occlusive layer over humectants or blend a drop into your ceramide cream. It locks in water but does not replace water-based hydration, so keep your toner or essence in the routine.",
+            "pt": "Use como camada oclusiva final sobre umectantes ou misture uma gota ao seu creme com ceramidas. Ele retém a água, mas não substitui a hidratação à base de água, portanto mantenha seu tônico ou essência na rotina.",
+            "es": "Úsalo como capa oclusiva final sobre humectantes o mezcla una gota con tu crema de ceramidas. Sella el agua, pero no sustituye la hidratación acuosa, así que conserva tu tónico o esencia en la rutina."
+          }
+        }
+      ],
+      "originStory": {
+        "en": "Each bottle traces back to the Tighanimine women's cooperative outside Agadir, where kernels are cracked by hand and cold-pressed within 24 hours of harvest. Kapunka first bottled this single-origin oil for dermatology partners seeking a traceable post-procedure lipid, and the same batchwork now fills every customer order.",
+        "pt": "Cada frasco remonta à cooperativa feminina Tighanimine, nos arredores de Agadir, onde os caroços são partidos à mão e prensados a frio em até 24 horas após a colheita. A Kapunka começou a envasar este óleo de origem única para parceiros dermatológicos que buscavam um lipídio rastreável para o pós-procedimento, e esse mesmo trabalho em lotes agora abastece cada pedido.",
+        "es": "Cada frasco se remonta a la cooperativa femenina Tighanimine, a las afueras de Agadir, donde las semillas se abren a mano y se prensan en frío en las 24 horas posteriores a la cosecha. Kapunka empezó a embotellar este aceite de origen único para clínicas dermatológicas que necesitaban un lípido rastreable para el postratamiento, y ese mismo trabajo por lotes hoy llena cada pedido."
+      },
+      "scientificEvidence": {
+        "en": "A clinical trial published in the *Journal of Cosmetic Dermatology* (2015) reported a 48% reduction in transepidermal water loss after four weeks of twice-daily argan oil use. Follow-up research from the University of Marrakech (2018) measured a significant rise in cutaneous vitamin E levels and elasticity, confirming its barrier-repairing role in sensitive skin routines.",
+        "pt": "Um estudo clínico publicado no *Journal of Cosmetic Dermatology* (2015) relatou redução de 48% na perda transepidérmica de água após quatro semanas de uso de óleo de argan duas vezes ao dia. Pesquisas subsequentes da Universidade de Marraquexe (2018) mediram um aumento significativo nos níveis cutâneos de vitamina E e na elasticidade, confirmando o seu papel reparador da barreira em rotinas para peles sensíveis.",
+        "es": "Un ensayo clínico publicado en el *Journal of Cosmetic Dermatology* (2015) registró una reducción del 48 % en la pérdida transepidérmica de agua tras cuatro semanas de uso de aceite de argán dos veces al día. Investigaciones posteriores de la Universidad de Marrakech (2018) midieron un incremento significativo de los niveles cutáneos de vitamina E y de la elasticidad, confirmando su papel reparador de la barrera en rutinas para pieles sensibles."
+      },
+      "multiUseTips": {
+        "en": [
+          "Press two drops over a hydrating serum to seal in water without leaving a heavy film.",
+          "Blend a drop into mineral foundation to create a satin finish on dry or mature skin.",
+          "Massage into nails and cuticles nightly to prevent brittleness after gel manicures.",
+          "Smooth through mid-lengths of hair as an overnight treatment, then shampoo as usual."
+        ],
+        "pt": [
+          "Pressione duas gotas sobre um sérum hidratante para selar a água sem deixar película pesada.",
+          "Misture uma gota à base mineral para criar acabamento acetinado em peles secas ou maduras.",
+          "Massageie em unhas e cutículas todas as noites para evitar quebras após manicures em gel.",
+          "Espalhe no comprimento do cabelo como tratamento noturno e lave normalmente na manhã seguinte."
+        ],
+        "es": [
+          "Presiona dos gotas sobre un sérum hidratante para sellar el agua sin dejar una película pesada.",
+          "Mezcla una gota con tu base mineral para lograr un acabado satinado en pieles secas o maduras.",
+          "Masajea en uñas y cutículas cada noche para evitar la fragilidad tras manicuras con gel.",
+          "Distribuye en medios y puntas como tratamiento nocturno y lava como de costumbre al día siguiente."
+        ]
+      }
+    },
+    {
+      "ingredients": {
+        "en": "Argania Spinosa (Argan) Kernel Oil",
+        "pt": "Argania Spinosa (Argan) Kernel Oil",
+        "es": "Argania Spinosa (Argan) Kernel Oil"
+      },
+      "name": {
+        "es": "Kapunka aceite de argán cicatrizante 50ml",
+        "en": "Kapunka scar-care argan oil 50 ml",
+        "pt": "Kapunka óleo de argan cicatrizante 50 ml"
+      },
+      "tagline": {
+        "es": "Dosificador cicatrizante de 50 ml.",
+        "en": "50 ml scar-care pump.",
+        "pt": "Pump cicatrizante de 50 ml."
+      },
+      "description": {
+        "es": "Nuestro aceite cicatrizante combina argán prensado en frío con extractos calmantes de lavanda y geranio para masajear cicatrices, estrías y marcas post-procedimiento. La textura ligera se absorbe sin residuos y mantiene la piel flexible mientras protege la barrera. Dosificador de 50 ml pensado para cubrir áreas extensas y estrías.",
+        "en": "Our scar treatment oil blends cold-pressed argan with soothing lavender and geranium extracts to massage scars, stretch marks, and post-procedure marks. The lightweight texture absorbs without residue and keeps skin supple while protecting the barrier. 50 ml pump designed to cover larger areas and stretch marks.",
+        "pt": "O nosso óleo cicatrizante combina argan prensado a frio com extratos calmantes de lavanda e gerânio para massagear cicatrizes, estrias e marcas pós-procedimento. A textura leve é absorvida sem resíduos e mantém a pele flexível enquanto protege a barreira. Pump de 50 ml pensado para cobrir áreas maiores e estrias."
+      },
+      "badges": {
+        "en": [
+          "Targeted Care",
+          "Dermatology Inspired"
+        ],
+        "es": [
+          "Cuidado focalizado",
+          "Inspirado en dermatología"
+        ],
+        "pt": [
+          "Cuidado direcionado",
+          "Inspirado na dermatologia"
+        ]
+      },
+      "tags": {
+        "en": [
+          "scar care"
+        ],
+        "es": [
+          "cicatrices"
+        ],
+        "pt": [
+          "cicatrizes"
+        ]
+      },
+      "labTestedNote": {
+        "en": "Our Argan Oil is ECOCERT certified, guaranteeing its organic purity and ethical sourcing from the women's cooperatives of Morocco.",
+        "pt": "O nosso Óleo de Argan é certificado pela ECOCERT, garantindo a sua pureza orgânica e origem ética das cooperativas de mulheres de Marrocos.",
+        "es": "Nuestro Aceite de Argán está certificado por ECOCERT, garantizando su pureza orgánica y su origen ético de las cooperativas de mujeres de Marruecos."
+      },
+      "goodToKnow": {
+        "title": {
+          "en": "Good to know",
+          "pt": "Bom saber",
+          "es": "Para tener en cuenta"
+        },
+        "items": {
+          "en": [
+            "Texture: lightweight, fast absorbing",
+            "Finish: soft glow, non greasy",
+            "Suitable for all skin types",
+            "Vegan; no additives"
+          ],
+          "pt": [
+            "Textura: leve, de rápida absorção",
+            "Acabamento: brilho suave, não oleoso",
+            "Adequado para todos os tipos de pele",
+            "Vegan; sem aditivos"
+          ],
+          "es": [
+            "Textura: ligera, de rápida absorción",
+            "Acabado: brillo suave, no graso",
+            "Apto para todo tipo de piel",
+            "Vegano; sin aditivos"
+          ]
+        }
+      },
+      "sizes": [
+        {
+          "id": "50ml-pump",
+          "price": 55,
+          "size": 50
+        }
+      ],
+      "imageUrl": "",
+      "id": "kapunka-cicatrices-50ml",
+      "howToUse": {
+        "en": "Apply 2–3 drops to clean skin AM/PM. For hair, smooth a drop on mid-lengths and ends. Follow clinician guidance after procedures.",
+        "pt": "Aplicar 2–3 gotas na pele limpa de manhã e à noite. No cabelo, espalhar uma gota nos comprimentos e pontas. Seguir a orientação do profissional em pós-procedimentos.",
+        "es": "Aplicar 2–3 gotas sobre la piel limpia mañana y noche. Para el cabello, aplicar una gota en medios y puntas. Seguir las indicaciones del profesional en post-procedimientos."
+      },
+      "benefits": {
+        "en": [
+          "Deep hydration; soft, comfortable finish",
+          "Supports the skin barrier",
+          "Multi-use: face, body, hair, nails",
+          "Fragrance-free; suitable for sensitive skin"
+        ],
+        "pt": [
+          "Hidratação profunda; acabamento suave e confortável",
+          "Apoia a barreira cutânea",
+          "Multiuso: rosto, corpo, cabelo, unhas",
+          "Sem fragrância; adequado para pele sensível"
+        ],
+        "es": [
+          "Hidratación profunda; acabado suave y confortable",
+          "Apoya la barrera cutánea",
+          "Multiuso: rostro, cuerpo, cabello, uñas",
+          "Sin fragancia; apto para piel sensible"
+        ]
+      },
+      "knowledge": {
+        "whatItIs": {
+          "en": "An ECOCERT single-origin oil pressed within 24 hours of harvest. It's the best natural oil for post-laser skin repair and everyday barrier rescue, bottled without fillers or fragrance.",
+          "pt": "Um óleo de argan de origem única com certificação ECOCERT, prensado em até 24 horas após a colheita. É o melhor óleo natural para reparar a pele após laser e resgatar a barreira no dia a dia, engarrafado sem aditivos nem fragrâncias.",
+          "es": "Un aceite de argán de origen único certificado por ECOCERT, prensado en frío dentro de las 24 horas posteriores a la cosecha. Es el mejor aceite natural para la reparación cutánea post láser y el rescate diario de la barrera, embotellado sin aditivos ni fragancias."
+        },
+        "howItWorks": {
+          "en": "High concentrations of oleic and linoleic acids plus gamma tocopherol and native squalene mirror skin sebum, sealing micro-fissures and reducing transepidermal water loss. Anti-inflammatory polyphenols calm redness after resurfacing, while antioxidants neutralise free radicals from UV or pollution.",
+          "pt": "Altas concentrações de ácidos oleico e linoleico, além de gama-tocoferol e esqualeno nativo, mimetizam o sebo cutâneo, selando microfissuras e reduzindo a perda transepidérmica de água. Polifenóis anti-inflamatórios acalmam a vermelhidão pós-procedimento, enquanto antioxidantes neutralizam radicais livres de UV ou poluição.",
+          "es": "Las altas concentraciones de ácidos oleico y linoleico, junto con gamma tocoferol y escualeno nativo, imitan el sebo cutáneo, sellan microfisuras y reducen la pérdida transepidérmica de agua. Los polifenoles antiinflamatorios calman el enrojecimiento tras los procedimientos, mientras que los antioxidantes neutralizan los radicales libres de la radiación UV o la polución."
+        },
+        "whoItsFor": {
+          "en": "Ideal for barrier-impaired complexions, eczema-prone dryness, and mature or postpartum skin needing lipid replenishment. It also doubles as argan oil for scalp stimulation in thinning hair, reviving brittle lengths and nails.",
+          "pt": "Indicado para peles com barreira fragilizada, ressecamento com tendência a eczema e pele madura ou pós-parto que precisa de reposição lipídica. Também funciona como óleo de argan para estimular o couro cabeludo em cabelos ralos, revitalizando fios quebradiços e unhas frágeis.",
+          "es": "Ideal para cutis con la barrera comprometida, sequedad con tendencia a eccema y piel madura o posparto que necesita reposición lipídica. También funciona como aceite de argán para estimular el cuero cabelludo en cabellos afinados, revitalizando largos quebradizos y uñas frágiles."
+        },
+        "scientificBacking": {
+          "en": "Clinical studies in dermatology journals show twice-daily argan oil improves skin elasticity within four weeks and significantly lowers TEWL. Research in postmenopausal women links topical argan oil with better barrier recovery and a measurable boost in vitamin E levels.",
+          "pt": "Estudos clínicos em revistas de dermatologia mostram que o uso de óleo de argan duas vezes ao dia melhora a elasticidade em quatro semanas e reduz significativamente a perda transepidérmica de água. Pesquisas com mulheres pós-menopausa associam a aplicação tópica a uma recuperação mais rápida da barreira e a um aumento mensurável dos níveis de vitamina E.",
+          "es": "Estudios clínicos en revistas dermatológicas demuestran que el aceite de argán aplicado dos veces al día mejora la elasticidad en cuatro semanas y reduce de forma significativa la pérdida transepidérmica de agua. Investigaciones en mujeres posmenopáusicas vinculan su uso tópico con una recuperación más rápida de la barrera y un aumento medible de los niveles de vitamina E."
+        },
+        "culturalContext": {
+          "en": "Harvested by Amazigh cooperatives in southwest Morocco, argan oil has underpinned hammam rituals for centuries. The artisanal cold-pressing process is recognised by UNESCO as part of humanity's cultural heritage and sustains women's economic independence.",
+          "pt": "Extraído por cooperativas amazigh no sudoeste de Marrocos, o óleo de argan sustenta comunidades femininas e compõe rituais de hammam há séculos. O processo artesanal de prensagem a frio é reconhecido pela UNESCO como patrimônio cultural e garante independência econômica às mulheres.",
+          "es": "Extraído por cooperativas amazigh del suroeste de Marruecos, el aceite de argán sostiene a comunidades de mujeres y forma parte del ritual de hammam desde hace siglos. El proceso artesanal de prensado en frío está reconocido por la UNESCO como patrimonio cultural y garantiza la independencia económica femenina."
+        }
+      },
+      "faqs": [
+        {
+          "question": {
+            "en": "Can I apply it after microneedling or laser treatments?",
+            "pt": "Posso aplicar após microagulhamento ou tratamentos a laser?",
+            "es": "¿Puedo aplicarlo después de un microneedling o tratamientos láser?"
+          },
+          "answer": {
+            "en": "Yes—once the skin is fully closed, usually 24 hours after fractional laser or microneedling, smooth two to three drops over damp skin. Its vitamin E and essential fatty acids make it the best natural oil for post-laser skin repair, helping calm heat and replenish the barrier.",
+            "pt": "Sim — assim que a pele estiver totalmente fechada, geralmente 24 horas após laser fracionado ou microagulhamento, espalhe duas a três gotas sobre a pele úmida. A vitamina E e os ácidos graxos essenciais fazem dele o melhor óleo natural para reparar a pele pós-laser, ajudando a acalmar o calor e reabastecer a barreira.",
+            "es": "Sí; una vez que la piel esté totalmente cerrada, normalmente 24 horas después de un láser fraccionado o microneedling, distribuye de dos a tres gotas sobre la piel húmeda. Su vitamina E y ácidos grasos esenciales lo convierten en el mejor aceite natural para la reparación cutánea post láser, ayudando a calmar el calor y reponer la barrera."
+          }
+        },
+        {
+          "question": {
+            "en": "Will pure argan oil clog my pores?",
+            "pt": "O óleo de argan puro vai obstruir meus poros?",
+            "es": "¿El aceite de argán puro obstruirá mis poros?"
+          },
+          "answer": {
+            "en": "Argan oil has a comedogenic rating of 0–1, meaning it rarely blocks pores. Warm a single drop between your palms and press onto skin as the final step, or mix it with a water-based serum to aid absorption.",
+            "pt": "O óleo de argan tem índice comedogênico 0–1, ou seja, dificilmente obstrui os poros. Aqueça uma gota entre as palmas e pressione sobre a pele como último passo, ou misture a um sérum aquoso para facilitar a absorção.",
+            "es": "El aceite de argán tiene un índice comedogénico de 0–1, lo que significa que rara vez obstruye los poros. Calienta una gota entre las palmas y presiona sobre la piel como paso final, o mézclala con un sérum acuoso para mejorar la absorción."
+          }
+        },
+        {
+          "question": {
+            "en": "How do I use it as argan oil for scalp stimulation in thinning hair?",
+            "pt": "Como usar como óleo de argan para estimular o couro cabeludo em cabelos ralos?",
+            "es": "¿Cómo lo uso como aceite de argán para estimular el cuero cabelludo en cabellos afinados?"
+          },
+          "answer": {
+            "en": "Section clean hair, apply the dropper along partings, and massage the scalp for three minutes. Leave overnight and cleanse in the morning; consistent use three nights a week supports circulation and stronger growth.",
+            "pt": "Separe o cabelo limpo, aplique o conta-gotas nas divisões e massageie o couro cabeludo por três minutos. Deixe agir durante a noite e lave de manhã; o uso constante três noites por semana estimula a circulação e fortalece o crescimento.",
+            "es": "Divide el cabello limpio, aplica el gotero sobre las secciones y masajea el cuero cabelludo durante tres minutos. Déjalo actuar toda la noche y lava por la mañana; usarlo tres noches por semana estimula la circulación y refuerza el crecimiento."
+          }
+        },
+        {
+          "question": {
+            "en": "Can it replace my moisturiser?",
+            "pt": "Ele pode substituir o meu hidratante?",
+            "es": "¿Puede reemplazar mi hidratante?"
+          },
+          "answer": {
+            "en": "Use it as the final occlusive layer over humectants or blend a drop into your ceramide cream. It locks in water but does not replace water-based hydration, so keep your toner or essence in the routine.",
+            "pt": "Use como camada oclusiva final sobre umectantes ou misture uma gota ao seu creme com ceramidas. Ele retém a água, mas não substitui a hidratação à base de água, portanto mantenha seu tônico ou essência na rotina.",
+            "es": "Úsalo como capa oclusiva final sobre humectantes o mezcla una gota con tu crema de ceramidas. Sella el agua, pero no sustituye la hidratación acuosa, así que conserva tu tónico o esencia en la rutina."
+          }
+        }
+      ],
+      "originStory": {
+        "en": "Each bottle traces back to the Tighanimine women's cooperative outside Agadir, where kernels are cracked by hand and cold-pressed within 24 hours of harvest. Kapunka first bottled this single-origin oil for dermatology partners seeking a traceable post-procedure lipid, and the same batchwork now fills every customer order.",
+        "pt": "Cada frasco remonta à cooperativa feminina Tighanimine, nos arredores de Agadir, onde os caroços são partidos à mão e prensados a frio em até 24 horas após a colheita. A Kapunka começou a envasar este óleo de origem única para parceiros dermatológicos que buscavam um lipídio rastreável para o pós-procedimento, e esse mesmo trabalho em lotes agora abastece cada pedido.",
+        "es": "Cada frasco se remonta a la cooperativa femenina Tighanimine, a las afueras de Agadir, donde las semillas se abren a mano y se prensan en frío en las 24 horas posteriores a la cosecha. Kapunka empezó a embotellar este aceite de origen único para clínicas dermatológicas que necesitaban un lípido rastreable para el postratamiento, y ese mismo trabajo por lotes hoy llena cada pedido."
+      },
+      "scientificEvidence": {
+        "en": "A clinical trial published in the *Journal of Cosmetic Dermatology* (2015) reported a 48% reduction in transepidermal water loss after four weeks of twice-daily argan oil use. Follow-up research from the University of Marrakech (2018) measured a significant rise in cutaneous vitamin E levels and elasticity, confirming its barrier-repairing role in sensitive skin routines.",
+        "pt": "Um estudo clínico publicado no *Journal of Cosmetic Dermatology* (2015) relatou redução de 48% na perda transepidérmica de água após quatro semanas de uso de óleo de argan duas vezes ao dia. Pesquisas subsequentes da Universidade de Marraquexe (2018) mediram um aumento significativo nos níveis cutâneos de vitamina E e na elasticidade, confirmando o seu papel reparador da barreira em rotinas para peles sensíveis.",
+        "es": "Un ensayo clínico publicado en el *Journal of Cosmetic Dermatology* (2015) registró una reducción del 48 % en la pérdida transepidérmica de agua tras cuatro semanas de uso de aceite de argán dos veces al día. Investigaciones posteriores de la Universidad de Marrakech (2018) midieron un incremento significativo de los niveles cutáneos de vitamina E y de la elasticidad, confirmando su papel reparador de la barrera en rutinas para pieles sensibles."
+      },
+      "multiUseTips": {
+        "en": [
+          "Press two drops over a hydrating serum to seal in water without leaving a heavy film.",
+          "Blend a drop into mineral foundation to create a satin finish on dry or mature skin.",
+          "Massage into nails and cuticles nightly to prevent brittleness after gel manicures.",
+          "Smooth through mid-lengths of hair as an overnight treatment, then shampoo as usual."
+        ],
+        "pt": [
+          "Pressione duas gotas sobre um sérum hidratante para selar a água sem deixar película pesada.",
+          "Misture uma gota à base mineral para criar acabamento acetinado em peles secas ou maduras.",
+          "Massageie em unhas e cutículas todas as noites para evitar quebras após manicures em gel.",
+          "Espalhe no comprimento do cabelo como tratamento noturno e lave normalmente na manhã seguinte."
+        ],
+        "es": [
+          "Presiona dos gotas sobre un sérum hidratante para sellar el agua sin dejar una película pesada.",
+          "Mezcla una gota con tu base mineral para lograr un acabado satinado en pieles secas o maduras.",
+          "Masajea en uñas y cutículas cada noche para evitar la fragilidad tras manicuras con gel.",
+          "Distribuye en medios y puntas como tratamiento nocturno y lava como de costumbre al día siguiente."
+        ]
+      }
+    },
+    {
+      "ingredients": {
+        "en": "Argania Spinosa (Argan) Kernel Oil",
+        "pt": "Argania Spinosa (Argan) Kernel Oil",
+        "es": "Argania Spinosa (Argan) Kernel Oil"
+      },
+      "name": {
+        "es": "Kapunka aceite de argán cicatrizante 100ml",
+        "en": "Kapunka scar-care argan oil 100 ml",
+        "pt": "Kapunka óleo de argan cicatrizante 100 ml"
+      },
+      "tagline": {
+        "es": "Dosificador cicatrizante de 100 ml.",
+        "en": "100 ml scar-care pump.",
+        "pt": "Pump cicatrizante de 100 ml."
+      },
+      "description": {
+        "es": "Nuestro aceite cicatrizante combina argán prensado en frío con extractos calmantes de lavanda y geranio para masajear cicatrices, estrías y marcas post-procedimiento. La textura ligera se absorbe sin residuos y mantiene la piel flexible mientras protege la barrera. Dosificador de 100 ml para protocolos profesionales y uso compartido.",
+        "en": "Our scar treatment oil blends cold-pressed argan with soothing lavender and geranium extracts to massage scars, stretch marks, and post-procedure marks. The lightweight texture absorbs without residue and keeps skin supple while protecting the barrier. 100 ml pump suited to professional protocols and shared use.",
+        "pt": "O nosso óleo cicatrizante combina argan prensado a frio com extratos calmantes de lavanda e gerânio para massagear cicatrizes, estrias e marcas pós-procedimento. A textura leve é absorvida sem resíduos e mantém a pele flexível enquanto protege a barreira. Pump de 100 ml adequado para protocolos profissionais e uso partilhado."
+      },
+      "badges": {
+        "en": [
+          "Targeted Care",
+          "Dermatology Inspired"
+        ],
+        "es": [
+          "Cuidado focalizado",
+          "Inspirado en dermatología"
+        ],
+        "pt": [
+          "Cuidado direcionado",
+          "Inspirado na dermatologia"
+        ]
+      },
+      "tags": {
+        "en": [
+          "scar care"
+        ],
+        "es": [
+          "cicatrices"
+        ],
+        "pt": [
+          "cicatrizes"
+        ]
+      },
+      "labTestedNote": {
+        "en": "Our Argan Oil is ECOCERT certified, guaranteeing its organic purity and ethical sourcing from the women's cooperatives of Morocco.",
+        "pt": "O nosso Óleo de Argan é certificado pela ECOCERT, garantindo a sua pureza orgânica e origem ética das cooperativas de mulheres de Marrocos.",
+        "es": "Nuestro Aceite de Argán está certificado por ECOCERT, garantizando su pureza orgánica y su origen ético de las cooperativas de mujeres de Marruecos."
+      },
+      "goodToKnow": {
+        "title": {
+          "en": "Good to know",
+          "pt": "Bom saber",
+          "es": "Para tener en cuenta"
+        },
+        "items": {
+          "en": [
+            "Texture: lightweight, fast absorbing",
+            "Finish: soft glow, non greasy",
+            "Suitable for all skin types",
+            "Vegan; no additives"
+          ],
+          "pt": [
+            "Textura: leve, de rápida absorção",
+            "Acabamento: brilho suave, não oleoso",
+            "Adequado para todos os tipos de pele",
+            "Vegan; sem aditivos"
+          ],
+          "es": [
+            "Textura: ligera, de rápida absorción",
+            "Acabado: brillo suave, no graso",
+            "Apto para todo tipo de piel",
+            "Vegano; sin aditivos"
+          ]
+        }
+      },
+      "sizes": [
+        {
+          "id": "100ml-pump",
+          "price": 95,
+          "size": 100
+        }
+      ],
+      "imageUrl": "",
+      "id": "kapunka-cicatrices-100ml",
+      "howToUse": {
+        "en": "Apply 2–3 drops to clean skin AM/PM. For hair, smooth a drop on mid-lengths and ends. Follow clinician guidance after procedures.",
+        "pt": "Aplicar 2–3 gotas na pele limpa de manhã e à noite. No cabelo, espalhar uma gota nos comprimentos e pontas. Seguir a orientação do profissional em pós-procedimentos.",
+        "es": "Aplicar 2–3 gotas sobre la piel limpia mañana y noche. Para el cabello, aplicar una gota en medios y puntas. Seguir las indicaciones del profesional en post-procedimientos."
+      },
+      "benefits": {
+        "en": [
+          "Deep hydration; soft, comfortable finish",
+          "Supports the skin barrier",
+          "Multi-use: face, body, hair, nails",
+          "Fragrance-free; suitable for sensitive skin"
+        ],
+        "pt": [
+          "Hidratação profunda; acabamento suave e confortável",
+          "Apoia a barreira cutânea",
+          "Multiuso: rosto, corpo, cabelo, unhas",
+          "Sem fragrância; adequado para pele sensível"
+        ],
+        "es": [
+          "Hidratación profunda; acabado suave y confortable",
+          "Apoya la barrera cutánea",
+          "Multiuso: rostro, cuerpo, cabello, uñas",
+          "Sin fragancia; apto para piel sensible"
+        ]
+      },
+      "knowledge": {
+        "whatItIs": {
+          "en": "An ECOCERT single-origin oil pressed within 24 hours of harvest. It's the best natural oil for post-laser skin repair and everyday barrier rescue, bottled without fillers or fragrance.",
+          "pt": "Um óleo de argan de origem única com certificação ECOCERT, prensado em até 24 horas após a colheita. É o melhor óleo natural para reparar a pele após laser e resgatar a barreira no dia a dia, engarrafado sem aditivos nem fragrâncias.",
+          "es": "Un aceite de argán de origen único certificado por ECOCERT, prensado en frío dentro de las 24 horas posteriores a la cosecha. Es el mejor aceite natural para la reparación cutánea post láser y el rescate diario de la barrera, embotellado sin aditivos ni fragancias."
+        },
+        "howItWorks": {
+          "en": "High concentrations of oleic and linoleic acids plus gamma tocopherol and native squalene mirror skin sebum, sealing micro-fissures and reducing transepidermal water loss. Anti-inflammatory polyphenols calm redness after resurfacing, while antioxidants neutralise free radicals from UV or pollution.",
+          "pt": "Altas concentrações de ácidos oleico e linoleico, além de gama-tocoferol e esqualeno nativo, mimetizam o sebo cutâneo, selando microfissuras e reduzindo a perda transepidérmica de água. Polifenóis anti-inflamatórios acalmam a vermelhidão pós-procedimento, enquanto antioxidantes neutralizam radicais livres de UV ou poluição.",
+          "es": "Las altas concentraciones de ácidos oleico y linoleico, junto con gamma tocoferol y escualeno nativo, imitan el sebo cutáneo, sellan microfisuras y reducen la pérdida transepidérmica de agua. Los polifenoles antiinflamatorios calman el enrojecimiento tras los procedimientos, mientras que los antioxidantes neutralizan los radicales libres de la radiación UV o la polución."
+        },
+        "whoItsFor": {
+          "en": "Ideal for barrier-impaired complexions, eczema-prone dryness, and mature or postpartum skin needing lipid replenishment. It also doubles as argan oil for scalp stimulation in thinning hair, reviving brittle lengths and nails.",
+          "pt": "Indicado para peles com barreira fragilizada, ressecamento com tendência a eczema e pele madura ou pós-parto que precisa de reposição lipídica. Também funciona como óleo de argan para estimular o couro cabeludo em cabelos ralos, revitalizando fios quebradiços e unhas frágeis.",
+          "es": "Ideal para cutis con la barrera comprometida, sequedad con tendencia a eccema y piel madura o posparto que necesita reposición lipídica. También funciona como aceite de argán para estimular el cuero cabelludo en cabellos afinados, revitalizando largos quebradizos y uñas frágiles."
+        },
+        "scientificBacking": {
+          "en": "Clinical studies in dermatology journals show twice-daily argan oil improves skin elasticity within four weeks and significantly lowers TEWL. Research in postmenopausal women links topical argan oil with better barrier recovery and a measurable boost in vitamin E levels.",
+          "pt": "Estudos clínicos em revistas de dermatologia mostram que o uso de óleo de argan duas vezes ao dia melhora a elasticidade em quatro semanas e reduz significativamente a perda transepidérmica de água. Pesquisas com mulheres pós-menopausa associam a aplicação tópica a uma recuperação mais rápida da barreira e a um aumento mensurável dos níveis de vitamina E.",
+          "es": "Estudios clínicos en revistas dermatológicas demuestran que el aceite de argán aplicado dos veces al día mejora la elasticidad en cuatro semanas y reduce de forma significativa la pérdida transepidérmica de agua. Investigaciones en mujeres posmenopáusicas vinculan su uso tópico con una recuperación más rápida de la barrera y un aumento medible de los niveles de vitamina E."
+        },
+        "culturalContext": {
+          "en": "Harvested by Amazigh cooperatives in southwest Morocco, argan oil has underpinned hammam rituals for centuries. The artisanal cold-pressing process is recognised by UNESCO as part of humanity's cultural heritage and sustains women's economic independence.",
+          "pt": "Extraído por cooperativas amazigh no sudoeste de Marrocos, o óleo de argan sustenta comunidades femininas e compõe rituais de hammam há séculos. O processo artesanal de prensagem a frio é reconhecido pela UNESCO como patrimônio cultural e garante independência econômica às mulheres.",
+          "es": "Extraído por cooperativas amazigh del suroeste de Marruecos, el aceite de argán sostiene a comunidades de mujeres y forma parte del ritual de hammam desde hace siglos. El proceso artesanal de prensado en frío está reconocido por la UNESCO como patrimonio cultural y garantiza la independencia económica femenina."
+        }
+      },
+      "faqs": [
+        {
+          "question": {
+            "en": "Can I apply it after microneedling or laser treatments?",
+            "pt": "Posso aplicar após microagulhamento ou tratamentos a laser?",
+            "es": "¿Puedo aplicarlo después de un microneedling o tratamientos láser?"
+          },
+          "answer": {
+            "en": "Yes—once the skin is fully closed, usually 24 hours after fractional laser or microneedling, smooth two to three drops over damp skin. Its vitamin E and essential fatty acids make it the best natural oil for post-laser skin repair, helping calm heat and replenish the barrier.",
+            "pt": "Sim — assim que a pele estiver totalmente fechada, geralmente 24 horas após laser fracionado ou microagulhamento, espalhe duas a três gotas sobre a pele úmida. A vitamina E e os ácidos graxos essenciais fazem dele o melhor óleo natural para reparar a pele pós-laser, ajudando a acalmar o calor e reabastecer a barreira.",
+            "es": "Sí; una vez que la piel esté totalmente cerrada, normalmente 24 horas después de un láser fraccionado o microneedling, distribuye de dos a tres gotas sobre la piel húmeda. Su vitamina E y ácidos grasos esenciales lo convierten en el mejor aceite natural para la reparación cutánea post láser, ayudando a calmar el calor y reponer la barrera."
+          }
+        },
+        {
+          "question": {
+            "en": "Will pure argan oil clog my pores?",
+            "pt": "O óleo de argan puro vai obstruir meus poros?",
+            "es": "¿El aceite de argán puro obstruirá mis poros?"
+          },
+          "answer": {
+            "en": "Argan oil has a comedogenic rating of 0–1, meaning it rarely blocks pores. Warm a single drop between your palms and press onto skin as the final step, or mix it with a water-based serum to aid absorption.",
+            "pt": "O óleo de argan tem índice comedogênico 0–1, ou seja, dificilmente obstrui os poros. Aqueça uma gota entre as palmas e pressione sobre a pele como último passo, ou misture a um sérum aquoso para facilitar a absorção.",
+            "es": "El aceite de argán tiene un índice comedogénico de 0–1, lo que significa que rara vez obstruye los poros. Calienta una gota entre las palmas y presiona sobre la piel como paso final, o mézclala con un sérum acuoso para mejorar la absorción."
+          }
+        },
+        {
+          "question": {
+            "en": "How do I use it as argan oil for scalp stimulation in thinning hair?",
+            "pt": "Como usar como óleo de argan para estimular o couro cabeludo em cabelos ralos?",
+            "es": "¿Cómo lo uso como aceite de argán para estimular el cuero cabelludo en cabellos afinados?"
+          },
+          "answer": {
+            "en": "Section clean hair, apply the dropper along partings, and massage the scalp for three minutes. Leave overnight and cleanse in the morning; consistent use three nights a week supports circulation and stronger growth.",
+            "pt": "Separe o cabelo limpo, aplique o conta-gotas nas divisões e massageie o couro cabeludo por três minutos. Deixe agir durante a noite e lave de manhã; o uso constante três noites por semana estimula a circulação e fortalece o crescimento.",
+            "es": "Divide el cabello limpio, aplica el gotero sobre las secciones y masajea el cuero cabelludo durante tres minutos. Déjalo actuar toda la noche y lava por la mañana; usarlo tres noches por semana estimula la circulación y refuerza el crecimiento."
+          }
+        },
+        {
+          "question": {
+            "en": "Can it replace my moisturiser?",
+            "pt": "Ele pode substituir o meu hidratante?",
+            "es": "¿Puede reemplazar mi hidratante?"
+          },
+          "answer": {
+            "en": "Use it as the final occlusive layer over humectants or blend a drop into your ceramide cream. It locks in water but does not replace water-based hydration, so keep your toner or essence in the routine.",
+            "pt": "Use como camada oclusiva final sobre umectantes ou misture uma gota ao seu creme com ceramidas. Ele retém a água, mas não substitui a hidratação à base de água, portanto mantenha seu tônico ou essência na rotina.",
+            "es": "Úsalo como capa oclusiva final sobre humectantes o mezcla una gota con tu crema de ceramidas. Sella el agua, pero no sustituye la hidratación acuosa, así que conserva tu tónico o esencia en la rutina."
+          }
+        }
+      ],
+      "originStory": {
+        "en": "Each bottle traces back to the Tighanimine women's cooperative outside Agadir, where kernels are cracked by hand and cold-pressed within 24 hours of harvest. Kapunka first bottled this single-origin oil for dermatology partners seeking a traceable post-procedure lipid, and the same batchwork now fills every customer order.",
+        "pt": "Cada frasco remonta à cooperativa feminina Tighanimine, nos arredores de Agadir, onde os caroços são partidos à mão e prensados a frio em até 24 horas após a colheita. A Kapunka começou a envasar este óleo de origem única para parceiros dermatológicos que buscavam um lipídio rastreável para o pós-procedimento, e esse mesmo trabalho em lotes agora abastece cada pedido.",
+        "es": "Cada frasco se remonta a la cooperativa femenina Tighanimine, a las afueras de Agadir, donde las semillas se abren a mano y se prensan en frío en las 24 horas posteriores a la cosecha. Kapunka empezó a embotellar este aceite de origen único para clínicas dermatológicas que necesitaban un lípido rastreable para el postratamiento, y ese mismo trabajo por lotes hoy llena cada pedido."
+      },
+      "scientificEvidence": {
+        "en": "A clinical trial published in the *Journal of Cosmetic Dermatology* (2015) reported a 48% reduction in transepidermal water loss after four weeks of twice-daily argan oil use. Follow-up research from the University of Marrakech (2018) measured a significant rise in cutaneous vitamin E levels and elasticity, confirming its barrier-repairing role in sensitive skin routines.",
+        "pt": "Um estudo clínico publicado no *Journal of Cosmetic Dermatology* (2015) relatou redução de 48% na perda transepidérmica de água após quatro semanas de uso de óleo de argan duas vezes ao dia. Pesquisas subsequentes da Universidade de Marraquexe (2018) mediram um aumento significativo nos níveis cutâneos de vitamina E e na elasticidade, confirmando o seu papel reparador da barreira em rotinas para peles sensíveis.",
+        "es": "Un ensayo clínico publicado en el *Journal of Cosmetic Dermatology* (2015) registró una reducción del 48 % en la pérdida transepidérmica de agua tras cuatro semanas de uso de aceite de argán dos veces al día. Investigaciones posteriores de la Universidad de Marrakech (2018) midieron un incremento significativo de los niveles cutáneos de vitamina E y de la elasticidad, confirmando su papel reparador de la barrera en rutinas para pieles sensibles."
+      },
+      "multiUseTips": {
+        "en": [
+          "Press two drops over a hydrating serum to seal in water without leaving a heavy film.",
+          "Blend a drop into mineral foundation to create a satin finish on dry or mature skin.",
+          "Massage into nails and cuticles nightly to prevent brittleness after gel manicures.",
+          "Smooth through mid-lengths of hair as an overnight treatment, then shampoo as usual."
+        ],
+        "pt": [
+          "Pressione duas gotas sobre um sérum hidratante para selar a água sem deixar película pesada.",
+          "Misture uma gota à base mineral para criar acabamento acetinado em peles secas ou maduras.",
+          "Massageie em unhas e cutículas todas as noites para evitar quebras após manicures em gel.",
+          "Espalhe no comprimento do cabelo como tratamento noturno e lave normalmente na manhã seguinte."
+        ],
+        "es": [
+          "Presiona dos gotas sobre un sérum hidratante para sellar el agua sin dejar una película pesada.",
+          "Mezcla una gota con tu base mineral para lograr un acabado satinado en pieles secas o maduras.",
+          "Masajea en uñas y cutículas cada noche para evitar la fragilidad tras manicuras con gel.",
+          "Distribuye en medios y puntas como tratamiento nocturno y lava como de costumbre al día siguiente."
         ]
       }
     },
@@ -610,7 +1371,7 @@
       },
       "name": {
         "en": "Argan Oil + Cotton",
-        "es": "Aceite de Argán + Algodón",
+        "es": "Aceite de Argán Puro con Algodón",
         "pt": "Óleo de Argan + Algodão"
       },
       "tagline": {
@@ -674,9 +1435,29 @@
       },
       "sizes": [
         {
-          "id": "250ml",
-          "size": 250,
-          "price": 40
+          "id": "10ml-roll-on",
+          "price": 17,
+          "size": 10
+        },
+        {
+          "id": "30ml-dropper",
+          "price": 30,
+          "size": 30
+        },
+        {
+          "id": "50ml-pump",
+          "price": 55,
+          "size": 50
+        },
+        {
+          "id": "100ml-pump",
+          "price": 95,
+          "size": 100
+        },
+        {
+          "id": "250ml-pump",
+          "price": 155,
+          "size": 250
         }
       ],
       "imageUrl": "/content/uploads/aceite-argan-dosificador-250ml-300x300.jpg",
@@ -822,7 +1603,7 @@
       },
       "name": {
         "en": "Argan Oil + Agra Incense",
-        "es": "Aceite de Argán + Incienso de Agra",
+        "es": "Aceite de Argán Puro con Incienso de Agra",
         "pt": "Óleo de Argan + Incenso de Agra"
       },
       "tagline": {
@@ -886,9 +1667,29 @@
       },
       "sizes": [
         {
-          "id": "250ml",
-          "size": 250,
-          "price": 40
+          "id": "10ml-roll-on",
+          "price": 17,
+          "size": 10
+        },
+        {
+          "id": "30ml-dropper",
+          "price": 30,
+          "size": 30
+        },
+        {
+          "id": "50ml-pump",
+          "price": 55,
+          "size": 50
+        },
+        {
+          "id": "100ml-pump",
+          "price": 95,
+          "size": 100
+        },
+        {
+          "id": "250ml-pump",
+          "price": 155,
+          "size": 250
         }
       ],
       "imageUrl": "/content/uploads/aceite-argan-dosificador-250ml-300x300.jpg",
@@ -1034,7 +1835,7 @@
       },
       "name": {
         "en": "Argan Oil + Jasmine",
-        "es": "Aceite de Argán + Jazmín",
+        "es": "Aceite de Argán Puro con Jazmín",
         "pt": "Óleo de Argan + Jasmim"
       },
       "tagline": {
@@ -1098,9 +1899,29 @@
       },
       "sizes": [
         {
-          "id": "250ml",
-          "size": 250,
-          "price": 40
+          "id": "10ml-roll-on",
+          "price": 17,
+          "size": 10
+        },
+        {
+          "id": "30ml-dropper",
+          "price": 30,
+          "size": 30
+        },
+        {
+          "id": "50ml-pump",
+          "price": 55,
+          "size": 50
+        },
+        {
+          "id": "100ml-pump",
+          "price": 95,
+          "size": 100
+        },
+        {
+          "id": "250ml-pump",
+          "price": 155,
+          "size": 250
         }
       ],
       "imageUrl": "/content/uploads/aceite-argan-dosificador-250ml-300x300.jpg",
@@ -1247,7 +2068,7 @@
       "name": {
         "en": "Argan Oil + Lavender",
         "pt": "Óleo de Argan + Lavanda",
-        "es": "Aceite de Argán + Lavanda"
+        "es": "Aceite de Argán Puro con Lavanda"
       },
       "tagline": {
         "en": "Calming lavender aroma to unwind before rest",
@@ -1275,9 +2096,29 @@
       },
       "sizes": [
         {
-          "id": "250ml",
-          "size": 250,
-          "price": 40
+          "id": "10ml-roll-on",
+          "price": 17,
+          "size": 10
+        },
+        {
+          "id": "30ml-dropper",
+          "price": 30,
+          "size": 30
+        },
+        {
+          "id": "50ml-pump",
+          "price": 55,
+          "size": 50
+        },
+        {
+          "id": "100ml-pump",
+          "price": 95,
+          "size": 100
+        },
+        {
+          "id": "250ml-pump",
+          "price": 155,
+          "size": 250
         }
       ],
       "imageUrl": "/content/uploads/aceite-argan-puro-primera-prensada-frio-250ml-con-lavanda-300x300.jpg",
@@ -1429,7 +2270,7 @@
       "name": {
         "en": "Argan Oil + Rosemary",
         "pt": "Óleo de Argan + Alecrim",
-        "es": "Aceite de Argán + Romero"
+        "es": "Aceite de Argán Puro con Romero"
       },
       "tagline": {
         "en": "Fresh rosemary aroma to energise scalp rituals",
@@ -1468,9 +2309,29 @@
       },
       "sizes": [
         {
-          "id": "250ml",
-          "size": 250,
-          "price": 40
+          "id": "10ml-roll-on",
+          "price": 17,
+          "size": 10
+        },
+        {
+          "id": "30ml-dropper",
+          "price": 30,
+          "size": 30
+        },
+        {
+          "id": "50ml-pump",
+          "price": 55,
+          "size": 50
+        },
+        {
+          "id": "100ml-pump",
+          "price": 95,
+          "size": 100
+        },
+        {
+          "id": "250ml-pump",
+          "price": 155,
+          "size": 250
         }
       ],
       "imageUrl": "/content/uploads/aceite-argan-puro-primera-prensada-frio-250ml-con-romero-300x300.jpg",
@@ -1622,7 +2483,7 @@
       "name": {
         "en": "Argan Oil + Patchouli",
         "pt": "Óleo de Argan + Patchouli",
-        "es": "Aceite de Argán + Pachulí"
+        "es": "Aceite de Argán Puro con Patchouli"
       },
       "tagline": {
         "en": "Earthy patchouli aroma for grounding self-care",
@@ -1661,9 +2522,29 @@
       },
       "sizes": [
         {
-          "id": "250ml",
-          "size": 250,
-          "price": 40
+          "id": "10ml-roll-on",
+          "price": 17,
+          "size": 10
+        },
+        {
+          "id": "30ml-dropper",
+          "price": 30,
+          "size": 30
+        },
+        {
+          "id": "50ml-pump",
+          "price": 55,
+          "size": 50
+        },
+        {
+          "id": "100ml-pump",
+          "price": 95,
+          "size": 100
+        },
+        {
+          "id": "250ml-pump",
+          "price": 155,
+          "size": 250
         }
       ],
       "imageUrl": "/content/uploads/aceite-de-argán-puro-con-patchouli-500ml-300x300.jpg",
@@ -1813,9 +2694,9 @@
         "es": "100% Crepé de Viscosa."
       },
       "name": {
-        "en": "Kessa Exfoliating Glove",
-        "pt": "Luva Esfoliante Kessa",
-        "es": "Manopla Exfoliante Kessa"
+        "en": "Kapunka Kessa Mitt",
+        "es": "Manopla Kessa Kapunka",
+        "pt": "Luva Kessa Kapunka"
       },
       "tagline": {
         "en": "The essential tool for smooth skin",
@@ -2217,699 +3098,14 @@
     },
     {
       "ingredients": {
-        "en": "Argania Spinosa (Argan) Kernel Oil. Viscose (Kessa) exfoliating glove.",
-        "pt": "Óleo de Caroço de Argania Spinosa (Argan). Luva esfoliante de viscose (Kessa).",
-        "es": "Aceite de semilla de Argania Spinosa (Argán). Manopla exfoliante de viscosa (Kessa)."
-      },
-      "name": {
-        "en": "Pure Argan Oil 30 ml + Kessa Glove",
-        "pt": "Óleo de Argan Puro 30 ml + Luva Kessa",
-        "es": "Aceite de Argán Puro 30 ml + Manopla Kessa"
-      },
-      "titleAddition": {
-        "en": "Exfoliate + Nourish Set",
-        "pt": "Esfoliar + Nutrir",
-        "es": "Exfoliar + Nutrir"
-      },
-      "tagline": {
-        "en": "Exfoliate + Nourish Set",
-        "pt": "Esfoliar + Nutrir",
-        "es": "Exfoliar + Nutrir"
-      },
-      "description": {
-        "en": "Use the Kessa glove once or twice weekly to lift impurities and smooth texture. Follow with Pure Argan Oil to seal in comfort and leave a soft glow. For cosmetic use only.",
-        "pt": "Use a luva Kessa uma a duas vezes por semana para remover impurezas e suavizar a textura. Finalize com Óleo de Argan Puro para selar conforto e deixar um brilho suave. Uso cosmético.",
-        "es": "Usa la manopla Kessa una o dos veces por semana para retirar impurezas y suavizar la textura. Continúa con Aceite de Argán Puro para sellar confort y dejar un brillo suave. Uso cosmético."
-      },
-      "bundleIncludes": {
-        "en": [
-          "Pure Argan Oil (size as selected)",
-          "Kessa exfoliating glove"
-        ],
-        "pt": [
-          "Óleo de Argan Puro (tamanho selecionado)",
-          "Luva esfoliante Kessa"
-        ],
-        "es": [
-          "Aceite de Argán Puro (tamaño seleccionado)",
-          "Manopla exfoliante Kessa"
-        ]
-      },
-      "badges": {
-        "en": [
-          "2-Piece Bundle",
-          "Gift-Ready",
-          "Hammam Ritual"
-        ],
-        "pt": [
-          "Kit com 2 itens",
-          "Pronto para presente",
-          "Ritual de hammam"
-        ],
-        "es": [
-          "Set de 2 piezas",
-          "Listo para regalar",
-          "Ritual hammam"
-        ]
-      },
-      "tags": {
-        "en": [
-          "ritual kit"
-        ],
-        "pt": [
-          "kit ritual"
-        ],
-        "es": [
-          "kit ritual"
-        ]
-      },
-      "labTestedNote": {
-        "en": "Our ECOCERT argan oil is cold-pressed within 24 hours of harvest and lab-verified for purity. The Kessa glove is woven for long-term reuse.",
-        "pt": "Nosso óleo de argan com certificação ECOCERT é prensado a frio em até 24 horas após a colheita e testado em laboratório para garantir a pureza. A luva Kessa é tecida para uso prolongado.",
-        "es": "Nuestro aceite de argán con certificación ECOCERT se prensa en frío dentro de las 24 horas de la cosecha y se analiza en laboratorio para asegurar su pureza. La manopla Kessa está tejida para un uso prolongado."
-      },
-      "sizes": [
-        {
-          "id": "30ml-bundle",
-          "size": 30,
-          "price": 37
-        }
-      ],
-      "imageUrl": "/content/uploads/aceite-argan-dosificador-250ml-300x300.jpg",
-      "id": "argan-30ml-kessa-bundle",
-      "howToUse": {
-        "en": "Use the Kessa glove on damp skin with long upward strokes once or twice per week. Rinse, pat dry, and immediately massage 3–4 drops of argan oil over the exfoliated areas to seal in hydration.",
-        "pt": "Use a luva Kessa na pele úmida com movimentos longos ascendentes uma ou duas vezes por semana. Enxágue, seque suavemente e massageie imediatamente 3–4 gotas de óleo de argan sobre as áreas esfoliadas para selar a hidratação.",
-        "es": "Utiliza la manopla Kessa sobre la piel húmeda con movimientos largos ascendentes una o dos veces por semana. Aclara, seca con suavidad y masajea de inmediato 3–4 gotas de aceite de argán sobre las zonas exfoliadas para sellar la hidratación."
-      },
-      "benefits": {
-        "en": [
-          "Combines physical exfoliation and lipid replenishment for instantly smoother skin",
-          "Supports microcirculation while the oil locks in moisture and boosts glow",
-          "Helps minimize ingrown hairs and flaking on arms, legs, and décolletage",
-          "Compact ritual makes a thoughtful gift or travel-friendly body treatment"
-        ],
-        "pt": [
-          "Combina esfoliação física e reposição lipídica para uma pele imediatamente mais lisa",
-          "Estimula a microcirculação enquanto o óleo sela a hidratação e realça o brilho",
-          "Ajuda a minimizar pelos encravados e descamação em braços, pernas e colo",
-          "Ritual compacto perfeito para presentear ou cuidar do corpo em viagens"
-        ],
-        "es": [
-          "Combina exfoliación física y reposición lipídica para una piel visiblemente más lisa al instante",
-          "Favorece la microcirculación mientras el aceite sella la hidratación y potencia el resplandor",
-          "Ayuda a minimizar los vellos encarnados y la descamación en brazos, piernas y escote",
-          "Ritual compacto ideal para regalar o llevar en tus desplazamientos"
-        ]
-      },
-      "goodToKnow": {
-        "title": {
-          "en": "Good to know",
-          "pt": "Bom saber",
-          "es": "Para tener en cuenta"
-        },
-        "items": {
-          "en": [
-            "Perform exfoliation on softened, steamed skin for best results",
-            "Wash the glove weekly with mild soap and let it air-dry",
-            "Apply argan oil on slightly damp skin to enhance absorption",
-            "Use the glove no more than twice per week to avoid over-exfoliation"
-          ],
-          "pt": [
-            "Faça a esfoliação com a pele amolecida pelo vapor para melhores resultados",
-            "Lave a luva semanalmente com sabão suave e deixe secar ao ar",
-            "Aplique o óleo de argan com a pele levemente úmida para aumentar a absorção",
-            "Use a luva no máximo duas vezes por semana para evitar esfoliação excessiva"
-          ],
-          "es": [
-            "Realiza la exfoliación con la piel suavizada por el vapor para obtener mejores resultados",
-            "Lava la manopla cada semana con jabón suave y deja que se seque al aire",
-            "Aplica el aceite de argán con la piel ligeramente húmeda para mejorar la absorción",
-            "Utiliza la manopla como máximo dos veces por semana para evitar la sobreexfoliación"
-          ]
-        }
-      },
-      "knowledge": {
-        "whatItIs": {
-          "en": "A curated two-step hammam ritual pairing ECOCERT argan oil with a traditional viscose Kessa glove. It brings the spa-grade exfoliate-and-nourish treatment home in a single bundle.",
-          "pt": "Um ritual hammam em dois passos que combina óleo de argan ECOCERT com a tradicional luva Kessa de viscose. Reúne em um único kit a esfoliação e nutrição dignas de spa.",
-          "es": "Un ritual hammam de dos pasos que combina aceite de argán ECOCERT con la tradicional manopla Kessa de viscosa. Reúne en un solo kit la exfoliación y la nutrición dignas de spa."
-        },
-        "howItWorks": {
-          "en": "The glove’s tightly woven fibers create controlled friction that lifts corneocytes and boosts circulation. Immediately sealing skin with antioxidant-rich argan oil restores lipids, reduces transepidermal water loss, and leaves a satin finish.",
-          "pt": "As fibras fechadas da luva criam fricção controlada que remove corneócitos e ativa a circulação. Selar a pele em seguida com o óleo de argan rico em antioxidantes repõe lipídios, reduz a perda transepidérmica de água e deixa um toque acetinado.",
-          "es": "Las fibras cerradas de la manopla generan fricción controlada que desprende corneocitos y activa la circulación. Sellar después con el aceite de argán rico en antioxidantes repone lípidos, reduce la pérdida transepidérmica de agua y deja un acabado satinado."
-        },
-        "whoItsFor": {
-          "en": "Ideal for dry or keratosis-prone limbs, post-wax or shave care to prevent ingrowns, and anyone wanting a glow-boosting body ritual without harsh acids.",
-          "pt": "Indicado para membros secos ou com tendência à queratose, cuidados pós-depilação para evitar pelos encravados e para quem busca um ritual corporal iluminador sem ácidos agressivos.",
-          "es": "Indicado para zonas secas o con tendencia a queratosis, cuidados posteriores a la depilación para prevenir vellos encarnados y para quienes buscan un ritual corporal iluminador sin ácidos agresivos."
-        },
-        "scientificBacking": {
-          "en": "Dermatologic literature shows mechanical exfoliation can accelerate cell turnover up to 30%, while clinical trials on argan oil document improved elasticity and hydration in four weeks of use. Combining both steps maximizes smoothness and barrier recovery.",
-          "pt": "Literatura dermatológica demonstra que a esfoliação mecânica pode acelerar a renovação celular em até 30%, enquanto estudos clínicos com óleo de argan registram melhora na elasticidade e na hidratação após quatro semanas de uso. A combinação dos dois passos potencializa a maciez e a recuperação da barreira.",
-          "es": "La literatura dermatológica muestra que la exfoliación mecánica puede acelerar la renovación celular hasta un 30%, y los ensayos clínicos con aceite de argán documentan mejor elasticidad e hidratación tras cuatro semanas de uso. Combinar ambos pasos maximiza la suavidad y la recuperación de la barrera."
-        },
-        "culturalContext": {
-          "en": "In Moroccan hammams, attendants perform vigorous gommage with Kessa mitts before massaging argan oil into freshly polished skin. This bundle recreates that communal ritual in a modern, giftable format.",
-          "pt": "Nos hammams marroquinos, as atendentes realizam o gommage vigoroso com a luva Kessa antes de massagear óleo de argan na pele recém polida. Este kit traduz esse ritual coletivo em um formato moderno e presenteável.",
-          "es": "En los hammams marroquíes, las asistentes realizan el gommage vigoroso con la manopla Kessa antes de masajear aceite de argán sobre la piel recién pulida. Este kit traslada ese ritual comunitario a un formato moderno y listo para regalar."
-        }
-      },
-      "faqs": [
-        {
-          "question": {
-            "en": "How often should I use the Kessa glove included in the bundle?",
-            "pt": "Com que frequência devo usar a luva Kessa do kit?",
-            "es": "¿Con qué frecuencia debo usar la manopla Kessa del pack?"
-          },
-          "answer": {
-            "en": "Limit exfoliation to once or twice per week. Give skin 48 hours between sessions so the barrier can recover before reapplying the argan oil.",
-            "pt": "Limite a esfoliação a uma ou duas vezes por semana. Dê 48 horas entre as sessões para que a barreira se recupere antes de reaplicar o óleo de argan.",
-            "es": "Limita la exfoliación a una o dos veces por semana. Deja pasar 48 horas entre sesiones para que la barrera se recupere antes de volver a aplicar el aceite de argán."
-          }
-        },
-        {
-          "question": {
-            "en": "Can I use the Kessa glove on my face?",
-            "pt": "Posso usar a luva Kessa no rosto?",
-            "es": "¿Puedo usar la manopla Kessa en el rostro?"
-          },
-          "answer": {
-            "en": "No—the weave is designed for body skin. Keep it on arms, legs, back, and décolletage, and reserve pure argan oil alone for facial use.",
-            "pt": "Não — a trama foi pensada para a pele do corpo. Use-a em braços, pernas, costas e colo, e deixe o óleo de argan puro sozinho para o rosto.",
-            "es": "No: el tejido está diseñado para la piel del cuerpo. Úsala en brazos, piernas, espalda y escote, y reserva el aceite de argán puro por sí solo para el rostro."
-          }
-        },
-        {
-          "question": {
-            "en": "How do I clean the glove between uses?",
-            "pt": "Como devo limpar a luva entre os usos?",
-            "es": "¿Cómo limpio la manopla entre usos?"
-          },
-          "answer": {
-            "en": "Rinse after each session, wash weekly with gentle soap, squeeze out excess water, and hang to air-dry away from humidity.",
-            "pt": "Enxágue após cada sessão, lave semanalmente com sabão neutro, esprema o excesso de água e deixe secar ao ar longe da umidade.",
-            "es": "Aclárala después de cada sesión, lávala semanalmente con jabón neutro, escurre el exceso de agua y déjala secar al aire lejos de la humedad."
-          }
-        }
-      ],
-      "originStory": {
-        "en": "Clinics asked for a take-home kit that mirrored the in-cab treatment order—steam, exfoliate, nourish. This set combines the travel-size argan oil with our Fes-woven Kessa so clients can repeat the ritual between resurfacing appointments.",
-        "pt": "As clínicas solicitaram um kit para levar para casa que reproduzisse a ordem do tratamento na cabine — vapor, esfoliar, nutrir. Este conjunto combina o óleo de argan tamanho viagem com a nossa Kessa tecida em Fez para que os clientes repitam o ritual entre sessões de renovação.",
-        "es": "Las clínicas pidieron un kit para llevar a casa que replicara el orden del tratamiento en cabina: vapor, exfoliar, nutrir. Este set combina el aceite de argán en formato de viaje con nuestra Kessa tejida en Fez para que los clientes repitan el ritual entre sesiones de renovación."
-      },
-      "scientificEvidence": {
-        "en": "Pairing mechanical exfoliation with immediate lipid replenishment has been shown in 2021 spa dermatology studies to reduce transepidermal water loss by up to 35% compared with exfoliation alone. The kit keeps that synergy intact outside the clinic.",
-        "pt": "Combinar esfoliação mecânica com reposição lipídica imediata reduziu a perda transepidérmica de água em até 35% em estudos de 2021 sobre dermatologia de spa, quando comparado à esfoliação isolada. O kit mantém essa sinergia fora da clínica.",
-        "es": "Combinar la exfoliación mecánica con una reposición lipídica inmediata redujo la pérdida transepidérmica de agua hasta un 35 % en estudios de 2021 sobre dermatología de spa, en comparación con la exfoliación por sí sola. El kit mantiene esa sinergia fuera de la clínica."
-      },
-      "multiUseTips": {
-        "en": [
-          "Steam or shower before using black soap and the glove, then apply argan oil while skin is still damp.",
-          "Pack the glove in the mesh pouch pocket after rinsing so it can air-dry during travel.",
-          "Use the argan oil daily between weekly exfoliations to maintain suppleness.",
-          "Gift it as a starter ritual for friends experiencing texture or post-procedure dryness."
-        ],
-        "pt": [
-          "Faça vapor ou banho antes de usar o sabão preto e a luva, e aplique o óleo de argan com a pele ainda húmida.",
-          "Guarde a luva no bolso em rede da nécessaire após enxaguar para que seque ao ar durante viagens.",
-          "Use o óleo de argan diariamente entre as esfoliações semanais para manter a flexibilidade.",
-          "Presenteie como ritual inicial para quem enfrenta textura irregular ou ressecamento pós-procedimento."
-        ],
-        "es": [
-          "Toma una ducha o baño de vapor antes de usar el jabón negro y la manopla, y aplica el aceite de argán con la piel aún húmeda.",
-          "Guarda la manopla en el bolsillo de malla del neceser tras enjuagarla para que se seque al aire durante los viajes.",
-          "Utiliza el aceite de argán a diario entre exfoliaciones semanales para mantener la flexibilidad.",
-          "Regálalo como ritual inicial a quienes experimentan textura irregular o sequedad posprocedimiento."
-        ]
-      }
-    },
-    {
-      "ingredients": {
-        "en": "Argania Spinosa (Argan) Kernel Oil. Viscose (Kessa) exfoliating glove.",
-        "pt": "Óleo de Caroço de Argania Spinosa (Argan). Luva esfoliante de viscose (Kessa).",
-        "es": "Aceite de semilla de Argania Spinosa (Argán). Manopla exfoliante de viscosa (Kessa)."
-      },
-      "name": {
-        "en": "Pure Argan Oil 100 ml + Kessa Glove",
-        "pt": "Óleo de Argan Puro 100 ml + Luva Kessa",
-        "es": "Aceite de Argán Puro 100 ml + Manopla Kessa"
-      },
-      "titleAddition": {
-        "en": "Exfoliate + Nourish Set",
-        "pt": "Esfoliar + Nutrir",
-        "es": "Exfoliar + Nutrir"
-      },
-      "tagline": {
-        "en": "Weekly hammam ritual for luminous skin",
-        "pt": "Ritual hammam semanal para uma pele luminosa",
-        "es": "Ritual hammam semanal para una piel luminosa"
-      },
-      "description": {
-        "en": "Use the Kessa glove once or twice weekly to lift impurities and smooth texture. Follow with Pure Argan Oil to seal in comfort and leave a soft glow. For cosmetic use only.",
-        "pt": "Use a luva Kessa uma a duas vezes por semana para remover impurezas e suavizar a textura. Finalize com Óleo de Argan Puro para selar conforto e deixar um brilho suave. Uso cosmético.",
-        "es": "Usa la manopla Kessa una o dos veces por semana para retirar impurezas y suavizar la textura. Continúa con Aceite de Argán Puro para sellar confort y dejar un brillo suave. Uso cosmético."
-      },
-      "bundleIncludes": {
-        "en": [
-          "Pure Argan Oil (size as selected)",
-          "Kessa exfoliating glove"
-        ],
-        "pt": [
-          "Óleo de Argan Puro (tamanho selecionado)",
-          "Luva esfoliante Kessa"
-        ],
-        "es": [
-          "Aceite de Argán Puro (tamaño seleccionado)",
-          "Manopla exfoliante Kessa"
-        ]
-      },
-      "badges": {
-        "en": [
-          "2-Piece Bundle",
-          "Weekly Ritual",
-          "Gift-Ready"
-        ],
-        "pt": [
-          "Kit com 2 itens",
-          "Ritual semanal",
-          "Pronto para presente"
-        ],
-        "es": [
-          "Set de 2 piezas",
-          "Ritual semanal",
-          "Listo para regalar"
-        ]
-      },
-      "tags": {
-        "en": [
-          "ritual kit"
-        ],
-        "pt": [
-          "kit ritual"
-        ],
-        "es": [
-          "kit ritual"
-        ]
-      },
-      "labTestedNote": {
-        "en": "Our ECOCERT argan oil is cold-pressed and verified for purity; the 100 ml pump shields the formula from air and light so every ritual stays fresh.",
-        "pt": "Nosso óleo de argan com certificação ECOCERT é prensado a frio e testado para garantir pureza; o pump de 100 ml protege a fórmula do ar e da luz para que cada ritual permaneça fresco.",
-        "es": "Nuestro aceite de argán con certificación ECOCERT se prensa en frío y se analiza para garantizar su pureza; el dosificador de 100 ml protege la fórmula del aire y la luz para que cada ritual se mantenga fresco."
-      },
-      "sizes": [
-        {
-          "id": "100ml-bundle",
-          "size": 100,
-          "price": 65
-        }
-      ],
-      "imageUrl": "/content/uploads/aceite-argan-dosificador-250ml-300x300.jpg",
-      "id": "argan-100ml-kessa-bundle",
-      "howToUse": {
-        "en": "On damp skin, perform brisk upward strokes with the Kessa glove once or twice weekly. Rinse, pat dry, and dispense 2–3 pumps of argan oil from the 100 ml bottle to massage over the body while skin is still warm.",
-        "pt": "Na pele úmida, faça movimentos ascendentes firmes com a luva Kessa uma ou duas vezes por semana. Enxágue, seque suavemente e dispense 2–3 pumps do óleo de argan do frasco de 100 ml para massagear o corpo enquanto a pele ainda estiver aquecida.",
-        "es": "Sobre la piel húmeda, realiza pasadas ascendentes firmes con la manopla Kessa una o dos veces por semana. Aclara, seca con suavidad y dispensa 2–3 pulsaciones del aceite de argán del frasco de 100 ml para masajear el cuerpo mientras la piel aún está caliente."
-      },
-      "benefits": {
-        "en": [
-          "Combines mechanical exfoliation with a generous 100 ml supply of antioxidant argan oil",
-          "Pump format keeps the oil protected and easy to portion for body or scalp rituals",
-          "Leaves limbs, décolletage, and scalp noticeably softer after each weekly session",
-          "Ideal gift for hammam devotees, wellness retreats, or postpartum body care"
-        ],
-        "pt": [
-          "Combina esfoliação mecânica com uma generosa reserva de 100 ml de óleo de argan antioxidante",
-          "O pump mantém o óleo protegido e fácil de dosar para rituais de corpo ou couro cabeludo",
-          "Deixa braços, colo e couro cabeludo visivelmente mais macios após cada sessão semanal",
-          "Presente ideal para fãs de hammam, retiros de bem-estar ou cuidados corporais pós-parto"
-        ],
-        "es": [
-          "Combina la exfoliación mecánica con una generosa reserva de 100 ml de aceite de argán antioxidante",
-          "El dosificador mantiene el aceite protegido y fácil de dosificar para rituales corporales o capilares",
-          "Deja brazos, escote y cuero cabelludo visiblemente más suaves tras cada sesión semanal",
-          "Regalo ideal para amantes del hammam, retiros de bienestar o cuidados corporales posparto"
-        ]
-      },
-      "goodToKnow": {
-        "title": {
-          "en": "Good to know",
-          "pt": "Bom saber",
-          "es": "Para tener en cuenta"
-        },
-        "items": {
-          "en": [
-            "Work on softened, steamed skin for the smoothest polish",
-            "Wash the glove weekly with mild soap and hang to dry completely",
-            "Apply argan oil while skin is slightly damp to lock in moisture",
-            "With weekly use, the 100 ml pump lasts about two to three months"
-          ],
-          "pt": [
-            "Faça a esfoliação com a pele amolecida pelo vapor para um polimento mais suave",
-            "Lave a luva semanalmente com sabão suave e pendure para secar completamente",
-            "Aplique o óleo de argan com a pele levemente úmida para selar a hidratação",
-            "Com uso semanal, o pump de 100 ml dura cerca de dois a três meses"
-          ],
-          "es": [
-            "Realiza la exfoliación con la piel suavizada por el vapor para un pulido más uniforme",
-            "Lava la manopla cada semana con jabón suave y cuélgala para que se seque por completo",
-            "Aplica el aceite de argán con la piel ligeramente húmeda para sellar la hidratación",
-            "Con uso semanal, el dosificador de 100 ml dura alrededor de dos a tres meses"
-          ]
-        }
-      },
-      "knowledge": {
-        "whatItIs": {
-          "en": "A two-step hammam-inspired kit with a 100 ml ECOCERT argan oil pump and the traditional viscose Kessa glove for at-home exfoliation and nourishment.",
-          "pt": "Um kit inspirado no hammam com pump de 100 ml de óleo de argan ECOCERT e a tradicional luva Kessa de viscose para esfoliar e nutrir em casa.",
-          "es": "Un kit inspirado en el hammam con dosificador de 100 ml de aceite de argán ECOCERT y la tradicional manopla Kessa de viscosa para exfoliar y nutrir en casa."
-        },
-        "howItWorks": {
-          "en": "The glove's textured weave lifts dull cells and boosts circulation; sealing skin straight away with argan oil's tocopherols and squalene replenishes lipids and reinforces the barrier.",
-          "pt": "A trama texturizada da luva remove células opacas e estimula a circulação; selar a pele imediatamente com os tocoferóis e o esqualeno do óleo de argan repõe lipídios e reforça a barreira.",
-          "es": "La textura de la manopla desprende las células opacas y activa la circulación; sellar la piel de inmediato con los tocoferoles y el escualeno del aceite de argán repone lípidos y refuerza la barrera."
-        },
-        "whoItsFor": {
-          "en": "Perfect for dry limbs, keratosis-prone skin, athletic recovery, and households wanting a shared hammam ritual with more oil to go around.",
-          "pt": "Perfeito para braços e pernas secos, pele com tendência à queratose, recuperação pós-treino e famílias que desejam compartilhar um ritual de hammam com mais óleo disponível.",
-          "es": "Perfecto para extremidades secas, piel con tendencia a queratosis, recuperación deportiva y hogares que desean compartir un ritual hammam con más aceite para todos."
-        },
-        "scientificBacking": {
-          "en": "Dermatology studies show mechanical exfoliation can accelerate cell turnover up to 30%, while clinical data on argan oil document improved elasticity and hydration within four weeks. Layering both steps maximizes smoothness and resilience.",
-          "pt": "Estudos em dermatologia mostram que a esfoliação mecânica pode acelerar a renovação celular em até 30%, enquanto dados clínicos sobre o óleo de argan registram melhora na elasticidade e hidratação em quatro semanas. Combinar as duas etapas maximiza maciez e resiliência.",
-          "es": "Estudios dermatológicos indican que la exfoliación mecánica puede acelerar la renovación celular hasta un 30%, mientras que los datos clínicos sobre el aceite de argán documentan mayor elasticidad e hidratación en cuatro semanas. Combinar ambos pasos maximiza la suavidad y la resistencia."
-        },
-        "culturalContext": {
-          "en": "Moroccan hammams pair vigorous gommage with generous argan oil massage. This larger-format kit honours that tradition so couples, teams, or spa cabins can recreate it at home.",
-          "pt": "Os hammams marroquinos combinam gommage vigoroso com massagem abundante de óleo de argan. Este kit em formato maior honra essa tradição para que casais, equipes ou cabines de spa possam recriá-la em casa.",
-          "es": "Los hammams marroquíes combinan un gommage vigoroso con un masaje abundante de aceite de argán. Este kit de mayor formato honra esa tradición para que parejas, equipos o cabinas de spa la reproduzcan en casa."
-        }
-      },
-      "faqs": [
-        {
-          "question": {
-            "en": "How long will the 100 ml pump last?",
-            "pt": "Quanto tempo dura o pump de 100 ml?",
-            "es": "¿Cuánto dura el dosificador de 100 ml?"
-          },
-          "answer": {
-            "en": "Used on the full body two to three times per week, expect eight to ten weeks of product. Targeted use on limbs or scalp stretches the supply even further.",
-            "pt": "Usado no corpo todo duas a três vezes por semana, rende cerca de oito a dez semanas. O uso localizado em membros ou couro cabeludo prolonga ainda mais o rendimento.",
-            "es": "Aplicado en todo el cuerpo dos o tres veces por semana, dura entre ocho y diez semanas. El uso localizado en extremidades o cuero cabelludo alarga todavía más el rendimiento."
-          }
-        },
-        {
-          "question": {
-            "en": "Can I refill the bottle once it is empty?",
-            "pt": "Posso reutilizar o frasco quando terminar?",
-            "es": "¿Puedo rellenar el frasco cuando se acabe?"
-          },
-          "answer": {
-            "en": "Yes—wash the pump with warm soapy water, allow it to dry completely, and refill with bulk Kapunka Pure Argan Oil to maintain freshness.",
-            "pt": "Sim — lave o pump com água morna e sabão, deixe secar totalmente e reabasteça com o Óleo de Argan Puro Kapunka para manter a frescura.",
-            "es": "Sí: lava el dosificador con agua tibia y jabón, déjalo secar por completo y rellénalo con Aceite de Argán Puro Kapunka para conservar la frescura."
-          }
-        },
-        {
-          "question": {
-            "en": "Is the glove suitable for sensitive skin?",
-            "pt": "A luva é adequada para pele sensível?",
-            "es": "¿La manopla es adecuada para piel sensible?"
-          },
-          "answer": {
-            "en": "Start with light pressure on a small area to test tolerance. Avoid use over active eczema, open cuts, or freshly waxed skin.",
-            "pt": "Comece com pressão leve em uma área pequena para testar a tolerância. Evite usar sobre eczema ativo, cortes ou pele recém-depilada.",
-            "es": "Comienza con una presión suave en una zona pequeña para comprobar la tolerancia. Evita usarla sobre eccema activo, cortes o piel recién depilada."
-          }
-        }
-      ],
-      "originStory": {
-        "en": "Our estheticians created the 100 ml bundle for clients who wanted a full month of at-home maintenance between resurfacing sessions. It mirrors the hammam steps—apply black soap, sweep with Kessa, seal with argan oil—using clinic-grade sizes.",
-        "pt": "Nossas esteticistas criaram o bundle de 100 ml para clientes que queriam um mês completo de manutenção em casa entre sessões de renovação. Ele replica as etapas do hammam — aplicar sabão preto, esfoliar com a Kessa, selar com óleo de argan — com tamanhos de nível clínico.",
-        "es": "Nuestras esteticistas crearon el pack de 100 ml para clientes que querían un mes completo de mantenimiento en casa entre sesiones de renovación. Replica los pasos del hammam —aplicar jabón negro, exfoliar con la Kessa, sellar con aceite de argán— con tamaños de grado clínico."
-      },
-      "scientificEvidence": {
-        "en": "Clinic tracking shows that patients who maintain the exfoliate-and-replenish routine weekly report fewer instances of ingrown hairs and dryness after resurfacing treatments. Lipid replenishment within five minutes of exfoliation is key to sustaining results.",
-        "pt": "O acompanhamento clínico mostra que pacientes que mantêm a rotina de esfoliar e repor semanalmente relatam menos casos de pelos encravados e ressecamento após tratamentos de renovação. Repor lípidos em até cinco minutos após a esfoliação é essencial para sustentar os resultados.",
-        "es": "El seguimiento clínico demuestra que los pacientes que mantienen la rutina de exfoliar y reponer cada semana informan menos casos de vellos encarnados y sequedad después de los tratamientos de renovación. Reponer lípidos en los cinco minutos posteriores a la exfoliación es esencial para sostener los resultados."
-      },
-      "multiUseTips": {
-        "en": [
-          "Plan a weekly ritual: soak, apply black soap, rinse, exfoliate, then nourish with argan oil.",
-          "Share the Kessa with household members by washing it with gentle soap after each use.",
-          "Use the 100 ml size to refill the 30 ml travel bottle between trips.",
-          "Keep the glove in the vanity pouch to separate it from dry towels."
-        ],
-        "pt": [
-          "Planeie um ritual semanal: amolecer, aplicar sabão preto, enxaguar, esfoliar e nutrir com óleo de argan.",
-          "Compartilhe a Kessa com a família lavando-a com sabão suave após cada uso.",
-          "Use o frasco de 100 ml para reabastecer o frasco de 30 ml de viagem entre deslocações.",
-          "Guarde a luva na nécessaire para mantê-la separada das toalhas secas."
-        ],
-        "es": [
-          "Planifica un ritual semanal: ablandar, aplicar jabón negro, enjuagar, exfoliar y nutrir con aceite de argán.",
-          "Comparte la Kessa con la familia lavándola con jabón suave después de cada uso.",
-          "Utiliza el frasco de 100 ml para rellenar el de 30 ml de viaje entre desplazamientos.",
-          "Guarda la manopla en el neceser para mantenerla separada de las toallas secas."
-        ]
-      }
-    },
-    {
-      "ingredients": {
-        "en": "Set includes Pure Argan Oil (Argania Spinosa Kernel Oil) and Argan Oil + Lavender (Argania Spinosa Kernel Oil, Lavandula Angustifolia Oil).",
-        "pt": "O kit inclui Óleo de Argan Puro (Óleo de Semente de Argania Spinosa) e Óleo de Argan + Lavanda (Óleo de Semente de Argania Spinosa, Óleo de Lavandula Angustifolia).",
-        "es": "El pack incluye Aceite de Argán Puro (Aceite de semilla de Argania Spinosa) y Aceite de Argán + Lavanda (Aceite de semilla de Argania Spinosa, Aceite de Lavandula Angustifolia)."
-      },
-      "name": {
-        "en": "Lavender 50 ml + Pure Argan 30 ml Ritual Pack",
-        "pt": "Kit Ritual Lavanda 50 ml + Argan 30 ml",
-        "es": "Pack Ritual Lavanda 50 ml + Argán 30 ml"
-      },
-      "tagline": {
-        "en": "Evening relaxation and daytime nourishment",
-        "pt": "Relaxar à noite e nutrir de dia",
-        "es": "Relajar por la noche y nutrir de día"
-      },
-      "description": {
-        "en": "Pair the calming Argan Oil + Lavender pump for nighttime body and hair rituals with a precision 30 ml dropper of Pure Argan Oil for daytime barrier support and touch-ups.",
-        "pt": "Combine o pump calmante de Óleo de Argan + Lavanda para rituais noturnos de corpo e cabelo com o conta-gotas de 30 ml de Óleo de Argan Puro para reforçar a barreira e fazer retoques durante o dia.",
-        "es": "Combina el dosificador calmante de Aceite de Argán + Lavanda para los rituales nocturnos de cuerpo y cabello con el cuentagotas de 30 ml de Aceite de Argán Puro para reforzar la barrera y hacer retoques durante el día."
-      },
-      "bundleIncludes": {
-        "en": [
-          "Argan Oil + Lavender 50 ml pump",
-          "Pure Argan Oil 30 ml dropper"
-        ],
-        "pt": [
-          "Óleo de Argan + Lavanda 50 ml com pump",
-          "Óleo de Argan Puro 30 ml com conta-gotas"
-        ],
-        "es": [
-          "Aceite de Argán + Lavanda 50 ml con dosificador",
-          "Aceite de Argán Puro 30 ml con cuentagotas"
-        ]
-      },
-      "badges": {
-        "en": [
-          "Two-Step Ritual",
-          "Gift-Ready",
-          "Travel-Friendly"
-        ],
-        "pt": [
-          "Ritual em dois passos",
-          "Pronto para presente",
-          "Prático para viagens"
-        ],
-        "es": [
-          "Ritual en dos pasos",
-          "Listo para regalar",
-          "Práctico para viajar"
-        ]
-      },
-      "tags": {
-        "en": [
-          "ritual kit"
-        ],
-        "pt": [
-          "kit ritual"
-        ],
-        "es": [
-          "kit ritual"
-        ]
-      },
-      "labTestedNote": {
-        "en": "Both oils are ECOCERT certified. The lavender essential oil is diluted at spa-safe levels, while the pure argan oil remains fragrance-free for sensitive complexions.",
-        "pt": "Os dois óleos têm certificação ECOCERT. O óleo essencial de lavanda está diluído em nível seguro para spa, enquanto o óleo de argan puro permanece sem fragrância para peles sensíveis.",
-        "es": "Ambos los aceites cuentan con certificación ECOCERT. El aceite esencial de lavanda está diluido en niveles seguros para spa, mientras que el aceite de argán puro permanece sin fragancia para pieles sensibles."
-      },
-      "sizes": [
-        {
-          "id": "duo-pack",
-          "size": 1,
-          "price": 72
-        }
-      ],
-      "imageUrl": "/content/uploads/aceite-argan-puro-primera-prensada-frio-250ml-con-lavanda-300x300.jpg",
-      "id": "lavender-50ml-argan-30ml-pack",
-      "howToUse": {
-        "en": "In the evening, massage Argan Oil + Lavender into the body, scalp, or ends before rest. In the morning, press 2–3 drops of Pure Argan Oil onto face, nails, or dry patches. Layer the oils as needed, beginning with pure argan on sensitised zones.",
-        "pt": "À noite, massageie o Óleo de Argan + Lavanda no corpo, couro cabeludo ou pontas antes de descansar. Pela manhã, pressione 2–3 gotas de Óleo de Argan Puro no rosto, unhas ou áreas secas. Faça camadas conforme necessário, começando pelo óleo puro nas zonas sensibilizadas.",
-        "es": "Por la noche, masajea el Aceite de Argán + Lavanda en el cuerpo, el cuero cabelludo o las puntas antes de descansar. Por la mañana, presiona 2–3 gotas de Aceite de Argán Puro sobre rostro, uñas o zonas secas. Superpone los aceites según sea necesario, comenzando por el argán puro en las zonas sensibilizadas."
-      },
-      "benefits": {
-        "en": [
-          "Creates a soothing evening ritual with aromatic lavender",
-          "Keeps a fragrance-free option on hand for sensitive skin",
-          "Supports barrier repair on face, body, and scalp with versatile textures",
-          "Gift-ready duo for couples, new parents, or self-care retreats"
-        ],
-        "pt": [
-          "Cria um ritual noturno calmante com lavanda aromática",
-          "Mantém uma opção sem fragrância à disposição para peles sensíveis",
-          "Favorece a reparação da barreira no rosto, corpo e couro cabeludo com texturas versáteis",
-          "Duo pronto para presente para casais, novos pais ou retiros de autocuidado"
-        ],
-        "es": [
-          "Crea un ritual nocturno relajante con lavanda aromática",
-          "Mantiene una opción sin fragancia a mano para pieles sensibles",
-          "Apoya la reparación de la barrera en rostro, cuerpo y cuero cabelludo con texturas versátiles",
-          "Dúo listo para regalar a parejas, nuevos padres o retiros de autocuidado"
-        ]
-      },
-      "goodToKnow": {
-        "title": {
-          "en": "Good to know",
-          "pt": "Bom saber",
-          "es": "Para tener en cuenta"
-        },
-        "items": {
-          "en": [
-            "Keep the lavender blend away from the eye contour",
-            "Patch test if you are new to essential oils",
-            "Mix a drop of pure argan with lavender oil for a lighter finish",
-            "Store bottles upright and away from direct sunlight"
-          ],
-          "pt": [
-            "Mantenha a mistura de lavanda longe da área dos olhos",
-            "Faça um teste de toque se for novo em óleos essenciais",
-            "Misture uma gota de argan puro ao óleo de lavanda para um acabamento mais leve",
-            "Guarde os frascos na vertical e longe da luz direta"
-          ],
-          "es": [
-            "Mantén la mezcla de lavanda alejada del contorno de ojos",
-            "Realiza una prueba de parche si eres nuevo con aceites esenciales",
-            "Mezcla una gota de argán puro con el aceite de lavanda para un acabado más ligero",
-            "Guarda los frascos en posición vertical y lejos de la luz directa"
-          ]
-        }
-      },
-      "knowledge": {
-        "whatItIs": {
-          "en": "A complementary duo that pairs our calming Argan Oil + Lavender with the signature Pure Argan Oil dropper for a complete day-to-night ritual.",
-          "pt": "Um duo complementar que reúne o nosso Óleo de Argan + Lavanda calmante com o conta-gotas de Óleo de Argan Puro para um ritual completo do dia à noite.",
-          "es": "Un dúo complementario que combina nuestro Aceite de Argán + Lavanda calmante con el cuentagotas de Aceite de Argán Puro para un ritual completo de día y noche."
-        },
-        "howItWorks": {
-          "en": "Lavender's linalool and linalyl acetate promote relaxation, while pure argan oil delivers tocopherols and essential fatty acids to replenish the barrier without fragrance.",
-          "pt": "O linalol e o acetato de linalila da lavanda promovem relaxamento, enquanto o óleo de argan puro oferece tocoferóis e ácidos graxos essenciais para repor a barreira sem fragrância.",
-          "es": "El linalol y el acetato de linalilo de la lavanda fomentan la relajación, mientras que el aceite de argán puro aporta tocoferoles y ácidos grasos esenciales para reponer la barrera sin fragancia."
-        },
-        "whoItsFor": {
-          "en": "Designed for anyone craving a calming night oil alongside a neutral option for daytime layering—ideal for new parents, stressed professionals, and spa gift sets.",
-          "pt": "Pensado para quem deseja um óleo calmante para a noite e uma opção neutra para as camadas diurnas — ideal para novos pais, profissionais sob estresse e kits de spa.",
-          "es": "Pensado para quienes desean un aceite calmante nocturno junto a una opción neutra para las capas diurnas; ideal para nuevos padres, profesionales estresados y sets de spa."
-        },
-        "scientificBacking": {
-          "en": "Studies highlight lavender aromatherapy for improving sleep quality, while research on argan oil documents significant increases in skin hydration and elasticity. Combining them supports rest and barrier recovery.",
-          "pt": "Estudos destacam a aromaterapia com lavanda na melhora da qualidade do sono, enquanto pesquisas com óleo de argan registram aumento significativo na hidratação e elasticidade da pele. A combinação apoia o descanso e a recuperação da barreira.",
-          "es": "Los estudios destacan la aromaterapia con lavanda por mejorar la calidad del sueño, mientras que las investigaciones sobre el aceite de argán documentan aumentos significativos en hidratación y elasticidad cutánea. La combinación favorece el descanso y la recuperación de la barrera."
-        },
-        "culturalContext": {
-          "en": "Lavender has long soothed Moroccan hammam guests before rest, while pure argan oil is the daily staple that follows. This pack brings both traditions together in one edit.",
-          "pt": "A lavanda há muito acalma convidadas de hammams marroquinos antes do descanso, enquanto o óleo de argan puro é o básico diário que se segue. Este kit reúne as duas tradições em uma só curadoria.",
-          "es": "La lavanda lleva siglos relajando a las invitadas de los hammams marroquíes antes del descanso, mientras que el aceite de argán puro es el básico diario posterior. Este pack reúne ambas tradiciones en una sola selección."
-        }
-      },
-      "faqs": [
-        {
-          "question": {
-            "en": "Can I layer both oils together?",
-            "pt": "Posso usar os dois óleos em camadas?",
-            "es": "¿Puedo superponer ambos aceites?"
-          },
-          "answer": {
-            "en": "Yes—apply Pure Argan Oil first on sensitised areas, then add a drop of Argan + Lavender on top where you want the calming aroma.",
-            "pt": "Sim — aplique primeiro o Óleo de Argan Puro nas áreas sensibilizadas e, em seguida, adicione uma gota de Argan + Lavanda onde desejar o aroma calmante.",
-            "es": "Sí: aplica primero el Aceite de Argán Puro en las zonas sensibilizadas y después añade una gota de Argán + Lavanda donde quieras el aroma calmante."
-          }
-        },
-        {
-          "question": {
-            "en": "Is the lavender blend safe during pregnancy?",
-            "pt": "A mistura de lavanda é segura na gravidez?",
-            "es": "¿La mezcla de lavanda es segura durante el embarazo?"
-          },
-          "answer": {
-            "en": "The dilution is spa-safe, but consult your healthcare provider if you are pregnant or nursing before using essential oils.",
-            "pt": "A diluição é segura para spa, mas consulte seu profissional de saúde se estiver grávida ou amamentando antes de usar óleos essenciais.",
-            "es": "La dilución es segura para spa, pero consulta con tu profesional de salud si estás embarazada o en periodo de lactancia antes de usar aceites esenciales."
-          }
-        },
-        {
-          "question": {
-            "en": "Does the set work for all skin types?",
-            "pt": "O kit serve para todos os tipos de pele?",
-            "es": "¿El pack funciona para todo tipo de piel?"
-          },
-          "answer": {
-            "en": "Both oils suit dry, normal, and combination skin. If you are very oily, reserve the lavender blend for body massage and use the pure dropper sparingly on the face.",
-            "pt": "Ambos os óleos funcionam em peles secas, normais e mistas. Se a sua pele for muito oleosa, deixe a mistura de lavanda para a massagem corporal e use o conta-gotas puro com parcimônia no rosto.",
-            "es": "Ambos los aceites se adaptan a pieles secas, normales y mixtas. Si tu piel es muy grasa, reserva la mezcla de lavanda para masaje corporal y usa el cuentagotas puro con moderación en el rostro."
-          }
-        }
-      ],
-      "originStory": {
-        "en": "Created for evening spa suites, this duo pairs our lavender infusion with pure argan so guests can unwind at night and revive skin in the morning. The routine became a favorite among physiotherapists supporting nervous-system recovery.",
-        "pt": "Criado para suítes de spa noturnas, este duo combina a nossa infusão de lavanda com o argan puro para que os hóspedes relaxem à noite e revigorem a pele pela manhã. A rotina tornou-se favorita entre fisioterapeutas que acompanham a recuperação do sistema nervoso.",
-        "es": "Creado para las suites de spa nocturnas, este dúo combina nuestra infusión de lavanda con el argán puro para que los huéspedes se relajen de noche y revitalicen la piel por la mañana. La rutina se volvió favorita entre los fisioterapeutas que apoyan la recuperación del sistema nervioso."
-      },
-      "scientificEvidence": {
-        "en": "Evening application of lavender oil has been associated with lower heart rate variability markers of stress, while morning argan oil maintains barrier repair. Used together, they mirror chronobiology protocols designed to calm before sleep and replenish after rest.",
-        "pt": "A aplicação noturna de óleo de lavanda tem sido associada à redução de marcadores de variabilidade da frequência cardíaca relacionados ao stress, enquanto o óleo de argan matinal mantém a reparação da barreira. Usados em conjunto, espelham protocolos de cronobiologia que acalmam antes do sono e reabastecem após o descanso.",
-        "es": "La aplicación nocturna de aceite de lavanda se ha asociado a una reducción de los marcadores de variabilidad de la frecuencia cardíaca vinculados al estrés, mientras que el aceite de argán matutino mantiene la reparación de la barrera. Usados en conjunto, reflejan protocolos de cronobiología que calman antes del sueño y reponen tras el descanso."
-      },
-      "multiUseTips": {
-        "en": [
-          "Use lavender on pulse points and décolletage before bed, then apply pure argan the next morning.",
-          "Layer lavender over calves after evening stretching to signal downtime.",
-          "Mix a drop of each in your palm to massage into the scalp on self-care Sundays.",
-          "Travel with the duo to reset circadian rhythm after long flights."
-        ],
-        "pt": [
-          "Use a lavanda nos pontos de pulsação e no colo antes de dormir e aplique o argan puro na manhã seguinte.",
-          "Aplique a lavanda nas pernas após alongamentos noturnos para sinalizar o descanso.",
-          "Misture uma gota de cada na palma da mão para massagear o couro cabeludo nos domingos de autocuidado.",
-          "Viaje com o duo para reajustar o ritmo circadiano após voos longos."
-        ],
-        "es": [
-          "Utiliza la lavanda en los puntos de pulso y el escote antes de dormir y aplica el argán puro a la mañana siguiente.",
-          "Aplica la lavanda en las piernas después de los estiramientos nocturnos para señalar el descanso.",
-          "Mezcla una gota de cada uno en la palma para masajear el cuero cabelludo los domingos de autocuidado.",
-          "Viaja con el dúo para reajustar el ritmo circadiano tras vuelos largos."
-        ]
-      }
-    },
-    {
-      "ingredients": {
         "en": "Argania Spinosa (Argan) Kernel Oil. Viscose (Kessa) exfoliating glove. Cotton travel pouch.",
         "pt": "Óleo de Caroço de Argania Spinosa (Argan). Luva esfoliante de viscose (Kessa). Nécessaire de algodão.",
         "es": "Aceite de semilla de Argania Spinosa (Argán). Manopla exfoliante de viscosa (Kessa). Neceser de algodón."
       },
       "name": {
-        "en": "Argan Oil 500 ml Dispenser + Pouch + Kessa Bundle",
-        "pt": "Kit Óleo de Argan 500 ml com Dosificador + Nécessaire + Kessa",
-        "es": "Dosificador 500 ml de Aceite de Argán + Neceser + Kessa"
+        "es": "Pack Kapunka",
+        "en": "Kapunka Ritual Pack",
+        "pt": "Pack Kapunka"
       },
       "titleAddition": {
         "en": "Exfoliate + Nourish Set",
@@ -2917,14 +3113,14 @@
         "es": "Exfoliar + Nutrir"
       },
       "tagline": {
-        "en": "Exfoliate + Nourish Set",
-        "pt": "Esfoliar + Nutrir",
-        "es": "Exfoliar + Nutrir"
+        "es": "Aceite de argán con manopla Kessa y neceser para ritual hammam en casa.",
+        "en": "Argan oil with Kessa mitt and pouch for a home hammam ritual.",
+        "pt": "Óleo de argan com luva Kessa e nécessaire para um ritual hammam em casa."
       },
       "description": {
-        "en": "Use the Kessa glove once or twice weekly to lift impurities and smooth texture. Follow with Pure Argan Oil to seal in comfort and leave a soft glow. Travel-ready set with selected argan sizes and Kessa glove in a Kapunka vanity pouch. For cosmetic use only.",
-        "pt": "Use a luva Kessa uma a duas vezes por semana para remover impurezas e suavizar a textura. Finalize com Óleo de Argan Puro para selar conforto e deixar um brilho suave. Conjunto pronto para viagem com tamanhos selecionados de argan e luva Kessa num necessaire Kapunka. Uso cosmético.",
-        "es": "Usa la manopla Kessa una o dos veces por semana para retirar impurezas y suavizar la textura. Continúa con Aceite de Argán Puro para sellar confort y dejar un brillo suave. Set listo para viaje con tamaños seleccionados de argán y manopla Kessa en un neceser Kapunka. Uso cosmético."
+        "es": "Selecciona el tamaño de aceite de argán y recibe la manopla Kessa y el neceser Kapunka para recrear el ritual completo. Todo cabe en un estuche lavable pensado para viajar o regalar.",
+        "en": "Choose your argan oil size and receive the Kapunka Kessa mitt and pouch to recreate the full ritual. Everything fits inside a washable pouch designed for travel or gifting.",
+        "pt": "Escolha o tamanho do óleo de argan e receba a luva Kessa e a nécessaire Kapunka para recriar o ritual completo. Tudo cabe numa bolsa lavável pensada para viajar ou presentear."
       },
       "bundleIncludes": {
         "en": [
@@ -2945,30 +3141,30 @@
       },
       "badges": {
         "en": [
-          "3-Piece Bundle",
-          "Travel Ready",
-          "Pro Studio Size"
-        ],
-        "pt": [
-          "Kit com 3 itens",
-          "Pronto para viagens",
-          "Formato profissional"
+          "Gift Ready",
+          "Travel Friendly"
         ],
         "es": [
-          "Set de 3 piezas",
-          "Listo para viajar",
-          "Formato profesional"
+          "Listo para regalar",
+          "Ideal para viajar"
+        ],
+        "pt": [
+          "Pronto para presentear",
+          "Ideal para viajar"
         ]
       },
       "tags": {
         "en": [
-          "ritual kit"
-        ],
-        "pt": [
-          "kit ritual"
+          "bundle",
+          "hammam"
         ],
         "es": [
-          "kit ritual"
+          "pack",
+          "hammam"
+        ],
+        "pt": [
+          "pack",
+          "hammam"
         ]
       },
       "labTestedNote": {
@@ -2978,13 +3174,32 @@
       },
       "sizes": [
         {
-          "id": "500ml-bundle",
-          "size": 500,
-          "price": 120
+          "id": "30ml-pack",
+          "label": "30 ml + Kessa + neceser",
+          "price": 59,
+          "size": 30
+        },
+        {
+          "id": "50ml-pack",
+          "label": "50 ml + Kessa + neceser",
+          "price": 79,
+          "size": 50
+        },
+        {
+          "id": "100ml-pack",
+          "label": "100 ml + Kessa + neceser",
+          "price": 119,
+          "size": 100
+        },
+        {
+          "id": "250ml-pack",
+          "label": "250 ml + Kessa + neceser",
+          "price": 189,
+          "size": 250
         }
       ],
-      "imageUrl": "/content/uploads/aceite-argan-dosificador-250ml-300x300.jpg",
-      "id": "argan-500ml-pouch-kessa-bundle",
+      "imageUrl": "",
+      "id": "pack-kapunka",
       "howToUse": {
         "en": "Before showering, place the glove and pump within reach. After cleansing, scrub damp skin with the glove, rinse, then dispense 2–3 pumps of argan oil into your palms and massage over the body while skin is still warm. Allow the glove to dry fully before storing it back in the pouch.",
         "pt": "Antes do banho, deixe a luva e o dosificador ao alcance. Após a limpeza, esfregue a pele úmida com a luva, enxágue e dispense 2–3 pumps de óleo de argan nas mãos, massageando o corpo enquanto a pele ainda estiver aquecida. Deixe a luva secar completamente antes de guardá-la novamente na nécessaire.",
