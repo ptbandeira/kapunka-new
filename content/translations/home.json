@@ -1,24 +1,24 @@
 {
   "en": {
-    "metaTitle": "Kapunka Skincare — Moroccan Argan Oils Trusted for Sensitive & Post-Care Skin",
-    "metaDescription": "Discover pure Moroccan argan oils, floral waters, and traditional treatments optimized for sensitive and post-procedure skin. Clinically trusted, sustainably sourced.",
+    "metaTitle": "Kapunka Skincare | Moroccan Argan Rituals for Clinics & Sensitive Skin",
+    "metaDescription": "Kapunka formulates Moroccan argan oils, mists, and hammam treatments trusted by aesthetic clinics for post-procedure recovery, barrier repair, and daily rituals.",
     "meta": {
-      "title": "Kapunka Skincare — Moroccan Argan Oils Trusted for Sensitive & Post-Care Skin",
-      "description": "Discover pure Moroccan argan oils, floral waters, and traditional treatments optimized for sensitive and post-procedure skin. Clinically trusted, sustainably sourced."
+      "title": "Kapunka Skincare | Moroccan Argan Rituals for Clinics & Sensitive Skin",
+      "description": "Kapunka formulates Moroccan argan oils, mists, and hammam treatments trusted by aesthetic clinics for post-procedure recovery, barrier repair, and daily rituals."
     },
-    "heroTitle": "Argan care rooted in Moroccan heritage, trusted in clinical practice",
-    "heroSubtitle": "Pure, single-origin Moroccan argan oils and blends designed for sensitive, post-procedure, and daily skin. Lightweight, non-comedogenic, and chosen by aesthetic clinics for barrier repair.",
+    "heroTitle": "Clinical-grade Moroccan argan rituals for sensitive, recovering skin",
+    "heroSubtitle": "From single-origin argan oil to dermal mists and hammam staples, Kapunka pairs Moroccan heritage with aesthetic expertise so post-procedure and delicate skin stays calm, nourished, and resilient.",
     "hero": {
-      "title": "Argan care rooted in Moroccan heritage, trusted in clinical practice",
-      "subtitle": "Pure, single-origin Moroccan argan oils and blends designed for sensitive, post-procedure, and daily skin. Lightweight, non-comedogenic, and chosen by aesthetic clinics for barrier repair.",
-      "ctaPrimary": "Shop bestsellers",
-      "ctaSecondary": "For Clinics"
+      "title": "Clinical-grade Moroccan argan rituals for sensitive, recovering skin",
+      "subtitle": "From single-origin argan oil to dermal mists and hammam staples, Kapunka pairs Moroccan heritage with aesthetic expertise so post-procedure and delicate skin stays calm, nourished, and resilient.",
+      "ctaPrimary": "Shop argan rituals",
+      "ctaSecondary": "Clinics partnership"
     },
-    "ctaShop": "Shop bestsellers",
-    "ctaClinics": "For Clinics",
+    "ctaShop": "Shop argan rituals",
+    "ctaClinics": "Clinics partnership",
     "bestsellersTitle": "Our Bestsellers",
     "bestsellers": {
-      "intro": "Choose your daily ritual: pure argan, floral waters, and traditional Moroccan treatments. Each designed for comfort, clarity, and skin health.",
+      "intro": "Meet the three-step ritual clinics rely on most—cleanse, replenish, and seal with nutrient-dense argan care.",
       "cards": [
         {
           "slug": "pure-argan-oil",
@@ -34,26 +34,26 @@
         }
       ]
     },
-    "value1": "Heritage sourcing",
-    "value2": "Barrier-first science",
-    "value3": "Sensitive-skin safe",
-    "value4": "Clinically integrated",
+    "value1": "Traceable Moroccan sourcing",
+    "value2": "Post-treatment safe",
+    "value3": "Multifunction rituals",
+    "value4": "Sustainable impact",
     "valueProps": [
       {
-        "title": "Heritage sourcing",
-        "subtitle": "Single-origin argan, traceable to Moroccan cooperatives."
+        "title": "Traceable Moroccan sourcing",
+        "subtitle": "Hand-harvested kernels pressed within 24 hours to preserve omega density."
       },
       {
-        "title": "Barrier-first science",
-        "subtitle": "Formulated to strengthen and soothe without heaviness."
+        "title": "Post-treatment safe",
+        "subtitle": "Dermatology reviewed formulas bottled in GMP facilities for maximum purity."
       },
       {
-        "title": "Sensitive-skin safe",
-        "subtitle": "Fragrance-free options, dermatology tested."
+        "title": "Multifunction rituals",
+        "subtitle": "One oil to repair the barrier, soothe scalp flare-ups, and gloss the body without residue."
       },
       {
-        "title": "Clinically integrated",
-        "subtitle": "Adopted in aesthetic protocols worldwide."
+        "title": "Sustainable impact",
+        "subtitle": "Partnership with Essaouira cooperatives reinvesting in women-led agriculture."
       }
     ],
     "reviewsTitle": "What Professionals Say",
@@ -81,25 +81,25 @@
     }
   },
   "pt": {
-    "metaTitle": "Kapunka Skincare — Óleos de argan marroquinos confiáveis para pele sensível e pós-tratamento",
-    "metaDescription": "Descubra óleos de argan marroquinos puros, águas florais e tratamentos tradicionais otimizados para pele sensível e pós-procedimento. Confiado clinicamente, com origem sustentável.",
+    "metaTitle": "Kapunka Skincare | Rituais de argan marroquino para clínicas e pele sensível",
+    "metaDescription": "A Kapunka formula óleos de argan, névoas e tratamentos de hammam marroquinos confiados por clínicas estéticas para recuperação pós-procedimento, reparo da barreira e rituais diários.",
     "meta": {
-      "title": "Kapunka Skincare — Óleos de argan marroquinos confiáveis para pele sensível e pós-tratamento",
-      "description": "Descubra óleos de argan marroquinos puros, águas florais e tratamentos tradicionais otimizados para pele sensível e pós-procedimento. Confiado clinicamente, com origem sustentável."
+      "title": "Kapunka Skincare | Rituais de argan marroquino para clínicas e pele sensível",
+      "description": "A Kapunka formula óleos de argan, névoas e tratamentos de hammam marroquinos confiados por clínicas estéticas para recuperação pós-procedimento, reparo da barreira e rituais diários."
     },
-    "heroTitle": "Cuidados com argan enraizados na herança marroquina, confiáveis na prática clínica",
-    "heroSubtitle": "Óleos e blends de argan marroquino de origem única, puros, desenhados para pele sensível, pós-procedimento e uso diário. Leves, não comedogênicos e escolhidos por clínicas estéticas para reparar a barreira.",
+    "heroTitle": "Rituais de argan marroquino de padrão clínico para pele sensível e em recuperação",
+    "heroSubtitle": "Dos óleos de argan de origem única às névoas dérmicas e clássicos do hammam, a Kapunka une herança marroquina e expertise estética para manter a pele pós-procedimento calma, nutrida e resiliente.",
     "hero": {
-      "title": "Cuidados com argan enraizados na herança marroquina, confiáveis na prática clínica",
-      "subtitle": "Óleos e blends de argan marroquino de origem única, puros, desenhados para pele sensível, pós-procedimento e uso diário. Leves, não comedogênicos e escolhidos por clínicas estéticas para reparar a barreira.",
-      "ctaPrimary": "Ver bestsellers",
-      "ctaSecondary": "Para Clínicas"
+      "title": "Rituais de argan marroquino de padrão clínico para pele sensível e em recuperação",
+      "subtitle": "Dos óleos de argan de origem única às névoas dérmicas e clássicos do hammam, a Kapunka une herança marroquina e expertise estética para manter a pele pós-procedimento calma, nutrida e resiliente.",
+      "ctaPrimary": "Comprar rituais de argan",
+      "ctaSecondary": "Parceria para clínicas"
     },
-    "ctaShop": "Ver bestsellers",
-    "ctaClinics": "Para Clínicas",
+    "ctaShop": "Comprar rituais de argan",
+    "ctaClinics": "Parceria para clínicas",
     "bestsellersTitle": "Nossos Mais Vendidos",
     "bestsellers": {
-      "intro": "Escolha seu ritual diário: argan puro, águas florais e tratamentos tradicionais marroquinos. Cada um criado para conforto, clareza e saúde da pele.",
+      "intro": "Conheça o ritual em três etapas preferido nas clínicas—limpar, repor e selar com o cuidado nutritivo do argan.",
       "cards": [
         {
           "slug": "pure-argan-oil",
@@ -115,26 +115,26 @@
         }
       ]
     },
-    "value1": "Origem com tradição",
-    "value2": "Ciência focada na barreira",
-    "value3": "Seguro para pele sensível",
-    "value4": "Integrado à clínica",
+    "value1": "Origem marroquina rastreável",
+    "value2": "Seguro pós-tratamento",
+    "value3": "Rituais multifuncionais",
+    "value4": "Impacto sustentável",
     "valueProps": [
       {
-        "title": "Origem com tradição",
-        "subtitle": "Argan de origem única, rastreável a cooperativas marroquinas."
+        "title": "Origem marroquina rastreável",
+        "subtitle": "Sementes colhidas à mão e prensadas em até 24 horas para preservar os ômegas."
       },
       {
-        "title": "Ciência focada na barreira",
-        "subtitle": "Formulado para fortalecer e acalmar sem peso."
+        "title": "Seguro pós-tratamento",
+        "subtitle": "Fórmulas avaliadas por dermatologistas e envasadas em instalações GMP para pureza máxima."
       },
       {
-        "title": "Seguro para pele sensível",
-        "subtitle": "Opções sem fragrância, testadas dermatologicamente."
+        "title": "Rituais multifuncionais",
+        "subtitle": "Um único óleo para reparar a barreira, acalmar o couro cabeludo e iluminar o corpo sem resíduos."
       },
       {
-        "title": "Integrado à clínica",
-        "subtitle": "Adotado em protocolos estéticos no mundo todo."
+        "title": "Impacto sustentável",
+        "subtitle": "Parcerias com cooperativas de Essaouira lideradas por mulheres que fortalecem a agricultura local."
       }
     ],
     "reviewsTitle": "O Que Dizem os Profissionais",
@@ -162,25 +162,25 @@
     }
   },
   "es": {
-    "metaTitle": "Kapunka Skincare — Aceites de argán marroquíes de confianza para piel sensible y post-tratamiento",
-    "metaDescription": "Descubre aceites de argán marroquíes puros, aguas florales y tratamientos tradicionales optimizados para piel sensible y post-procedimiento. Confiados por clínicas, con origen sostenible.",
+    "metaTitle": "Kapunka Skincare | Rituales de argán marroquí para clínicas y piel sensible",
+    "metaDescription": "Kapunka formula aceites de argán, brumas y tratamientos de hammam marroquíes en los que confían las clínicas estéticas para la recuperación post-procedimiento, la reparación de la barrera y los rituales diarios.",
     "meta": {
-      "title": "Kapunka Skincare — Aceites de argán marroquíes de confianza para piel sensible y post-tratamiento",
-      "description": "Descubre aceites de argán marroquíes puros, aguas florales y tratamientos tradicionales optimizados para piel sensible y post-procedimiento. Confiados por clínicas, con origen sostenible."
+      "title": "Kapunka Skincare | Rituales de argán marroquí para clínicas y piel sensible",
+      "description": "Kapunka formula aceites de argán, brumas y tratamientos de hammam marroquíes en los que confían las clínicas estéticas para la recuperación post-procedimiento, la reparación de la barrera y los rituales diarios."
     },
-    "heroTitle": "Cuidado con argán arraigado en la herencia marroquí, de confianza en la práctica clínica",
-    "heroSubtitle": "Aceites y mezclas de argán marroquí de origen único, puros, diseñados para piel sensible, post-procedimiento y uso diario. Ligeros, no comedogénicos y elegidos por clínicas estéticas para reparar la barrera.",
+    "heroTitle": "Rituales de argán marroquí de nivel clínico para piel sensible y en recuperación",
+    "heroSubtitle": "Desde el argán de origen único hasta las brumas dérmicas y los clásicos del hammam, Kapunka une la herencia marroquí con la experiencia estética para que la piel post-procedimiento se mantenga calmada, nutrida y resiliente.",
     "hero": {
-      "title": "Cuidado con argán arraigado en la herencia marroquí, de confianza en la práctica clínica",
-      "subtitle": "Aceites y mezclas de argán marroquí de origen único, puros, diseñados para piel sensible, post-procedimiento y uso diario. Ligeros, no comedogénicos y elegidos por clínicas estéticas para reparar la barrera.",
-      "ctaPrimary": "Ver bestsellers",
-      "ctaSecondary": "Para Clínicas"
+      "title": "Rituales de argán marroquí de nivel clínico para piel sensible y en recuperación",
+      "subtitle": "Desde el argán de origen único hasta las brumas dérmicas y los clásicos del hammam, Kapunka une la herencia marroquí con la experiencia estética para que la piel post-procedimiento se mantenga calmada, nutrida y resiliente.",
+      "ctaPrimary": "Comprar rituales de argán",
+      "ctaSecondary": "Alianza para clínicas"
     },
-    "ctaShop": "Ver bestsellers",
-    "ctaClinics": "Para Clínicas",
+    "ctaShop": "Comprar rituales de argán",
+    "ctaClinics": "Alianza para clínicas",
     "bestsellersTitle": "Nuestros Más Vendidos",
     "bestsellers": {
-      "intro": "Elige tu ritual diario: argán puro, aguas florales y tratamientos tradicionales marroquíes. Cada uno diseñado para confort, claridad y salud de la piel.",
+      "intro": "Conoce el ritual de tres pasos más querido por las clínicas: limpiar, reponer y sellar con el cuidado nutritivo del argán.",
       "cards": [
         {
           "slug": "pure-argan-oil",
@@ -196,26 +196,26 @@
         }
       ]
     },
-    "value1": "Origen con tradición",
-    "value2": "Ciencia enfocada en la barrera",
-    "value3": "Seguro para piel sensible",
-    "value4": "Integración clínica",
+    "value1": "Origen marroquí trazable",
+    "value2": "Seguro post-tratamiento",
+    "value3": "Rituales multifunción",
+    "value4": "Impacto sostenible",
     "valueProps": [
       {
-        "title": "Origen con tradición",
-        "subtitle": "Argán de origen único, rastreable a cooperativas marroquíes."
+        "title": "Origen marroquí trazable",
+        "subtitle": "Semillas recolectadas a mano y prensadas en 24 horas para preservar los omegas."
       },
       {
-        "title": "Ciencia enfocada en la barrera",
-        "subtitle": "Formulado para fortalecer y calmar sin pesadez."
+        "title": "Seguro post-tratamiento",
+        "subtitle": "Fórmulas revisadas por dermatología y envasadas en instalaciones GMP para pureza máxima."
       },
       {
-        "title": "Seguro para piel sensible",
-        "subtitle": "Opciones sin fragancia, probado dermatológicamente."
+        "title": "Rituales multifunción",
+        "subtitle": "Un solo aceite para reparar la barrera, calmar el cuero cabelludo y dar brillo al cuerpo sin residuos."
       },
       {
-        "title": "Integración clínica",
-        "subtitle": "Adoptado en protocolos estéticos en todo el mundo."
+        "title": "Impacto sostenible",
+        "subtitle": "Alianza con cooperativas de Essaouira lideradas por mujeres que sostienen la agricultura local."
       }
     ],
     "reviewsTitle": "Lo que Dicen los Profesionales",
