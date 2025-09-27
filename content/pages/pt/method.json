@@ -1,0 +1,102 @@
+{
+  "metaTitle": "Método Kapunka",
+  "metaDescription": "Protocolos limpos de argan que equilibram o cuidado cooperativo com a recuperação validada pela dermatologia.",
+  "heroTitle": "Método Kapunka",
+  "heroSubtitle": "Cuidado sensível enraizado na tradição berbere e validado pela ciência dérmica moderna.",
+  "sections": [
+    {
+      "type": "facts",
+      "title": "Floresta de argan & abastecimento",
+      "text": "A floresta de argan ocupa 828 mil hectares e é uma reserva da biosfera da UNESCO. Fazemos o abastecimento através de cooperativas e trabalho rural justo."
+    },
+    {
+      "type": "bullets",
+      "title": "Clarificação",
+      "items": [
+        "Sem solventes",
+        "Decantação física seguida de dupla filtração",
+        "Sem refino químico"
+      ]
+    },
+    {
+      "type": "specialties",
+      "title": "Especialidades clínicas que atendemos",
+      "items": [
+        {
+          "title": "Pediatria",
+          "bullets": [
+            "Hidratação a partir dos 3 meses",
+            "Dermatite da fralda",
+            "Dermatite atópica"
+          ]
+        },
+        {
+          "title": "Dermatologia",
+          "bullets": [
+            "Pele seca e descamativa",
+            "Psoríase/dermatite",
+            "Marcas pós-acne ou cirurgia"
+          ]
+        },
+        {
+          "title": "Pós-operatório",
+          "bullets": [
+            "Favorece recuperação epitelial mais rápida com cicatrização leve"
+          ]
+        },
+        {
+          "title": "Fisioterapia",
+          "bullets": [
+            "Massagem reabilitadora",
+            "Recuperação da pele após curativos"
+          ]
+        },
+        {
+          "title": "Estética",
+          "bullets": [
+            "Cuidados pós-tratamento (depilação/peelings/RF)",
+            "Pós-sol"
+          ]
+        }
+      ],
+      "specialties": [
+        {
+          "title": "Pediatria",
+          "bullets": [
+            "Hidratação a partir dos 3 meses",
+            "Dermatite da fralda",
+            "Dermatite atópica"
+          ]
+        },
+        {
+          "title": "Dermatologia",
+          "bullets": [
+            "Pele seca e descamativa",
+            "Psoríase/dermatite",
+            "Marcas pós-acne ou cirurgia"
+          ]
+        },
+        {
+          "title": "Pós-operatório",
+          "bullets": [
+            "Favorece recuperação epitelial mais rápida com cicatrização leve"
+          ]
+        },
+        {
+          "title": "Fisioterapia",
+          "bullets": [
+            "Massagem reabilitadora",
+            "Recuperação da pele após curativos"
+          ]
+        },
+        {
+          "title": "Estética",
+          "bullets": [
+            "Cuidados pós-tratamento (depilação/peelings/RF)",
+            "Pós-sol"
+          ]
+        }
+      ]
+    }
+  ]
+}

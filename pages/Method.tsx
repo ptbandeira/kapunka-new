@@ -4,40 +4,36 @@ import { motion } from 'framer-motion';
 import { useLanguage } from '../contexts/LanguageContext';
 import type { Language } from '../types';
 
-interface MethodTestimonial {
-  id: string;
-  quote: string;
-  name: string;
-  role: string;
-}
-
-interface MethodSectionContent {
+interface SpecialtyItem {
   title: string;
-  body: string;
+  bullets: string[];
 }
 
-interface MethodSections {
-  ourOrigins: MethodSectionContent;
-  artisanExtraction: MethodSectionContent;
-  clinicalRigor: MethodSectionContent;
-  sustainabilityImpact: MethodSectionContent;
-  timeline: MethodSectionContent;
+type MethodSection =
+  | {
+      type: 'facts';
+      title: string;
+      text: string;
+    }
+  | {
+      type: 'bullets';
+      title: string;
+      items: string[];
+    }
+  | {
+      type: 'specialties';
+      title?: string;
+      items?: SpecialtyItem[];
+      specialties?: SpecialtyItem[];
+    };
+
+interface MethodPageContent {
+  metaTitle?: string;
+  metaDescription?: string;
+  heroTitle?: string;
+  heroSubtitle?: string;
+  sections?: MethodSection[];
 }
-
-interface MethodLocaleContent {
-  metaTitle: string;
-  metaDescription: string;
-  heroTitle: string;
-  heroSubtitle: string;
-  body: string;
-  sections: MethodSections;
-  testimonialsTitle: string;
-  testimonials: MethodTestimonial[];
-}
-
-type MethodContent = Record<Language, MethodLocaleContent>;
-
-type MethodSectionKey = keyof MethodSections;
 
 const fallbackHeroTitles: Record<Language, string> = {
   en: 'Method Kapunka',
@@ -51,85 +47,113 @@ const fallbackMetaDescriptions: Record<Language, string> = {
   es: 'Cuidado sensible arraigado en la tradición bereber y la ciencia dérmica moderna.',
 };
 
+const isSpecialtyItem = (value: unknown): value is SpecialtyItem => {
+  if (!value || typeof value !== 'object') {
+    return false;
+  }
+
+  const item = value as Record<string, unknown>;
+  return typeof item.title === 'string' && Array.isArray(item.bullets) && item.bullets.every((bullet) => typeof bullet === 'string');
+};
+
+const isMethodSection = (value: unknown): value is MethodSection => {
+  if (!value || typeof value !== 'object') {
+    return false;
+  }
+
+  const section = value as Record<string, unknown>;
+  const type = section.type;
+
+  if (type === 'facts') {
+    return typeof section.title === 'string' && typeof section.text === 'string';
+  }
+
+  if (type === 'bullets') {
+    return typeof section.title === 'string' && Array.isArray(section.items) && section.items.every((item) => typeof item === 'string');
+  }
+
+  if (type === 'specialties') {
+    const items = section.items ?? section.specialties;
+    return (
+      (section.title === undefined || typeof section.title === 'string') &&
+      Array.isArray(items) &&
+      items.every(isSpecialtyItem)
+    );
+  }
+
+  return false;
+};
+
+const isMethodPageContent = (value: unknown): value is MethodPageContent => {
+  if (!value || typeof value !== 'object') {
+    return false;
+  }
+
+  const content = value as Record<string, unknown>;
+
+  if (content.sections !== undefined) {
+    if (!Array.isArray(content.sections) || !content.sections.every(isMethodSection)) {
+      return false;
+    }
+  }
+
+  return true;
+};
+
 const Method: React.FC = () => {
   const { language, t } = useLanguage();
-  const [content, setContent] = useState<MethodContent | null>(null);
+  const [content, setContent] = useState<MethodPageContent | null>(null);
 
   useEffect(() => {
-    fetch('/content/method.json')
-      .then((res) => res.json())
-      .then((data: MethodContent) => {
-        setContent(data);
-      })
-      .catch((error) => {
-        console.error('Failed to load Method Kapunka content', error);
-      });
-  }, []);
+    let isMounted = true;
+    setContent(null);
 
-  const localeContent = content?.[language];
-  const methodFieldPath = `method.${language}`;
-  const heroTitle = localeContent?.heroTitle ?? fallbackHeroTitles[language];
-  const heroSubtitle = localeContent?.heroSubtitle ?? fallbackMetaDescriptions[language];
-  const metaTitle = localeContent?.metaTitle ?? heroTitle;
-  const metaDescription = localeContent?.metaDescription ?? fallbackMetaDescriptions[language];
-  const paragraphs = localeContent?.body.split('\n\n') ?? [];
-  const sectionsContent = localeContent?.sections;
-  const testimonials = localeContent?.testimonials ?? [];
-  const testimonialsTitle = localeContent?.testimonialsTitle ?? heroTitle;
+    const loadContent = async () => {
+      const localesToTry: Language[] = [language, 'en'].filter(
+        (locale, index, arr) => arr.indexOf(locale) === index,
+      ) as Language[];
 
-  const sectionOrder: MethodSectionKey[] = [
-    'ourOrigins',
-    'artisanExtraction',
-    'clinicalRigor',
-    'sustainabilityImpact',
-    'timeline',
-  ];
+      for (const locale of localesToTry) {
+        try {
+          const response = await fetch(`/content/pages/${locale}/method.json`);
+          if (!response.ok) {
+            continue;
+          }
 
-  const fallbackSectionTitles: Record<MethodSectionKey, Record<Language, string>> = {
-    ourOrigins: {
-      en: 'Our Origins',
-      pt: 'Nossas Origens',
-      es: 'Nuestros Orígenes',
-    },
-    artisanExtraction: {
-      en: 'Artisan Extraction',
-      pt: 'Extração Artesanal',
-      es: 'Extracción Artesanal',
-    },
-    clinicalRigor: {
-      en: 'Clinical Rigor',
-      pt: 'Rigor Clínico',
-      es: 'Rigor Clínico',
-    },
-    sustainabilityImpact: {
-      en: 'Sustainability & Impact',
-      pt: 'Sustentabilidade e Impacto',
-      es: 'Sostenibilidad e Impacto',
-    },
-    timeline: {
-      en: 'Timeline',
-      pt: 'Linha do Tempo',
-      es: 'Cronología',
-    },
-  };
+          const data = (await response.json()) as unknown;
+          if (!isMounted) {
+            return;
+          }
 
-  const orderedSections = sectionOrder
-    .map((key) => {
-      const section = sectionsContent?.[key];
-      if (!section) {
-        return null;
+          if (isMethodPageContent(data)) {
+            setContent(data);
+            return;
+          }
+        } catch (error) {
+          if (locale === localesToTry[localesToTry.length - 1]) {
+            console.error('Failed to load Method page content', error);
+          }
+        }
       }
 
-      const title = section.title || fallbackSectionTitles[key][language];
-      const sectionParagraphs = section.body ? section.body.split('\n\n') : [];
+      setContent(null);
+    };
 
-      return {
-        key,
-        title,
-        paragraphs: sectionParagraphs,
-      };
-    })
-    .filter((section): section is { key: MethodSectionKey; title: string; paragraphs: string[] } => section !== null);
+    void loadContent();
+
+    return () => {
+      isMounted = false;
+    };
+  }, [language]);
+
+  const heroTitle = content?.heroTitle ?? fallbackHeroTitles[language];
+  const heroSubtitle = content?.heroSubtitle ?? fallbackMetaDescriptions[language];
+  const metaTitle = content?.metaTitle ?? heroTitle;
+  const metaDescription = content?.metaDescription ?? fallbackMetaDescriptions[language];
+  const sections = content?.sections ?? [];
+
+  const baseFieldPath = `pages.method_${language}`;
+  const sectionsFieldPath = `${baseFieldPath}.sections`;
 
   return (
     <div>
@@ -145,7 +169,7 @@ const Method: React.FC = () => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
             className="text-4xl sm:text-5xl font-semibold tracking-tight"
-            data-nlv-field-path={`${methodFieldPath}.heroTitle`}
+            data-nlv-field-path={`${baseFieldPath}.heroTitle`}
           >
             {heroTitle}
           </motion.h1>
@@ -154,7 +178,7 @@ const Method: React.FC = () => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.1 }}
             className="mt-4 text-lg text-stone-600 max-w-3xl mx-auto"
-            data-nlv-field-path={`${methodFieldPath}.heroSubtitle`}
+            data-nlv-field-path={`${baseFieldPath}.heroSubtitle`}
           >
             {heroSubtitle}
           </motion.p>
@@ -162,128 +186,118 @@ const Method: React.FC = () => {
       </header>
 
       <section className="py-16 sm:py-24">
-        <div
-          className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-3xl"
-          data-nlv-field-path={`${methodFieldPath}.body`}
-        >
-          {paragraphs.length > 0 ? (
-            paragraphs.map((paragraph, index) => (
-              <motion.p
-                // eslint-disable-next-line react/no-array-index-key
-                key={index}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: index * 0.05 }}
-                className={`text-stone-700 leading-relaxed ${index > 0 ? 'mt-6' : ''}`}
-              >
-                {paragraph}
-              </motion.p>
-            ))
-          ) : (
-            <p
-              className="text-center text-stone-600"
-              data-nlv-field-path={`translations.${language}.common.loading`}
-            >
-              {t('common.loading')}
-            </p>
-          )}
-        </div>
-      </section>
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-4xl space-y-16">
+          {sections.length > 0 ? (
+            sections.map((section, index) => {
+              const sectionFieldPath = `${sectionsFieldPath}.${index}`;
 
-      {orderedSections.length > 0 && (
-        <section className="py-16 sm:py-24">
-          <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-4xl space-y-16">
-            {orderedSections.map((section, index) => (
-              <motion.article
-                key={section.key}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: index * 0.05 }}
-                data-nlv-field-path={`${methodFieldPath}.sections.${section.key}`}
-              >
-                <h2
-                  className="text-3xl font-semibold text-stone-900"
-                  data-nlv-field-path={`${methodFieldPath}.sections.${section.key}.title`}
-                >
-                  {section.title}
-                </h2>
-                <div
-                  className="mt-4 space-y-6"
-                  data-nlv-field-path={`${methodFieldPath}.sections.${section.key}.body`}
-                >
-                  {section.paragraphs.map((paragraph, paragraphIndex) => (
-                    <p
-                      // eslint-disable-next-line react/no-array-index-key
-                      key={paragraphIndex}
-                      className="text-stone-700 leading-relaxed"
+              if (section.type === 'facts') {
+                return (
+                  <motion.article
+                    key={`${section.type}-${index}`}
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.5, delay: index * 0.05 }}
+                    className="max-w-3xl mx-auto text-center"
+                    data-nlv-field-path={sectionFieldPath}
+                  >
+                    <h3
+                      className="text-2xl font-semibold text-stone-900"
+                      data-nlv-field-path={`${sectionFieldPath}.title`}
                     >
-                      {paragraph}
+                      {section.title}
+                    </h3>
+                    <p
+                      className="mt-4 text-stone-700 leading-relaxed"
+                      data-nlv-field-path={`${sectionFieldPath}.text`}
+                    >
+                      {section.text}
                     </p>
-                  ))}
-                </div>
-              </motion.article>
-            ))}
-          </div>
-        </section>
-      )}
+                  </motion.article>
+                );
+              }
 
-      <section className="py-16 sm:py-24 bg-stone-50">
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center max-w-3xl mx-auto">
-            <motion.h2
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6 }}
-              className="text-3xl font-semibold"
-              data-nlv-field-path={`${methodFieldPath}.testimonialsTitle`}
-            >
-              {testimonialsTitle}
-            </motion.h2>
-          </div>
-          {testimonials.length > 0 ? (
-            <div
-              className="mt-12 grid gap-8 md:grid-cols-2 lg:grid-cols-3"
-              data-nlv-field-path={`${methodFieldPath}.testimonials`}
-            >
-              {testimonials.map((testimonial, index) => (
-                <motion.blockquote
-                  key={testimonial.id}
+              if (section.type === 'bullets') {
+                return (
+                  <motion.article
+                    key={`${section.type}-${index}`}
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.5, delay: index * 0.05 }}
+                    className="max-w-3xl mx-auto"
+                    data-nlv-field-path={sectionFieldPath}
+                  >
+                    <h3
+                      className="text-2xl font-semibold text-stone-900"
+                      data-nlv-field-path={`${sectionFieldPath}.title`}
+                    >
+                      {section.title}
+                    </h3>
+                    <ul className="mt-4 space-y-2 text-stone-700" data-nlv-field-path={`${sectionFieldPath}.items`}>
+                      {section.items.map((item, itemIndex) => (
+                        <li key={item} className="flex items-start gap-2">
+                          <span className="mt-1 h-1.5 w-1.5 rounded-full bg-stone-400" aria-hidden="true" />
+                          <span>{item}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  </motion.article>
+                );
+              }
+
+              const specialtyItems = section.specialties ?? section.items ?? [];
+
+              return (
+                <motion.article
+                  key={`${section.type}-${index}`}
                   initial={{ opacity: 0, y: 20 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
-                  transition={{ duration: 0.5, delay: index * 0.1 }}
-                  className="h-full bg-white border border-stone-200 rounded-2xl p-6 shadow-sm flex flex-col"
-                  data-nlv-field-path={`${methodFieldPath}.testimonials.${index}`}
+                  transition={{ duration: 0.5, delay: index * 0.05 }}
+                  className="max-w-3xl mx-auto"
+                  data-nlv-field-path={sectionFieldPath}
                 >
-                  <p
-                    className="text-stone-700 leading-relaxed flex-1"
-                    data-nlv-field-path={`${methodFieldPath}.testimonials.${index}.quote`}
-                  >
-                    {testimonial.quote}
-                  </p>
-                  <footer className="mt-6 text-sm text-stone-500">
-                    <span
-                      className="block font-semibold text-stone-700"
-                      data-nlv-field-path={`${methodFieldPath}.testimonials.${index}.name`}
+                  {section.title ? (
+                    <h3
+                      className="text-2xl font-semibold text-stone-900"
+                      data-nlv-field-path={`${sectionFieldPath}.title`}
                     >
-                      {testimonial.name}
-                    </span>
-                    <span
-                      className="block"
-                      data-nlv-field-path={`${methodFieldPath}.testimonials.${index}.role`}
-                    >
-                      {testimonial.role}
-                    </span>
-                  </footer>
-                </motion.blockquote>
-              ))}
-            </div>
+                      {section.title}
+                    </h3>
+                  ) : null}
+                  <div className={`mt-6 space-y-4 ${section.title ? '' : 'mt-0'}`} data-nlv-field-path={`${sectionFieldPath}.items`}>
+                    {specialtyItems.map((item, itemIndex) => (
+                      <details
+                        key={`${item.title}-${itemIndex}`}
+                        className="group border border-stone-200 rounded-2xl px-4 py-3 bg-white/60 backdrop-blur-sm"
+                      >
+                        <summary className="cursor-pointer text-lg font-medium text-stone-900 list-none flex items-center justify-between gap-4">
+                          <span data-nlv-field-path={`${sectionFieldPath}.items.${itemIndex}.title`}>{item.title}</span>
+                          <span className="transition-transform duration-200 group-open:rotate-45 text-stone-400" aria-hidden="true">
+                            +
+                          </span>
+                        </summary>
+                        <ul
+                          className="mt-3 pl-4 space-y-2 text-stone-700"
+                          data-nlv-field-path={`${sectionFieldPath}.items.${itemIndex}.bullets`}
+                        >
+                          {item.bullets.map((bullet, bulletIndex) => (
+                            <li key={`${item.title}-${bulletIndex}`} className="list-disc">
+                              {bullet}
+                            </li>
+                          ))}
+                        </ul>
+                      </details>
+                    ))}
+                  </div>
+                </motion.article>
+              );
+            })
           ) : (
             <p
-              className="mt-8 text-center text-stone-600"
+              className="text-center text-stone-600"
               data-nlv-field-path={`translations.${language}.common.loading`}
             >
               {t('common.loading')}
