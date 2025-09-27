@@ -133,6 +133,25 @@ collections:
             required: false
           - { label: Primary CTA Label, name: heroPrimaryCta, widget: string, required: false }
           - { label: Secondary CTA Label, name: heroSecondaryCta, widget: string, required: false }
+          - { label: Primary CTA Text, name: ctaPrimary, widget: string, required: false }
+          - { label: Secondary CTA Text, name: ctaSecondary, widget: string, required: false }
+          - label: Hero Horizontal Alignment
+            name: heroAlignX
+            widget: select
+            options:
+              - { label: Left, value: left }
+              - { label: Center, value: center }
+            default: left
+            required: false
+          - label: Hero Vertical Alignment
+            name: heroAlignY
+            widget: select
+            options:
+              - { label: Top, value: top }
+              - { label: Middle, value: middle }
+              - { label: Bottom, value: bottom }
+            default: bottom
+            required: false
           - { label: Hero Overlay, name: heroOverlay, widget: string, required: false, default: "rgba(0,0,0,0.48)" }
           - label: Hero Image (Left)
             name: heroImageLeft
@@ -283,6 +302,25 @@ collections:
             required: false
           - { label: Primary CTA Label, name: heroPrimaryCta, widget: string, required: false }
           - { label: Secondary CTA Label, name: heroSecondaryCta, widget: string, required: false }
+          - { label: Primary CTA Text, name: ctaPrimary, widget: string, required: false }
+          - { label: Secondary CTA Text, name: ctaSecondary, widget: string, required: false }
+          - label: Hero Horizontal Alignment
+            name: heroAlignX
+            widget: select
+            options:
+              - { label: Left, value: left }
+              - { label: Center, value: center }
+            default: left
+            required: false
+          - label: Hero Vertical Alignment
+            name: heroAlignY
+            widget: select
+            options:
+              - { label: Top, value: top }
+              - { label: Middle, value: middle }
+              - { label: Bottom, value: bottom }
+            default: bottom
+            required: false
           - { label: Hero Overlay, name: heroOverlay, widget: string, required: false, default: "rgba(0,0,0,0.48)" }
           - label: Hero Image (Left)
             name: heroImageLeft
@@ -433,6 +471,25 @@ collections:
             required: false
           - { label: Primary CTA Label, name: heroPrimaryCta, widget: string, required: false }
           - { label: Secondary CTA Label, name: heroSecondaryCta, widget: string, required: false }
+          - { label: Primary CTA Text, name: ctaPrimary, widget: string, required: false }
+          - { label: Secondary CTA Text, name: ctaSecondary, widget: string, required: false }
+          - label: Hero Horizontal Alignment
+            name: heroAlignX
+            widget: select
+            options:
+              - { label: Left, value: left }
+              - { label: Center, value: center }
+            default: left
+            required: false
+          - label: Hero Vertical Alignment
+            name: heroAlignY
+            widget: select
+            options:
+              - { label: Top, value: top }
+              - { label: Middle, value: middle }
+              - { label: Bottom, value: bottom }
+            default: bottom
+            required: false
           - { label: Hero Overlay, name: heroOverlay, widget: string, required: false, default: "rgba(0,0,0,0.48)" }
           - label: Hero Image (Left)
             name: heroImageLeft
