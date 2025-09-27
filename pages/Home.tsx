@@ -389,47 +389,46 @@ interface GalleryRowsProps {
 }
 
 const galleryLayoutMap: Record<NonNullable<GalleryRowContent['layout']>, string> = {
-    half: 'md:grid-cols-2',
-    thirds: 'md:grid-cols-3',
-    quarters: 'md:grid-cols-4',
+    half: 'lg:grid-cols-2',
+    thirds: 'lg:grid-cols-3',
+    quarters: 'grid-cols-2 lg:grid-cols-4',
 };
 
 const GalleryRows: React.FC<GalleryRowsProps> = ({ rows, fieldPath }) => {
-    const sanitizedRows = rows?.filter((row) => {
-        if (!row) {
-            return false;
-        }
-
-        const items = row.items ?? [];
-        return items.some((item) => {
-            if (!item) {
-                return false;
+    const sanitizedRows = rows
+        ?.map((row) => {
+            if (!row) {
+                return undefined;
             }
 
-            const image = item.image?.trim();
-            const alt = item.alt?.trim();
-            const caption = item.caption?.trim();
+            const items = (row.items ?? []).filter((item) => Boolean(item?.image?.trim()));
 
-            return Boolean(image || alt || caption);
-        });
-    }) ?? [];
+            if (items.length === 0) {
+                return undefined;
+            }
+
+            return { ...row, items };
+        })
+        .filter((row): row is GalleryRowContent & { items: NonNullable<GalleryRowContent['items']> } => Boolean(row)) ?? [];
 
     if (sanitizedRows.length === 0) {
         return null;
     }
 
     return (
-        <div className="py-16 sm:py-24 bg-stone-50" data-nlv-field-path={fieldPath}>
+        <section className="py-12 md:py-16 bg-stone-50" data-nlv-field-path={fieldPath}>
             <div className="container mx-auto px-4 sm:px-6 lg:px-8 space-y-10">
                 {sanitizedRows.map((row, rowIndex) => {
-                    const rowFieldPath = fieldPath ? `${fieldPath}.${rowIndex}` : undefined;
-                    const layoutClass = row.layout ? galleryLayoutMap[row.layout] ?? 'md:grid-cols-3' : 'md:grid-cols-3';
+                    const rowFieldPath = fieldPath ? `${fieldPath}[${rowIndex}]` : undefined;
+                    const layoutClass = row.layout ? galleryLayoutMap[row.layout] ?? 'lg:grid-cols-3' : 'lg:grid-cols-3';
                     const items = row.items ?? [];
+                    const baseGridClass = row.layout === 'quarters' ? '' : 'grid-cols-1';
+                    const gridClasses = ['grid', baseGridClass, layoutClass, 'gap-6'].filter(Boolean).join(' ');
 
                     return (
                         <div
                             key={`gallery-row-${rowIndex}`}
-                            className={`grid grid-cols-1 ${layoutClass} gap-6`}
+                            className={gridClasses}
                             data-nlv-field-path={rowFieldPath}
                         >
                             {items.map((item, itemIndex) => {
@@ -440,13 +439,13 @@ const GalleryRows: React.FC<GalleryRowsProps> = ({ rows, fieldPath }) => {
                                 const imageSrc = item.image?.trim();
                                 const caption = item.caption?.trim();
                                 const altText = item.alt?.trim() ?? caption ?? 'Gallery highlight';
-                                const hasContent = Boolean(imageSrc || caption);
+                                const hasContent = Boolean(imageSrc);
 
                                 if (!hasContent) {
                                     return null;
                                 }
 
-                                const itemFieldPath = rowFieldPath ? `${rowFieldPath}.items.${itemIndex}` : undefined;
+                                const itemFieldPath = rowFieldPath ? `${rowFieldPath}.items[${itemIndex}]` : undefined;
 
                                 return (
                                     <motion.figure
@@ -455,25 +454,18 @@ const GalleryRows: React.FC<GalleryRowsProps> = ({ rows, fieldPath }) => {
                                         whileInView={{ opacity: 1, y: 0 }}
                                         viewport={{ once: true }}
                                         transition={{ duration: 0.5, delay: itemIndex * 0.05 }}
-                                        className="space-y-3"
+                                        className="space-y-2"
                                         data-nlv-field-path={itemFieldPath}
                                     >
-                                        {imageSrc ? (
-                                            <img
-                                                src={imageSrc}
-                                                alt={altText}
-                                                className="w-full aspect-[4/3] object-cover rounded-lg shadow-md"
-                                                data-nlv-field-path={itemFieldPath ? `${itemFieldPath}.image` : undefined}
-                                            />
-                                        ) : (
-                                            <div
-                                                className="w-full aspect-[4/3] rounded-lg bg-stone-200"
-                                                data-nlv-field-path={itemFieldPath ? `${itemFieldPath}.image` : undefined}
-                                            />
-                                        )}
+                                        <img
+                                            src={imageSrc}
+                                            alt={altText}
+                                            className="w-full aspect-[4/3] object-cover rounded-lg shadow-md"
+                                            data-nlv-field-path={itemFieldPath ? `${itemFieldPath}.image` : undefined}
+                                        />
                                         {caption && (
                                             <figcaption
-                                                className="text-sm text-stone-600"
+                                                className="mt-2 text-sm text-stone-600"
                                                 data-nlv-field-path={itemFieldPath ? `${itemFieldPath}.caption` : undefined}
                                             >
                                                 {caption}
@@ -486,7 +478,7 @@ const GalleryRows: React.FC<GalleryRowsProps> = ({ rows, fieldPath }) => {
                     );
                 })}
             </div>
-        </div>
+        </section>
     );
 };
 
