@@ -695,6 +695,7 @@ const Home: React.FC = () => {
         ? 'middle'
         : 'bottom';
   const heroAlignmentClasses = `${HERO_HORIZONTAL_ALIGNMENT_CONTAINER_CLASSES[heroAlignX]} ${HERO_VERTICAL_ALIGNMENT_CLASSES[heroAlignY]}`;
+  const heroMiddleNudge = heroLayoutHint === 'image-full' && heroAlignY === 'middle' ? 'pb-24 md:pb-28' : '';
   const heroTextAlignmentClass = HERO_HORIZONTAL_TEXT_ALIGNMENT_CLASSES[heroAlignX];
   const heroCtaAlignmentClass = HERO_CTA_ALIGNMENT_CLASSES[heroAlignX];
 
@@ -762,7 +763,7 @@ const Home: React.FC = () => {
         data-nlv-field-path="site.home.heroImage"
       >
         <div className="absolute inset-0" style={overlayStyle}></div>
-        <div className={`relative h-full flex ${heroAlignmentClasses}`}>
+        <div className={`relative h-full flex ${heroAlignmentClasses} ${heroMiddleNudge}`}>
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}

@@ -2041,3 +2041,5 @@ collections:
                   - { label: English, name: en, widget: markdown }
                   - { label: Portuguese, name: pt, widget: markdown }
                   - { label: Spanish, name: es, widget: markdown }
+
+// Deprecated mirror; production uses /admin/config.yml. Kept temporarily to avoid Visual Editor confusion.
