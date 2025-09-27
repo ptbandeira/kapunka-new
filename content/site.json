@@ -1,19 +1,14 @@
 {
-  "brand": {
-    "name": "KAPUNKA"
-  },
-  "home": {
-    "heroImage": "/content/uploads/herobackoil.jpg",
-    "featuredProductIds": [
-      "pure-argan-oil",
-      "kapunka-cicatrices",
-      "pack-kapunka"
-    ]
-  },
   "contact": {
     "email": "info@kapunka.com",
     "phone": "+1 (234) 567-890",
     "whatsapp": "https://wa.me/1234567890"
+  },
+  "brand": {
+    "name": "KAPUNKA"
+  },
+  "clinics": {
+    "ctaLink": "https://kapunka.com/#/contact"
   },
   "about": {
     "storyImage": "https://images.unsplash.com/photo-1598555769781-8714b14a293f?q=80&w=1974&auto=format&fit=crop",
@@ -21,13 +16,11 @@
     "storyAlt": "Brand story",
     "sourcingAlt": "Sourcing argan oil"
   },
-  "clinics": {
-    "ctaLink": "https://kapunka.com/#/contact"
-  },
   "featureFlags": {
     "videos": false,
     "training": false
   },
+  "type": "site",
   "footer": {
     "legalName": "Kapunka Skincare",
     "socialLinks": [
@@ -57,5 +50,12 @@
       "es": "Premium skincare for a healthy skin barrier. Clean, minimal, and elegant products."
     }
   },
-  "type": "site"
+  "home": {
+    "heroImage": "/content/uploads/pexels-reyna-2825461.jpg",
+    "featuredProductIds": [
+      "pure-argan-oil",
+      "kapunka-cicatrices",
+      "pack-kapunka"
+    ]
+  }
 }
