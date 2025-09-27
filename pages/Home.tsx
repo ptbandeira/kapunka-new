@@ -134,6 +134,30 @@ const heroMarkdownComponents: MarkdownComponents = {
     ),
 };
 
+type HeroHorizontalAlignment = 'left' | 'center';
+type HeroVerticalAlignment = 'top' | 'middle' | 'bottom';
+
+const HERO_HORIZONTAL_ALIGNMENT_CONTAINER_CLASSES: Record<HeroHorizontalAlignment, string> = {
+  left: 'items-start text-left',
+  center: 'items-center text-center',
+};
+
+const HERO_HORIZONTAL_TEXT_ALIGNMENT_CLASSES: Record<HeroHorizontalAlignment, string> = {
+  left: 'text-left',
+  center: 'text-center',
+};
+
+const HERO_CTA_ALIGNMENT_CLASSES: Record<HeroHorizontalAlignment, string> = {
+  left: 'sm:justify-start',
+  center: 'sm:justify-center',
+};
+
+const HERO_VERTICAL_ALIGNMENT_CLASSES: Record<HeroVerticalAlignment, string> = {
+  top: 'justify-start',
+  middle: 'justify-center',
+  bottom: 'justify-end',
+};
+
 interface BestsellersProps {
     intro?: string;
     introFieldPath?: string;
@@ -663,6 +687,16 @@ const Home: React.FC = () => {
   const heroLayoutHint = pageContent?.heroLayoutHint ?? 'image-full';
   const heroImageLeft = sanitizeString(pageContent?.heroImageLeft);
   const heroImageRight = sanitizeString(pageContent?.heroImageRight);
+  const heroAlignX: HeroHorizontalAlignment = pageContent?.heroAlignX === 'center' ? 'center' : 'left';
+  const heroAlignY: HeroVerticalAlignment =
+    pageContent?.heroAlignY === 'top'
+      ? 'top'
+      : pageContent?.heroAlignY === 'middle'
+        ? 'middle'
+        : 'bottom';
+  const heroAlignmentClasses = `${HERO_HORIZONTAL_ALIGNMENT_CONTAINER_CLASSES[heroAlignX]} ${HERO_VERTICAL_ALIGNMENT_CLASSES[heroAlignY]}`;
+  const heroTextAlignmentClass = HERO_HORIZONTAL_TEXT_ALIGNMENT_CLASSES[heroAlignX];
+  const heroCtaAlignmentClass = HERO_CTA_ALIGNMENT_CLASSES[heroAlignX];
 
   let heroInlineImage: string | undefined;
   if (heroLayoutHint === 'image-left') {
@@ -699,13 +733,13 @@ const Home: React.FC = () => {
   const heroGridClasses = shouldRenderInlineImage
     ? 'grid grid-cols-1 lg:grid-cols-2 gap-12 items-center'
     : 'flex flex-col items-center text-center';
-  const heroTextWrapperClasses = shouldRenderInlineImage
-    ? `${heroLayoutHint === 'image-left' ? 'order-1 lg:order-2' : 'order-1'} space-y-6 max-w-xl text-left`
-    : 'space-y-6 max-w-3xl mx-auto text-center';
+  const heroTextWrapperBaseClasses = shouldRenderInlineImage
+    ? `${heroLayoutHint === 'image-left' ? 'order-1 lg:order-2' : 'order-1'} space-y-6 max-w-xl`
+    : 'space-y-6 max-w-3xl mx-auto';
+  const heroTextWrapperClasses = `${heroTextWrapperBaseClasses} ${heroTextAlignmentClass}`;
   const heroImageWrapperClasses = shouldRenderInlineImage
     ? `${heroLayoutHint === 'image-left' ? 'order-2 lg:order-1' : 'order-2'} w-full`
     : '';
-  const heroCtaAlignmentClass = shouldRenderInlineImage ? 'sm:justify-start' : 'sm:justify-center';
   const heroImageAlt = heroHeadline;
 
   const homeSections = pageContent?.sections ?? [];
@@ -728,7 +762,7 @@ const Home: React.FC = () => {
         data-nlv-field-path="site.home.heroImage"
       >
         <div className="absolute inset-0" style={overlayStyle}></div>
-        <div className="relative h-full flex items-center justify-center">
+        <div className={`relative h-full flex ${heroAlignmentClasses}`}>
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
