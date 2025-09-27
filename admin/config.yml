@@ -1432,149 +1432,132 @@ collections:
   - name: method
     label: Method Page
     files:
-      - name: method
-        label: Method Kapunka Content
-        file: content/method.json
+      - name: method_en
+        label: Method Page (English)
+        file: content/pages/en/method.json
         format: json
         fields:
-          - label: English
-            name: en
-            widget: object
-            fields:
-              - { label: Meta Title, name: metaTitle, widget: string }
-              - { label: Meta Description, name: metaDescription, widget: text }
-              - { label: Hero Title, name: heroTitle, widget: string }
-              - { label: Hero Subtitle, name: heroSubtitle, widget: string }
-              - { label: Body Copy, name: body, widget: text }
-              - label: Sections
-                name: sections
+          - { label: Meta Title, name: metaTitle, widget: string, required: false }
+          - { label: Meta Description, name: metaDescription, widget: text, required: false }
+          - { label: Hero Title, name: heroTitle, widget: string, required: false }
+          - { label: Hero Subtitle, name: heroSubtitle, widget: text, required: false }
+          - label: Sections
+            name: sections
+            widget: list
+            types:
+              - label: Fact Block
+                name: facts
                 widget: object
                 fields:
-                  - label: Our Origins
-                    name: ourOrigins
-                    widget: object
-                    fields:
-                      - { label: Title, name: title, widget: string }
-                      - { label: Body, name: body, widget: text }
-                  - label: Artisan Extraction
-                    name: artisanExtraction
-                    widget: object
-                    fields:
-                      - { label: Title, name: title, widget: string }
-                      - { label: Body, name: body, widget: text }
-                  - label: Clinical Rigor
-                    name: clinicalRigor
-                    widget: object
-                    fields:
-                      - { label: Title, name: title, widget: string }
-                      - { label: Body, name: body, widget: text }
-                  - label: Sustainability & Impact
-                    name: sustainabilityImpact
-                    widget: object
-                    fields:
-                      - { label: Title, name: title, widget: string }
-                      - { label: Body, name: body, widget: text }
-              - { label: Testimonials Title, name: testimonialsTitle, widget: string }
-              - label: Testimonials
-                name: testimonials
-                widget: list
-                fields:
-                  - { label: ID, name: id, widget: string }
-                  - { label: Quote, name: quote, widget: text }
-                  - { label: Name, name: name, widget: string }
-                  - { label: Role, name: role, widget: string }
-          - label: Portuguese
-            name: pt
-            widget: object
-            fields:
-              - { label: Meta Title, name: metaTitle, widget: string }
-              - { label: Meta Description, name: metaDescription, widget: text }
-              - { label: Hero Title, name: heroTitle, widget: string }
-              - { label: Hero Subtitle, name: heroSubtitle, widget: string }
-              - { label: Body Copy, name: body, widget: text }
-              - label: Sections
-                name: sections
+                  - { label: Title, name: title, widget: string }
+                  - { label: Text, name: text, widget: text }
+              - label: Bullet List
+                name: bullets
                 widget: object
                 fields:
-                  - label: Our Origins
-                    name: ourOrigins
-                    widget: object
-                    fields:
-                      - { label: Title, name: title, widget: string }
-                      - { label: Body, name: body, widget: text }
-                  - label: Artisan Extraction
-                    name: artisanExtraction
-                    widget: object
-                    fields:
-                      - { label: Title, name: title, widget: string }
-                      - { label: Body, name: body, widget: text }
-                  - label: Clinical Rigor
-                    name: clinicalRigor
-                    widget: object
-                    fields:
-                      - { label: Title, name: title, widget: string }
-                      - { label: Body, name: body, widget: text }
-                  - label: Sustainability & Impact
-                    name: sustainabilityImpact
-                    widget: object
-                    fields:
-                      - { label: Title, name: title, widget: string }
-                      - { label: Body, name: body, widget: text }
-              - { label: Testimonials Title, name: testimonialsTitle, widget: string }
-              - label: Testimonials
-                name: testimonials
-                widget: list
-                fields:
-                  - { label: ID, name: id, widget: string }
-                  - { label: Quote, name: quote, widget: text }
-                  - { label: Name, name: name, widget: string }
-                  - { label: Role, name: role, widget: string }
-          - label: Spanish
-            name: es
-            widget: object
-            fields:
-              - { label: Meta Title, name: metaTitle, widget: string }
-              - { label: Meta Description, name: metaDescription, widget: text }
-              - { label: Hero Title, name: heroTitle, widget: string }
-              - { label: Hero Subtitle, name: heroSubtitle, widget: string }
-              - { label: Body Copy, name: body, widget: text }
-              - label: Sections
-                name: sections
+                  - { label: Title, name: title, widget: string }
+                  - label: Items
+                    name: items
+                    widget: list
+                    field: { label: Item, name: item, widget: string }
+              - label: Specialties Accordion
+                name: specialties
                 widget: object
                 fields:
-                  - label: Our Origins
-                    name: ourOrigins
-                    widget: object
+                  - label: Specialties
+                    name: items
+                    widget: list
+                    summary: "{{fields.title}}"
                     fields:
                       - { label: Title, name: title, widget: string }
-                      - { label: Body, name: body, widget: text }
-                  - label: Artisan Extraction
-                    name: artisanExtraction
-                    widget: object
-                    fields:
-                      - { label: Title, name: title, widget: string }
-                      - { label: Body, name: body, widget: text }
-                  - label: Clinical Rigor
-                    name: clinicalRigor
-                    widget: object
-                    fields:
-                      - { label: Title, name: title, widget: string }
-                      - { label: Body, name: body, widget: text }
-                  - label: Sustainability & Impact
-                    name: sustainabilityImpact
-                    widget: object
-                    fields:
-                      - { label: Title, name: title, widget: string }
-                      - { label: Body, name: body, widget: text }
-              - { label: Testimonials Title, name: testimonialsTitle, widget: string }
-              - label: Testimonials
-                name: testimonials
-                widget: list
+                      - label: Bullets
+                        name: bullets
+                        widget: list
+                        field: { label: Bullet, name: bullet, widget: string }
+      - name: method_pt
+        label: Method Page (Portuguese)
+        file: content/pages/pt/method.json
+        format: json
+        fields:
+          - { label: Meta Title, name: metaTitle, widget: string, required: false }
+          - { label: Meta Description, name: metaDescription, widget: text, required: false }
+          - { label: Hero Title, name: heroTitle, widget: string, required: false }
+          - { label: Hero Subtitle, name: heroSubtitle, widget: text, required: false }
+          - label: Sections
+            name: sections
+            widget: list
+            types:
+              - label: Fact Block
+                name: facts
+                widget: object
                 fields:
-                  - { label: ID, name: id, widget: string }
-                  - { label: Quote, name: quote, widget: text }
-                  - { label: Name, name: name, widget: string }
-                  - { label: Role, name: role, widget: string }
+                  - { label: Title, name: title, widget: string }
+                  - { label: Text, name: text, widget: text }
+              - label: Bullet List
+                name: bullets
+                widget: object
+                fields:
+                  - { label: Title, name: title, widget: string }
+                  - label: Items
+                    name: items
+                    widget: list
+                    field: { label: Item, name: item, widget: string }
+              - label: Specialties Accordion
+                name: specialties
+                widget: object
+                fields:
+                  - label: Specialties
+                    name: items
+                    widget: list
+                    summary: "{{fields.title}}"
+                    fields:
+                      - { label: Title, name: title, widget: string }
+                      - label: Bullets
+                        name: bullets
+                        widget: list
+                        field: { label: Bullet, name: bullet, widget: string }
+      - name: method_es
+        label: Method Page (Spanish)
+        file: content/pages/es/method.json
+        format: json
+        fields:
+          - { label: Meta Title, name: metaTitle, widget: string, required: false }
+          - { label: Meta Description, name: metaDescription, widget: text, required: false }
+          - { label: Hero Title, name: heroTitle, widget: string, required: false }
+          - { label: Hero Subtitle, name: heroSubtitle, widget: text, required: false }
+          - label: Sections
+            name: sections
+            widget: list
+            types:
+              - label: Fact Block
+                name: facts
+                widget: object
+                fields:
+                  - { label: Title, name: title, widget: string }
+                  - { label: Text, name: text, widget: text }
+              - label: Bullet List
+                name: bullets
+                widget: object
+                fields:
+                  - { label: Title, name: title, widget: string }
+                  - label: Items
+                    name: items
+                    widget: list
+                    field: { label: Item, name: item, widget: string }
+              - label: Specialties Accordion
+                name: specialties
+                widget: object
+                fields:
+                  - label: Specialties
+                    name: items
+                    widget: list
+                    summary: "{{fields.title}}"
+                    fields:
+                      - { label: Title, name: title, widget: string }
+                      - label: Bullets
+                        name: bullets
+                        widget: list
+                        field: { label: Bullet, name: bullet, widget: string }
   - name: shop
     label: Shop Page
     files:

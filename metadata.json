@@ -131,9 +131,21 @@
     },
     {
       "id": "method",
-      "label": "Method Page",
+      "label": "Method Page (English)",
       "type": "single",
-      "filePath": "content/method.json"
+      "filePath": "content/pages/en/method.json"
+    },
+    {
+      "id": "method_pt",
+      "label": "Method Page (Portuguese)",
+      "type": "single",
+      "filePath": "content/pages/pt/method.json"
+    },
+    {
+      "id": "method_es",
+      "label": "Method Page (Spanish)",
+      "type": "single",
+      "filePath": "content/pages/es/method.json"
     },
     {
       "id": "shop",
@@ -467,333 +479,66 @@
     },
     {
       "name": "method",
-      "label": "Method Page Content",
+      "label": "Method Page (English)",
       "type": "data",
       "singleInstance": true,
-      "filePath": "content/method.json",
+      "filePath": "content/pages/en/method.json",
       "fields": [
         {
-          "name": "en",
-          "label": "English",
-          "type": "object",
-          "fields": [
-            {
-              "name": "metaTitle",
-              "label": "Meta Title",
-              "type": "string"
-            },
-            {
-              "name": "metaDescription",
-              "label": "Meta Description",
-              "type": "text"
-            },
-            {
-              "name": "heroTitle",
-              "label": "Hero Title",
-              "type": "string"
-            },
-            {
-              "name": "heroSubtitle",
-              "label": "Hero Subtitle",
-              "type": "text"
-            },
-            {
-              "name": "body",
-              "label": "Body",
-              "type": "text"
-            },
-            {
-              "name": "sections",
-              "label": "Sections",
-              "type": "object",
-              "fields": [
-                {
-                  "name": "ourOrigins",
-                  "label": "Our Origins",
-                  "type": "object",
-                  "fields": [
-                    {
-                      "name": "title",
-                      "label": "Title",
-                      "type": "string"
-                    },
-                    {
-                      "name": "body",
-                      "label": "Body",
-                      "type": "text"
-                    }
-                  ]
-                },
-                {
-                  "name": "artisanExtraction",
-                  "label": "Artisan Extraction",
-                  "type": "object",
-                  "fields": [
-                    {
-                      "name": "title",
-                      "label": "Title",
-                      "type": "string"
-                    },
-                    {
-                      "name": "body",
-                      "label": "Body",
-                      "type": "text"
-                    }
-                  ]
-                },
-                {
-                  "name": "clinicalRigor",
-                  "label": "Clinical Rigor",
-                  "type": "object",
-                  "fields": [
-                    {
-                      "name": "title",
-                      "label": "Title",
-                      "type": "string"
-                    },
-                    {
-                      "name": "body",
-                      "label": "Body",
-                      "type": "text"
-                    }
-                  ]
-                },
-                {
-                  "name": "sustainabilityImpact",
-                  "label": "Sustainability & Impact",
-                  "type": "object",
-                  "fields": [
-                    {
-                      "name": "title",
-                      "label": "Title",
-                      "type": "string"
-                    },
-                    {
-                      "name": "body",
-                      "label": "Body",
-                      "type": "text"
-                    }
-                  ]
-                }
-              ]
-            },
-            {
-              "name": "testimonialsTitle",
-              "label": "Testimonials Title",
-              "type": "string"
-            },
-            {
-              "name": "testimonials",
-              "label": "Testimonials",
-              "type": "list",
-              "items": {
-                "type": "object",
-                "fields": [
-                  {
-                    "name": "id",
-                    "label": "ID",
-                    "type": "string"
-                  },
-                  {
-                    "name": "quote",
-                    "label": "Quote",
-                    "type": "text"
-                  },
-                  {
-                    "name": "name",
-                    "label": "Name",
-                    "type": "string"
-                  },
-                  {
-                    "name": "role",
-                    "label": "Role",
-                    "type": "string"
-                  }
-                ]
-              }
-            }
-          ]
+          "name": "metaTitle",
+          "label": "Meta Title",
+          "type": "string"
         },
         {
-          "name": "pt",
-          "label": "Portuguese",
-          "type": "object",
-          "fields": [
-            {
-              "name": "metaTitle",
-              "label": "Meta Title",
-              "type": "string"
-            },
-            {
-              "name": "metaDescription",
-              "label": "Meta Description",
-              "type": "text"
-            },
-            {
-              "name": "heroTitle",
-              "label": "Hero Title",
-              "type": "string"
-            },
-            {
-              "name": "heroSubtitle",
-              "label": "Hero Subtitle",
-              "type": "text"
-            },
-            {
-              "name": "body",
-              "label": "Body",
-              "type": "text"
-            },
-            {
-              "name": "sections",
-              "label": "Sections",
-              "type": "object",
-              "fields": [
-                {
-                  "name": "ourOrigins",
-                  "label": "Our Origins",
-                  "type": "object",
-                  "fields": [
-                    {
-                      "name": "title",
-                      "label": "Title",
-                      "type": "string"
-                    },
-                    {
-                      "name": "body",
-                      "label": "Body",
-                      "type": "text"
-                    }
-                  ]
-                },
-                {
-                  "name": "artisanExtraction",
-                  "label": "Artisan Extraction",
-                  "type": "object",
-                  "fields": [
-                    {
-                      "name": "title",
-                      "label": "Title",
-                      "type": "string"
-                    },
-                    {
-                      "name": "body",
-                      "label": "Body",
-                      "type": "text"
-                    }
-                  ]
-                },
-                {
-                  "name": "clinicalRigor",
-                  "label": "Clinical Rigor",
-                  "type": "object",
-                  "fields": [
-                    {
-                      "name": "title",
-                      "label": "Title",
-                      "type": "string"
-                    },
-                    {
-                      "name": "body",
-                      "label": "Body",
-                      "type": "text"
-                    }
-                  ]
-                },
-                {
-                  "name": "sustainabilityImpact",
-                  "label": "Sustainability & Impact",
-                  "type": "object",
-                  "fields": [
-                    {
-                      "name": "title",
-                      "label": "Title",
-                      "type": "string"
-                    },
-                    {
-                      "name": "body",
-                      "label": "Body",
-                      "type": "text"
-                    }
-                  ]
-                }
-              ]
-            },
-            {
-              "name": "testimonialsTitle",
-              "label": "Testimonials Title",
-              "type": "string"
-            },
-            {
-              "name": "testimonials",
-              "label": "Testimonials",
-              "type": "list",
-              "items": {
-                "type": "object",
-                "fields": [
-                  {
-                    "name": "id",
-                    "label": "ID",
-                    "type": "string"
-                  },
-                  {
-                    "name": "quote",
-                    "label": "Quote",
-                    "type": "text"
-                  },
-                  {
-                    "name": "name",
-                    "label": "Name",
-                    "type": "string"
-                  },
-                  {
-                    "name": "role",
-                    "label": "Role",
-                    "type": "string"
-                  }
-                ]
-              }
-            }
-          ]
+          "name": "metaDescription",
+          "label": "Meta Description",
+          "type": "text"
         },
         {
-          "name": "es",
-          "label": "Spanish",
-          "type": "object",
-          "fields": [
-            {
-              "name": "metaTitle",
-              "label": "Meta Title",
-              "type": "string"
-            },
-            {
-              "name": "metaDescription",
-              "label": "Meta Description",
-              "type": "text"
-            },
-            {
-              "name": "heroTitle",
-              "label": "Hero Title",
-              "type": "string"
-            },
-            {
-              "name": "heroSubtitle",
-              "label": "Hero Subtitle",
-              "type": "text"
-            },
-            {
-              "name": "body",
-              "label": "Body",
-              "type": "text"
-            },
-            {
-              "name": "sections",
-              "label": "Sections",
-              "type": "object",
-              "fields": [
-                {
-                  "name": "ourOrigins",
-                  "label": "Our Origins",
+          "name": "heroTitle",
+          "label": "Hero Title",
+          "type": "string"
+        },
+        {
+          "name": "heroSubtitle",
+          "label": "Hero Subtitle",
+          "type": "text"
+        },
+        {
+          "name": "sections",
+          "label": "Sections",
+          "type": "list",
+          "items": {
+            "type": "object",
+            "fields": [
+              {
+                "name": "type",
+                "label": "Section Type",
+                "type": "string"
+              },
+              {
+                "name": "title",
+                "label": "Title",
+                "type": "string"
+              },
+              {
+                "name": "text",
+                "label": "Text",
+                "type": "text"
+              },
+              {
+                "name": "items",
+                "label": "Items",
+                "type": "list",
+                "items": {
+                  "type": "string"
+                }
+              },
+              {
+                "name": "specialties",
+                "label": "Specialties",
+                "type": "list",
+                "items": {
                   "type": "object",
                   "fields": [
                     {
@@ -802,101 +547,188 @@
                       "type": "string"
                     },
                     {
-                      "name": "body",
-                      "label": "Body",
-                      "type": "text"
-                    }
-                  ]
-                },
-                {
-                  "name": "artisanExtraction",
-                  "label": "Artisan Extraction",
-                  "type": "object",
-                  "fields": [
-                    {
-                      "name": "title",
-                      "label": "Title",
-                      "type": "string"
-                    },
-                    {
-                      "name": "body",
-                      "label": "Body",
-                      "type": "text"
-                    }
-                  ]
-                },
-                {
-                  "name": "clinicalRigor",
-                  "label": "Clinical Rigor",
-                  "type": "object",
-                  "fields": [
-                    {
-                      "name": "title",
-                      "label": "Title",
-                      "type": "string"
-                    },
-                    {
-                      "name": "body",
-                      "label": "Body",
-                      "type": "text"
-                    }
-                  ]
-                },
-                {
-                  "name": "sustainabilityImpact",
-                  "label": "Sustainability & Impact",
-                  "type": "object",
-                  "fields": [
-                    {
-                      "name": "title",
-                      "label": "Title",
-                      "type": "string"
-                    },
-                    {
-                      "name": "body",
-                      "label": "Body",
-                      "type": "text"
+                      "name": "bullets",
+                      "label": "Bullets",
+                      "type": "list",
+                      "items": {
+                        "type": "string"
+                      }
                     }
                   ]
                 }
-              ]
-            },
-            {
-              "name": "testimonialsTitle",
-              "label": "Testimonials Title",
-              "type": "string"
-            },
-            {
-              "name": "testimonials",
-              "label": "Testimonials",
-              "type": "list",
-              "items": {
-                "type": "object",
-                "fields": [
-                  {
-                    "name": "id",
-                    "label": "ID",
-                    "type": "string"
-                  },
-                  {
-                    "name": "quote",
-                    "label": "Quote",
-                    "type": "text"
-                  },
-                  {
-                    "name": "name",
-                    "label": "Name",
-                    "type": "string"
-                  },
-                  {
-                    "name": "role",
-                    "label": "Role",
-                    "type": "string"
-                  }
-                ]
               }
-            }
-          ]
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "method_pt",
+      "label": "Method Page (Portuguese)",
+      "type": "data",
+      "singleInstance": true,
+      "filePath": "content/pages/pt/method.json",
+      "fields": [
+        {
+          "name": "metaTitle",
+          "label": "Meta Title",
+          "type": "string"
+        },
+        {
+          "name": "metaDescription",
+          "label": "Meta Description",
+          "type": "text"
+        },
+        {
+          "name": "heroTitle",
+          "label": "Hero Title",
+          "type": "string"
+        },
+        {
+          "name": "heroSubtitle",
+          "label": "Hero Subtitle",
+          "type": "text"
+        },
+        {
+          "name": "sections",
+          "label": "Sections",
+          "type": "list",
+          "items": {
+            "type": "object",
+            "fields": [
+              {
+                "name": "type",
+                "label": "Section Type",
+                "type": "string"
+              },
+              {
+                "name": "title",
+                "label": "Title",
+                "type": "string"
+              },
+              {
+                "name": "text",
+                "label": "Text",
+                "type": "text"
+              },
+              {
+                "name": "items",
+                "label": "Items",
+                "type": "list",
+                "items": {
+                  "type": "string"
+                }
+              },
+              {
+                "name": "specialties",
+                "label": "Specialties",
+                "type": "list",
+                "items": {
+                  "type": "object",
+                  "fields": [
+                    {
+                      "name": "title",
+                      "label": "Title",
+                      "type": "string"
+                    },
+                    {
+                      "name": "bullets",
+                      "label": "Bullets",
+                      "type": "list",
+                      "items": {
+                        "type": "string"
+                      }
+                    }
+                  ]
+                }
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "method_es",
+      "label": "Method Page (Spanish)",
+      "type": "data",
+      "singleInstance": true,
+      "filePath": "content/pages/es/method.json",
+      "fields": [
+        {
+          "name": "metaTitle",
+          "label": "Meta Title",
+          "type": "string"
+        },
+        {
+          "name": "metaDescription",
+          "label": "Meta Description",
+          "type": "text"
+        },
+        {
+          "name": "heroTitle",
+          "label": "Hero Title",
+          "type": "string"
+        },
+        {
+          "name": "heroSubtitle",
+          "label": "Hero Subtitle",
+          "type": "text"
+        },
+        {
+          "name": "sections",
+          "label": "Sections",
+          "type": "list",
+          "items": {
+            "type": "object",
+            "fields": [
+              {
+                "name": "type",
+                "label": "Section Type",
+                "type": "string"
+              },
+              {
+                "name": "title",
+                "label": "Title",
+                "type": "string"
+              },
+              {
+                "name": "text",
+                "label": "Text",
+                "type": "text"
+              },
+              {
+                "name": "items",
+                "label": "Items",
+                "type": "list",
+                "items": {
+                  "type": "string"
+                }
+              },
+              {
+                "name": "specialties",
+                "label": "Specialties",
+                "type": "list",
+                "items": {
+                  "type": "object",
+                  "fields": [
+                    {
+                      "name": "title",
+                      "label": "Title",
+                      "type": "string"
+                    },
+                    {
+                      "name": "bullets",
+                      "label": "Bullets",
+                      "type": "list",
+                      "items": {
+                        "type": "string"
+                      }
+                    }
+                  ]
+                }
+              }
+            ]
+          }
         }
       ]
     },
