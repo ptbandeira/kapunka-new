@@ -750,6 +750,8 @@ const Home: React.FC = () => {
   const clinicsBlockData = pageContent?.clinicsBlock;
   const galleryRowsData = pageContent?.galleryRows;
   const bestsellersIntro = sanitizeString(pageContent?.bestsellersIntro);
+  const brandIntroTitle = sanitizeString(pageContent?.brandIntro?.title);
+  const brandIntroText = sanitizeString(pageContent?.brandIntro?.text);
 
   return (
     <div>
@@ -818,6 +820,26 @@ const Home: React.FC = () => {
           </motion.div>
         </div>
       </div>
+      {(brandIntroTitle || brandIntroText) && (
+        <div className="container mx-auto max-w-3xl px-4 py-16 md:py-24">
+          {brandIntroTitle && (
+            <h2
+              className="text-3xl sm:text-4xl font-semibold text-center"
+              data-nlv-field-path={`${homeFieldPath}.brandIntro.title`}
+            >
+              {brandIntroTitle}
+            </h2>
+          )}
+          {brandIntroText && (
+            <p
+              className="mt-6 prose prose-stone max-w-none text-stone-700 text-center"
+              data-nlv-field-path={`${homeFieldPath}.brandIntro.text`}
+            >
+              {brandIntroText}
+            </p>
+          )}
+        </div>
+      )}
       <ClinicsBlock
         data={clinicsBlockData}
         fieldPath={`${homeFieldPath}.clinicsBlock`}

@@ -173,6 +173,13 @@ collections:
               - { label: Image Left, value: image-left }
               - { label: Image Right, value: image-right }
               - { label: Full Image, value: image-full }
+          - label: Brand Intro
+            name: brandIntro
+            widget: object
+            required: false
+            fields:
+              - { label: Title, name: title, widget: string, required: false }
+              - { label: Text, name: text, widget: text, required: false }
           - label: Clinics Block
             name: clinicsBlock
             widget: object
