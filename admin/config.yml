@@ -1,4 +1,4 @@
-// SINGLE SOURCE OF TRUTH for Decap CMS (production /admin). Do not edit site/admin/config.yml.
+# SINGLE SOURCE OF TRUTH for Decap CMS (production /admin). Do not edit site/admin/config.yml.
 backend:
   name: git-gateway
   branch: main
