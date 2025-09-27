@@ -328,6 +328,8 @@ export interface PageContent {
   heroImageLeft?: string;
   heroImageRight?: string;
   heroLayoutHint?: 'image-left' | 'image-right' | 'image-full';
+  heroAlignX?: 'left' | 'center';
+  heroAlignY?: 'top' | 'middle' | 'bottom';
   clinicsBlock?: ClinicsBlockContent;
   valueProps?: ValuePropItem[];
   bestsellersIntro?: string;
