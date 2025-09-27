@@ -330,6 +330,10 @@ export interface PageContent {
   heroLayoutHint?: 'image-left' | 'image-right' | 'image-full';
   heroAlignX?: 'left' | 'center';
   heroAlignY?: 'top' | 'middle' | 'bottom';
+  brandIntro?: {
+    title?: string;
+    text?: string;
+  };
   clinicsBlock?: ClinicsBlockContent;
   valueProps?: ValuePropItem[];
   bestsellersIntro?: string;
