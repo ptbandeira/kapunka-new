@@ -139,6 +139,7 @@ collections:
           - label: Hero Horizontal Alignment
             name: heroAlignX
             widget: select
+            hint: "Controls where the headline block sits horizontally over the hero image."
             options:
               - { label: Left, value: left }
               - { label: Center, value: center }
@@ -147,28 +148,37 @@ collections:
           - label: Hero Vertical Alignment
             name: heroAlignY
             widget: select
+            hint: "Moves the headline block up or down on top of the hero image."
             options:
               - { label: Top, value: top }
               - { label: Middle, value: middle }
               - { label: Bottom, value: bottom }
             default: bottom
             required: false
-          - { label: Hero Overlay, name: heroOverlay, widget: string, required: false, default: "rgba(0,0,0,0.48)" }
+          - label: Hero Overlay
+            name: heroOverlay
+            widget: string
+            required: false
+            default: "rgba(0,0,0,0.48)"
+            hint: "Use rgba() to lighten or darken the image overlay (lower last number for more transparency)."
           - label: Hero Image (Left)
             name: heroImageLeft
             widget: image
             choose_url: true
+            hint: "Shown when layout is Image Left or Full Image (desktop uses this slot)."
             required: false
           - label: Hero Image (Right)
             name: heroImageRight
             widget: image
             choose_url: true
+            hint: "Displayed when layout is Image Right; keep empty if not used."
             required: false
           - label: Hero Layout Hint
             name: heroLayoutHint
             widget: select
             required: false
             default: image-full
+            hint: "Pick how the hero media and copy are arranged on desktop."
             options:
               - { label: Image Left, value: image-left }
               - { label: Image Right, value: image-right }
@@ -315,6 +325,7 @@ collections:
           - label: Hero Horizontal Alignment
             name: heroAlignX
             widget: select
+            hint: "Controls where the headline block sits horizontally over the hero image."
             options:
               - { label: Left, value: left }
               - { label: Center, value: center }
@@ -323,28 +334,37 @@ collections:
           - label: Hero Vertical Alignment
             name: heroAlignY
             widget: select
+            hint: "Moves the headline block up or down on top of the hero image."
             options:
               - { label: Top, value: top }
               - { label: Middle, value: middle }
               - { label: Bottom, value: bottom }
             default: bottom
             required: false
-          - { label: Hero Overlay, name: heroOverlay, widget: string, required: false, default: "rgba(0,0,0,0.48)" }
+          - label: Hero Overlay
+            name: heroOverlay
+            widget: string
+            required: false
+            default: "rgba(0,0,0,0.48)"
+            hint: "Use rgba() to lighten or darken the image overlay (lower last number for more transparency)."
           - label: Hero Image (Left)
             name: heroImageLeft
             widget: image
             choose_url: true
+            hint: "Shown when layout is Image Left or Full Image (desktop uses this slot)."
             required: false
           - label: Hero Image (Right)
             name: heroImageRight
             widget: image
             choose_url: true
+            hint: "Displayed when layout is Image Right; keep empty if not used."
             required: false
           - label: Hero Layout Hint
             name: heroLayoutHint
             widget: select
             required: false
             default: image-full
+            hint: "Pick how the hero media and copy are arranged on desktop."
             options:
               - { label: Image Left, value: image-left }
               - { label: Image Right, value: image-right }
@@ -484,6 +504,7 @@ collections:
           - label: Hero Horizontal Alignment
             name: heroAlignX
             widget: select
+            hint: "Controls where the headline block sits horizontally over the hero image."
             options:
               - { label: Left, value: left }
               - { label: Center, value: center }
@@ -492,28 +513,37 @@ collections:
           - label: Hero Vertical Alignment
             name: heroAlignY
             widget: select
+            hint: "Moves the headline block up or down on top of the hero image."
             options:
               - { label: Top, value: top }
               - { label: Middle, value: middle }
               - { label: Bottom, value: bottom }
             default: bottom
             required: false
-          - { label: Hero Overlay, name: heroOverlay, widget: string, required: false, default: "rgba(0,0,0,0.48)" }
+          - label: Hero Overlay
+            name: heroOverlay
+            widget: string
+            required: false
+            default: "rgba(0,0,0,0.48)"
+            hint: "Use rgba() to lighten or darken the image overlay (lower last number for more transparency)."
           - label: Hero Image (Left)
             name: heroImageLeft
             widget: image
             choose_url: true
+            hint: "Shown when layout is Image Left or Full Image (desktop uses this slot)."
             required: false
           - label: Hero Image (Right)
             name: heroImageRight
             widget: image
             choose_url: true
+            hint: "Displayed when layout is Image Right; keep empty if not used."
             required: false
           - label: Hero Layout Hint
             name: heroLayoutHint
             widget: select
             required: false
             default: image-full
+            hint: "Pick how the hero media and copy are arranged on desktop."
             options:
               - { label: Image Left, value: image-left }
               - { label: Image Right, value: image-right }
