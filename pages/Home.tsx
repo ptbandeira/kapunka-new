@@ -116,6 +116,7 @@ const mediaCopySectionSchema = z
     title: z.string().optional(),
     body: z.string().optional(),
     image: z.string().optional(),
+    imageRef: z.string().optional(),
     layout: z.enum(['image-left', 'image-right']).optional(),
   })
   .passthrough();
@@ -1157,13 +1158,20 @@ const Home: React.FC = () => {
         const title = sanitizeString(section.title ?? null);
         const body = sanitizeString(section.body ?? null);
         const image = sanitizeString(section.image ?? null);
-        if (!title && !body && !image) {
+        const imageRef = sanitizeString(section.imageRef ?? null);
+        if (!title && !body && !image && !imageRef) {
           return null;
         }
 
         const isImageLeft = section.layout === 'image-left';
         const textColumnClasses = `space-y-6 ${isImageLeft ? 'order-2 lg:order-2' : 'order-2 lg:order-1'}`;
         const imageColumnClasses = isImageLeft ? 'order-1 lg:order-1' : 'order-1 lg:order-2';
+        const mediaImage = image ?? imageRef;
+        const imageFieldPath = image
+          ? `${sectionFieldPath}.image`
+          : imageRef
+            ? `${sectionFieldPath}.imageRef`
+            : `${sectionFieldPath}.image`;
 
         return (
           <section
@@ -1192,17 +1200,17 @@ const Home: React.FC = () => {
                   )}
                 </div>
                 <div className={imageColumnClasses}>
-                  {image ? (
+                  {mediaImage ? (
                     <img
-                      src={image}
+                      src={mediaImage}
                       alt={title ?? 'Media highlight'}
                       className="w-full h-full object-cover rounded-lg shadow-sm"
-                      data-nlv-field-path={`${sectionFieldPath}.image`}
+                      data-nlv-field-path={imageFieldPath}
                     />
                   ) : (
                     <div
                       className="w-full aspect-[4/3] rounded-lg border border-dashed border-stone-300 bg-stone-100 flex items-center justify-center text-sm text-stone-400"
-                      data-nlv-field-path={`${sectionFieldPath}.image`}
+                      data-nlv-field-path={imageFieldPath}
                     >
                       Image coming soon
                     </div>
