@@ -4,122 +4,226 @@ import { motion } from 'framer-motion';
 import ReactMarkdown from 'react-markdown';
 import type { Components as MarkdownComponents } from 'react-markdown';
 import { Helmet } from 'react-helmet-async';
+import { z } from 'zod';
 import ProductCard from '../components/ProductCard';
-import SectionRenderer from '../components/SectionRenderer';
+import TimelineSection from '../components/TimelineSection';
+import ImageTextHalf from '../components/sections/ImageTextHalf';
+import ImageGrid from '../components/sections/ImageGrid';
 import { useLanguage } from '../contexts/LanguageContext';
 import { useSiteSettings } from '../contexts/SiteSettingsContext';
 import type {
   Product,
   Review,
-  PageSection,
   TimelineEntry,
-  TimelineSectionContent,
-  ImageTextHalfSectionContent,
   ImageGridItem,
-  ImageGridSectionContent,
-  PageContent,
   ClinicsBlockContent,
   GalleryRowContent,
+  PageSection,
+  PageContent,
 } from '../types';
 
-const isTimelineEntry = (value: unknown): value is TimelineEntry => {
-  if (!value || typeof value !== 'object') {
-    return false;
-  }
+const heroAlignmentSchema = z
+  .object({
+    heroAlignX: z.enum(['left', 'center', 'right']).optional(),
+    heroAlignY: z.enum(['top', 'middle', 'bottom']).optional(),
+    heroLayoutHint: z
+      .enum(['image-left', 'image-right', 'image-full', 'text-over-media', 'side-by-side'])
+      .optional(),
+    heroOverlay: z.union([z.string(), z.number(), z.boolean()]).optional(),
+  })
+  .passthrough();
 
-  const entry = value as Record<string, unknown>;
+const heroImagesSchema = z
+  .object({
+    heroImageLeft: z.string().nullable().optional(),
+    heroImageRight: z.string().nullable().optional(),
+  })
+  .passthrough();
 
-  return (
-    typeof entry.year === 'string'
-    && typeof entry.title === 'string'
-    && typeof entry.description === 'string'
-    && (entry.image === undefined || typeof entry.image === 'string')
-  );
-};
+const heroCtasSchema = z
+  .object({
+    ctaPrimary: z.string().nullable().optional(),
+    ctaSecondary: z.string().nullable().optional(),
+  })
+  .passthrough();
 
-const isTimelineSection = (value: unknown): value is TimelineSectionContent => {
-  if (!value || typeof value !== 'object') {
-    return false;
-  }
+const timelineEntrySchema = z
+  .object({
+    year: z.string(),
+    title: z.string(),
+    description: z.string(),
+    image: z.string().optional(),
+  })
+  .passthrough();
 
-  const section = value as Record<string, unknown>;
-  return section.type === 'timeline' && Array.isArray(section.entries) && section.entries.every(isTimelineEntry);
-};
+const timelineSectionSchema = z
+  .object({
+    type: z.literal('timeline'),
+    title: z.string().optional(),
+    entries: z.array(timelineEntrySchema),
+  })
+  .passthrough();
 
-const isImageTextHalfSection = (value: unknown): value is ImageTextHalfSectionContent => {
-  if (!value || typeof value !== 'object') {
-    return false;
-  }
+const imageTextHalfSectionSchema = z
+  .object({
+    type: z.literal('imageTextHalf'),
+    image: z.string().optional(),
+    title: z.string().optional(),
+    text: z.string().optional(),
+  })
+  .passthrough();
 
-  const section = value as Record<string, unknown>;
+const imageGridItemSchema = z
+  .object({
+    image: z.string().optional(),
+    title: z.string().optional(),
+    subtitle: z.string().optional(),
+  })
+  .passthrough();
 
-  return (
-    section.type === 'imageTextHalf'
-    && (section.image === undefined || typeof section.image === 'string')
-    && (section.title === undefined || typeof section.title === 'string')
-    && (section.text === undefined || typeof section.text === 'string')
-  );
-};
+const imageGridSectionSchema = z
+  .object({
+    type: z.literal('imageGrid'),
+    items: z.array(imageGridItemSchema),
+  })
+  .passthrough();
 
-const isImageGridItem = (value: unknown): value is ImageGridItem => {
-  if (!value || typeof value !== 'object') {
-    return false;
-  }
+const legacySectionSchema = z.discriminatedUnion('type', [
+  timelineSectionSchema,
+  imageTextHalfSectionSchema,
+  imageGridSectionSchema,
+]);
 
-  const item = value as Record<string, unknown>;
+const pillarsItemSchema = z
+  .object({
+    label: z.string().optional(),
+    description: z.string().optional(),
+    icon: z.string().optional(),
+  })
+  .passthrough();
 
-  return (
-    (item.image === undefined || typeof item.image === 'string')
-    && (item.title === undefined || typeof item.title === 'string')
-    && (item.subtitle === undefined || typeof item.subtitle === 'string')
-  );
-};
+const pillarsSectionSchema = z
+  .object({
+    type: z.literal('pillars'),
+    title: z.string().optional(),
+    items: z.array(pillarsItemSchema).optional(),
+  })
+  .passthrough();
 
-const isImageGridSection = (value: unknown): value is ImageGridSectionContent => {
-  if (!value || typeof value !== 'object') {
-    return false;
-  }
+const mediaCopySectionSchema = z
+  .object({
+    type: z.literal('mediaCopy'),
+    title: z.string().optional(),
+    body: z.string().optional(),
+    image: z.string().optional(),
+    layout: z.enum(['image-left', 'image-right']).optional(),
+  })
+  .passthrough();
 
-  const section = value as Record<string, unknown>;
+const testimonialQuoteSchema = z
+  .object({
+    text: z.string().optional(),
+    author: z.string().optional(),
+    role: z.string().optional(),
+  })
+  .passthrough();
 
-  return section.type === 'imageGrid' && Array.isArray(section.items) && section.items.every(isImageGridItem);
-};
+const testimonialsSectionSchema = z
+  .object({
+    type: z.literal('testimonials'),
+    quotes: z.array(testimonialQuoteSchema).optional(),
+  })
+  .passthrough();
 
-const isPageSection = (value: unknown): value is PageSection => {
-  if (!value || typeof value !== 'object') {
-    return false;
-  }
+const structuredSectionSchema = z.discriminatedUnion('type', [
+  pillarsSectionSchema,
+  mediaCopySectionSchema,
+  testimonialsSectionSchema,
+]);
 
-  const section = value as Record<string, unknown>;
+const genericSectionSchema = z.object({ type: z.string() }).passthrough();
 
-  if (section.type === 'timeline') {
-    return isTimelineSection(section);
-  }
+const sectionSchema = z.union([structuredSectionSchema, legacySectionSchema, genericSectionSchema]);
 
-  if (section.type === 'imageTextHalf') {
-    return isImageTextHalfSection(section);
-  }
+const galleryRowSchema = z
+  .object({
+    layout: z.enum(['half', 'thirds', 'quarters']).optional(),
+    items: z
+      .array(
+        z
+          .object({
+            image: z.string().optional(),
+            alt: z.string().optional(),
+            caption: z.string().optional(),
+          })
+          .passthrough(),
+      )
+      .optional(),
+  })
+  .passthrough();
 
-  if (section.type === 'imageGrid') {
-    return isImageGridSection(section);
-  }
+const clinicsBlockSchema = z
+  .object({
+    clinicsTitle: z.string().optional(),
+    clinicsBody: z.string().optional(),
+    clinicsCtaLabel: z.string().optional(),
+    clinicsCtaHref: z.string().optional(),
+    clinicsImage: z.string().optional(),
+  })
+  .passthrough();
 
-  return false;
-};
+const homeContentSchema = z
+  .object({
+    sections: z.array(sectionSchema).optional(),
+    heroAlignment: heroAlignmentSchema.optional(),
+    heroImages: heroImagesSchema.optional(),
+    heroCtas: heroCtasSchema.optional(),
+    heroHeadline: z.string().optional(),
+    heroSubheadline: z.string().optional(),
+    heroPrimaryCta: z.string().optional(),
+    heroSecondaryCta: z.string().optional(),
+    heroOverlay: z.union([z.string(), z.number(), z.boolean()]).optional(),
+    heroLayoutHint: z.string().optional(),
+    heroAlignX: z.string().optional(),
+    heroAlignY: z.string().optional(),
+    heroTextPosition: z.string().optional(),
+    heroImageLeft: z.string().nullable().optional(),
+    heroImageRight: z.string().nullable().optional(),
+    heroImageLeftRef: z.string().nullable().optional(),
+    heroImageRightRef: z.string().nullable().optional(),
+    brandIntro: z
+      .object({
+        title: z.string().optional(),
+        text: z.string().optional(),
+      })
+      .optional(),
+    clinicsBlock: clinicsBlockSchema.optional(),
+    galleryRows: z.array(galleryRowSchema).optional(),
+    bestsellersIntro: z.string().optional(),
+    metaTitle: z.string().optional(),
+    metaDescription: z.string().optional(),
+    meta: z
+      .object({
+        metaTitle: z.string().optional(),
+        metaDescription: z.string().optional(),
+      })
+      .optional(),
+    heroCtaPrimary: z.string().optional(),
+    heroCtaSecondary: z.string().optional(),
+    ctaPrimary: z.string().optional(),
+    ctaSecondary: z.string().optional(),
+  })
+  .passthrough();
 
-const isPageContent = (value: unknown): value is PageContent => {
-  if (!value || typeof value !== 'object') {
-    return false;
-  }
-
-  const content = value as Record<string, unknown>;
-
-  if (!Array.isArray(content.sections)) {
-    return false;
-  }
-
-  return content.sections.every(isPageSection);
-};
+type HeroAlignmentGroup = z.infer<typeof heroAlignmentSchema>;
+type HeroImagesGroup = z.infer<typeof heroImagesSchema>;
+type HeroCtasGroup = z.infer<typeof heroCtasSchema>;
+type StructuredSection = z.infer<typeof structuredSectionSchema>;
+type LegacySection = z.infer<typeof legacySectionSchema>;
+type SectionEntry = z.infer<typeof sectionSchema>;
+type HomeContentData = z.infer<typeof homeContentSchema>;
+type StructuredSectionEntry = { index: number; section: StructuredSection };
+type LegacySectionEntry = { index: number; section: LegacySection };
 
 const heroMarkdownComponents: MarkdownComponents = {
     p: ({ children, ...props }) => (
@@ -142,6 +246,12 @@ type HomePageContent = PageContent & {
   heroImageRightRef?: string | null;
   heroImageLeftUrl?: string | null;
   heroImageRightUrl?: string | null;
+  heroAlignment?: HeroAlignmentGroup;
+  heroImages?: HeroImagesGroup;
+  heroCtas?: HeroCtasGroup;
+  rawSections: SectionEntry[];
+  structuredSectionEntries: StructuredSectionEntry[];
+  legacySectionEntries: LegacySectionEntry[];
 };
 
 const HERO_HORIZONTAL_ALIGNMENT_CONTAINER_CLASSES: Record<HeroHorizontalAlignment, string> = {
@@ -181,6 +291,56 @@ const HERO_TEXT_POSITION_MAP: Record<
   'bottom-left': ['left', 'bottom'],
   'bottom-center': ['center', 'bottom'],
   'bottom-right': ['right', 'bottom'],
+};
+
+const normalizeHorizontalAlignment = (value?: string | null): HeroHorizontalAlignment | undefined => {
+  if (value === 'left' || value === 'center' || value === 'right') {
+    return value;
+  }
+
+  return undefined;
+};
+
+const normalizeVerticalAlignment = (value?: string | null): HeroVerticalAlignment | undefined => {
+  if (value === 'top' || value === 'middle' || value === 'bottom') {
+    return value;
+  }
+
+  return undefined;
+};
+
+const normalizeHeroLayoutHint = (value?: string | null): 'image-left' | 'image-right' | 'image-full' => {
+  switch (value) {
+    case 'image-left':
+    case 'image-right':
+    case 'image-full':
+      return value;
+    case 'side-by-side':
+      return 'image-right';
+    case 'text-over-media':
+      return 'image-full';
+    default:
+      return 'image-full';
+  }
+};
+
+const resolveHeroOverlay = (value?: string | number | boolean | null): string | undefined => {
+  if (typeof value === 'string') {
+    const trimmed = value.trim();
+    return trimmed.length > 0 ? trimmed : undefined;
+  }
+
+  if (typeof value === 'number') {
+    const normalized = value > 1 ? value / 100 : value;
+    const clamped = Math.max(0, Math.min(normalized, 1));
+    return `rgba(0,0,0,${clamped.toFixed(2)})`;
+  }
+
+  if (typeof value === 'boolean') {
+    return value ? 'rgba(0,0,0,0.48)' : 'rgba(0,0,0,0)';
+  }
+
+  return undefined;
 };
 
 let hasWarnedMissingHeroImages = false;
@@ -671,22 +831,67 @@ const Home: React.FC = () => {
             return;
           }
 
-          if (isPageContent(data)) {
-            const typedData = data as HomePageContent;
-            const heroImageLeftUrl = typedData.heroImageLeftRef || typedData.heroImageLeft || null;
-            const heroImageRightUrl = typedData.heroImageRightRef || typedData.heroImageRight || null;
-            if (!heroImageLeftUrl && !heroImageRightUrl && !hasWarnedMissingHeroImages) {
-              console.warn('Home hero images are not configured. Add hero image references or legacy URLs in the CMS.');
-              hasWarnedMissingHeroImages = true;
-            }
-            const dataWithHeroImages: HomePageContent = {
-              ...typedData,
-              heroImageLeftUrl,
-              heroImageRightUrl,
-            };
-            setPageContent(dataWithHeroImages);
-            return;
+          const parsedResult = homeContentSchema.safeParse(data);
+          if (!parsedResult.success) {
+            continue;
           }
+
+          const {
+            sections: rawSections = [],
+            heroAlignment,
+            heroImages,
+            heroCtas,
+            ...rest
+          } = parsedResult.data;
+
+          const structuredSectionEntries = rawSections.reduce<StructuredSectionEntry[]>((acc, section, index) => {
+            const parsedSection = structuredSectionSchema.safeParse(section);
+            if (parsedSection.success) {
+              acc.push({ index, section: parsedSection.data });
+            }
+            return acc;
+          }, []);
+
+          const legacySectionEntries = rawSections.reduce<LegacySectionEntry[]>((acc, section, index) => {
+            const parsedSection = legacySectionSchema.safeParse(section);
+            if (parsedSection.success) {
+              acc.push({ index, section: parsedSection.data });
+            }
+            return acc;
+          }, []);
+
+          const heroImageLeftUrl = heroImages?.heroImageLeft
+            || (rest as HomeContentData).heroImageLeftRef
+            || (rest as HomeContentData).heroImageLeft
+            || null;
+          const heroImageRightUrl = heroImages?.heroImageRight
+            || (rest as HomeContentData).heroImageRightRef
+            || (rest as HomeContentData).heroImageRight
+            || null;
+
+          if (!heroImageLeftUrl && !heroImageRightUrl && !hasWarnedMissingHeroImages) {
+            console.warn('Home hero images are not configured. Add hero image references or legacy URLs in the CMS.');
+            hasWarnedMissingHeroImages = true;
+          }
+
+          const baseContent = rest as PageContent & HomeContentData;
+          const pageData: HomePageContent = {
+            ...baseContent,
+            heroAlignment,
+            heroImages,
+            heroCtas,
+            heroImageLeftRef: (rest as HomeContentData).heroImageLeftRef ?? undefined,
+            heroImageRightRef: (rest as HomeContentData).heroImageRightRef ?? undefined,
+            heroImageLeftUrl,
+            heroImageRightUrl,
+            rawSections,
+            structuredSectionEntries,
+            legacySectionEntries,
+            sections: legacySectionEntries.map((entry) => entry.section as PageSection),
+          };
+
+          setPageContent(pageData);
+          return;
         } catch (error) {
           if (locale === localesToTry[localesToTry.length - 1]) {
             console.error('Failed to load home sections', error);
@@ -712,33 +917,44 @@ const Home: React.FC = () => {
   const homeFieldPath = `pages.home_${language}`;
   const heroHeadline = sanitizeString(pageContent?.heroHeadline) ?? t('home.heroTitle');
   const heroSubheadline = sanitizeString(pageContent?.heroSubheadline) ?? t('home.heroSubtitle');
-  const heroPrimaryCta = sanitizeString(pageContent?.heroPrimaryCta) ?? t('home.ctaShop');
-  const heroSecondaryCta = sanitizeString(pageContent?.heroSecondaryCta) ?? t('home.ctaClinics');
-  const heroOverlay = sanitizeString(pageContent?.heroOverlay) ?? 'rgba(0,0,0,0.48)';
-  const heroLayoutHint = pageContent?.heroLayoutHint ?? 'image-full';
-  const heroImageLeftUrl = pageContent?.heroImageLeftUrl ?? pageContent?.heroImageLeftRef ?? pageContent?.heroImageLeft ?? null;
-  const heroImageRightUrl = pageContent?.heroImageRightUrl ?? pageContent?.heroImageRightRef ?? pageContent?.heroImageRight ?? null;
+  const heroPrimaryCta = sanitizeString(
+    pageContent?.heroCtas?.ctaPrimary
+      ?? pageContent?.heroPrimaryCta
+      ?? pageContent?.heroCtaPrimary
+      ?? pageContent?.ctaPrimary,
+  ) ?? t('home.ctaShop');
+  const heroSecondaryCta = sanitizeString(
+    pageContent?.heroCtas?.ctaSecondary
+      ?? pageContent?.heroSecondaryCta
+      ?? pageContent?.heroCtaSecondary
+      ?? pageContent?.ctaSecondary,
+  ) ?? t('home.ctaClinics');
+  const heroOverlay = resolveHeroOverlay(
+    pageContent?.heroAlignment?.heroOverlay ?? (pageContent?.heroOverlay as string | number | boolean | null | undefined),
+  ) ?? 'rgba(0,0,0,0.48)';
+  const heroLayoutHint = normalizeHeroLayoutHint(
+    pageContent?.heroAlignment?.heroLayoutHint ?? pageContent?.heroLayoutHint,
+  );
+  const heroImageLeftUrl = pageContent?.heroImageLeftUrl
+    ?? pageContent?.heroImages?.heroImageLeft
+    ?? pageContent?.heroImageLeftRef
+    ?? pageContent?.heroImageLeft
+    ?? null;
+  const heroImageRightUrl = pageContent?.heroImageRightUrl
+    ?? pageContent?.heroImages?.heroImageRight
+    ?? pageContent?.heroImageRightRef
+    ?? pageContent?.heroImageRight
+    ?? null;
   const heroImageLeft = sanitizeString(heroImageLeftUrl);
   const heroImageRight = sanitizeString(heroImageRightUrl);
   const heroTextPosition = pageContent?.heroTextPosition ?? undefined;
-  const [rawHeroAlignX, rawHeroAlignY] =
-    heroTextPosition && HERO_TEXT_POSITION_MAP[heroTextPosition]
-      ? HERO_TEXT_POSITION_MAP[heroTextPosition]
-      : [pageContent?.heroAlignX, pageContent?.heroAlignY];
-
-  const heroAlignX: HeroHorizontalAlignment =
-    rawHeroAlignX === 'center'
-      ? 'center'
-      : rawHeroAlignX === 'right'
-        ? 'right'
-        : 'left';
-
-  const heroAlignY: HeroVerticalAlignment =
-    rawHeroAlignY === 'top'
-      ? 'top'
-      : rawHeroAlignY === 'middle'
-        ? 'middle'
-        : 'bottom';
+  const heroTextPositionTuple = heroTextPosition ? HERO_TEXT_POSITION_MAP[heroTextPosition] : undefined;
+  const heroAlignX: HeroHorizontalAlignment = heroTextPositionTuple?.[0]
+    ?? normalizeHorizontalAlignment(pageContent?.heroAlignment?.heroAlignX ?? pageContent?.heroAlignX)
+    ?? 'center';
+  const heroAlignY: HeroVerticalAlignment = heroTextPositionTuple?.[1]
+    ?? normalizeVerticalAlignment(pageContent?.heroAlignment?.heroAlignY ?? pageContent?.heroAlignY)
+    ?? 'middle';
   const heroAlignmentClasses = `${HERO_HORIZONTAL_ALIGNMENT_CONTAINER_CLASSES[heroAlignX]} ${HERO_VERTICAL_ALIGNMENT_CLASSES[heroAlignY]}`;
   const heroMiddleNudge = heroLayoutHint === 'image-full' && heroAlignY === 'middle' ? 'pb-24 md:pb-28' : '';
   const heroTextAlignmentClass = HERO_HORIZONTAL_TEXT_ALIGNMENT_CLASSES[heroAlignX];
@@ -767,15 +983,18 @@ const Home: React.FC = () => {
   const heroSecondaryButtonClasses = shouldRenderInlineImage
     ? 'px-8 py-3 bg-white/70 backdrop-blur-sm text-stone-900 font-semibold rounded-md hover:bg-white transition-colors'
     : 'px-8 py-3 border border-white/50 text-white font-semibold rounded-md hover:bg-white/10 transition-colors';
+  const heroImagesFieldPath = pageContent?.heroImages ? `${homeFieldPath}.heroImages` : undefined;
+  const heroImageLeftFieldPath = heroImagesFieldPath ? `${heroImagesFieldPath}.heroImageLeft` : `${homeFieldPath}.heroImageLeft`;
+  const heroImageRightFieldPath = heroImagesFieldPath ? `${heroImagesFieldPath}.heroImageRight` : `${homeFieldPath}.heroImageRight`;
   const heroImageFieldPath = heroLayoutHint === 'image-left'
-    ? `${homeFieldPath}.heroImageLeft`
+    ? heroImageLeftFieldPath
     : heroLayoutHint === 'image-right'
-      ? `${homeFieldPath}.heroImageRight`
+      ? heroImageRightFieldPath
       : heroInlineImage === heroImageRight
-        ? `${homeFieldPath}.heroImageRight`
+        ? heroImageRightFieldPath
         : heroInlineImage === heroImageLeft
-          ? `${homeFieldPath}.heroImageLeft`
-          : undefined;
+          ? heroImageLeftFieldPath
+          : heroImageRightFieldPath;
   const heroGridClasses = shouldRenderInlineImage
     ? 'grid grid-cols-1 lg:grid-cols-2 gap-12 items-center'
     : 'flex flex-col items-center text-center';
@@ -787,8 +1006,22 @@ const Home: React.FC = () => {
     ? `${heroLayoutHint === 'image-left' ? 'order-2 lg:order-1' : 'order-2'} w-full`
     : '';
   const heroImageAlt = heroHeadline;
+  const heroPrimaryCtaFieldPath = pageContent?.heroCtas
+    ? `${homeFieldPath}.heroCtas.ctaPrimary`
+    : pageContent?.heroPrimaryCta
+      ? `${homeFieldPath}.heroPrimaryCta`
+      : pageContent?.heroCtaPrimary
+        ? `${homeFieldPath}.heroCtaPrimary`
+        : `${homeFieldPath}.ctaPrimary`;
+  const heroSecondaryCtaFieldPath = pageContent?.heroCtas
+    ? `${homeFieldPath}.heroCtas.ctaSecondary`
+    : pageContent?.heroSecondaryCta
+      ? `${homeFieldPath}.heroSecondaryCta`
+      : pageContent?.heroCtaSecondary
+        ? `${homeFieldPath}.heroCtaSecondary`
+        : `${homeFieldPath}.ctaSecondary`;
 
-  const homeSections = pageContent?.sections ?? [];
+  const homeSections = pageContent?.rawSections ?? [];
   const homeSectionsFieldPath = `${homeFieldPath}.sections`;
   const computedTitle = pageContent?.metaTitle ?? `Kapunka Skincare | ${t('home.metaTitle')}`;
   const computedDescription = pageContent?.metaDescription ?? t('home.metaDescription');
@@ -797,6 +1030,265 @@ const Home: React.FC = () => {
   const bestsellersIntro = sanitizeString(pageContent?.bestsellersIntro);
   const brandIntroTitle = sanitizeString(pageContent?.brandIntro?.title);
   const brandIntroText = sanitizeString(pageContent?.brandIntro?.text);
+
+  const structuredSectionsByIndex = useMemo(() => {
+    const map = new Map<number, StructuredSection>();
+    pageContent?.structuredSectionEntries.forEach(({ index, section }) => {
+      map.set(index, section);
+    });
+    return map;
+  }, [pageContent]);
+
+  const legacySectionsByIndex = useMemo(() => {
+    const map = new Map<number, LegacySection>();
+    pageContent?.legacySectionEntries.forEach(({ index, section }) => {
+      map.set(index, section);
+    });
+    return map;
+  }, [pageContent]);
+
+  const renderLegacySection = (section: LegacySection, index: number) => {
+    const sectionFieldPath = `${homeSectionsFieldPath}.${index}`;
+
+    switch (section.type) {
+      case 'timeline':
+        return (
+          <TimelineSection
+            key={`legacy-${index}-timeline`}
+            title={section.title}
+            entries={section.entries as TimelineEntry[]}
+            fieldPath={sectionFieldPath}
+          />
+        );
+      case 'imageTextHalf':
+        return (
+          <ImageTextHalf
+            key={`legacy-${index}-imageTextHalf`}
+            image={section.image}
+            title={section.title}
+            text={section.text}
+            fieldPath={sectionFieldPath}
+          />
+        );
+      case 'imageGrid':
+        return (
+          <ImageGrid
+            key={`legacy-${index}-imageGrid`}
+            items={section.items as ImageGridItem[]}
+            fieldPath={sectionFieldPath}
+          />
+        );
+      default:
+        return null;
+    }
+  };
+
+  const renderStructuredSection = (section: StructuredSection, index: number) => {
+    const sectionFieldPath = `${homeSectionsFieldPath}.${index}`;
+
+    switch (section.type) {
+      case 'pillars': {
+        const sectionTitle = sanitizeString(section.title ?? null);
+        const items = (section.items ?? [])
+          .map((item) => ({
+            label: sanitizeString(item.label ?? null),
+            description: sanitizeString(item.description ?? null),
+            icon: sanitizeString(item.icon ?? null),
+          }))
+          .filter((item) => item.label || item.description || item.icon);
+
+        if (!sectionTitle && items.length === 0) {
+          return null;
+        }
+
+        return (
+          <section
+            key={`structured-${index}-pillars`}
+            className="py-16 sm:py-24 bg-white"
+            data-nlv-field-path={sectionFieldPath}
+          >
+            <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+              {sectionTitle && (
+                <h2 className="text-3xl sm:text-4xl font-semibold text-center">
+                  <span data-nlv-field-path={`${sectionFieldPath}.title`}>{sectionTitle}</span>
+                </h2>
+              )}
+              {items.length > 0 && (
+                <div className="mt-10 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+                  {items.map((item, itemIndex) => (
+                    <div
+                      key={`pillars-${index}-${itemIndex}`}
+                      className="bg-white border border-stone-200 rounded-xl p-6 shadow-sm flex flex-col gap-3"
+                      data-nlv-field-path={`${sectionFieldPath}.items.${itemIndex}`}
+                    >
+                      {item.icon && (
+                        <img
+                          src={item.icon}
+                          alt={item.label ?? 'Feature icon'}
+                          className="h-12 w-12 object-contain"
+                          data-nlv-field-path={`${sectionFieldPath}.items.${itemIndex}.icon`}
+                        />
+                      )}
+                      {item.label && (
+                        <h3
+                          className="text-lg font-semibold text-stone-900"
+                          data-nlv-field-path={`${sectionFieldPath}.items.${itemIndex}.label`}
+                        >
+                          {item.label}
+                        </h3>
+                      )}
+                      {item.description && (
+                        <p
+                          className="text-sm text-stone-600"
+                          data-nlv-field-path={`${sectionFieldPath}.items.${itemIndex}.description`}
+                        >
+                          {item.description}
+                        </p>
+                      )}
+                    </div>
+                  ))}
+                </div>
+              )}
+            </div>
+          </section>
+        );
+      }
+      case 'mediaCopy': {
+        const title = sanitizeString(section.title ?? null);
+        const body = sanitizeString(section.body ?? null);
+        const image = sanitizeString(section.image ?? null);
+        if (!title && !body && !image) {
+          return null;
+        }
+
+        const isImageLeft = section.layout === 'image-left';
+        const textColumnClasses = `space-y-6 ${isImageLeft ? 'order-2 lg:order-2' : 'order-2 lg:order-1'}`;
+        const imageColumnClasses = isImageLeft ? 'order-1 lg:order-1' : 'order-1 lg:order-2';
+
+        return (
+          <section
+            key={`structured-${index}-mediaCopy`}
+            className="py-16 sm:py-24 bg-white"
+            data-nlv-field-path={sectionFieldPath}
+          >
+            <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+              <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+                <div className={textColumnClasses}>
+                  {title && (
+                    <h2
+                      className="text-3xl font-semibold text-stone-900"
+                      data-nlv-field-path={`${sectionFieldPath}.title`}
+                    >
+                      {title}
+                    </h2>
+                  )}
+                  {body && (
+                    <div
+                      className="prose prose-stone max-w-none text-stone-700"
+                      data-nlv-field-path={`${sectionFieldPath}.body`}
+                    >
+                      <ReactMarkdown>{body}</ReactMarkdown>
+                    </div>
+                  )}
+                </div>
+                <div className={imageColumnClasses}>
+                  {image ? (
+                    <img
+                      src={image}
+                      alt={title ?? 'Media highlight'}
+                      className="w-full h-full object-cover rounded-lg shadow-sm"
+                      data-nlv-field-path={`${sectionFieldPath}.image`}
+                    />
+                  ) : (
+                    <div
+                      className="w-full aspect-[4/3] rounded-lg border border-dashed border-stone-300 bg-stone-100 flex items-center justify-center text-sm text-stone-400"
+                      data-nlv-field-path={`${sectionFieldPath}.image`}
+                    >
+                      Image coming soon
+                    </div>
+                  )}
+                </div>
+              </div>
+            </div>
+          </section>
+        );
+      }
+      case 'testimonials': {
+        const quotes = (section.quotes ?? [])
+          .map((quote) => ({
+            text: sanitizeString(quote.text ?? null),
+            author: sanitizeString(quote.author ?? null),
+            role: sanitizeString(quote.role ?? null),
+          }))
+          .filter((quote) => Boolean(quote.text));
+
+        if (quotes.length === 0) {
+          return null;
+        }
+
+        return (
+          <section
+            key={`structured-${index}-testimonials`}
+            className="py-16 sm:py-24 bg-stone-100"
+            data-nlv-field-path={sectionFieldPath}
+          >
+            <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+              <div className="grid gap-8 md:grid-cols-2">
+                {quotes.map((quote, quoteIndex) => (
+                  <blockquote
+                    key={`testimonials-${index}-${quoteIndex}`}
+                    className="bg-white rounded-2xl border border-stone-200 p-6 shadow-sm h-full flex flex-col"
+                    data-nlv-field-path={`${sectionFieldPath}.quotes.${quoteIndex}`}
+                  >
+                    <p className="text-stone-700 leading-relaxed flex-1">
+                      <span className="text-3xl leading-none text-stone-300" aria-hidden="true">“</span>
+                      <span className="ml-2 align-middle">{quote.text}</span>
+                    </p>
+                    <footer className="mt-4 text-sm text-stone-500">
+                      {quote.author && (
+                        <span
+                          className="font-semibold text-stone-700"
+                          data-nlv-field-path={`${sectionFieldPath}.quotes.${quoteIndex}.author`}
+                        >
+                          {quote.author}
+                        </span>
+                      )}
+                      {quote.role && (
+                        <span
+                          className="block"
+                          data-nlv-field-path={`${sectionFieldPath}.quotes.${quoteIndex}.role`}
+                        >
+                          {quote.role}
+                        </span>
+                      )}
+                    </footer>
+                  </blockquote>
+                ))}
+              </div>
+            </div>
+          </section>
+        );
+      }
+      default:
+        return null;
+    }
+  };
+
+  const renderedSections = homeSections
+    .map((_, index) => {
+      const structured = structuredSectionsByIndex.get(index);
+      if (structured) {
+        return renderStructuredSection(structured, index);
+      }
+
+      const legacy = legacySectionsByIndex.get(index);
+      if (legacy) {
+        return renderLegacySection(legacy, index);
+      }
+
+      return null;
+    })
+    .filter((section): section is React.ReactNode => Boolean(section));
 
   return (
     <div>
@@ -834,12 +1326,12 @@ const Home: React.FC = () => {
                 )}
                 <div className={`mt-8 flex flex-col sm:flex-row ${heroCtaAlignmentClass} gap-4`}>
                   <Link to="/shop" className={heroPrimaryButtonClasses}>
-                    <span data-nlv-field-path={`${homeFieldPath}.heroPrimaryCta`}>
+                    <span data-nlv-field-path={heroPrimaryCtaFieldPath}>
                       {heroPrimaryCta}
                     </span>
                   </Link>
                   <Link to="/for-clinics" className={heroSecondaryButtonClasses}>
-                    <span data-nlv-field-path={`${homeFieldPath}.heroSecondaryCta`}>
+                    <span data-nlv-field-path={heroSecondaryCtaFieldPath}>
                       {heroSecondaryCta}
                     </span>
                   </Link>
@@ -891,9 +1383,7 @@ const Home: React.FC = () => {
         fallbackCtaHref="/for-clinics"
         fallbackCtaLabel={t('home.ctaClinics')}
       />
-      {homeSections.length > 0 && (
-        <SectionRenderer sections={homeSections} fieldPath={homeSectionsFieldPath} />
-      )}
+      {renderedSections.length > 0 && renderedSections}
       <GalleryRows rows={galleryRowsData} fieldPath={`${homeFieldPath}.galleryRows`} />
       <Bestsellers intro={bestsellersIntro} introFieldPath={`${homeFieldPath}.bestsellersIntro`} />
       <Reviews />
