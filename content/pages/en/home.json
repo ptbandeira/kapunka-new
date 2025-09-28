@@ -20,21 +20,11 @@
     "image": ""
   },
   "newsletterPitch": "Get monthly updates on clinic protocols, ingredient sourcing, and new product drops tailored for sensitive skin pros.",
-  "heroHeadline": "Care that listens when skin is tender.",
-  "heroSubheadline": "Kapunka 2.0 blends Moroccan argan rituals with clinical empathy so reactive and post-procedure skin can breathe easier.",
   "heroAlignment": {
     "heroAlignX": "center",
     "heroAlignY": "middle",
     "heroLayoutHint": "text-over-media",
     "heroOverlay": true
-  },
-  "heroImages": {
-    "heroImageLeft": "",
-    "heroImageRight": ""
-  },
-  "heroCtas": {
-    "ctaPrimary": "Shop Kapunka 2.0 rituals",
-    "ctaSecondary": "Partner with our clinic team"
   },
   "galleryRows": [
     {
@@ -73,6 +63,7 @@
       ]
     }
   ],
+  "heroAlignX": "left",
   "sections": [
     {
       "type": "imageTextHalf",
@@ -112,6 +103,13 @@
       ]
     }
   ],
+  "heroAlignY": "middle",
+  "heroHeadline": "Care that listens when skin is tender.",
+  "heroTextPosition": "middle-left",
+  "heroImages": {
+    "heroImageLeft": "",
+    "heroImageRight": ""
+  },
   "metaTitle": "",
   "testimonials": [
     {
@@ -136,7 +134,12 @@
     "ctaLabel": "See the Kapunka method",
     "ctaHref": "#/method"
   },
+  "heroSubheadline": "Kapunka 2.0 blends Moroccan argan rituals with clinical empathy so reactive and post-procedure skin can breathe easier.",
   "bestsellersIntro": "Meet the three-step ritual clinics retail most—cleanse, replenish, and seal with nutrient-dense argan care.",
+  "heroCtas": {
+    "ctaPrimary": "Shop Kapunka 2.0 rituals",
+    "ctaSecondary": "Partner with our clinic team"
+  },
   "brandMini": {
     "title": "Why Kapunka",
     "body": "Born in Marrakech, Kapunka merges Moroccan hammam traditions with clinical formulation. Every batch is pressed in small lots, lab-tested, and bottled in recyclable glass.",
