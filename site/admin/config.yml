@@ -119,6 +119,9 @@ collections:
                       - { label: Globe, value: globe }
   - name: "assets_images"
     label: "Media / Images"
+    label_singular: "Image"
+    group: "4. Media / Images"
+    editor: { preview: false }
     folder: "content/assets/images"
     create: true
     slug: "{{slug}}"
@@ -138,6 +141,7 @@ collections:
           - { label: "y (0..1)", name: "y", widget: "number", value_type: "float", min: 0, max: 1, required: false }
   - name: pages
     label: Pages
+    group: "1. Pages"
     files:
       - name: home_en
         label: Home Page (English)
@@ -1774,6 +1778,7 @@ collections:
                       - { label: Spanish, name: es, widget: string }
   - name: products
     label: Products
+    group: "2. Products"
     files:
       - name: catalog
         label: Product Catalog
@@ -2042,7 +2047,8 @@ collections:
                       - { label: Portuguese, name: pt, widget: text }
                       - { label: Spanish, name: es, widget: text }
   - name: reviews
-    label: Reviews
+    label: Testimonials
+    group: "3. Testimonials"
     files:
       - name: reviews
         label: Testimonials
