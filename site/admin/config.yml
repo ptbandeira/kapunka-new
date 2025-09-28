@@ -117,6 +117,25 @@ collections:
                       - { label: LinkedIn, value: linkedin }
                       - { label: YouTube, value: youtube }
                       - { label: Globe, value: globe }
+  - name: "assets_images"
+    label: "Media / Images"
+    folder: "content/assets/images"
+    create: true
+    slug: "{{slug}}"
+    identifier_field: "title"
+    fields:
+      - { label: "Title", name: "title", widget: "string" }
+      - { label: "Image", name: "image", widget: "image", choose_url: false }
+      - { label: "Alt text", name: "alt", widget: "string", required: false, hint: "Descriptive text for accessibility/SEO" }
+      - { label: "Credit / Source", name: "credit", widget: "string", required: false }
+      - { label: "Tags", name: "tags", widget: "list", required: false }
+      - label: "Focal point"
+        name: "focal"
+        widget: "object"
+        required: false
+        fields:
+          - { label: "x (0..1)", name: "x", widget: "number", value_type: "float", min: 0, max: 1, required: false }
+          - { label: "y (0..1)", name: "y", widget: "number", value_type: "float", min: 0, max: 1, required: false }
   - name: pages
     label: Pages
     files:
