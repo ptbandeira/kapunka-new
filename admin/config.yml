@@ -6,9 +6,10 @@ shared_sections: &shared_sections
     fields:
       - { label: "Headline", name: "headline", widget: "string", i18n: true }
       - { label: "Subheadline", name: "subheadline", widget: "text", i18n: true, required: false }
-      - label: "Text Position"
+      - label: "Hero Text Position"
         name: "position"
         widget: "select"
+        hint: "Controls alignment on desktop & mobile."
         options: ["top-left","top-center","top-right","middle-left","middle-center","middle-right","bottom-left","bottom-center","bottom-right"]
         required: false
       - label: "Background Image"
