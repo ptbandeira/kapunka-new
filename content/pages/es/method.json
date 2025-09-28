@@ -3,6 +3,23 @@
   "metaDescription": "Protocolos limpios de argán que equilibran el trabajo cooperativo con la recuperación avalada por la dermatología.",
   "heroTitle": "Método Kapunka",
   "heroSubtitle": "Cuidado sensible arraigado en la tradición bereber y validado por la ciencia dérmica moderna.",
+  "clinicalNotes": [
+    {
+      "title": "Compromisos con el bosque y el abastecimiento",
+      "bullets": [
+        "Reserva de la biosfera de la UNESCO con 828 mil hectáreas",
+        "Las cooperativas de comercio justo coordinan la cosecha y los ingresos"
+      ]
+    },
+    {
+      "title": "Protocolo de clarificación",
+      "bullets": [
+        "Sin disolventes",
+        "Decantación física con doble filtrado",
+        "Sin refinado químico"
+      ]
+    }
+  ],
   "sections": [
     {
       "type": "facts",
