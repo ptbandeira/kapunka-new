@@ -190,6 +190,118 @@ const Method: React.FC = () => {
   const sectionsFieldPath = `${baseFieldPath}.sections`;
   const clinicalNotesFieldPath = `${baseFieldPath}.clinicalNotes`;
 
+  const renderSection = (section: MethodSection, index: number): React.ReactNode => {
+    const sectionFieldPath = `${sectionsFieldPath}.${index}`;
+    const animationDelay = index * 0.05;
+
+    if (section.type === 'facts') {
+      return (
+        <motion.article
+          key={`${section.type}-${index}`}
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.5, delay: animationDelay }}
+          className="max-w-3xl mx-auto text-center"
+          data-nlv-field-path={sectionFieldPath}
+        >
+          <h3
+            className="text-2xl font-semibold text-stone-900"
+            data-nlv-field-path={`${sectionFieldPath}.title`}
+          >
+            {section.title}
+          </h3>
+          <p
+            className="mt-4 text-stone-700 leading-relaxed"
+            data-nlv-field-path={`${sectionFieldPath}.text`}
+          >
+            {section.text}
+          </p>
+        </motion.article>
+      );
+    }
+
+    if (section.type === 'bullets') {
+      return (
+        <motion.article
+          key={`${section.type}-${index}`}
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.5, delay: animationDelay }}
+          className="max-w-3xl mx-auto"
+          data-nlv-field-path={sectionFieldPath}
+        >
+          <h3
+            className="text-2xl font-semibold text-stone-900"
+            data-nlv-field-path={`${sectionFieldPath}.title`}
+          >
+            {section.title}
+          </h3>
+          <ul className="mt-4 space-y-2 text-stone-700" data-nlv-field-path={`${sectionFieldPath}.items`}>
+            {section.items.map((item) => (
+              <li key={item} className="flex items-start gap-2">
+                <span className="mt-1 h-1.5 w-1.5 rounded-full bg-stone-400" aria-hidden="true" />
+                <span>{item}</span>
+              </li>
+            ))}
+          </ul>
+        </motion.article>
+      );
+    }
+
+    const specialtyItems = section.specialties ?? section.items ?? [];
+
+    return (
+      <motion.article
+        key={`${section.type}-${index}`}
+        initial={{ opacity: 0, y: 20 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.5, delay: animationDelay }}
+        className="max-w-3xl mx-auto"
+        data-nlv-field-path={sectionFieldPath}
+      >
+        {section.title ? (
+          <h3
+            className="text-2xl font-semibold text-stone-900"
+            data-nlv-field-path={`${sectionFieldPath}.title`}
+          >
+            {section.title}
+          </h3>
+        ) : null}
+        <div
+          className={`mt-6 space-y-4 ${section.title ? '' : 'mt-0'}`}
+          data-nlv-field-path={`${sectionFieldPath}.items`}
+        >
+          {specialtyItems.map((item, itemIndex) => (
+            <details
+              key={`${item.title}-${itemIndex}`}
+              className="group border border-stone-200 rounded-2xl px-4 py-3 bg-white/60 backdrop-blur-sm"
+            >
+              <summary className="cursor-pointer text-lg font-medium text-stone-900 list-none flex items-center justify-between gap-4">
+                <span data-nlv-field-path={`${sectionFieldPath}.items.${itemIndex}.title`}>{item.title}</span>
+                <span className="transition-transform duration-200 group-open:rotate-45 text-stone-400" aria-hidden="true">
+                  +
+                </span>
+              </summary>
+              <ul
+                className="mt-3 pl-4 space-y-2 text-stone-700"
+                data-nlv-field-path={`${sectionFieldPath}.items.${itemIndex}.bullets`}
+              >
+                {item.bullets.map((bullet, bulletIndex) => (
+                  <li key={`${item.title}-${bulletIndex}`} className="list-disc">
+                    {bullet}
+                  </li>
+                ))}
+              </ul>
+            </details>
+          ))}
+        </div>
+      </motion.article>
+    );
+  };
+
   return (
     <div>
       <Helmet>
@@ -262,113 +374,7 @@ const Method: React.FC = () => {
           ) : null}
 
           {hasSections ? (
-            sections.map((section, index) => {
-              const sectionFieldPath = `${sectionsFieldPath}.${index}`;
-
-              if (section.type === 'facts') {
-                return (
-                  <motion.article
-                    key={`${section.type}-${index}`}
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.5, delay: index * 0.05 }}
-                    className="max-w-3xl mx-auto text-center"
-                    data-nlv-field-path={sectionFieldPath}
-                  >
-                    <h3
-                      className="text-2xl font-semibold text-stone-900"
-                      data-nlv-field-path={`${sectionFieldPath}.title`}
-                    >
-                      {section.title}
-                    </h3>
-                    <p
-                      className="mt-4 text-stone-700 leading-relaxed"
-                      data-nlv-field-path={`${sectionFieldPath}.text`}
-                    >
-                      {section.text}
-                    </p>
-                  </motion.article>
-                );
-              }
-
-              if (section.type === 'bullets') {
-                return (
-                  <motion.article
-                    key={`${section.type}-${index}`}
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.5, delay: index * 0.05 }}
-                    className="max-w-3xl mx-auto"
-                    data-nlv-field-path={sectionFieldPath}
-                  >
-                    <h3
-                      className="text-2xl font-semibold text-stone-900"
-                      data-nlv-field-path={`${sectionFieldPath}.title`}
-                    >
-                      {section.title}
-                    </h3>
-                    <ul className="mt-4 space-y-2 text-stone-700" data-nlv-field-path={`${sectionFieldPath}.items`}>
-                      {section.items.map((item, itemIndex) => (
-                        <li key={item} className="flex items-start gap-2">
-                          <span className="mt-1 h-1.5 w-1.5 rounded-full bg-stone-400" aria-hidden="true" />
-                          <span>{item}</span>
-                        </li>
-                      ))}
-                    </ul>
-                  </motion.article>
-                );
-              }
-
-              const specialtyItems = section.specialties ?? section.items ?? [];
-
-              return (
-                <motion.article
-                  key={`${section.type}-${index}`}
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.5, delay: index * 0.05 }}
-                  className="max-w-3xl mx-auto"
-                  data-nlv-field-path={sectionFieldPath}
-                >
-                  {section.title ? (
-                    <h3
-                      className="text-2xl font-semibold text-stone-900"
-                      data-nlv-field-path={`${sectionFieldPath}.title`}
-                    >
-                      {section.title}
-                    </h3>
-                  ) : null}
-                  <div className={`mt-6 space-y-4 ${section.title ? '' : 'mt-0'}`} data-nlv-field-path={`${sectionFieldPath}.items`}>
-                    {specialtyItems.map((item, itemIndex) => (
-                      <details
-                        key={`${item.title}-${itemIndex}`}
-                        className="group border border-stone-200 rounded-2xl px-4 py-3 bg-white/60 backdrop-blur-sm"
-                      >
-                        <summary className="cursor-pointer text-lg font-medium text-stone-900 list-none flex items-center justify-between gap-4">
-                          <span data-nlv-field-path={`${sectionFieldPath}.items.${itemIndex}.title`}>{item.title}</span>
-                          <span className="transition-transform duration-200 group-open:rotate-45 text-stone-400" aria-hidden="true">
-                            +
-                          </span>
-                        </summary>
-                        <ul
-                          className="mt-3 pl-4 space-y-2 text-stone-700"
-                          data-nlv-field-path={`${sectionFieldPath}.items.${itemIndex}.bullets`}
-                        >
-                          {item.bullets.map((bullet, bulletIndex) => (
-                            <li key={`${item.title}-${bulletIndex}`} className="list-disc">
-                              {bullet}
-                            </li>
-                          ))}
-                        </ul>
-                      </details>
-                    ))}
-                  </div>
-                </motion.article>
-              );
-            })
+            sections.map(renderSection)
           ) : !hasClinicalNotes ? (
             <p
               className="text-center text-stone-600"
