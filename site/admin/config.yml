@@ -184,6 +184,21 @@ collections:
               - { label: Bottom, value: bottom }
             default: bottom
             required: false
+          - label: Hero Text Position
+            name: heroTextPosition
+            widget: select
+            options:
+              - { label: "Top Left", value: "top-left" }
+              - { label: "Top Center", value: "top-center" }
+              - { label: "Top Right", value: "top-right" }
+              - { label: "Middle Left", value: "middle-left" }
+              - { label: "Middle Center", value: "middle-center" }
+              - { label: "Middle Right", value: "middle-right" }
+              - { label: "Bottom Left", value: "bottom-left" }
+              - { label: "Bottom Center", value: "bottom-center" }
+              - { label: "Bottom Right", value: "bottom-right" }
+            required: false
+            hint: "Overrides Align X/Y if set."
           - label: Hero Overlay Strength
             name: heroOverlay
             widget: number
@@ -390,6 +405,21 @@ collections:
               - { label: Bottom, value: bottom }
             default: bottom
             required: false
+          - label: Hero Text Position
+            name: heroTextPosition
+            widget: select
+            options:
+              - { label: "Top Left", value: "top-left" }
+              - { label: "Top Center", value: "top-center" }
+              - { label: "Top Right", value: "top-right" }
+              - { label: "Middle Left", value: "middle-left" }
+              - { label: "Middle Center", value: "middle-center" }
+              - { label: "Middle Right", value: "middle-right" }
+              - { label: "Bottom Left", value: "bottom-left" }
+              - { label: "Bottom Center", value: "bottom-center" }
+              - { label: "Bottom Right", value: "bottom-right" }
+            required: false
+            hint: "Overrides Align X/Y if set."
           - label: Hero Overlay Strength
             name: heroOverlay
             widget: number
@@ -589,6 +619,21 @@ collections:
               - { label: Bottom, value: bottom }
             default: bottom
             required: false
+          - label: Hero Text Position
+            name: heroTextPosition
+            widget: select
+            options:
+              - { label: "Top Left", value: "top-left" }
+              - { label: "Top Center", value: "top-center" }
+              - { label: "Top Right", value: "top-right" }
+              - { label: "Middle Left", value: "middle-left" }
+              - { label: "Middle Center", value: "middle-center" }
+              - { label: "Middle Right", value: "middle-right" }
+              - { label: "Bottom Left", value: "bottom-left" }
+              - { label: "Bottom Center", value: "bottom-center" }
+              - { label: "Bottom Right", value: "bottom-right" }
+            required: false
+            hint: "Overrides Align X/Y if set."
           - label: Hero Overlay Strength
             name: heroOverlay
             widget: number

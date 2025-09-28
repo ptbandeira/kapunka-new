@@ -134,7 +134,7 @@ const heroMarkdownComponents: MarkdownComponents = {
     ),
 };
 
-type HeroHorizontalAlignment = 'left' | 'center';
+type HeroHorizontalAlignment = 'left' | 'center' | 'right';
 type HeroVerticalAlignment = 'top' | 'middle' | 'bottom';
 
 type HomePageContent = PageContent & {
@@ -147,22 +147,40 @@ type HomePageContent = PageContent & {
 const HERO_HORIZONTAL_ALIGNMENT_CONTAINER_CLASSES: Record<HeroHorizontalAlignment, string> = {
   left: 'items-start text-left',
   center: 'items-center text-center',
+  right: 'items-end text-right',
 };
 
 const HERO_HORIZONTAL_TEXT_ALIGNMENT_CLASSES: Record<HeroHorizontalAlignment, string> = {
   left: 'text-left',
   center: 'text-center',
+  right: 'text-right',
 };
 
 const HERO_CTA_ALIGNMENT_CLASSES: Record<HeroHorizontalAlignment, string> = {
   left: 'sm:justify-start',
   center: 'sm:justify-center',
+  right: 'sm:justify-end',
 };
 
 const HERO_VERTICAL_ALIGNMENT_CLASSES: Record<HeroVerticalAlignment, string> = {
   top: 'justify-start',
   middle: 'justify-center',
   bottom: 'justify-end',
+};
+
+const HERO_TEXT_POSITION_MAP: Record<
+  NonNullable<PageContent['heroTextPosition']>,
+  [HeroHorizontalAlignment, HeroVerticalAlignment]
+> = {
+  'top-left': ['left', 'top'],
+  'top-center': ['center', 'top'],
+  'top-right': ['right', 'top'],
+  'middle-left': ['left', 'middle'],
+  'middle-center': ['center', 'middle'],
+  'middle-right': ['right', 'middle'],
+  'bottom-left': ['left', 'bottom'],
+  'bottom-center': ['center', 'bottom'],
+  'bottom-right': ['right', 'bottom'],
 };
 
 let hasWarnedMissingHeroImages = false;
@@ -702,11 +720,23 @@ const Home: React.FC = () => {
   const heroImageRightUrl = pageContent?.heroImageRightUrl ?? pageContent?.heroImageRightRef ?? pageContent?.heroImageRight ?? null;
   const heroImageLeft = sanitizeString(heroImageLeftUrl);
   const heroImageRight = sanitizeString(heroImageRightUrl);
-  const heroAlignX: HeroHorizontalAlignment = pageContent?.heroAlignX === 'center' ? 'center' : 'left';
+  const heroTextPosition = pageContent?.heroTextPosition ?? undefined;
+  const [rawHeroAlignX, rawHeroAlignY] =
+    heroTextPosition && HERO_TEXT_POSITION_MAP[heroTextPosition]
+      ? HERO_TEXT_POSITION_MAP[heroTextPosition]
+      : [pageContent?.heroAlignX, pageContent?.heroAlignY];
+
+  const heroAlignX: HeroHorizontalAlignment =
+    rawHeroAlignX === 'center'
+      ? 'center'
+      : rawHeroAlignX === 'right'
+        ? 'right'
+        : 'left';
+
   const heroAlignY: HeroVerticalAlignment =
-    pageContent?.heroAlignY === 'top'
+    rawHeroAlignY === 'top'
       ? 'top'
-      : pageContent?.heroAlignY === 'middle'
+      : rawHeroAlignY === 'middle'
         ? 'middle'
         : 'bottom';
   const heroAlignmentClasses = `${HERO_HORIZONTAL_ALIGNMENT_CONTAINER_CLASSES[heroAlignX]} ${HERO_VERTICAL_ALIGNMENT_CLASSES[heroAlignY]}`;
