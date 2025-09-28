@@ -198,6 +198,44 @@ collections:
             fields:
               - { label: Primary CTA Label, name: ctaPrimary, widget: string }
               - { label: Secondary CTA Label, name: ctaSecondary, widget: string, required: false }
+          - label: "Sections"
+            name: "sections"
+            widget: "list"
+            types:
+              - label: "Value Pillars"
+                name: "pillars"
+                widget: "object"
+                summary: "Pillars: {{fields.title}}"
+                fields:
+                  - { label: "Title", name: "title", widget: "string", i18n: true }
+                  - label: "Items"
+                    name: "items"
+                    widget: "list"
+                    fields:
+                      - { label: "Label", name: "label", widget: "string", i18n: true }
+                      - { label: "Description", name: "description", widget: "text", required: false, i18n: true }
+                      - { label: "Icon/Image", name: "icon", widget: "image", required: false }
+              - label: "Image + Copy"
+                name: "mediaCopy"
+                widget: "object"
+                summary: "Media+Copy: {{fields.title}} ({{fields.layout}})"
+                fields:
+                  - { label: "Title", name: "title", widget: "string", i18n: true }
+                  - { label: "Body", name: "body", widget: "text", i18n: true }
+                  - { label: "Image", name: "image", widget: "image" }
+                  - { label: "Layout", name: "layout", widget: "select", options: ["image-left", "image-right"], default: "image-right" }
+              - label: "Testimonials"
+                name: "testimonials"
+                widget: "object"
+                summary: "Testimonials"
+                fields:
+                  - label: "Quotes"
+                    name: "quotes"
+                    widget: "list"
+                    fields:
+                      - { label: "Quote", name: "text", widget: "text", i18n: true }
+                      - { label: "Author", name: "author", widget: "string", i18n: true }
+                      - { label: "Role", name: "role", widget: "string", required: false, i18n: true }
           # keep existing fields after this unchanged
           - { label: Primary CTA Label, name: heroPrimaryCta, widget: string, required: false }
           - { label: Secondary CTA Label, name: heroSecondaryCta, widget: string, required: false }
@@ -379,28 +417,6 @@ collections:
                 widget: image
                 choose_url: true
                 required: false
-          - label: Sections
-            name: sections
-            widget: list
-            types:
-              - label: Image + Text (Half)
-                name: imageTextHalf
-                widget: object
-                fields:
-                  - { label: Image, name: image, widget: image, choose_url: true, required: false }
-                  - { label: Title, name: title, widget: string, required: false }
-                  - { label: Text, name: text, widget: markdown, required: false }
-              - label: Image Grid
-                name: imageGrid
-                widget: object
-                fields:
-                  - label: Items
-                    name: items
-                    widget: list
-                    fields:
-                      - { label: Image, name: image, widget: image, choose_url: true, required: false }
-                      - { label: Title, name: title, widget: string, required: false }
-                      - { label: Subtitle, name: subtitle, widget: string, required: false }
       - name: home_pt
         label: Home Page (Portuguese)
         file: content/pages/pt/home.json
