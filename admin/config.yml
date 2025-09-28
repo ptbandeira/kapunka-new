@@ -251,6 +251,9 @@ collections:
         label: Home Page
         file: content/pages/home.json
         format: json
+        editor:
+          preview: true
+        description: "Edit sections from top to bottom. Drag to reorder. Use Hero, Media+Copy, Feature Grid, Product Grid, Testimonials, FAQ, Banner, or Video."
         i18n: true
         fields: &home_page_fields
           - { label: Meta Title, name: metaTitle, widget: string, required: false }
@@ -477,6 +480,9 @@ collections:
         label: Shop Page
         file: content/pages/shop.json
         format: json
+        editor:
+          preview: true
+        description: "Edit sections from top to bottom. Drag to reorder. Use Hero, Media+Copy, Feature Grid, Product Grid, Testimonials, FAQ, Banner, or Video."
         i18n: true
         fields:
           - { label: Meta Title, name: metaTitle, widget: string, required: false }
@@ -486,6 +492,9 @@ collections:
         label: Learn Page
         file: content/pages/learn.json
         format: json
+        editor:
+          preview: true
+        description: "Edit sections from top to bottom. Drag to reorder. Use Hero, Media+Copy, Feature Grid, Product Grid, Testimonials, FAQ, Banner, or Video."
         i18n: true
         fields:
           - { label: Meta Title, name: metaTitle, widget: string, required: false }
@@ -495,6 +504,9 @@ collections:
         label: Method Page
         file: content/pages/method.json
         format: json
+        editor:
+          preview: true
+        description: "Edit sections from top to bottom. Drag to reorder. Use Hero, Media+Copy, Feature Grid, Product Grid, Testimonials, FAQ, Banner, or Video."
         i18n: true
         fields:
           - { label: Meta Title, name: metaTitle, widget: string, required: false }
@@ -516,6 +528,9 @@ collections:
         label: For Clinics Page
         file: content/pages/clinics.json
         format: json
+        editor:
+          preview: true
+        description: "Edit sections from top to bottom. Drag to reorder. Use Hero, Media+Copy, Feature Grid, Product Grid, Testimonials, FAQ, Banner, or Video."
         i18n: true
         fields:
           - { label: Meta Title, name: metaTitle, widget: string, required: false }
@@ -525,6 +540,9 @@ collections:
         label: About Page
         file: content/pages/about.json
         format: json
+        editor:
+          preview: true
+        description: "Edit sections from top to bottom. Drag to reorder. Use Hero, Media+Copy, Feature Grid, Product Grid, Testimonials, FAQ, Banner, or Video."
         i18n: true
         fields:
           - { label: Meta Title, name: metaTitle, widget: string, required: false }
@@ -550,6 +568,9 @@ collections:
         label: Contact Page
         file: content/pages/contact.json
         format: json
+        editor:
+          preview: true
+        description: "Edit sections from top to bottom. Drag to reorder. Use Hero, Media+Copy, Feature Grid, Product Grid, Testimonials, FAQ, Banner, or Video."
         i18n: true
         fields:
           - { label: Meta Title, name: metaTitle, widget: string, required: false }
