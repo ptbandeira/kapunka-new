@@ -6,9 +6,14 @@
     "clinicsCtaHref": "#/for-clinics",
     "clinicsImage": ""
   },
+  "ctaSecondary": "Clinics partnership",
   "meta": {
     "metaTitle": "Kapunka Skincare | Moroccan Argan Rituals for Clinics & Sensitive Skin",
     "metaDescription": "Kapunka formulates Moroccan argan oils, mists, and hammam treatments trusted by aesthetic clinics for post-procedure recovery, barrier repair, and daily rituals."
+  },
+  "brandIntro": {
+    "title": "Born from gratitude",
+    "text": "Kapunka means “thank you.” We make pure argan care with clinical respect—simple routines that comfort skin and support healing. Our oil is cooperatively sourced in Morocco and clarified without solvents."
   },
   "founderMini": {
     "title": "Meet Founder Kenza Khouchach",
@@ -55,11 +60,8 @@
       ]
     }
   ],
-  "ctaPrimary": "Shop rituals",
-  "ctaSecondary": "Clinics partnership",
-  "heroAlignX": "center",
-  "heroAlignY": "middle",
   "heroLayoutHint": "image-full",
+  "heroAlignX": "left",
   "sections": [
     {
       "type": "imageTextHalf",
@@ -99,7 +101,9 @@
       ]
     }
   ],
+  "heroAlignY": "middle",
   "heroHeadline": "Thank your skin.",
+  "ctaPrimary": "Shop rituals",
   "metaTitle": "Kapunka Skincare | Moroccan Argan Rituals for Clinics & Sensitive Skin",
   "testimonials": [
     {
@@ -128,10 +132,6 @@
   },
   "heroSubheadline": "Gentle argan rituals from Morocco, made for sensitive and post-procedure skin. Welcome to Kapunka 2.0—care that feels human.",
   "heroImageRight": "",
-  "brandIntro": {
-    "title": "Born from gratitude",
-    "text": "Kapunka means “thank you.” We make pure argan care with clinical respect—simple routines that comfort skin and support healing. Our oil is cooperatively sourced in Morocco and clarified without solvents."
-  },
   "bestsellersIntro": "Meet the three-step ritual clinics retail most—cleanse, replenish, and seal with nutrient-dense argan care.",
   "brandMini": {
     "title": "Why Kapunka",
