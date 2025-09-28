@@ -794,6 +794,24 @@ collections:
         file: content/pages/en/story.json
         format: json
         fields:
+          - { label: Meta Title, name: metaTitle, widget: string, required: false }
+          - { label: Meta Description, name: metaDescription, widget: text, required: false }
+          - { label: Intro Tagline, name: tagline, widget: string, required: false }
+          - label: Story Blocks
+            name: story
+            widget: list
+            required: false
+            fields:
+              - { label: Heading, name: heading, widget: string }
+              - { label: Body, name: body, widget: markdown }
+              - label: Image (Ref)
+                name: imageRef
+                widget: relation
+                collection: assets_images
+                search_fields: ["title", "tags.*"]
+                value_field: image
+                display_fields: ["title"]
+                required: false
           - label: Sections
             name: sections
             widget: list
@@ -817,6 +835,24 @@ collections:
         file: content/pages/pt/story.json
         format: json
         fields:
+          - { label: Meta Title, name: metaTitle, widget: string, required: false }
+          - { label: Meta Description, name: metaDescription, widget: text, required: false }
+          - { label: Intro Tagline, name: tagline, widget: string, required: false }
+          - label: Story Blocks
+            name: story
+            widget: list
+            required: false
+            fields:
+              - { label: Heading, name: heading, widget: string }
+              - { label: Body, name: body, widget: markdown }
+              - label: Image (Ref)
+                name: imageRef
+                widget: relation
+                collection: assets_images
+                search_fields: ["title", "tags.*"]
+                value_field: image
+                display_fields: ["title"]
+                required: false
           - label: Sections
             name: sections
             widget: list
@@ -840,6 +876,24 @@ collections:
         file: content/pages/es/story.json
         format: json
         fields:
+          - { label: Meta Title, name: metaTitle, widget: string, required: false }
+          - { label: Meta Description, name: metaDescription, widget: text, required: false }
+          - { label: Intro Tagline, name: tagline, widget: string, required: false }
+          - label: Story Blocks
+            name: story
+            widget: list
+            required: false
+            fields:
+              - { label: Heading, name: heading, widget: string }
+              - { label: Body, name: body, widget: markdown }
+              - label: Image (Ref)
+                name: imageRef
+                widget: relation
+                collection: assets_images
+                search_fields: ["title", "tags.*"]
+                value_field: image
+                display_fields: ["title"]
+                required: false
           - label: Sections
             name: sections
             widget: list
@@ -1603,6 +1657,16 @@ collections:
           - { label: Meta Description, name: metaDescription, widget: text, required: false }
           - { label: Hero Title, name: heroTitle, widget: string, required: false }
           - { label: Hero Subtitle, name: heroSubtitle, widget: text, required: false }
+          - label: Clinical Notes
+            name: clinicalNotes
+            widget: list
+            required: false
+            fields:
+              - { label: Title, name: title, widget: string }
+              - label: Bullets
+                name: bullets
+                widget: list
+                field: { label: Item, name: item, widget: string }
           - label: Sections
             name: sections
             widget: list
@@ -1645,6 +1709,16 @@ collections:
           - { label: Meta Description, name: metaDescription, widget: text, required: false }
           - { label: Hero Title, name: heroTitle, widget: string, required: false }
           - { label: Hero Subtitle, name: heroSubtitle, widget: text, required: false }
+          - label: Clinical Notes
+            name: clinicalNotes
+            widget: list
+            required: false
+            fields:
+              - { label: Title, name: title, widget: string }
+              - label: Bullets
+                name: bullets
+                widget: list
+                field: { label: Item, name: item, widget: string }
           - label: Sections
             name: sections
             widget: list
@@ -1687,6 +1761,16 @@ collections:
           - { label: Meta Description, name: metaDescription, widget: text, required: false }
           - { label: Hero Title, name: heroTitle, widget: string, required: false }
           - { label: Hero Subtitle, name: heroSubtitle, widget: text, required: false }
+          - label: Clinical Notes
+            name: clinicalNotes
+            widget: list
+            required: false
+            fields:
+              - { label: Title, name: title, widget: string }
+              - label: Bullets
+                name: bullets
+                widget: list
+                field: { label: Item, name: item, widget: string }
           - label: Sections
             name: sections
             widget: list

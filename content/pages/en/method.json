@@ -3,6 +3,23 @@
   "metaDescription": "Clean argan protocols that balance rural stewardship with dermatology-backed recovery.",
   "heroTitle": "Method Kapunka",
   "heroSubtitle": "Sensitive care rooted in Berber tradition and validated with modern dermal science.",
+  "clinicalNotes": [
+    {
+      "title": "Forest & sourcing commitments",
+      "bullets": [
+        "UNESCO biosphere reserve spanning 828k hectares",
+        "Fair-trade cooperatives oversee harvesting and revenue"
+      ]
+    },
+    {
+      "title": "Clarification protocol",
+      "bullets": [
+        "No solvents",
+        "Physical decanting then double filtration",
+        "No chemical refining"
+      ]
+    }
+  ],
   "sections": [
     {
       "type": "facts",
