@@ -22,6 +22,37 @@ import type {
   PageContent,
 } from '../types';
 
+type HomeSection =
+  | {
+      type: 'hero';
+      headline?: string;
+      subheadline?: string;
+      ctaPrimary?: string;
+      ctaSecondary?: string;
+      image?: string;
+      imageRef?: string;
+      overlay?: boolean;
+      position?:
+        | 'top-left'
+        | 'top-center'
+        | 'top-right'
+        | 'middle-left'
+        | 'middle-center'
+        | 'middle-right'
+        | 'bottom-left'
+        | 'bottom-center'
+        | 'bottom-right';
+    }
+  | {
+      type: 'mediaCopy';
+      title?: string;
+      body?: string;
+      image?: string;
+      imageRef?: string;
+      layout?: 'image-left' | 'image-right';
+      columns?: number;
+    };
+
 const heroAlignmentSchema = z
   .object({
     heroAlignX: z.enum(['left', 'center', 'right']).optional(),
@@ -253,6 +284,7 @@ type HomePageContent = PageContent & {
   rawSections: SectionEntry[];
   structuredSectionEntries: StructuredSectionEntry[];
   legacySectionEntries: LegacySectionEntry[];
+  localSections: HomeSection[];
 };
 
 const HERO_HORIZONTAL_ALIGNMENT_CONTAINER_CLASSES: Record<HeroHorizontalAlignment, string> = {
@@ -844,6 +876,11 @@ const Home: React.FC = () => {
             heroCtas,
             ...rest
           } = parsedResult.data;
+          const sections: HomeSection[] = Array.isArray(parsedResult.data?.sections)
+            ? (parsedResult.data.sections.filter((section): section is HomeSection =>
+                section?.type === 'hero' || section?.type === 'mediaCopy'
+              ))
+            : [];
 
           const structuredSectionEntries = rawSections.reduce<StructuredSectionEntry[]>((acc, section, index) => {
             const parsedSection = structuredSectionSchema.safeParse(section);
@@ -888,6 +925,7 @@ const Home: React.FC = () => {
             rawSections,
             structuredSectionEntries,
             legacySectionEntries,
+            localSections: sections,
             sections: legacySectionEntries.map((entry) => entry.section as PageSection),
           };
 
@@ -914,6 +952,8 @@ const Home: React.FC = () => {
 
   const sanitizeString = (value?: string | null): string | undefined =>
     value && value.trim().length > 0 ? value.trim() : undefined;
+
+  const pickImage = (local?: string, ref?: string) => local || ref || null;
 
   const homeFieldPath = `pages.home_${language}`;
   const heroHeadline = sanitizeString(pageContent?.heroHeadline) ?? t('home.heroTitle');
@@ -1022,6 +1062,7 @@ const Home: React.FC = () => {
         ? `${homeFieldPath}.heroCtaSecondary`
         : `${homeFieldPath}.ctaSecondary`;
 
+  const sections = Array.isArray(pageContent?.localSections) ? pageContent.localSections : [];
   const homeSections = pageContent?.rawSections ?? [];
   const homeSectionsFieldPath = `${homeFieldPath}.sections`;
   const computedTitle = pageContent?.metaTitle ?? `Kapunka Skincare | ${t('home.metaTitle')}`;
@@ -1047,6 +1088,221 @@ const Home: React.FC = () => {
     });
     return map;
   }, [pageContent]);
+
+  const renderSection = (section: HomeSection, index: number): React.ReactNode => {
+    const sectionFieldPath = `${homeFieldPath}.sections[${index}]`;
+
+    switch (section.type) {
+      case 'hero': {
+        const mapPos = (
+          pos?: HomeSection['position'],
+        ): { x: HeroHorizontalAlignment; y: HeroVerticalAlignment } => {
+          switch (pos) {
+            case 'top-left':
+              return { x: 'left', y: 'top' };
+            case 'top-center':
+              return { x: 'center', y: 'top' };
+            case 'top-right':
+              return { x: 'right', y: 'top' };
+            case 'middle-left':
+              return { x: 'left', y: 'middle' };
+            case 'middle-center':
+              return { x: 'center', y: 'middle' };
+            case 'middle-right':
+              return { x: 'right', y: 'middle' };
+            case 'bottom-left':
+              return { x: 'left', y: 'bottom' };
+            case 'bottom-center':
+              return { x: 'center', y: 'bottom' };
+            case 'bottom-right':
+              return { x: 'right', y: 'bottom' };
+            default:
+              return { x: heroAlignX, y: heroAlignY };
+          }
+        };
+
+        const { x: sectionAlignX, y: sectionAlignY } = mapPos(section.position);
+        const sectionAlignmentClasses = `${HERO_HORIZONTAL_ALIGNMENT_CONTAINER_CLASSES[sectionAlignX]} ${HERO_VERTICAL_ALIGNMENT_CLASSES[sectionAlignY]}`;
+        const sectionMiddleNudge = heroLayoutHint === 'image-full' && sectionAlignY === 'middle' ? 'pb-24 md:pb-28' : '';
+        const sectionTextAlignmentClass = HERO_HORIZONTAL_TEXT_ALIGNMENT_CLASSES[sectionAlignX];
+        const sectionCtaAlignmentClass = HERO_CTA_ALIGNMENT_CLASSES[sectionAlignX];
+        const headline = sanitizeString(section.headline ?? null) ?? heroHeadline;
+        const subheadline = sanitizeString(section.subheadline ?? null) ?? heroSubheadline;
+        const primaryCta = sanitizeString(section.ctaPrimary ?? null) ?? heroPrimaryCta;
+        const secondaryCta = sanitizeString(section.ctaSecondary ?? null) ?? heroSecondaryCta;
+        const heroImageOverride = sanitizeString(pickImage(section.image, section.imageRef));
+        const inlineImageCandidate = (() => {
+          if (heroLayoutHint === 'image-left') {
+            return heroImageOverride ?? heroImageLeft ?? heroImageRight;
+          }
+
+          if (heroLayoutHint === 'image-right') {
+            return heroImageOverride ?? heroImageRight ?? heroImageLeft;
+          }
+
+          return heroImageOverride ?? heroImageRight ?? heroImageLeft;
+        })();
+        const sectionShouldRenderInlineImage = Boolean(inlineImageCandidate && heroLayoutHint !== 'image-full');
+        const sectionBackgroundImage = heroLayoutHint === 'image-full'
+          ? inlineImageCandidate ?? heroImageOverride ?? heroImageRight ?? heroImageLeft ?? siteHeroImage
+          : siteHeroImage;
+        const overlayColor = section.overlay === false ? 'rgba(0,0,0,0)' : heroOverlay;
+        const sectionOverlayStyle: React.CSSProperties = sectionShouldRenderInlineImage
+          ? { background: 'linear-gradient(90deg, rgba(255,255,255,0.92) 0%, rgba(255,255,255,0.7) 100%)' }
+          : { background: overlayColor };
+        const sectionTextColorClass = sectionShouldRenderInlineImage ? 'text-stone-900' : 'text-white';
+        const sectionPrimaryButtonClasses = sectionShouldRenderInlineImage
+          ? 'px-8 py-3 bg-stone-900 text-white font-semibold rounded-md hover:bg-stone-700 transition-colors'
+          : 'px-8 py-3 bg-white text-stone-900 font-semibold rounded-md hover:bg-white/90 transition-colors';
+        const sectionSecondaryButtonClasses = sectionShouldRenderInlineImage
+          ? 'px-8 py-3 bg-white/70 backdrop-blur-sm text-stone-900 font-semibold rounded-md hover:bg-white transition-colors'
+          : 'px-8 py-3 border border-white/50 text-white font-semibold rounded-md hover:bg-white/10 transition-colors';
+        const sectionGridClasses = sectionShouldRenderInlineImage
+          ? 'grid grid-cols-1 lg:grid-cols-2 gap-12 items-center'
+          : 'flex flex-col items-center text-center';
+        const sectionTextWrapperBaseClasses = sectionShouldRenderInlineImage
+          ? `${heroLayoutHint === 'image-left' ? 'order-1 lg:order-2' : 'order-1'} space-y-6 max-w-xl`
+          : 'space-y-6 max-w-3xl mx-auto';
+        const sectionTextWrapperClasses = `${sectionTextWrapperBaseClasses} ${sectionTextAlignmentClass}`;
+        const sectionImageWrapperClasses = sectionShouldRenderInlineImage
+          ? `${heroLayoutHint === 'image-left' ? 'order-2 lg:order-1' : 'order-2'} w-full`
+          : '';
+        const heroImageFieldKey = section.image ? 'image' : section.imageRef ? 'imageRef' : 'image';
+        const heroImageFieldPathForSection = `${sectionFieldPath}.${heroImageFieldKey}`;
+
+        return (
+          <div
+            key={`section-hero-${index}`}
+            className="relative h-screen bg-cover bg-center"
+            style={{ backgroundImage: `url('${sectionBackgroundImage}')` }}
+            data-nlv-field-path={sectionFieldPath}
+          >
+            <div className="absolute inset-0" style={sectionOverlayStyle}></div>
+            <div className={`relative h-full flex ${sectionAlignmentClasses} ${sectionMiddleNudge}`}>
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.8, ease: 'easeOut' }}
+                className={`w-full ${sectionTextColorClass}`}
+              >
+                <div className={`container mx-auto px-4 sm:px-6 lg:px-8 ${sectionGridClasses}`}>
+                  <div className={sectionTextWrapperClasses}>
+                    <h1
+                      className="text-4xl md:text-6xl font-semibold tracking-tight"
+                      data-nlv-field-path={`${sectionFieldPath}.headline`}
+                    >
+                      {headline}
+                    </h1>
+                    {subheadline && (
+                      <div data-nlv-field-path={`${sectionFieldPath}.subheadline`}>
+                        <ReactMarkdown components={heroMarkdownComponents}>
+                          {subheadline}
+                        </ReactMarkdown>
+                      </div>
+                    )}
+                    <div className={`mt-8 flex flex-col sm:flex-row ${sectionCtaAlignmentClass} gap-4`}>
+                      <Link to="/shop" className={sectionPrimaryButtonClasses}>
+                        <span data-nlv-field-path={`${sectionFieldPath}.ctaPrimary`}>
+                          {primaryCta}
+                        </span>
+                      </Link>
+                      <Link to="/for-clinics" className={sectionSecondaryButtonClasses}>
+                        <span data-nlv-field-path={`${sectionFieldPath}.ctaSecondary`}>
+                          {secondaryCta}
+                        </span>
+                      </Link>
+                    </div>
+                  </div>
+                  {sectionShouldRenderInlineImage && inlineImageCandidate && (
+                    <motion.div
+                      initial={{ opacity: 0, y: 20 }}
+                      whileInView={{ opacity: 1, y: 0 }}
+                      viewport={{ once: true }}
+                      transition={{ duration: 0.6, delay: 0.1 }}
+                      className={sectionImageWrapperClasses}
+                    >
+                      <img
+                        src={inlineImageCandidate}
+                        alt={headline}
+                        className="w-full max-h-[540px] rounded-lg shadow-lg object-cover"
+                        data-nlv-field-path={heroImageFieldPathForSection}
+                      />
+                    </motion.div>
+                  )}
+                </div>
+              </motion.div>
+            </div>
+          </div>
+        );
+      }
+      case 'mediaCopy': {
+        const title = sanitizeString(section.title ?? null);
+        const body = sanitizeString(section.body ?? null);
+        const mediaImage = sanitizeString(pickImage(section.image, section.imageRef));
+        if (!title && !body && !mediaImage) {
+          return null;
+        }
+
+        const layout = section.layout === 'image-left' ? 'image-left' : 'image-right';
+        const columns = Math.min(Math.max(section.columns ?? 2, 1), 3);
+        const gridColumnsClass = columns === 1 ? 'lg:grid-cols-1' : columns === 3 ? 'lg:grid-cols-3' : 'lg:grid-cols-2';
+        const gridClasses = `grid grid-cols-1 ${gridColumnsClass} gap-10 items-center`;
+        const textColumnClasses = layout === 'image-left' ? 'order-2 lg:order-1 space-y-6' : 'order-1 space-y-6';
+        const imageColumnClasses = layout === 'image-left' ? 'order-1 lg:order-2' : 'order-2';
+        const imageFieldKey = section.image ? 'image' : section.imageRef ? 'imageRef' : 'image';
+
+        return (
+          <section
+            key={`section-mediaCopy-${index}`}
+            className="py-16 sm:py-24 bg-white"
+            data-nlv-field-path={sectionFieldPath}
+          >
+            <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+              <div className={gridClasses}>
+                <div className={textColumnClasses}>
+                  {title && (
+                    <h2
+                      className="text-3xl sm:text-4xl font-semibold"
+                      data-nlv-field-path={`${sectionFieldPath}.title`}
+                    >
+                      {title}
+                    </h2>
+                  )}
+                  {body && (
+                    <div
+                      className="text-lg text-stone-600 space-y-4"
+                      data-nlv-field-path={`${sectionFieldPath}.body`}
+                    >
+                      <ReactMarkdown>{body}</ReactMarkdown>
+                    </div>
+                  )}
+                </div>
+                <div className={imageColumnClasses}>
+                  {mediaImage ? (
+                    <img
+                      src={mediaImage}
+                      alt={title ?? 'Media highlight'}
+                      className="w-full h-full object-cover rounded-lg shadow-sm"
+                      data-nlv-field-path={`${sectionFieldPath}.${imageFieldKey}`}
+                    />
+                  ) : (
+                    <div
+                      className="w-full aspect-[4/3] rounded-lg border border-dashed border-stone-300 bg-stone-100 flex items-center justify-center text-sm text-stone-400"
+                      data-nlv-field-path={`${sectionFieldPath}.${imageFieldKey}`}
+                    >
+                      Image coming soon
+                    </div>
+                  )}
+                </div>
+              </div>
+            </div>
+          </section>
+        );
+      }
+      default:
+        return null;
+    }
+  };
 
   const renderLegacySection = (section: LegacySection, index: number) => {
     const sectionFieldPath = `${homeSectionsFieldPath}.${index}`;
@@ -1298,104 +1554,114 @@ const Home: React.FC = () => {
     })
     .filter((section): section is React.ReactNode => Boolean(section));
 
+  const renderedLocalSections = sections
+    .map((section, index) => renderSection(section, index))
+    .filter((sectionNode): sectionNode is React.ReactNode => Boolean(sectionNode));
+
   return (
     <div>
-        <Helmet>
-            <title>{computedTitle}</title>
-            <meta name="description" content={computedDescription} />
-        </Helmet>
-      <div
-        className="relative h-screen bg-cover bg-center"
-        style={{ backgroundImage: `url('${heroBackgroundImage}')` }}
-        data-nlv-field-path="site.home.heroImage"
-      >
-        <div className="absolute inset-0" style={overlayStyle}></div>
-        <div className={`relative h-full flex ${heroAlignmentClasses} ${heroMiddleNudge}`}>
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, ease: 'easeOut' }}
-            className={`w-full ${heroTextColorClass}`}
+      <Helmet>
+        <title>{computedTitle}</title>
+        <meta name="description" content={computedDescription} />
+      </Helmet>
+      {renderedLocalSections.length > 0 ? (
+        renderedLocalSections
+      ) : (
+        <>
+          <div
+            className="relative h-screen bg-cover bg-center"
+            style={{ backgroundImage: `url('${heroBackgroundImage}')` }}
+            data-nlv-field-path="site.home.heroImage"
           >
-            <div className={`container mx-auto px-4 sm:px-6 lg:px-8 ${heroGridClasses}`}>
-              <div className={heroTextWrapperClasses}>
-                <h1
-                  className="text-4xl md:text-6xl font-semibold tracking-tight"
-                  data-nlv-field-path={`${homeFieldPath}.heroHeadline`}
-                >
-                  {heroHeadline}
-                </h1>
-                {heroSubheadline && (
-                  <div data-nlv-field-path={`${homeFieldPath}.heroSubheadline`}>
-                    <ReactMarkdown components={heroMarkdownComponents}>
-                      {heroSubheadline}
-                    </ReactMarkdown>
+            <div className="absolute inset-0" style={overlayStyle}></div>
+            <div className={`relative h-full flex ${heroAlignmentClasses} ${heroMiddleNudge}`}>
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.8, ease: 'easeOut' }}
+                className={`w-full ${heroTextColorClass}`}
+              >
+                <div className={`container mx-auto px-4 sm:px-6 lg:px-8 ${heroGridClasses}`}>
+                  <div className={heroTextWrapperClasses}>
+                    <h1
+                      className="text-4xl md:text-6xl font-semibold tracking-tight"
+                      data-nlv-field-path={`${homeFieldPath}.heroHeadline`}
+                    >
+                      {heroHeadline}
+                    </h1>
+                    {heroSubheadline && (
+                      <div data-nlv-field-path={`${homeFieldPath}.heroSubheadline`}>
+                        <ReactMarkdown components={heroMarkdownComponents}>
+                          {heroSubheadline}
+                        </ReactMarkdown>
+                      </div>
+                    )}
+                    <div className={`mt-8 flex flex-col sm:flex-row ${heroCtaAlignmentClass} gap-4`}>
+                      <Link to="/shop" className={heroPrimaryButtonClasses}>
+                        <span data-nlv-field-path={heroPrimaryCtaFieldPath}>
+                          {heroPrimaryCta}
+                        </span>
+                      </Link>
+                      <Link to="/for-clinics" className={heroSecondaryButtonClasses}>
+                        <span data-nlv-field-path={heroSecondaryCtaFieldPath}>
+                          {heroSecondaryCta}
+                        </span>
+                      </Link>
+                    </div>
                   </div>
-                )}
-                <div className={`mt-8 flex flex-col sm:flex-row ${heroCtaAlignmentClass} gap-4`}>
-                  <Link to="/shop" className={heroPrimaryButtonClasses}>
-                    <span data-nlv-field-path={heroPrimaryCtaFieldPath}>
-                      {heroPrimaryCta}
-                    </span>
-                  </Link>
-                  <Link to="/for-clinics" className={heroSecondaryButtonClasses}>
-                    <span data-nlv-field-path={heroSecondaryCtaFieldPath}>
-                      {heroSecondaryCta}
-                    </span>
-                  </Link>
+                  {shouldRenderInlineImage && heroInlineImage && (
+                    <motion.div
+                      initial={{ opacity: 0, y: 20 }}
+                      whileInView={{ opacity: 1, y: 0 }}
+                      viewport={{ once: true }}
+                      transition={{ duration: 0.6, delay: 0.1 }}
+                      className={heroImageWrapperClasses}
+                    >
+                      <img
+                        src={heroInlineImage}
+                        alt={heroImageAlt}
+                        className="w-full max-h-[540px] rounded-lg shadow-lg object-cover"
+                        data-nlv-field-path={heroImageFieldPath}
+                      />
+                    </motion.div>
+                  )}
                 </div>
-              </div>
-              {shouldRenderInlineImage && heroInlineImage && (
-                <motion.div
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.6, delay: 0.1 }}
-                  className={heroImageWrapperClasses}
+              </motion.div>
+            </div>
+          </div>
+          {(brandIntroTitle || brandIntroText) && (
+            <div className="container mx-auto max-w-3xl px-4 py-16 md:py-24">
+              {brandIntroTitle && (
+                <h2
+                  className="text-3xl sm:text-4xl font-semibold text-center"
+                  data-nlv-field-path={`${homeFieldPath}.brandIntro.title`}
                 >
-                  <img
-                    src={heroInlineImage}
-                    alt={heroImageAlt}
-                    className="w-full max-h-[540px] rounded-lg shadow-lg object-cover"
-                    data-nlv-field-path={heroImageFieldPath}
-                  />
-                </motion.div>
+                  {brandIntroTitle}
+                </h2>
+              )}
+              {brandIntroText && (
+                <p
+                  className="mt-6 prose prose-stone max-w-none text-stone-700 text-center"
+                  data-nlv-field-path={`${homeFieldPath}.brandIntro.text`}
+                >
+                  {brandIntroText}
+                </p>
               )}
             </div>
-          </motion.div>
-        </div>
-      </div>
-      {(brandIntroTitle || brandIntroText) && (
-        <div className="container mx-auto max-w-3xl px-4 py-16 md:py-24">
-          {brandIntroTitle && (
-            <h2
-              className="text-3xl sm:text-4xl font-semibold text-center"
-              data-nlv-field-path={`${homeFieldPath}.brandIntro.title`}
-            >
-              {brandIntroTitle}
-            </h2>
           )}
-          {brandIntroText && (
-            <p
-              className="mt-6 prose prose-stone max-w-none text-stone-700 text-center"
-              data-nlv-field-path={`${homeFieldPath}.brandIntro.text`}
-            >
-              {brandIntroText}
-            </p>
-          )}
-        </div>
+          <ClinicsBlock
+            data={clinicsBlockData}
+            fieldPath={`${homeFieldPath}.clinicsBlock`}
+            fallbackCtaHref="/for-clinics"
+            fallbackCtaLabel={t('home.ctaClinics')}
+          />
+          {renderedSections.length > 0 && renderedSections}
+          <GalleryRows rows={galleryRowsData} fieldPath={`${homeFieldPath}.galleryRows`} />
+          <Bestsellers intro={bestsellersIntro} introFieldPath={`${homeFieldPath}.bestsellersIntro`} />
+          <Reviews />
+          <NewsletterSignup />
+        </>
       )}
-      <ClinicsBlock
-        data={clinicsBlockData}
-        fieldPath={`${homeFieldPath}.clinicsBlock`}
-        fallbackCtaHref="/for-clinics"
-        fallbackCtaLabel={t('home.ctaClinics')}
-      />
-      {renderedSections.length > 0 && renderedSections}
-      <GalleryRows rows={galleryRowsData} fieldPath={`${homeFieldPath}.galleryRows`} />
-      <Bestsellers intro={bestsellersIntro} introFieldPath={`${homeFieldPath}.bestsellersIntro`} />
-      <Reviews />
-      <NewsletterSignup />
     </div>
   );
 };
