@@ -9,6 +9,11 @@ interface SpecialtyItem {
   bullets: string[];
 }
 
+interface ClinicalNote {
+  title: string;
+  bullets: string[];
+}
+
 type MethodSection =
   | {
       type: 'facts';
@@ -33,6 +38,7 @@ interface MethodPageContent {
   heroTitle?: string;
   heroSubtitle?: string;
   sections?: MethodSection[];
+  clinicalNotes?: ClinicalNote[];
 }
 
 const fallbackHeroTitles: Record<Language, string> = {
@@ -54,6 +60,19 @@ const isSpecialtyItem = (value: unknown): value is SpecialtyItem => {
 
   const item = value as Record<string, unknown>;
   return typeof item.title === 'string' && Array.isArray(item.bullets) && item.bullets.every((bullet) => typeof bullet === 'string');
+};
+
+const isClinicalNote = (value: unknown): value is ClinicalNote => {
+  if (!value || typeof value !== 'object') {
+    return false;
+  }
+
+  const note = value as Record<string, unknown>;
+  return (
+    typeof note.title === 'string'
+    && Array.isArray(note.bullets)
+    && note.bullets.every((bullet) => typeof bullet === 'string')
+  );
 };
 
 const isMethodSection = (value: unknown): value is MethodSection => {
@@ -97,6 +116,12 @@ const isMethodPageContent = (value: unknown): value is MethodPageContent => {
     }
   }
 
+  if (content.clinicalNotes !== undefined) {
+    if (!Array.isArray(content.clinicalNotes) || !content.clinicalNotes.every(isClinicalNote)) {
+      return false;
+    }
+  }
+
   return true;
 };
 
@@ -136,7 +161,9 @@ const Method: React.FC = () => {
         }
       }
 
-      setContent(null);
+      if (isMounted) {
+        setContent(null);
+      }
     };
 
     void loadContent();
@@ -151,9 +178,17 @@ const Method: React.FC = () => {
   const metaTitle = content?.metaTitle ?? heroTitle;
   const metaDescription = content?.metaDescription ?? fallbackMetaDescriptions[language];
   const sections = content?.sections ?? [];
+  const clinicalNotes = content?.clinicalNotes?.filter((note) => {
+    const hasTitle = note.title.trim().length > 0;
+    const hasBullets = note.bullets.some((bullet) => bullet.trim().length > 0);
+    return hasTitle || hasBullets;
+  }) ?? [];
+  const hasClinicalNotes = clinicalNotes.length > 0;
+  const hasSections = sections.length > 0;
 
   const baseFieldPath = `pages.method_${language}`;
   const sectionsFieldPath = `${baseFieldPath}.sections`;
+  const clinicalNotesFieldPath = `${baseFieldPath}.clinicalNotes`;
 
   return (
     <div>
@@ -187,7 +222,46 @@ const Method: React.FC = () => {
 
       <section className="py-16 sm:py-24">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-4xl space-y-16">
-          {sections.length > 0 ? (
+          {hasClinicalNotes ? (
+            <motion.section
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5 }}
+              className="space-y-8"
+              data-nlv-field-path={clinicalNotesFieldPath}
+            >
+              <div className="grid gap-12 md:grid-cols-2">
+                {clinicalNotes.map((note, noteIndex) => (
+                  <div
+                    key={`${note.title}-${noteIndex}`}
+                    className="space-y-4"
+                    data-nlv-field-path={`${clinicalNotesFieldPath}.${noteIndex}`}
+                  >
+                    <h3
+                      className="text-2xl font-semibold text-stone-900"
+                      data-nlv-field-path={`${clinicalNotesFieldPath}.${noteIndex}.title`}
+                    >
+                      {note.title}
+                    </h3>
+                    <ul
+                      className="space-y-2 text-stone-700"
+                      data-nlv-field-path={`${clinicalNotesFieldPath}.${noteIndex}.bullets`}
+                    >
+                      {note.bullets.map((bullet, bulletIndex) => (
+                        <li key={`${note.title}-${bulletIndex}`} className="flex items-start gap-2">
+                          <span className="mt-1 h-1.5 w-1.5 rounded-full bg-stone-400" aria-hidden="true" />
+                          <span>{bullet}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                ))}
+              </div>
+            </motion.section>
+          ) : null}
+
+          {hasSections ? (
             sections.map((section, index) => {
               const sectionFieldPath = `${sectionsFieldPath}.${index}`;
 
@@ -295,14 +369,14 @@ const Method: React.FC = () => {
                 </motion.article>
               );
             })
-          ) : (
+          ) : !hasClinicalNotes ? (
             <p
               className="text-center text-stone-600"
               data-nlv-field-path={`translations.${language}.common.loading`}
             >
               {t('common.loading')}
             </p>
-          )}
+          ) : null}
         </div>
       </section>
     </div>
