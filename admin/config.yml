@@ -159,10 +159,11 @@ collections:
     label: Pages
     group: "1. Pages"
     files:
-      - name: home_en
-        label: Home Page (English)
-        file: content/pages/en/home.json
+      - name: home
+        label: Home Page
+        file: content/pages/home.json
         format: json
+        i18n: true
         fields: &home_page_fields
           - { label: Meta Title, name: metaTitle, widget: string, required: false }
           - { label: Meta Description, name: metaDescription, widget: text, required: false }
@@ -427,20 +428,158 @@ collections:
                 widget: image
                 choose_url: true
                 required: false
-      - name: home_pt
-        label: Home Page (Portuguese)
-        file: content/pages/pt/home.json
+      - name: shop
+        label: Shop Page
+        file: content/pages/shop.json
         format: json
-        fields: *home_page_fields
-      - name: home_es
-        label: Home Page (Spanish)
-        file: content/pages/es/home.json
+        i18n: true
+        fields:
+          - { label: Meta Title, name: metaTitle, widget: string, required: false }
+          - { label: Meta Description, name: metaDescription, widget: text, required: false }
+          - &standard_sections_field
+            label: Sections
+            name: sections
+            widget: list
+            required: false
+            types:
+              - label: Timeline
+                name: timeline
+                widget: object
+                fields:
+                  - { label: Title, name: title, widget: string, required: false }
+                  - label: Entries
+                    name: entries
+                    widget: list
+                    summary: "{{fields.year}} — {{fields.title}}"
+                    fields:
+                      - { label: Year, name: year, widget: string, required: false }
+                      - { label: Title, name: title, widget: text, required: false }
+                      - { label: Description, name: description, widget: markdown, required: false }
+                      - { label: Image, name: image, widget: image, choose_url: true, required: false }
+              - label: Image + Copy
+                name: imageTextHalf
+                widget: object
+                fields:
+                  - { label: Title, name: title, widget: string, required: false }
+                  - { label: Body, name: text, widget: text, required: false }
+                  - { label: Image, name: image, widget: image, choose_url: true, required: false }
+              - label: Image Grid
+                name: imageGrid
+                widget: object
+                fields:
+                  - label: Items
+                    name: items
+                    widget: list
+                    summary: "{{fields.title}}"
+                    fields:
+                      - { label: Image, name: image, widget: image, choose_url: true, required: false }
+                      - { label: Title, name: title, widget: string, required: false }
+                      - { label: Subtitle, name: subtitle, widget: string, required: false }
+              - label: Video Gallery
+                name: videoGallery
+                widget: object
+                fields:
+                  - { label: Title, name: title, widget: string, required: false }
+                  - { label: Description, name: description, widget: text, required: false }
+                  - label: Videos
+                    name: entries
+                    widget: list
+                    summary: "{{fields.title}}"
+                    fields:
+                      - { label: Title, name: title, widget: string, required: false }
+                      - { label: Description, name: description, widget: text, required: false }
+                      - { label: Video URL, name: videoUrl, widget: string, required: false }
+                      - { label: Thumbnail, name: thumbnail, widget: image, choose_url: true, required: false }
+              - label: Training List
+                name: trainingList
+                widget: object
+                fields:
+                  - { label: Title, name: title, widget: string, required: false }
+                  - { label: Description, name: description, widget: text, required: false }
+                  - label: Trainings
+                    name: entries
+                    widget: list
+                    summary: "{{fields.courseTitle}}"
+                    fields:
+                      - { label: Course Title, name: courseTitle, widget: string, required: false }
+                      - { label: Course Summary, name: courseSummary, widget: text, required: false }
+                      - { label: Link URL, name: linkUrl, widget: string, required: false }
+      - name: learn
+        label: Learn Page
+        file: content/pages/learn.json
         format: json
-        fields: *home_page_fields
-      - name: story_en
-        label: Story Page (English)
-        file: content/pages/en/story.json
+        i18n: true
+        fields:
+          - { label: Meta Title, name: metaTitle, widget: string, required: false }
+          - { label: Meta Description, name: metaDescription, widget: text, required: false }
+          - *standard_sections_field
+      - name: method
+        label: Method Page
+        file: content/pages/method.json
         format: json
+        i18n: true
+        fields:
+          - { label: Meta Title, name: metaTitle, widget: string, required: false }
+          - { label: Meta Description, name: metaDescription, widget: text, required: false }
+          - { label: Hero Title, name: heroTitle, widget: string, required: false }
+          - { label: Hero Subtitle, name: heroSubtitle, widget: text, required: false }
+          - label: Clinical Notes
+            name: clinicalNotes
+            widget: list
+            required: false
+            fields:
+              - { label: Title, name: title, widget: string }
+              - label: Bullets
+                name: bullets
+                widget: list
+                field: { label: Item, name: item, widget: string }
+          - label: Sections
+            name: sections
+            widget: list
+            types:
+              - label: Fact Block
+                name: facts
+                widget: object
+                fields:
+                  - { label: Title, name: title, widget: string }
+                  - { label: Text, name: text, widget: text }
+              - label: Bullet List
+                name: bullets
+                widget: object
+                fields:
+                  - { label: Title, name: title, widget: string }
+                  - label: Items
+                    name: items
+                    widget: list
+                    field: { label: Item, name: item, widget: string }
+              - label: Specialties Accordion
+                name: specialties
+                widget: object
+                fields:
+                  - label: Specialties
+                    name: items
+                    widget: list
+                    summary: "{{fields.title}}"
+                    fields:
+                      - { label: Title, name: title, widget: string }
+                      - label: Bullets
+                        name: bullets
+                        widget: list
+                        field: { label: Bullet, name: bullet, widget: string }
+      - name: clinics
+        label: For Clinics Page
+        file: content/pages/clinics.json
+        format: json
+        i18n: true
+        fields:
+          - { label: Meta Title, name: metaTitle, widget: string, required: false }
+          - { label: Meta Description, name: metaDescription, widget: text, required: false }
+          - *standard_sections_field
+      - name: about
+        label: About Page
+        file: content/pages/about.json
+        format: json
+        i18n: true
         fields:
           - { label: Meta Title, name: metaTitle, widget: string, required: false }
           - { label: Meta Description, name: metaDescription, widget: text, required: false }
@@ -478,229 +617,15 @@ collections:
                       - { label: Title, name: title, widget: text }
                       - { label: Description, name: description, widget: markdown }
                       - { label: Image, name: image, widget: image, choose_url: true, required: false }
-      - name: story_pt
-        label: Story Page (Portuguese)
-        file: content/pages/pt/story.json
+      - name: contact
+        label: Contact Page
+        file: content/pages/contact.json
         format: json
+        i18n: true
         fields:
           - { label: Meta Title, name: metaTitle, widget: string, required: false }
           - { label: Meta Description, name: metaDescription, widget: text, required: false }
-          - { label: Intro Tagline, name: tagline, widget: string, required: false }
-          - label: Story Blocks
-            name: story
-            widget: list
-            required: false
-            fields:
-              - { label: Heading, name: heading, widget: string }
-              - { label: Body, name: body, widget: markdown }
-              - label: Image (Ref)
-                name: imageRef
-                widget: relation
-                collection: assets_images
-                search_fields: ["title", "tags.*"]
-                value_field: image
-                display_fields: ["title"]
-                required: false
-          - label: Sections
-            name: sections
-            widget: list
-            types:
-              - label: Timeline
-                name: timeline
-                widget: object
-                fields:
-                  - { label: Title, name: title, widget: string, required: false }
-                  - label: Entries
-                    name: entries
-                    widget: list
-                    summary: "{{fields.year}} — {{fields.title}}"
-                    fields:
-                      - { label: Year, name: year, widget: string }
-                      - { label: Title, name: title, widget: text }
-                      - { label: Description, name: description, widget: markdown }
-                      - { label: Image, name: image, widget: image, choose_url: true, required: false }
-      - name: story_es
-        label: Story Page (Spanish)
-        file: content/pages/es/story.json
-        format: json
-        fields:
-          - { label: Meta Title, name: metaTitle, widget: string, required: false }
-          - { label: Meta Description, name: metaDescription, widget: text, required: false }
-          - { label: Intro Tagline, name: tagline, widget: string, required: false }
-          - label: Story Blocks
-            name: story
-            widget: list
-            required: false
-            fields:
-              - { label: Heading, name: heading, widget: string }
-              - { label: Body, name: body, widget: markdown }
-              - label: Image (Ref)
-                name: imageRef
-                widget: relation
-                collection: assets_images
-                search_fields: ["title", "tags.*"]
-                value_field: image
-                display_fields: ["title"]
-                required: false
-          - label: Sections
-            name: sections
-            widget: list
-            types:
-              - label: Timeline
-                name: timeline
-                widget: object
-                fields:
-                  - { label: Title, name: title, widget: string, required: false }
-                  - label: Entries
-                    name: entries
-                    widget: list
-                    summary: "{{fields.year}} — {{fields.title}}"
-                    fields:
-                      - { label: Year, name: year, widget: string }
-                      - { label: Title, name: title, widget: text }
-                      - { label: Description, name: description, widget: markdown }
-                      - { label: Image, name: image, widget: image, choose_url: true, required: false }
-      - name: videos_en
-        label: Videos Page (English)
-        file: content/pages/en/videos.json
-        format: json
-        fields:
-          - label: Sections
-            name: sections
-            widget: list
-            types:
-              - label: Video Gallery
-                name: videoGallery
-                widget: object
-                fields:
-                  - { label: Title, name: title, widget: string, required: false }
-                  - { label: Description, name: description, widget: text, required: false }
-                  - label: Videos
-                    name: entries
-                    widget: list
-                    summary: "{{fields.title}}"
-                    fields:
-                      - { label: Title, name: title, widget: string, required: false }
-                      - { label: Description, name: description, widget: text, required: false }
-                      - { label: Video URL, name: videoUrl, widget: string, required: false }
-                      - { label: Thumbnail, name: thumbnail, widget: image, choose_url: true, required: false }
-      - name: videos_pt
-        label: Videos Page (Portuguese)
-        file: content/pages/pt/videos.json
-        format: json
-        fields:
-          - label: Sections
-            name: sections
-            widget: list
-            types:
-              - label: Video Gallery
-                name: videoGallery
-                widget: object
-                fields:
-                  - { label: Title, name: title, widget: string, required: false }
-                  - { label: Description, name: description, widget: text, required: false }
-                  - label: Videos
-                    name: entries
-                    widget: list
-                    summary: "{{fields.title}}"
-                    fields:
-                      - { label: Title, name: title, widget: string, required: false }
-                      - { label: Description, name: description, widget: text, required: false }
-                      - { label: Video URL, name: videoUrl, widget: string, required: false }
-                      - { label: Thumbnail, name: thumbnail, widget: image, choose_url: true, required: false }
-      - name: videos_es
-        label: Videos Page (Spanish)
-        file: content/pages/es/videos.json
-        format: json
-        fields:
-          - label: Sections
-            name: sections
-            widget: list
-            types:
-              - label: Video Gallery
-                name: videoGallery
-                widget: object
-                fields:
-                  - { label: Title, name: title, widget: string, required: false }
-                  - { label: Description, name: description, widget: text, required: false }
-                  - label: Videos
-                    name: entries
-                    widget: list
-                    summary: "{{fields.title}}"
-                    fields:
-                      - { label: Title, name: title, widget: string, required: false }
-                      - { label: Description, name: description, widget: text, required: false }
-                      - { label: Video URL, name: videoUrl, widget: string, required: false }
-                      - { label: Thumbnail, name: thumbnail, widget: image, choose_url: true, required: false }
-      - name: training_en
-        label: Training Page (English)
-        file: content/pages/en/training.json
-        format: json
-        fields:
-          - label: Sections
-            name: sections
-            widget: list
-            types:
-              - label: Training List
-                name: trainingList
-                widget: object
-                fields:
-                  - { label: Title, name: title, widget: string, required: false }
-                  - { label: Description, name: description, widget: text, required: false }
-                  - label: Trainings
-                    name: entries
-                    widget: list
-                    summary: "{{fields.courseTitle}}"
-                    fields:
-                      - { label: Course Title, name: courseTitle, widget: string, required: false }
-                      - { label: Course Summary, name: courseSummary, widget: text, required: false }
-                      - { label: Link URL, name: linkUrl, widget: string, required: false }
-      - name: training_pt
-        label: Training Page (Portuguese)
-        file: content/pages/pt/training.json
-        format: json
-        fields:
-          - label: Sections
-            name: sections
-            widget: list
-            types:
-              - label: Training List
-                name: trainingList
-                widget: object
-                fields:
-                  - { label: Title, name: title, widget: string, required: false }
-                  - { label: Description, name: description, widget: text, required: false }
-                  - label: Trainings
-                    name: entries
-                    widget: list
-                    summary: "{{fields.courseTitle}}"
-                    fields:
-                      - { label: Course Title, name: courseTitle, widget: string, required: false }
-                      - { label: Course Summary, name: courseSummary, widget: text, required: false }
-                      - { label: Link URL, name: linkUrl, widget: string, required: false }
-      - name: training_es
-        label: Training Page (Spanish)
-        file: content/pages/es/training.json
-        format: json
-        fields:
-          - label: Sections
-            name: sections
-            widget: list
-            types:
-              - label: Training List
-                name: trainingList
-                widget: object
-                fields:
-                  - { label: Title, name: title, widget: string, required: false }
-                  - { label: Description, name: description, widget: text, required: false }
-                  - label: Trainings
-                    name: entries
-                    widget: list
-                    summary: "{{fields.courseTitle}}"
-                    fields:
-                      - { label: Course Title, name: courseTitle, widget: string, required: false }
-                      - { label: Course Summary, name: courseSummary, widget: text, required: false }
-                      - { label: Link URL, name: linkUrl, widget: string, required: false }
+          - *standard_sections_field
   - name: translations
     label: Translations
     files:
@@ -1293,165 +1218,6 @@ collections:
           - <<: *clinics_fields
             label: Spanish
             name: es
-  - name: method
-    label: Method Page
-    files:
-      - name: method_en
-        label: Method Page (English)
-        file: content/pages/en/method.json
-        format: json
-        fields:
-          - { label: Meta Title, name: metaTitle, widget: string, required: false }
-          - { label: Meta Description, name: metaDescription, widget: text, required: false }
-          - { label: Hero Title, name: heroTitle, widget: string, required: false }
-          - { label: Hero Subtitle, name: heroSubtitle, widget: text, required: false }
-          - label: Clinical Notes
-            name: clinicalNotes
-            widget: list
-            required: false
-            fields:
-              - { label: Title, name: title, widget: string }
-              - label: Bullets
-                name: bullets
-                widget: list
-                field: { label: Item, name: item, widget: string }
-          - label: Sections
-            name: sections
-            widget: list
-            types:
-              - label: Fact Block
-                name: facts
-                widget: object
-                fields:
-                  - { label: Title, name: title, widget: string }
-                  - { label: Text, name: text, widget: text }
-              - label: Bullet List
-                name: bullets
-                widget: object
-                fields:
-                  - { label: Title, name: title, widget: string }
-                  - label: Items
-                    name: items
-                    widget: list
-                    field: { label: Item, name: item, widget: string }
-              - label: Specialties Accordion
-                name: specialties
-                widget: object
-                fields:
-                  - label: Specialties
-                    name: items
-                    widget: list
-                    summary: "{{fields.title}}"
-                    fields:
-                      - { label: Title, name: title, widget: string }
-                      - label: Bullets
-                        name: bullets
-                        widget: list
-                        field: { label: Bullet, name: bullet, widget: string }
-      - name: method_pt
-        label: Method Page (Portuguese)
-        file: content/pages/pt/method.json
-        format: json
-        fields:
-          - { label: Meta Title, name: metaTitle, widget: string, required: false }
-          - { label: Meta Description, name: metaDescription, widget: text, required: false }
-          - { label: Hero Title, name: heroTitle, widget: string, required: false }
-          - { label: Hero Subtitle, name: heroSubtitle, widget: text, required: false }
-          - label: Clinical Notes
-            name: clinicalNotes
-            widget: list
-            required: false
-            fields:
-              - { label: Title, name: title, widget: string }
-              - label: Bullets
-                name: bullets
-                widget: list
-                field: { label: Item, name: item, widget: string }
-          - label: Sections
-            name: sections
-            widget: list
-            types:
-              - label: Fact Block
-                name: facts
-                widget: object
-                fields:
-                  - { label: Title, name: title, widget: string }
-                  - { label: Text, name: text, widget: text }
-              - label: Bullet List
-                name: bullets
-                widget: object
-                fields:
-                  - { label: Title, name: title, widget: string }
-                  - label: Items
-                    name: items
-                    widget: list
-                    field: { label: Item, name: item, widget: string }
-              - label: Specialties Accordion
-                name: specialties
-                widget: object
-                fields:
-                  - label: Specialties
-                    name: items
-                    widget: list
-                    summary: "{{fields.title}}"
-                    fields:
-                      - { label: Title, name: title, widget: string }
-                      - label: Bullets
-                        name: bullets
-                        widget: list
-                        field: { label: Bullet, name: bullet, widget: string }
-      - name: method_es
-        label: Method Page (Spanish)
-        file: content/pages/es/method.json
-        format: json
-        fields:
-          - { label: Meta Title, name: metaTitle, widget: string, required: false }
-          - { label: Meta Description, name: metaDescription, widget: text, required: false }
-          - { label: Hero Title, name: heroTitle, widget: string, required: false }
-          - { label: Hero Subtitle, name: heroSubtitle, widget: text, required: false }
-          - label: Clinical Notes
-            name: clinicalNotes
-            widget: list
-            required: false
-            fields:
-              - { label: Title, name: title, widget: string }
-              - label: Bullets
-                name: bullets
-                widget: list
-                field: { label: Item, name: item, widget: string }
-          - label: Sections
-            name: sections
-            widget: list
-            types:
-              - label: Fact Block
-                name: facts
-                widget: object
-                fields:
-                  - { label: Title, name: title, widget: string }
-                  - { label: Text, name: text, widget: text }
-              - label: Bullet List
-                name: bullets
-                widget: object
-                fields:
-                  - { label: Title, name: title, widget: string }
-                  - label: Items
-                    name: items
-                    widget: list
-                    field: { label: Item, name: item, widget: string }
-              - label: Specialties Accordion
-                name: specialties
-                widget: object
-                fields:
-                  - label: Specialties
-                    name: items
-                    widget: list
-                    summary: "{{fields.title}}"
-                    fields:
-                      - { label: Title, name: title, widget: string }
-                      - label: Bullets
-                        name: bullets
-                        widget: list
-                        field: { label: Bullet, name: bullet, widget: string }
   - name: shop
     label: Shop Page
     files:
