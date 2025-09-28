@@ -328,8 +328,18 @@ export interface PageContent {
   heroImageLeft?: string;
   heroImageRight?: string;
   heroLayoutHint?: 'image-left' | 'image-right' | 'image-full';
-  heroAlignX?: 'left' | 'center';
+  heroAlignX?: 'left' | 'center' | 'right';
   heroAlignY?: 'top' | 'middle' | 'bottom';
+  heroTextPosition?:
+    | 'top-left'
+    | 'top-center'
+    | 'top-right'
+    | 'middle-left'
+    | 'middle-center'
+    | 'middle-right'
+    | 'bottom-left'
+    | 'bottom-center'
+    | 'bottom-right';
   brandIntro?: {
     title?: string;
     text?: string;
