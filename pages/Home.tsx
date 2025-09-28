@@ -658,7 +658,7 @@ const Home: React.FC = () => {
             const heroImageLeftUrl = typedData.heroImageLeftRef || typedData.heroImageLeft || null;
             const heroImageRightUrl = typedData.heroImageRightRef || typedData.heroImageRight || null;
             if (!heroImageLeftUrl && !heroImageRightUrl && !hasWarnedMissingHeroImages) {
-              console.warn('Home hero images are not configured.');
+              console.warn('Home hero images are not configured. Add hero image references or legacy URLs in the CMS.');
               hasWarnedMissingHeroImages = true;
             }
             const dataWithHeroImages: HomePageContent = {
