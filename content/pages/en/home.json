@@ -6,7 +6,6 @@
     "clinicsCtaHref": "#/for-clinics",
     "clinicsImage": ""
   },
-  "ctaSecondary": "Clinics partnership",
   "meta": {
     "metaTitle": "Kapunka Skincare | Moroccan Argan Rituals for Clinics & Sensitive Skin",
     "metaDescription": "Kapunka formulates Moroccan argan oils, mists, and hammam treatments trusted by aesthetic clinics for post-procedure recovery, barrier repair, and daily rituals."
@@ -21,8 +20,22 @@
     "image": ""
   },
   "newsletterPitch": "Get monthly updates on clinic protocols, ingredient sourcing, and new product drops tailored for sensitive skin pros.",
-  "heroPrimaryCta": "Shop argan rituals",
-  "heroImageLeft": "",
+  "heroHeadline": "Care that listens when skin is tender.",
+  "heroSubheadline": "Kapunka 2.0 blends Moroccan argan rituals with clinical empathy so reactive and post-procedure skin can breathe easier.",
+  "heroAlignment": {
+    "heroAlignX": "center",
+    "heroAlignY": "middle",
+    "heroLayoutHint": "text-over-media",
+    "heroOverlay": true
+  },
+  "heroImages": {
+    "heroImageLeft": "",
+    "heroImageRight": ""
+  },
+  "heroCtas": {
+    "ctaPrimary": "Shop Kapunka 2.0 rituals",
+    "ctaSecondary": "Partner with our clinic team"
+  },
   "galleryRows": [
     {
       "layout": "thirds",
@@ -60,8 +73,6 @@
       ]
     }
   ],
-  "heroLayoutHint": "image-full",
-  "heroAlignX": "left",
   "sections": [
     {
       "type": "imageTextHalf",
@@ -101,9 +112,6 @@
       ]
     }
   ],
-  "heroAlignY": "middle",
-  "heroHeadline": "Be grateful to your skin.",
-  "ctaPrimary": "Shop rituals",
   "metaTitle": "",
   "testimonials": [
     {
@@ -117,8 +125,6 @@
       "role": "Founder, Lumina Aesthetics"
     }
   ],
-  "heroSecondaryCta": "Clinics partnership",
-  "heroOverlay": "rgba(0,0,0,0.48)",
   "metaDescription": "Kapunka formulates Moroccan argan oils, mists, and hammam treatments trusted by aesthetic clinics for post-procedure recovery, barrier repair, and daily rituals.",
   "methodMini": {
     "title": "Our Method: Cleanse · Replenish · Protect",
@@ -130,8 +136,6 @@
     "ctaLabel": "See the Kapunka method",
     "ctaHref": "#/method"
   },
-  "heroSubheadline": "Gentle argan rituals from Morocco, made for sensitive and post-procedure skin. Welcome to Kapunka 2.0—care that feels human.",
-  "heroImageRight": "",
   "bestsellersIntro": "Meet the three-step ritual clinics retail most—cleanse, replenish, and seal with nutrient-dense argan care.",
   "brandMini": {
     "title": "Why Kapunka",

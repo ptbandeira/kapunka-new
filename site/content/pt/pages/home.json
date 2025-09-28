@@ -5,18 +5,22 @@
     "metaTitle": "Kapunka — Cuidado com argão para pele sensível e pós-procedimento",
     "metaDescription": "Óleos de argão de origem única, águas florais e tratamentos tradicionais para pele sensível e pós-procedimento. Confiança clínica, origem com herança."
   },
-  "heroHeadline": "Cuidado com argão puro. Nascido da gratidão, confiado por especialistas.",
-  "heroSubheadline": "Argão marroquino de origem única e rotinas simples, com base científica, para pele sensível, pós-procedimento e do dia a dia.",
-  "heroPrimaryCta": "Ver rituais",
-  "heroSecondaryCta": "Para Clínicas",
-  "ctaPrimary": "Ver rituais",
-  "ctaSecondary": "Para Clínicas",
-  "heroAlignX": "left",
-  "heroAlignY": "bottom",
-  "heroOverlay": "rgba(0,0,0,0.48)",
-  "heroImageLeft": "",
-  "heroImageRight": "",
-  "heroLayoutHint": "image-right",
+  "heroHeadline": "Cuidado que escuta quando a pele está sensível.",
+  "heroSubheadline": "A Kapunka 2.0 une rituais marroquinos de argão e empatia clínica para que a pele reativa e pós-procedimento respire com calma.",
+  "heroAlignment": {
+    "heroAlignX": "center",
+    "heroAlignY": "middle",
+    "heroLayoutHint": "text-over-media",
+    "heroOverlay": true
+  },
+  "heroImages": {
+    "heroImageLeft": "",
+    "heroImageRight": ""
+  },
+  "heroCtas": {
+    "ctaPrimary": "Comprar rituais Kapunka 2.0",
+    "ctaSecondary": "Falar com a nossa equipa clínica"
+  },
   "brandIntro": {
     "title": "Nascido da gratidão",
     "text": "Kapunka significa “obrigado”. Criamos cuidados de argão puros com rigor clínico—rotinas simples que acalmam a pele e apoiam a recuperação. O nosso óleo é obtido de cooperativas em Marrocos e clarificado sem solventes."

@@ -5,18 +5,22 @@
     "metaTitle": "Kapunka — Moroccan argan care for sensitive & post-procedure skin",
     "metaDescription": "Single-origin Moroccan argan oils, floral waters, and traditional treatments designed for sensitive and post-procedure skin. Clinically trusted, heritage sourced."
   },
-  "heroHeadline": "Pure argan care. Born from gratitude, trusted by experts.",
-  "heroSubheadline": "Single-origin Moroccan argan and simple, science-aware routines for sensitive, post-procedure, and everyday skin.",
-  "heroPrimaryCta": "Shop rituals",
-  "heroSecondaryCta": "For Clinics",
-  "ctaPrimary": "Shop rituals",
-  "ctaSecondary": "For Clinics",
-  "heroAlignX": "left",
-  "heroAlignY": "bottom",
-  "heroOverlay": "rgba(0,0,0,0.48)",
-  "heroImageLeft": "",
-  "heroImageRight": "",
-  "heroLayoutHint": "image-right",
+  "heroHeadline": "Care that listens when skin is tender.",
+  "heroSubheadline": "Kapunka 2.0 blends Moroccan argan rituals with clinical empathy so reactive and post-procedure skin can breathe easier.",
+  "heroAlignment": {
+    "heroAlignX": "center",
+    "heroAlignY": "middle",
+    "heroLayoutHint": "text-over-media",
+    "heroOverlay": true
+  },
+  "heroImages": {
+    "heroImageLeft": "",
+    "heroImageRight": ""
+  },
+  "heroCtas": {
+    "ctaPrimary": "Shop Kapunka 2.0 rituals",
+    "ctaSecondary": "Partner with our clinic team"
+  },
   "brandIntro": {
     "title": "Born from gratitude",
     "text": "Kapunka means “thank you.” We make pure argan care with clinical respect—simple routines that comfort skin and support healing. Our oil is cooperatively sourced in Morocco and clarified without solvents."
