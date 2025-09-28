@@ -5,8 +5,16 @@ backend:
 
 local_backend: true
 
-media_folder: content/uploads
-public_folder: /content/uploads
+media_folder: "content/uploads"
+public_folder: "/content/uploads"
+
+i18n:
+  structure: multiple_folders
+  default_locale: en
+  locales:
+    - en
+    - es
+    - pt
 
 collections:
   - name: site
@@ -134,6 +142,8 @@ collections:
             required: false
           - { label: Primary CTA Label, name: heroPrimaryCta, widget: string, required: false }
           - { label: Secondary CTA Label, name: heroSecondaryCta, widget: string, required: false }
+          - { label: Primary CTA Link, name: heroCtaPrimary, widget: string, required: false }
+          - { label: Secondary CTA Link, name: heroCtaSecondary, widget: string, required: false }
           - { label: Primary CTA Text, name: ctaPrimary, widget: string, required: false }
           - { label: Secondary CTA Text, name: ctaSecondary, widget: string, required: false }
           - label: Hero Horizontal Alignment
@@ -143,6 +153,7 @@ collections:
             options:
               - { label: Left, value: left }
               - { label: Center, value: center }
+              - { label: Right, value: right }
             default: left
             required: false
           - label: Hero Vertical Alignment
@@ -155,12 +166,14 @@ collections:
               - { label: Bottom, value: bottom }
             default: bottom
             required: false
-          - label: Hero Overlay
+          - label: Hero Overlay Strength
             name: heroOverlay
-            widget: string
+            widget: number
             required: false
-            default: "rgba(0,0,0,0.48)"
-            hint: "Use rgba() to lighten or darken the image overlay (lower last number for more transparency)."
+            min: 0
+            max: 90
+            default: 48
+            hint: "Set the overlay opacity (0 clears the overlay, 90 is nearly opaque)."
           - label: Hero Image (Left)
             name: heroImageLeft
             widget: image
@@ -177,12 +190,11 @@ collections:
             name: heroLayoutHint
             widget: select
             required: false
-            default: image-full
+            default: bg-image
             hint: "Pick how the hero media and copy are arranged on desktop."
             options:
-              - { label: Image Left, value: image-left }
-              - { label: Image Right, value: image-right }
-              - { label: Full Image, value: image-full }
+              - { label: Background Image, value: bg-image }
+              - { label: Split Image, value: split-image }
           - label: Brand Intro
             name: brandIntro
             widget: object
@@ -320,6 +332,8 @@ collections:
             required: false
           - { label: Primary CTA Label, name: heroPrimaryCta, widget: string, required: false }
           - { label: Secondary CTA Label, name: heroSecondaryCta, widget: string, required: false }
+          - { label: Primary CTA Link, name: heroCtaPrimary, widget: string, required: false }
+          - { label: Secondary CTA Link, name: heroCtaSecondary, widget: string, required: false }
           - { label: Primary CTA Text, name: ctaPrimary, widget: string, required: false }
           - { label: Secondary CTA Text, name: ctaSecondary, widget: string, required: false }
           - label: Hero Horizontal Alignment
@@ -329,6 +343,7 @@ collections:
             options:
               - { label: Left, value: left }
               - { label: Center, value: center }
+              - { label: Right, value: right }
             default: left
             required: false
           - label: Hero Vertical Alignment
@@ -341,12 +356,14 @@ collections:
               - { label: Bottom, value: bottom }
             default: bottom
             required: false
-          - label: Hero Overlay
+          - label: Hero Overlay Strength
             name: heroOverlay
-            widget: string
+            widget: number
             required: false
-            default: "rgba(0,0,0,0.48)"
-            hint: "Use rgba() to lighten or darken the image overlay (lower last number for more transparency)."
+            min: 0
+            max: 90
+            default: 48
+            hint: "Set the overlay opacity (0 clears the overlay, 90 is nearly opaque)."
           - label: Hero Image (Left)
             name: heroImageLeft
             widget: image
@@ -363,12 +380,11 @@ collections:
             name: heroLayoutHint
             widget: select
             required: false
-            default: image-full
+            default: bg-image
             hint: "Pick how the hero media and copy are arranged on desktop."
             options:
-              - { label: Image Left, value: image-left }
-              - { label: Image Right, value: image-right }
-              - { label: Full Image, value: image-full }
+              - { label: Background Image, value: bg-image }
+              - { label: Split Image, value: split-image }
           - label: Clinics Block
             name: clinicsBlock
             widget: object
@@ -499,6 +515,8 @@ collections:
             required: false
           - { label: Primary CTA Label, name: heroPrimaryCta, widget: string, required: false }
           - { label: Secondary CTA Label, name: heroSecondaryCta, widget: string, required: false }
+          - { label: Primary CTA Link, name: heroCtaPrimary, widget: string, required: false }
+          - { label: Secondary CTA Link, name: heroCtaSecondary, widget: string, required: false }
           - { label: Primary CTA Text, name: ctaPrimary, widget: string, required: false }
           - { label: Secondary CTA Text, name: ctaSecondary, widget: string, required: false }
           - label: Hero Horizontal Alignment
@@ -508,6 +526,7 @@ collections:
             options:
               - { label: Left, value: left }
               - { label: Center, value: center }
+              - { label: Right, value: right }
             default: left
             required: false
           - label: Hero Vertical Alignment
@@ -520,12 +539,14 @@ collections:
               - { label: Bottom, value: bottom }
             default: bottom
             required: false
-          - label: Hero Overlay
+          - label: Hero Overlay Strength
             name: heroOverlay
-            widget: string
+            widget: number
             required: false
-            default: "rgba(0,0,0,0.48)"
-            hint: "Use rgba() to lighten or darken the image overlay (lower last number for more transparency)."
+            min: 0
+            max: 90
+            default: 48
+            hint: "Set the overlay opacity (0 clears the overlay, 90 is nearly opaque)."
           - label: Hero Image (Left)
             name: heroImageLeft
             widget: image
@@ -542,12 +563,11 @@ collections:
             name: heroLayoutHint
             widget: select
             required: false
-            default: image-full
+            default: bg-image
             hint: "Pick how the hero media and copy are arranged on desktop."
             options:
-              - { label: Image Left, value: image-left }
-              - { label: Image Right, value: image-right }
-              - { label: Full Image, value: image-full }
+              - { label: Background Image, value: bg-image }
+              - { label: Split Image, value: split-image }
           - label: Clinics Block
             name: clinicsBlock
             widget: object
