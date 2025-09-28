@@ -137,6 +137,13 @@ const heroMarkdownComponents: MarkdownComponents = {
 type HeroHorizontalAlignment = 'left' | 'center';
 type HeroVerticalAlignment = 'top' | 'middle' | 'bottom';
 
+type HomePageContent = PageContent & {
+  heroImageLeftRef?: string | null;
+  heroImageRightRef?: string | null;
+  heroImageLeftUrl?: string | null;
+  heroImageRightUrl?: string | null;
+};
+
 const HERO_HORIZONTAL_ALIGNMENT_CONTAINER_CLASSES: Record<HeroHorizontalAlignment, string> = {
   left: 'items-start text-left',
   center: 'items-center text-center',
@@ -157,6 +164,8 @@ const HERO_VERTICAL_ALIGNMENT_CLASSES: Record<HeroVerticalAlignment, string> = {
   middle: 'justify-center',
   bottom: 'justify-end',
 };
+
+let hasWarnedMissingHeroImages = false;
 
 interface BestsellersProps {
     intro?: string;
@@ -622,7 +631,7 @@ const Home: React.FC = () => {
   const { t, language } = useLanguage();
   const { settings } = useSiteSettings();
   const siteHeroImage = settings.home?.heroImage ?? '/content/uploads/hero-abstract.jpg';
-  const [pageContent, setPageContent] = useState<PageContent | null>(null);
+  const [pageContent, setPageContent] = useState<HomePageContent | null>(null);
 
   useEffect(() => {
     let isMounted = true;
@@ -645,7 +654,19 @@ const Home: React.FC = () => {
           }
 
           if (isPageContent(data)) {
-            setPageContent(data);
+            const typedData = data as HomePageContent;
+            const heroImageLeftUrl = typedData.heroImageLeftRef || typedData.heroImageLeft || null;
+            const heroImageRightUrl = typedData.heroImageRightRef || typedData.heroImageRight || null;
+            if (!heroImageLeftUrl && !heroImageRightUrl && !hasWarnedMissingHeroImages) {
+              console.warn('Home hero images are not configured.');
+              hasWarnedMissingHeroImages = true;
+            }
+            const dataWithHeroImages: HomePageContent = {
+              ...typedData,
+              heroImageLeftUrl,
+              heroImageRightUrl,
+            };
+            setPageContent(dataWithHeroImages);
             return;
           }
         } catch (error) {
@@ -677,8 +698,10 @@ const Home: React.FC = () => {
   const heroSecondaryCta = sanitizeString(pageContent?.heroSecondaryCta) ?? t('home.ctaClinics');
   const heroOverlay = sanitizeString(pageContent?.heroOverlay) ?? 'rgba(0,0,0,0.48)';
   const heroLayoutHint = pageContent?.heroLayoutHint ?? 'image-full';
-  const heroImageLeft = sanitizeString(pageContent?.heroImageLeft);
-  const heroImageRight = sanitizeString(pageContent?.heroImageRight);
+  const heroImageLeftUrl = pageContent?.heroImageLeftUrl ?? pageContent?.heroImageLeftRef ?? pageContent?.heroImageLeft ?? null;
+  const heroImageRightUrl = pageContent?.heroImageRightUrl ?? pageContent?.heroImageRightRef ?? pageContent?.heroImageRight ?? null;
+  const heroImageLeft = sanitizeString(heroImageLeftUrl);
+  const heroImageRight = sanitizeString(heroImageRightUrl);
   const heroAlignX: HeroHorizontalAlignment = pageContent?.heroAlignX === 'center' ? 'center' : 'left';
   const heroAlignY: HeroVerticalAlignment =
     pageContent?.heroAlignY === 'top'
