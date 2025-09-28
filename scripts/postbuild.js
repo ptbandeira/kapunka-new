@@ -27,7 +27,22 @@ function copyFolder(sourceRelative, destinationRelative) {
   console.log(`[postbuild] Copied ${sourceRelative} -> ${destinationRelative}`);
 }
 
+function copyFile(sourceRelative, destinationRelative) {
+  const source = path.join(rootDir, sourceRelative);
+  const destination = path.join(rootDir, destinationRelative);
+
+  if (!existsSync(source)) {
+    console.warn(`[postbuild] Skipping missing source file: ${sourceRelative}`);
+    return;
+  }
+
+  ensureDir(path.dirname(destination));
+  cpSync(source, destination);
+  console.log(`[postbuild] Copied file ${sourceRelative} -> ${destinationRelative}`);
+}
+
 ensureDir(distDir);
 
 copyFolder('content', path.join('dist', 'content'));
 copyFolder('admin', path.join('dist', 'admin'));
+copyFile(path.join('admin', 'config.yml'), path.join('site', 'admin', 'config.yml'));
