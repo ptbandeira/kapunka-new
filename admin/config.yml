@@ -158,47 +158,46 @@ collections:
   - name: pages
     label: Pages
     group: "1. Pages"
-    i18n: true
     files:
-      - label: "Home"
-        name: "home"
-        i18n: true
-        file: "content/pages/home.json"
-        fields:
-          - { label: "Meta Title", name: "metaTitle", widget: "string", required: false, i18n: true }
-          - { label: "Meta Description", name: "metaDescription", widget: "text", required: false, i18n: true }
-          - label: "Meta Overrides"
-            name: "meta"
-            widget: "object"
+      - name: home_en
+        label: Home Page (English)
+        file: content/pages/en/home.json
+        format: json
+        fields: &home_page_fields
+          - { label: Meta Title, name: metaTitle, widget: string, required: false }
+          - { label: Meta Description, name: metaDescription, widget: text, required: false }
+          - label: Meta Overrides
+            name: meta
+            widget: object
             required: false
             fields:
-              - { label: "Meta Title", name: "metaTitle", widget: "string", required: false, i18n: true }
-              - { label: "Meta Description", name: "metaDescription", widget: "text", required: false, i18n: true }
-          - { label: "Hero Headline", name: "heroHeadline", widget: "string", i18n: true }
-          - { label: "Hero Subheadline", name: "heroSubheadline", widget: "text", required: false, i18n: true }
-          - label: "Hero Alignment"
-            name: "heroAlignment"
-            widget: "object"
+              - { label: Meta Title, name: metaTitle, widget: string, required: false }
+              - { label: Meta Description, name: metaDescription, widget: text, required: false }
+          - { label: Hero Headline, name: heroHeadline, widget: string }
+          - { label: Hero Subheadline, name: heroSubheadline, widget: text, required: false }
+          - label: Hero Alignment
+            name: heroAlignment
+            widget: object
             collapsed: true
             fields:
-              - { label: "Horizontal", name: "heroAlignX", widget: "select", options: ["left", "center", "right"], default: "center", i18n: true }
-              - { label: "Vertical", name: "heroAlignY", widget: "select", options: ["top", "middle", "bottom"], default: "middle", i18n: true }
-              - { label: "Layout Hint", name: "heroLayoutHint", widget: "select", options: ["text-over-media", "side-by-side"], default: "text-over-media", i18n: true }
-              - { label: "Overlay", name: "heroOverlay", widget: "boolean", default: true, i18n: true }
-          - label: "Hero Images"
-            name: "heroImages"
-            widget: "object"
+              - { label: Horizontal, name: heroAlignX, widget: select, options: [left, center, right], default: center }
+              - { label: Vertical, name: heroAlignY, widget: select, options: [top, middle, bottom], default: middle }
+              - { label: Layout Hint, name: heroLayoutHint, widget: select, options: [text-over-media, side-by-side], default: text-over-media }
+              - { label: Overlay, name: heroOverlay, widget: boolean, default: true }
+          - label: Hero Images
+            name: heroImages
+            widget: object
             collapsed: true
             fields:
-              - { label: "Left Image", name: "heroImageLeft", widget: "image", required: false, i18n: true }
-              - { label: "Right Image", name: "heroImageRight", widget: "image", required: false, i18n: true }
-          - label: "Hero CTAs"
-            name: "heroCtas"
-            widget: "object"
+              - { label: Left Image, name: heroImageLeft, widget: image, required: false }
+              - { label: Right Image, name: heroImageRight, widget: image, required: false }
+          - label: Hero CTAs
+            name: heroCtas
+            widget: object
             collapsed: true
             fields:
-              - { label: "Primary CTA Label", name: "ctaPrimary", widget: "string", i18n: true }
-              - { label: "Secondary CTA Label", name: "ctaSecondary", widget: "string", required: false, i18n: true }
+              - { label: Primary CTA Label, name: ctaPrimary, widget: string }
+              - { label: Secondary CTA Label, name: ctaSecondary, widget: string, required: false }
           # keep existing fields after this unchanged
           - { label: Primary CTA Label, name: heroPrimaryCta, widget: string, required: false }
           - { label: Secondary CTA Label, name: heroSecondaryCta, widget: string, required: false }
@@ -230,15 +229,15 @@ collections:
             name: heroTextPosition
             widget: select
             options:
-              - { label: "Top Left", value: "top-left" }
-              - { label: "Top Center", value: "top-center" }
-              - { label: "Top Right", value: "top-right" }
-              - { label: "Middle Left", value: "middle-left" }
-              - { label: "Middle Center", value: "middle-center" }
-              - { label: "Middle Right", value: "middle-right" }
-              - { label: "Bottom Left", value: "bottom-left" }
-              - { label: "Bottom Center", value: "bottom-center" }
-              - { label: "Bottom Right", value: "bottom-right" }
+              - { label: Top Left, value: top-left }
+              - { label: Top Center, value: top-center }
+              - { label: Top Right, value: top-right }
+              - { label: Middle Left, value: middle-left }
+              - { label: Middle Center, value: middle-center }
+              - { label: Middle Right, value: middle-right }
+              - { label: Bottom Left, value: bottom-left }
+              - { label: Bottom Center, value: bottom-center }
+              - { label: Bottom Right, value: bottom-right }
             required: false
             hint: "Overrides Align X/Y if set."
           - label: Hero Overlay Strength
@@ -402,6 +401,16 @@ collections:
                       - { label: Image, name: image, widget: image, choose_url: true, required: false }
                       - { label: Title, name: title, widget: string, required: false }
                       - { label: Subtitle, name: subtitle, widget: string, required: false }
+      - name: home_pt
+        label: Home Page (Portuguese)
+        file: content/pages/pt/home.json
+        format: json
+        fields: *home_page_fields
+      - name: home_es
+        label: Home Page (Spanish)
+        file: content/pages/es/home.json
+        format: json
+        fields: *home_page_fields
       - name: story_en
         label: Story Page (English)
         file: content/pages/en/story.json
