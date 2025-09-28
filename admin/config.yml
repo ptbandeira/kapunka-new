@@ -140,6 +140,21 @@ collections:
         fields:
           - { label: "x (0..1)", name: "x", widget: "number", value_type: "float", min: 0, max: 1, required: false }
           - { label: "y (0..1)", name: "y", widget: "number", value_type: "float", min: 0, max: 1, required: false }
+  - name: "mediaSets"
+    label: "Media Sets"
+    folder: "content/media-sets"
+    create: true
+    slug: "{{slug}}"
+    i18n: false
+    fields:
+      - { label: "Title", name: "title", widget: "string" }
+      - label: "Images"
+        name: "images"
+        widget: "list"
+        summary: "{{fields.caption | default('Image')}}"
+        fields:
+          - { label: "Image", name: "src", widget: "image" }
+          - { label: "Caption (optional)", name: "caption", widget: "string", required: false }
   - name: pages
     label: Pages
     group: "1. Pages"
