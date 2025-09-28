@@ -5,18 +5,22 @@
     "metaTitle": "Kapunka Skincare | Rituais de argan marroquino para clínicas e pele sensível",
     "metaDescription": "A Kapunka formula óleos de argan, névoas e tratamentos de hammam marroquinos confiados por clínicas estéticas para recuperação pós-procedimento, reparo da barreira e rituais diários."
   },
-  "heroHeadline": "Agradece à tua pele.",
-  "heroSubheadline": "Rituais suaves de argão de Marrocos, pensados para pele sensível e pós-procedimento. Bem-vindo à Kapunka 2.0—cuidado com toque humano.",
-  "heroPrimaryCta": "Comprar rituais de argan",
-  "ctaPrimary": "Ver rituais",
-  "ctaSecondary": "Parceria com clínicas",
-  "heroAlignX": "center",
-  "heroAlignY": "middle",
-  "heroSecondaryCta": "Parceria para clínicas",
-  "heroOverlay": "rgba(0,0,0,0.48)",
-  "heroImageLeft": "",
-  "heroImageRight": "",
-  "heroLayoutHint": "image-full",
+  "heroHeadline": "Cuidado que escuta quando a pele está sensível.",
+  "heroSubheadline": "A Kapunka 2.0 une rituais marroquinos de argão e empatia clínica para que a pele reativa e pós-procedimento respire com calma.",
+  "heroAlignment": {
+    "heroAlignX": "center",
+    "heroAlignY": "middle",
+    "heroLayoutHint": "text-over-media",
+    "heroOverlay": true
+  },
+  "heroImages": {
+    "heroImageLeft": "",
+    "heroImageRight": ""
+  },
+  "heroCtas": {
+    "ctaPrimary": "Comprar rituais Kapunka 2.0",
+    "ctaSecondary": "Falar com a nossa equipa clínica"
+  },
   "brandIntro": {
     "title": "Nascido da gratidão",
     "text": "Kapunka significa “obrigado”. Criamos cuidados de argão puros com rigor clínico—rotinas simples que acalmam a pele e apoiam a recuperação. O nosso óleo é obtido de cooperativas em Marrocos e clarificado sem solventes."
