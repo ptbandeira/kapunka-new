@@ -287,7 +287,8 @@ collections:
             fields:
               - { label: Primary CTA Label, name: ctaPrimary, widget: string }
               - { label: Secondary CTA Label, name: ctaSecondary, widget: string, required: false }
-          - label: "Sections"
+          - &sections_field
+            label: "Sections"
             name: "sections"
             widget: "list"
             types: *shared_sections
@@ -480,10 +481,7 @@ collections:
         fields:
           - { label: Meta Title, name: metaTitle, widget: string, required: false }
           - { label: Meta Description, name: metaDescription, widget: text, required: false }
-          - label: "Sections"
-            name: "sections"
-            widget: "list"
-            types: *shared_sections
+          - *sections_field
       - name: learn
         label: Learn Page
         file: content/pages/learn.json
@@ -492,10 +490,7 @@ collections:
         fields:
           - { label: Meta Title, name: metaTitle, widget: string, required: false }
           - { label: Meta Description, name: metaDescription, widget: text, required: false }
-          - label: "Sections"
-            name: "sections"
-            widget: "list"
-            types: *shared_sections
+          - *sections_field
       - name: method
         label: Method Page
         file: content/pages/method.json
@@ -516,10 +511,7 @@ collections:
                 name: bullets
                 widget: list
                 field: { label: Item, name: item, widget: string }
-          - label: "Sections"
-            name: "sections"
-            widget: "list"
-            types: *shared_sections
+          - *sections_field
       - name: clinics
         label: For Clinics Page
         file: content/pages/clinics.json
@@ -528,10 +520,7 @@ collections:
         fields:
           - { label: Meta Title, name: metaTitle, widget: string, required: false }
           - { label: Meta Description, name: metaDescription, widget: text, required: false }
-          - label: "Sections"
-            name: "sections"
-            widget: "list"
-            types: *shared_sections
+          - *sections_field
       - name: about
         label: About Page
         file: content/pages/about.json
@@ -556,10 +545,7 @@ collections:
                 value_field: image
                 display_fields: ["title"]
                 required: false
-          - label: "Sections"
-            name: "sections"
-            widget: "list"
-            types: *shared_sections
+          - *sections_field
       - name: contact
         label: Contact Page
         file: content/pages/contact.json
@@ -568,10 +554,7 @@ collections:
         fields:
           - { label: Meta Title, name: metaTitle, widget: string, required: false }
           - { label: Meta Description, name: metaDescription, widget: text, required: false }
-          - label: "Sections"
-            name: "sections"
-            widget: "list"
-            types: *shared_sections
+          - *sections_field
   - name: translations
     label: Translations
     files:
