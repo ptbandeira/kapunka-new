@@ -123,41 +123,17 @@
   },
   "sections": [
     {
-      "type": "imageTextHalf",
-      "title": "Origem com herança, padrão de clínica",
-      "text": "Envasamos óleo de argan de origem única poucas horas após a prensagem para preservar antioxidantes. Cada lote é testado microbiologicamente e rastreável da semente ao frasco para segurança em spas e clínicas.",
-      "image": ""
+      "type": "hero",
+      "headline": "Cuidado que escuta quando a pele está sensível.",
+      "subheadline": "A Kapunka 2.0 une rituais marroquinos de argão e empatia clínica para que a pele reativa e pós-procedimento respire com calma.",
+      "position": "middle-center",
+      "overlay": true
     },
     {
-      "type": "imageTextHalf",
-      "title": "Do hammam moderno à recuperação profissional",
-      "text": "Combine nosso sabão preto de limpeza, névoa de água de rosas e concentrado de argan em um ritual de três etapas que acalma a inflamação, apoia a barreira e não deixa filme pesado.",
-      "image": ""
-    },
-    {
-      "type": "imageGrid",
-      "items": [
-        {
-          "image": "",
-          "title": "Produção pronta para clínicas",
-          "subtitle": "Envase estéril, dossiês de segurança e protocolos bilíngues para as equipes."
-        },
-        {
-          "image": "",
-          "title": "Cuidado sensorial holístico",
-          "subtitle": "Aromas leves de botânicos nativos sem fragrâncias sintéticas."
-        },
-        {
-          "image": "",
-          "title": "Histórias flexíveis no varejo",
-          "subtitle": "Kits de merchandising e educação por QR code para cada sala de tratamento."
-        },
-        {
-          "image": "",
-          "title": "Parceria sustentável",
-          "subtitle": "Receitas reinvestidas em cooperativas marroquinas lideradas por mulheres e reflorestamento."
-        }
-      ]
+      "type": "mediaCopy",
+      "title": "Born from gratitude",
+      "body": "Kapunka means “thank you.” Pure Moroccan argan, gentle routines, clinically respectful.",
+      "layout": "image-right"
     }
   ]
 }

@@ -123,41 +123,17 @@
   },
   "sections": [
     {
-      "type": "imageTextHalf",
-      "title": "Origen con herencia, estándares clínicos",
-      "text": "Envasamos el aceite de argán de origen único pocas horas después del prensado para conservar los antioxidantes. Cada lote se analiza microbiológicamente y es trazable de la semilla al frasco para la seguridad de spas y clínicas.",
-      "image": ""
+      "type": "hero",
+      "headline": "Cuidado que escucha cuando la piel duele.",
+      "subheadline": "Kapunka 2.0 une rituales marroquíes de argán con empatía clínica para que la piel reactiva y post-procedimiento respire tranquila.",
+      "position": "middle-center",
+      "overlay": true
     },
     {
-      "type": "imageTextHalf",
-      "title": "Del hammam a la recuperación moderna",
-      "text": "Combina nuestro jabón negro limpiador, la bruma de agua de rosas y el concentrado de argán en un ritual de tres pasos que calma la inflamación, refuerza la barrera y no deja película pesada.",
-      "image": ""
-    },
-    {
-      "type": "imageGrid",
-      "items": [
-        {
-          "image": "",
-          "title": "Producción lista para clínicas",
-          "subtitle": "Envasado estéril, dossiers de seguridad y protocolos bilingües para los equipos."
-        },
-        {
-          "image": "",
-          "title": "Cuidado sensorial holístico",
-          "subtitle": "Aromas ligeros de botánicos nativos sin fragancias sintéticas."
-        },
-        {
-          "image": "",
-          "title": "Historias flexibles en retail",
-          "subtitle": "Kits de merchandising y educación con QR para cada sala de tratamiento."
-        },
-        {
-          "image": "",
-          "title": "Alianza sostenible",
-          "subtitle": "Ingresos reinvertidos en cooperativas marroquíes lideradas por mujeres y reforestación."
-        }
-      ]
+      "type": "mediaCopy",
+      "title": "Born from gratitude",
+      "body": "Kapunka means “thank you.” Pure Moroccan argan, gentle routines, clinically respectful.",
+      "layout": "image-right"
     }
   ]
 }
