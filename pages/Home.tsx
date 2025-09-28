@@ -63,6 +63,26 @@ type HomeSection =
       imageRef?: string;
       layout?: 'image-left' | 'image-right';
       columns?: number;
+    }
+  | {
+      type: 'testimonials';
+      quotes?: { text?: string; author?: string; role?: string }[];
+    }
+  | {
+      type: 'faq';
+      title?: string;
+      items?: { q?: string; a?: string }[];
+    }
+  | {
+      type: 'banner';
+      text?: string;
+      cta?: string;
+      url?: string;
+    }
+  | {
+      type: 'video';
+      title?: string;
+      url?: string;
     };
 
 const heroAlignmentSchema = z
@@ -922,8 +942,13 @@ const Home: React.FC = () => {
           const sections: HomeSection[] = Array.isArray(parsedResult.data?.sections)
             ? (parsedResult.data.sections.filter((section): section is HomeSection =>
                 section?.type === 'hero'
+                || section?.type === 'featureGrid'
                 || section?.type === 'mediaCopy'
                 || section?.type === 'productGrid'
+                || section?.type === 'testimonials'
+                || section?.type === 'faq'
+                || section?.type === 'banner'
+                || section?.type === 'video'
               ))
             : [];
 
@@ -1701,6 +1726,152 @@ const Home: React.FC = () => {
                     </footer>
                   </blockquote>
                 ))}
+              </div>
+            </div>
+          </section>
+        );
+      }
+      case 'faq': {
+        const sectionTitle = sanitizeString(section.title ?? null);
+        const items = (section.items ?? [])
+          .map((item) => ({
+            question: sanitizeString(item.q ?? null),
+            answer: sanitizeString(item.a ?? null),
+          }))
+          .filter((item) => Boolean(item.question && item.answer));
+
+        if (items.length === 0) {
+          return null;
+        }
+
+        const listWrapperClasses = sectionTitle ? 'mt-12 space-y-6' : 'space-y-6';
+
+        return (
+          <section
+            key={`section-faq-${index}`}
+            className="py-16 sm:py-24 bg-white"
+            data-nlv-field-path={sectionFieldPath}
+          >
+            <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-4xl">
+              {sectionTitle && (
+                <h2
+                  className="text-3xl sm:text-4xl font-semibold text-center"
+                  data-nlv-field-path={`${sectionFieldPath}.title`}
+                >
+                  {sectionTitle}
+                </h2>
+              )}
+              <div className={listWrapperClasses} data-nlv-field-path={`${sectionFieldPath}.items`}>
+                {items.map((item, itemIndex) => (
+                  <div
+                    key={`faq-${index}-${itemIndex}`}
+                    className="bg-stone-50 border border-stone-200 rounded-2xl p-6"
+                    data-nlv-field-path={`${sectionFieldPath}.items.${itemIndex}`}
+                  >
+                    <h3
+                      className="text-xl font-semibold text-stone-900"
+                      data-nlv-field-path={`${sectionFieldPath}.items.${itemIndex}.q`}
+                    >
+                      {item.question}
+                    </h3>
+                    <p
+                      className="mt-3 text-stone-600 leading-relaxed"
+                      data-nlv-field-path={`${sectionFieldPath}.items.${itemIndex}.a`}
+                    >
+                      {item.answer}
+                    </p>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </section>
+        );
+      }
+      case 'banner': {
+        const text = sanitizeString(section.text ?? null);
+        const cta = sanitizeString(section.cta ?? null);
+        const url = sanitizeString(section.url ?? null);
+
+        if (!text) {
+          return null;
+        }
+
+        const isInternalLink = Boolean(url && (url.startsWith('#/') || url.startsWith('/')));
+        const internalPath = url?.startsWith('#/') ? url.slice(1) : url;
+        const buttonClasses =
+          'inline-flex items-center px-6 py-3 bg-white text-stone-900 font-semibold rounded-md hover:bg-white/90 transition-colors';
+
+        return (
+          <section
+            key={`section-banner-${index}`}
+            className="py-12 sm:py-16 bg-stone-900 text-white"
+            data-nlv-field-path={sectionFieldPath}
+          >
+            <div className="container mx-auto px-4 sm:px-6 lg:px-8 text-center max-w-3xl">
+              <p className="text-xl sm:text-2xl font-semibold" data-nlv-field-path={`${sectionFieldPath}.text`}>
+                {text}
+              </p>
+              {cta && url && (
+                <div className="mt-6">
+                  {isInternalLink ? (
+                    <Link
+                      to={internalPath?.startsWith('/') ? internalPath : `/${internalPath ?? ''}`}
+                      className={buttonClasses}
+                      data-nlv-field-path={`${sectionFieldPath}.url`}
+                    >
+                      <span data-nlv-field-path={`${sectionFieldPath}.cta`}>{cta}</span>
+                    </Link>
+                  ) : (
+                    <a
+                      href={url}
+                      className={buttonClasses}
+                      target="_blank"
+                      rel="noreferrer"
+                      data-nlv-field-path={`${sectionFieldPath}.url`}
+                    >
+                      <span data-nlv-field-path={`${sectionFieldPath}.cta`}>{cta}</span>
+                    </a>
+                  )}
+                </div>
+              )}
+            </div>
+          </section>
+        );
+      }
+      case 'video': {
+        const title = sanitizeString(section.title ?? null);
+        const videoUrl = sanitizeString(section.url ?? null);
+
+        if (!videoUrl) {
+          return null;
+        }
+
+        return (
+          <section
+            key={`section-video-${index}`}
+            className="py-16 sm:py-24 bg-white"
+            data-nlv-field-path={sectionFieldPath}
+          >
+            <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-5xl">
+              {title && (
+                <h2
+                  className="text-3xl sm:text-4xl font-semibold text-center mb-8"
+                  data-nlv-field-path={`${sectionFieldPath}.title`}
+                >
+                  {title}
+                </h2>
+              )}
+              <div
+                className="relative w-full overflow-hidden rounded-2xl shadow-lg aspect-video"
+                data-nlv-field-path={`${sectionFieldPath}.url`}
+              >
+                <iframe
+                  src={videoUrl}
+                  title={title ?? 'Featured video'}
+                  className="w-full h-full"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                  allowFullScreen
+                />
               </div>
             </div>
           </section>
