@@ -50,6 +50,12 @@ type HomeSection =
       columns?: number;
     }
   | {
+      type: 'productGrid';
+      title?: string;
+      products?: { id: string }[];
+      columns?: number;
+    }
+  | {
       type: 'mediaCopy';
       title?: string;
       body?: string;
@@ -849,6 +855,37 @@ const Home: React.FC = () => {
   const { settings } = useSiteSettings();
   const siteHeroImage = settings.home?.heroImage ?? '/content/uploads/hero-abstract.jpg';
   const [pageContent, setPageContent] = useState<HomePageContent | null>(null);
+  const [products, setProducts] = useState<Product[]>([]);
+
+  useEffect(() => {
+    let isMounted = true;
+
+    const loadProducts = async () => {
+      try {
+        const response = await fetch('/content/products/index.json');
+        if (!response.ok) {
+          return;
+        }
+
+        const data = (await response.json()) as { items?: Product[] };
+        if (!isMounted) {
+          return;
+        }
+
+        setProducts(Array.isArray(data?.items) ? data.items : []);
+      } catch (error) {
+        if (isMounted) {
+          console.error('Failed to load products for home sections', error);
+        }
+      }
+    };
+
+    void loadProducts();
+
+    return () => {
+      isMounted = false;
+    };
+  }, []);
 
   useEffect(() => {
     let isMounted = true;
@@ -884,7 +921,9 @@ const Home: React.FC = () => {
           } = parsedResult.data;
           const sections: HomeSection[] = Array.isArray(parsedResult.data?.sections)
             ? (parsedResult.data.sections.filter((section): section is HomeSection =>
-                section?.type === 'hero' || section?.type === 'mediaCopy'
+                section?.type === 'hero'
+                || section?.type === 'mediaCopy'
+                || section?.type === 'productGrid'
               ))
             : [];
 
@@ -1094,6 +1133,14 @@ const Home: React.FC = () => {
     });
     return map;
   }, [pageContent]);
+
+  const productsById = useMemo(() => {
+    const map = new Map<string, Product>();
+    products.forEach((product) => {
+      map.set(product.id, product);
+    });
+    return map;
+  }, [products]);
 
   const renderSection = (section: HomeSection, index: number): React.ReactNode => {
     const sectionFieldPath = `${homeFieldPath}.sections[${index}]`;
@@ -1309,6 +1356,53 @@ const Home: React.FC = () => {
                     </div>
                   ))}
                 </div>
+              )}
+            </div>
+          </section>
+        );
+      }
+      case 'productGrid': {
+        const sectionTitle = sanitizeString(section.title ?? null);
+        const productIds = (section.products ?? [])
+          .map((item) => sanitizeString(item?.id ?? null))
+          .filter((id): id is string => Boolean(id));
+        const resolvedProducts = productIds
+          .map((id) => productsById.get(id))
+          .filter((product): product is Product => Boolean(product));
+
+        if (!sectionTitle && resolvedProducts.length === 0) {
+          return null;
+        }
+
+        return (
+          <section
+            key={`section-productGrid-${index}`}
+            className="py-16 sm:py-24 bg-stone-100"
+            data-nlv-field-path={sectionFieldPath}
+          >
+            <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+              {sectionTitle && (
+                <h2 className="text-3xl sm:text-4xl font-semibold text-center mb-12">
+                  <span data-nlv-field-path={`${sectionFieldPath}.title`}>{sectionTitle}</span>
+                </h2>
+              )}
+              {resolvedProducts.length > 0 ? (
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                  {resolvedProducts.map((product) => {
+                    const productIndex = products.findIndex((item) => item.id === product.id);
+                    const productFieldPath = productIndex >= 0 ? `products.items.${productIndex}` : undefined;
+                    return (
+                      <ProductCard key={product.id} product={product} fieldPath={productFieldPath} />
+                    );
+                  })}
+                </div>
+              ) : (
+                <p
+                  className="text-center"
+                  data-nlv-field-path={`translations.${language}.common.loadingProducts`}
+                >
+                  {t('common.loadingProducts')}
+                </p>
               )}
             </div>
           </section>
