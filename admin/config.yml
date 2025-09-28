@@ -194,17 +194,33 @@ collections:
             default: 48
             hint: "Set the overlay opacity (0 clears the overlay, 90 is nearly opaque)."
           - label: Hero Image (Left)
-            name: heroImageLeft
-            widget: image
-            choose_url: true
-            hint: "Shown when layout is Image Left or Full Image (desktop uses this slot)."
+            name: heroImageLeftRef
+            widget: relation
+            collection: assets_images
+            search_fields: ["title", "tags.*"]
+            value_field: image
+            display_fields: ["title"]
             required: false
+            hint: "Shown when layout is Image Left or Full Image (desktop uses this slot)."
+          - label: Hero Image (Left)
+            name: heroImageLeft
+            widget: string
+            required: false
+            hint: "legacy: will be ignored if Ref is set"
+          - label: Hero Image (Right)
+            name: heroImageRightRef
+            widget: relation
+            collection: assets_images
+            search_fields: ["title", "tags.*"]
+            value_field: image
+            display_fields: ["title"]
+            required: false
+            hint: "Displayed when layout is Image Right; keep empty if not used."
           - label: Hero Image (Right)
             name: heroImageRight
-            widget: image
-            choose_url: true
-            hint: "Displayed when layout is Image Right; keep empty if not used."
+            widget: string
             required: false
+            hint: "legacy: will be ignored if Ref is set"
           - label: Hero Layout Hint
             name: heroLayoutHint
             widget: select
@@ -384,17 +400,33 @@ collections:
             default: 48
             hint: "Set the overlay opacity (0 clears the overlay, 90 is nearly opaque)."
           - label: Hero Image (Left)
-            name: heroImageLeft
-            widget: image
-            choose_url: true
-            hint: "Shown when layout is Image Left or Full Image (desktop uses this slot)."
+            name: heroImageLeftRef
+            widget: relation
+            collection: assets_images
+            search_fields: ["title", "tags.*"]
+            value_field: image
+            display_fields: ["title"]
             required: false
+            hint: "Shown when layout is Image Left or Full Image (desktop uses this slot)."
+          - label: Hero Image (Left)
+            name: heroImageLeft
+            widget: string
+            required: false
+            hint: "legacy: will be ignored if Ref is set"
+          - label: Hero Image (Right)
+            name: heroImageRightRef
+            widget: relation
+            collection: assets_images
+            search_fields: ["title", "tags.*"]
+            value_field: image
+            display_fields: ["title"]
+            required: false
+            hint: "Displayed when layout is Image Right; keep empty if not used."
           - label: Hero Image (Right)
             name: heroImageRight
-            widget: image
-            choose_url: true
-            hint: "Displayed when layout is Image Right; keep empty if not used."
+            widget: string
             required: false
+            hint: "legacy: will be ignored if Ref is set"
           - label: Hero Layout Hint
             name: heroLayoutHint
             widget: select
@@ -567,17 +599,33 @@ collections:
             default: 48
             hint: "Set the overlay opacity (0 clears the overlay, 90 is nearly opaque)."
           - label: Hero Image (Left)
-            name: heroImageLeft
-            widget: image
-            choose_url: true
-            hint: "Shown when layout is Image Left or Full Image (desktop uses this slot)."
+            name: heroImageLeftRef
+            widget: relation
+            collection: assets_images
+            search_fields: ["title", "tags.*"]
+            value_field: image
+            display_fields: ["title"]
             required: false
+            hint: "Shown when layout is Image Left or Full Image (desktop uses this slot)."
+          - label: Hero Image (Left)
+            name: heroImageLeft
+            widget: string
+            required: false
+            hint: "legacy: will be ignored if Ref is set"
+          - label: Hero Image (Right)
+            name: heroImageRightRef
+            widget: relation
+            collection: assets_images
+            search_fields: ["title", "tags.*"]
+            value_field: image
+            display_fields: ["title"]
+            required: false
+            hint: "Displayed when layout is Image Right; keep empty if not used."
           - label: Hero Image (Right)
             name: heroImageRight
-            widget: image
-            choose_url: true
-            hint: "Displayed when layout is Image Right; keep empty if not used."
+            widget: string
             required: false
+            hint: "legacy: will be ignored if Ref is set"
           - label: Hero Layout Hint
             name: heroLayoutHint
             widget: select
