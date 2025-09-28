@@ -3,18 +3,18 @@ backend:
   name: git-gateway
   branch: main
 
+publish_mode: editorial_workflow
 local_backend: true
 
-media_folder: "content/uploads"
-public_folder: "/content/uploads"
+media_folder: content/uploads
+public_folder: /content/uploads
+site_url: https://kapunka-new.netlify.app
+display_url: https://kapunka-new.netlify.app
 
 i18n:
   structure: multiple_folders
   default_locale: en
-  locales:
-    - en
-    - es
-    - pt
+  locales: [en, pt, es]
 
 collections:
   - name: site
