@@ -23,6 +23,7 @@ View your app in AI Studio: https://ai.studio/apps/drive/1ROv6j-3REdmWuJaFL9bv6n
 
 1. Connect the repository to Netlify and choose the branch that should trigger builds (e.g. `main`).
 2. In **Site settings → Build & deploy**, set the **Build command** to `npm run build` and the **Publish directory** to `dist`.
-3. Enable **Identity** and **Git Gateway** from the Netlify dashboard so Decap CMS can authenticate editors and commit updates.
-4. Make sure the branch selected in Netlify matches the `branch` value in [`admin/config.yml`](admin/config.yml). The configuration now defaults to `main`; change it if your production site uses a different branch.
-5. After deploying, visit `/admin/` on your Netlify site to log in with Netlify Identity and manage all site content through Decap CMS.
+3. Within the same settings screen, open **Dependency management** and select **Node.js 20.x** for the preview/build image. This matches the `NODE_VERSION = "20"` declared in [`netlify.toml`](netlify.toml) and avoids using newer runtimes (like 22.x) that the project has not been validated against.
+4. Enable **Identity** and **Git Gateway** from the Netlify dashboard so Decap CMS can authenticate editors and commit updates.
+5. Make sure the branch selected in Netlify matches the `branch` value in [`admin/config.yml`](admin/config.yml). The configuration now defaults to `main`; change it if your production site uses a different branch.
+6. After deploying, visit `/admin/` on your Netlify site to log in with Netlify Identity and manage all site content through Decap CMS.
