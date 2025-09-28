@@ -44,6 +44,12 @@ type HomeSection =
         | 'bottom-right';
     }
   | {
+      type: 'featureGrid';
+      title?: string;
+      items?: { label: string; description?: string; icon?: string }[];
+      columns?: number;
+    }
+  | {
       type: 'mediaCopy';
       title?: string;
       body?: string;
@@ -1233,6 +1239,79 @@ const Home: React.FC = () => {
               </motion.div>
             </div>
           </div>
+        );
+      }
+      case 'featureGrid': {
+        const sectionTitle = sanitizeString(section.title ?? null);
+        const items = (section.items ?? [])
+          .map((item) => ({
+            label: sanitizeString(item.label ?? null),
+            description: sanitizeString(item.description ?? null),
+            icon: sanitizeString(item.icon ?? null),
+          }))
+          .filter((item) => item.label || item.description || item.icon);
+        const columnClassMap: Record<number, string> = {
+          2: 'lg:grid-cols-2',
+          3: 'lg:grid-cols-3',
+          4: 'lg:grid-cols-4',
+        };
+        const normalizedColumns = Math.min(Math.max(section.columns ?? 4, 2), 4);
+        const columnsClass = columnClassMap[normalizedColumns] ?? 'lg:grid-cols-4';
+
+        if (!sectionTitle && items.length === 0) {
+          return null;
+        }
+
+        return (
+          <section
+            key={`section-featureGrid-${index}`}
+            className="py-16 sm:py-24 bg-white"
+            data-nlv-field-path={sectionFieldPath}
+          >
+            <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+              {sectionTitle && (
+                <h2 className="text-3xl sm:text-4xl font-semibold text-center">
+                  <span data-nlv-field-path={`${sectionFieldPath}.title`}>{sectionTitle}</span>
+                </h2>
+              )}
+              {items.length > 0 && (
+                <div className={`mt-10 grid grid-cols-1 sm:grid-cols-2 ${columnsClass} gap-8`}>
+                  {items.map((item, itemIndex) => (
+                    <div
+                      key={`feature-grid-${index}-${itemIndex}`}
+                      className="bg-white border border-stone-200 rounded-xl p-6 shadow-sm flex flex-col gap-3"
+                      data-nlv-field-path={`${sectionFieldPath}.items.${itemIndex}`}
+                    >
+                      {item.icon && (
+                        <img
+                          src={item.icon}
+                          alt={item.label ?? 'Feature icon'}
+                          className="h-12 w-12 object-contain"
+                          data-nlv-field-path={`${sectionFieldPath}.items.${itemIndex}.icon`}
+                        />
+                      )}
+                      {item.label && (
+                        <h3
+                          className="text-lg font-semibold text-stone-900"
+                          data-nlv-field-path={`${sectionFieldPath}.items.${itemIndex}.label`}
+                        >
+                          {item.label}
+                        </h3>
+                      )}
+                      {item.description && (
+                        <p
+                          className="text-sm text-stone-600"
+                          data-nlv-field-path={`${sectionFieldPath}.items.${itemIndex}.description`}
+                        >
+                          {item.description}
+                        </p>
+                      )}
+                    </div>
+                  ))}
+                </div>
+              )}
+            </div>
+          </section>
         );
       }
       case 'mediaCopy': {
