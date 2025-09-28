@@ -66,41 +66,17 @@
   "heroAlignX": "left",
   "sections": [
     {
-      "type": "imageTextHalf",
-      "title": "Heritage sourcing, clinic-grade standards",
-      "text": "We bottle single-origin argan oil within hours of pressing to lock in antioxidants. Every lot is microbiologically tested and traceable from kernel to bottle for spa and medical safety.",
-      "image": ""
+      "type": "hero",
+      "headline": "Care that listens when skin is tender.",
+      "subheadline": "Kapunka 2.0 blends Moroccan argan rituals with clinical empathy so reactive and post-procedure skin can breathe easier.",
+      "position": "middle-center",
+      "overlay": true
     },
     {
-      "type": "imageTextHalf",
-      "title": "From hammam rituals to modern recovery",
-      "text": "Pair our black soap cleanse, rose water mist, and argan concentrate for a three-step routine that calms inflammation, supports barrier repair, and leaves no heavy film.",
-      "image": ""
-    },
-    {
-      "type": "imageGrid",
-      "items": [
-        {
-          "image": "",
-          "title": "Clinic-ready batching",
-          "subtitle": "Sterile filling, safety dossiers, and bilingual protocols for teams."
-        },
-        {
-          "image": "",
-          "title": "Holistic sensorial care",
-          "subtitle": "Light aromatics from native botanicals without synthetic fragrance."
-        },
-        {
-          "image": "",
-          "title": "Flexible retail stories",
-          "subtitle": "Merchandising kits and QR education for every treatment room."
-        },
-        {
-          "image": "",
-          "title": "Sustainable partnership",
-          "subtitle": "Revenue reinvested into Moroccan women’s cooperatives and reforestation."
-        }
-      ]
+      "type": "mediaCopy",
+      "title": "Born from gratitude",
+      "body": "Kapunka means “thank you.” Pure Moroccan argan, gentle routines, clinically respectful.",
+      "layout": "image-right"
     }
   ],
   "heroAlignY": "middle",
