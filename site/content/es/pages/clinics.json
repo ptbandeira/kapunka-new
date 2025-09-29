@@ -1,0 +1,29 @@
+{
+  "metaTitle": "Para clínicas — Confiable, sencillo, enseñable",
+  "metaDescription": "Lotes listos para la clínica, protocolos y soporte mayorista.",
+  "sections": [
+    {
+      "type": "mediaCopy",
+      "title": "Del quirófano a la rutina diaria",
+      "body": "Equipos de dermatología y estética confían en nosotros para el cuidado de cicatrices y la recuperación. Opciones de bajo residuo, consideradas con la fragancia y protocolos imprimibles.",
+      "imageRef": "/content/uploads/clinic-tray.jpg",
+      "layout": "textLeftImageRight"
+    },
+    {
+      "type": "featureGrid",
+      "title": "",
+      "columns": 3,
+      "items": [
+        { "label": "Protocolos", "description": "Pasos sencillos para preoperatorio, postoperatorio y cuidado en casa." },
+        { "label": "Formación", "description": "Onboarding breve y capacitaciones en servicio." },
+        { "label": "Mayoristas", "description": "Kits iniciales y reposición constante." }
+      ]
+    },
+    {
+      "type": "banner",
+      "text": "Explora mayoristas y capacitación",
+      "cta": "Contacta a nuestro equipo",
+      "url": "/contact"
+    }
+  ]
+}
