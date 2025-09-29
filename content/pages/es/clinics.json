@@ -7,16 +7,25 @@
       "title": "Del quirófano a la rutina diaria",
       "body": "Equipos de dermatología y estética confían en nosotros para el cuidado de cicatrices y la recuperación. Opciones de bajo residuo, consideradas con la fragancia y protocolos imprimibles.",
       "imageRef": "/content/uploads/clinic-tray.jpg",
-      "layout": "textLeftImageRight"
+      "layout": "image-right"
     },
     {
       "type": "featureGrid",
       "title": "",
       "columns": 3,
       "items": [
-        { "label": "Protocolos", "description": "Pasos sencillos para preoperatorio, postoperatorio y cuidado en casa." },
-        { "label": "Formación", "description": "Onboarding breve y capacitaciones en servicio." },
-        { "label": "Mayoristas", "description": "Kits iniciales y reposición constante." }
+        {
+          "label": "Protocolos",
+          "description": "Pasos sencillos para preoperatorio, postoperatorio y cuidado en casa."
+        },
+        {
+          "label": "Formación",
+          "description": "Onboarding breve y capacitaciones en servicio."
+        },
+        {
+          "label": "Mayoristas",
+          "description": "Kits iniciales y reposición constante."
+        }
       ]
     },
     {

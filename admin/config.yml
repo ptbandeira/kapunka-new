@@ -6,13 +6,12 @@ shared_sections: &shared_sections
     widget: "object"
     fields:
       - { name: "type", widget: "hidden", default: "mediaCopy" }
-      - { label: "Title", name: "title", widget: "string", i18n: true }
-      - { label: "Body", name: "body", widget: "markdown", i18n: true }
-      - { label: "Image", name: "image", widget: "image", required: false }
-      - { label: "Media Alignment", name: "mediaAlign", widget: "select", options: ["left", "right"], default: "left" }
-      - { label: "Background", name: "background", widget: "select", options: ["none", "muted"], default: "none" }
-      - { label: "CTA Label", name: "ctaLabel", widget: "string", i18n: true, required: false }
-      - { label: "CTA Href", name: "ctaHref", widget: "string", required: false }
+      - { label: "Title", name: "title", widget: "string", i18n: true, required: false }
+      - { label: "Body", name: "body", widget: "markdown", i18n: true, required: false }
+      - { label: "Image Upload", name: "image", widget: "image", choose_url: true, required: false }
+      - { label: "Image Path (optional)", name: "imageRef", widget: "string", required: false, hint: "Use when referencing an existing asset path such as /content/uploads/example.jpg." }
+      - { label: "Layout", name: "layout", widget: "select", options: ["image-right", "image-left"], default: "image-right" }
+      - { label: "Columns", name: "columns", widget: "number", value_type: "int", min: 1, max: 3, required: false, hint: "Leave blank for the default two-column layout." }
   - &section_featureGrid
     label: "Feature Grid"
     name: "featureGrid"
@@ -20,12 +19,14 @@ shared_sections: &shared_sections
     fields:
       - { name: "type", widget: "hidden", default: "featureGrid" }
       - { label: "Title", name: "title", widget: "string", i18n: true, required: false }
-      - label: "Features"
-        name: "features"
+      - { label: "Columns", name: "columns", widget: "number", value_type: "int", min: 1, max: 4, required: false }
+      - label: "Items"
+        name: "items"
         widget: "list"
+        summary: "{{fields.label}}"
         fields:
-          - { label: "Title", name: "title", widget: "string", i18n: true }
-          - { label: "Description", name: "text", widget: "markdown", i18n: true }
+          - { label: "Label", name: "label", widget: "string", i18n: true, required: false }
+          - { label: "Description", name: "description", widget: "markdown", i18n: true, required: false }
   - &section_productGrid
     label: "Product Grid"
     name: "productGrid"
@@ -33,8 +34,24 @@ shared_sections: &shared_sections
     fields:
       - { name: "type", widget: "hidden", default: "productGrid" }
       - { label: "Title", name: "title", widget: "string", i18n: true, required: false }
-      - { label: "Products", name: "productsRef", widget: "relation", collection: "Products", search_fields: ["title"], value_field: "slug", multiple: true, required: false }
-      - { label: "Note", name: "note", widget: "text", i18n: true, required: false }
+      - { label: "Columns", name: "columns", widget: "number", value_type: "int", min: 1, max: 4, required: false }
+      - label: "Products"
+        name: "products"
+        widget: "list"
+        summary: "{{fields.id}}"
+        field:
+          label: "Product"
+          name: "id"
+          widget: "relation"
+          collection: "products"
+          file: "catalog"
+          search_fields:
+            - "items.*.name.en"
+            - "items.*.name.pt"
+            - "items.*.name.es"
+          display_fields:
+            - "items.*.name.en"
+          value_field: "items.*.id"
   - &section_testimonials
     label: "Testimonials"
     name: "testimonials"
@@ -42,11 +59,11 @@ shared_sections: &shared_sections
     fields:
       - { name: "type", widget: "hidden", default: "testimonials" }
       - { label: "Title", name: "title", widget: "string", i18n: true, required: false }
-      - label: "Items"
-        name: "items"
+      - label: "Quotes"
+        name: "quotes"
         widget: "list"
         fields:
-          - { label: "Quote", name: "quote", widget: "markdown", i18n: true }
+          - { label: "Quote", name: "text", widget: "markdown", i18n: true, required: false }
           - { label: "Author", name: "author", widget: "string", required: false }
           - { label: "Role", name: "role", widget: "string", required: false }
   - &section_faq
@@ -68,21 +85,92 @@ shared_sections: &shared_sections
     widget: "object"
     fields:
       - { name: "type", widget: "hidden", default: "banner" }
-      - { label: "Eyebrow", name: "eyebrow", widget: "string", i18n: true, required: false }
-      - { label: "Title", name: "title", widget: "string", i18n: true }
-      - { label: "Subheadline", name: "sub", widget: "text", i18n: true, required: false }
-      - { label: "CTA Label", name: "ctaLabel", widget: "string", i18n: true, required: false }
-      - { label: "CTA Href", name: "ctaHref", widget: "string", required: false }
-      - { label: "Style", name: "style", widget: "select", options: ["muted", "inset"], default: "muted" }
-  - &section_video
-    label: "Video"
-    name: "video"
+      - { label: "Text", name: "text", widget: "string", i18n: true, required: false }
+      - { label: "CTA Label", name: "cta", widget: "string", i18n: true, required: false }
+      - { label: "CTA URL", name: "url", widget: "string", required: false }
+      - { label: "Style", name: "style", widget: "select", options: ["muted", "inset"], required: false }
+  - &section_videoGallery
+    label: "Video Gallery"
+    name: "videoGallery"
     widget: "object"
     fields:
-      - { name: "type", widget: "hidden", default: "video" }
+      - { name: "type", widget: "hidden", default: "videoGallery" }
       - { label: "Title", name: "title", widget: "string", i18n: true, required: false }
-      - { label: "URL", name: "url", widget: "string" }
-      - { label: "Poster", name: "poster", widget: "image", required: false }
+      - { label: "Description", name: "description", widget: "text", i18n: true, required: false }
+      - label: "Entries"
+        name: "entries"
+        widget: "list"
+        fields:
+          - { label: "Title", name: "title", widget: "string", i18n: true, required: false }
+          - { label: "Description", name: "description", widget: "text", i18n: true, required: false }
+          - { label: "Video URL", name: "videoUrl", widget: "string", required: false }
+          - { label: "Thumbnail", name: "thumbnail", widget: "image", choose_url: true, required: false }
+  - &section_trainingList
+    label: "Training List"
+    name: "trainingList"
+    widget: "object"
+    fields:
+      - { name: "type", widget: "hidden", default: "trainingList" }
+      - { label: "Title", name: "title", widget: "string", i18n: true, required: false }
+      - { label: "Description", name: "description", widget: "text", i18n: true, required: false }
+      - label: "Entries"
+        name: "entries"
+        widget: "list"
+        fields:
+          - { label: "Course Title", name: "courseTitle", widget: "string", i18n: true, required: false }
+          - { label: "Summary", name: "courseSummary", widget: "text", i18n: true, required: false }
+          - { label: "Link URL", name: "linkUrl", widget: "string", required: false }
+  - &section_timeline
+    label: "Timeline"
+    name: "timeline"
+    widget: "object"
+    fields:
+      - { name: "type", widget: "hidden", default: "timeline" }
+      - { label: "Title", name: "title", widget: "string", i18n: true, required: false }
+      - label: "Entries"
+        name: "entries"
+        widget: "list"
+        fields:
+          - { label: "Year", name: "year", widget: "string" }
+          - { label: "Title", name: "title", widget: "string", i18n: true }
+          - { label: "Description", name: "description", widget: "markdown", i18n: true }
+          - { label: "Image", name: "image", widget: "image", choose_url: true, required: false }
+  - &section_facts
+    label: "Facts"
+    name: "facts"
+    widget: "object"
+    fields:
+      - { name: "type", widget: "hidden", default: "facts" }
+      - { label: "Title", name: "title", widget: "string", i18n: true }
+      - { label: "Body", name: "text", widget: "text", i18n: true }
+  - &section_bullets
+    label: "Bulleted List"
+    name: "bullets"
+    widget: "object"
+    fields:
+      - { name: "type", widget: "hidden", default: "bullets" }
+      - { label: "Title", name: "title", widget: "string", i18n: true }
+      - label: "Items"
+        name: "items"
+        widget: "list"
+        field: { label: "Item", name: "item", widget: "string", i18n: true }
+  - &section_specialties
+    label: "Specialties"
+    name: "specialties"
+    widget: "object"
+    fields:
+      - { name: "type", widget: "hidden", default: "specialties" }
+      - { label: "Title", name: "title", widget: "string", i18n: true, required: false }
+      - label: "Specialties"
+        name: "items"
+        widget: "list"
+        summary: "{{fields.title}}"
+        fields:
+          - { label: "Specialty Title", name: "title", widget: "string", i18n: true }
+          - label: "Bullets"
+            name: "bullets"
+            widget: "list"
+            field: { label: "Bullet", name: "bullet", widget: "string", i18n: true }
 
 # SINGLE SOURCE OF TRUTH for Decap CMS (production /admin). Do not edit site/admin/config.yml.
 backend:
@@ -380,7 +468,9 @@ collections:
               - *section_testimonials
               - *section_faq
               - *section_banner
-              - *section_video
+              - *section_videoGallery
+              - *section_trainingList
+              - *section_timeline
       - name: shop
         label: Shop Page
         file: content/pages/shop.json
@@ -413,7 +503,9 @@ collections:
               - *section_testimonials
               - *section_faq
               - *section_banner
-              - *section_video
+              - *section_videoGallery
+              - *section_trainingList
+              - *section_timeline
       - name: learn
         label: Learn Page
         file: content/pages/learn.json
@@ -429,9 +521,33 @@ collections:
         format: json
         editor:
           preview: true
-        description: "Edit sections from top to bottom. Drag to reorder. Use Hero, Media+Copy, Feature Grid, Product Grid, Testimonials, FAQ, Banner, Video."
+        description: "Edit hero copy, clinical notes, and structured sections in order."
         i18n: true
-        fields: *page_fields
+        fields:
+          - { label: "Meta Title", name: "metaTitle", widget: "string", i18n: true, required: false }
+          - { label: "Meta Description", name: "metaDescription", widget: "text", i18n: true, required: false }
+          - { label: "Hero Title", name: "heroTitle", widget: "string", i18n: true, required: false }
+          - { label: "Hero Subtitle", name: "heroSubtitle", widget: "text", i18n: true, required: false }
+          - label: "Clinical Notes"
+            name: "clinicalNotes"
+            widget: "list"
+            collapsed: true
+            summary: "{{fields.title}}"
+            fields:
+              - { label: "Title", name: "title", widget: "string", i18n: true }
+              - label: "Bullets"
+                name: "bullets"
+                widget: "list"
+                field: { label: "Bullet", name: "bullet", widget: "string", i18n: true }
+          - label: "Sections"
+            name: "sections"
+            widget: "list"
+            collapsed: true
+            summary: "{{fields.title}} — {{fields.type}}"
+            types:
+              - *section_facts
+              - *section_bullets
+              - *section_specialties
       - name: clinics
         label: For Clinics Page
         file: content/pages/clinics.json

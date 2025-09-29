@@ -4,8 +4,14 @@
   "heroHeadline": "Be thankful to your skin.",
   "heroSubheadline": "Gentle argan rituals from Morocco, made for sensitive and post-procedure skin. Welcome to Kapunka 2.0: calm care that feels human.",
   "heroCtas": {
-    "ctaPrimary": { "label": "Shop argan rituals", "href": "/shop" },
-    "ctaSecondary": { "label": "Clinics partnership", "href": "/clinics" }
+    "ctaPrimary": {
+      "label": "Shop argan rituals",
+      "href": "/shop"
+    },
+    "ctaSecondary": {
+      "label": "Clinics partnership",
+      "href": "/clinics"
+    }
   },
   "heroAlignment": {
     "heroAlignX": "center",
@@ -23,47 +29,65 @@
       "title": "Born from gratitude",
       "body": "“Kapunka” means “thank you.” We make argan care with clinical respect—simple routines that comfort, shield, and support healing. Our roots are in Morocco; our method grew in real clinics.",
       "imageRef": "/content/uploads/roots-olive-tree.jpg",
-      "layout": "textLeftImageRight"
+      "layout": "image-right"
     },
     {
       "type": "mediaCopy",
       "title": "Preferred by dermatologists, medspas, and holistic clinics",
       "body": "Our treatments are gentle, low-residue, and knowledge-led, with skin acceptance, barrier stability, and aroma balance. Dedicated training and wholesale support keep your team confident.",
       "imageRef": "/content/uploads/clinic-hands.jpg",
-      "layout": "textLeftImageRight"
+      "layout": "image-right"
     },
     {
       "type": "mediaCopy",
       "title": "Heritage sourcing, clinic-grade standards",
       "body": "We source single-origin argan and trace the steps from cooperatives to lab certifications. Every lot is meticulously quality-tested to maintain human care at scale.",
       "imageRef": "/content/uploads/argan-coop.jpg",
-      "layout": "textLeftImageRight"
+      "layout": "image-right"
     },
     {
       "type": "mediaCopy",
       "title": "From hammam rituals to modern recovery",
       "body": "Pure oil, floral mists, and clean washes. Old wisdom connected to the lives we live today: routines that calm discomfort, repair the barrier, and leave no heavy film.",
       "imageRef": "/content/uploads/hammam-light.jpg",
-      "layout": "textLeftImageRight"
+      "layout": "image-right"
     },
     {
       "type": "featureGrid",
       "title": "",
       "columns": 4,
       "items": [
-        { "label": "Clinic-ready batching", "description": "Skin-friendly, clean, cold-pressed." },
-        { "label": "Holistic sensorial care", "description": "Low-residue textures and gentle aromas for sensitive skin." },
-        { "label": "Flexible retail stories", "description": "Starter sets and education for consistent home routines." },
-        { "label": "Sustainable partnerships", "description": "Fair relationships across Morocco’s cooperatives." }
+        {
+          "label": "Clinic-ready batching",
+          "description": "Skin-friendly, clean, cold-pressed."
+        },
+        {
+          "label": "Holistic sensorial care",
+          "description": "Low-residue textures and gentle aromas for sensitive skin."
+        },
+        {
+          "label": "Flexible retail stories",
+          "description": "Starter sets and education for consistent home routines."
+        },
+        {
+          "label": "Sustainable partnerships",
+          "description": "Fair relationships across Morocco’s cooperatives."
+        }
       ]
     },
     {
       "type": "productGrid",
       "title": "Our Bestsellers",
       "products": [
-        { "id": "pure-argan-100" },
-        { "id": "scar-care" },
-        { "id": "ritual-pack" }
+        {
+          "id": "pure-argan-100"
+        },
+        {
+          "id": "scar-care"
+        },
+        {
+          "id": "ritual-pack"
+        }
       ],
       "columns": 3
     },
@@ -71,8 +95,16 @@
       "type": "testimonials",
       "title": "What Professionals Say",
       "quotes": [
-        { "text": "After laser treatments, I recommend Kapunka pure argan for faster barrier repair. My patients notice less tightness and redness.", "author": "Dr. Isabella Rossi", "role": "Dermatologist" },
-        { "text": "Finally, a cleanser that respects sensitive skin while effectively removing makeup.", "author": "Chloe Davis", "role": "Esthetician" }
+        {
+          "text": "After laser treatments, I recommend Kapunka pure argan for faster barrier repair. My patients notice less tightness and redness.",
+          "author": "Dr. Isabella Rossi",
+          "role": "Dermatologist"
+        },
+        {
+          "text": "Finally, a cleanser that respects sensitive skin while effectively removing makeup.",
+          "author": "Chloe Davis",
+          "role": "Esthetician"
+        }
       ]
     }
   ]

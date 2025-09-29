@@ -7,16 +7,25 @@
       "title": "From operating room to everyday routine",
       "body": "Trusted by dermatology and aesthetic teams for scar care and recovery. Low-residue, fragrance-considerate options and printable protocols.",
       "imageRef": "/content/uploads/clinic-tray.jpg",
-      "layout": "textLeftImageRight"
+      "layout": "image-right"
     },
     {
       "type": "featureGrid",
       "title": "",
       "columns": 3,
       "items": [
-        { "label": "Protocols", "description": "Simple steps for pre-op, post-op, and home care." },
-        { "label": "Education", "description": "Short onboarding and in-service training." },
-        { "label": "Wholesale", "description": "Starter kits and steady replenishment." }
+        {
+          "label": "Protocols",
+          "description": "Simple steps for pre-op, post-op, and home care."
+        },
+        {
+          "label": "Education",
+          "description": "Short onboarding and in-service training."
+        },
+        {
+          "label": "Wholesale",
+          "description": "Starter kits and steady replenishment."
+        }
       ]
     },
     {
