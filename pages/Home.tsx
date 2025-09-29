@@ -397,6 +397,16 @@ const normalizeImagePath = (value: string | null | undefined, locale: string): s
   return `/content/${locale}/uploads/${uploadsPath}`;
 };
 
+const firstDefined = <T,>(values: ReadonlyArray<T | null | undefined>): T | undefined => {
+  for (const value of values) {
+    if (value !== undefined && value !== null) {
+      return value;
+    }
+  }
+
+  return undefined;
+};
+
 const normalizeHorizontalAlignment = (value?: string | null): HeroHorizontalAlignment | undefined => {
   if (value === 'left' || value === 'center' || value === 'right') {
     return value;
@@ -913,8 +923,18 @@ const NewsletterSignup: React.FC = () => {
 
 const Home: React.FC = () => {
   const { t, language } = useLanguage();
-  const { settings } = useSiteSettings();
-  const siteHeroImage = settings.home?.heroImage ?? '/content/uploads/hero-abstract.jpg';
+  const { settings: siteSettings } = useSiteSettings();
+  const heroFallbackRaw = (() => {
+    const extendedSettings = siteSettings as typeof siteSettings & { heroFallback?: string | null };
+    const fallbackCandidate = extendedSettings.heroFallback ?? siteSettings.home?.heroImage;
+
+    if (typeof fallbackCandidate === 'string') {
+      const trimmed = fallbackCandidate.trim();
+      return trimmed.length > 0 ? trimmed : undefined;
+    }
+
+    return undefined;
+  })();
   const [pageContent, setPageContent] = useState<HomePageContent | null>(null);
   const [products, setProducts] = useState<Product[]>([]);
 
@@ -1010,20 +1030,29 @@ const Home: React.FC = () => {
             return acc;
           }, []);
 
-          const heroImageLeftCandidate = heroImagesData?.heroImageLeftRef
-            ?? parsedData?.heroImageLeftRef
-            ?? heroImagesData?.heroImageLeft
-            ?? parsedData?.heroImageLeft
-            ?? null;
-          const heroImageRightCandidate = heroImagesData?.heroImageRightRef
-            ?? parsedData?.heroImageRightRef
-            ?? heroImagesData?.heroImageRight
-            ?? parsedData?.heroImageRight
-            ?? null;
+          const heroImageLeftCandidate = firstDefined([
+            heroImagesData?.heroImageLeftRef,
+            parsedData?.heroImageLeftRef,
+            heroImagesData?.heroImageLeft,
+            parsedData?.heroImageLeft,
+            heroFallbackRaw,
+          ]);
+          const heroImageRightCandidate = firstDefined([
+            heroImagesData?.heroImageRightRef,
+            parsedData?.heroImageRightRef,
+            heroImagesData?.heroImageRight,
+            parsedData?.heroImageRight,
+            heroFallbackRaw,
+          ]);
           const heroImageLeftUrl = normalizeImagePath(heroImageLeftCandidate, locale) ?? null;
           const heroImageRightUrl = normalizeImagePath(heroImageRightCandidate, locale) ?? null;
 
-          if (!heroImageLeftUrl && !heroImageRightUrl && !hasWarnedMissingHeroImages) {
+          if (
+            import.meta.env.DEV
+            && !heroImageLeftUrl
+            && !heroImageRightUrl
+            && !hasWarnedMissingHeroImages
+          ) {
             console.warn('Home hero images are not configured. Add hero image references or legacy URLs in the CMS.');
             hasWarnedMissingHeroImages = true;
           }
@@ -1067,7 +1096,7 @@ const Home: React.FC = () => {
     return () => {
       isMounted = false;
     };
-  }, [language]);
+  }, [language, heroFallbackRaw]);
 
   const sanitizeString = (value?: string | null): string | undefined =>
     value && value.trim().length > 0 ? value.trim() : undefined;
@@ -1099,18 +1128,30 @@ const Home: React.FC = () => {
   const heroLayoutHint = normalizeHeroLayoutHint(
     pageContent?.heroAlignment?.heroLayoutHint ?? pageContent?.heroLayoutHint ?? (pageContent?.heroAlignment ? undefined : 'bgImage'),
   );
-  const heroImageLeftUrl = pageContent?.heroImageLeftUrl
-    ?? normalizeImagePath(pageContent?.heroImages?.heroImageLeftRef, locale)
-    ?? normalizeImagePath(pageContent?.heroImageLeftRef, locale)
-    ?? normalizeImagePath(pageContent?.heroImages?.heroImageLeft ?? null, locale)
-    ?? normalizeImagePath(pageContent?.heroImageLeft ?? null, locale)
-    ?? null;
-  const heroImageRightUrl = pageContent?.heroImageRightUrl
-    ?? normalizeImagePath(pageContent?.heroImages?.heroImageRightRef, locale)
-    ?? normalizeImagePath(pageContent?.heroImageRightRef, locale)
-    ?? normalizeImagePath(pageContent?.heroImages?.heroImageRight ?? null, locale)
-    ?? normalizeImagePath(pageContent?.heroImageRight ?? null, locale)
-    ?? null;
+  const heroSrcCandidate = firstDefined([
+    pageContent?.heroImages?.heroImageLeftRef,
+    pageContent?.heroImageLeftRef,
+    pageContent?.heroImages?.heroImageLeft,
+    pageContent?.heroImageLeft,
+    heroFallbackRaw,
+  ]);
+  const heroSrc = sanitizeString(normalizeImagePath(heroSrcCandidate, locale));
+  const heroImageLeftUrl = firstDefined([
+    pageContent?.heroImageLeftUrl ?? undefined,
+    normalizeImagePath(pageContent?.heroImages?.heroImageLeftRef, locale),
+    normalizeImagePath(pageContent?.heroImageLeftRef, locale),
+    normalizeImagePath(pageContent?.heroImages?.heroImageLeft, locale),
+    normalizeImagePath(pageContent?.heroImageLeft, locale),
+    heroSrc,
+  ]);
+  const heroImageRightUrl = firstDefined([
+    pageContent?.heroImageRightUrl ?? undefined,
+    normalizeImagePath(pageContent?.heroImages?.heroImageRightRef, locale),
+    normalizeImagePath(pageContent?.heroImageRightRef, locale),
+    normalizeImagePath(pageContent?.heroImages?.heroImageRight, locale),
+    normalizeImagePath(pageContent?.heroImageRight, locale),
+    heroSrc,
+  ]);
   const heroImageLeft = sanitizeString(heroImageLeftUrl);
   const heroImageRight = sanitizeString(heroImageRightUrl);
   const heroTextPlacementRaw = pageContent?.heroAlignment?.heroTextPosition;
@@ -1139,8 +1180,8 @@ const Home: React.FC = () => {
 
   const shouldRenderInlineImage = Boolean(heroInlineImage && heroLayoutHint !== 'image-full');
   const heroBackgroundImage = heroLayoutHint === 'image-full'
-    ? heroInlineImage ?? siteHeroImage
-    : siteHeroImage;
+    ? heroInlineImage ?? heroSrc
+    : heroSrc ?? heroInlineImage;
   const overlayStyle: React.CSSProperties = shouldRenderInlineImage && heroTextPlacement === 'overlay'
     ? { background: 'linear-gradient(90deg, rgba(255,255,255,0.92) 0%, rgba(255,255,255,0.7) 100%)' }
     : { background: heroOverlay };
@@ -1340,8 +1381,8 @@ const Home: React.FC = () => {
         })();
         const sectionShouldRenderInlineImage = Boolean(inlineImageCandidate && heroLayoutHint !== 'image-full');
         const sectionBackgroundImage = heroLayoutHint === 'image-full'
-          ? inlineImageCandidate ?? heroImageOverride ?? heroImageRight ?? heroImageLeft ?? siteHeroImage
-          : siteHeroImage;
+          ? inlineImageCandidate ?? heroImageOverride ?? heroImageRight ?? heroImageLeft ?? heroSrc
+          : heroSrc ?? heroImageOverride ?? heroImageRight ?? heroImageLeft;
         const overlayColor = section.overlay === false ? 'rgba(0,0,0,0)' : heroOverlay;
         const sectionOverlayStyle: React.CSSProperties = sectionShouldRenderInlineImage && heroTextPlacement === 'overlay'
           ? { background: 'linear-gradient(90deg, rgba(255,255,255,0.92) 0%, rgba(255,255,255,0.7) 100%)' }
@@ -1430,18 +1471,28 @@ const Home: React.FC = () => {
 
         return (
           <React.Fragment key={`section-hero-${index}`}>
-            <div
-              className="relative h-screen bg-cover bg-center"
-              style={{ backgroundImage: `url('${sectionBackgroundImage}')` }}
-              data-nlv-field-path={sectionFieldPath}
-            >
-              <div className="absolute inset-0" style={sectionOverlayStyle}></div>
-              {heroTextPlacement === 'overlay' && (
-                <div className={`relative h-full flex ${sectionAlignmentClasses} ${sectionMiddleNudge}`}>
-                  {sectionTextMotion}
-                </div>
-              )}
-            </div>
+            {sectionBackgroundImage ? (
+              <div
+                className="relative h-screen bg-cover bg-center"
+                style={{ backgroundImage: `url('${sectionBackgroundImage}')` }}
+                data-nlv-field-path={sectionFieldPath}
+              >
+                <div className="absolute inset-0" style={sectionOverlayStyle}></div>
+                {heroTextPlacement === 'overlay' && (
+                  <div className={`relative h-full flex ${sectionAlignmentClasses} ${sectionMiddleNudge}`}>
+                    {sectionTextMotion}
+                  </div>
+                )}
+              </div>
+            ) : (
+              <div className="relative h-screen bg-stone-900" data-nlv-field-path={sectionFieldPath}>
+                {heroTextPlacement === 'overlay' && (
+                  <div className={`relative h-full flex ${sectionAlignmentClasses} ${sectionMiddleNudge}`}>
+                    {sectionTextMotion}
+                  </div>
+                )}
+              </div>
+            )}
             {heroTextPlacement === 'below' && sectionTextMotion}
           </React.Fragment>
         );
@@ -2047,18 +2098,31 @@ const Home: React.FC = () => {
         renderedLocalSections
       ) : (
         <>
-          <div
-            className="relative h-screen bg-cover bg-center"
-            style={{ backgroundImage: `url('${heroBackgroundImage}')` }}
-            data-nlv-field-path="site.home.heroImage"
-          >
-            <div className="absolute inset-0" style={overlayStyle}></div>
-            {heroTextPlacement === 'overlay' && (
-              <div className={`relative h-full flex ${heroAlignmentClasses} ${heroMiddleNudge}`}>
-                {heroTextMotion}
-              </div>
-            )}
-          </div>
+          {heroBackgroundImage ? (
+            <div
+              className="relative h-screen bg-cover bg-center"
+              style={{ backgroundImage: `url('${heroBackgroundImage}')` }}
+              data-nlv-field-path="site.home.heroImage"
+            >
+              <div className="absolute inset-0" style={overlayStyle}></div>
+              {heroTextPlacement === 'overlay' && (
+                <div className={`relative h-full flex ${heroAlignmentClasses} ${heroMiddleNudge}`}>
+                  {heroTextMotion}
+                </div>
+              )}
+            </div>
+          ) : (
+            <div
+              className="relative h-screen bg-stone-900"
+              data-nlv-field-path="site.home.heroImage"
+            >
+              {heroTextPlacement === 'overlay' && (
+                <div className={`relative h-full flex ${heroAlignmentClasses} ${heroMiddleNudge}`}>
+                  {heroTextMotion}
+                </div>
+              )}
+            </div>
+          )}
           {heroTextPlacement === 'below' && heroTextMotion}
           {(brandIntroTitle || brandIntroText) && (
             <div className="container mx-auto max-w-3xl px-4 py-16 md:py-24">
