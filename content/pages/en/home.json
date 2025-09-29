@@ -93,6 +93,33 @@
       "columns": 3
     },
     {
+      "type": "communityCarousel",
+      "title": "Rituals in our community",
+      "slides": [
+        {
+          "image": "",
+          "alt": "Add a photo of a Kapunka ritual in use",
+          "quote": "\u201cUse this placeholder to share how someone experiences Kapunka in their routine.\u201d",
+          "name": "Customer name",
+          "role": "Clinic or city"
+        },
+        {
+          "image": "",
+          "alt": "Upload another community image",
+          "quote": "\u201cHighlight a partner testimonial, recovery story, or everyday ritual.\u201d",
+          "name": "Partner or practitioner",
+          "role": "Role or treatment focus"
+        },
+        {
+          "image": "",
+          "alt": "Add lifestyle imagery that feels real and warm",
+          "quote": "\u201cAdd an authentic note about how Kapunka supports their skin goals.\u201d",
+          "name": "Add a name",
+          "role": "Location or context"
+        }
+      ]
+    },
+    {
       "type": "testimonials",
       "title": "What Professionals Say",
       "quotes": [

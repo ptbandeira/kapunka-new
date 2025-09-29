@@ -152,6 +152,33 @@
           "text": "Argan rico em nutrientes e botânicos entregam resultados visíveis rapidamente."
         }
       ]
+    },
+    {
+      "type": "communityCarousel",
+      "title": "Rituais na nossa comunidade",
+      "slides": [
+        {
+          "image": "",
+          "alt": "Adiciona uma foto de um ritual Kapunka em uso",
+          "quote": "Usa este espaço para partilhar como alguém vive Kapunka na rotina.",
+          "name": "Nome do cliente",
+          "role": "Clínica ou cidade"
+        },
+        {
+          "image": "",
+          "alt": "Carrega outra imagem da comunidade",
+          "quote": "Destaque um testemunho de parceiro, uma história de recuperação ou um ritual diário.",
+          "name": "Parceiro ou profissional",
+          "role": "Função ou foco do tratamento"
+        },
+        {
+          "image": "",
+          "alt": "Adiciona imagens de lifestyle reais e acolhedoras",
+          "quote": "Acrescenta uma nota autêntica sobre como Kapunka apoia os objetivos de pele.",
+          "name": "Adiciona um nome",
+          "role": "Localização ou contexto"
+        }
+      ]
     }
   ]
 }

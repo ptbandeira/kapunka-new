@@ -223,6 +223,22 @@ export interface ImageGridSectionContent {
   items: ImageGridItem[];
 }
 
+export interface CommunityCarouselSlide {
+  image?: string;
+  imageRef?: string;
+  alt?: string;
+  quote?: string;
+  name?: string;
+  role?: string;
+}
+
+export interface CommunityCarouselSectionContent {
+  type: 'communityCarousel';
+  title?: string;
+  slides?: CommunityCarouselSlide[];
+  slideDuration?: number;
+}
+
 export interface ClinicsBlockContent {
   clinicsTitle?: string;
   clinicsBody?: string;
@@ -311,6 +327,7 @@ export type PageSection =
   | TimelineSectionContent
   | ImageTextHalfSectionContent
   | ImageGridSectionContent
+  | CommunityCarouselSectionContent
   | VideoGallerySectionContent
   | TrainingListSectionContent
   | ProductTabsSectionContent;
