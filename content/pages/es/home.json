@@ -4,8 +4,14 @@
   "heroHeadline": "Sé agradecido con tu piel.",
   "heroSubheadline": "Rituales suaves de argán desde Marruecos para piel sensible y post-procedimiento. Kapunka 2.0: un cuidado sereno y humano.",
   "heroCtas": {
-    "ctaPrimary": { "label": "Ver rituales", "href": "/shop" },
-    "ctaSecondary": { "label": "Alianzas con clínicas", "href": "/clinics" }
+    "ctaPrimary": {
+      "label": "Ver rituales",
+      "href": "/shop"
+    },
+    "ctaSecondary": {
+      "label": "Alianzas con clínicas",
+      "href": "/clinics"
+    }
   },
   "heroAlignment": {
     "heroAlignX": "center",
@@ -14,54 +20,74 @@
     "heroOverlay": "medium",
     "heroLayoutHint": "bg"
   },
-  "heroImages": { "heroImageLeft": "/content/uploads/hero-dark-water.jpg" },
+  "heroImages": {
+    "heroImageLeft": "/content/uploads/hero-dark-water.jpg"
+  },
   "sections": [
     {
       "type": "mediaCopy",
       "title": "Nacido de la gratitud",
       "body": "“Kapunka” significa “gracias”. Elaboramos cuidados de argán con respeto clínico: rutinas sencillas que reconfortan, protegen y apoyan la recuperación. Nuestras raíces están en Marruecos; nuestro método creció en clínicas reales.",
       "imageRef": "/content/uploads/roots-olive-tree.jpg",
-      "layout": "textLeftImageRight"
+      "layout": "image-right"
     },
     {
       "type": "mediaCopy",
       "title": "Preferido por dermatólogos, medspas y clínicas holísticas",
       "body": "Nuestros tratamientos son suaves, de bajo residuo y guiados por el conocimiento, con aceptación de la piel, estabilidad de la barrera y equilibrio aromático. La formación dedicada y el soporte mayorista mantienen a tu equipo con confianza.",
       "imageRef": "/content/uploads/clinic-hands.jpg",
-      "layout": "textLeftImageRight"
+      "layout": "image-right"
     },
     {
       "type": "mediaCopy",
       "title": "Abastecimiento patrimonial, estándares de grado clínico",
       "body": "Obtenemos argán de origen único y seguimos cada paso desde las cooperativas hasta las certificaciones de laboratorio. Cada lote se somete a pruebas meticulosas para mantener un cuidado humano a escala.",
       "imageRef": "/content/uploads/argan-coop.jpg",
-      "layout": "textLeftImageRight"
+      "layout": "image-right"
     },
     {
       "type": "mediaCopy",
       "title": "De los rituales de hammam a la recuperación moderna",
       "body": "Aceite puro, brumas florales y limpiadores suaves. Sabiduría ancestral conectada con la vida de hoy: rutinas que calman el malestar, reparan la barrera y no dejan una película pesada.",
       "imageRef": "/content/uploads/hammam-light.jpg",
-      "layout": "textLeftImageRight"
+      "layout": "image-right"
     },
     {
       "type": "featureGrid",
       "title": "",
       "columns": 4,
       "items": [
-        { "label": "Lotes listos para clínica", "description": "Amables con la piel, puros y prensados en frío." },
-        { "label": "Cuidado sensorial holístico", "description": "Texturas de bajo residuo y aromas suaves para piel sensible." },
-        { "label": "Historias minoristas flexibles", "description": "Sets iniciales y formación para rutinas constantes en casa." },
-        { "label": "Alianzas sostenibles", "description": "Relaciones justas con las cooperativas de Marruecos." }
+        {
+          "label": "Lotes listos para clínica",
+          "description": "Amables con la piel, puros y prensados en frío."
+        },
+        {
+          "label": "Cuidado sensorial holístico",
+          "description": "Texturas de bajo residuo y aromas suaves para piel sensible."
+        },
+        {
+          "label": "Historias minoristas flexibles",
+          "description": "Sets iniciales y formación para rutinas constantes en casa."
+        },
+        {
+          "label": "Alianzas sostenibles",
+          "description": "Relaciones justas con las cooperativas de Marruecos."
+        }
       ]
     },
     {
       "type": "productGrid",
       "title": "Nuestros más vendidos",
       "products": [
-        { "id": "pure-argan-100" },
-        { "id": "scar-care" },
-        { "id": "ritual-pack" }
+        {
+          "id": "pure-argan-100"
+        },
+        {
+          "id": "scar-care"
+        },
+        {
+          "id": "ritual-pack"
+        }
       ],
       "columns": 3
     },
@@ -69,8 +95,16 @@
       "type": "testimonials",
       "title": "Lo que dicen los profesionales",
       "quotes": [
-        { "text": "Después de los tratamientos con láser, recomiendo el argán puro de Kapunka para acelerar la reparación de la barrera. Mis pacientes notan menos tirantez y enrojecimiento.", "author": "Dra. Isabella Rossi", "role": "Dermatóloga" },
-        { "text": "Por fin, un limpiador que respeta la piel sensible y aun así elimina el maquillaje de forma eficaz.", "author": "Chloe Davis", "role": "Esteticista" }
+        {
+          "text": "Después de los tratamientos con láser, recomiendo el argán puro de Kapunka para acelerar la reparación de la barrera. Mis pacientes notan menos tirantez y enrojecimiento.",
+          "author": "Dra. Isabella Rossi",
+          "role": "Dermatóloga"
+        },
+        {
+          "text": "Por fin, un limpiador que respeta la piel sensible y aun así elimina el maquillaje de forma eficaz.",
+          "author": "Chloe Davis",
+          "role": "Esteticista"
+        }
       ]
     }
   ]

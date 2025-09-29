@@ -7,16 +7,25 @@
       "title": "Do centro cirúrgico à rotina diária",
       "body": "Equipes de dermatologia e estética confiam em nós para cuidados com cicatrizes e recuperação. Opções de baixo resíduo, atentas à fragrância e protocolos imprimíveis.",
       "imageRef": "/content/uploads/clinic-tray.jpg",
-      "layout": "textLeftImageRight"
+      "layout": "image-right"
     },
     {
       "type": "featureGrid",
       "title": "",
       "columns": 3,
       "items": [
-        { "label": "Protocolos", "description": "Etapas simples para pré-operatório, pós-operatório e cuidado em casa." },
-        { "label": "Educação", "description": "Integração rápida e treinamentos em serviço." },
-        { "label": "Atacado", "description": "Kits iniciais e reposição constante." }
+        {
+          "label": "Protocolos",
+          "description": "Etapas simples para pré-operatório, pós-operatório e cuidado em casa."
+        },
+        {
+          "label": "Educação",
+          "description": "Integração rápida e treinamentos em serviço."
+        },
+        {
+          "label": "Atacado",
+          "description": "Kits iniciais e reposição constante."
+        }
       ]
     },
     {
