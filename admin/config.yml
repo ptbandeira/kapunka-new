@@ -241,14 +241,223 @@ collections:
           preview: true
         description: "Edit sections from top to bottom. Drag to reorder. Use Hero, Media+Copy, Feature Grid, Product Grid, Testimonials, FAQ, Banner, Video."
         i18n: true
-        fields: &page_fields
-          - { label: Meta Title, name: metaTitle, widget: string, required: false }
-          - { label: Meta Description, name: metaDescription, widget: text, required: false }
-          - &sections_field
-            label: "Sections"
-            name: "sections"
-            widget: "list"
-            types: *shared_sections
+        fields:
+          - label: Meta Title
+            name: metaTitle
+            widget: string
+            i18n: true
+            required: false
+          - label: Meta Description
+            name: metaDescription
+            widget: text
+            i18n: true
+            required: false
+          - label: Hero Headline
+            name: heroHeadline
+            widget: string
+            i18n: true
+            required: false
+          - label: Hero Subheadline
+            name: heroSubheadline
+            widget: text
+            i18n: true
+            required: false
+          - label: Hero CTAs
+            name: heroCtas
+            widget: object
+            required: false
+            fields:
+              - label: Primary CTA Label
+                name: ctaPrimaryLabel
+                widget: string
+                i18n: true
+                required: false
+              - label: Primary CTA Href
+                name: ctaPrimaryHref
+                widget: string
+                required: false
+              - label: Secondary CTA Label
+                name: ctaSecondaryLabel
+                widget: string
+                i18n: true
+                required: false
+              - label: Secondary CTA Href
+                name: ctaSecondaryHref
+                widget: string
+                required: false
+          - label: Hero Alignment
+            name: heroAlignment
+            widget: object
+            required: false
+            fields:
+              - label: Horizontal Alignment
+                name: heroAlignX
+                widget: select
+                options: [left, center, right]
+                default: center
+              - label: Vertical Alignment
+                name: heroAlignY
+                widget: select
+                options: [top, center, bottom]
+                default: center
+              - label: Text Position
+                name: heroTextPosition
+                widget: select
+                options: [overlay, below]
+                default: overlay
+              - label: Overlay Strength
+                name: heroOverlay
+                widget: number
+                min: 0
+                max: 90
+                value_type: int
+                default: 40
+              - label: Layout Hint
+                name: heroLayoutHint
+                widget: select
+                options: [bgImage, split]
+                default: bgImage
+          - label: Hero Images
+            name: heroImages
+            widget: object
+            required: false
+            fields:
+              - label: Hero Image Left
+                name: heroImageLeftRef
+                widget: image
+                required: false
+              - label: Hero Image Right
+                name: heroImageRightRef
+                widget: image
+                required: false
+          - label: Sections
+            name: sections
+            widget: list
+            i18n: true
+            collapsed: true
+            summary: "{{fields.title}} — {{fields.type}}"
+            types:
+              - name: mediaCopy
+                label: Media + Copy
+                fields:
+                  - { name: type, widget: hidden, default: "mediaCopy" }
+                  - { name: title, widget: string, i18n: true }
+                  - { name: body, widget: markdown, i18n: true }
+                  - { name: image, widget: image, required: false }
+                  - { name: mediaAlign, widget: select, options: [left, right], default: "left" }
+                  - { name: background, widget: select, options: [none, muted], default: "none" }
+                  - { name: ctaLabel, widget: string, i18n: true, required: false }
+                  - { name: ctaHref, widget: string, required: false }
+              - name: featureGrid
+                label: Feature Grid
+                fields:
+                  - { name: type, widget: hidden, default: "featureGrid" }
+                  - { name: title, widget: string, i18n: true, required: false }
+                  - label: Features
+                    name: features
+                    widget: list
+                    fields:
+                      - { name: title, widget: string, i18n: true }
+                      - { name: text, widget: text, i18n: true }
+              - name: productGrid
+                label: Product Grid
+                fields:
+                  - { name: type, widget: hidden, default: "productGrid" }
+                  - { name: title, widget: string, i18n: true, required: false }
+                  - { name: productsRef, widget: relation, collection: "Products", search_fields: ["title"], value_field: "slug", multiple: true, required: false }
+                  - { name: note, widget: text, i18n: true, required: false }
+              - name: testimonials
+                label: Testimonials
+                fields:
+                  - { name: type, widget: hidden, default: "testimonials" }
+                  - { name: title, widget: string, i18n: true, required: false }
+                  - label: Items
+                    name: items
+                    widget: list
+                    fields:
+                      - { name: quote, widget: text, i18n: true }
+                      - { name: author, widget: string }
+                      - { name: role, widget: string, required: false }
+              - name: faq
+                label: FAQ
+                fields:
+                  - { name: type, widget: hidden, default: "faq" }
+                  - { name: title, widget: string, i18n: true, required: false }
+                  - label: Items
+                    name: items
+                    widget: list
+                    fields:
+                      - { name: q, widget: string, i18n: true }
+                      - { name: a, widget: markdown, i18n: true }
+              - name: banner
+                label: Banner
+                fields:
+                  - { name: type, widget: hidden, default: "banner" }
+                  - { name: eyebrow, widget: string, i18n: true, required: false }
+                  - { name: title, widget: string, i18n: true }
+                  - { name: sub, widget: text, i18n: true, required: false }
+                  - { name: ctaLabel, widget: string, i18n: true, required: false }
+                  - { name: ctaHref, widget: string, required: false }
+                  - { name: style, widget: select, options: [muted, inset], default: "muted" }
+              - name: video
+                label: Video
+                fields:
+                  - { name: type, widget: hidden, default: "video" }
+                  - { name: title, widget: string, i18n: true, required: false }
+                  - { name: url, widget: string }
+                  - { name: poster, widget: image, required: false }
+          - name: heroPrimaryCta
+            widget: hidden
+            required: false
+            comment: "Legacy fallback. Do not edit."
+          - name: heroCtaPrimary
+            widget: hidden
+            required: false
+            comment: "Legacy fallback. Do not edit."
+          - name: ctaPrimary
+            widget: hidden
+            required: false
+            comment: "Legacy fallback. Do not edit."
+          - name: heroSecondaryCta
+            widget: hidden
+            required: false
+            comment: "Legacy fallback. Do not edit."
+          - name: heroCtaSecondary
+            widget: hidden
+            required: false
+            comment: "Legacy fallback. Do not edit."
+          - name: ctaSecondary
+            widget: hidden
+            required: false
+            comment: "Legacy fallback. Do not edit."
+          - name: heroImageLeft
+            widget: hidden
+            required: false
+            comment: "Legacy fallback. Do not edit."
+          - name: heroImageRight
+            widget: hidden
+            required: false
+            comment: "Legacy fallback. Do not edit."
+          - name: heroImageLeftRef
+            widget: hidden
+            required: false
+            comment: "Legacy fallback. Do not edit."
+          - name: heroImageRightRef
+            widget: hidden
+            required: false
+            comment: "Legacy fallback. Do not edit."
+          - name: heroOverlay
+            widget: hidden
+            required: false
+            comment: "Legacy fallback. Do not edit."
+          - name: heroLayoutHint
+            widget: hidden
+            required: false
+            comment: "Legacy fallback. Do not edit."
+          - name: heroTextPosition
+            widget: hidden
+            required: false
+            comment: "Legacy fallback. Do not edit."
       - name: shop
         label: Shop Page
         file: content/pages/shop.json
@@ -257,7 +466,13 @@ collections:
           preview: true
         description: "Edit sections from top to bottom. Drag to reorder. Use Hero, Media+Copy, Feature Grid, Product Grid, Testimonials, FAQ, Banner, Video."
         i18n: true
-        fields: *page_fields
+        fields: &page_fields
+          - { label: Meta Title, name: metaTitle, widget: string, required: false }
+          - { label: Meta Description, name: metaDescription, widget: text, required: false }
+          - label: "Sections"
+            name: "sections"
+            widget: "list"
+            types: *shared_sections
       - name: learn
         label: Learn Page
         file: content/pages/learn.json
