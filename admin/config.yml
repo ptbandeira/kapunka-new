@@ -485,7 +485,7 @@ collections:
                   - { label: "Bottom center", value: "bottom-center" }
                   - { label: "Bottom right", value: "bottom-right" }
                 default: middle-center
-                hint: "Pins overlay text to a corner or edge when ""Text Display"" is set to overlay."
+                hint: 'Pins overlay text to a corner or edge when "Text Display" is set to overlay.'
               - label: Overlay Strength
                 name: heroOverlay
                 widget: select
