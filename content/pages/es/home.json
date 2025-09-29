@@ -92,6 +92,33 @@
       "columns": 3
     },
     {
+      "type": "communityCarousel",
+      "title": "Rituales en nuestra comunidad",
+      "slides": [
+        {
+          "image": "",
+          "alt": "Añade una foto de un ritual de Kapunka en uso",
+          "quote": "\u201cUtiliza este espacio para contar c\u00f3mo alguien vive Kapunka en su rutina.\u201d",
+          "name": "Nombre del cliente",
+          "role": "Cl\u00ednica o ciudad"
+        },
+        {
+          "image": "",
+          "alt": "Sube otra imagen de la comunidad",
+          "quote": "\u201cDestaca un testimonio de un socio, una historia de recuperaci\u00f3n o un ritual diario.\u201d",
+          "name": "Socio o profesional",
+          "role": "Rol o enfoque del tratamiento"
+        },
+        {
+          "image": "",
+          "alt": "Añade im\u00e1genes de estilo de vida c\u00e1lidas y reales",
+          "quote": "\u201cA\u00f1ade una nota aut\u00e9ntica sobre c\u00f3mo Kapunka acompa\u00f1a sus objetivos de piel.\u201d",
+          "name": "Añade un nombre",
+          "role": "Ubicaci\u00f3n o contexto"
+        }
+      ]
+    },
+    {
       "type": "testimonials",
       "title": "Lo que dicen los profesionales",
       "quotes": [
