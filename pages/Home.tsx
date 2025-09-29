@@ -2765,6 +2765,7 @@ const Home: React.FC = () => {
                   title={title ?? 'Featured video'}
                   className="w-full h-full"
                   allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                  sandbox="allow-same-origin allow-scripts allow-popups allow-presentation"
                   allowFullScreen
                 />
               </div>
