@@ -264,46 +264,34 @@ collections:
             widget: object
             required: false
             fields:
-              - label: Primary CTA Label
-                name: ctaPrimaryLabel
-                widget: string
-                i18n: true
+              - label: Primary CTA
+                name: ctaPrimary
+                widget: object
                 required: false
-              - label: Primary CTA Href
-                name: ctaPrimaryHref
-                widget: string
+                fields:
+                  - label: Label
+                    name: label
+                    widget: string
+                    i18n: true
+                    required: false
+                  - label: Href
+                    name: href
+                    widget: string
+                    required: false
+              - label: Secondary CTA
+                name: ctaSecondary
+                widget: object
                 required: false
-              - label: Secondary CTA Label
-                name: ctaSecondaryLabel
-                widget: string
-                i18n: true
-                required: false
-              - label: Secondary CTA Href
-                name: ctaSecondaryHref
-                widget: string
-                required: false
-              - label: Primary Label
-                name: primaryLabel
-                widget: string
-                i18n: true
-                required: false
-                hint: "Displayed label for the main hero button."
-              - label: Primary Href
-                name: primaryHref
-                widget: string
-                required: false
-                hint: "Destination URL for the main hero button."
-              - label: Secondary Label
-                name: secondaryLabel
-                widget: string
-                i18n: true
-                required: false
-                hint: "Displayed label for the secondary hero button."
-              - label: Secondary Href
-                name: secondaryHref
-                widget: string
-                required: false
-                hint: "Destination URL for the secondary hero button."
+                fields:
+                  - label: Label
+                    name: label
+                    widget: string
+                    i18n: true
+                    required: false
+                  - label: Href
+                    name: href
+                    widget: string
+                    required: false
           - label: Hero Alignment
             name: heroAlignment
             widget: object
@@ -326,62 +314,27 @@ collections:
                 default: overlay
               - label: Overlay Strength
                 name: heroOverlay
-                widget: number
-                min: 0
-                max: 90
-                value_type: int
-                default: 40
+                widget: select
+                options: [none, light, medium, strong]
+                default: medium
               - label: Layout Hint
                 name: heroLayoutHint
                 widget: select
-                options: [bgImage, split]
-                default: bgImage
-              - label: Text Position
-                name: textPosition
-                widget: select
-                options: [overlay, below]
-                default: overlay
-                required: false
-                hint: "Controls whether copy overlays the image or sits below it."
-              - label: Overlay Strength
-                name: overlay
-                widget: number
-                min: 0
-                max: 90
-                value_type: int
-                default: 40
-                required: false
-                hint: "Adjusts the dark overlay strength on hero imagery."
-              - label: Layout Hint
-                name: layoutHint
-                widget: select
-                options: [bgImage, split]
-                default: bgImage
-                required: false
-                hint: "Suggests whether the hero renders as a background image or split layout."
+                options: [bg, split]
+                default: bg
           - label: Hero Images
             name: heroImages
             widget: object
             required: false
             fields:
               - label: Hero Image Left
-                name: heroImageLeftRef
-                widget: image
-                required: false
-              - label: Hero Image Right
-                name: heroImageRightRef
-                widget: image
-                required: false
-              - label: Hero Image Left
                 name: heroImageLeft
                 widget: image
                 required: false
-                hint: "Upload the left-side hero image."
               - label: Hero Image Right
                 name: heroImageRight
                 widget: image
                 required: false
-                hint: "Upload the right-side hero image."
           - label: "Sections — Use root hero OR a hero section (root takes precedence)."
             name: sections
             widget: list
