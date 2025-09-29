@@ -73,7 +73,7 @@ const TimelineSection: React.FC<TimelineSectionProps> = ({ title, entries, field
 
           return (
             <div
-              key={`${entry.year}-${index}`}
+              key={`${entry.year}-${entry.title}`}
               className={`grid grid-cols-1 ${hasImage ? 'md:grid-cols-2' : ''} gap-12 items-center`}
               data-nlv-field-path={entryFieldPath}
             >

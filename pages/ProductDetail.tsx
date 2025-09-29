@@ -95,7 +95,7 @@ const ProductDetail: React.FC = () => {
                     <ul className="list-disc pl-5 space-y-2">
                         {benefits.map((benefit: string, index: number) => (
                             <li
-                                key={`benefit-${index}`}
+                                key={benefit || `${product?.id ?? 'benefit'}-${language}`}
                                 data-nlv-field-path={
                                     productFieldPath
                                         ? `${productFieldPath}.benefits.${language}.${index}`
@@ -199,7 +199,7 @@ const ProductDetail: React.FC = () => {
                         <ul className="list-disc pl-5 space-y-2">
                             {tips.map((tip: string, index: number) => (
                                 <li
-                                    key={`multi-tip-${index}`}
+                                    key={tip || `${product?.id ?? 'multi-tip'}-${language}`}
                                     data-nlv-field-path={
                                         productFieldPath
                                             ? `${productFieldPath}.multiUseTips.${language}.${index}`
@@ -222,8 +222,19 @@ const ProductDetail: React.FC = () => {
                 labelFieldPath: `translations.${language}.pdp.tabs.faqs`,
                 content: (
                     <div className="space-y-6">
-                        {product.faqs.map((faq, index) => (
-                            <div key={`${faq.question.en}-${index}`} className="border border-stone-200 rounded-lg p-6">
+                        {product.faqs.map((faq, index) => {
+                            const translatedQuestion = translate(faq.question) as string;
+                            const faqKey = translatedQuestion
+                                || faq.question.en
+                                || faq.question.pt
+                                || faq.question.es
+                                || faq.answer.en
+                                ||faq.answer.pt
+                                ||faq.answer.es
+                                || `${product.id}-faq`;
+
+                            return (
+                            <div key={faqKey} className="border border-stone-200 rounded-lg p-6">
                                 <h3
                                     className="text-lg font-semibold text-stone-900"
                                     data-nlv-field-path={
@@ -232,7 +243,7 @@ const ProductDetail: React.FC = () => {
                                             : undefined
                                     }
                                 >
-                                    {translate(faq.question) as string}
+                                    {translatedQuestion}
                                 </h3>
                                 <p
                                     className="mt-2 text-stone-700 leading-relaxed"
@@ -245,7 +256,8 @@ const ProductDetail: React.FC = () => {
                                     {translate(faq.answer) as string}
                                 </p>
                             </div>
-                        ))}
+                        );
+                        })}
                     </div>
                 ),
             });
@@ -331,7 +343,7 @@ const ProductDetail: React.FC = () => {
                                     <ul className="mt-3 list-disc pl-5 space-y-1">
                                         {(translate(product.bundleIncludes) as string[]).map((item: string, index: number) => (
                                             <li
-                                                key={index}
+                                                key={item || `${product?.id ?? 'bundle'}-${language}`}
                                                 className="text-sm text-stone-600"
                                                 data-nlv-field-path={
                                                     productFieldPath
@@ -351,7 +363,7 @@ const ProductDetail: React.FC = () => {
                             <div className="flex items-center gap-2">
                                 {(translate(product.badges) as string[]).map((badge: string, index: number) => (
                                     <span
-                                        key={index}
+                                        key={badge || `${product?.id ?? 'badge'}-${language}`}
                                         className="text-xs font-semibold bg-stone-100 text-stone-700 px-3 py-1 rounded-full"
                                         data-nlv-field-path={
                                             productFieldPath
@@ -427,7 +439,7 @@ const ProductDetail: React.FC = () => {
                                     <ul className="mt-3 list-disc pl-5 space-y-2">
                                         {(translate(product.goodToKnow.items) as string[]).map((item: string, index: number) => (
                                             <li
-                                                key={index}
+                                                key={item || `${product?.id ?? 'good-to-know'}-${language}`}
                                                 data-nlv-field-path={
                                                     productFieldPath
                                                         ? `${productFieldPath}.goodToKnow.items.${language}.${index}`
@@ -512,9 +524,19 @@ const ProductDetail: React.FC = () => {
                             </p>
                         </motion.div>
                         <div className="mt-10 space-y-6">
-                            {product.faqs.map((faq, index) => (
+                            {product.faqs.map((faq, index) => {
+                                const translatedQuestion = translate(faq.question) as string;
+                                const translatedAnswer = translate(faq.answer) as string;
+                                const faqKey = translatedQuestion
+                                    || faq.question.en
+                                    || faq.question.pt
+                                    || faq.question.es
+                                    || translatedAnswer
+                                    || `${product.id}-expanded-faq`;
+
+                                return (
                                 <motion.div
-                                    key={`${faq.question.en}-${index}`}
+                                    key={faqKey}
                                     initial={{ opacity: 0, y: 20 }}
                                     animate={{ opacity: 1, y: 0 }}
                                     transition={{ duration: 0.6, delay: 0.1 * (index + 1) }}
@@ -528,7 +550,7 @@ const ProductDetail: React.FC = () => {
                                                 : undefined
                                         }
                                     >
-                                        {translate(faq.question)}
+                                        {translatedQuestion}
                                     </h3>
                                     <p
                                         className="mt-3 text-stone-700 leading-relaxed"
@@ -538,10 +560,11 @@ const ProductDetail: React.FC = () => {
                                                 : undefined
                                         }
                                     >
-                                        {translate(faq.answer)}
+                                        {translatedAnswer}
                                     </p>
                                 </motion.div>
-                            ))}
+                                );
+                            })}
                         </div>
                     </div>
                 </section>

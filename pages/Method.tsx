@@ -190,7 +190,16 @@ const Method: React.FC = () => {
 
   const baseFieldPath = `pages.method_${language}`;
   const sectionsFieldPath = `${baseFieldPath}.sections`;
-  const clinicalNotesFieldPath = `${baseFieldPath}.clinicalNotes`;
+const clinicalNotesFieldPath = `${baseFieldPath}.clinicalNotes`;
+
+const createMethodKey = (prefix: string, parts: Array<string | null | undefined>): string => {
+  const key = parts
+    .map((part) => (typeof part === 'string' ? part.trim() : ''))
+    .filter((part) => part.length > 0)
+    .join('|');
+
+  return key.length > 0 ? `${prefix}-${key}` : prefix;
+};
 
   const renderSection = (section: MethodSection, index: number): React.ReactNode => {
     const sectionFieldPath = `${sectionsFieldPath}.${index}`;
@@ -199,7 +208,7 @@ const Method: React.FC = () => {
     if (section.type === 'facts') {
       return (
         <motion.article
-          key={`${section.type}-${index}`}
+          key={createMethodKey('method-facts', [section.title, section.text])}
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
@@ -224,9 +233,10 @@ const Method: React.FC = () => {
     }
 
     if (section.type === 'bullets') {
+      const bulletItems = section.items ?? [];
       return (
         <motion.article
-          key={`${section.type}-${index}`}
+          key={createMethodKey('method-bullets', [section.title, bulletItems.join('|')])}
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
@@ -241,7 +251,7 @@ const Method: React.FC = () => {
             {section.title}
           </h3>
           <ul className="mt-4 space-y-2 text-stone-700" data-nlv-field-path={`${sectionFieldPath}.items`}>
-            {section.items.map((item) => (
+            {bulletItems.map((item) => (
               <li key={item} className="flex items-start gap-2">
                 <span className="mt-1 h-1.5 w-1.5 rounded-full bg-stone-400" aria-hidden="true" />
                 <span>{item}</span>
@@ -253,10 +263,15 @@ const Method: React.FC = () => {
     }
 
     const specialtyItems = section.specialties ?? section.items ?? [];
+    const specialtyKeyParts = specialtyItems.map((item) =>
+      [item.title, ...(item.bullets ?? [])]
+        .filter((value): value is string => typeof value === 'string' && value.length > 0)
+        .join('|'),
+    );
 
     return (
       <motion.article
-        key={`${section.type}-${index}`}
+        key={createMethodKey('method-specialties', [section.title, ...specialtyKeyParts])}
         initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
@@ -278,7 +293,7 @@ const Method: React.FC = () => {
         >
           {specialtyItems.map((item, itemIndex) => (
             <details
-              key={`${item.title}-${itemIndex}`}
+              key={createMethodKey('method-specialty', [item.title, ...(item.bullets ?? [])])}
               className="group border border-stone-200 rounded-2xl px-4 py-3 bg-white/60 backdrop-blur-sm"
             >
               <summary className="cursor-pointer text-lg font-medium text-stone-900 list-none flex items-center justify-between gap-4">
@@ -291,8 +306,8 @@ const Method: React.FC = () => {
                 className="mt-3 pl-4 space-y-2 text-stone-700"
                 data-nlv-field-path={`${sectionFieldPath}.items.${itemIndex}.bullets`}
               >
-                {item.bullets.map((bullet, bulletIndex) => (
-                  <li key={`${item.title}-${bulletIndex}`} className="list-disc">
+                {(item.bullets ?? []).map((bullet, bulletIndex) => (
+                  <li key={`${item.title ?? 'bullet'}-${bullet}`} className="list-disc">
                     {bullet}
                   </li>
                 ))}

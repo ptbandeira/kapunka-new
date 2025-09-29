@@ -72,6 +72,23 @@ interface SectionRendererProps {
   fieldPath?: string;
 }
 
+const buildSectionKey = (prefix: string, section: PageSection): string => {
+  try {
+    const serialized = JSON.stringify(section);
+    if (serialized && serialized !== '{}') {
+      return `${prefix}-${serialized}`;
+    }
+  } catch (error) {
+    // no-op: fall through to prefix fallback
+  }
+
+  if ('title' in section && typeof section.title === 'string' && section.title.trim().length > 0) {
+    return `${prefix}-${section.title}`;
+  }
+
+  return prefix;
+};
+
 const SectionRenderer: React.FC<SectionRendererProps> = ({ sections, fieldPath }) => {
   if (!sections || sections.length === 0) {
     return null;
@@ -86,7 +103,7 @@ const SectionRenderer: React.FC<SectionRendererProps> = ({ sections, fieldPath }
           case 'timeline':
             return (
               <TimelineSection
-                key={`timeline-${index}`}
+                key={buildSectionKey('timeline', section)}
                 title={section.title}
                 entries={section.entries}
                 fieldPath={sectionFieldPath}
@@ -95,7 +112,7 @@ const SectionRenderer: React.FC<SectionRendererProps> = ({ sections, fieldPath }
           case 'imageTextHalf':
             return (
               <ImageTextHalf
-                key={`image-text-half-${index}`}
+                key={buildSectionKey('image-text-half', section)}
                 image={section.image}
                 title={section.title}
                 text={section.text}
@@ -105,7 +122,7 @@ const SectionRenderer: React.FC<SectionRendererProps> = ({ sections, fieldPath }
           case 'imageGrid':
             return (
               <ImageGrid
-                key={`image-grid-${index}`}
+                key={buildSectionKey('image-grid', section)}
                 items={section.items}
                 fieldPath={sectionFieldPath}
               />
@@ -113,7 +130,7 @@ const SectionRenderer: React.FC<SectionRendererProps> = ({ sections, fieldPath }
           case 'videoGallery':
             return (
               <VideoGallery
-                key={`video-gallery-${index}`}
+                key={buildSectionKey('video-gallery', section)}
                 title={section.title}
                 description={section.description}
                 entries={section.entries}
@@ -123,7 +140,7 @@ const SectionRenderer: React.FC<SectionRendererProps> = ({ sections, fieldPath }
           case 'trainingList':
             return (
               <TrainingList
-                key={`training-list-${index}`}
+                key={buildSectionKey('training-list', section)}
                 title={section.title}
                 description={section.description}
                 entries={section.entries}
@@ -133,7 +150,7 @@ const SectionRenderer: React.FC<SectionRendererProps> = ({ sections, fieldPath }
           case 'productTabs':
             return (
               <ProductTabsSection
-                key={`product-tabs-${index}`}
+                key={buildSectionKey('product-tabs', section)}
                 section={section}
               />
             );

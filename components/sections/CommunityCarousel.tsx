@@ -35,6 +35,22 @@ const CommunityCarousel: React.FC<CommunityCarouselProps> = ({
 }) => {
   const [activeIndex, setActiveIndex] = useState(0);
 
+  const buildSlideKey = useCallback((slide: CommunityCarouselSlideProps | undefined, prefix: string): string => {
+    if (!slide) {
+      return prefix;
+    }
+
+    if (slide.fieldPath && slide.fieldPath.length > 0) {
+      return `${prefix}-${slide.fieldPath}`;
+    }
+
+    const fallback = [slide.image, slide.quote, slide.name, slide.role, slide.alt]
+      .filter((value): value is string => typeof value === 'string' && value.length > 0)
+      .join('|');
+
+    return fallback.length > 0 ? `${prefix}-${fallback}` : prefix;
+  }, []);
+
   const safeDuration = useMemo(() => Math.max(slideDuration, MIN_DURATION), [slideDuration]);
   const totalSlides = slides.length;
 
@@ -105,7 +121,7 @@ const CommunityCarousel: React.FC<CommunityCarouselProps> = ({
               <AnimatePresence mode="wait">
                 {activeSlide ? (
                   <motion.figure
-                    key={`community-slide-${activeIndex}`}
+                    key={buildSlideKey(activeSlide, 'community-slide')}
                     className="relative h-full w-full"
                     initial={{ opacity: 0, scale: 1.05, x: 60 }}
                     animate={{ opacity: 1, scale: 1, x: 0 }}
@@ -145,9 +161,11 @@ const CommunityCarousel: React.FC<CommunityCarouselProps> = ({
             </div>
             {totalSlides > 1 && (
               <div className="mt-6 flex items-center justify-center gap-3" data-nlv-field-path={slidesFieldPath}>
-                {slides.map((slide, index) => (
+                {slides.map((slide, index) => {
+                  const slideKey = buildSlideKey(slide, 'carousel-dot');
+                  return (
                   <button
-                    key={`carousel-dot-${index}`}
+                    key={slideKey}
                     type="button"
                     className={`h-3 w-3 rounded-full border border-white/60 transition-all ${index === activeIndex ? 'scale-110 bg-white' : 'bg-white/30 hover:bg-white/50'}`}
                     onClick={handleSelectSlide}
@@ -156,7 +174,8 @@ const CommunityCarousel: React.FC<CommunityCarouselProps> = ({
                     data-slide-index={index}
                     data-nlv-field-path={slide.fieldPath}
                   />
-                ))}
+                  );
+                })}
               </div>
             )}
           </div>
@@ -164,7 +183,7 @@ const CommunityCarousel: React.FC<CommunityCarouselProps> = ({
             <AnimatePresence mode="wait">
               {activeSlide ? (
                 <motion.div
-                  key={`community-quote-${activeIndex}`}
+                  key={buildSlideKey(activeSlide, 'community-quote')}
                   className="space-y-6"
                   initial={{ opacity: 0, y: 28 }}
                   animate={{ opacity: 1, y: 0 }}

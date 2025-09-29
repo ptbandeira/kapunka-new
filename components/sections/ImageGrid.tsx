@@ -22,10 +22,14 @@ const ImageGrid: React.FC<ImageGridProps> = ({ items, fieldPath }) => {
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
           {items.map((item, index) => {
             const itemFieldPath = fieldPath ? `${fieldPath}.items.${index}` : undefined;
+            const itemKey = item.image
+              ?? item.title
+              ?? item.subtitle
+              ?? JSON.stringify(item ?? {});
 
             return (
               <div
-                key={`image-grid-${index}`}
+                key={itemKey ?? `image-grid-item`}
                 className="flex flex-col bg-white rounded-lg shadow-sm overflow-hidden"
                 {...(itemFieldPath ? { 'data-nlv-field-path': itemFieldPath } : {})}
               >

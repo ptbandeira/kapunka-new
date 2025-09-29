@@ -94,8 +94,8 @@ const ArticlePage: React.FC = () => {
         if (!article) return null;
         const content = translate(article.content);
         if (typeof content !== 'string') return null;
-        return content.split('\n').map((paragraph, index) => (
-            paragraph.trim() ? <p key={index}>{paragraph}</p> : null
+        return content.split('\n').map((paragraph) => (
+            paragraph.trim() ? <p key={paragraph}>{paragraph}</p> : null
         ));
     }, [article, translate]);
 

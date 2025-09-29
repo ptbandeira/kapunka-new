@@ -261,7 +261,7 @@ const ForClinics: React.FC = () => {
                   <ul className="mt-6 space-y-4 text-stone-600 flex-1">
                     {protocol.steps.map((step, stepIndex) => (
                       <li
-                        key={`${protocol.title}-${stepIndex}`}
+                        key={`${protocol.title}-${step}`}
                         className="relative pl-6"
                         data-nlv-field-path={`${clinicsFieldPath}.protocolSection.cards.${index}.steps.${stepIndex}`}
                       >
@@ -435,7 +435,7 @@ const ForClinics: React.FC = () => {
             >
               {keywordPhrases.map((keyword, index) => (
                 <span
-                  key={`${keyword}-${index}`}
+                  key={keyword}
                   className="px-4 py-2 bg-stone-100 text-stone-700 rounded-full border border-stone-200 text-sm"
                   data-nlv-field-path={`${clinicsFieldPath}.keywordSection.keywords.${index}`}
                 >

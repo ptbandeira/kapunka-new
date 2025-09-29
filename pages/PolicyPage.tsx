@@ -84,8 +84,14 @@ const PolicyPage: React.FC = () => {
                     const translatedHeading = translate(section.title) as string;
                     const translatedBody = translate(section.body) as string;
                     const sectionFieldPath = policyFieldPath ? `${policyFieldPath}.sections.${index}` : undefined;
+                    const sectionKey = section.id
+                        || translatedHeading
+                        || translatedBody
+                        || JSON.stringify(section.title)
+                        || JSON.stringify(section.body)
+                        || 'policy-section';
                     return (
-                        <div key={section.id || index} className="space-y-3" data-nlv-field-path={sectionFieldPath}>
+                        <div key={sectionKey} className="space-y-3" data-nlv-field-path={sectionFieldPath}>
                             <h2 className="text-2xl font-semibold text-stone-900" data-nlv-field-path={sectionFieldPath ? `${sectionFieldPath}.title.${language}` : undefined}>
                                 {translatedHeading}
                             </h2>

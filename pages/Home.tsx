@@ -633,6 +633,15 @@ const loadHomeContentForLocale = async (
   return fetchJsonFromCandidates<unknown>(candidates);
 };
 
+const createKeyFromParts = (prefix: string, parts: Array<string | null | undefined>) => {
+  const key = parts
+    .map((part) => (typeof part === 'string' ? part.trim() : ''))
+    .filter((part) => part.length > 0)
+    .join('|');
+
+  return key.length > 0 ? `${prefix}-${key}` : prefix;
+};
+
 const isInternalNavigationHref = (href?: string | null): href is string => {
   if (!href) {
     return false;
@@ -1053,10 +1062,14 @@ const GalleryRows: React.FC<GalleryRowsProps> = ({ rows, fieldPath }) => {
                     const items = row.items ?? [];
                     const baseGridClass = row.layout === 'quarters' ? '' : 'grid-cols-1';
                     const gridClasses = ['grid', baseGridClass, layoutClass, 'gap-6'].filter(Boolean).join(' ');
+                    const rowKey = createKeyFromParts('gallery-row', [
+                        row.layout ?? undefined,
+                        items.map((item) => item?.image ?? item?.caption ?? item?.alt ?? '').join('|'),
+                    ]);
 
                     return (
                         <div
-                            key={`gallery-row-${rowIndex}`}
+                            key={rowKey}
                             className={gridClasses}
                             data-nlv-field-path={rowFieldPath}
                         >
@@ -1075,10 +1088,11 @@ const GalleryRows: React.FC<GalleryRowsProps> = ({ rows, fieldPath }) => {
                                 }
 
                                 const itemFieldPath = rowFieldPath ? `${rowFieldPath}.items[${itemIndex}]` : undefined;
+                                const galleryItemKey = createKeyFromParts('gallery-item', [imageSrc, caption, altText]);
 
                                 return (
                                     <motion.figure
-                                        key={`gallery-item-${rowIndex}-${itemIndex}`}
+                                        key={galleryItemKey}
                                         initial={{ opacity: 0, y: 20 }}
                                         whileInView={{ opacity: 1, y: 0 }}
                                         viewport={{ once: true }}
@@ -1996,8 +2010,16 @@ const Home: React.FC = () => {
           </motion.div>
         );
 
+        const heroKey = createKeyFromParts('section-hero', [
+          headline,
+          subheadline,
+          sectionBackgroundImage ?? undefined,
+          heroTextPlacement,
+          section.position,
+        ]);
+
         return (
-          <React.Fragment key={`section-hero-${index}`}>
+          <React.Fragment key={heroKey}>
             {sectionBackgroundImage ? (
               <div
                 className="relative h-screen bg-cover bg-center"
@@ -2045,9 +2067,15 @@ const Home: React.FC = () => {
           return null;
         }
 
+        const featureGridKey = createKeyFromParts('section-feature-grid', [
+          sectionTitle,
+          columnsClass,
+          items.map((item) => item.label ?? item.description ?? item.icon ?? '').join('|'),
+        ]);
+
         return (
           <section
-            key={`section-featureGrid-${index}`}
+            key={featureGridKey}
             className="py-16 sm:py-24 bg-white"
             data-nlv-field-path={sectionFieldPath}
           >
@@ -2061,7 +2089,7 @@ const Home: React.FC = () => {
                 <div className={`mt-10 grid grid-cols-1 sm:grid-cols-2 ${columnsClass} gap-8`}>
                   {items.map((item, itemIndex) => (
                     <div
-                      key={`feature-grid-${index}-${itemIndex}`}
+                      key={createKeyFromParts('feature-grid-item', [item.label, item.icon, item.description])}
                       className="bg-white border border-stone-200 rounded-xl p-6 shadow-sm flex flex-col gap-3"
                       data-nlv-field-path={`${sectionFieldPath}.items.${itemIndex}`}
                     >
@@ -2110,9 +2138,14 @@ const Home: React.FC = () => {
           return null;
         }
 
+        const productGridKey = createKeyFromParts('section-product-grid', [
+          sectionTitle,
+          productIds.join('|'),
+        ]);
+
         return (
           <section
-            key={`section-productGrid-${index}`}
+            key={productGridKey}
             className="py-16 sm:py-24 bg-stone-100"
             data-nlv-field-path={sectionFieldPath}
           >
@@ -2161,6 +2194,7 @@ const Home: React.FC = () => {
         const imageFieldKey = section.image ? 'image' : section.imageRef ? 'imageRef' : 'image';
 
         if (!hasImage || effectiveColumns === 1) {
+          const mediaCopyKey = createKeyFromParts('section-media-copy', [title, body, mediaImage, layout]);
           const singleColumnAlignment = (() => {
             if (layout === 'image-left') {
               return { container: 'items-start text-left', text: 'text-left' };
@@ -2175,7 +2209,7 @@ const Home: React.FC = () => {
 
           return (
             <section
-              key={`section-mediaCopy-${index}`}
+              key={mediaCopyKey}
               className="py-16 sm:py-24 bg-white"
               data-nlv-field-path={sectionFieldPath}
             >
@@ -2215,10 +2249,11 @@ const Home: React.FC = () => {
         const gridClasses = 'grid grid-cols-1 lg:grid-cols-2 gap-10 items-center';
         const textColumnClasses = layout === 'image-left' ? 'order-2 lg:order-1 space-y-6' : 'order-1 space-y-6';
         const imageColumnClasses = layout === 'image-left' ? 'order-1 lg:order-2' : 'order-2';
+        const mediaCopyKey = createKeyFromParts('section-media-copy', [title, body, mediaImage, layout]);
 
         return (
           <section
-            key={`section-mediaCopy-${index}`}
+            key={mediaCopyKey}
             className="py-16 sm:py-24 bg-white"
             data-nlv-field-path={sectionFieldPath}
           >
@@ -2296,9 +2331,14 @@ const Home: React.FC = () => {
           return null;
         }
 
+        const carouselKey = createKeyFromParts('section-community-carousel', [
+          sectionTitle,
+          slides.map((slide) => slide.fieldPath ?? slide.image ?? slide.quote ?? '').join('|'),
+        ]);
+
         return (
           <CommunityCarousel
-            key={`section-communityCarousel-${index}`}
+            key={carouselKey}
             title={sectionTitle}
             slides={slides}
             fieldPath={sectionFieldPath}
@@ -2319,7 +2359,7 @@ const Home: React.FC = () => {
       case 'timeline':
         return (
           <TimelineSection
-            key={`legacy-${index}-timeline`}
+            key={createKeyFromParts('legacy-timeline', [section.title, section.entries.map((entry) => `${entry.year}-${entry.title}`).join('|')])}
             title={section.title}
             entries={section.entries as TimelineEntry[]}
             fieldPath={sectionFieldPath}
@@ -2328,7 +2368,7 @@ const Home: React.FC = () => {
       case 'imageTextHalf':
         return (
           <ImageTextHalf
-            key={`legacy-${index}-imageTextHalf`}
+            key={createKeyFromParts('legacy-imageTextHalf', [section.title, section.text, section.image])}
             image={section.image}
             title={section.title}
             text={section.text}
@@ -2338,7 +2378,7 @@ const Home: React.FC = () => {
       case 'imageGrid':
         return (
           <ImageGrid
-            key={`legacy-${index}-imageGrid`}
+            key={createKeyFromParts('legacy-imageGrid', [section.items.map((item) => item.image ?? item.title ?? item.subtitle ?? '').join('|')])}
             items={section.items as ImageGridItem[]}
             fieldPath={sectionFieldPath}
           />
@@ -2391,9 +2431,14 @@ const Home: React.FC = () => {
           return null;
         }
 
+        const structuredCarouselKey = createKeyFromParts('structured-community-carousel', [
+          sectionTitle,
+          slides.map((slide) => slide.fieldPath ?? slide.image ?? slide.quote ?? '').join('|'),
+        ]);
+
         return (
           <CommunityCarousel
-            key={`structured-${index}-community-carousel`}
+            key={structuredCarouselKey}
             title={sectionTitle}
             slides={slides}
             fieldPath={sectionFieldPath}
@@ -2410,11 +2455,20 @@ const Home: React.FC = () => {
         const confirmation = sanitizeString(section.confirmation ?? null);
         const background = section.background === 'beige' || section.background === 'dark' ? section.background : 'light';
         const alignment = section.alignment === 'left' ? 'left' : 'center';
+        const structuredNewsletterKey = createKeyFromParts('structured-newsletter', [
+          title,
+          subtitle,
+          placeholder,
+          ctaLabel,
+          confirmation,
+          background,
+          alignment,
+        ]);
 
         if (!title && !subtitle && !ctaLabel && !placeholder && !confirmation) {
           return (
             <NewsletterSignup
-              key={`structured-${index}-newsletter`}
+              key={structuredNewsletterKey}
               backgroundVariant={background}
               alignment={alignment}
               fieldPath={sectionFieldPath}
@@ -2424,7 +2478,7 @@ const Home: React.FC = () => {
 
         return (
           <NewsletterSignup
-            key={`structured-${index}-newsletter`}
+            key={structuredNewsletterKey}
             title={title}
             subtitle={subtitle}
             placeholder={placeholder}
@@ -2450,9 +2504,14 @@ const Home: React.FC = () => {
           return null;
         }
 
+        const pillarsKey = createKeyFromParts('structured-pillars', [
+          sectionTitle,
+          items.map((item) => item.label ?? item.description ?? item.icon ?? '').join('|'),
+        ]);
+
         return (
           <section
-            key={`structured-${index}-pillars`}
+            key={pillarsKey}
             className="py-16 sm:py-24 bg-white"
             data-nlv-field-path={sectionFieldPath}
           >
@@ -2466,7 +2525,7 @@ const Home: React.FC = () => {
                 <div className="mt-10 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
                   {items.map((item, itemIndex) => (
                     <div
-                      key={`pillars-${index}-${itemIndex}`}
+                      key={createKeyFromParts('pillar-item', [item.label, item.icon, item.description])}
                       className="bg-white border border-stone-200 rounded-xl p-6 shadow-sm flex flex-col gap-3"
                       data-nlv-field-path={`${sectionFieldPath}.items.${itemIndex}`}
                     >
@@ -2520,10 +2579,15 @@ const Home: React.FC = () => {
           : imageRef
             ? `${sectionFieldPath}.imageRef`
             : `${sectionFieldPath}.image`;
+        const structuredMediaCopyKey = createKeyFromParts('structured-media-copy', [
+          title,
+          body,
+          mediaImage,
+        ]);
 
         return (
           <section
-            key={`structured-${index}-mediaCopy`}
+            key={structuredMediaCopyKey}
             className="py-16 sm:py-24 bg-white"
             data-nlv-field-path={sectionFieldPath}
           >
@@ -2582,9 +2646,14 @@ const Home: React.FC = () => {
           return null;
         }
 
+        const testimonialsKey = createKeyFromParts('structured-testimonials', [
+          sectionTitle,
+          quotes.map((quote) => quote.text ?? '').join('|'),
+        ]);
+
         return (
           <section
-            key={`structured-${index}-testimonials`}
+            key={testimonialsKey}
             className="py-16 sm:py-24 bg-stone-100"
             data-nlv-field-path={sectionFieldPath}
           >
@@ -2592,7 +2661,7 @@ const Home: React.FC = () => {
               <div className="grid gap-8 md:grid-cols-2">
                 {quotes.map((quote, quoteIndex) => (
                   <blockquote
-                    key={`testimonials-${index}-${quoteIndex}`}
+                    key={createKeyFromParts('testimonial', [quote.text, quote.author, quote.role])}
                     className="bg-white rounded-2xl border border-stone-200 p-6 shadow-sm h-full flex flex-col"
                     data-nlv-field-path={`${sectionFieldPath}.quotes.${quoteIndex}`}
                   >
@@ -2639,10 +2708,14 @@ const Home: React.FC = () => {
         }
 
         const listWrapperClasses = sectionTitle ? 'mt-12 space-y-6' : 'space-y-6';
+        const faqSectionKey = createKeyFromParts('section-faq', [
+          sectionTitle,
+          items.map((item) => item.question ?? '').join('|'),
+        ]);
 
         return (
           <section
-            key={`section-faq-${index}`}
+            key={faqSectionKey}
             className="py-16 sm:py-24 bg-white"
             data-nlv-field-path={sectionFieldPath}
           >
@@ -2656,9 +2729,9 @@ const Home: React.FC = () => {
                 </h2>
               )}
               <div className={listWrapperClasses} data-nlv-field-path={`${sectionFieldPath}.items`}>
-                {items.map((item, itemIndex) => (
-                  <div
-                    key={`faq-${index}-${itemIndex}`}
+              {items.map((item, itemIndex) => (
+                <div
+                    key={createKeyFromParts('faq-item', [item.question, item.answer])}
                     className="bg-stone-50 border border-stone-200 rounded-2xl p-6"
                     data-nlv-field-path={`${sectionFieldPath}.items.${itemIndex}`}
                   >
@@ -2695,10 +2768,11 @@ const Home: React.FC = () => {
         const internalPath = url?.startsWith('#/') ? url.slice(1) : url;
         const buttonClasses =
           'inline-flex items-center px-6 py-3 bg-white text-stone-900 font-semibold rounded-md hover:bg-white/90 transition-colors';
+        const bannerKey = createKeyFromParts('section-banner', [text, cta, url]);
 
         return (
           <section
-            key={`section-banner-${index}`}
+            key={bannerKey}
             className="py-12 sm:py-16 bg-stone-900 text-white"
             data-nlv-field-path={sectionFieldPath}
           >
@@ -2741,9 +2815,11 @@ const Home: React.FC = () => {
           return null;
         }
 
+        const videoKey = createKeyFromParts('section-video', [title, videoUrl]);
+
         return (
           <section
-            key={`section-video-${index}`}
+            key={videoKey}
             className="py-16 sm:py-24 bg-white"
             data-nlv-field-path={sectionFieldPath}
           >

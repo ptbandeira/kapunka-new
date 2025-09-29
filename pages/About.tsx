@@ -363,8 +363,8 @@ const About: React.FC = () => {
                                     data-nlv-field-path={`${storyBlockFieldPath}.body`}
                                 >
                                     {bodyParagraphs.length > 0
-                                        ? bodyParagraphs.map((paragraph, paragraphIndex) => (
-                                            <p key={`${index}-${paragraphIndex}`}>{paragraph}</p>
+                                        ? bodyParagraphs.map((paragraph) => (
+                                            <p key={`${block.heading ?? 'story'}-${paragraph}`}>{paragraph}</p>
                                         ))
                                         : <p>{block.body}</p>}
                                 </div>
@@ -391,7 +391,10 @@ const About: React.FC = () => {
 
                     return (
                         <div
-                            key={`${block.heading ?? 'story'}-${index}`}
+                            key={[block.heading, block.body, block.imageRef, block.imageUrl]
+                                .map((value) => (value ?? '').toString().trim())
+                                .filter((value) => value.length > 0)
+                                .join('|') || 'story-block'}
                             className={`grid gap-12 ${hasImage ? 'md:grid-cols-2 items-center' : ''}`}
                         >
                             {hasImage && imageFirst ? imageContent : textContent}
