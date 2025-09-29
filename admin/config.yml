@@ -113,12 +113,12 @@ shared_sections: &shared_sections
             widget: "string"
             i18n: true
             required: false
-           - label: "Slide Duration (ms)"
-             name: "slideDuration"
-             widget: "number"
-             value_type: "int"
-             required: false
-             hint: "Leave blank to use the default 8000ms timing."
+          - label: "Slide Duration (ms)"
+            name: "slideDuration"
+            widget: "number"
+            value_type: "int"
+            required: false
+            hint: "Leave blank to use the default 8000ms timing."
   - &section_faq
     label: "FAQ"
     name: "faq"
