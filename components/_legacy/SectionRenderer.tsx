@@ -9,7 +9,7 @@ import type { PageSection, ProductTabsSectionContent, ProductTab } from '../../t
 
 const ProductTabsSection: React.FC<{ section: ProductTabsSectionContent }> = ({ section }) => {
   const { tabs, initialActiveTab } = section;
-  const sanitizedTabs = useMemo(() => tabs.filter((tab): tab is ProductTab => Boolean(tab && tab.id && tab.label)), [tabs]);
+  const sanitizedTabs = useMemo(() => tabs.filter((tab): tab is ProductTab => Boolean(tab?.id && tab.label)), [tabs]);
 
   const defaultActive = initialActiveTab && sanitizedTabs.some((tab) => tab.id === initialActiveTab)
     ? initialActiveTab

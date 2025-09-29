@@ -270,8 +270,8 @@ const About: React.FC = () => {
             return false;
         }
 
-        const hasText = Boolean(block.heading && block.heading.trim()) || Boolean(block.body && block.body.trim());
-        const hasImage = Boolean(block.imageUrl && block.imageUrl.trim()) || Boolean(block.imageRef && block.imageRef.trim());
+        const hasText = Boolean(block.heading?.trim()) || Boolean(block.body?.trim());
+        const hasImage = Boolean(block.imageUrl?.trim()) || Boolean(block.imageRef?.trim());
         return hasText || hasImage;
     }) ?? [];
 
