@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Suspense, lazy } from 'react';
 import { HashRouter, Routes, Route, useLocation } from 'react-router-dom';
 import { AnimatePresence, motion } from 'framer-motion';
 import { Helmet, HelmetProvider } from 'react-helmet-async';
@@ -11,22 +11,20 @@ import { useSiteSettings } from './contexts/SiteSettingsContext';
 import { useLanguage } from './contexts/LanguageContext';
 import type { Language, LocalizedText } from './types';
 
-import Home from './pages/Home';
-import Shop from './pages/Shop';
-import ProductDetail from './pages/ProductDetail';
-import Learn from './pages/Learn';
-// Fix: The component name in `pages/Article.tsx` is `ArticlePage`.
-// Updated the import statement to match the new component name.
-import ArticlePage from './pages/Article';
-import ForClinics from './pages/ForClinics';
-import About from './pages/About';
-import Contact from './pages/Contact';
-import CartPage from './pages/CartPage';
-import PolicyPage from './pages/PolicyPage';
-import Academy from './pages/Academy';
-import Method from './pages/Method';
-import Videos from './pages/Videos';
-import Training from './pages/Training';
+const Home = lazy(() => import('./pages/Home'));
+const Shop = lazy(() => import('./pages/Shop'));
+const ProductDetail = lazy(() => import('./pages/ProductDetail'));
+const Learn = lazy(() => import('./pages/Learn'));
+const ArticlePage = lazy(() => import('./pages/Article'));
+const ForClinics = lazy(() => import('./pages/ForClinics'));
+const About = lazy(() => import('./pages/About'));
+const Contact = lazy(() => import('./pages/Contact'));
+const CartPage = lazy(() => import('./pages/CartPage'));
+const PolicyPage = lazy(() => import('./pages/PolicyPage'));
+const Academy = lazy(() => import('./pages/Academy'));
+const Method = lazy(() => import('./pages/Method'));
+const Videos = lazy(() => import('./pages/Videos'));
+const Training = lazy(() => import('./pages/Training'));
 
 const pageVariants = {
   initial: {
@@ -121,6 +119,12 @@ const AnimatedRoutes: React.FC = () => {
   );
 };
 
+const RouteFallback: React.FC = () => (
+  <div className="flex h-[50vh] items-center justify-center" role="status" aria-live="polite">
+    <span className="text-sm font-medium text-stone-500">Loading…</span>
+  </div>
+);
+
 const App: React.FC = () => {
   const { settings } = useSiteSettings();
   const { language } = useLanguage();
@@ -138,7 +142,9 @@ const App: React.FC = () => {
           </Helmet>
           <Header />
           <main className="flex-grow pt-[72px]">
-            <AnimatedRoutes />
+            <Suspense fallback={<RouteFallback />}>
+              <AnimatedRoutes />
+            </Suspense>
           </main>
           <Footer />
           <MiniCart />
