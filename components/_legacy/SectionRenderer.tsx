@@ -1,10 +1,11 @@
+// LEGACY: kept for reference during migration. Current pages render their own sections.
 import React, { useMemo, useState } from 'react';
-import TimelineSection from './TimelineSection';
-import ImageTextHalf from './sections/ImageTextHalf';
-import ImageGrid from './sections/ImageGrid';
-import VideoGallery from './VideoGallery';
-import TrainingList from './TrainingList';
-import type { PageSection, ProductTabsSectionContent, ProductTab } from '../types';
+import TimelineSection from '../TimelineSection';
+import ImageTextHalf from '../sections/ImageTextHalf';
+import ImageGrid from '../sections/ImageGrid';
+import VideoGallery from '../VideoGallery';
+import TrainingList from '../TrainingList';
+import type { PageSection, ProductTabsSectionContent, ProductTab } from '../../types';
 
 const ProductTabsSection: React.FC<{ section: ProductTabsSectionContent }> = ({ section }) => {
   const { tabs, initialActiveTab } = section;

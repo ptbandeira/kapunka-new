@@ -7,7 +7,7 @@ import { Plus } from 'lucide-react';
 import { useLanguage } from '../contexts/LanguageContext';
 import { useCart } from '../contexts/CartContext';
 import { useUI } from '../contexts/UIContext';
-import SectionRenderer from '../components/SectionRenderer';
+import SectionRenderer from '../components/_legacy/SectionRenderer';
 import type { Product, ProductKnowledge, ProductTabsSectionContent } from '../types';
 import ProductCard from '../components/ProductCard';
 
