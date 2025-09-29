@@ -1,25 +1,26 @@
 {
-  "metaTitle": "Kapunka — Moroccan argan care for sensitive & post-procedure skin",
-  "metaDescription": "Single-origin Moroccan argan oils, floral waters, and traditional treatments designed for sensitive and post-procedure skin. Clinically trusted, heritage sourced.",
+  "metaTitle": "KAPUNKA — Argan care",
+  "metaDescription": "Sensitive, post-procedure, and everyday skin rituals with Moroccan argan.",
   "meta": {
-    "metaTitle": "Kapunka — Moroccan argan care for sensitive & post-procedure skin",
-    "metaDescription": "Single-origin Moroccan argan oils, floral waters, and traditional treatments designed for sensitive and post-procedure skin. Clinically trusted, heritage sourced."
+    "metaTitle": "KAPUNKA — Argan care",
+    "metaDescription": "Sensitive, post-procedure, and everyday skin rituals with Moroccan argan."
   },
-  "heroHeadline": "Care that listens when skin is tender.",
-  "heroSubheadline": "Kapunka 2.0 blends Moroccan argan rituals with clinical empathy so reactive and post-procedure skin can breathe easier.",
+  "heroHeadline": "Local CMS Hero Headline",
+  "heroSubheadline": "Single-origin Moroccan argan care, published from the local CMS preview.",
   "heroAlignment": {
     "heroAlignX": "center",
     "heroAlignY": "middle",
-    "heroLayoutHint": "text-over-media",
-    "heroOverlay": true
+    "heroLayoutHint": "image-full",
+    "heroOverlay": 48,
+    "heroTextPosition": "below"
   },
   "heroImages": {
-    "heroImageLeft": "",
+    "heroImageLeft": "/content/uploads/274937ac-6e5d-4dca-8dd5-d08b8004a4d9.jpg",
     "heroImageRight": ""
   },
   "heroCtas": {
-    "ctaPrimary": "Shop Kapunka 2.0 rituals",
-    "ctaSecondary": "Partner with our clinic team"
+    "ctaPrimary": "Shop argan rituals",
+    "ctaSecondary": "Clinics partnership"
   },
   "brandIntro": {
     "title": "Born from gratitude",
@@ -124,39 +125,30 @@
   },
   "sections": [
     {
-      "type": "imageTextHalf",
-      "title": "Heritage sourcing, clinic-grade standards",
-      "text": "We bottle single-origin argan oil within hours of pressing to lock in antioxidants. Every lot is microbiologically tested and traceable from kernel to bottle for spa and medical safety.",
-      "image": ""
+      "type": "hero",
+      "headline": "Local CMS Hero Headline",
+      "subheadline": "Single-origin Moroccan argan care, published from the local CMS preview.",
+      "ctaPrimary": "Shop argan rituals",
+      "ctaSecondary": "Clinics partnership",
+      "image": "/content/uploads/274937ac-6e5d-4dca-8dd5-d08b8004a4d9.jpg",
+      "overlay": 48,
+      "position": "middle-center"
     },
     {
-      "type": "imageTextHalf",
-      "title": "From hammam rituals to modern recovery",
-      "text": "Pair our black soap cleanse, rose water mist, and argan concentrate for a three-step routine that calms inflammation, supports barrier repair, and leaves no heavy film.",
-      "image": ""
+      "type": "mediaCopy",
+      "title": "Media spotlight from CMS",
+      "body": "This media and copy block was published from the local CMS preview.",
+      "image": "/content/uploads/2cb41747-352c-4a0b-affc-bbbcbf90b362-1-.jpg",
+      "mediaAlign": "left",
+      "background": "none"
     },
     {
-      "type": "imageGrid",
-      "items": [
+      "type": "featureGrid",
+      "title": "Feature highlights from CMS",
+      "features": [
         {
-          "image": "",
-          "title": "Clinic-ready batching",
-          "subtitle": "Sterile filling, safety dossiers, and bilingual protocols for teams."
-        },
-        {
-          "image": "",
-          "title": "Holistic sensorial care",
-          "subtitle": "Light aromatics from native botanicals without synthetic fragrance."
-        },
-        {
-          "image": "",
-          "title": "Flexible retail stories",
-          "subtitle": "Merchandising kits and QR education for every treatment room."
-        },
-        {
-          "image": "",
-          "title": "Sustainable partnership",
-          "subtitle": "Revenue reinvested into Moroccan women’s cooperatives and reforestation."
+          "title": "Softer skin in days",
+          "text": "Nutrient-dense argan and botanicals deliver visible results quickly."
         }
       ]
     }

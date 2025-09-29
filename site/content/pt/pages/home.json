@@ -1,25 +1,26 @@
 {
-  "metaTitle": "Kapunka — Cuidado com argão para pele sensível e pós-procedimento",
-  "metaDescription": "Óleos de argão de origem única, águas florais e tratamentos tradicionais para pele sensível e pós-procedimento. Confiança clínica, origem com herança.",
+  "metaTitle": "KAPUNKA — Argan care",
+  "metaDescription": "Sensitive, post-procedure, and everyday skin rituals with Moroccan argan.",
   "meta": {
-    "metaTitle": "Kapunka — Cuidado com argão para pele sensível e pós-procedimento",
-    "metaDescription": "Óleos de argão de origem única, águas florais e tratamentos tradicionais para pele sensível e pós-procedimento. Confiança clínica, origem com herança."
+    "metaTitle": "KAPUNKA — Argan care",
+    "metaDescription": "Sensitive, post-procedure, and everyday skin rituals with Moroccan argan."
   },
-  "heroHeadline": "Cuidado que escuta quando a pele está sensível.",
-  "heroSubheadline": "A Kapunka 2.0 une rituais marroquinos de argão e empatia clínica para que a pele reativa e pós-procedimento respire com calma.",
+  "heroHeadline": "Destaque do herói pelo CMS local",
+  "heroSubheadline": "Cuidados marroquinos de argan de origem única, publicados a partir da pré-visualização do CMS local.",
   "heroAlignment": {
     "heroAlignX": "center",
     "heroAlignY": "middle",
-    "heroLayoutHint": "text-over-media",
-    "heroOverlay": true
+    "heroLayoutHint": "image-full",
+    "heroOverlay": 48,
+    "heroTextPosition": "below"
   },
   "heroImages": {
-    "heroImageLeft": "",
+    "heroImageLeft": "/content/uploads/274937ac-6e5d-4dca-8dd5-d08b8004a4d9.jpg",
     "heroImageRight": ""
   },
   "heroCtas": {
-    "ctaPrimary": "Comprar rituais Kapunka 2.0",
-    "ctaSecondary": "Falar com a nossa equipa clínica"
+    "ctaPrimary": "Comprar rituais de argan",
+    "ctaSecondary": "Parceria com clínicas"
   },
   "brandIntro": {
     "title": "Nascido da gratidão",
@@ -124,39 +125,30 @@
   },
   "sections": [
     {
-      "type": "imageTextHalf",
-      "title": "Origem com herança, padrão de clínica",
-      "text": "Envasamos óleo de argan de origem única poucas horas após a prensagem para preservar antioxidantes. Cada lote é testado microbiologicamente e rastreável da semente ao frasco para segurança em spas e clínicas.",
-      "image": ""
+      "type": "hero",
+      "headline": "Destaque do herói pelo CMS local",
+      "subheadline": "Cuidados marroquinos de argan de origem única, publicados a partir da pré-visualização do CMS local.",
+      "ctaPrimary": "Comprar rituais de argan",
+      "ctaSecondary": "Parceria com clínicas",
+      "image": "/content/uploads/274937ac-6e5d-4dca-8dd5-d08b8004a4d9.jpg",
+      "overlay": 48,
+      "position": "middle-center"
     },
     {
-      "type": "imageTextHalf",
-      "title": "Do hammam moderno à recuperação profissional",
-      "text": "Combine nosso sabão preto de limpeza, névoa de água de rosas e concentrado de argan em um ritual de três etapas que acalma a inflamação, apoia a barreira e não deixa filme pesado.",
-      "image": ""
+      "type": "mediaCopy",
+      "title": "Destaque de mídia do CMS",
+      "body": "Este bloco de mídia e texto foi publicado a partir da pré-visualização do CMS local.",
+      "image": "/content/uploads/2cb41747-352c-4a0b-affc-bbbcbf90b362-1-.jpg",
+      "mediaAlign": "left",
+      "background": "none"
     },
     {
-      "type": "imageGrid",
-      "items": [
+      "type": "featureGrid",
+      "title": "Destaques do CMS",
+      "features": [
         {
-          "image": "",
-          "title": "Produção pronta para clínicas",
-          "subtitle": "Envase estéril, dossiês de segurança e protocolos bilíngues para as equipes."
-        },
-        {
-          "image": "",
-          "title": "Cuidado sensorial holístico",
-          "subtitle": "Aromas leves de botânicos nativos sem fragrâncias sintéticas."
-        },
-        {
-          "image": "",
-          "title": "Histórias flexíveis no varejo",
-          "subtitle": "Kits de merchandising e educação por QR code para cada sala de tratamento."
-        },
-        {
-          "image": "",
-          "title": "Parceria sustentável",
-          "subtitle": "Receitas reinvestidas em cooperativas marroquinas lideradas por mulheres e reflorestamento."
+          "title": "Pele mais macia em poucos dias",
+          "text": "Argan rico em nutrientes e botânicos entregam resultados visíveis rapidamente."
         }
       ]
     }
