@@ -113,12 +113,12 @@ shared_sections: &shared_sections
             widget: "string"
             i18n: true
             required: false
-      - label: "Slide Duration (ms)"
-        name: "slideDuration"
-        widget: "number"
-        value_type: "int"
-        required: false
-        hint: "Leave blank to use the default 8000ms timing."
+           - label: "Slide Duration (ms)"
+             name: "slideDuration"
+             widget: "number"
+             value_type: "int"
+             required: false
+             hint: "Leave blank to use the default 8000ms timing."
   - &section_faq
     label: "FAQ"
     name: "faq"
@@ -437,22 +437,55 @@ collections:
             name: heroAlignment
             widget: object
             required: false
+            hint: >-
+              Legend — Horizontal Alignment moves the text block left, centered, or right. Vertical Alignment
+              shifts it toward the top, middle, or bottom when overlayed. Text Display chooses whether copy sits on
+              top of the image or below it. Overlay Text Anchor pins overlay copy to a specific corner or edge. Overlay
+              Strength controls how much the background is dimmed. Layout Hint nudges whether the hero behaves as a
+              background image or split layout.
             fields:
               - label: Horizontal Alignment
                 name: heroAlignX
                 widget: select
-                options: [left, center, right]
+                options:
+                  - { label: "Left", value: "left" }
+                  - { label: "Center", value: "center" }
+                  - { label: "Right", value: "right" }
                 default: center
+                hint: "Aligns the text block within split hero layouts."
               - label: Vertical Alignment
                 name: heroAlignY
                 widget: select
-                options: [top, center, bottom]
-                default: center
-              - label: Text Position
+                options:
+                  - { label: "Top", value: "top" }
+                  - { label: "Middle", value: "middle" }
+                  - { label: "Bottom", value: "bottom" }
+                default: middle
+                hint: "Moves overlay text higher or lower on the hero image."
+              - label: Text Display
                 name: heroTextPosition
                 widget: select
-                options: [overlay, below]
+                options:
+                  - { label: "Overlay (on top of image)", value: "overlay" }
+                  - { label: "Below image", value: "below" }
                 default: overlay
+                hint: "Choose overlay to layer copy on the hero image, or below to keep it separate."
+              - label: Overlay Text Anchor
+                name: heroTextAnchor
+                widget: select
+                required: false
+                options:
+                  - { label: "Top left", value: "top-left" }
+                  - { label: "Top center", value: "top-center" }
+                  - { label: "Top right", value: "top-right" }
+                  - { label: "Middle left", value: "middle-left" }
+                  - { label: "Middle center", value: "middle-center" }
+                  - { label: "Middle right", value: "middle-right" }
+                  - { label: "Bottom left", value: "bottom-left" }
+                  - { label: "Bottom center", value: "bottom-center" }
+                  - { label: "Bottom right", value: "bottom-right" }
+                default: middle-center
+                hint: "Pins overlay text to a corner or edge when ""Text Display"" is set to overlay."
               - label: Overlay Strength
                 name: heroOverlay
                 widget: select
