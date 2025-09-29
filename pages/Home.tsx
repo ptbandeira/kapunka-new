@@ -1158,12 +1158,14 @@ const Home: React.FC = () => {
   const heroTextPlacement: 'overlay' | 'below' = heroTextPlacementRaw === 'below' ? 'below' : 'overlay';
   const heroTextPosition = pageContent?.heroTextPosition;
   const heroTextPositionTuple = heroTextPosition ? HERO_TEXT_POSITION_MAP[heroTextPosition] : undefined;
-  const heroAlignX: HeroHorizontalAlignment = heroTextPositionTuple?.[0]
-    ?? normalizeHorizontalAlignment(pageContent?.heroAlignment?.heroAlignX ?? pageContent?.heroAlignX)
-    ?? 'center';
-  const heroAlignY: HeroVerticalAlignment = heroTextPositionTuple?.[1]
-    ?? normalizeVerticalAlignment(pageContent?.heroAlignment?.heroAlignY ?? pageContent?.heroAlignY)
-    ?? 'middle';
+  const heroAlignXFromAlignment = normalizeHorizontalAlignment(
+    pageContent?.heroAlignment?.heroAlignX ?? pageContent?.heroAlignX,
+  );
+  const heroAlignYFromAlignment = normalizeVerticalAlignment(
+    pageContent?.heroAlignment?.heroAlignY ?? pageContent?.heroAlignY,
+  );
+  const heroAlignX: HeroHorizontalAlignment = heroAlignXFromAlignment ?? heroTextPositionTuple?.[0] ?? 'center';
+  const heroAlignY: HeroVerticalAlignment = heroAlignYFromAlignment ?? heroTextPositionTuple?.[1] ?? 'middle';
   const heroAlignmentClasses = `${HERO_HORIZONTAL_ALIGNMENT_CONTAINER_CLASSES[heroAlignX]} ${HERO_VERTICAL_ALIGNMENT_CLASSES[heroAlignY]}`;
   const heroMiddleNudge = heroLayoutHint === 'image-full' && heroAlignY === 'middle' ? 'pb-24 md:pb-28' : '';
   const heroTextAlignmentClass = HERO_HORIZONTAL_TEXT_ALIGNMENT_CLASSES[heroAlignX];
