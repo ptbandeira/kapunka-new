@@ -407,6 +407,15 @@ const firstDefined = <T,>(values: ReadonlyArray<T | null | undefined>): T | unde
   return undefined;
 };
 
+const sanitizeCmsString = (value?: string | null): string | undefined => {
+  if (typeof value !== 'string') {
+    return undefined;
+  }
+
+  const trimmed = value.trim();
+  return trimmed.length > 0 ? trimmed : undefined;
+};
+
 const normalizeHorizontalAlignment = (value?: string | null): HeroHorizontalAlignment | undefined => {
   if (value === 'left' || value === 'center' || value === 'right') {
     return value;
@@ -460,6 +469,65 @@ const resolveHeroOverlay = (value?: string | number | boolean | null): string | 
 };
 
 let hasWarnedMissingHeroImages = false;
+let hasWarnedMissingHeroHeadline = false;
+
+interface HeroValidationArgs {
+  heroHeadline?: string | null;
+  heroImages?: HeroImagesGroup | null;
+  heroImageLeft?: string | null;
+  heroImageRight?: string | null;
+  heroImageLeftRef?: string | null;
+  heroImageRightRef?: string | null;
+  heroFallback?: string;
+}
+
+const validateHeroContent = ({
+  heroHeadline,
+  heroImages,
+  heroImageLeft,
+  heroImageRight,
+  heroImageLeftRef,
+  heroImageRightRef,
+  heroFallback,
+}: HeroValidationArgs): { heroImages?: HeroImagesGroup } => {
+  const sanitizedHeadline = sanitizeCmsString(heroHeadline);
+  const fallbackImage = sanitizeCmsString(heroFallback);
+  let normalizedHeroImages = heroImages ?? undefined;
+
+  if (!sanitizeCmsString(normalizedHeroImages?.heroImageLeft) && fallbackImage) {
+    normalizedHeroImages = {
+      ...(normalizedHeroImages ?? {}),
+      heroImageLeft: fallbackImage,
+    };
+  }
+
+  const heroImageLeftSanitized =
+    sanitizeCmsString(normalizedHeroImages?.heroImageLeft) ?? sanitizeCmsString(heroImageLeft);
+  const heroImageLeftRefSanitized =
+    sanitizeCmsString(normalizedHeroImages?.heroImageLeftRef) ?? sanitizeCmsString(heroImageLeftRef);
+  const heroImageRightSanitized =
+    sanitizeCmsString(normalizedHeroImages?.heroImageRight) ?? sanitizeCmsString(heroImageRight);
+  const heroImageRightRefSanitized =
+    sanitizeCmsString(normalizedHeroImages?.heroImageRightRef) ?? sanitizeCmsString(heroImageRightRef);
+
+  const hasHeroImage = Boolean(
+    heroImageLeftSanitized || heroImageLeftRefSanitized || heroImageRightSanitized || heroImageRightRefSanitized,
+  );
+
+  if (import.meta.env.DEV) {
+    if (!sanitizedHeadline && !hasWarnedMissingHeroHeadline) {
+      console.warn('Home hero headline is missing. Add hero headline content in the CMS.');
+      hasWarnedMissingHeroHeadline = true;
+    }
+
+    if (!hasHeroImage && !hasWarnedMissingHeroImages) {
+      console.warn('Home hero images are not configured. Add hero image references or legacy URLs in the CMS.');
+      hasWarnedMissingHeroImages = true;
+    }
+  }
+
+  return { heroImages: normalizedHeroImages ?? undefined };
+};
 
 interface BestsellersProps {
     intro?: string;
@@ -997,10 +1065,21 @@ const Home: React.FC = () => {
           const hasSectionsArray = Array.isArray(parsedData?.sections);
           const rawSections = hasSectionsArray ? parsedData.sections ?? [] : [];
           const heroAlignmentData = parsedData?.heroAlignment;
-          const heroImagesData = parsedData?.heroImages;
+          let heroImagesData: HeroImagesGroup | undefined = parsedData?.heroImages ?? undefined;
           const heroCtasData = parsedData?.heroCtas;
           const heroHeadlineData = parsedData?.heroHeadline;
           const heroSubheadlineData = parsedData?.heroSubheadline;
+
+          const heroValidation = validateHeroContent({
+            heroHeadline: heroHeadlineData,
+            heroImages: heroImagesData,
+            heroImageLeft: parsedData?.heroImageLeft ?? null,
+            heroImageRight: parsedData?.heroImageRight ?? null,
+            heroImageLeftRef: parsedData?.heroImageLeftRef ?? null,
+            heroImageRightRef: parsedData?.heroImageRightRef ?? null,
+            heroFallback: heroFallbackRaw,
+          });
+          heroImagesData = heroValidation.heroImages ?? heroImagesData;
           const sections: HomeSection[] = hasSectionsArray
             ? (rawSections.filter((section): section is HomeSection =>
                 section?.type === 'hero'
@@ -1098,8 +1177,7 @@ const Home: React.FC = () => {
     };
   }, [language, heroFallbackRaw]);
 
-  const sanitizeString = (value?: string | null): string | undefined =>
-    value && value.trim().length > 0 ? value.trim() : undefined;
+  const sanitizeString = sanitizeCmsString;
 
   const pickImage = (local?: string, ref?: string) => local || ref || null;
   const locale = language ?? 'en';
