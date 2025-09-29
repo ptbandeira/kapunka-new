@@ -93,6 +93,12 @@
 ## Testing instructions
 - No automated lint/test/typecheck scripts exist yet. Run `npm run build` to ensure compilation succeeds before PR.
 
+## Lint-critical coding rules
+- Memoize JSX event handlers with `useCallback` (or pull them outside the component) instead of passing inline arrow functions or `.bind` usages.
+- Do not rely on the `void` operator to silence unresolved promises. Call the async function and handle failures explicitly.
+- Generate React `key` props from deterministic data (ids, slugs, stable content). Array indices or position-based keys are not allowed.
+- Avoid the `any` type. Keep data as `unknown` until you narrow it with type guards or validated schemas.
+
 ## PR & commit guidelines
 - Branch naming: `feature/*`, `fix/*`, `content/*`, `docs/*`.
 - Commit messages: follow Conventional Commits (e.g., `content: add es/PT translations for home hero`).

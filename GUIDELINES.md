@@ -44,6 +44,17 @@ The project follows a standard feature-based directory structure.
   - Clearly define component props using TypeScript interfaces.
   - Use descriptive variable and function names.
 
+### 3.1 React performance & safety rules
+
+These rules are enforced across the codebase and should be considered lint blockers:
+
+- **Memoise event handlers.** Do not pass inline arrow functions or `.bind` calls directly in JSX for frequently rendered components. Use `useCallback` (or pre-declare handlers outside render scope) so props remain stable.
+- **Handle async promises explicitly.** Avoid the `void` operator to ignore returned promises. Call the async function and attach `.catch` handlers so rejected promises are surfaced.
+- **Provide stable React keys.** Never use array indices or derived template strings that depend on indices. Keys must come from deterministic data (ids, slugs, text values) to keep reconciliation predictable.
+- **Ban `any`.** Prefer precise types. When receiving unknown CMS data, narrow with type guards and use `unknown` until validation passes.
+
+Follow these patterns whenever you add or refactor components so new code remains compliant without additional clean-up passes.
+
 ---
 
 ## 4. UI/UX Principles

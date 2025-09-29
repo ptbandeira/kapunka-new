@@ -19,6 +19,15 @@ View your app in AI Studio: https://ai.studio/apps/drive/1ROv6j-3REdmWuJaFL9bv6n
 3. Run the app:
    `npm run dev`
 
+## Coding standards
+
+When committing changes, keep these safeguards in mind:
+
+- Memoize React event handlers (`useCallback`, pre-declared functions) instead of passing inline lambdas/binds through JSX props.
+- Replace `void someAsync()` with an explicit call that handles rejections (`someAsync().catch(...)`).
+- Supply React list keys from stable domain data (ids, slugs, unique strings) rather than array indices.
+- Prefer strong typings—avoid `any` altogether. Validate CMS payloads with type guards and keep values as `unknown` until narrowed.
+
 ## Deploy to Netlify with Decap CMS
 
 1. Connect the repository to Netlify and choose the branch that should trigger builds (e.g. `main`).
