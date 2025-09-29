@@ -8,6 +8,10 @@ import React, {
   useEffect,
 } from 'react';
 import type { Language } from '../types';
+
+type TranslationPrimitive = string | number | boolean | null;
+type TranslationNode = TranslationPrimitive | TranslationPrimitive[] | { [key: string]: TranslationNode };
+type TranslationTree = Record<string, TranslationNode>;
 type TranslationModule = Record<Language, TranslationTree>;
 
 const translationModules = import.meta.glob<TranslationModule>(
@@ -54,15 +58,21 @@ const translationEntries = Object.entries(translationModules).map(
 );
 
 const initialTranslations = buildTranslations(translationEntries);
-
-type TranslationTree = Record<string, any>;
 type Translations = Record<Language, TranslationTree>;
+
+const isLocalizedRecord = <T,>(value: unknown): value is Partial<Record<Language, T>> => {
+  if (typeof value !== 'object' || value === null) {
+    return false;
+  }
+
+  return SUPPORTED_LANGUAGES.some((lang) => lang in (value as Record<string, unknown>));
+};
 
 interface LanguageContextType {
   language: Language;
   setLanguage: (lang: Language) => void;
   t: <T = string>(key: string) => T;
-  translate: (content: Record<string, any>) => any;
+  translate: <T>(content: Partial<Record<Language, T>> | T) => T;
 }
 
 const LanguageContext = createContext<LanguageContextType | undefined>(undefined);
@@ -136,21 +146,28 @@ export const LanguageProvider: React.FC<{ children: React.ReactNode }> = ({ chil
 
   const t = useCallback(<T = string>(key: string): T => {
     const keys = key.split('.');
-    let result: any = translations[language];
+    let result: unknown = translations[language];
+
     for (const k of keys) {
-      result = result?.[k];
-      if (result === undefined) {
-        return key as unknown as T; // Return key if not found
+      if (typeof result !== 'object' || result === null || !(k in result)) {
+        return key as unknown as T;
       }
+
+      result = (result as Record<string, unknown>)[k];
     }
+
     return (result ?? key) as T;
   }, [language, translations]);
 
-  const translate = useCallback((content: Record<string, any>) => {
-    if (typeof content === 'object' && content !== null && content[language]) {
-      return content[language];
+  const translate = useCallback(<T,>(content: Partial<Record<Language, T>> | T): T => {
+    if (isLocalizedRecord<T>(content)) {
+      const localizedValue = content[language];
+      if (localizedValue !== undefined) {
+        return localizedValue;
+      }
     }
-    return content;
+
+    return content as T;
   }, [language]);
 
 
