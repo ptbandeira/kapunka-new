@@ -409,6 +409,7 @@ type HomePageContent = PageContent & {
   legacySectionEntries: LegacySectionEntry[];
   localSections: HomeSection[];
   hasSectionsArray: boolean;
+  shouldRenderLocalSections: boolean;
   resolvedLocale: Language;
   contentSource: ContentSource;
 };
@@ -1425,6 +1426,8 @@ const Home: React.FC = () => {
               ))
             : [];
 
+          const hasStructuredHeroSection = sections.some((section) => section.type === 'hero');
+
           const structuredSectionEntries = rawSections.reduce<StructuredSectionEntry[]>((acc, section, index) => {
             const parsedSection = structuredSectionSchema.safeParse(section);
             if (parsedSection.success) {
@@ -1485,6 +1488,7 @@ const Home: React.FC = () => {
             legacySectionEntries,
             localSections: sections,
             hasSectionsArray,
+            shouldRenderLocalSections: hasSectionsArray && hasStructuredHeroSection,
             sections: legacySectionEntries.map((entry) => entry.section as PageSection),
             resolvedLocale: locale,
             contentSource: source,
@@ -2856,7 +2860,7 @@ const Home: React.FC = () => {
     }
   };
 
-  const shouldRenderLocalSections = pageContent?.hasSectionsArray ?? false;
+  const shouldRenderLocalSections = pageContent?.shouldRenderLocalSections ?? false;
 
   const renderedSections = homeSections
     .map((_, index) => {

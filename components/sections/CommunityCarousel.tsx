@@ -85,48 +85,36 @@ const CommunityCarousel: React.FC<CommunityCarouselProps> = ({
   }, [activeIndex]);
 
   return (
-    <section
-      className="relative overflow-hidden py-16 sm:py-24 bg-gradient-to-b from-stone-950 via-stone-900 to-stone-950 text-white"
-      data-nlv-field-path={fieldPath}
-    >
-      <motion.div
-        aria-hidden="true"
-        className="pointer-events-none absolute inset-0"
-        animate={{
-          backgroundPosition: ['0% 0%', '50% 50%', '0% 0%'],
-        }}
-        transition={{ duration: 28, ease: 'easeInOut', repeat: Infinity }}
-        style={{
-          backgroundImage:
-            'radial-gradient(circle at 20% 20%, rgba(250, 214, 165, 0.12), transparent 55%), radial-gradient(circle at 80% 30%, rgba(255, 255, 255, 0.08), transparent 60%), radial-gradient(circle at 50% 80%, rgba(214, 173, 115, 0.16), transparent 65%)',
-          backgroundSize: '160% 160%',
-        }}
-      />
-      <div className="container relative mx-auto px-4 sm:px-6 lg:px-8">
+    <section className="py-20 sm:py-28 bg-stone-50" data-nlv-field-path={fieldPath}>
+      <div className="container mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
         {title && (
           <div className="max-w-3xl" data-nlv-field-path={fieldPath ? `${fieldPath}.title` : undefined}>
-            <h2 className="text-3xl sm:text-4xl font-semibold tracking-tight">{title}</h2>
+            <h2 className="text-3xl sm:text-4xl font-semibold tracking-tight text-stone-900">{title}</h2>
           </div>
         )}
-        <div className="mt-12 grid gap-10 lg:grid-cols-[minmax(0,1.15fr)_minmax(0,1fr)] lg:items-center">
-          <div className="relative">
-            <div className="relative aspect-[4/3] w-full overflow-hidden rounded-3xl border border-white/10 bg-stone-900/40 shadow-2xl shadow-stone-950/40">
-              <div className="absolute inset-0 pointer-events-none">
-                <motion.div
-                  className="absolute -inset-20 rounded-[3rem] bg-gradient-to-r from-amber-500/10 via-transparent to-amber-400/10"
-                  animate={{ x: ['-6%', '6%', '-6%'], y: ['-4%', '4%', '-4%'] }}
-                  transition={{ duration: 18, ease: 'easeInOut', repeat: Infinity }}
-                />
-              </div>
+        <div className="mt-14 grid gap-12 lg:grid-cols-[minmax(0,0.85fr)_minmax(0,1fr)] lg:items-center">
+          <div className="relative flex justify-center">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6 }}
+              className="relative w-full max-w-md"
+            >
+              <motion.div
+                aria-hidden
+                className="absolute -inset-6 rounded-[2.5rem] bg-gradient-to-br from-stone-200 via-white to-stone-100 shadow-xl"
+                animate={{ y: ['0%', '4%', '0%'] }}
+                transition={{ duration: 16, repeat: Infinity, ease: 'easeInOut' }}
+              />
               <AnimatePresence mode="wait">
                 {activeSlide ? (
                   <motion.figure
                     key={buildSlideKey(activeSlide, 'community-slide')}
-                    className="relative h-full w-full"
-                    initial={{ opacity: 0, scale: 1.05, x: 60 }}
-                    animate={{ opacity: 1, scale: 1, x: 0 }}
-                    exit={{ opacity: 0, scale: 0.98, x: -60 }}
-                    transition={{ duration: 0.8, ease: 'easeInOut' }}
+                    className="relative mx-auto aspect-[3/4] w-full overflow-hidden rounded-3xl bg-white shadow-2xl"
+                    initial={{ opacity: 0, y: 32 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, y: -32 }}
+                    transition={{ duration: 0.6, ease: 'easeInOut' }}
                     data-nlv-field-path={activeSlide.fieldPath}
                   >
                     {activeSlide.image ? (
@@ -141,7 +129,7 @@ const CommunityCarousel: React.FC<CommunityCarouselProps> = ({
                       />
                     ) : (
                       <div
-                        className="flex h-full w-full flex-col items-center justify-center gap-2 bg-stone-900/60 text-center text-sm text-stone-300"
+                        className="flex h-full w-full flex-col items-center justify-center gap-2 bg-stone-100 text-center text-sm text-stone-500"
                         data-nlv-field-path={activeSlide.imageFieldPath}
                       >
                         <span className="font-medium">Add a community photo</span>
@@ -153,54 +141,35 @@ const CommunityCarousel: React.FC<CommunityCarouselProps> = ({
                     </span>
                   </motion.figure>
                 ) : (
-                  <div className="flex h-full w-full items-center justify-center text-center text-sm text-stone-300">
+                  <div className="flex aspect-[3/4] w-full items-center justify-center rounded-3xl border border-dashed border-stone-200 bg-white text-stone-400">
                     <div data-nlv-field-path={slidesFieldPath}>Add your first community story</div>
                   </div>
                 )}
               </AnimatePresence>
-            </div>
-            {totalSlides > 1 && (
-              <div className="mt-6 flex items-center justify-center gap-3" data-nlv-field-path={slidesFieldPath}>
-                {slides.map((slide, index) => {
-                  const slideKey = buildSlideKey(slide, 'carousel-dot');
-                  return (
-                  <button
-                    key={slideKey}
-                    type="button"
-                    className={`h-3 w-3 rounded-full border border-white/60 transition-all ${index === activeIndex ? 'scale-110 bg-white' : 'bg-white/30 hover:bg-white/50'}`}
-                    onClick={handleSelectSlide}
-                    aria-label={`Show community story ${index + 1}`}
-                    aria-pressed={index === activeIndex}
-                    data-slide-index={index}
-                    data-nlv-field-path={slide.fieldPath}
-                  />
-                  );
-                })}
-              </div>
-            )}
+            </motion.div>
           </div>
-          <div className="relative">
+          <div>
             <AnimatePresence mode="wait">
               {activeSlide ? (
                 <motion.div
                   key={buildSlideKey(activeSlide, 'community-quote')}
                   className="space-y-6"
-                  initial={{ opacity: 0, y: 28 }}
+                  initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
-                  exit={{ opacity: 0, y: -28 }}
+                  exit={{ opacity: 0, y: -20 }}
                   transition={{ duration: 0.6, ease: 'easeOut' }}
                   aria-live="polite"
                   data-nlv-field-path={activeSlide.fieldPath}
                 >
-                  <p className="text-lg leading-relaxed text-stone-100" data-nlv-field-path={activeSlide.quoteFieldPath}>
+                  <p className="text-lg leading-relaxed text-stone-700" data-nlv-field-path={activeSlide.quoteFieldPath}>
                     {activeSlide.quote ?? 'Use this space to share how Kapunka supports a routine or treatment story.'}
                   </p>
-                  <div className="text-sm font-medium uppercase tracking-[0.2em] text-stone-300">
+                  <div className="text-sm font-medium uppercase tracking-[0.25em] text-stone-400">
                     <span data-nlv-field-path={activeSlide.nameFieldPath}>
                       {activeSlide.name ?? 'Name or partner'}
                     </span>
                     {(activeSlide.role ?? '').trim().length > 0 && (
-                      <span className="block text-xs font-normal normal-case tracking-normal text-stone-400" data-nlv-field-path={activeSlide.roleFieldPath}>
+                      <span className="block text-xs font-normal normal-case tracking-normal text-stone-500" data-nlv-field-path={activeSlide.roleFieldPath}>
                         {activeSlide.role}
                       </span>
                     )}
@@ -209,7 +178,7 @@ const CommunityCarousel: React.FC<CommunityCarouselProps> = ({
               ) : (
                 <motion.div
                   key="community-empty"
-                  className="rounded-3xl border border-dashed border-white/20 bg-white/5 p-10 text-center text-sm text-stone-200"
+                  className="rounded-3xl border border-dashed border-stone-200 bg-white p-10 text-center text-sm text-stone-400"
                   initial={{ opacity: 0 }}
                   animate={{ opacity: 1 }}
                   transition={{ duration: 0.4 }}
@@ -219,6 +188,25 @@ const CommunityCarousel: React.FC<CommunityCarouselProps> = ({
                 </motion.div>
               )}
             </AnimatePresence>
+            {totalSlides > 1 && (
+              <div className="mt-8 flex flex-wrap items-center gap-2" data-nlv-field-path={slidesFieldPath}>
+                {slides.map((slide, index) => {
+                  const slideKey = buildSlideKey(slide, 'carousel-dot');
+                  return (
+                    <button
+                      key={slideKey}
+                      type="button"
+                      className={`h-2.5 w-8 rounded-full transition-all ${index === activeIndex ? 'bg-stone-900' : 'bg-stone-300 hover:bg-stone-400'}`}
+                      onClick={handleSelectSlide}
+                      aria-label={`Show community story ${index + 1}`}
+                      aria-pressed={index === activeIndex}
+                      data-slide-index={index}
+                      data-nlv-field-path={slide.fieldPath}
+                    />
+                  );
+                })}
+              </div>
+            )}
           </div>
         </div>
       </div>
