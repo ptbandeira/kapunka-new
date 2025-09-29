@@ -17,7 +17,7 @@
     "heroAlignX": "left",
     "heroAlignY": "middle",
     "heroTextPosition": "overlay",
-    "heroTextAnchor": "middle-center",
+    "heroTextAnchor": "middle-left",
     "heroOverlay": "medium",
     "heroLayoutHint": "bg"
   },
