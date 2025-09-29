@@ -2635,6 +2635,7 @@ const Home: React.FC = () => {
         );
       }
       case 'testimonials': {
+        const sectionTitle = sanitizeString(section.title ?? null);
         const quotes = (section.quotes ?? [])
           .map((quote) => ({
             text: sanitizeString(quote.text ?? null),
