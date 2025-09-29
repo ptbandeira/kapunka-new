@@ -1027,13 +1027,13 @@ const GalleryRows: React.FC<GalleryRowsProps> = ({ rows, fieldPath }) => {
     const sanitizedRows = rows
         ?.map((row) => {
             if (!row) {
-                return undefined;
+                return null;
             }
 
             const items = (row.items ?? []).filter((item) => Boolean(item?.image?.trim()));
 
             if (items.length === 0) {
-                return undefined;
+                return null;
             }
 
             return { ...row, items };
