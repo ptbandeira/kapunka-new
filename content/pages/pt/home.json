@@ -1,10 +1,50 @@
 {
   "metaTitle": "KAPUNKA — Argan care",
   "metaDescription": "Sensitive, post-procedure, and everyday skin rituals with Moroccan argan.",
-  "heroHeadline": "Um recomeço suave para peles sensíveis",
-  "heroSubheadline": "Argan marroquino de origem única, confiável em clínicas.",
-  "heroAlignment": { "heroAlignX": "center", "heroAlignY": "middle", "heroLayoutHint": "image-full", "heroOverlay": 48 },
-  "heroImages": { "heroImageLeft": "/content/uploads/placeholder-hero.jpg" },
-  "heroCtas": { "ctaPrimary": "Comprar rituais de argan", "ctaSecondary": "Parceria com clínicas" },
-  "sections": []
+  "heroHeadline": "Destaque do herói pelo CMS local",
+  "heroSubheadline": "Cuidados marroquinos de argan de origem única, publicados a partir da pré-visualização do CMS local.",
+  "heroAlignment": {
+    "heroAlignX": "center",
+    "heroAlignY": "middle",
+    "heroLayoutHint": "image-full",
+    "heroOverlay": 48,
+    "heroTextPosition": "below"
+  },
+  "heroImages": {
+    "heroImageLeft": "/content/uploads/274937ac-6e5d-4dca-8dd5-d08b8004a4d9.jpg"
+  },
+  "heroCtas": {
+    "ctaPrimary": "Comprar rituais de argan",
+    "ctaSecondary": "Parceria com clínicas"
+  },
+  "sections": [
+    {
+      "type": "hero",
+      "headline": "Destaque do herói pelo CMS local",
+      "subheadline": "Cuidados marroquinos de argan de origem única, publicados a partir da pré-visualização do CMS local.",
+      "ctaPrimary": "Comprar rituais de argan",
+      "ctaSecondary": "Parceria com clínicas",
+      "image": "/content/uploads/274937ac-6e5d-4dca-8dd5-d08b8004a4d9.jpg",
+      "overlay": 48,
+      "position": "middle-center"
+    },
+    {
+      "type": "mediaCopy",
+      "title": "Destaque de mídia do CMS",
+      "body": "Este bloco de mídia e texto foi publicado a partir da pré-visualização do CMS local.",
+      "image": "/content/uploads/2cb41747-352c-4a0b-affc-bbbcbf90b362-1-.jpg",
+      "mediaAlign": "left",
+      "background": "none"
+    },
+    {
+      "type": "featureGrid",
+      "title": "Destaques do CMS",
+      "features": [
+        {
+          "title": "Pele mais macia em poucos dias",
+          "text": "Argan rico em nutrientes e botânicos entregam resultados visíveis rapidamente."
+        }
+      ]
+    }
+  ]
 }

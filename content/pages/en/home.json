@@ -1,10 +1,50 @@
 {
   "metaTitle": "KAPUNKA — Argan care",
   "metaDescription": "Sensitive, post-procedure, and everyday skin rituals with Moroccan argan.",
-  "heroHeadline": "A gentle restart for sensitive skin",
-  "heroSubheadline": "Single-origin Moroccan argan, trusted in clinical practice.",
-  "heroAlignment": { "heroAlignX": "center", "heroAlignY": "middle", "heroLayoutHint": "image-full", "heroOverlay": 48 },
-  "heroImages": { "heroImageLeft": "/content/uploads/placeholder-hero.jpg" },
-  "heroCtas": { "ctaPrimary": "Shop argan rituals", "ctaSecondary": "Clinics partnership" },
-  "sections": []
+  "heroHeadline": "Local CMS Hero Headline",
+  "heroSubheadline": "Single-origin Moroccan argan care, published from the local CMS preview.",
+  "heroAlignment": {
+    "heroAlignX": "center",
+    "heroAlignY": "middle",
+    "heroLayoutHint": "image-full",
+    "heroOverlay": 48,
+    "heroTextPosition": "below"
+  },
+  "heroImages": {
+    "heroImageLeft": "/content/uploads/274937ac-6e5d-4dca-8dd5-d08b8004a4d9.jpg"
+  },
+  "heroCtas": {
+    "ctaPrimary": "Shop argan rituals",
+    "ctaSecondary": "Clinics partnership"
+  },
+  "sections": [
+    {
+      "type": "hero",
+      "headline": "Local CMS Hero Headline",
+      "subheadline": "Single-origin Moroccan argan care, published from the local CMS preview.",
+      "ctaPrimary": "Shop argan rituals",
+      "ctaSecondary": "Clinics partnership",
+      "image": "/content/uploads/274937ac-6e5d-4dca-8dd5-d08b8004a4d9.jpg",
+      "overlay": 48,
+      "position": "middle-center"
+    },
+    {
+      "type": "mediaCopy",
+      "title": "Media spotlight from CMS",
+      "body": "This media and copy block was published from the local CMS preview.",
+      "image": "/content/uploads/2cb41747-352c-4a0b-affc-bbbcbf90b362-1-.jpg",
+      "mediaAlign": "left",
+      "background": "none"
+    },
+    {
+      "type": "featureGrid",
+      "title": "Feature highlights from CMS",
+      "features": [
+        {
+          "title": "Softer skin in days",
+          "text": "Nutrient-dense argan and botanicals deliver visible results quickly."
+        }
+      ]
+    }
+  ]
 }
