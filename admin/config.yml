@@ -320,7 +320,7 @@ collections:
     files:
       - name: home
         label: Home Page
-        file: content/pages/home.json
+        file: content/pages/en/home.json
         format: json
         editor:
           preview: true
@@ -473,7 +473,7 @@ collections:
               - *section_timeline
       - name: shop
         label: Shop Page
-        file: content/pages/shop.json
+        file: content/pages/en/shop.json
         format: json
         editor:
           preview: true
@@ -508,7 +508,7 @@ collections:
               - *section_timeline
       - name: learn
         label: Learn Page
-        file: content/pages/learn.json
+        file: content/pages/en/learn.json
         format: json
         editor:
           preview: true
@@ -517,7 +517,7 @@ collections:
         fields: *page_fields
       - name: method
         label: Method Page
-        file: content/pages/method.json
+        file: content/pages/en/method.json
         format: json
         editor:
           preview: true
@@ -550,7 +550,7 @@ collections:
               - *section_specialties
       - name: clinics
         label: For Clinics Page
-        file: content/pages/clinics.json
+        file: content/pages/en/clinics.json
         format: json
         editor:
           preview: true
@@ -559,7 +559,7 @@ collections:
         fields: *page_fields
       - name: about
         label: About Page
-        file: content/pages/about.json
+        file: content/pages/en/about.json
         format: json
         editor:
           preview: true
@@ -568,7 +568,7 @@ collections:
         fields: *page_fields
       - name: contact
         label: Contact Page
-        file: content/pages/contact.json
+        file: content/pages/en/contact.json
         format: json
         editor:
           preview: true
