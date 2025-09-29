@@ -12,7 +12,8 @@
     "heroAlignY": "middle",
     "heroLayoutHint": "image-full",
     "heroOverlay": 48,
-    "heroTextPosition": "below"
+    "heroTextPosition": "below",
+    "heroTextAnchor": "middle-center"
   },
   "heroImages": {
     "heroImageLeft": "/content/uploads/274937ac-6e5d-4dca-8dd5-d08b8004a4d9.jpg",

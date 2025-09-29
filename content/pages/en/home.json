@@ -15,8 +15,9 @@
   },
   "heroAlignment": {
     "heroAlignX": "center",
-    "heroAlignY": "center",
+    "heroAlignY": "middle",
     "heroTextPosition": "overlay",
+    "heroTextAnchor": "middle-center",
     "heroOverlay": "medium",
     "heroLayoutHint": "bg"
   },

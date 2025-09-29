@@ -94,6 +94,19 @@ const heroAlignmentSchema = z
       .optional(),
     heroOverlay: z.union([z.string(), z.number(), z.boolean()]).optional(),
     heroTextPosition: z.enum(['overlay', 'below']).optional(),
+    heroTextAnchor: z
+      .enum([
+        'top-left',
+        'top-center',
+        'top-right',
+        'middle-left',
+        'middle-center',
+        'middle-right',
+        'bottom-left',
+        'bottom-center',
+        'bottom-right',
+      ])
+      .optional(),
   })
   .passthrough();
 
@@ -307,6 +320,7 @@ const heroMarkdownComponents: MarkdownComponents = {
 
 type HeroHorizontalAlignment = 'left' | 'center' | 'right';
 type HeroVerticalAlignment = 'top' | 'middle' | 'bottom';
+type HeroTextAnchor = NonNullable<PageContent['heroTextPosition']>;
 
 type HomePageContent = PageContent & {
   heroImageLeftRef?: string | null;
@@ -447,6 +461,18 @@ const normalizeHeroLayoutHint = (value?: string | null): 'image-left' | 'image-r
     default:
       return 'image-full';
   }
+};
+
+const normalizeHeroTextAnchor = (value?: string | null): HeroTextAnchor | undefined => {
+  if (!value) {
+    return undefined;
+  }
+
+  if (value in HERO_TEXT_POSITION_MAP) {
+    return value as HeroTextAnchor;
+  }
+
+  return undefined;
 };
 
 const resolveHeroOverlay = (value?: string | number | boolean | null): string | undefined => {
@@ -1234,8 +1260,10 @@ const Home: React.FC = () => {
   const heroImageRight = sanitizeString(heroImageRightUrl);
   const heroTextPlacementRaw = pageContent?.heroAlignment?.heroTextPosition;
   const heroTextPlacement: 'overlay' | 'below' = heroTextPlacementRaw === 'below' ? 'below' : 'overlay';
-  const heroTextPosition = pageContent?.heroTextPosition;
-  const heroTextPositionTuple = heroTextPosition ? HERO_TEXT_POSITION_MAP[heroTextPosition] : undefined;
+  const heroTextAnchor = normalizeHeroTextAnchor(
+    pageContent?.heroAlignment?.heroTextAnchor ?? pageContent?.heroTextPosition,
+  );
+  const heroTextPositionTuple = heroTextAnchor ? HERO_TEXT_POSITION_MAP[heroTextAnchor] : undefined;
   const heroAlignXFromAlignment = normalizeHorizontalAlignment(
     pageContent?.heroAlignment?.heroAlignX ?? pageContent?.heroAlignX,
   );
