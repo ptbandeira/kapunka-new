@@ -30,28 +30,32 @@
       "title": "Nacido de la gratitud",
       "body": "“Kapunka” significa “gracias”. Elaboramos cuidados de argán con respeto clínico: rutinas sencillas que reconfortan, protegen y apoyan la recuperación. Nuestras raíces están en Marruecos; nuestro método creció en clínicas reales.",
       "imageRef": "/content/uploads/roots-olive-tree.jpg",
-      "layout": "image-right"
+      "layout": "image-right",
+      "columns": 2
     },
     {
       "type": "mediaCopy",
       "title": "Preferido por dermatólogos, medspas y clínicas holísticas",
       "body": "Nuestros tratamientos son suaves, de bajo residuo y guiados por el conocimiento, con aceptación de la piel, estabilidad de la barrera y equilibrio aromático. La formación dedicada y el soporte mayorista mantienen a tu equipo con confianza.",
       "imageRef": "/content/uploads/clinic-hands.jpg",
-      "layout": "image-right"
+      "layout": "image-left",
+      "columns": 2
     },
     {
       "type": "mediaCopy",
       "title": "Abastecimiento patrimonial, estándares de grado clínico",
       "body": "Obtenemos argán de origen único y seguimos cada paso desde las cooperativas hasta las certificaciones de laboratorio. Cada lote se somete a pruebas meticulosas para mantener un cuidado humano a escala.",
       "imageRef": "/content/uploads/argan-coop.jpg",
-      "layout": "image-right"
+      "layout": "image-right",
+      "columns": 2
     },
     {
       "type": "mediaCopy",
       "title": "De los rituales de hammam a la recuperación moderna",
       "body": "Aceite puro, brumas florales y limpiadores suaves. Sabiduría ancestral conectada con la vida de hoy: rutinas que calman el malestar, reparan la barrera y no dejan una película pesada.",
       "imageRef": "/content/uploads/hammam-light.jpg",
-      "layout": "image-right"
+      "layout": "image-left",
+      "columns": 2
     },
     {
       "type": "featureGrid",
@@ -134,6 +138,16 @@
           "role": "Esteticista"
         }
       ]
+    },
+    {
+      "type": "newsletterSignup",
+      "title": "Únete a la Lista",
+      "subtitle": "Consejos para rutinas de piel sensible, una o dos veces al mes. Sin spam. Baja cuando quieras.",
+      "placeholder": "Introduce tu correo electrónico",
+      "ctaLabel": "Suscribirse",
+      "confirmation": "¡Gracias por suscribirte!",
+      "background": "beige",
+      "alignment": "center"
     }
   ]
 }

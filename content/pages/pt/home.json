@@ -30,28 +30,32 @@
       "title": "Nascida da gratidão",
       "body": "“Kapunka” significa “obrigado”. Criamos cuidados com argão com respeito clínico — rotinas simples que confortam, protegem e apoiam a recuperação. As nossas raízes estão em Marrocos; o nosso método cresceu em clínicas reais.",
       "imageRef": "/content/uploads/roots-olive-tree.jpg",
-      "layout": "image-right"
+      "layout": "image-right",
+      "columns": 2
     },
     {
       "type": "mediaCopy",
       "title": "Preferida por dermatologistas, medspas e clínicas holísticas",
       "body": "Os nossos tratamentos são suaves, de baixa deposição e guiados pelo conhecimento, com aceitação da pele, estabilidade da barreira e equilíbrio aromático. Formação dedicada e apoio de venda por grosso mantêm a tua equipa confiante.",
       "imageRef": "/content/uploads/clinic-hands.jpg",
-      "layout": "image-right"
+      "layout": "image-left",
+      "columns": 2
     },
     {
       "type": "mediaCopy",
       "title": "Origem ancestral, padrões de nível clínico",
       "body": "Selecionamos argão de origem única e rastreamos os passos das cooperativas às certificações laboratoriais. Cada lote é meticulosamente testado para manter um cuidado humano em escala.",
       "imageRef": "/content/uploads/argan-coop.jpg",
-      "layout": "image-right"
+      "layout": "image-right",
+      "columns": 2
     },
     {
       "type": "mediaCopy",
       "title": "Dos rituais de hammam à recuperação moderna",
       "body": "Óleo puro, névoas florais e lavagens limpas. Sabedoria antiga ligada à vida que vivemos hoje: rotinas que acalmam o desconforto, reparam a barreira e não deixam uma película pesada.",
       "imageRef": "/content/uploads/hammam-light.jpg",
-      "layout": "image-right"
+      "layout": "image-left",
+      "columns": 2
     },
     {
       "type": "featureGrid",
@@ -134,6 +138,16 @@
           "role": "Esteticista"
         }
       ]
+    },
+    {
+      "type": "newsletterSignup",
+      "title": "Junte-se à Lista",
+      "subtitle": "Dicas para rotinas de pele sensível, uma ou duas vezes por mês. Sem spam. Cancele quando quiser.",
+      "placeholder": "Digite seu e-mail",
+      "ctaLabel": "Inscrever-se",
+      "confirmation": "Obrigado por se inscrever!",
+      "background": "beige",
+      "alignment": "center"
     }
   ]
 }

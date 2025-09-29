@@ -142,6 +142,32 @@ shared_sections: &shared_sections
       - { label: "CTA Label", name: "cta", widget: "string", i18n: true, required: false }
       - { label: "CTA URL", name: "url", widget: "string", required: false }
       - { label: "Style", name: "style", widget: "select", options: ["muted", "inset"], required: false }
+  - &section_newsletterSignup
+    label: "Newsletter Signup"
+    name: "newsletterSignup"
+    widget: "object"
+    fields:
+      - { name: "type", widget: "hidden", default: "newsletterSignup" }
+      - { label: "Title", name: "title", widget: "string", i18n: true, required: false }
+      - { label: "Subtitle", name: "subtitle", widget: "text", i18n: true, required: false }
+      - { label: "Email Placeholder", name: "placeholder", widget: "string", i18n: true, required: false }
+      - { label: "CTA Label", name: "ctaLabel", widget: "string", i18n: true, required: false }
+      - { label: "Confirmation Message", name: "confirmation", widget: "text", i18n: true, required: false }
+      - label: "Background"
+        name: "background"
+        widget: "select"
+        required: false
+        options:
+          - { label: "Light stone", value: "light" }
+          - { label: "Warm beige", value: "beige" }
+          - { label: "Dark", value: "dark" }
+      - label: "Alignment"
+        name: "alignment"
+        widget: "select"
+        required: false
+        options:
+          - { label: "Center", value: "center" }
+          - { label: "Left", value: "left" }
   - &section_videoGallery
     label: "Video Gallery"
     name: "videoGallery"
@@ -555,6 +581,7 @@ collections:
               - *section_testimonials
               - *section_faq
               - *section_banner
+              - *section_newsletterSignup
               - *section_videoGallery
               - *section_trainingList
               - *section_timeline
@@ -591,6 +618,7 @@ collections:
               - *section_testimonials
               - *section_faq
               - *section_banner
+              - *section_newsletterSignup
               - *section_videoGallery
               - *section_trainingList
               - *section_timeline

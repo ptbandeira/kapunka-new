@@ -94,6 +94,16 @@ type HomeSection =
       slideDuration?: number;
     }
   | {
+      type: 'newsletterSignup';
+      title?: string;
+      subtitle?: string;
+      placeholder?: string;
+      ctaLabel?: string;
+      confirmation?: string;
+      background?: 'light' | 'beige' | 'dark';
+      alignment?: 'left' | 'center';
+    }
+  | {
       type: 'video';
       title?: string;
       url?: string;
@@ -201,6 +211,19 @@ const communityCarouselSectionSchema = z
   })
   .passthrough();
 
+const newsletterSignupSectionSchema = z
+  .object({
+    type: z.literal('newsletterSignup'),
+    title: z.string().optional(),
+    subtitle: z.string().optional(),
+    placeholder: z.string().optional(),
+    ctaLabel: z.string().optional(),
+    confirmation: z.string().optional(),
+    background: z.enum(['light', 'beige', 'dark']).optional(),
+    alignment: z.enum(['left', 'center']).optional(),
+  })
+  .passthrough();
+
 const legacySectionSchema = z.discriminatedUnion('type', [
   timelineSectionSchema,
   imageTextHalfSectionSchema,
@@ -251,6 +274,7 @@ const testimonialsSectionSchema = z
 
 const structuredSectionSchema = z.discriminatedUnion('type', [
   communityCarouselSectionSchema,
+  newsletterSignupSectionSchema,
   pillarsSectionSchema,
   mediaCopySectionSchema,
   testimonialsSectionSchema,
@@ -984,70 +1008,116 @@ const Reviews: React.FC = () => {
     );
 };
 
-const NewsletterSignup: React.FC = () => {
-    const { t, language } = useLanguage();
-    const [email, setEmail] = React.useState('');
-    const [submitted, setSubmitted] = React.useState(false);
+type NewsletterBackground = 'light' | 'beige' | 'dark';
 
-    const handleSubmit = (e: React.FormEvent) => {
-        e.preventDefault();
-        console.log('Newsletter signup:', email);
-        setSubmitted(true);
-    };
+interface NewsletterSignupProps {
+  title?: string;
+  subtitle?: string;
+  placeholder?: string;
+  ctaLabel?: string;
+  confirmation?: string;
+  alignment?: 'left' | 'center';
+  backgroundVariant?: NewsletterBackground;
+  fieldPath?: string;
+}
 
-    return (
-        <div className="py-16 sm:py-24 bg-stone-200">
-            <div className="container mx-auto px-4 sm:px-6 lg:px-8 text-center max-w-2xl">
-                <motion.div
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.6 }}
-                >
-                    <h2
-                        className="text-3xl sm:text-4xl font-semibold mb-4"
-                        data-nlv-field-path={`translations.${language}.home.newsletterTitle`}
-                    >
-                        {t('home.newsletterTitle')}
-                    </h2>
-                    <p
-                        className="text-stone-600 mb-8"
-                        data-nlv-field-path={`translations.${language}.home.newsletterSubtitle`}
-                    >
-                        {t('home.newsletterSubtitle')}
-                    </p>
-                    {submitted ? (
-                        <p
-                            className="text-lg text-green-700"
-                            data-nlv-field-path={`translations.${language}.home.newsletterThanks`}
-                        >
-                            {t('home.newsletterThanks')}
-                        </p>
-                    ) : (
-                        <form onSubmit={handleSubmit} className="flex flex-col sm:flex-row gap-2 max-w-md mx-auto">
-                            <input
-                                type="email"
-                                value={email}
-                                onChange={(e) => setEmail(e.target.value)}
-                                placeholder={t('home.newsletterPlaceholder')}
-                                required
-                                className="flex-grow px-4 py-3 rounded-md border-stone-300 focus:ring-stone-500 focus:border-stone-500 transition"
-                                data-nlv-field-path={`translations.${language}.home.newsletterPlaceholder`}
-                            />
-                            <button
-                                type="submit"
-                                className="px-6 py-3 bg-stone-900 text-white font-semibold rounded-md hover:bg-stone-700 transition-colors"
-                            >
-                                <span data-nlv-field-path={`translations.${language}.home.newsletterSubmit`}>
-                                    {t('home.newsletterSubmit')}
-                                </span>
-                            </button>
-                        </form>
-                    )}
-                </motion.div>
-            </div>
-        </div>
-    );
+const newsletterBackgroundClassMap: Record<NewsletterBackground, string> = {
+  light: 'bg-stone-200 text-stone-900',
+  beige: 'bg-amber-50 text-stone-900',
+  dark: 'bg-stone-900 text-white',
+};
+
+const NewsletterSignup: React.FC<NewsletterSignupProps> = ({
+  title,
+  subtitle,
+  placeholder,
+  ctaLabel,
+  confirmation,
+  alignment = 'center',
+  backgroundVariant = 'light',
+  fieldPath,
+}) => {
+  const { t } = useLanguage();
+  const [email, setEmail] = React.useState('');
+  const [submitted, setSubmitted] = React.useState(false);
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    setSubmitted(true);
+  };
+
+  const resolvedTitle = title?.trim().length ? title : t('home.newsletterTitle');
+  const resolvedSubtitle = subtitle?.trim().length ? subtitle : t('home.newsletterSubtitle');
+  const resolvedPlaceholder = placeholder?.trim().length ? placeholder : t('home.newsletterPlaceholder');
+  const resolvedCtaLabel = ctaLabel?.trim().length ? ctaLabel : t('home.newsletterSubmit');
+  const resolvedConfirmation = confirmation?.trim().length ? confirmation : t('home.newsletterThanks');
+
+  const backgroundClass = newsletterBackgroundClassMap[backgroundVariant] ?? newsletterBackgroundClassMap.light;
+  const isDark = backgroundVariant === 'dark';
+  const alignmentWrapperClass = alignment === 'left' ? 'items-start text-left' : 'items-center text-center';
+  const formAlignmentClass = alignment === 'left' ? 'sm:flex-row sm:justify-start' : 'sm:flex-row sm:justify-center';
+  const containerMaxWidth = alignment === 'left' ? 'max-w-3xl' : 'max-w-2xl';
+  const inputClasses = isDark
+    ? 'flex-grow px-4 py-3 rounded-md border border-white/40 bg-white/10 text-white placeholder:text-white/60 focus:outline-none focus:ring-2 focus:ring-white/60 focus:border-white/60 transition'
+    : 'flex-grow px-4 py-3 rounded-md border border-stone-300 focus:outline-none focus:ring-2 focus:ring-stone-500 focus:border-stone-500 transition';
+  const buttonClasses = isDark
+    ? 'px-6 py-3 bg-white text-stone-900 font-semibold rounded-md hover:bg-white/90 transition-colors'
+    : 'px-6 py-3 bg-stone-900 text-white font-semibold rounded-md hover:bg-stone-700 transition-colors';
+
+  return (
+    <div className={`py-16 sm:py-24 ${backgroundClass}`} data-nlv-field-path={fieldPath}>
+      <div className={`container mx-auto px-4 sm:px-6 lg:px-8 ${containerMaxWidth}`}>
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
+          className={`flex flex-col gap-4 ${alignmentWrapperClass}`}
+        >
+          <h2
+            className="text-3xl sm:text-4xl font-semibold"
+            data-nlv-field-path={fieldPath ? `${fieldPath}.title` : undefined}
+          >
+            {resolvedTitle}
+          </h2>
+          {resolvedSubtitle && (
+            <p
+              className={`text-base sm:text-lg ${isDark ? 'text-white/80' : 'text-stone-600'}`}
+              data-nlv-field-path={fieldPath ? `${fieldPath}.subtitle` : undefined}
+            >
+              {resolvedSubtitle}
+            </p>
+          )}
+          {submitted ? (
+            <p
+              className={`text-lg font-semibold ${isDark ? 'text-white' : 'text-green-700'}`}
+              data-nlv-field-path={fieldPath ? `${fieldPath}.confirmation` : undefined}
+            >
+              {resolvedConfirmation}
+            </p>
+          ) : (
+            <form
+              onSubmit={handleSubmit}
+              className={`flex w-full flex-col gap-2 sm:max-w-xl ${formAlignmentClass}`}
+            >
+              <input
+                type="email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                placeholder={resolvedPlaceholder}
+                required
+                className={inputClasses}
+                data-nlv-field-path={fieldPath ? `${fieldPath}.placeholder` : undefined}
+              />
+              <button type="submit" className={buttonClasses}>
+                <span data-nlv-field-path={fieldPath ? `${fieldPath}.ctaLabel` : undefined}>{resolvedCtaLabel}</span>
+              </button>
+            </form>
+          )}
+        </motion.div>
+      </div>
+    </div>
+  );
 };
 
 const Home: React.FC = () => {
@@ -1150,6 +1220,7 @@ const Home: React.FC = () => {
                 || section?.type === 'testimonials'
                 || section?.type === 'faq'
                 || section?.type === 'banner'
+                || section?.type === 'newsletterSignup'
                 || section?.type === 'communityCarousel'
                 || section?.type === 'video'
               ))
@@ -1770,12 +1841,68 @@ const Home: React.FC = () => {
         }
 
         const layout = section.layout === 'image-left' ? 'image-left' : 'image-right';
-        const columns = Math.min(Math.max(section.columns ?? 2, 1), 3);
-        const gridColumnsClass = columns === 1 ? 'lg:grid-cols-1' : columns === 3 ? 'lg:grid-cols-3' : 'lg:grid-cols-2';
-        const gridClasses = `grid grid-cols-1 ${gridColumnsClass} gap-10 items-center`;
+        const requestedColumns = typeof section.columns === 'number' && Number.isFinite(section.columns)
+          ? Math.max(1, Math.min(Math.round(section.columns), 2))
+          : undefined;
+        const hasImage = Boolean(mediaImage);
+        const effectiveColumns = requestedColumns ?? (hasImage ? 2 : 1);
+        const imageFieldKey = section.image ? 'image' : section.imageRef ? 'imageRef' : 'image';
+
+        if (!hasImage || effectiveColumns === 1) {
+          const singleColumnAlignment = (() => {
+            if (layout === 'image-left') {
+              return { container: 'items-start text-left', text: 'text-left' };
+            }
+
+            if (layout === 'image-right') {
+              return { container: 'items-end text-right', text: 'text-right' };
+            }
+
+            return { container: 'items-center text-center', text: 'text-center' };
+          })();
+
+          return (
+            <section
+              key={`section-mediaCopy-${index}`}
+              className="py-16 sm:py-24 bg-white"
+              data-nlv-field-path={sectionFieldPath}
+            >
+              <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+                <div className={`mx-auto flex max-w-3xl flex-col gap-6 ${singleColumnAlignment.container}`}>
+                  {title && (
+                    <h2
+                      className={`text-3xl sm:text-4xl font-semibold ${singleColumnAlignment.text}`}
+                      data-nlv-field-path={`${sectionFieldPath}.title`}
+                    >
+                      {title}
+                    </h2>
+                  )}
+                  {body && (
+                    <div
+                      className={`${singleColumnAlignment.text} text-lg text-stone-600 space-y-4`}
+                      data-nlv-field-path={`${sectionFieldPath}.body`}
+                    >
+                      <ReactMarkdown>{body}</ReactMarkdown>
+                    </div>
+                  )}
+                  {hasImage && (
+                    <div className="w-full" data-nlv-field-path={`${sectionFieldPath}.${imageFieldKey}`}>
+                      <img
+                        src={mediaImage}
+                        alt={title ?? 'Media highlight'}
+                        className="w-full rounded-lg object-cover shadow-sm"
+                      />
+                    </div>
+                  )}
+                </div>
+              </div>
+            </section>
+          );
+        }
+
+        const gridClasses = 'grid grid-cols-1 lg:grid-cols-2 gap-10 items-center';
         const textColumnClasses = layout === 'image-left' ? 'order-2 lg:order-1 space-y-6' : 'order-1 space-y-6';
         const imageColumnClasses = layout === 'image-left' ? 'order-1 lg:order-2' : 'order-2';
-        const imageFieldKey = section.image ? 'image' : section.imageRef ? 'imageRef' : 'image';
 
         return (
           <section
@@ -1803,23 +1930,16 @@ const Home: React.FC = () => {
                     </div>
                   )}
                 </div>
-                <div className={imageColumnClasses}>
-                  {mediaImage ? (
+                {hasImage && (
+                  <div className={imageColumnClasses}>
                     <img
                       src={mediaImage}
                       alt={title ?? 'Media highlight'}
                       className="w-full h-full object-cover rounded-lg shadow-sm"
                       data-nlv-field-path={`${sectionFieldPath}.${imageFieldKey}`}
                     />
-                  ) : (
-                    <div
-                      className="w-full aspect-[4/3] rounded-lg border border-dashed border-stone-300 bg-stone-100 flex items-center justify-center text-sm text-stone-400"
-                      data-nlv-field-path={`${sectionFieldPath}.${imageFieldKey}`}
-                    >
-                      Image coming soon
-                    </div>
-                  )}
-                </div>
+                  </div>
+                )}
               </div>
             </div>
           </section>
@@ -1967,6 +2087,40 @@ const Home: React.FC = () => {
             fieldPath={sectionFieldPath}
             slidesFieldPath={`${sectionFieldPath}.slides`}
             slideDuration={slideDuration}
+          />
+        );
+      }
+      case 'newsletterSignup': {
+        const title = sanitizeString(section.title ?? null);
+        const subtitle = sanitizeString(section.subtitle ?? null);
+        const placeholder = sanitizeString(section.placeholder ?? null);
+        const ctaLabel = sanitizeString(section.ctaLabel ?? null);
+        const confirmation = sanitizeString(section.confirmation ?? null);
+        const background = section.background === 'beige' || section.background === 'dark' ? section.background : 'light';
+        const alignment = section.alignment === 'left' ? 'left' : 'center';
+
+        if (!title && !subtitle && !ctaLabel && !placeholder && !confirmation) {
+          return (
+            <NewsletterSignup
+              key={`structured-${index}-newsletter`}
+              backgroundVariant={background}
+              alignment={alignment}
+              fieldPath={sectionFieldPath}
+            />
+          );
+        }
+
+        return (
+          <NewsletterSignup
+            key={`structured-${index}-newsletter`}
+            title={title}
+            subtitle={subtitle}
+            placeholder={placeholder}
+            ctaLabel={ctaLabel}
+            confirmation={confirmation}
+            backgroundVariant={background}
+            alignment={alignment}
+            fieldPath={sectionFieldPath}
           />
         );
       }
@@ -2213,6 +2367,40 @@ const Home: React.FC = () => {
               </div>
             </div>
           </section>
+        );
+      }
+      case 'newsletterSignup': {
+        const title = sanitizeString(section.title ?? null);
+        const subtitle = sanitizeString(section.subtitle ?? null);
+        const placeholder = sanitizeString(section.placeholder ?? null);
+        const ctaLabel = sanitizeString(section.ctaLabel ?? null);
+        const confirmation = sanitizeString(section.confirmation ?? null);
+        const background = section.background === 'beige' || section.background === 'dark' ? section.background : 'light';
+        const alignment = section.alignment === 'left' ? 'left' : 'center';
+
+        if (!title && !subtitle && !ctaLabel && !placeholder && !confirmation) {
+          return (
+            <NewsletterSignup
+              key={`section-newsletterSignup-${index}`}
+              backgroundVariant={background}
+              alignment={alignment}
+              fieldPath={sectionFieldPath}
+            />
+          );
+        }
+
+        return (
+          <NewsletterSignup
+            key={`section-newsletterSignup-${index}`}
+            title={title}
+            subtitle={subtitle}
+            placeholder={placeholder}
+            ctaLabel={ctaLabel}
+            confirmation={confirmation}
+            backgroundVariant={background}
+            alignment={alignment}
+            fieldPath={sectionFieldPath}
+          />
         );
       }
       case 'banner': {
