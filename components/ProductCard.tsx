@@ -1,5 +1,5 @@
 
-import React, { useState, useMemo } from 'react';
+import React, { useState, useMemo, useCallback } from 'react';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { Plus } from 'lucide-react';
@@ -36,6 +36,14 @@ const ProductCard: React.FC<ProductCardProps> = ({ product, fieldPath }) => {
     addToCart(product.id, selectedSizeId);
     openCart();
   };
+
+  const handleSizeSelection = useCallback((event: React.MouseEvent<HTMLButtonElement>) => {
+    event.preventDefault();
+    const { sizeId } = event.currentTarget.dataset;
+    if (sizeId) {
+      setSelectedSizeId(sizeId);
+    }
+  }, [setSelectedSizeId]);
 
   return (
     <motion.div
@@ -90,12 +98,13 @@ const ProductCard: React.FC<ProductCardProps> = ({ product, fieldPath }) => {
               {product.sizes.map((size, sizeIndex) => (
                 <button
                   key={size.id}
-                  onClick={(e) => { e.preventDefault(); setSelectedSizeId(size.id); }}
+                  onClick={handleSizeSelection}
                   className={`text-xs px-2 py-1 border rounded-full transition-colors duration-300 ${
                     selectedSizeId === size.id
                       ? 'bg-stone-800 text-white border-stone-800'
                       : 'border-stone-300 text-stone-500 hover:border-stone-800 hover:text-stone-800'
                   }`}
+                  data-size-id={size.id}
                   data-nlv-field-path={fieldPath ? `${fieldPath}.sizes.${sizeIndex}` : undefined}
                 >
                   <span data-nlv-field-path={fieldPath ? `${fieldPath}.sizes.${sizeIndex}.size` : undefined}>

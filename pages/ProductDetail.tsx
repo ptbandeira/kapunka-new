@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useMemo } from 'react';
+import React, { useState, useEffect, useMemo, useCallback } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { Helmet } from 'react-helmet-async';
 import { motion } from 'framer-motion';
@@ -48,6 +48,13 @@ const ProductDetail: React.FC = () => {
             openCart();
         }
     };
+
+    const handleSizeSelection = useCallback((event: React.MouseEvent<HTMLButtonElement>) => {
+        const { sizeId } = event.currentTarget.dataset;
+        if (typeof sizeId === 'string') {
+            setSelectedSizeId(sizeId);
+        }
+    }, [setSelectedSizeId]);
     
     const relatedProducts = useMemo(() => {
         if (!product) return [];
@@ -370,12 +377,13 @@ const ProductDetail: React.FC = () => {
                                     {product.sizes.map((size, index) => (
                                         <button
                                             key={size.id}
-                                            onClick={() => setSelectedSizeId(size.id)}
+                                            onClick={handleSizeSelection}
                                             className={`px-4 py-2 border rounded-md transition-colors duration-300 ${
                                                 selectedSizeId === size.id
                                                     ? 'bg-stone-800 text-white border-stone-800'
                                                     : 'border-stone-300 text-stone-600 hover:border-stone-800'
                                             }`}
+                                            data-size-id={size.id}
                                             data-nlv-field-path={productFieldPath ? `${productFieldPath}.sizes.${index}` : undefined}
                                         >
                                             <span data-nlv-field-path={productFieldPath ? `${productFieldPath}.sizes.${index}.size` : undefined}>

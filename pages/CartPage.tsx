@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import { Link } from 'react-router-dom';
 import { Helmet } from 'react-helmet-async';
 import { motion } from 'framer-motion';
@@ -14,6 +14,18 @@ const CartItemRow: React.FC<{ item: CartItem; product?: Product; productFieldPat
 
   const size = product?.sizes.find(s => s.id === item.sizeId);
   const sizeIndex = product?.sizes.findIndex(s => s.id === item.sizeId) ?? -1;
+
+  const handleDecreaseQuantity = useCallback(() => {
+    updateQuantity(item.productId, item.sizeId, item.quantity - 1);
+  }, [updateQuantity, item.productId, item.sizeId, item.quantity]);
+
+  const handleIncreaseQuantity = useCallback(() => {
+    updateQuantity(item.productId, item.sizeId, item.quantity + 1);
+  }, [updateQuantity, item.productId, item.sizeId, item.quantity]);
+
+  const handleRemoveItem = useCallback(() => {
+    removeFromCart(item.productId, item.sizeId);
+  }, [removeFromCart, item.productId, item.sizeId]);
 
   if (!product || !size) return null;
 
@@ -41,9 +53,9 @@ const CartItemRow: React.FC<{ item: CartItem; product?: Product; productFieldPat
         </p>
       </div>
       <div className="col-span-3 flex items-center">
-        <button onClick={() => updateQuantity(item.productId, item.sizeId, item.quantity - 1)} className="p-1 text-stone-500 hover:text-stone-900"><Minus size={16} /></button>
+        <button onClick={handleDecreaseQuantity} className="p-1 text-stone-500 hover:text-stone-900"><Minus size={16} /></button>
         <span className="px-4 text-center">{item.quantity}</span>
-        <button onClick={() => updateQuantity(item.productId, item.sizeId, item.quantity + 1)} className="p-1 text-stone-500 hover:text-stone-900"><Plus size={16} /></button>
+        <button onClick={handleIncreaseQuantity} className="p-1 text-stone-500 hover:text-stone-900"><Plus size={16} /></button>
       </div>
       <div className="col-span-2 text-right">
         <p
@@ -56,7 +68,7 @@ const CartItemRow: React.FC<{ item: CartItem; product?: Product; productFieldPat
         </p>
       </div>
       <div className="col-span-1 text-right">
-        <button onClick={() => removeFromCart(item.productId, item.sizeId)} className="text-stone-400 hover:text-red-500"><Trash2 size={18} /></button>
+        <button onClick={handleRemoveItem} className="text-stone-400 hover:text-red-500"><Trash2 size={18} /></button>
       </div>
     </div>
   );

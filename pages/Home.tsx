@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useMemo } from 'react';
+import React, { useState, useEffect, useMemo, useCallback } from 'react';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import ReactMarkdown from 'react-markdown';
@@ -1219,6 +1219,10 @@ const NewsletterSignup: React.FC<NewsletterSignupProps> = ({
     setSubmitted(true);
   };
 
+  const handleEmailChange = useCallback((event: React.ChangeEvent<HTMLInputElement>) => {
+    setEmail(event.target.value);
+  }, [setEmail]);
+
   const resolvedTitle = title?.trim().length ? title : t('home.newsletterTitle');
   const resolvedSubtitle = subtitle?.trim().length ? subtitle : t('home.newsletterSubtitle');
   const resolvedPlaceholder = placeholder?.trim().length ? placeholder : t('home.newsletterPlaceholder');
@@ -1276,7 +1280,7 @@ const NewsletterSignup: React.FC<NewsletterSignupProps> = ({
               <input
                 type="email"
                 value={email}
-                onChange={(e) => setEmail(e.target.value)}
+                onChange={handleEmailChange}
                 placeholder={resolvedPlaceholder}
                 required
                 className={inputClasses}

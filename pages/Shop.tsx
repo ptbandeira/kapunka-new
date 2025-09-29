@@ -26,6 +26,17 @@ const Shop: React.FC = () => {
   const [loading, setLoading] = useState(true);
   const { t, translate, language } = useLanguage();
 
+  const handleCategoryClick = useCallback((event: React.MouseEvent<HTMLButtonElement>) => {
+    const { tabId } = event.currentTarget.dataset;
+    if (tabId) {
+      setActiveCategoryId(tabId);
+    }
+  }, [setActiveCategoryId]);
+
+  const handleSortChange = useCallback((event: React.ChangeEvent<HTMLSelectElement>) => {
+    setSortOption(event.target.value);
+  }, [setSortOption]);
+
   useEffect(() => {
     let isMounted = true;
 
@@ -169,12 +180,13 @@ const Shop: React.FC = () => {
               <button
                 key={tab.id}
                 type="button"
-                onClick={() => setActiveCategoryId(tab.id)}
+                onClick={handleCategoryClick}
                 className={`px-4 py-2 rounded-full text-sm font-medium transition-colors ${
                   activeCategoryId === tab.id
                     ? 'bg-stone-900 text-white'
                     : 'bg-white border border-stone-300 text-stone-600 hover:border-stone-500 hover:text-stone-900'
                 }`}
+                data-tab-id={tab.id}
               >
                 <span data-nlv-field-path={tab.fieldPath}>{tab.label}</span>
               </button>
@@ -191,7 +203,7 @@ const Shop: React.FC = () => {
           <select
             id="shop-sort"
             value={sortOption}
-            onChange={(e) => setSortOption(e.target.value)}
+            onChange={handleSortChange}
             className="w-full border-stone-300 rounded-md shadow-sm focus:border-stone-500 focus:ring-stone-500"
           >
             <option value="featured" data-nlv-field-path={`translations.${language}.shop.sortFeatured`}>

@@ -1,4 +1,4 @@
-import React, { useEffect, useMemo, useState } from 'react';
+import React, { useEffect, useMemo, useState, useCallback } from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
 
 export interface CommunityCarouselSlideProps {
@@ -56,13 +56,17 @@ const CommunityCarousel: React.FC<CommunityCarouselProps> = ({
 
   const activeSlide = slides[activeIndex];
 
-  const handleSelectSlide = (index: number) => {
-    if (index === activeIndex) {
+  const handleSelectSlide = useCallback((event: React.MouseEvent<HTMLButtonElement>) => {
+    const { slideIndex } = event.currentTarget.dataset;
+    if (!slideIndex) {
       return;
     }
 
-    setActiveIndex(index);
-  };
+    const parsedIndex = Number(slideIndex);
+    if (!Number.isNaN(parsedIndex) && parsedIndex !== activeIndex) {
+      setActiveIndex(parsedIndex);
+    }
+  }, [activeIndex]);
 
   return (
     <section
@@ -146,9 +150,10 @@ const CommunityCarousel: React.FC<CommunityCarouselProps> = ({
                     key={`carousel-dot-${index}`}
                     type="button"
                     className={`h-3 w-3 rounded-full border border-white/60 transition-all ${index === activeIndex ? 'scale-110 bg-white' : 'bg-white/30 hover:bg-white/50'}`}
-                    onClick={() => handleSelectSlide(index)}
+                    onClick={handleSelectSlide}
                     aria-label={`Show community story ${index + 1}`}
                     aria-pressed={index === activeIndex}
+                    data-slide-index={index}
                     data-nlv-field-path={slide.fieldPath}
                   />
                 ))}

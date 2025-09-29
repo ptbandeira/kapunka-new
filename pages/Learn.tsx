@@ -11,6 +11,13 @@ const Learn: React.FC = () => {
   const [loading, setLoading] = useState(true);
   const { t, language } = useLanguage();
 
+  const handleCategoryClick = useCallback((event: React.MouseEvent<HTMLButtonElement>) => {
+    const { category } = event.currentTarget.dataset;
+    if (category) {
+      setActiveCategory(category);
+    }
+  }, [setActiveCategory]);
+
   useEffect(() => {
     fetch('/content/articles/index.json')
         .then(res => res.json())
@@ -76,12 +83,13 @@ const Learn: React.FC = () => {
           return (
             <button
               key={category}
-              onClick={() => setActiveCategory(category)}
+              onClick={handleCategoryClick}
               className={`text-sm px-4 py-2 border rounded-full transition-colors duration-300 ${
                 activeCategory === category
                   ? 'bg-stone-800 text-white border-stone-800'
                   : 'border-stone-300 text-stone-500 hover:border-stone-800 hover:text-stone-800'
               }`}
+              data-category={category}
               data-nlv-field-path={translationKey}
             >
               {formatCategoryLabel(category)}

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import { Link, NavLink } from 'react-router-dom';
 // Fix: AnimatePresence was used but not imported.
 import { motion, AnimatePresence } from 'framer-motion';
@@ -9,58 +9,71 @@ import { useUI } from '../contexts/UIContext';
 import type { Language } from '../types';
 import { useSiteSettings } from '../contexts/SiteSettingsContext';
 
-const NavItem: React.FC<{ to: string; label: string; fieldPath?: string; onClick?: () => void }> = ({ to, label, fieldPath, onClick }) => (
-  <NavLink
-    to={to}
-    onClick={onClick}
-    className={({ isActive }) =>
-      `relative transition-colors duration-300 ${
-        isActive ? 'text-stone-900' : 'text-stone-500 hover:text-stone-900'
-      }`
-    }
-  >
-    {({ isActive }) => (
-      <motion.div className="relative" whileHover={{ y: -2 }}>
-        <span data-nlv-field-path={fieldPath ?? undefined}>{label}</span>
-        {isActive && (
-          <motion.div
-            className="absolute -bottom-1 left-0 right-0 h-0.5 bg-stone-900"
-            layoutId="underline"
-            transition={{ type: 'spring', stiffness: 300, damping: 30 }}
-          />
-        )}
-      </motion.div>
-    )}
-  </NavLink>
-);
+const SUPPORTED_LANGUAGES: Array<{ code: Language; name: string }> = [
+  { code: 'en', name: 'EN' },
+  { code: 'pt', name: 'PT' },
+  { code: 'es', name: 'ES' },
+];
+
+const NavItem: React.FC<{ to: string; label: string; fieldPath?: string; onClick?: () => void }> = ({ to, label, fieldPath, onClick }) => {
+  const navLinkClassName = useCallback(({ isActive }: { isActive: boolean }) => (
+    `relative transition-colors duration-300 ${
+      isActive ? 'text-stone-900' : 'text-stone-500 hover:text-stone-900'
+    }`
+  ), []);
+
+  const renderNavContent = useCallback(({ isActive }: { isActive: boolean }) => (
+    <motion.div className="relative" whileHover={{ y: -2 }}>
+      <span data-nlv-field-path={fieldPath ?? undefined}>{label}</span>
+      {isActive && (
+        <motion.div
+          className="absolute -bottom-1 left-0 right-0 h-0.5 bg-stone-900"
+          layoutId="underline"
+          transition={{ type: 'spring', stiffness: 300, damping: 30 }}
+        />
+      )}
+    </motion.div>
+  ), [fieldPath, label]);
+
+  return (
+    <NavLink to={to} onClick={onClick} className={navLinkClassName}>
+      {renderNavContent}
+    </NavLink>
+  );
+};
 
 const LanguageSelector: React.FC<{ onCloseMobileMenu?: () => void }> = ({ onCloseMobileMenu }) => {
-    const { language, setLanguage } = useLanguage();
-    const languages: { code: Language, name: string }[] = [{ code: 'en', name: 'EN' }, { code: 'pt', name: 'PT' }, { code: 'es', name: 'ES' }];
+  const { language, setLanguage } = useLanguage();
 
-    const handleSetLanguage = (lang: Language) => {
-        setLanguage(lang);
-        if (onCloseMobileMenu) onCloseMobileMenu();
-    };
+  const handleLanguageClick = useCallback((event: React.MouseEvent<HTMLButtonElement>) => {
+    const { langCode } = event.currentTarget.dataset;
+    if (langCode) {
+      setLanguage(langCode as Language);
+      if (onCloseMobileMenu) {
+        onCloseMobileMenu();
+      }
+    }
+  }, [onCloseMobileMenu, setLanguage]);
 
-    return (
-        <div className="flex items-center space-x-2">
-            <Globe size={18} className="text-stone-500" />
-            {languages.map((lang, index) => (
-                <React.Fragment key={lang.code}>
-                    <button
-                        onClick={() => handleSetLanguage(lang.code)}
-                        className={`text-sm transition-colors duration-300 ${
-                            language === lang.code ? 'text-stone-900 font-semibold' : 'text-stone-500 hover:text-stone-900'
-                        }`}
-                    >
-                        {lang.name}
-                    </button>
-                    {index < languages.length - 1 && <span className="text-stone-300">|</span>}
-                </React.Fragment>
-            ))}
-        </div>
-    );
+  return (
+    <div className="flex items-center space-x-2">
+      <Globe size={18} className="text-stone-500" />
+      {SUPPORTED_LANGUAGES.map((lang, index) => (
+        <React.Fragment key={lang.code}>
+          <button
+            onClick={handleLanguageClick}
+            className={`text-sm transition-colors duration-300 ${
+              language === lang.code ? 'text-stone-900 font-semibold' : 'text-stone-500 hover:text-stone-900'
+            }`}
+            data-lang-code={lang.code}
+          >
+            {lang.name}
+          </button>
+          {index < SUPPORTED_LANGUAGES.length - 1 && <span className="text-stone-300">|</span>}
+        </React.Fragment>
+      ))}
+    </div>
+  );
 };
 
 const Header: React.FC = () => {
@@ -71,6 +84,14 @@ const Header: React.FC = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const { settings } = useSiteSettings();
   const brandName = settings.brand?.name ?? 'KAPUNKA';
+
+  const handleMenuToggle = useCallback(() => {
+    setIsMenuOpen((prev) => !prev);
+  }, []);
+
+  const handleMenuClose = useCallback(() => {
+    setIsMenuOpen(false);
+  }, []);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -149,7 +170,7 @@ const Header: React.FC = () => {
 
               {/* Mobile Menu Button */}
               <div className="lg:hidden">
-                <button onClick={() => setIsMenuOpen(!isMenuOpen)} className="p-2">
+                <button onClick={handleMenuToggle} className="p-2">
                   <Menu size={24} />
                 </button>
               </div>
@@ -169,20 +190,20 @@ const Header: React.FC = () => {
           >
             <div className="container mx-auto px-4 sm:px-6 lg:px-8 pt-6 h-full flex flex-col">
               <div className="flex justify-between items-center mb-12">
-                <Link to="/" onClick={() => setIsMenuOpen(false)} className="text-2xl font-bold tracking-wider text-stone-900">
+                <Link to="/" onClick={handleMenuClose} className="text-2xl font-bold tracking-wider text-stone-900">
                   <span data-nlv-field-path="site.brand.name">{brandName}</span>
                 </Link>
-                <button onClick={() => setIsMenuOpen(false)} className="p-2">
+                <button onClick={handleMenuClose} className="p-2">
                   <X size={24} />
                 </button>
               </div>
               <nav className="flex flex-col items-center space-y-8 text-xl font-medium">
                 {navLinks.map(link => (
-                  <NavItem key={link.to} to={link.to} label={link.label} fieldPath={link.fieldPath} onClick={() => setIsMenuOpen(false)} />
+                  <NavItem key={link.to} to={link.to} label={link.label} fieldPath={link.fieldPath} onClick={handleMenuClose} />
                 ))}
               </nav>
               <div className="mt-auto mb-12 flex justify-center">
-                <LanguageSelector onCloseMobileMenu={() => setIsMenuOpen(false)} />
+                <LanguageSelector onCloseMobileMenu={handleMenuClose} />
               </div>
             </div>
           </motion.div>

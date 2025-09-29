@@ -1,5 +1,5 @@
 
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import { Link } from 'react-router-dom';
 import { AnimatePresence, motion } from 'framer-motion';
 import { X, Minus, Plus, Trash2 } from 'lucide-react';
@@ -18,6 +18,18 @@ const MiniCartItem: React.FC<{ item: CartItem; products: Product[] }> = ({ item,
   const size = product.sizes.find(s => s.id === item.sizeId);
   if (!size) return null;
 
+  const handleDecreaseQuantity = useCallback(() => {
+    updateQuantity(item.productId, item.sizeId, item.quantity - 1);
+  }, [updateQuantity, item.productId, item.sizeId, item.quantity]);
+
+  const handleIncreaseQuantity = useCallback(() => {
+    updateQuantity(item.productId, item.sizeId, item.quantity + 1);
+  }, [updateQuantity, item.productId, item.sizeId, item.quantity]);
+
+  const handleRemoveItem = useCallback(() => {
+    removeFromCart(item.productId, item.sizeId);
+  }, [removeFromCart, item.productId, item.sizeId]);
+
   return (
     <div className="flex items-center space-x-4 py-4">
       <img src={product.imageUrl} alt={translate(product.name)} className="w-16 h-16 object-cover rounded" />
@@ -25,14 +37,14 @@ const MiniCartItem: React.FC<{ item: CartItem; products: Product[] }> = ({ item,
         <h4 className="font-semibold text-sm">{translate(product.name)}</h4>
         <p className="text-xs text-stone-500">{size.size}ml</p>
         <div className="flex items-center mt-2">
-          <button onClick={() => updateQuantity(item.productId, item.sizeId, item.quantity - 1)} className="p-1 text-stone-500 hover:text-stone-900"><Minus size={14} /></button>
+          <button onClick={handleDecreaseQuantity} className="p-1 text-stone-500 hover:text-stone-900"><Minus size={14} /></button>
           <span className="px-3 text-sm">{item.quantity}</span>
-          <button onClick={() => updateQuantity(item.productId, item.sizeId, item.quantity + 1)} className="p-1 text-stone-500 hover:text-stone-900"><Plus size={14} /></button>
+          <button onClick={handleIncreaseQuantity} className="p-1 text-stone-500 hover:text-stone-900"><Plus size={14} /></button>
         </div>
       </div>
       <div className="text-right">
         <p className="font-semibold text-sm">${(size.price * item.quantity).toFixed(2)}</p>
-        <button onClick={() => removeFromCart(item.productId, item.sizeId)} className="text-stone-400 hover:text-red-500 mt-2"><Trash2 size={16} /></button>
+        <button onClick={handleRemoveItem} className="text-stone-400 hover:text-red-500 mt-2"><Trash2 size={16} /></button>
       </div>
     </div>
   );

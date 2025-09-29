@@ -1,5 +1,5 @@
 // LEGACY: kept for reference during migration. Current pages render their own sections.
-import React, { useMemo, useState } from 'react';
+import React, { useMemo, useState, useCallback } from 'react';
 import TimelineSection from '../TimelineSection';
 import ImageTextHalf from '../sections/ImageTextHalf';
 import ImageGrid from '../sections/ImageGrid';
@@ -17,6 +17,13 @@ const ProductTabsSection: React.FC<{ section: ProductTabsSectionContent }> = ({ 
 
   const [activeTab, setActiveTab] = useState<string | undefined>(defaultActive);
 
+  const handleTabClick = useCallback((event: React.MouseEvent<HTMLButtonElement>) => {
+    const { tabId } = event.currentTarget.dataset;
+    if (tabId) {
+      setActiveTab(tabId);
+    }
+  }, []);
+
   if (sanitizedTabs.length === 0 || !activeTab) {
     return null;
   }
@@ -28,12 +35,13 @@ const ProductTabsSection: React.FC<{ section: ProductTabsSectionContent }> = ({ 
           {sanitizedTabs.map((tab) => (
             <button
               key={tab.id}
-              onClick={() => setActiveTab(tab.id)}
+              onClick={handleTabClick}
               className={`${
                 activeTab === tab.id
                   ? 'border-stone-800 text-stone-900'
                   : 'border-transparent text-stone-500 hover:text-stone-700 hover:border-stone-300'
               } whitespace-nowrap py-4 px-1 border-b-2 font-medium text-sm`}
+              data-tab-id={tab.id}
             >
               <span data-nlv-field-path={tab.labelFieldPath}>{tab.label}</span>
             </button>
