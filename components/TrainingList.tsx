@@ -47,7 +47,9 @@ const TrainingList: React.FC<TrainingListProps> = ({ title, description, entries
       }
     };
 
-    void fetchTrainings();
+    fetchTrainings().catch((error) => {
+      console.error('Unhandled error while loading training list entries', error);
+    });
 
     return () => {
       isMounted = false;

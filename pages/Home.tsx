@@ -1337,7 +1337,9 @@ const Home: React.FC = () => {
       }
     };
 
-    void loadProducts();
+    loadProducts().catch((error) => {
+      console.error('Unhandled error while loading products for home sections', error);
+    });
 
     return () => {
       isMounted = false;
@@ -1487,7 +1489,9 @@ const Home: React.FC = () => {
       }
     };
 
-    void loadSections();
+    loadSections().catch((error) => {
+      console.error('Unhandled error while loading home page sections', error);
+    });
 
     return () => {
       isMounted = false;

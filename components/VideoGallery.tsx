@@ -51,7 +51,9 @@ const VideoGallery: React.FC<VideoGalleryProps> = ({ title, description, entries
       }
     };
 
-    void fetchVideos();
+    fetchVideos().catch((error) => {
+      console.error('Unhandled error while loading video gallery entries', error);
+    });
 
     return () => {
       isMounted = false;

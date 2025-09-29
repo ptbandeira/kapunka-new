@@ -166,7 +166,9 @@ const Method: React.FC = () => {
       }
     };
 
-    void loadContent();
+    loadContent().catch((error) => {
+      console.error('Unhandled error while loading Method page content', error);
+    });
 
     return () => {
       isMounted = false;

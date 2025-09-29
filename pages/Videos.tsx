@@ -100,7 +100,9 @@ const Videos: React.FC = () => {
       }
     };
 
-    void loadSections();
+    loadSections().catch((error) => {
+      console.error('Unhandled error while loading videos page content', error);
+    });
 
     return () => {
       isMounted = false;

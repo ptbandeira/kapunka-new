@@ -216,7 +216,9 @@ const About: React.FC = () => {
             }
         };
 
-        void loadAboutContent();
+        loadAboutContent().catch((error) => {
+            console.error('Unhandled error while loading about page content', error);
+        });
 
         return () => {
             isMounted = false;
@@ -258,7 +260,9 @@ const About: React.FC = () => {
             }
         };
 
-        void loadStorySections();
+        loadStorySections().catch((error) => {
+            console.error('Unhandled error while loading about story sections', error);
+        });
 
         return () => {
             isMounted = false;

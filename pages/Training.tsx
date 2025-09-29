@@ -100,7 +100,9 @@ const Training: React.FC = () => {
       }
     };
 
-    void loadSections();
+    loadSections().catch((error) => {
+      console.error('Unhandled error while loading training sections', error);
+    });
 
     return () => {
       isMounted = false;

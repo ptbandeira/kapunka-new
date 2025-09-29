@@ -93,7 +93,9 @@ export const LanguageProvider: React.FC<{ children: React.ReactNode }> = ({ chil
       }
     };
 
-    void loadTranslations();
+    loadTranslations().catch((error) => {
+      console.error('Unhandled error while loading translations', error);
+    });
   }, []);
 
   useEffect(() => {
