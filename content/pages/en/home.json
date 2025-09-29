@@ -14,7 +14,7 @@
     }
   },
   "heroAlignment": {
-    "heroAlignX": "center",
+    "heroAlignX": "left",
     "heroAlignY": "middle",
     "heroTextPosition": "overlay",
     "heroTextAnchor": "middle-center",
@@ -97,25 +97,52 @@
       "title": "Rituals in our community",
       "slides": [
         {
-          "image": "",
+          "image": "/content/uploads/img_20200328_165251-copia-3-.jpg",
           "alt": "Add a photo of a Kapunka ritual in use",
-          "quote": "\u201cUse this placeholder to share how someone experiences Kapunka in their routine.\u201d",
+          "quote": "“Use this placeholder to share how someone experiences Kapunka in their routine.”",
           "name": "Customer name",
           "role": "Clinic or city"
         },
         {
-          "image": "",
+          "image": "/content/uploads/img_20200328_165441-copia-2-.jpg",
           "alt": "Upload another community image",
-          "quote": "\u201cHighlight a partner testimonial, recovery story, or everyday ritual.\u201d",
+          "quote": "“Highlight a partner testimonial, recovery story, or everyday ritual.”",
           "name": "Partner or practitioner",
           "role": "Role or treatment focus"
         },
         {
-          "image": "",
+          "image": "/content/uploads/img_20200328_165521-copia-2-.jpg",
           "alt": "Add lifestyle imagery that feels real and warm",
-          "quote": "\u201cAdd an authentic note about how Kapunka supports their skin goals.\u201d",
+          "quote": "“Add an authentic note about how Kapunka supports their skin goals.”",
           "name": "Add a name",
           "role": "Location or context"
+        },
+        {
+          "image": "/content/uploads/img_20200328_162420-copia-3-.jpg"
+        },
+        {
+          "image": "/content/uploads/img_20200328_165740-copia-2-.jpg"
+        },
+        {
+          "image": "/content/uploads/img_20200328_165916-copia-2-.jpg"
+        },
+        {
+          "image": "/content/uploads/img_20200328_165948-copia-2-.jpg"
+        },
+        {
+          "image": "/content/uploads/img_20200328_170735-copia-2-.jpg"
+        },
+        {
+          "image": "/content/uploads/instagrammer-kapunka-maria-capell-.jpg"
+        },
+        {
+          "image": "/content/uploads/instagrammer-kapunka-nieves-bolós.jpg"
+        },
+        {
+          "image": "/content/uploads/kapunka-in-the-wild.jpg"
+        },
+        {
+          "image": "/content/uploads/kapunka-instagrammer-lidia-simon-canut-.jpg"
         }
       ]
     },
