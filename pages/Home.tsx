@@ -90,9 +90,10 @@ const heroAlignmentSchema = z
     heroAlignX: z.enum(['left', 'center', 'right']).optional(),
     heroAlignY: z.enum(['top', 'middle', 'bottom']).optional(),
     heroLayoutHint: z
-      .enum(['image-left', 'image-right', 'image-full', 'text-over-media', 'side-by-side'])
+      .enum(['image-left', 'image-right', 'image-full', 'text-over-media', 'side-by-side', 'bgImage'])
       .optional(),
     heroOverlay: z.union([z.string(), z.number(), z.boolean()]).optional(),
+    heroTextPosition: z.enum(['overlay', 'below']).optional(),
   })
   .passthrough();
 
@@ -100,6 +101,8 @@ const heroImagesSchema = z
   .object({
     heroImageLeft: z.string().nullable().optional(),
     heroImageRight: z.string().nullable().optional(),
+    heroImageLeftRef: z.string().nullable().optional(),
+    heroImageRightRef: z.string().nullable().optional(),
   })
   .passthrough();
 
@@ -317,6 +320,7 @@ type HomePageContent = PageContent & {
   structuredSectionEntries: StructuredSectionEntry[];
   legacySectionEntries: LegacySectionEntry[];
   localSections: HomeSection[];
+  hasSectionsArray: boolean;
 };
 
 const HERO_HORIZONTAL_ALIGNMENT_CONTAINER_CLASSES: Record<HeroHorizontalAlignment, string> = {
@@ -358,6 +362,41 @@ const HERO_TEXT_POSITION_MAP: Record<
   'bottom-right': ['right', 'bottom'],
 };
 
+const isAbsoluteUrl = (value: string) => /^([a-z]+:)?\/\//i.test(value);
+
+const normalizeImagePath = (value: string | null | undefined, locale: string): string | undefined => {
+  if (!value) {
+    return undefined;
+  }
+
+  const trimmed = value.trim();
+  if (!trimmed) {
+    return undefined;
+  }
+
+  if (trimmed.startsWith('/content/')) {
+    return trimmed.startsWith('//') ? `/${trimmed.slice(2)}` : trimmed.startsWith('/') ? trimmed : `/${trimmed}`;
+  }
+
+  if (trimmed.startsWith('/')) {
+    return trimmed;
+  }
+
+  if (isAbsoluteUrl(trimmed)) {
+    return trimmed;
+  }
+
+  const normalized = trimmed.replace(/^\.\/?/, '');
+
+  if (normalized.startsWith('content/')) {
+    return `/${normalized}`;
+  }
+
+  const uploadsPath = normalized.startsWith('uploads/') ? normalized.slice('uploads/'.length) : normalized;
+
+  return `/content/${locale}/uploads/${uploadsPath}`;
+};
+
 const normalizeHorizontalAlignment = (value?: string | null): HeroHorizontalAlignment | undefined => {
   if (value === 'left' || value === 'center' || value === 'right') {
     return value;
@@ -380,6 +419,8 @@ const normalizeHeroLayoutHint = (value?: string | null): 'image-left' | 'image-r
     case 'image-right':
     case 'image-full':
       return value;
+    case 'bgImage':
+      return 'image-full';
     case 'side-by-side':
       return 'image-right';
     case 'text-over-media':
@@ -932,15 +973,16 @@ const Home: React.FC = () => {
             continue;
           }
 
-          const {
-            sections: rawSections = [],
-            heroAlignment,
-            heroImages,
-            heroCtas,
-            ...rest
-          } = parsedResult.data;
-          const sections: HomeSection[] = Array.isArray(parsedResult.data?.sections)
-            ? (parsedResult.data.sections.filter((section): section is HomeSection =>
+          const parsedData = parsedResult.data;
+          const hasSectionsArray = Array.isArray(parsedData?.sections);
+          const rawSections = hasSectionsArray ? parsedData.sections ?? [] : [];
+          const heroAlignmentData = parsedData?.heroAlignment;
+          const heroImagesData = parsedData?.heroImages;
+          const heroCtasData = parsedData?.heroCtas;
+          const heroHeadlineData = parsedData?.heroHeadline;
+          const heroSubheadlineData = parsedData?.heroSubheadline;
+          const sections: HomeSection[] = hasSectionsArray
+            ? (rawSections.filter((section): section is HomeSection =>
                 section?.type === 'hero'
                 || section?.type === 'featureGrid'
                 || section?.type === 'mediaCopy'
@@ -968,34 +1010,41 @@ const Home: React.FC = () => {
             return acc;
           }, []);
 
-          const heroImageLeftUrl = heroImages?.heroImageLeft
-            || (rest as HomeContentData).heroImageLeftRef
-            || (rest as HomeContentData).heroImageLeft
-            || null;
-          const heroImageRightUrl = heroImages?.heroImageRight
-            || (rest as HomeContentData).heroImageRightRef
-            || (rest as HomeContentData).heroImageRight
-            || null;
+          const heroImageLeftCandidate = heroImagesData?.heroImageLeftRef
+            ?? parsedData?.heroImageLeftRef
+            ?? heroImagesData?.heroImageLeft
+            ?? parsedData?.heroImageLeft
+            ?? null;
+          const heroImageRightCandidate = heroImagesData?.heroImageRightRef
+            ?? parsedData?.heroImageRightRef
+            ?? heroImagesData?.heroImageRight
+            ?? parsedData?.heroImageRight
+            ?? null;
+          const heroImageLeftUrl = normalizeImagePath(heroImageLeftCandidate, locale) ?? null;
+          const heroImageRightUrl = normalizeImagePath(heroImageRightCandidate, locale) ?? null;
 
           if (!heroImageLeftUrl && !heroImageRightUrl && !hasWarnedMissingHeroImages) {
             console.warn('Home hero images are not configured. Add hero image references or legacy URLs in the CMS.');
             hasWarnedMissingHeroImages = true;
           }
 
-          const baseContent = rest as PageContent & HomeContentData;
+          const baseContent = parsedData as PageContent & HomeContentData;
           const pageData: HomePageContent = {
             ...baseContent,
-            heroAlignment,
-            heroImages,
-            heroCtas,
-            heroImageLeftRef: (rest as HomeContentData).heroImageLeftRef ?? undefined,
-            heroImageRightRef: (rest as HomeContentData).heroImageRightRef ?? undefined,
+            ...(heroHeadlineData !== undefined ? { heroHeadline: heroHeadlineData } : {}),
+            ...(heroSubheadlineData !== undefined ? { heroSubheadline: heroSubheadlineData } : {}),
+            heroAlignment: heroAlignmentData,
+            heroImages: heroImagesData,
+            heroCtas: heroCtasData,
+            heroImageLeftRef: parsedData?.heroImageLeftRef ?? undefined,
+            heroImageRightRef: parsedData?.heroImageRightRef ?? undefined,
             heroImageLeftUrl,
             heroImageRightUrl,
             rawSections,
             structuredSectionEntries,
             legacySectionEntries,
             localSections: sections,
+            hasSectionsArray,
             sections: legacySectionEntries.map((entry) => entry.section as PageSection),
           };
 
@@ -1024,6 +1073,7 @@ const Home: React.FC = () => {
     value && value.trim().length > 0 ? value.trim() : undefined;
 
   const pickImage = (local?: string, ref?: string) => local || ref || null;
+  const locale = language ?? 'en';
 
   const homeFieldPath = `pages.home_${language}`;
   const heroHeadline = sanitizeString(pageContent?.heroHeadline) ?? t('home.heroTitle');
@@ -1040,25 +1090,32 @@ const Home: React.FC = () => {
       ?? pageContent?.heroCtaSecondary
       ?? pageContent?.ctaSecondary,
   ) ?? t('home.ctaClinics');
+  const heroAlignmentOverlayValue = pageContent?.heroAlignment?.heroOverlay;
   const heroOverlay = resolveHeroOverlay(
-    pageContent?.heroAlignment?.heroOverlay ?? (pageContent?.heroOverlay as string | number | boolean | null | undefined),
-  ) ?? 'rgba(0,0,0,0.48)';
+    heroAlignmentOverlayValue
+      ?? (pageContent?.heroOverlay as string | number | boolean | null | undefined)
+      ?? (pageContent?.heroAlignment ? undefined : 40),
+  ) ?? resolveHeroOverlay(40) ?? 'rgba(0,0,0,0.40)';
   const heroLayoutHint = normalizeHeroLayoutHint(
-    pageContent?.heroAlignment?.heroLayoutHint ?? pageContent?.heroLayoutHint,
+    pageContent?.heroAlignment?.heroLayoutHint ?? pageContent?.heroLayoutHint ?? (pageContent?.heroAlignment ? undefined : 'bgImage'),
   );
   const heroImageLeftUrl = pageContent?.heroImageLeftUrl
-    ?? pageContent?.heroImages?.heroImageLeft
-    ?? pageContent?.heroImageLeftRef
-    ?? pageContent?.heroImageLeft
+    ?? normalizeImagePath(pageContent?.heroImages?.heroImageLeftRef, locale)
+    ?? normalizeImagePath(pageContent?.heroImageLeftRef, locale)
+    ?? normalizeImagePath(pageContent?.heroImages?.heroImageLeft ?? null, locale)
+    ?? normalizeImagePath(pageContent?.heroImageLeft ?? null, locale)
     ?? null;
   const heroImageRightUrl = pageContent?.heroImageRightUrl
-    ?? pageContent?.heroImages?.heroImageRight
-    ?? pageContent?.heroImageRightRef
-    ?? pageContent?.heroImageRight
+    ?? normalizeImagePath(pageContent?.heroImages?.heroImageRightRef, locale)
+    ?? normalizeImagePath(pageContent?.heroImageRightRef, locale)
+    ?? normalizeImagePath(pageContent?.heroImages?.heroImageRight ?? null, locale)
+    ?? normalizeImagePath(pageContent?.heroImageRight ?? null, locale)
     ?? null;
   const heroImageLeft = sanitizeString(heroImageLeftUrl);
   const heroImageRight = sanitizeString(heroImageRightUrl);
-  const heroTextPosition = pageContent?.heroTextPosition ?? undefined;
+  const heroTextPlacementRaw = pageContent?.heroAlignment?.heroTextPosition;
+  const heroTextPlacement: 'overlay' | 'below' = heroTextPlacementRaw === 'below' ? 'below' : 'overlay';
+  const heroTextPosition = pageContent?.heroTextPosition;
   const heroTextPositionTuple = heroTextPosition ? HERO_TEXT_POSITION_MAP[heroTextPosition] : undefined;
   const heroAlignX: HeroHorizontalAlignment = heroTextPositionTuple?.[0]
     ?? normalizeHorizontalAlignment(pageContent?.heroAlignment?.heroAlignX ?? pageContent?.heroAlignX)
@@ -1084,16 +1141,17 @@ const Home: React.FC = () => {
   const heroBackgroundImage = heroLayoutHint === 'image-full'
     ? heroInlineImage ?? siteHeroImage
     : siteHeroImage;
-  const overlayStyle: React.CSSProperties = shouldRenderInlineImage
+  const overlayStyle: React.CSSProperties = shouldRenderInlineImage && heroTextPlacement === 'overlay'
     ? { background: 'linear-gradient(90deg, rgba(255,255,255,0.92) 0%, rgba(255,255,255,0.7) 100%)' }
     : { background: heroOverlay };
-  const heroTextColorClass = shouldRenderInlineImage ? 'text-stone-900' : 'text-white';
-  const heroPrimaryButtonClasses = shouldRenderInlineImage
-    ? 'px-8 py-3 bg-stone-900 text-white font-semibold rounded-md hover:bg-stone-700 transition-colors'
-    : 'px-8 py-3 bg-white text-stone-900 font-semibold rounded-md hover:bg-white/90 transition-colors';
-  const heroSecondaryButtonClasses = shouldRenderInlineImage
-    ? 'px-8 py-3 bg-white/70 backdrop-blur-sm text-stone-900 font-semibold rounded-md hover:bg-white transition-colors'
-    : 'px-8 py-3 border border-white/50 text-white font-semibold rounded-md hover:bg-white/10 transition-colors';
+  const heroPrefersLightText = !shouldRenderInlineImage && heroTextPlacement === 'overlay';
+  const heroTextColorClass = heroPrefersLightText ? 'text-white' : 'text-stone-900';
+  const heroPrimaryButtonClasses = heroPrefersLightText
+    ? 'px-8 py-3 bg-white text-stone-900 font-semibold rounded-md hover:bg-white/90 transition-colors'
+    : 'px-8 py-3 bg-stone-900 text-white font-semibold rounded-md hover:bg-stone-700 transition-colors';
+  const heroSecondaryButtonClasses = heroPrefersLightText
+    ? 'px-8 py-3 border border-white/50 text-white font-semibold rounded-md hover:bg-white/10 transition-colors'
+    : 'px-8 py-3 bg-white/70 backdrop-blur-sm text-stone-900 font-semibold rounded-md hover:bg-white transition-colors';
   const heroImagesFieldPath = pageContent?.heroImages ? `${homeFieldPath}.heroImages` : undefined;
   const heroImageLeftFieldPath = heroImagesFieldPath ? `${heroImagesFieldPath}.heroImageLeft` : `${homeFieldPath}.heroImageLeft`;
   const heroImageRightFieldPath = heroImagesFieldPath ? `${heroImagesFieldPath}.heroImageRight` : `${homeFieldPath}.heroImageRight`;
@@ -1131,6 +1189,66 @@ const Home: React.FC = () => {
       : pageContent?.heroCtaSecondary
         ? `${homeFieldPath}.heroCtaSecondary`
         : `${homeFieldPath}.ctaSecondary`;
+  const heroInlineImageNode = shouldRenderInlineImage && heroInlineImage
+    ? (
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.6, delay: 0.1 }}
+        className={heroImageWrapperClasses}
+      >
+        <img
+          src={heroInlineImage}
+          alt={heroImageAlt}
+          className="w-full max-h-[540px] rounded-lg shadow-lg object-cover"
+          data-nlv-field-path={heroImageFieldPath}
+        />
+      </motion.div>
+    )
+    : null;
+  const heroTextContent = (
+    <div className={`container mx-auto px-4 sm:px-6 lg:px-8 ${heroGridClasses}`}>
+      <div className={heroTextWrapperClasses}>
+        <h1
+          className="text-4xl md:text-6xl font-semibold tracking-tight"
+          data-nlv-field-path={`${homeFieldPath}.heroHeadline`}
+        >
+          {heroHeadline}
+        </h1>
+        {heroSubheadline && (
+          <div data-nlv-field-path={`${homeFieldPath}.heroSubheadline`}>
+            <ReactMarkdown components={heroMarkdownComponents}>
+              {heroSubheadline}
+            </ReactMarkdown>
+          </div>
+        )}
+        <div className={`mt-8 flex flex-col sm:flex-row ${heroCtaAlignmentClass} gap-4`}>
+          <Link to="/shop" className={heroPrimaryButtonClasses}>
+            <span data-nlv-field-path={heroPrimaryCtaFieldPath}>
+              {heroPrimaryCta}
+            </span>
+          </Link>
+          <Link to="/for-clinics" className={heroSecondaryButtonClasses}>
+            <span data-nlv-field-path={heroSecondaryCtaFieldPath}>
+              {heroSecondaryCta}
+            </span>
+          </Link>
+        </div>
+      </div>
+      {heroInlineImageNode}
+    </div>
+  );
+  const heroTextMotion = (
+    <motion.div
+      initial={{ opacity: 0, y: 20 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.8, ease: 'easeOut' }}
+      className={`w-full ${heroTextColorClass}`}
+    >
+      {heroTextContent}
+    </motion.div>
+  );
 
   const sections = Array.isArray(pageContent?.localSections) ? pageContent.localSections : [];
   const homeSections = pageContent?.rawSections ?? [];
@@ -1225,16 +1343,17 @@ const Home: React.FC = () => {
           ? inlineImageCandidate ?? heroImageOverride ?? heroImageRight ?? heroImageLeft ?? siteHeroImage
           : siteHeroImage;
         const overlayColor = section.overlay === false ? 'rgba(0,0,0,0)' : heroOverlay;
-        const sectionOverlayStyle: React.CSSProperties = sectionShouldRenderInlineImage
+        const sectionOverlayStyle: React.CSSProperties = sectionShouldRenderInlineImage && heroTextPlacement === 'overlay'
           ? { background: 'linear-gradient(90deg, rgba(255,255,255,0.92) 0%, rgba(255,255,255,0.7) 100%)' }
           : { background: overlayColor };
-        const sectionTextColorClass = sectionShouldRenderInlineImage ? 'text-stone-900' : 'text-white';
-        const sectionPrimaryButtonClasses = sectionShouldRenderInlineImage
-          ? 'px-8 py-3 bg-stone-900 text-white font-semibold rounded-md hover:bg-stone-700 transition-colors'
-          : 'px-8 py-3 bg-white text-stone-900 font-semibold rounded-md hover:bg-white/90 transition-colors';
-        const sectionSecondaryButtonClasses = sectionShouldRenderInlineImage
-          ? 'px-8 py-3 bg-white/70 backdrop-blur-sm text-stone-900 font-semibold rounded-md hover:bg-white transition-colors'
-          : 'px-8 py-3 border border-white/50 text-white font-semibold rounded-md hover:bg-white/10 transition-colors';
+        const sectionPrefersLightText = !sectionShouldRenderInlineImage && heroTextPlacement === 'overlay';
+        const sectionTextColorClass = sectionPrefersLightText ? 'text-white' : 'text-stone-900';
+        const sectionPrimaryButtonClasses = sectionPrefersLightText
+          ? 'px-8 py-3 bg-white text-stone-900 font-semibold rounded-md hover:bg-white/90 transition-colors'
+          : 'px-8 py-3 bg-stone-900 text-white font-semibold rounded-md hover:bg-stone-700 transition-colors';
+        const sectionSecondaryButtonClasses = sectionPrefersLightText
+          ? 'px-8 py-3 border border-white/50 text-white font-semibold rounded-md hover:bg-white/10 transition-colors'
+          : 'px-8 py-3 bg-white/70 backdrop-blur-sm text-stone-900 font-semibold rounded-md hover:bg-white transition-colors';
         const sectionGridClasses = sectionShouldRenderInlineImage
           ? 'grid grid-cols-1 lg:grid-cols-2 gap-12 items-center'
           : 'flex flex-col items-center text-center';
@@ -1248,69 +1367,83 @@ const Home: React.FC = () => {
         const heroImageFieldKey = section.image ? 'image' : section.imageRef ? 'imageRef' : 'image';
         const heroImageFieldPathForSection = `${sectionFieldPath}.${heroImageFieldKey}`;
 
-        return (
-          <div
-            key={`section-hero-${index}`}
-            className="relative h-screen bg-cover bg-center"
-            style={{ backgroundImage: `url('${sectionBackgroundImage}')` }}
-            data-nlv-field-path={sectionFieldPath}
-          >
-            <div className="absolute inset-0" style={sectionOverlayStyle}></div>
-            <div className={`relative h-full flex ${sectionAlignmentClasses} ${sectionMiddleNudge}`}>
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.8, ease: 'easeOut' }}
-                className={`w-full ${sectionTextColorClass}`}
+        const sectionInlineImageNode = sectionShouldRenderInlineImage && inlineImageCandidate
+          ? (
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, delay: 0.1 }}
+              className={sectionImageWrapperClasses}
+              data-nlv-field-path={heroImageFieldPathForSection}
+            >
+              <img
+                src={inlineImageCandidate}
+                alt={headline}
+                className="w-full max-h-[540px] rounded-lg shadow-lg object-cover"
+              />
+            </motion.div>
+          )
+          : null;
+        const sectionTextContent = (
+          <div className={`container mx-auto px-4 sm:px-6 lg:px-8 ${sectionGridClasses}`}>
+            <div className={sectionTextWrapperClasses}>
+              <h1
+                className="text-4xl md:text-6xl font-semibold tracking-tight"
+                data-nlv-field-path={`${sectionFieldPath}.headline`}
               >
-                <div className={`container mx-auto px-4 sm:px-6 lg:px-8 ${sectionGridClasses}`}>
-                  <div className={sectionTextWrapperClasses}>
-                    <h1
-                      className="text-4xl md:text-6xl font-semibold tracking-tight"
-                      data-nlv-field-path={`${sectionFieldPath}.headline`}
-                    >
-                      {headline}
-                    </h1>
-                    {subheadline && (
-                      <div data-nlv-field-path={`${sectionFieldPath}.subheadline`}>
-                        <ReactMarkdown components={heroMarkdownComponents}>
-                          {subheadline}
-                        </ReactMarkdown>
-                      </div>
-                    )}
-                    <div className={`mt-8 flex flex-col sm:flex-row ${sectionCtaAlignmentClass} gap-4`}>
-                      <Link to="/shop" className={sectionPrimaryButtonClasses}>
-                        <span data-nlv-field-path={`${sectionFieldPath}.ctaPrimary`}>
-                          {primaryCta}
-                        </span>
-                      </Link>
-                      <Link to="/for-clinics" className={sectionSecondaryButtonClasses}>
-                        <span data-nlv-field-path={`${sectionFieldPath}.ctaSecondary`}>
-                          {secondaryCta}
-                        </span>
-                      </Link>
-                    </div>
-                  </div>
-                  {sectionShouldRenderInlineImage && inlineImageCandidate && (
-                    <motion.div
-                      initial={{ opacity: 0, y: 20 }}
-                      whileInView={{ opacity: 1, y: 0 }}
-                      viewport={{ once: true }}
-                      transition={{ duration: 0.6, delay: 0.1 }}
-                      className={sectionImageWrapperClasses}
-                    >
-                      <img
-                        src={inlineImageCandidate}
-                        alt={headline}
-                        className="w-full max-h-[540px] rounded-lg shadow-lg object-cover"
-                        data-nlv-field-path={heroImageFieldPathForSection}
-                      />
-                    </motion.div>
-                  )}
+                {headline}
+              </h1>
+              {subheadline && (
+                <div data-nlv-field-path={`${sectionFieldPath}.subheadline`}>
+                  <ReactMarkdown components={heroMarkdownComponents}>
+                    {subheadline}
+                  </ReactMarkdown>
                 </div>
-              </motion.div>
+              )}
+              <div className={`mt-8 flex flex-col sm:flex-row ${sectionCtaAlignmentClass} gap-4`}>
+                {primaryCta && (
+                  <Link to="/shop" className={sectionPrimaryButtonClasses}>
+                    <span data-nlv-field-path={`${sectionFieldPath}.ctaPrimary`}>{primaryCta}</span>
+                  </Link>
+                )}
+                {secondaryCta && (
+                  <Link to="/for-clinics" className={sectionSecondaryButtonClasses}>
+                    <span data-nlv-field-path={`${sectionFieldPath}.ctaSecondary`}>{secondaryCta}</span>
+                  </Link>
+                )}
+              </div>
             </div>
+            {sectionInlineImageNode}
           </div>
+        );
+        const sectionTextMotion = (
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, ease: 'easeOut' }}
+            className={`w-full ${sectionTextColorClass}`}
+          >
+            {sectionTextContent}
+          </motion.div>
+        );
+
+        return (
+          <React.Fragment key={`section-hero-${index}`}>
+            <div
+              className="relative h-screen bg-cover bg-center"
+              style={{ backgroundImage: `url('${sectionBackgroundImage}')` }}
+              data-nlv-field-path={sectionFieldPath}
+            >
+              <div className="absolute inset-0" style={sectionOverlayStyle}></div>
+              {heroTextPlacement === 'overlay' && (
+                <div className={`relative h-full flex ${sectionAlignmentClasses} ${sectionMiddleNudge}`}>
+                  {sectionTextMotion}
+                </div>
+              )}
+            </div>
+            {heroTextPlacement === 'below' && sectionTextMotion}
+          </React.Fragment>
         );
       }
       case 'featureGrid': {
@@ -1882,6 +2015,8 @@ const Home: React.FC = () => {
     }
   };
 
+  const shouldRenderLocalSections = pageContent?.hasSectionsArray ?? false;
+
   const renderedSections = homeSections
     .map((_, index) => {
       const structured = structuredSectionsByIndex.get(index);
@@ -1908,7 +2043,7 @@ const Home: React.FC = () => {
         <title>{computedTitle}</title>
         <meta name="description" content={computedDescription} />
       </Helmet>
-      {renderedLocalSections.length > 0 ? (
+      {shouldRenderLocalSections ? (
         renderedLocalSections
       ) : (
         <>
@@ -1918,61 +2053,13 @@ const Home: React.FC = () => {
             data-nlv-field-path="site.home.heroImage"
           >
             <div className="absolute inset-0" style={overlayStyle}></div>
-            <div className={`relative h-full flex ${heroAlignmentClasses} ${heroMiddleNudge}`}>
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.8, ease: 'easeOut' }}
-                className={`w-full ${heroTextColorClass}`}
-              >
-                <div className={`container mx-auto px-4 sm:px-6 lg:px-8 ${heroGridClasses}`}>
-                  <div className={heroTextWrapperClasses}>
-                    <h1
-                      className="text-4xl md:text-6xl font-semibold tracking-tight"
-                      data-nlv-field-path={`${homeFieldPath}.heroHeadline`}
-                    >
-                      {heroHeadline}
-                    </h1>
-                    {heroSubheadline && (
-                      <div data-nlv-field-path={`${homeFieldPath}.heroSubheadline`}>
-                        <ReactMarkdown components={heroMarkdownComponents}>
-                          {heroSubheadline}
-                        </ReactMarkdown>
-                      </div>
-                    )}
-                    <div className={`mt-8 flex flex-col sm:flex-row ${heroCtaAlignmentClass} gap-4`}>
-                      <Link to="/shop" className={heroPrimaryButtonClasses}>
-                        <span data-nlv-field-path={heroPrimaryCtaFieldPath}>
-                          {heroPrimaryCta}
-                        </span>
-                      </Link>
-                      <Link to="/for-clinics" className={heroSecondaryButtonClasses}>
-                        <span data-nlv-field-path={heroSecondaryCtaFieldPath}>
-                          {heroSecondaryCta}
-                        </span>
-                      </Link>
-                    </div>
-                  </div>
-                  {shouldRenderInlineImage && heroInlineImage && (
-                    <motion.div
-                      initial={{ opacity: 0, y: 20 }}
-                      whileInView={{ opacity: 1, y: 0 }}
-                      viewport={{ once: true }}
-                      transition={{ duration: 0.6, delay: 0.1 }}
-                      className={heroImageWrapperClasses}
-                    >
-                      <img
-                        src={heroInlineImage}
-                        alt={heroImageAlt}
-                        className="w-full max-h-[540px] rounded-lg shadow-lg object-cover"
-                        data-nlv-field-path={heroImageFieldPath}
-                      />
-                    </motion.div>
-                  )}
-                </div>
-              </motion.div>
-            </div>
+            {heroTextPlacement === 'overlay' && (
+              <div className={`relative h-full flex ${heroAlignmentClasses} ${heroMiddleNudge}`}>
+                {heroTextMotion}
+              </div>
+            )}
           </div>
+          {heroTextPlacement === 'below' && heroTextMotion}
           {(brandIntroTitle || brandIntroText) && (
             <div className="container mx-auto max-w-3xl px-4 py-16 md:py-24">
               {brandIntroTitle && (
