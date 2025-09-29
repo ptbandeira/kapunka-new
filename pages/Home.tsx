@@ -2673,40 +2673,7 @@ const Home: React.FC = () => {
           </section>
         );
       }
-      case 'newsletterSignup': {
-        const title = sanitizeString(section.title ?? null);
-        const subtitle = sanitizeString(section.subtitle ?? null);
-        const placeholder = sanitizeString(section.placeholder ?? null);
-        const ctaLabel = sanitizeString(section.ctaLabel ?? null);
-        const confirmation = sanitizeString(section.confirmation ?? null);
-        const background = section.background === 'beige' || section.background === 'dark' ? section.background : 'light';
-        const alignment = section.alignment === 'left' ? 'left' : 'center';
-
-        if (!title && !subtitle && !ctaLabel && !placeholder && !confirmation) {
-          return (
-            <NewsletterSignup
-              key={`section-newsletterSignup-${index}`}
-              backgroundVariant={background}
-              alignment={alignment}
-              fieldPath={sectionFieldPath}
-            />
-          );
-        }
-
-        return (
-          <NewsletterSignup
-            key={`section-newsletterSignup-${index}`}
-            title={title}
-            subtitle={subtitle}
-            placeholder={placeholder}
-            ctaLabel={ctaLabel}
-            confirmation={confirmation}
-            backgroundVariant={background}
-            alignment={alignment}
-            fieldPath={sectionFieldPath}
-          />
-        );
-      }
+      
       case 'banner': {
         const text = sanitizeString(section.text ?? null);
         const cta = sanitizeString(section.cta ?? null);
