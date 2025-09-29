@@ -1,21 +1,23 @@
 {
   "metaTitle": "KAPUNKA — Argan care",
   "metaDescription": "Sensitive, post-procedure, and everyday skin rituals with Moroccan argan.",
-  "heroHeadline": "Local CMS Hero Headline",
-  "heroSubheadline": "Single-origin Moroccan argan care, published from the local CMS preview.",
+  "heroHeadline": "Be thankful to your skin.",
+  "heroSubheadline": "Gentle argan rituals for sensitive and post-procedure care. Welcome to Kapunka 2.0 — care that feels human.",
   "heroAlignment": {
     "heroAlignX": "center",
     "heroAlignY": "middle",
-    "heroLayoutHint": "image-full",
-    "heroOverlay": 48,
-    "heroTextPosition": "below"
+    "textPosition": "center",
+    "overlay": 45,
+    "layoutHint": "bg"
   },
   "heroImages": {
     "heroImageLeft": "/content/uploads/274937ac-6e5d-4dca-8dd5-d08b8004a4d9.jpg"
   },
   "heroCtas": {
-    "ctaPrimary": "Shop argan rituals",
-    "ctaSecondary": "Clinics partnership"
+    "primaryLabel": "Shop argan rituals",
+    "primaryHref": "/shop",
+    "secondaryLabel": "Clinics partnership",
+    "secondaryHref": "/clinics"
   },
   "sections": [
     {
