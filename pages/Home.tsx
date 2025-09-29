@@ -23,13 +23,18 @@ import type {
   PageContent,
 } from '../types';
 
+type CmsCtaShape = {
+  label?: string | null;
+  href?: string | null;
+};
+
 type HomeSection =
   | {
       type: 'hero';
       headline?: string;
       subheadline?: string;
-      ctaPrimary?: string;
-      ctaSecondary?: string;
+      ctaPrimary?: string | CmsCtaShape;
+      ctaSecondary?: string | CmsCtaShape;
       image?: string;
       imageRef?: string;
       overlay?: boolean;
@@ -143,10 +148,19 @@ const heroImagesSchema = z
   })
   .passthrough();
 
+const ctaLinkSchema = z
+  .object({
+    label: z.string().nullable().optional(),
+    href: z.string().nullable().optional(),
+  })
+  .passthrough();
+
+const ctaValueSchema = z.union([z.string(), ctaLinkSchema, z.null()]);
+
 const heroCtasSchema = z
   .object({
-    ctaPrimary: z.string().nullable().optional(),
-    ctaSecondary: z.string().nullable().optional(),
+    ctaPrimary: ctaValueSchema.optional(),
+    ctaSecondary: ctaValueSchema.optional(),
   })
   .passthrough();
 
@@ -487,6 +501,94 @@ const sanitizeCmsString = (value?: string | null): string | undefined => {
 
   const trimmed = value.trim();
   return trimmed.length > 0 ? trimmed : undefined;
+};
+
+const sanitizeCmsUrl = (value?: string | null): string | undefined => {
+  const sanitized = sanitizeCmsString(value);
+
+  if (!sanitized) {
+    return undefined;
+  }
+
+  if (
+    sanitized.startsWith('/')
+    || sanitized.startsWith('#')
+    || sanitized.startsWith('mailto:')
+    || sanitized.startsWith('tel:')
+    || isAbsoluteUrl(sanitized)
+  ) {
+    return sanitized;
+  }
+
+  return undefined;
+};
+
+const isCmsCtaObject = (value: unknown): value is CmsCtaShape => {
+  if (!value || typeof value !== 'object') {
+    return false;
+  }
+
+  return 'label' in value || 'href' in value;
+};
+
+type CmsCtaLike = string | CmsCtaShape | null | undefined;
+
+const extractCmsCtaLabel = (value: CmsCtaLike): string | undefined => {
+  if (typeof value === 'string') {
+    return sanitizeCmsString(value);
+  }
+
+  if (isCmsCtaObject(value)) {
+    return sanitizeCmsString(value.label ?? null);
+  }
+
+  return undefined;
+};
+
+const extractCmsCtaHref = (value: CmsCtaLike): string | undefined => {
+  if (typeof value === 'string') {
+    return sanitizeCmsUrl(value);
+  }
+
+  if (isCmsCtaObject(value)) {
+    return sanitizeCmsUrl(value.href ?? null);
+  }
+
+  return undefined;
+};
+
+const extractCmsCta = (value: CmsCtaLike): { label?: string; href?: string } => ({
+  label: extractCmsCtaLabel(value),
+  href: extractCmsCtaHref(value),
+});
+
+const isInternalNavigationHref = (href?: string | null): href is string => {
+  if (!href) {
+    return false;
+  }
+
+  return href.startsWith('#/') || href.startsWith('/');
+};
+
+const normalizeInternalHref = (href: string): string => {
+  if (href.startsWith('#/')) {
+    const normalized = href.slice(1);
+    return normalized.startsWith('/') ? normalized : `/${normalized}`;
+  }
+
+  if (!href.startsWith('/')) {
+    return `/${href}`;
+  }
+
+  return href;
+};
+
+const isExternalHttpUrl = (href?: string): href is string => {
+  if (!href) {
+    return false;
+  }
+
+  return /^https?:\/\//i.test(href);
 };
 
 const normalizeHorizontalAlignment = (value?: string | null): HeroHorizontalAlignment | undefined => {
@@ -1318,18 +1420,34 @@ const Home: React.FC = () => {
   const homeFieldPath = `pages.home_${language}`;
   const heroHeadline = sanitizeString(pageContent?.heroHeadline) ?? t('home.heroTitle');
   const heroSubheadline = sanitizeString(pageContent?.heroSubheadline) ?? t('home.heroSubtitle');
-  const heroPrimaryCta = sanitizeString(
-    pageContent?.heroCtas?.ctaPrimary
-      ?? pageContent?.heroPrimaryCta
-      ?? pageContent?.heroCtaPrimary
-      ?? pageContent?.ctaPrimary,
-  ) ?? t('home.ctaShop');
-  const heroSecondaryCta = sanitizeString(
-    pageContent?.heroCtas?.ctaSecondary
-      ?? pageContent?.heroSecondaryCta
-      ?? pageContent?.heroCtaSecondary
-      ?? pageContent?.ctaSecondary,
-  ) ?? t('home.ctaClinics');
+  const heroPrimaryCtaCmsValue = pageContent?.heroCtas?.ctaPrimary;
+  const heroSecondaryCtaCmsValue = pageContent?.heroCtas?.ctaSecondary;
+  const heroPrimaryCtaLabel = firstDefined([
+    extractCmsCtaLabel(heroPrimaryCtaCmsValue),
+    sanitizeString(pageContent?.heroPrimaryCta ?? null),
+    sanitizeString(pageContent?.heroCtaPrimary ?? null),
+    sanitizeString(pageContent?.ctaPrimary ?? null),
+  ]) ?? t('home.ctaShop');
+  const heroSecondaryCtaLabel = firstDefined([
+    extractCmsCtaLabel(heroSecondaryCtaCmsValue),
+    sanitizeString(pageContent?.heroSecondaryCta ?? null),
+    sanitizeString(pageContent?.heroCtaSecondary ?? null),
+    sanitizeString(pageContent?.ctaSecondary ?? null),
+  ]) ?? t('home.ctaClinics');
+  const heroPrimaryCtaHref = firstDefined([
+    extractCmsCtaHref(heroPrimaryCtaCmsValue),
+    extractCmsCtaHref(pageContent?.heroPrimaryCta),
+    extractCmsCtaHref(pageContent?.heroCtaPrimary),
+    extractCmsCtaHref(pageContent?.ctaPrimary),
+  ]) ?? '/shop';
+  const heroSecondaryCtaHref = firstDefined([
+    extractCmsCtaHref(heroSecondaryCtaCmsValue),
+    extractCmsCtaHref(pageContent?.heroSecondaryCta),
+    extractCmsCtaHref(pageContent?.heroCtaSecondary),
+    extractCmsCtaHref(pageContent?.ctaSecondary),
+  ]) ?? '/for-clinics';
+  const heroPrimaryCta = heroPrimaryCtaLabel;
+  const heroSecondaryCta = heroSecondaryCtaLabel;
   const heroAlignmentOverlayValue = pageContent?.heroAlignment?.heroOverlay;
   const heroOverlay = resolveHeroOverlay(
     heroAlignmentOverlayValue
@@ -1432,19 +1550,37 @@ const Home: React.FC = () => {
     : '';
   const heroImageAlt = heroHeadline;
   const heroPrimaryCtaFieldPath = pageContent?.heroCtas
-    ? `${homeFieldPath}.heroCtas.ctaPrimary`
+    ? isCmsCtaObject(heroPrimaryCtaCmsValue)
+      ? `${homeFieldPath}.heroCtas.ctaPrimary.label`
+      : `${homeFieldPath}.heroCtas.ctaPrimary`
     : pageContent?.heroPrimaryCta
       ? `${homeFieldPath}.heroPrimaryCta`
       : pageContent?.heroCtaPrimary
         ? `${homeFieldPath}.heroCtaPrimary`
         : `${homeFieldPath}.ctaPrimary`;
+  const heroPrimaryCtaHrefFieldPath = pageContent?.heroCtas && isCmsCtaObject(heroPrimaryCtaCmsValue)
+    ? `${homeFieldPath}.heroCtas.ctaPrimary.href`
+    : undefined;
   const heroSecondaryCtaFieldPath = pageContent?.heroCtas
-    ? `${homeFieldPath}.heroCtas.ctaSecondary`
+    ? isCmsCtaObject(heroSecondaryCtaCmsValue)
+      ? `${homeFieldPath}.heroCtas.ctaSecondary.label`
+      : `${homeFieldPath}.heroCtas.ctaSecondary`
     : pageContent?.heroSecondaryCta
       ? `${homeFieldPath}.heroSecondaryCta`
       : pageContent?.heroCtaSecondary
         ? `${homeFieldPath}.heroCtaSecondary`
         : `${homeFieldPath}.ctaSecondary`;
+  const heroSecondaryCtaHrefFieldPath = pageContent?.heroCtas && isCmsCtaObject(heroSecondaryCtaCmsValue)
+    ? `${homeFieldPath}.heroCtas.ctaSecondary.href`
+    : undefined;
+  const heroPrimaryCtaIsInternal = isInternalNavigationHref(heroPrimaryCtaHref);
+  const heroSecondaryCtaIsInternal = isInternalNavigationHref(heroSecondaryCtaHref);
+  const heroPrimaryLinkTarget = heroPrimaryCtaIsInternal
+    ? normalizeInternalHref(heroPrimaryCtaHref)
+    : heroPrimaryCtaHref;
+  const heroSecondaryLinkTarget = heroSecondaryCtaIsInternal
+    ? normalizeInternalHref(heroSecondaryCtaHref)
+    : heroSecondaryCtaHref;
   const heroInlineImageNode = shouldRenderInlineImage && heroInlineImage
     ? (
       <motion.div
@@ -1480,16 +1616,52 @@ const Home: React.FC = () => {
           </div>
         )}
         <div className={`mt-8 flex flex-col sm:flex-row ${heroCtaAlignmentClass} gap-4`}>
-          <Link to="/shop" className={heroPrimaryButtonClasses}>
-            <span data-nlv-field-path={heroPrimaryCtaFieldPath}>
-              {heroPrimaryCta}
-            </span>
-          </Link>
-          <Link to="/for-clinics" className={heroSecondaryButtonClasses}>
-            <span data-nlv-field-path={heroSecondaryCtaFieldPath}>
-              {heroSecondaryCta}
-            </span>
-          </Link>
+          {heroPrimaryCtaIsInternal ? (
+            <Link
+              to={heroPrimaryLinkTarget}
+              className={heroPrimaryButtonClasses}
+              data-nlv-field-path={heroPrimaryCtaHrefFieldPath}
+            >
+              <span data-nlv-field-path={heroPrimaryCtaFieldPath}>
+                {heroPrimaryCta}
+              </span>
+            </Link>
+          ) : (
+            <a
+              href={heroPrimaryLinkTarget}
+              className={heroPrimaryButtonClasses}
+              data-nlv-field-path={heroPrimaryCtaHrefFieldPath}
+              target={isExternalHttpUrl(heroPrimaryLinkTarget) ? '_blank' : undefined}
+              rel={isExternalHttpUrl(heroPrimaryLinkTarget) ? 'noreferrer' : undefined}
+            >
+              <span data-nlv-field-path={heroPrimaryCtaFieldPath}>
+                {heroPrimaryCta}
+              </span>
+            </a>
+          )}
+          {heroSecondaryCtaIsInternal ? (
+            <Link
+              to={heroSecondaryLinkTarget}
+              className={heroSecondaryButtonClasses}
+              data-nlv-field-path={heroSecondaryCtaHrefFieldPath}
+            >
+              <span data-nlv-field-path={heroSecondaryCtaFieldPath}>
+                {heroSecondaryCta}
+              </span>
+            </Link>
+          ) : (
+            <a
+              href={heroSecondaryLinkTarget}
+              className={heroSecondaryButtonClasses}
+              data-nlv-field-path={heroSecondaryCtaHrefFieldPath}
+              target={isExternalHttpUrl(heroSecondaryLinkTarget) ? '_blank' : undefined}
+              rel={isExternalHttpUrl(heroSecondaryLinkTarget) ? 'noreferrer' : undefined}
+            >
+              <span data-nlv-field-path={heroSecondaryCtaFieldPath}>
+                {heroSecondaryCta}
+              </span>
+            </a>
+          )}
         </div>
       </div>
       {heroInlineImageNode}
@@ -1580,8 +1752,26 @@ const Home: React.FC = () => {
         const sectionCtaAlignmentClass = HERO_CTA_ALIGNMENT_CLASSES[sectionAlignX];
         const headline = sanitizeString(section.headline ?? null) ?? heroHeadline;
         const subheadline = sanitizeString(section.subheadline ?? null) ?? heroSubheadline;
-        const primaryCta = sanitizeString(section.ctaPrimary ?? null) ?? heroPrimaryCta;
-        const secondaryCta = sanitizeString(section.ctaSecondary ?? null) ?? heroSecondaryCta;
+        const sectionPrimaryCta = extractCmsCta(section.ctaPrimary);
+        const sectionSecondaryCta = extractCmsCta(section.ctaSecondary);
+        const primaryCta = sectionPrimaryCta.label ?? heroPrimaryCta;
+        const primaryCtaHref = sectionPrimaryCta.href ?? heroPrimaryCtaHref;
+        const secondaryCta = sectionSecondaryCta.label ?? heroSecondaryCta;
+        const secondaryCtaHref = sectionSecondaryCta.href ?? heroSecondaryCtaHref;
+        const sectionPrimaryCtaIsObject = isCmsCtaObject(section.ctaPrimary);
+        const sectionSecondaryCtaIsObject = isCmsCtaObject(section.ctaSecondary);
+        const sectionPrimaryCtaLabelFieldPath = sectionPrimaryCtaIsObject
+          ? `${sectionFieldPath}.ctaPrimary.label`
+          : `${sectionFieldPath}.ctaPrimary`;
+        const sectionSecondaryCtaLabelFieldPath = sectionSecondaryCtaIsObject
+          ? `${sectionFieldPath}.ctaSecondary.label`
+          : `${sectionFieldPath}.ctaSecondary`;
+        const sectionPrimaryCtaHrefFieldPath = sectionPrimaryCtaIsObject
+          ? `${sectionFieldPath}.ctaPrimary.href`
+          : undefined;
+        const sectionSecondaryCtaHrefFieldPath = sectionSecondaryCtaIsObject
+          ? `${sectionFieldPath}.ctaSecondary.href`
+          : undefined;
         const heroImageOverride = sanitizeString(pickImage(section.image, section.imageRef));
         const inlineImageCandidate = (() => {
           if (heroLayoutHint === 'image-left') {
@@ -1659,14 +1849,46 @@ const Home: React.FC = () => {
               )}
               <div className={`mt-8 flex flex-col sm:flex-row ${sectionCtaAlignmentClass} gap-4`}>
                 {primaryCta && (
-                  <Link to="/shop" className={sectionPrimaryButtonClasses}>
-                    <span data-nlv-field-path={`${sectionFieldPath}.ctaPrimary`}>{primaryCta}</span>
-                  </Link>
+                  isInternalNavigationHref(primaryCtaHref) ? (
+                    <Link
+                      to={normalizeInternalHref(primaryCtaHref)}
+                      className={sectionPrimaryButtonClasses}
+                      data-nlv-field-path={sectionPrimaryCtaHrefFieldPath}
+                    >
+                      <span data-nlv-field-path={sectionPrimaryCtaLabelFieldPath}>{primaryCta}</span>
+                    </Link>
+                  ) : (
+                    <a
+                      href={primaryCtaHref}
+                      className={sectionPrimaryButtonClasses}
+                      data-nlv-field-path={sectionPrimaryCtaHrefFieldPath}
+                      target={isExternalHttpUrl(primaryCtaHref) ? '_blank' : undefined}
+                      rel={isExternalHttpUrl(primaryCtaHref) ? 'noreferrer' : undefined}
+                    >
+                      <span data-nlv-field-path={sectionPrimaryCtaLabelFieldPath}>{primaryCta}</span>
+                    </a>
+                  )
                 )}
                 {secondaryCta && (
-                  <Link to="/for-clinics" className={sectionSecondaryButtonClasses}>
-                    <span data-nlv-field-path={`${sectionFieldPath}.ctaSecondary`}>{secondaryCta}</span>
-                  </Link>
+                  isInternalNavigationHref(secondaryCtaHref) ? (
+                    <Link
+                      to={normalizeInternalHref(secondaryCtaHref)}
+                      className={sectionSecondaryButtonClasses}
+                      data-nlv-field-path={sectionSecondaryCtaHrefFieldPath}
+                    >
+                      <span data-nlv-field-path={sectionSecondaryCtaLabelFieldPath}>{secondaryCta}</span>
+                    </Link>
+                  ) : (
+                    <a
+                      href={secondaryCtaHref}
+                      className={sectionSecondaryButtonClasses}
+                      data-nlv-field-path={sectionSecondaryCtaHrefFieldPath}
+                      target={isExternalHttpUrl(secondaryCtaHref) ? '_blank' : undefined}
+                      rel={isExternalHttpUrl(secondaryCtaHref) ? 'noreferrer' : undefined}
+                    >
+                      <span data-nlv-field-path={sectionSecondaryCtaLabelFieldPath}>{secondaryCta}</span>
+                    </a>
+                  )
                 )}
               </div>
             </div>
