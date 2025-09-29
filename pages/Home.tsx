@@ -81,6 +81,19 @@ type HomeSection =
       url?: string;
     }
   | {
+      type: 'communityCarousel';
+      title?: string;
+      slides?: {
+        image?: string;
+        imageRef?: string;
+        alt?: string;
+        quote?: string;
+        name?: string;
+        role?: string;
+      }[];
+      slideDuration?: number;
+    }
+  | {
       type: 'video';
       title?: string;
       url?: string;
@@ -1137,6 +1150,7 @@ const Home: React.FC = () => {
                 || section?.type === 'testimonials'
                 || section?.type === 'faq'
                 || section?.type === 'banner'
+                || section?.type === 'communityCarousel'
                 || section?.type === 'video'
               ))
             : [];
@@ -1609,7 +1623,7 @@ const Home: React.FC = () => {
               >
                 <div className="absolute inset-0" style={sectionOverlayStyle}></div>
                 {heroTextPlacement === 'overlay' && (
-                  <div className={`relative h-full flex ${sectionAlignmentClasses} ${sectionMiddleNudge}`}>
+                  <div className={`relative h-full flex flex-col ${sectionAlignmentClasses} ${sectionMiddleNudge}`}>
                     {sectionTextMotion}
                   </div>
                 )}
@@ -1617,7 +1631,7 @@ const Home: React.FC = () => {
             ) : (
               <div className="relative h-screen bg-stone-900" data-nlv-field-path={sectionFieldPath}>
                 {heroTextPlacement === 'overlay' && (
-                  <div className={`relative h-full flex ${sectionAlignmentClasses} ${sectionMiddleNudge}`}>
+                  <div className={`relative h-full flex flex-col ${sectionAlignmentClasses} ${sectionMiddleNudge}`}>
                     {sectionTextMotion}
                   </div>
                 )}
@@ -1809,6 +1823,56 @@ const Home: React.FC = () => {
               </div>
             </div>
           </section>
+        );
+      }
+      case 'communityCarousel': {
+        const sectionTitle = sanitizeString(section.title ?? null);
+        const slides = (section.slides ?? []).map((slide, slideIndex) => {
+          const basePath = `${sectionFieldPath}.slides[${slideIndex}]`;
+          const image = sanitizeString(pickImage(slide.image, slide.imageRef));
+          const alt = sanitizeString(slide.alt ?? null);
+          const quote = sanitizeString(slide.quote ?? null);
+          const name = sanitizeString(slide.name ?? null);
+          const role = sanitizeString(slide.role ?? null);
+          const imageFieldPath = slide.image
+            ? `${basePath}.image`
+            : slide.imageRef
+              ? `${basePath}.imageRef`
+              : `${basePath}.image`;
+
+          return {
+            image,
+            alt,
+            quote,
+            name,
+            role,
+            fieldPath: basePath,
+            imageFieldPath,
+            altFieldPath: `${basePath}.alt`,
+            quoteFieldPath: `${basePath}.quote`,
+            nameFieldPath: `${basePath}.name`,
+            roleFieldPath: `${basePath}.role`,
+          };
+        });
+
+        const slideDuration =
+          typeof section.slideDuration === 'number' && Number.isFinite(section.slideDuration)
+            ? section.slideDuration
+            : undefined;
+
+        if (!sectionTitle && slides.length === 0) {
+          return null;
+        }
+
+        return (
+          <CommunityCarousel
+            key={`section-communityCarousel-${index}`}
+            title={sectionTitle}
+            slides={slides}
+            fieldPath={sectionFieldPath}
+            slidesFieldPath={`${sectionFieldPath}.slides`}
+            slideDuration={slideDuration}
+          />
         );
       }
       default:
@@ -2286,7 +2350,7 @@ const Home: React.FC = () => {
             >
               <div className="absolute inset-0" style={overlayStyle}></div>
               {heroTextPlacement === 'overlay' && (
-                <div className={`relative h-full flex ${heroAlignmentClasses} ${heroMiddleNudge}`}>
+                <div className={`relative h-full flex flex-col ${heroAlignmentClasses} ${heroMiddleNudge}`}>
                   {heroTextMotion}
                 </div>
               )}
@@ -2297,7 +2361,7 @@ const Home: React.FC = () => {
               data-nlv-field-path="site.home.heroImage"
             >
               {heroTextPlacement === 'overlay' && (
-                <div className={`relative h-full flex ${heroAlignmentClasses} ${heroMiddleNudge}`}>
+                <div className={`relative h-full flex flex-col ${heroAlignmentClasses} ${heroMiddleNudge}`}>
                   {heroTextMotion}
                 </div>
               )}
