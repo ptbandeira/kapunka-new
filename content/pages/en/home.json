@@ -1,51 +1,78 @@
 {
-  "metaTitle": "KAPUNKA — Argan care",
-  "metaDescription": "Sensitive, post-procedure, and everyday skin rituals with Moroccan argan.",
+  "metaTitle": "Kapunka — Argan rituals for sensitive and post-procedure skin",
+  "metaDescription": "Clinical-grade Moroccan argan care trusted by clinics, designed for everyday recovery.",
   "heroHeadline": "Be thankful to your skin.",
-  "heroSubheadline": "Gentle argan rituals for sensitive and post-procedure care. Welcome to Kapunka 2.0 — care that feels human.",
+  "heroSubheadline": "Gentle argan rituals from Morocco, made for sensitive and post-procedure skin. Welcome to Kapunka 2.0: calm care that feels human.",
+  "heroCtas": {
+    "ctaPrimary": { "label": "Shop argan rituals", "href": "/shop" },
+    "ctaSecondary": { "label": "Clinics partnership", "href": "/clinics" }
+  },
   "heroAlignment": {
     "heroAlignX": "center",
-    "heroAlignY": "middle",
-    "textPosition": "center",
-    "overlay": 45,
-    "layoutHint": "bg"
+    "heroAlignY": "center",
+    "heroTextPosition": "overlay",
+    "heroOverlay": "medium",
+    "heroLayoutHint": "bg"
   },
   "heroImages": {
-    "heroImageLeft": "/content/uploads/274937ac-6e5d-4dca-8dd5-d08b8004a4d9.jpg"
-  },
-  "heroCtas": {
-    "primaryLabel": "Shop argan rituals",
-    "primaryHref": "/shop",
-    "secondaryLabel": "Clinics partnership",
-    "secondaryHref": "/clinics"
+    "heroImageLeft": "/content/uploads/hero-dark-water.jpg"
   },
   "sections": [
     {
-      "type": "hero",
-      "headline": "Local CMS Hero Headline",
-      "subheadline": "Single-origin Moroccan argan care, published from the local CMS preview.",
-      "ctaPrimary": "Shop argan rituals",
-      "ctaSecondary": "Clinics partnership",
-      "image": "/content/uploads/274937ac-6e5d-4dca-8dd5-d08b8004a4d9.jpg",
-      "overlay": 48,
-      "position": "middle-center"
+      "type": "mediaCopy",
+      "title": "Born from gratitude",
+      "body": "“Kapunka” means “thank you.” We make argan care with clinical respect—simple routines that comfort, shield, and support healing. Our roots are in Morocco; our method grew in real clinics.",
+      "imageRef": "/content/uploads/roots-olive-tree.jpg",
+      "layout": "textLeftImageRight"
     },
     {
       "type": "mediaCopy",
-      "title": "Media spotlight from CMS",
-      "body": "This media and copy block was published from the local CMS preview.",
-      "image": "/content/uploads/2cb41747-352c-4a0b-affc-bbbcbf90b362-1-.jpg",
-      "mediaAlign": "left",
-      "background": "none"
+      "title": "Preferred by dermatologists, medspas, and holistic clinics",
+      "body": "Our treatments are gentle, low-residue, and knowledge-led, with skin acceptance, barrier stability, and aroma balance. Dedicated training and wholesale support keep your team confident.",
+      "imageRef": "/content/uploads/clinic-hands.jpg",
+      "layout": "textLeftImageRight"
+    },
+    {
+      "type": "mediaCopy",
+      "title": "Heritage sourcing, clinic-grade standards",
+      "body": "We source single-origin argan and trace the steps from cooperatives to lab certifications. Every lot is meticulously quality-tested to maintain human care at scale.",
+      "imageRef": "/content/uploads/argan-coop.jpg",
+      "layout": "textLeftImageRight"
+    },
+    {
+      "type": "mediaCopy",
+      "title": "From hammam rituals to modern recovery",
+      "body": "Pure oil, floral mists, and clean washes. Old wisdom connected to the lives we live today: routines that calm discomfort, repair the barrier, and leave no heavy film.",
+      "imageRef": "/content/uploads/hammam-light.jpg",
+      "layout": "textLeftImageRight"
     },
     {
       "type": "featureGrid",
-      "title": "Feature highlights from CMS",
-      "features": [
-        {
-          "title": "Softer skin in days",
-          "text": "Nutrient-dense argan and botanicals deliver visible results quickly."
-        }
+      "title": "",
+      "columns": 4,
+      "items": [
+        { "label": "Clinic-ready batching", "description": "Skin-friendly, clean, cold-pressed." },
+        { "label": "Holistic sensorial care", "description": "Low-residue textures and gentle aromas for sensitive skin." },
+        { "label": "Flexible retail stories", "description": "Starter sets and education for consistent home routines." },
+        { "label": "Sustainable partnerships", "description": "Fair relationships across Morocco’s cooperatives." }
+      ]
+    },
+    {
+      "type": "productGrid",
+      "title": "Our Bestsellers",
+      "products": [
+        { "id": "pure-argan-100" },
+        { "id": "scar-care" },
+        { "id": "ritual-pack" }
+      ],
+      "columns": 3
+    },
+    {
+      "type": "testimonials",
+      "title": "What Professionals Say",
+      "quotes": [
+        { "text": "After laser treatments, I recommend Kapunka pure argan for faster barrier repair. My patients notice less tightness and redness.", "author": "Dr. Isabella Rossi", "role": "Dermatologist" },
+        { "text": "Finally, a cleanser that respects sensitive skin while effectively removing makeup.", "author": "Chloe Davis", "role": "Esthetician" }
       ]
     }
   ]
