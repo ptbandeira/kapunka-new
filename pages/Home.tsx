@@ -120,7 +120,7 @@ const heroAlignmentSchema = z
     heroAlignX: z.enum(['left', 'center', 'right']).optional(),
     heroAlignY: z.enum(['top', 'middle', 'bottom']).optional(),
     heroLayoutHint: z
-      .enum(['image-left', 'image-right', 'image-full', 'text-over-media', 'side-by-side', 'bgImage'])
+      .enum(['image-left', 'image-right', 'image-full', 'text-over-media', 'side-by-side', 'bgImage', 'bg'])
       .optional(),
     heroOverlay: z.union([z.string(), z.number(), z.boolean()]).optional(),
     heroTextPosition: z.enum(['overlay', 'below']).optional(),
@@ -694,6 +694,7 @@ const normalizeHeroLayoutHint = (value?: string | null): 'image-left' | 'image-r
     case 'image-full':
       return value;
     case 'bgImage':
+    case 'bg':
       return 'image-full';
     case 'side-by-side':
       return 'image-right';
