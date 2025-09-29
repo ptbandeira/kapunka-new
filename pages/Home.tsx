@@ -9,6 +9,7 @@ import ProductCard from '../components/ProductCard';
 import TimelineSection from '../components/TimelineSection';
 import ImageTextHalf from '../components/sections/ImageTextHalf';
 import ImageGrid from '../components/sections/ImageGrid';
+import CommunityCarousel from '../components/sections/CommunityCarousel';
 import { useLanguage } from '../contexts/LanguageContext';
 import { useSiteSettings } from '../contexts/SiteSettingsContext';
 import type {
@@ -154,6 +155,26 @@ const imageGridSectionSchema = z
   })
   .passthrough();
 
+const communityCarouselSlideSchema = z
+  .object({
+    image: z.string().optional(),
+    imageRef: z.string().optional(),
+    alt: z.string().optional(),
+    quote: z.string().optional(),
+    name: z.string().optional(),
+    role: z.string().optional(),
+  })
+  .passthrough();
+
+const communityCarouselSectionSchema = z
+  .object({
+    type: z.literal('communityCarousel'),
+    title: z.string().optional(),
+    slides: z.array(communityCarouselSlideSchema).optional(),
+    slideDuration: z.number().optional(),
+  })
+  .passthrough();
+
 const legacySectionSchema = z.discriminatedUnion('type', [
   timelineSectionSchema,
   imageTextHalfSectionSchema,
@@ -203,6 +224,7 @@ const testimonialsSectionSchema = z
   .passthrough();
 
 const structuredSectionSchema = z.discriminatedUnion('type', [
+  communityCarouselSectionSchema,
   pillarsSectionSchema,
   mediaCopySectionSchema,
   testimonialsSectionSchema,
@@ -1806,6 +1828,56 @@ const Home: React.FC = () => {
     const sectionFieldPath = `${homeSectionsFieldPath}.${index}`;
 
     switch (section.type) {
+      case 'communityCarousel': {
+        const sectionTitle = sanitizeString(section.title ?? null);
+        const slides = (section.slides ?? []).map((slide, slideIndex) => {
+          const basePath = `${sectionFieldPath}.slides.${slideIndex}`;
+          const image = sanitizeString(pickImage(slide.image, slide.imageRef));
+          const alt = sanitizeString(slide.alt ?? null);
+          const quote = sanitizeString(slide.quote ?? null);
+          const name = sanitizeString(slide.name ?? null);
+          const role = sanitizeString(slide.role ?? null);
+          const imageFieldPath = slide.image
+            ? `${basePath}.image`
+            : slide.imageRef
+              ? `${basePath}.imageRef`
+              : `${basePath}.image`;
+
+          return {
+            image,
+            alt,
+            quote,
+            name,
+            role,
+            fieldPath: basePath,
+            imageFieldPath,
+            altFieldPath: `${basePath}.alt`,
+            quoteFieldPath: `${basePath}.quote`,
+            nameFieldPath: `${basePath}.name`,
+            roleFieldPath: `${basePath}.role`,
+          };
+        });
+
+        const slideDuration =
+          typeof section.slideDuration === 'number' && Number.isFinite(section.slideDuration)
+            ? section.slideDuration
+            : undefined;
+
+        if (!sectionTitle && slides.length === 0) {
+          return null;
+        }
+
+        return (
+          <CommunityCarousel
+            key={`structured-${index}-community-carousel`}
+            title={sectionTitle}
+            slides={slides}
+            fieldPath={sectionFieldPath}
+            slidesFieldPath={`${sectionFieldPath}.slides`}
+            slideDuration={slideDuration}
+          />
+        );
+      }
       case 'pillars': {
         const sectionTitle = sanitizeString(section.title ?? null);
         const items = (section.items ?? [])

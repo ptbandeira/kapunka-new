@@ -151,6 +151,33 @@
           "text": "Nutrient-dense argan and botanicals deliver visible results quickly."
         }
       ]
+    },
+    {
+      "type": "communityCarousel",
+      "title": "Rituals in our community",
+      "slides": [
+        {
+          "image": "",
+          "alt": "Add a photo of a Kapunka ritual in use",
+          "quote": "Use this placeholder to share how someone experiences Kapunka in their routine.",
+          "name": "Customer name",
+          "role": "Clinic or city"
+        },
+        {
+          "image": "",
+          "alt": "Upload another community image",
+          "quote": "Highlight a partner testimonial, recovery story, or everyday ritual.",
+          "name": "Partner or practitioner",
+          "role": "Role or treatment focus"
+        },
+        {
+          "image": "",
+          "alt": "Add lifestyle imagery that feels real and warm",
+          "quote": "Add an authentic note about how Kapunka supports their skin goals.",
+          "name": "Add a name",
+          "role": "Location or context"
+        }
+      ]
     }
   ]
 }

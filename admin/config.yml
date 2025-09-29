@@ -66,6 +66,59 @@ shared_sections: &shared_sections
           - { label: "Quote", name: "text", widget: "markdown", i18n: true, required: false }
           - { label: "Author", name: "author", widget: "string", required: false }
           - { label: "Role", name: "role", widget: "string", required: false }
+  - &section_communityCarousel
+    label: "Community Carousel"
+    name: "communityCarousel"
+    widget: "object"
+    fields:
+      - name: "type"
+        widget: "hidden"
+        default: "communityCarousel"
+      - label: "Title"
+        name: "title"
+        widget: "string"
+        i18n: true
+        required: false
+      - label: "Slides"
+        name: "slides"
+        widget: "list"
+        summary: "{{fields.name}}"
+        fields:
+          - label: "Image Upload"
+            name: "image"
+            widget: "image"
+            choose_url: true
+            required: false
+          - label: "Image Path (optional)"
+            name: "imageRef"
+            widget: "string"
+            required: false
+            hint: "Reference an existing asset such as /content/uploads/community.jpg."
+          - label: "Alt Text"
+            name: "alt"
+            widget: "string"
+            i18n: true
+            required: false
+          - label: "Quote"
+            name: "quote"
+            widget: "markdown"
+            i18n: true
+            required: false
+          - label: "Name"
+            name: "name"
+            widget: "string"
+            required: false
+          - label: "Role or Context"
+            name: "role"
+            widget: "string"
+            i18n: true
+            required: false
+      - label: "Slide Duration (ms)"
+        name: "slideDuration"
+        widget: "number"
+        value_type: "int"
+        required: false
+        hint: "Leave blank to use the default 8000ms timing."
   - &section_faq
     label: "FAQ"
     name: "faq"
@@ -465,6 +518,7 @@ collections:
               - *section_mediaCopy
               - *section_featureGrid
               - *section_productGrid
+              - *section_communityCarousel
               - *section_testimonials
               - *section_faq
               - *section_banner
@@ -500,6 +554,7 @@ collections:
               - *section_mediaCopy
               - *section_featureGrid
               - *section_productGrid
+              - *section_communityCarousel
               - *section_testimonials
               - *section_faq
               - *section_banner
