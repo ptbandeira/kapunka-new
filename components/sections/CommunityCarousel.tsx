@@ -124,7 +124,7 @@ const CommunityCarousel: React.FC<CommunityCarouselProps> = ({
           </div>
         )}
         <div className="mt-14">
-          <div className="relative overflow-hidden rounded-3xl border border-stone-200 bg-white p-8 shadow-xl">
+          <div className="relative overflow-hidden">
             <div
               className="relative overflow-hidden"
               style={maskStyle}
