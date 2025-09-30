@@ -23,7 +23,7 @@ interface CommunityCarouselProps {
   slideDuration?: number;
 }
 
-const MIN_DURATION = 40;
+const MIN_DURATION = 400;
 const DEFAULT_DURATION = 8;
 
 const OVERLAY_POSITIONS = [
