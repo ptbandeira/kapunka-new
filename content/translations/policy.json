@@ -1,4 +1,5 @@
 {
+  "type": "translations_policy",
   "en": {
     "loading": "Loading policy...",
     "notFound": "The requested policy page could not be found.",

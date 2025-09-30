@@ -1024,6 +1024,39 @@ const customModels = [
     ],
   },
   {
+    name: 'DoctorCollection',
+    type: 'data',
+    label: 'Doctor Collection',
+    filePath: 'content/doctors.json',
+    fields: [
+      {
+        name: 'doctors',
+        type: 'list',
+        label: 'Doctors',
+        items: {
+          type: 'object',
+          fields: [
+            {
+              name: 'id',
+              type: 'string',
+              label: 'ID',
+            },
+            {
+              name: 'name',
+              type: 'string',
+              label: 'Name',
+            },
+            {
+              name: 'imageUrl',
+              type: 'image',
+              label: 'Image',
+            },
+          ],
+        },
+      },
+    ],
+  },
+  {
     name: 'TrainingCollection',
     type: 'data',
     label: 'Training Collection',
@@ -1036,6 +1069,80 @@ const customModels = [
         items: {
           type: 'model',
           models: ['TrainingItem'],
+        },
+      },
+    ],
+  },
+  {
+    name: 'ShopContent',
+    type: 'data',
+    label: 'Shop Content',
+    filePath: 'content/shop.json',
+    fields: [
+      {
+        name: 'categories',
+        type: 'list',
+        label: 'Categories',
+        items: {
+          type: 'object',
+          fields: [
+            {
+              name: 'id',
+              type: 'string',
+              label: 'ID',
+            },
+            {
+              name: 'title',
+              type: 'model',
+              models: ['LocalizedString'],
+              label: 'Title',
+            },
+            {
+              name: 'intro',
+              type: 'model',
+              models: ['LocalizedText'],
+              label: 'Intro',
+            },
+            {
+              name: 'productIds',
+              type: 'list',
+              label: 'Product IDs',
+              items: {
+                type: 'string',
+              },
+            },
+            {
+              name: 'links',
+              type: 'list',
+              label: 'Links',
+              items: {
+                type: 'object',
+                fields: [
+                  {
+                    name: 'id',
+                    type: 'string',
+                    label: 'ID',
+                  },
+                  {
+                    name: 'type',
+                    type: 'string',
+                    label: 'Type',
+                  },
+                  {
+                    name: 'url',
+                    type: 'string',
+                    label: 'URL',
+                  },
+                  {
+                    name: 'label',
+                    type: 'model',
+                    models: ['LocalizedString'],
+                    label: 'Label',
+                  },
+                ],
+              },
+            },
+          ],
         },
       },
     ],

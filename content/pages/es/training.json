@@ -1,4 +1,5 @@
 {
+  "type": "TrainingPage",
   "metaTitle": "Formación Kapunka – Workshops para clínicas y socios",
   "metaDescription": "Programa formaciones avanzadas de protocolos con argán, repasos en vídeo y soporte de onboarding adaptado a tu consulta.",
   "sections": [
@@ -8,6 +9,5 @@
       "description": "",
       "entries": []
     }
-  ],
-  "type": "page"
+  ]
 }

@@ -1,4 +1,5 @@
 {
+  "type": "PartnerCollection",
   "partners": [
     {
       "id": "1",
@@ -30,6 +31,5 @@
       "name": "Institut Vila-Rovira",
       "logoUrl": "https://logo.clearbit.com/vila-rovira.com"
     }
-  ],
-  "type": "partners"
+  ]
 }

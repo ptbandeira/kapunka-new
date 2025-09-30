@@ -1,4 +1,5 @@
 {
+  "type": "PolicyCollection",
   "items": [
     {
       "id": "shipping",
@@ -256,6 +257,5 @@
         }
       ]
     }
-  ],
-  "type": "policies"
+  ]
 }

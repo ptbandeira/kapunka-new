@@ -1,4 +1,5 @@
 {
+  "type": "ReviewCollection",
   "items": [
     {
       "id": "1",
@@ -36,6 +37,5 @@
         "es": "Esteticista"
       }
     }
-  ],
-  "type": "reviews"
+  ]
 }

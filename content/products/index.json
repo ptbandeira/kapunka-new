@@ -1,4 +1,5 @@
 {
+  "type": "ProductCollection",
   "items": [
     {
       "scientificEvidence": {
@@ -3446,6 +3447,5 @@
         }
       }
     }
-  ],
-  "type": "products"
+  ]
 }

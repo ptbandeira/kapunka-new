@@ -1,4 +1,5 @@
 {
+  "type": "DoctorCollection",
   "doctors": [
     {
       "id": "1",
@@ -30,6 +31,5 @@
       "name": "Dra. Moreno",
       "imageUrl": "/content/uploads/dra.-maria-francia-colina-ginecologa-y-master-en-medicina-regenerativa-y-funcional-en-ginecologia-.jpeg"
     }
-  ],
-  "type": "doctors"
+  ]
 }

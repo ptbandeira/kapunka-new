@@ -1,4 +1,5 @@
 {
+  "type": "CourseCollection",
   "courses": [
     {
       "id": "1",
@@ -33,6 +34,5 @@
       "price": 59.99,
       "enrollLink": "#"
     }
-  ],
-  "type": "courses"
+  ]
 }

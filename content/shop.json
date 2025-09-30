@@ -1,4 +1,5 @@
 {
+  "type": "ShopContent",
   "categories": [
     {
       "id": "pure-argan",
@@ -146,6 +147,5 @@
         }
       ]
     }
-  ],
-  "type": "shop"
+  ]
 }
