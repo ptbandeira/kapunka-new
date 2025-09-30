@@ -38,13 +38,13 @@ const normalizeInternal = (href: string) => {
 const MediaShowcase: React.FC<MediaShowcaseProps> = ({ title, items, fieldPath }) => {
   return (
     <section className="py-20 sm:py-28 bg-white" data-nlv-field-path={fieldPath}>
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="w-full mx-auto px-4 sm:px-6 lg:px-0">
         {title && (
           <div className="max-w-3xl mb-10" data-nlv-field-path={fieldPath ? `${fieldPath}.title` : undefined}>
             <h2 className="text-3xl sm:text-4xl font-semibold text-stone-900 tracking-tight">{title}</h2>
           </div>
         )}
-        <div className="grid gap-6 md:grid-cols-4 auto-rows-[minmax(240px,1fr)]">
+        <div className="grid auto-rows-[minmax(240px,1fr)] gap-y-6 md:grid-cols-4 md:gap-x-0 lg:gap-y-8">
           {items.map((item, index) => {
             const imageSrc = item.image;
             const eyebrow = item.eyebrow?.trim();
@@ -79,7 +79,7 @@ const MediaShowcase: React.FC<MediaShowcaseProps> = ({ title, items, fieldPath }
             return (
               <article
                 key={`${item.fieldPath ?? index}`}
-                className={`relative overflow-hidden rounded-3xl bg-stone-900 text-white flex ${layoutClasses}`}
+                className={`relative overflow-hidden bg-stone-900 text-white flex ${layoutClasses}`}
                 data-nlv-field-path={item.fieldPath}
               >
                 {imageSrc ? (
