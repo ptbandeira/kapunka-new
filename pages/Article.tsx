@@ -1,4 +1,9 @@
-import React, { useState, useEffect, useMemo, useCallback } from 'react';
+import React, {
+  useState,
+  useEffect,
+  useMemo,
+  useCallback,
+} from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { Helmet } from 'react-helmet-async';
 import { motion } from 'framer-motion';
@@ -6,6 +11,10 @@ import { motion } from 'framer-motion';
 import { useLanguage } from '../contexts/LanguageContext';
 import type { Article, Product } from '../types';
 import ProductCard from '../components/ProductCard';
+import {
+  loadLearnPageContent,
+  type LearnPageContentResult,
+} from '../utils/loadLearnPageContent';
 
 const ArticlePage: React.FC = () => {
     const { slug } = useParams<{ slug: string }>();
@@ -16,6 +25,29 @@ const ArticlePage: React.FC = () => {
     const [allProducts, setAllProducts] = useState<Product[]>([]);
     const [articleIndex, setArticleIndex] = useState<number>(-1);
     const [loading, setLoading] = useState(true);
+    const [learnContent, setLearnContent] = useState<LearnPageContentResult | null>(null);
+
+    useEffect(() => {
+        let isMounted = true;
+
+        loadLearnPageContent(language)
+            .then((result) => {
+                if (!isMounted) {
+                    return;
+                }
+                setLearnContent(result);
+            })
+            .catch((error) => {
+                console.error('Failed to load Learn page content for article view', error);
+                if (isMounted) {
+                    setLearnContent(null);
+                }
+            });
+
+        return () => {
+            isMounted = false;
+        };
+    }, [language]);
 
     useEffect(() => {
         let isMounted = true;
@@ -81,14 +113,47 @@ const ArticlePage: React.FC = () => {
         return () => { isMounted = false; };
     }, [slug]);
 
-    const formatCategoryLabel = useCallback((category: string) => {
-        const key = `learn.categories.${category}`;
-        const label = t(key);
-        if (label === key) {
-            return category.replace('-', ' ').replace(/\b\w/g, (letter) => letter.toUpperCase());
+    const learnFieldPath = useMemo(() => {
+        if (!learnContent) {
+            return `pages.learn_${language}`;
         }
-        return label;
-    }, [t]);
+        return learnContent.source === 'site'
+            ? `site.content.${learnContent.locale}.pages.learn`
+            : `pages.learn_${learnContent.locale}`;
+    }, [language, learnContent]);
+
+    const learnCategories = useMemo(() => {
+        const categories = new Map<string, { label: string; fieldPath?: string }>();
+
+        if (learnContent?.data.categories) {
+            learnContent.data.categories.forEach((category, index) => {
+                categories.set(category.id, {
+                    label: category.label,
+                    fieldPath: `${learnFieldPath}.categories.${index}.label`,
+                });
+            });
+        }
+
+        const translationCategories = t<Record<string, string>>('learn.categories');
+        if (translationCategories && typeof translationCategories === 'object' && !Array.isArray(translationCategories)) {
+            for (const [id, label] of Object.entries(translationCategories)) {
+                if (!categories.has(id)) {
+                    categories.set(id, { label });
+                }
+            }
+        }
+
+        return categories;
+    }, [learnContent, learnFieldPath, t]);
+
+    const formatCategoryLabel = useCallback((category: string) => {
+        const matched = learnCategories.get(category);
+        if (matched) {
+            return matched.label;
+        }
+
+        return category.replace('-', ' ').replace(/\b\w/g, (letter) => letter.toUpperCase());
+    }, [learnCategories]);
 
     const formattedContent = useMemo(() => {
         if (!article) return null;
@@ -159,7 +224,8 @@ const ArticlePage: React.FC = () => {
 
     const articleFieldPath = articleIndex >= 0 ? `articles.items.${articleIndex}` : undefined;
     const categoryFieldPath = article.category
-        ? `translations.${language}.learn.categories.${article.category}`
+        ? learnCategories.get(article.category)?.fieldPath
+            ?? `translations.${language}.learn.categories.${article.category}`
         : undefined;
 
     return (

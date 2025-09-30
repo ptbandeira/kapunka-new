@@ -8,18 +8,32 @@ interface ArticleCardProps {
   article: Article;
   index: number;
   fieldPath?: string;
+  categoryLabel?: string;
+  categoryFieldPath?: string;
 }
 
-const ArticleCard: React.FC<ArticleCardProps> = ({ article, index, fieldPath }) => {
+const fallbackCategoryLabel = (category: string): string => (
+  category.replace('-', ' ').replace(/\b\w/g, (letter) => letter.toUpperCase())
+);
+
+const ArticleCard: React.FC<ArticleCardProps> = ({
+  article,
+  index,
+  fieldPath,
+  categoryLabel,
+  categoryFieldPath,
+}) => {
   const { translate, t, language } = useLanguage();
 
-  const categoryKey = `learn.categories.${article.category}`;
-  const categoryLabel = t(categoryKey);
-  const displayCategory = categoryLabel === categoryKey
-    ? article.category.replace('-', ' ').replace(/\b\w/g, (letter) => letter.toUpperCase())
-    : categoryLabel;
+  const translationCategoryKey = `learn.categories.${article.category}`;
+  const translatedCategory = t(translationCategoryKey);
+  const displayCategory = categoryLabel
+    ?? (translatedCategory === translationCategoryKey
+      ? fallbackCategoryLabel(article.category)
+      : translatedCategory);
 
-  const categoryFieldPath = `translations.${language}.learn.categories.${article.category}`;
+  const resolvedCategoryFieldPath = categoryFieldPath
+    ?? `translations.${language}.learn.categories.${article.category}`;
 
   return (
     <motion.div
@@ -41,7 +55,7 @@ const ArticleCard: React.FC<ArticleCardProps> = ({ article, index, fieldPath }) 
         <div className="mt-4">
           <p
             className="text-sm text-stone-500 uppercase tracking-wider"
-            data-nlv-field-path={categoryFieldPath}
+            data-nlv-field-path={resolvedCategoryFieldPath}
           >
             {displayCategory}
           </p>

@@ -633,6 +633,24 @@ collections:
         fields:
           - *meta_title_field
           - *meta_description_field
+          - label: "Hero Title"
+            name: "heroTitle"
+            widget: "string"
+            i18n: true
+            required: false
+          - label: "Hero Subtitle"
+            name: "heroSubtitle"
+            widget: "text"
+            i18n: true
+            required: false
+          - label: "Categories"
+            name: "categories"
+            widget: "list"
+            collapsed: true
+            summary: "{{fields.label}}"
+            fields:
+              - { label: "ID", name: "id", widget: "string" }
+              - { label: "Label", name: "label", widget: "string", i18n: true }
           - *sections_field
       - name: method
         label: Method Page

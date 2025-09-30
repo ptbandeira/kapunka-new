@@ -1,40 +1,37 @@
 {
-  "metaTitle": "Aprender — Método Kapunka",
-  "metaDescription": "Formación que une el tacto, la neurociencia y el cuidado dérmico.",
-  "sections": [
+  "metaTitle": "Biblioteca de Skincare",
+  "metaDescription": "Explora artículos y guías sobre skincare, ingredientes y cómo mantener una barrera cutánea saludable.",
+  "heroTitle": "Biblioteca de Skincare",
+  "heroSubtitle": "Guías e ideas para ayudarte a entender mejor tu piel.",
+  "categories": [
     {
-      "type": "mediaCopy",
-      "title": "El Método Kapunka",
-      "body": "Un enfoque que combina neurociencia, tacto preciso y cuidado dérmico. No es solo masaje: un protocolo para preoperatorio, tratamiento, recuperación, dolor crónico y cuidado en casa.",
-      "imageRef": "/content/uploads/method-hands.jpg",
-      "layout": "image-right"
+      "id": "all",
+      "label": "Todos los temas"
     },
     {
-      "type": "mediaCopy",
-      "title": "Formación Profesional (ISMET)",
-      "body": "Curso híbrido: 150 h online + 8 h de taller práctico. Objetivos: reducir estrés, dolor y ansiedad; apoyar la cicatrización; convertir la vulnerabilidad en confianza; aplicar el Método paso a paso. Certificación al completar.",
-      "imageRef": "/content/uploads/training-class.jpg",
-      "layout": "image-right"
+      "id": "argan-oil",
+      "label": "Aceite de Argán"
     },
     {
-      "type": "faq",
-      "title": "¿Qué la hace diferente?",
-      "items": [
-        {
-          "q": "¿En qué se diferencia de un masaje relajante?",
-          "a": "Va más allá de la relajación global. Está protocolizada para fases clínicas, trabaja el sistema nervioso y la piel, usa argán Kapunka con propiedades antiinflamatorias y reparadoras, y suma acompañamiento humano."
-        },
-        {
-          "q": "¿Se solapa con técnicas de masaje cicatricial o linfáticas?",
-          "a": "Son valiosas. Kapunka añade una visión más amplia: emoción y sistema nervioso, soporte dermocosmético y protocolos que mejoran toda la experiencia del paciente, no solo el estado mecánico del tejido."
-        }
-      ]
+      "id": "uses-applications",
+      "label": "Usos y Aplicaciones"
     },
     {
-      "type": "banner",
-      "text": "Lleva la formación Kapunka a tu clínica o escuela",
-      "cta": "Solicitar temario",
-      "url": "/contact"
+      "id": "post-procedure",
+      "label": "Post-Procedimiento"
+    },
+    {
+      "id": "skin-barrier",
+      "label": "Barrera Cutánea"
+    },
+    {
+      "id": "baby",
+      "label": "Cuidado del Bebé"
+    },
+    {
+      "id": "scars",
+      "label": "Cicatrices y Recuperación"
     }
-  ]
+  ],
+  "sections": []
 }
