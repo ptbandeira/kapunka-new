@@ -36,6 +36,10 @@ const OVERLAY_POSITIONS = [
   { top: '40%', left: '35%' },
 ];
 
+const QuoteOverlay: React.FC<React.ComponentProps<typeof motion.div>> = (props) => (
+  <motion.div {...props} />
+);
+
 const CommunityCarousel: React.FC<CommunityCarouselProps> = ({
   title,
   slides,
@@ -168,7 +172,7 @@ const CommunityCarousel: React.FC<CommunityCarouselProps> = ({
 
             <AnimatePresence mode="popLayout">
               {currentQuoteSlide ? (
-                <motion.div
+                <QuoteOverlay
                   key={buildSlideKey(currentQuoteSlide, 'hovering-quote')}
                   className="pointer-events-none absolute max-w-xs rounded-2xl bg-stone-900/90 p-5 text-left text-sm text-white shadow-2xl backdrop-blur"
                   style={{ ...overlayPosition }}
@@ -191,7 +195,7 @@ const CommunityCarousel: React.FC<CommunityCarouselProps> = ({
                       {currentQuoteSlide.role}
                     </div>
                   )}
-                </motion.div>
+                </QuoteOverlay>
               ) : null}
             </AnimatePresence>
           </div>
