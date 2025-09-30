@@ -1466,6 +1466,7 @@ const config = {
   stackbitVersion: '~0.6.0',
   contentSources: [contentSource],
   mapModels: ({ models }) => {
+    console.log('mapModels input', models.map(model => model.name));
     const srcType = contentSource.getContentSourceType();
     const srcProjectId = contentSource.getProjectId();
     return models.map((model) => {
