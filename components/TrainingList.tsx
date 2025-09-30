@@ -68,7 +68,11 @@ const TrainingList: React.FC<TrainingListProps> = ({ title, description, entries
   }
 
   return (
-    <section className="py-16 sm:py-24" data-nlv-field-path={fieldPath}>
+    <section
+      className="py-16 sm:py-24"
+      data-nlv-field-path={fieldPath}
+      data-sb-field-path={fieldPath}
+    >
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         {(title || description) && (
           <div className="mb-12 max-w-3xl">
@@ -80,6 +84,7 @@ const TrainingList: React.FC<TrainingListProps> = ({ title, description, entries
                 transition={{ duration: 0.5 }}
                 className="text-3xl sm:text-4xl font-semibold tracking-tight text-stone-900"
                 data-nlv-field-path={fieldPath ? `${fieldPath}.title` : undefined}
+                data-sb-field-path={fieldPath ? `${fieldPath}.title` : undefined}
               >
                 {title}
               </motion.h2>
@@ -92,6 +97,7 @@ const TrainingList: React.FC<TrainingListProps> = ({ title, description, entries
                 transition={{ duration: 0.5, delay: 0.05 }}
                 className="mt-4 text-lg text-stone-600"
                 data-nlv-field-path={fieldPath ? `${fieldPath}.description` : undefined}
+                data-sb-field-path={fieldPath ? `${fieldPath}.description` : undefined}
               >
                 {description}
               </motion.p>
@@ -103,6 +109,7 @@ const TrainingList: React.FC<TrainingListProps> = ({ title, description, entries
           <p
             className="text-stone-500"
             data-nlv-field-path={`translations.${language}.training.emptyState`}
+            data-sb-field-path={`translations.${language}.training.emptyState`}
           >
             {t('training.emptyState')}
           </p>
@@ -121,12 +128,14 @@ const TrainingList: React.FC<TrainingListProps> = ({ title, description, entries
                   transition={{ duration: 0.45, delay: index * 0.05 }}
                   className="flex h-full flex-col justify-between rounded-3xl border border-stone-200 bg-white p-8 shadow-sm shadow-stone-100"
                   data-nlv-field-path={itemFieldPath}
+                  data-sb-field-path={itemFieldPath}
                 >
                   <div>
                     {item.courseTitle && (
                       <h3
                         className="text-xl font-semibold text-stone-900"
                         data-nlv-field-path={itemFieldPath ? `${itemFieldPath}.courseTitle` : undefined}
+                        data-sb-field-path={itemFieldPath ? `${itemFieldPath}.courseTitle` : undefined}
                       >
                         {item.courseTitle}
                       </h3>
@@ -135,6 +144,7 @@ const TrainingList: React.FC<TrainingListProps> = ({ title, description, entries
                       <p
                         className="mt-4 text-sm text-stone-600"
                         data-nlv-field-path={itemFieldPath ? `${itemFieldPath}.courseSummary` : undefined}
+                        data-sb-field-path={itemFieldPath ? `${itemFieldPath}.courseSummary` : undefined}
                       >
                         {item.courseSummary}
                       </p>
@@ -152,8 +162,12 @@ const TrainingList: React.FC<TrainingListProps> = ({ title, description, entries
                       rel={item.linkUrl ? 'noopener noreferrer' : undefined}
                       aria-disabled={!item.linkUrl}
                       data-nlv-field-path={itemFieldPath ? `${itemFieldPath}.linkUrl` : undefined}
+                      data-sb-field-path={itemFieldPath ? `${itemFieldPath}.linkUrl` : undefined}
                     >
-                      <span data-nlv-field-path={`translations.${language}.training.learnMore`}>
+                      <span
+                        data-nlv-field-path={`translations.${language}.training.learnMore`}
+                        data-sb-field-path={`translations.${language}.training.learnMore`}
+                      >
                         {t('training.learnMore')}
                       </span>
                     </a>

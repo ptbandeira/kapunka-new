@@ -72,7 +72,11 @@ const VideoGallery: React.FC<VideoGalleryProps> = ({ title, description, entries
   }
 
   return (
-    <section className="py-16 sm:py-24" data-nlv-field-path={fieldPath}>
+    <section
+      className="py-16 sm:py-24"
+      data-nlv-field-path={fieldPath}
+      data-sb-field-path={fieldPath}
+    >
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         {(title || description) && (
           <div className="mb-12 max-w-3xl">
@@ -84,6 +88,7 @@ const VideoGallery: React.FC<VideoGalleryProps> = ({ title, description, entries
                 transition={{ duration: 0.5 }}
                 className="text-3xl sm:text-4xl font-semibold tracking-tight text-stone-900"
                 data-nlv-field-path={fieldPath ? `${fieldPath}.title` : undefined}
+                data-sb-field-path={fieldPath ? `${fieldPath}.title` : undefined}
               >
                 {title}
               </motion.h2>
@@ -96,6 +101,7 @@ const VideoGallery: React.FC<VideoGalleryProps> = ({ title, description, entries
                 transition={{ duration: 0.5, delay: 0.05 }}
                 className="mt-4 text-lg text-stone-600"
                 data-nlv-field-path={fieldPath ? `${fieldPath}.description` : undefined}
+                data-sb-field-path={fieldPath ? `${fieldPath}.description` : undefined}
               >
                 {description}
               </motion.p>
@@ -107,6 +113,7 @@ const VideoGallery: React.FC<VideoGalleryProps> = ({ title, description, entries
           <p
             className="text-stone-500"
             data-nlv-field-path={`translations.${language}.videos.emptyState`}
+            data-sb-field-path={`translations.${language}.videos.emptyState`}
           >
             {t('videos.emptyState')}
           </p>
@@ -121,24 +128,26 @@ const VideoGallery: React.FC<VideoGalleryProps> = ({ title, description, entries
                 <motion.article
                   key={key}
                   initial={{ opacity: 0, y: 24 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.45, delay: index * 0.05 }}
-                  className="rounded-3xl bg-white p-6 shadow-sm shadow-stone-200"
-                  data-nlv-field-path={itemFieldPath}
-                >
-                  <div className="relative overflow-hidden rounded-xl">
-                    {hasThumbnail ? (
-                      <img
-                        src={item.thumbnail}
-                        alt={item.title ?? 'Video thumbnail'}
-                        className="h-48 w-full object-cover"
-                        loading="lazy"
-                        data-nlv-field-path={itemFieldPath ? `${itemFieldPath}.thumbnail` : undefined}
-                      />
-                    ) : (
-                      <div className={placeholderThumbnailClasses}>Thumbnail coming soon</div>
-                    )}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.45, delay: index * 0.05 }}
+                className="rounded-3xl bg-white p-6 shadow-sm shadow-stone-200"
+                data-nlv-field-path={itemFieldPath}
+                data-sb-field-path={itemFieldPath}
+              >
+                <div className="relative overflow-hidden rounded-xl">
+                  {hasThumbnail ? (
+                    <img
+                      src={item.thumbnail}
+                      alt={item.title ?? 'Video thumbnail'}
+                      className="h-48 w-full object-cover"
+                      loading="lazy"
+                      data-nlv-field-path={itemFieldPath ? `${itemFieldPath}.thumbnail` : undefined}
+                      data-sb-field-path={itemFieldPath ? `${itemFieldPath}.thumbnail` : undefined}
+                    />
+                  ) : (
+                    <div className={placeholderThumbnailClasses}>Thumbnail coming soon</div>
+                  )}
                     <div className="absolute inset-0 flex items-center justify-center">
                       <div className="flex h-14 w-14 items-center justify-center rounded-full bg-white/80 backdrop-blur">
                         <Play className="h-6 w-6 text-stone-800" />
@@ -150,6 +159,7 @@ const VideoGallery: React.FC<VideoGalleryProps> = ({ title, description, entries
                     <h3
                       className="mt-6 text-xl font-semibold text-stone-900"
                       data-nlv-field-path={itemFieldPath ? `${itemFieldPath}.title` : undefined}
+                      data-sb-field-path={itemFieldPath ? `${itemFieldPath}.title` : undefined}
                     >
                       {item.title}
                     </h3>
@@ -159,6 +169,7 @@ const VideoGallery: React.FC<VideoGalleryProps> = ({ title, description, entries
                     <p
                       className="mt-3 text-sm text-stone-600"
                       data-nlv-field-path={itemFieldPath ? `${itemFieldPath}.description` : undefined}
+                      data-sb-field-path={itemFieldPath ? `${itemFieldPath}.description` : undefined}
                     >
                       {item.description}
                     </p>
@@ -171,8 +182,12 @@ const VideoGallery: React.FC<VideoGalleryProps> = ({ title, description, entries
                       target="_blank"
                       rel="noopener noreferrer"
                       data-nlv-field-path={itemFieldPath ? `${itemFieldPath}.videoUrl` : undefined}
+                      data-sb-field-path={itemFieldPath ? `${itemFieldPath}.videoUrl` : undefined}
                     >
-                      <span data-nlv-field-path={`translations.${language}.videos.watchLabel`}>
+                      <span
+                        data-nlv-field-path={`translations.${language}.videos.watchLabel`}
+                        data-sb-field-path={`translations.${language}.videos.watchLabel`}
+                      >
                         {t('videos.watchLabel')}
                       </span>
                     </a>
