@@ -497,7 +497,7 @@ collections:
     files:
       - name: home
         label: Home Page
-        file: content/pages/{{locale}}/home.json
+        file: content/pages/en/home.json
         format: json
         i18n: true
         editor: { preview: true }
@@ -625,7 +625,7 @@ collections:
             types: *section_library
       - name: learn
         label: Learn Page
-        file: content/pages/{{locale}}/learn.json
+        file: content/pages/en/learn.json
         format: json
         i18n: true
         editor: { preview: true }
@@ -636,7 +636,7 @@ collections:
           - *sections_field
       - name: method
         label: Method Page
-        file: content/pages/{{locale}}/method.json
+        file: content/pages/en/method.json
         format: json
         i18n: true
         editor: { preview: true }
@@ -668,7 +668,7 @@ collections:
               - *section_specialties
       - name: clinics
         label: For Clinics Page
-        file: content/pages/{{locale}}/clinics.json
+        file: content/pages/en/clinics.json
         format: json
         i18n: true
         editor: { preview: true }
@@ -679,7 +679,7 @@ collections:
           - *sections_field
       - name: about
         label: About Page
-        file: content/pages/{{locale}}/about.json
+        file: content/pages/en/about.json
         format: json
         i18n: true
         editor: { preview: true }
@@ -690,7 +690,7 @@ collections:
           - *sections_field
       - name: contact
         label: Contact Page
-        file: content/pages/{{locale}}/contact.json
+        file: content/pages/en/contact.json
         format: json
         i18n: true
         editor: { preview: true }
