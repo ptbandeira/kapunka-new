@@ -1,6 +1,6 @@
 {
   "metaTitle": "For Clinics — Trusted, simple, teachable",
-  "metaDescription": "Clinic-ready batching, protocols, and wholesale support.",
+  "metaDescription": "B2B skincare supply for post-treatment skin care. Access dermatologist-approved argan oil, clinical protocols, and training for your clinic.",
   "sections": [
     {
       "type": "mediaCopy",
@@ -34,5 +34,120 @@
       "cta": "Contact our team",
       "url": "/contact"
     }
-  ]
+  ],
+  "headerTitle": "Professional Clinic Partnership Program",
+  "headerSubtitle": "Deliver consistent post-treatment skin care with dermatologist-approved argan oil and minimalist, clinic-tested formulas tailored for recovery and hormonal hydration.",
+  "section1Title": "Evidence-Led Support for Every Treatment Room",
+  "section1Text1": "Our B2B skincare supply combines ECOCERT argan oil, Damask rose water, and barrier-strengthening lipids with educational assets you can personalize. Protocols are reviewed by board-certified dermatologists so your team can offer confident guidance after microneedling, chemical peels, laser, or menopause-related dryness.",
+  "section1Text2": "Partners receive wholesale pricing, onboarding modules, and printable aftercare one-pagers in English, Portuguese, and Spanish. Kapunka simplifies the handoff from procedure to home care, helping you retain patients and build retail revenue.",
+  "protocolSection": {
+    "title": "Protocol Blueprints You Can Personalize",
+    "subtitle": "Downloadable, dermatologist-reviewed routines to guide patients through the most requested treatments.",
+    "cards": [
+      {
+        "title": "Microneedling Aftercare (0–72 hours)",
+        "focus": "Stabilize the barrier, reduce TEWL, and prevent microbial contamination.",
+        "steps": [
+          "Immediately post-treatment: mist Kapunka Damask Rose Water or sterile saline, then press three drops of our dermatologist-approved argan oil over treated zones to seal microchannels.",
+          "First night: instruct patients to avoid makeup and retinoids; reapply argan oil on damp skin every 6–8 hours to keep the lipid matrix saturated.",
+          "Days 2–3: layer a hyaluronic serum under argan oil; resume mineral SPF once erythema resolves."
+        ],
+        "evidence": "Guided by Fabbrocini et al., Journal of Clinical and Aesthetic Dermatology (2014), which documents barrier disruption for up to 48 hours post-microneedling and the benefits of lipid-rich emollients."
+      },
+      {
+        "title": "Medium-Depth Chemical Peel Recovery (Day 0–7)",
+        "focus": "Modulate inflammation, support desquamation, and rebuild the stratum corneum.",
+        "steps": [
+          "Day 0: neutralize the peel per manufacturer instructions; once skin temperature normalizes, mist Damask Rose Water and apply a thin veil of argan oil to buffer tightness.",
+          "Days 1–3: cleanse with pH-balanced milk cleansers; alternate rose water compresses with argan oil occlusion to minimize crusting.",
+          "Days 4–7: introduce ceramide cream over argan oil; reinforce broad-spectrum SPF 50 and avoid exfoliants until peeling completes."
+        ],
+        "evidence": "Informed by Soleymani et al., Journal of Clinical and Aesthetic Dermatology (2018), highlighting lipid replenishment as a key determinant of controlled re-epithelialization."
+      },
+      {
+        "title": "Hydration Support During Menopause",
+        "focus": "Restore lipids, improve elasticity, and calm neurogenic dryness linked to estrogen decline.",
+        "steps": [
+          "Morning: spritz Damask Rose Water, cocktail two drops of argan oil with ceramide moisturizer, and finish with SPF to address increased photosensitivity.",
+          "Evening: apply argan oil to face, neck, and décolletage while skin is damp; follow with light massage to stimulate microcirculation.",
+          "Weekly: suggest scalp massages with argan oil to offset hair density changes and provide hand and forearm treatments during in-clinic visits."
+        ],
+        "evidence": "Aligned with Lephart, Biomedicine & Pharmacotherapy (2016) and Sator et al., Journal of the American Academy of Dermatology (2001), which report improved elasticity and hydration in postmenopausal skin after topical phyto-lipids."
+      }
+    ]
+  },
+  "referencesSection": {
+    "title": "Clinical References & Expert Voices",
+    "studiesTitle": "Peer-reviewed highlights",
+    "studies": [
+      {
+        "title": "Fabbrocini A. et al. Microneedling in dermatology: A review.",
+        "details": "Journal of Clinical and Aesthetic Dermatology, 2014."
+      },
+      {
+        "title": "Soleymani T. et al. A practical approach to chemical peels.",
+        "details": "Journal of Clinical and Aesthetic Dermatology, 2018."
+      },
+      {
+        "title": "Lephart E.D. Skin aging and menopause: Implications for treatment.",
+        "details": "Biomedicine & Pharmacotherapy, 2016."
+      }
+    ],
+    "testimonialsTitle": "Dermatologist testimonials",
+    "testimonials": [
+      {
+        "quote": "\"Kapunka’s dermatologist-approved argan oil delivers the lipid profile I want for post-treatment skin care, and patients appreciate the sustainable sourcing.\"",
+        "name": "Dr. Sofia Mendes",
+        "credentials": "Board-Certified Dermatologist, Lisbon"
+      },
+      {
+        "quote": "\"The minimalist INCI keeps our sensitized patients comfortable after peels, while the brand’s training modules shorten staff onboarding.\"",
+        "name": "Dr. Elena Ruiz",
+        "credentials": "Dermatologic Surgeon, Madrid"
+      }
+    ]
+  },
+  "keywordSection": {
+    "title": "Optimized B2B Skincare Supply",
+    "subtitle": "Include these focus points in your listings and marketing to reach discerning patients.",
+    "keywords": [
+      "post-treatment skin care protocols",
+      "dermatologist-approved argan oil retail sets",
+      "B2B skincare supply for medical spas",
+      "hormonal hydration support kits",
+      "sustainable Moroccan argan oil wholesale"
+    ]
+  },
+  "faqSection": {
+    "title": "Clinic FAQs",
+    "subtitle": "Logistics, training, and application methods tailored for your team.",
+    "items": [
+      {
+        "question": "What is the minimum order quantity (MOQ)?",
+        "answer": "Opening orders start at 24 retail units or 6 professional back-bar units. Mixed product cases qualify for the same wholesale pricing so smaller clinics can curate assortments."
+      },
+      {
+        "question": "Do you provide protocol training?",
+        "answer": "Yes. Partners access a bilingual e-learning portal with microneedling, chemical peel, and menopause hydration modules. Live quarterly webinars review updates and allow Q&A with our medical advisory board."
+      },
+      {
+        "question": "How should clinicians apply the argan oil in treatment rooms?",
+        "answer": "Decant into sterile droppers. After finishing a treatment, mist the skin with rose water and press the oil in gloved hands to avoid friction. For scalp or body services, warm the oil to body temperature before massage."
+      },
+      {
+        "question": "Can Kapunka support white-label or co-branded materials?",
+        "answer": "We offer customizable post-treatment cards and co-branded sleeves after your third order. Our design team adapts assets to your brand within five business days."
+      }
+    ]
+  },
+  "doctorsTitle": "Trusted by Top Professionals",
+  "ctaTitle": "Become a Partner",
+  "ctaSubtitle": "Schedule a call to review wholesale pricing, sampling, and clinic launch support.",
+  "ctaButton": "Contact Us",
+  "partnersTitle": "As Seen In",
+  "intro": {
+    "title": "Evidence-Led Support for Every Treatment Room",
+    "text1": "Our B2B skincare supply combines ECOCERT argan oil, Damask rose water, and barrier-strengthening lipids with educational assets you can personalize. Protocols are reviewed by board-certified dermatologists so your team can offer confident guidance after microneedling, chemical peels, laser, or menopause-related dryness.",
+    "text2": "Partners receive wholesale pricing, onboarding modules, and printable aftercare one-pagers in English, Portuguese, and Spanish. Kapunka simplifies the handoff from procedure to home care, helping you retain patients and build retail revenue."
+  }
 }

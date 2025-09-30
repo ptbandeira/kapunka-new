@@ -694,6 +694,126 @@ collections:
         fields:
           - *meta_title_field
           - *meta_description_field
+          - label: "Header Title"
+            name: "headerTitle"
+            widget: "string"
+            i18n: true
+            required: false
+          - label: "Header Subtitle"
+            name: "headerSubtitle"
+            widget: "text"
+            i18n: true
+            required: false
+          - label: "Intro Section"
+            name: "intro"
+            widget: "object"
+            collapsed: true
+            required: false
+            fields:
+              - { label: "Title", name: "title", widget: "string", i18n: true, required: false }
+              - { label: "Paragraph 1", name: "text1", widget: "text", i18n: true, required: false }
+              - { label: "Paragraph 2", name: "text2", widget: "text", i18n: true, required: false }
+          - label: "Protocol Section"
+            name: "protocolSection"
+            widget: "object"
+            collapsed: true
+            required: false
+            fields:
+              - { label: "Title", name: "title", widget: "string", i18n: true, required: false }
+              - { label: "Subtitle", name: "subtitle", widget: "text", i18n: true, required: false }
+              - label: "Cards"
+                name: "cards"
+                widget: "list"
+                collapsed: true
+                summary: "{{fields.title}}"
+                fields:
+                  - { label: "Card Title", name: "title", widget: "string", i18n: true }
+                  - { label: "Focus", name: "focus", widget: "text", i18n: true, required: false }
+                  - label: "Steps"
+                    name: "steps"
+                    widget: "list"
+                    field: { label: "Step", name: "step", widget: "text", i18n: true }
+                  - { label: "Evidence", name: "evidence", widget: "text", i18n: true, required: false }
+          - label: "References Section"
+            name: "referencesSection"
+            widget: "object"
+            collapsed: true
+            required: false
+            fields:
+              - { label: "Title", name: "title", widget: "string", i18n: true, required: false }
+              - { label: "Studies Title", name: "studiesTitle", widget: "string", i18n: true, required: false }
+              - label: "Studies"
+                name: "studies"
+                widget: "list"
+                collapsed: true
+                summary: "{{fields.title}}"
+                fields:
+                  - { label: "Study Title", name: "title", widget: "string", i18n: true }
+                  - { label: "Study Details", name: "details", widget: "text", i18n: true, required: false }
+              - { label: "Testimonials Title", name: "testimonialsTitle", widget: "string", i18n: true, required: false }
+              - label: "Testimonials"
+                name: "testimonials"
+                widget: "list"
+                collapsed: true
+                summary: "{{fields.name}}"
+                fields:
+                  - { label: "Quote", name: "quote", widget: "text", i18n: true }
+                  - { label: "Name", name: "name", widget: "string", i18n: false, required: false }
+                  - { label: "Credentials", name: "credentials", widget: "string", i18n: true, required: false }
+          - label: "Keyword Section"
+            name: "keywordSection"
+            widget: "object"
+            collapsed: true
+            required: false
+            fields:
+              - { label: "Title", name: "title", widget: "string", i18n: true, required: false }
+              - { label: "Subtitle", name: "subtitle", widget: "text", i18n: true, required: false }
+              - label: "Keywords"
+                name: "keywords"
+                widget: "list"
+                collapsed: true
+                field: { label: "Keyword", name: "keyword", widget: "string", i18n: true }
+          - label: "FAQ Section"
+            name: "faqSection"
+            widget: "object"
+            collapsed: true
+            required: false
+            fields:
+              - { label: "Title", name: "title", widget: "string", i18n: true, required: false }
+              - { label: "Subtitle", name: "subtitle", widget: "text", i18n: true, required: false }
+              - label: "Items"
+                name: "items"
+                widget: "list"
+                collapsed: true
+                summary: "{{fields.question}}"
+                fields:
+                  - { label: "Question", name: "question", widget: "string", i18n: true }
+                  - { label: "Answer", name: "answer", widget: "text", i18n: true }
+          - label: "Doctors Title"
+            name: "doctorsTitle"
+            widget: "string"
+            i18n: true
+            required: false
+          - label: "CTA Title"
+            name: "ctaTitle"
+            widget: "string"
+            i18n: true
+            required: false
+          - label: "CTA Subtitle"
+            name: "ctaSubtitle"
+            widget: "text"
+            i18n: true
+            required: false
+          - label: "CTA Button Label"
+            name: "ctaButton"
+            widget: "string"
+            i18n: true
+            required: false
+          - label: "Partners Title"
+            name: "partnersTitle"
+            widget: "string"
+            i18n: true
+            required: false
           - *sections_field
       - name: about
         label: About Page

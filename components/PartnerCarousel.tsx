@@ -3,11 +3,16 @@ import { motion } from 'framer-motion';
 import { useLanguage } from '../contexts/LanguageContext';
 import type { Partner } from '../types';
 
-const PartnerCarousel: React.FC = () => {
+interface PartnerCarouselProps {
+  title?: string;
+  fieldPath?: string;
+}
+
+const PartnerCarousel: React.FC<PartnerCarouselProps> = ({ title, fieldPath }) => {
     const { t, language } = useLanguage();
     const [partners, setPartners] = useState<Partner[]>([]);
-
-    const clinicsFieldPath = `translations.${language}.clinics`;
+    const resolvedTitle = title ?? t('clinics.partnersTitle');
+    const resolvedFieldPath = fieldPath ?? `translations.${language}.clinics.partnersTitle`;
 
     useEffect(() => {
         fetch('/content/partners.json')
@@ -39,9 +44,9 @@ const PartnerCarousel: React.FC = () => {
             <div className="container mx-auto px-4 sm:px-6 lg:px-8">
                 <h2
                     className="text-2xl font-semibold text-center text-stone-600 mb-12"
-                    data-nlv-field-path={`${clinicsFieldPath}.partnersTitle`}
+                    data-nlv-field-path={resolvedFieldPath}
                 >
-                    {t('clinics.partnersTitle')}
+                    {resolvedTitle}
                 </h2>
                 <motion.div
                     className="flex justify-center items-center flex-wrap gap-x-12 gap-y-8"

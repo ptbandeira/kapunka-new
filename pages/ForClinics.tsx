@@ -1,10 +1,14 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useMemo } from 'react';
 import { Helmet } from 'react-helmet-async';
 import { motion } from 'framer-motion';
 import { useLanguage } from '../contexts/LanguageContext';
 import { useSiteSettings } from '../contexts/SiteSettingsContext';
 import PartnerCarousel from '../components/PartnerCarousel';
 import type { Doctor } from '../types';
+import {
+  loadClinicsPageContent,
+  type ClinicsPageContentResult,
+} from '../utils/loadClinicsPageContent';
 
 interface ClinicProtocol {
   title: string;
@@ -111,53 +115,130 @@ const ForClinics: React.FC = () => {
     settings: { clinics },
   } = useSiteSettings();
   const [doctors, setDoctors] = useState<Doctor[]>([]);
+  const [pageContent, setPageContent] = useState<ClinicsPageContentResult | null>(null);
 
-  const clinicsFieldPath = `translations.${language}.clinics`;
+  const clinicsFieldPath = useMemo(() => {
+    if (!pageContent) {
+      return `pages.clinics_${language}`;
+    }
+
+    return pageContent.source === 'site'
+      ? `site.content.${pageContent.locale}.pages.clinics`
+      : `pages.clinics_${pageContent.locale}`;
+  }, [language, pageContent]);
+
   const commonFieldPath = `translations.${language}.common`;
 
   const clinicsCtaLink = clinics?.ctaLink ?? '#/contact';
 
-  const protocolSection = t<unknown>('clinics.protocolSection');
-  const referencesSection = t<unknown>('clinics.referencesSection');
-  const faqSection = t<unknown>('clinics.faqSection');
-  const keywordSection = t<unknown>('clinics.keywordSection');
+  useEffect(() => {
+    let isMounted = true;
 
-  const protocolSectionData: ClinicProtocolSection = isProtocolSection(protocolSection)
-    ? protocolSection
-    : {
-        title: '',
-        subtitle: '',
-        cards: [],
-      };
-  const referencesSectionData: ClinicReferencesSection = isReferencesSection(referencesSection)
-    ? referencesSection
-    : {
-        title: '',
-        studiesTitle: '',
-        studies: [],
-        testimonialsTitle: '',
-        testimonials: [],
-      };
-  const faqSectionData: ClinicFAQSection = isFaqSection(faqSection)
-    ? faqSection
-    : {
-        title: '',
-        subtitle: '',
-        items: [],
-      };
-  const keywordSectionData: ClinicKeywordSection = isKeywordSection(keywordSection)
-    ? keywordSection
-    : {
-        title: '',
-        subtitle: '',
-        keywords: [],
-      };
+    loadClinicsPageContent(language)
+      .then((result) => {
+        if (!isMounted) {
+          return;
+        }
+        setPageContent(result);
+      })
+      .catch((error) => {
+        console.error('Failed to load clinics page content', error);
+        if (isMounted) {
+          setPageContent(null);
+        }
+      });
+
+    return () => {
+      isMounted = false;
+    };
+  }, [language]);
+
+  const translationProtocolSection = t<unknown>('clinics.protocolSection');
+  const translationReferencesSection = t<unknown>('clinics.referencesSection');
+  const translationFaqSection = t<unknown>('clinics.faqSection');
+  const translationKeywordSection = t<unknown>('clinics.keywordSection');
+
+  const metaTitle = pageContent?.data.metaTitle ?? t('clinics.title');
+  const metaDescription = pageContent?.data.metaDescription ?? t('clinics.metaDescription');
+
+  const headerTitle = pageContent?.data.headerTitle ?? t('clinics.headerTitle');
+  const headerSubtitle = pageContent?.data.headerSubtitle ?? t('clinics.headerSubtitle');
+
+  const introBlock = pageContent?.data.intro ?? {
+    title: pageContent?.data.section1Title,
+    text1: pageContent?.data.section1Text1,
+    text2: pageContent?.data.section1Text2,
+  };
+
+  const introTitle = introBlock?.title ?? pageContent?.data.section1Title ?? t('clinics.section1Title');
+  const introText1 = introBlock?.text1 ?? pageContent?.data.section1Text1 ?? t('clinics.section1Text1');
+  const introText2 = introBlock?.text2 ?? pageContent?.data.section1Text2 ?? t('clinics.section1Text2');
+
+  const pageProtocolSection = pageContent?.data.protocolSection;
+  const protocolSectionData: ClinicProtocolSection = isProtocolSection(pageProtocolSection)
+    ? pageProtocolSection
+    : isProtocolSection(translationProtocolSection)
+      ? translationProtocolSection
+      : {
+          title: '',
+          subtitle: '',
+          cards: [],
+        };
+  const pageReferencesSection = pageContent?.data.referencesSection;
+  const referencesSectionData: ClinicReferencesSection = isReferencesSection(pageReferencesSection)
+    ? pageReferencesSection
+    : isReferencesSection(translationReferencesSection)
+      ? translationReferencesSection
+      : {
+          title: '',
+          studiesTitle: '',
+          studies: [],
+          testimonialsTitle: '',
+          testimonials: [],
+        };
+  const pageFaqSection = pageContent?.data.faqSection;
+  const faqSectionData: ClinicFAQSection = isFaqSection(pageFaqSection)
+    ? pageFaqSection
+    : isFaqSection(translationFaqSection)
+      ? translationFaqSection
+      : {
+          title: '',
+          subtitle: '',
+          items: [],
+        };
+  const pageKeywordSection = pageContent?.data.keywordSection;
+  const keywordSectionData: ClinicKeywordSection = isKeywordSection(pageKeywordSection)
+    ? pageKeywordSection
+    : isKeywordSection(translationKeywordSection)
+      ? translationKeywordSection
+      : {
+          title: '',
+          subtitle: '',
+          keywords: [],
+        };
 
   const protocolCards = protocolSectionData.cards;
   const studies = referencesSectionData.studies;
   const testimonials = referencesSectionData.testimonials;
   const faqItems = faqSectionData.items;
   const keywordPhrases = keywordSectionData.keywords;
+
+  const doctorsTitle = pageContent?.data.doctorsTitle ?? t('clinics.doctorsTitle');
+  const ctaTitle = pageContent?.data.ctaTitle ?? t('clinics.ctaTitle');
+  const ctaSubtitle = pageContent?.data.ctaSubtitle ?? t('clinics.ctaSubtitle');
+  const ctaButtonLabel = pageContent?.data.ctaButton ?? t('clinics.ctaButton');
+  const partnersTitle = pageContent?.data.partnersTitle ?? t('clinics.partnersTitle');
+
+  const headerTitleFieldPath = `${clinicsFieldPath}.headerTitle`;
+  const headerSubtitleFieldPath = `${clinicsFieldPath}.headerSubtitle`;
+  const introTitleFieldPath = `${clinicsFieldPath}.intro.title`;
+  const introText1FieldPath = `${clinicsFieldPath}.intro.text1`;
+  const introText2FieldPath = `${clinicsFieldPath}.intro.text2`;
+  const doctorsTitleFieldPath = `${clinicsFieldPath}.doctorsTitle`;
+  const ctaTitleFieldPath = `${clinicsFieldPath}.ctaTitle`;
+  const ctaSubtitleFieldPath = `${clinicsFieldPath}.ctaSubtitle`;
+  const ctaButtonFieldPath = `${clinicsFieldPath}.ctaButton`;
+  const partnersTitleFieldPath = `${clinicsFieldPath}.partnersTitle`;
 
   useEffect(() => {
     fetch('/content/doctors.json')
@@ -168,8 +249,8 @@ const ForClinics: React.FC = () => {
   return (
     <div>
       <Helmet>
-        <title>{t('clinics.title')} | Kapunka Skincare</title>
-        <meta name="description" content={t('clinics.metaDescription')} />
+        <title>{metaTitle} | Kapunka Skincare</title>
+        <meta name="description" content={metaDescription} />
       </Helmet>
       <header className="py-20 sm:py-32 bg-stone-100 text-center">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
@@ -178,18 +259,18 @@ const ForClinics: React.FC = () => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
             className="text-4xl sm:text-5xl font-semibold tracking-tight"
-            data-nlv-field-path={`${clinicsFieldPath}.headerTitle`}
+            data-nlv-field-path={headerTitleFieldPath}
           >
-            {t('clinics.headerTitle')}
+            {headerTitle}
           </motion.h1>
           <motion.p
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.1 }}
             className="mt-4 text-lg text-stone-600 max-w-3xl mx-auto"
-            data-nlv-field-path={`${clinicsFieldPath}.headerSubtitle`}
+            data-nlv-field-path={headerSubtitleFieldPath}
           >
-            {t('clinics.headerSubtitle')}
+            {headerSubtitle}
           </motion.p>
         </div>
       </header>
@@ -199,16 +280,16 @@ const ForClinics: React.FC = () => {
           <div className="text-center max-w-3xl mx-auto">
             <h2
               className="text-3xl font-semibold mb-6"
-              data-nlv-field-path={`${clinicsFieldPath}.section1Title`}
+              data-nlv-field-path={introTitleFieldPath}
             >
-              {t('clinics.section1Title')}
+              {introTitle}
             </h2>
             <div className="text-stone-600 leading-relaxed space-y-4">
-              <p data-nlv-field-path={`${clinicsFieldPath}.section1Text1`}>
-                {t('clinics.section1Text1')}
+              <p data-nlv-field-path={introText1FieldPath}>
+                {introText1}
               </p>
-              <p data-nlv-field-path={`${clinicsFieldPath}.section1Text2`}>
-                {t('clinics.section1Text2')}
+              <p data-nlv-field-path={introText2FieldPath}>
+                {introText2}
               </p>
             </div>
           </div>
@@ -376,9 +457,9 @@ const ForClinics: React.FC = () => {
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <h2
             className="text-3xl font-semibold text-center mb-12"
-            data-nlv-field-path={`${clinicsFieldPath}.doctorsTitle`}
+            data-nlv-field-path={doctorsTitleFieldPath}
           >
-            {t('clinics.doctorsTitle')}
+            {doctorsTitle}
           </h2>
           {doctors.length > 0 ? (
             <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-8 text-center">
@@ -494,28 +575,28 @@ const ForClinics: React.FC = () => {
         </section>
       )}
 
-      <PartnerCarousel />
+      <PartnerCarousel title={partnersTitle} fieldPath={partnersTitleFieldPath} />
 
       <section className="py-16 sm:py-24">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 text-center max-w-2xl">
           <h2
             className="text-3xl font-semibold mb-4"
-            data-nlv-field-path={`${clinicsFieldPath}.ctaTitle`}
+            data-nlv-field-path={ctaTitleFieldPath}
           >
-            {t('clinics.ctaTitle')}
+            {ctaTitle}
           </h2>
           <p
             className="text-stone-600 mb-8"
-            data-nlv-field-path={`${clinicsFieldPath}.ctaSubtitle`}
+            data-nlv-field-path={ctaSubtitleFieldPath}
           >
-            {t('clinics.ctaSubtitle')}
+            {ctaSubtitle}
           </p>
           <a
             href={clinicsCtaLink}
             className="px-8 py-3 bg-stone-900 text-white font-semibold rounded-md hover:bg-stone-700 transition-colors"
           >
-            <span data-nlv-field-path={`${clinicsFieldPath}.ctaButton`}>
-              {t('clinics.ctaButton')}
+            <span data-nlv-field-path={ctaButtonFieldPath}>
+              {ctaButtonLabel}
             </span>
           </a>
         </div>
