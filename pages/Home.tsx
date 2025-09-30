@@ -112,6 +112,7 @@ type HomeSection =
         role?: string;
       }[];
       slideDuration?: number;
+      quoteDuration?: number;
     }
   | {
       type: 'newsletterSignup';
@@ -237,6 +238,39 @@ const communityCarouselSectionSchema = z
     title: z.string().optional(),
     slides: z.array(communityCarouselSlideSchema).optional(),
     slideDuration: z.number().optional(),
+    quoteDuration: z.number().optional(),
+  })
+  .passthrough();
+
+const faqItemSchema = z
+  .object({
+    q: z.string().optional(),
+    a: z.string().optional(),
+  })
+  .passthrough();
+
+const faqSectionSchema = z
+  .object({
+    type: z.literal('faq'),
+    title: z.string().optional(),
+    items: z.array(faqItemSchema).optional(),
+  })
+  .passthrough();
+
+const bannerSectionSchema = z
+  .object({
+    type: z.literal('banner'),
+    text: z.string().optional(),
+    cta: z.string().optional(),
+    url: z.string().optional(),
+  })
+  .passthrough();
+
+const videoSectionSchema = z
+  .object({
+    type: z.literal('video'),
+    title: z.string().optional(),
+    url: z.string().optional(),
   })
   .passthrough();
 
@@ -322,6 +356,9 @@ const structuredSectionSchema = z.discriminatedUnion('type', [
   pillarsSectionSchema,
   mediaCopySectionSchema,
   testimonialsSectionSchema,
+  faqSectionSchema,
+  bannerSectionSchema,
+  videoSectionSchema,
 ]);
 
 const genericSectionSchema = z.object({ type: z.string() }).passthrough();
@@ -601,6 +638,22 @@ const extractCmsCta = (value: CmsCtaLike): { label?: string; href?: string } => 
   label: extractCmsCtaLabel(value),
   href: extractCmsCtaHref(value),
 });
+
+const sanitizeOptionalCmsString = (value: unknown): string | undefined => {
+  if (typeof value === 'string') {
+    return sanitizeCmsString(value);
+  }
+
+  return undefined;
+};
+
+const toCmsCtaLike = (value: unknown): CmsCtaLike => {
+  if (typeof value === 'string' || isCmsCtaObject(value)) {
+    return value;
+  }
+
+  return undefined;
+};
 
 const HOME_CONTENT_LOCATIONS: ReadonlyArray<{
   source: ContentSource;
@@ -1666,27 +1719,27 @@ const Home: React.FC = () => {
   const heroSecondaryCtaCmsValue = pageContent?.heroCtas?.ctaSecondary;
   const heroPrimaryCtaLabel = firstDefined([
     extractCmsCtaLabel(heroPrimaryCtaCmsValue),
-    sanitizeString(pageContent?.heroPrimaryCta ?? null),
-    sanitizeString(pageContent?.heroCtaPrimary ?? null),
-    sanitizeString(pageContent?.ctaPrimary ?? null),
+    sanitizeOptionalCmsString(pageContent?.heroPrimaryCta),
+    sanitizeOptionalCmsString(pageContent?.heroCtaPrimary),
+    sanitizeOptionalCmsString(pageContent?.ctaPrimary),
   ]) ?? t('home.ctaShop');
   const heroSecondaryCtaLabel = firstDefined([
     extractCmsCtaLabel(heroSecondaryCtaCmsValue),
-    sanitizeString(pageContent?.heroSecondaryCta ?? null),
-    sanitizeString(pageContent?.heroCtaSecondary ?? null),
-    sanitizeString(pageContent?.ctaSecondary ?? null),
+    sanitizeOptionalCmsString(pageContent?.heroSecondaryCta),
+    sanitizeOptionalCmsString(pageContent?.heroCtaSecondary),
+    sanitizeOptionalCmsString(pageContent?.ctaSecondary),
   ]) ?? t('home.ctaClinics');
   const heroPrimaryCtaHref = firstDefined([
     extractCmsCtaHref(heroPrimaryCtaCmsValue),
-    extractCmsCtaHref(pageContent?.heroPrimaryCta),
-    extractCmsCtaHref(pageContent?.heroCtaPrimary),
-    extractCmsCtaHref(pageContent?.ctaPrimary),
+    extractCmsCtaHref(toCmsCtaLike(pageContent?.heroPrimaryCta)),
+    extractCmsCtaHref(toCmsCtaLike(pageContent?.heroCtaPrimary)),
+    extractCmsCtaHref(toCmsCtaLike(pageContent?.ctaPrimary)),
   ]) ?? '/shop';
   const heroSecondaryCtaHref = firstDefined([
     extractCmsCtaHref(heroSecondaryCtaCmsValue),
-    extractCmsCtaHref(pageContent?.heroSecondaryCta),
-    extractCmsCtaHref(pageContent?.heroCtaSecondary),
-    extractCmsCtaHref(pageContent?.ctaSecondary),
+    extractCmsCtaHref(toCmsCtaLike(pageContent?.heroSecondaryCta)),
+    extractCmsCtaHref(toCmsCtaLike(pageContent?.heroCtaSecondary)),
+    extractCmsCtaHref(toCmsCtaLike(pageContent?.ctaSecondary)),
   ]) ?? '/for-clinics';
   const heroPrimaryCta = heroPrimaryCtaLabel;
   const heroSecondaryCta = heroSecondaryCtaLabel;
@@ -1960,8 +2013,9 @@ const Home: React.FC = () => {
 
     switch (section.type) {
       case 'hero': {
+        const heroSection = section as Extract<HomeSection, { type: 'hero' }>;
         const mapPos = (
-          pos?: HomeSection['position'],
+          pos?: Extract<HomeSection, { type: 'hero' }>['position'],
         ): { x: HeroHorizontalAlignment; y: HeroVerticalAlignment } => {
           switch (pos) {
             case 'top-left':
@@ -1987,21 +2041,21 @@ const Home: React.FC = () => {
           }
         };
 
-        const { x: sectionAlignX, y: sectionAlignY } = mapPos(section.position);
+        const { x: sectionAlignX, y: sectionAlignY } = mapPos(heroSection.position);
         const sectionAlignmentClasses = `${HERO_HORIZONTAL_ALIGNMENT_CONTAINER_CLASSES[sectionAlignX]} ${HERO_VERTICAL_ALIGNMENT_CLASSES[sectionAlignY]}`;
         const sectionMiddleNudge = heroLayoutHint === 'image-full' && sectionAlignY === 'middle' ? 'pb-24 md:pb-28' : '';
         const sectionTextAlignmentClass = HERO_HORIZONTAL_TEXT_ALIGNMENT_CLASSES[sectionAlignX];
         const sectionCtaAlignmentClass = HERO_CTA_ALIGNMENT_CLASSES[sectionAlignX];
-        const headline = sanitizeString(section.headline ?? null) ?? heroHeadline;
-        const subheadline = sanitizeString(section.subheadline ?? null) ?? heroSubheadline;
-        const sectionPrimaryCta = extractCmsCta(section.ctaPrimary);
-        const sectionSecondaryCta = extractCmsCta(section.ctaSecondary);
+        const headline = sanitizeString(heroSection.headline ?? null) ?? heroHeadline;
+        const subheadline = sanitizeString(heroSection.subheadline ?? null) ?? heroSubheadline;
+        const sectionPrimaryCta = extractCmsCta(heroSection.ctaPrimary);
+        const sectionSecondaryCta = extractCmsCta(heroSection.ctaSecondary);
         const primaryCta = sectionPrimaryCta.label ?? heroPrimaryCta;
         const primaryCtaHref = sectionPrimaryCta.href ?? heroPrimaryCtaHref;
         const secondaryCta = sectionSecondaryCta.label ?? heroSecondaryCta;
         const secondaryCtaHref = sectionSecondaryCta.href ?? heroSecondaryCtaHref;
-        const sectionPrimaryCtaIsObject = isCmsCtaObject(section.ctaPrimary);
-        const sectionSecondaryCtaIsObject = isCmsCtaObject(section.ctaSecondary);
+        const sectionPrimaryCtaIsObject = isCmsCtaObject(heroSection.ctaPrimary);
+        const sectionSecondaryCtaIsObject = isCmsCtaObject(heroSection.ctaSecondary);
         const sectionPrimaryCtaLabelFieldPath = sectionPrimaryCtaIsObject
           ? `${sectionFieldPath}.ctaPrimary.label`
           : `${sectionFieldPath}.ctaPrimary`;
@@ -2014,7 +2068,7 @@ const Home: React.FC = () => {
         const sectionSecondaryCtaHrefFieldPath = sectionSecondaryCtaIsObject
           ? `${sectionFieldPath}.ctaSecondary.href`
           : undefined;
-        const heroImageOverride = sanitizeString(pickImage(section.image, section.imageRef));
+        const heroImageOverride = sanitizeString(pickImage(heroSection.image, heroSection.imageRef));
         const inlineImageCandidate = (() => {
           if (heroLayoutHint === 'image-left') {
             return heroImageOverride ?? heroImageLeft ?? heroImageRight;
@@ -2030,7 +2084,7 @@ const Home: React.FC = () => {
         const sectionBackgroundImage = heroLayoutHint === 'image-full'
           ? inlineImageCandidate ?? heroImageOverride ?? heroImageRight ?? heroImageLeft ?? heroSrc
           : heroSrc ?? heroImageOverride ?? heroImageRight ?? heroImageLeft;
-        const overlayColor = section.overlay === false ? 'rgba(0,0,0,0)' : heroOverlay;
+        const overlayColor = heroSection.overlay === false ? 'rgba(0,0,0,0)' : heroOverlay;
         const sectionOverlayStyle: React.CSSProperties = sectionShouldRenderInlineImage && heroTextPlacement === 'overlay'
           ? { background: 'linear-gradient(90deg, rgba(255,255,255,0.92) 0%, rgba(255,255,255,0.7) 100%)' }
           : { background: overlayColor };
@@ -2052,7 +2106,7 @@ const Home: React.FC = () => {
         const sectionImageWrapperClasses = sectionShouldRenderInlineImage
           ? `${heroLayoutHint === 'image-left' ? 'order-2 lg:order-1' : 'order-2'} w-full`
           : '';
-        const heroImageFieldKey = section.image ? 'image' : section.imageRef ? 'imageRef' : 'image';
+        const heroImageFieldKey = heroSection.image ? 'image' : heroSection.imageRef ? 'imageRef' : 'image';
         const heroImageFieldPathForSection = `${sectionFieldPath}.${heroImageFieldKey}`;
 
         const sectionInlineImageNode = sectionShouldRenderInlineImage && inlineImageCandidate
@@ -2153,7 +2207,7 @@ const Home: React.FC = () => {
           subheadline,
           sectionBackgroundImage ?? undefined,
           heroTextPlacement,
-          section.position,
+          heroSection.position,
         ]);
 
         return (
@@ -3043,23 +3097,28 @@ const Home: React.FC = () => {
         );
       }
       case 'testimonials': {
-        const sectionTitle = sanitizeString(section.title ?? null);
-        const quotes = (section.quotes ?? [])
+        const testimonialSection = section as {
+          title?: string | null;
+          quotes?: Array<{ text?: string | null; author?: string | null; role?: string | null }>;
+        };
+        const sectionTitle = sanitizeString(testimonialSection.title ?? null);
+        const quotes = (testimonialSection.quotes ?? [])
           .map((quote) => ({
             text: sanitizeString(quote.text ?? null),
             author: sanitizeString(quote.author ?? null),
             role: sanitizeString(quote.role ?? null),
           }))
-          .filter((quote) => Boolean(quote.text));
+          .filter((quote): quote is { text: string; author: string | undefined; role: string | undefined } => typeof quote.text === 'string' && quote.text.length > 0);
 
         if (quotes.length === 0) {
           return null;
         }
 
-        const testimonialsKey = createKeyFromParts('structured-testimonials', [
+        const testimonialsKeyParts: Array<string | null | undefined> = [
           sectionTitle,
-          quotes.map((quote) => quote.text ?? '').join('|'),
-        ]);
+          quotes.map((quote) => quote.text).join('|'),
+        ];
+        const testimonialsKey = createKeyFromParts('structured-testimonials', testimonialsKeyParts);
 
         return (
           <section
@@ -3069,36 +3128,41 @@ const Home: React.FC = () => {
           >
             <div className="container mx-auto px-4 sm:px-6 lg:px-8">
               <div className="grid gap-8 md:grid-cols-2">
-                {quotes.map((quote, quoteIndex) => (
-                  <blockquote
-                    key={createKeyFromParts('testimonial', [quote.text, quote.author, quote.role])}
-                    className="bg-white rounded-2xl border border-stone-200 p-6 shadow-sm h-full flex flex-col"
-                    data-nlv-field-path={`${sectionFieldPath}.quotes.${quoteIndex}`}
-                  >
-                    <p className="text-stone-700 leading-relaxed flex-1">
-                      <span className="text-3xl leading-none text-stone-300" aria-hidden="true">“</span>
-                      <span className="ml-2 align-middle">{quote.text}</span>
-                    </p>
-                    <footer className="mt-4 text-sm text-stone-500">
-                      {quote.author && (
-                        <span
-                          className="font-semibold text-stone-700"
-                          data-nlv-field-path={`${sectionFieldPath}.quotes.${quoteIndex}.author`}
-                        >
-                          {quote.author}
-                        </span>
-                      )}
-                      {quote.role && (
-                        <span
-                          className="block"
-                          data-nlv-field-path={`${sectionFieldPath}.quotes.${quoteIndex}.role`}
-                        >
-                          {quote.role}
-                        </span>
-                      )}
-                    </footer>
-                  </blockquote>
-                ))}
+                {quotes.map((quote, quoteIndex) => {
+                  const quoteKeyParts: Array<string | null | undefined> = [quote.text, quote.author, quote.role];
+                  const quoteKey = createKeyFromParts('testimonial', quoteKeyParts);
+
+                  return (
+                    <blockquote
+                      key={quoteKey}
+                      className="bg-white rounded-2xl border border-stone-200 p-6 shadow-sm h-full flex flex-col"
+                      data-nlv-field-path={`${sectionFieldPath}.quotes.${quoteIndex}`}
+                    >
+                      <p className="text-stone-700 leading-relaxed flex-1">
+                        <span className="text-3xl leading-none text-stone-300" aria-hidden="true">“</span>
+                        <span className="ml-2 align-middle">{quote.text}</span>
+                      </p>
+                      <footer className="mt-4 text-sm text-stone-500">
+                        {quote.author && (
+                          <span
+                            className="font-semibold text-stone-700"
+                            data-nlv-field-path={`${sectionFieldPath}.quotes.${quoteIndex}.author`}
+                          >
+                            {quote.author}
+                          </span>
+                        )}
+                        {quote.role && (
+                          <span
+                            className="block"
+                            data-nlv-field-path={`${sectionFieldPath}.quotes.${quoteIndex}.role`}
+                          >
+                            {quote.role}
+                          </span>
+                        )}
+                      </footer>
+                    </blockquote>
+                  );
+                })}
               </div>
             </div>
           </section>
@@ -3280,11 +3344,11 @@ const Home: React.FC = () => {
 
       return null;
     })
-    .filter((section): section is React.ReactNode => Boolean(section));
+    .filter(Boolean) as React.ReactNode[];
 
   const renderedLocalSections = sections
     .map((section, index) => renderSection(section, index))
-    .filter((sectionNode): sectionNode is React.ReactNode => Boolean(sectionNode));
+    .filter(Boolean) as React.ReactNode[];
 
   return (
     <div>

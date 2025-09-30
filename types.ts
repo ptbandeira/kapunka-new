@@ -342,6 +342,10 @@ export interface PageContent {
   heroSubheadline?: string;
   heroPrimaryCta?: string;
   heroSecondaryCta?: string;
+  heroCtaPrimary?: unknown;
+  heroCtaSecondary?: unknown;
+  ctaPrimary?: unknown;
+  ctaSecondary?: unknown;
   heroOverlay?: string;
   heroImageLeft?: string;
   heroImageRight?: string;

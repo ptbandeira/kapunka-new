@@ -52,11 +52,18 @@ const PolicyPage: React.FC = () => {
 
     const metaTitle = policy.metaTitle ? (translate(policy.metaTitle) as string) : undefined;
     const metaDescription = policy.metaDescription ? (translate(policy.metaDescription) as string) : undefined;
-    const fallbackDescription = typeof introContent === 'string'
-        ? introContent
-        : Array.isArray(introContent)
-            ? introContent.join(' ')
-            : undefined;
+    const toPlainText = (value: unknown): string | undefined => {
+        if (typeof value === 'string') {
+            return value;
+        }
+
+        if (Array.isArray(value)) {
+            return value.filter((item): item is string => typeof item === 'string').join(' ');
+        }
+
+        return undefined;
+    };
+    const fallbackDescription = toPlainText(introContent);
     const helmetTitle = metaTitle || `${title} | Kapunka Skincare`;
     const helmetDescription = metaDescription || fallbackDescription;
 
