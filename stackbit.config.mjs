@@ -5,12 +5,6 @@ import { FileSystemContentSource } from '@stackbit/cms-git';
 const metadataPath = resolve(process.cwd(), 'metadata.json');
 const metadata = JSON.parse(readFileSync(metadataPath, 'utf8'));
 
-const contentSource = new FileSystemContentSource({
-  rootPath: process.cwd(),
-  contentDirs: ['content'],
-  models: metadata.models,
-});
-
 const pageModels = [
   {
     name: 'shop',
@@ -1450,6 +1444,23 @@ const customModels = [
   },
 ];
 
+const normalizeModelForContentSource = (model) => {
+  const normalized = { ...model };
+  if (normalized.filePath && !normalized.file) {
+    normalized.file = normalized.filePath;
+  }
+  return normalized;
+};
+
+const allModels = [...metadata.models.map(normalizeModelForContentSource), ...customModels];
+
+const contentSource = new FileSystemContentSource({
+  rootPath: process.cwd(),
+  contentDirs: ['content'],
+  documentFileExtensions: ['json'],
+  models: allModels,
+});
+
 /** @type {import('@stackbit/types').StackbitConfig} */
 const config = {
   stackbitVersion: '~0.6.0',
@@ -1457,18 +1468,14 @@ const config = {
   mapModels: ({ models }) => {
     const srcType = contentSource.getContentSourceType();
     const srcProjectId = contentSource.getProjectId();
-    const existing = new Set(models.map(model => model.name));
-
-    const fromMetadata = metadata.models
-      .filter(model => !existing.has(model.name))
-      .map(model => ({ ...model, srcType, srcProjectId }));
-    fromMetadata.forEach(model => existing.add(model.name));
-
-    const fromCustom = customModels
-      .filter(model => !existing.has(model.name))
-      .map(model => ({ ...model, srcType, srcProjectId }));
-
-    return [...models, ...fromMetadata, ...fromCustom];
+    return models.map((model) => {
+      const normalized = normalizeModelForContentSource(model);
+      return {
+        ...normalized,
+        srcType,
+        srcProjectId,
+      };
+    });
   },
   modelExtensions: pageModels,
 };
