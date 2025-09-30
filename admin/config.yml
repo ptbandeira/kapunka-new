@@ -490,111 +490,87 @@ collections:
           - { label: "x (0..1)", name: "x", widget: "number", value_type: "float", min: 0, max: 1, required: false }
           - { label: "y (0..1)", name: "y", widget: "number", value_type: "float", min: 0, max: 1, required: false }
   - name: pages
-    label: Pages
+    label: Page Builder
+    label_singular: Page
     group: "1. Pages"
+    description: "Edit Kapunka pages with reusable, reorderable sections."
     files:
       - name: home
         label: Home Page
-        file: content/pages/en/home.json
+        file: content/pages/{{locale}}/home.json
         format: json
-        editor:
-          preview: true
-        description: "Edit sections from top to bottom. Drag to reorder. Use Hero, Media+Copy, Feature Grid, Product Grid, Testimonials, FAQ, Banner, Video."
         i18n: true
+        editor: { preview: true }
+        description: "Hero and storytelling blocks presented in live page order."
         fields:
-          - label: Meta Title
-            name: metaTitle
-            widget: string
+          - *meta_title_field
+          - *meta_description_field
+          - label: "Hero Headline"
+            name: "heroHeadline"
+            widget: "string"
             i18n: true
             required: false
-          - label: Meta Description
-            name: metaDescription
-            widget: text
+            hint: "Primary hero statement shown on the homepage."
+          - label: "Hero Subheadline"
+            name: "heroSubheadline"
+            widget: "text"
             i18n: true
             required: false
-          - label: Hero Headline
-            name: heroHeadline
-            widget: string
-            i18n: true
-            required: false
-          - label: Hero Subheadline
-            name: heroSubheadline
-            widget: text
-            i18n: true
-            required: false
-          - label: Hero CTAs
-            name: heroCtas
-            widget: object
+          - label: "Hero CTAs"
+            name: "heroCtas"
+            widget: "object"
+            collapsed: true
             required: false
             fields:
-              - label: Primary CTA
-                name: ctaPrimary
-                widget: object
+              - label: "Primary CTA"
+                name: "ctaPrimary"
+                widget: "object"
+                collapsed: true
                 required: false
                 fields:
-                  - label: Label
-                    name: label
-                    widget: string
-                    i18n: true
-                    required: false
-                  - label: Href
-                    name: href
-                    widget: string
-                    required: false
-              - label: Secondary CTA
-                name: ctaSecondary
-                widget: object
+                  - { label: "Label", name: "label", widget: "string", i18n: true, required: false }
+                  - { label: "Link URL", name: "href", widget: "string", required: false, hint: "Use internal routes (e.g. /shop) or full URLs." }
+              - label: "Secondary CTA"
+                name: "ctaSecondary"
+                widget: "object"
+                collapsed: true
                 required: false
                 fields:
-                  - label: Label
-                    name: label
-                    widget: string
-                    i18n: true
-                    required: false
-                  - label: Href
-                    name: href
-                    widget: string
-                    required: false
-          - label: Hero Alignment
-            name: heroAlignment
-            widget: object
+                  - { label: "Label", name: "label", widget: "string", i18n: true, required: false }
+                  - { label: "Link URL", name: "href", widget: "string", required: false }
+          - label: "Hero Alignment"
+            name: "heroAlignment"
+            widget: "object"
+            collapsed: true
             required: false
-            hint: >-
-              Legend — Horizontal Alignment moves the text block left, centered, or right. Vertical Alignment
-              shifts it toward the top, middle, or bottom when overlayed. Text Display chooses whether copy sits on
-              top of the image or below it. Overlay Text Anchor pins overlay copy to a specific corner or edge. Overlay
-              Strength controls how much the background is dimmed. Layout Hint nudges whether the hero behaves as a
-              background image or split layout.
+            hint: "Control where hero text sits relative to imagery."
             fields:
-              - label: Horizontal Alignment
-                name: heroAlignX
-                widget: select
+              - label: "Horizontal Alignment"
+                name: "heroAlignX"
+                widget: "select"
                 options:
                   - { label: "Left", value: "left" }
                   - { label: "Center", value: "center" }
                   - { label: "Right", value: "right" }
-                default: center
-                hint: "Aligns the text block within split hero layouts."
-              - label: Vertical Alignment
-                name: heroAlignY
-                widget: select
+                default: "left"
+              - label: "Vertical Alignment"
+                name: "heroAlignY"
+                widget: "select"
                 options:
                   - { label: "Top", value: "top" }
                   - { label: "Middle", value: "middle" }
                   - { label: "Bottom", value: "bottom" }
-                default: middle
-                hint: "Moves overlay text higher or lower on the hero image."
-              - label: Text Display
-                name: heroTextPosition
-                widget: select
+                default: "middle"
+              - label: "Text Display"
+                name: "heroTextPosition"
+                widget: "select"
                 options:
-                  - { label: "Overlay (on top of image)", value: "overlay" }
-                  - { label: "Below image", value: "below" }
-                default: overlay
-                hint: "Choose overlay to layer copy on the hero image, or below to keep it separate."
-              - label: Overlay Text Anchor
-                name: heroTextAnchor
-                widget: select
+                  - { label: "Overlay (on top of media)", value: "overlay" }
+                  - { label: "Below media", value: "below" }
+                default: "overlay"
+              - label: "Overlay Text Anchor"
+                name: "heroTextAnchor"
+                widget: "select"
                 required: false
                 options:
                   - { label: "Top left", value: "top-left" }
@@ -606,138 +582,68 @@ collections:
                   - { label: "Bottom left", value: "bottom-left" }
                   - { label: "Bottom center", value: "bottom-center" }
                   - { label: "Bottom right", value: "bottom-right" }
-                default: middle-center
-                hint: 'Pins overlay text to a corner or edge when "Text Display" is set to overlay.'
-              - label: Overlay Strength
-                name: heroOverlay
-                widget: select
-                options: [none, light, medium, strong]
-                default: medium
-              - label: Layout Hint
-                name: heroLayoutHint
-                widget: select
-                options: [bg, split]
-                default: bg
-          - label: Hero Images
-            name: heroImages
-            widget: object
-            required: false
-            fields:
-              - label: Hero Image Left
-                name: heroImageLeft
-                widget: image
-                required: false
-              - label: Hero Image Right
-                name: heroImageRight
-                widget: image
-                required: false
-          - label: "Sections — Use root hero OR a hero section (root takes precedence)."
-            name: sections
-            widget: list
-            i18n: true
+                default: "middle-left"
+              - label: "Overlay Strength"
+                name: "heroOverlay"
+                widget: "select"
+                options:
+                  - { label: "None", value: "none" }
+                  - { label: "Light", value: "light" }
+                  - { label: "Medium", value: "medium" }
+                  - { label: "Strong", value: "strong" }
+                default: "medium"
+              - label: "Layout Hint"
+                name: "heroLayoutHint"
+                widget: "select"
+                options:
+                  - { label: "Background image", value: "bg" }
+                  - { label: "Background image (static)", value: "bgImage" }
+                  - { label: "Split · image left", value: "image-left" }
+                  - { label: "Split · image right", value: "image-right" }
+                  - { label: "Full-bleed image", value: "image-full" }
+                  - { label: "Text over media", value: "text-over-media" }
+                  - { label: "Side-by-side", value: "side-by-side" }
+                default: "bg"
+          - label: "Hero Images"
+            name: "heroImages"
+            widget: "object"
             collapsed: true
-            summary: "{{fields.title}} — {{fields.type}}"
-            types:
-              - label: "Hero Section"
-                name: hero
-                widget: object
-                fields:
-                  - { name: type, widget: hidden, default: "hero" }
-                  - { label: "Headline", name: "headline", widget: "string", i18n: true }
-                  - { label: "Subheadline", name: "subheadline", widget: "text", i18n: true, required: false }
-                  - label: "CTAs"
-                    name: "ctas"
-                    widget: "object"
-                    required: false
-                    fields:
-                      - { label: "Primary CTA Label", name: "primaryLabel", widget: "string", i18n: true, required: false }
-                      - { label: "Primary CTA Href", name: "primaryHref", widget: "string", required: false }
-                      - { label: "Secondary CTA Label", name: "secondaryLabel", widget: "string", i18n: true, required: false }
-                      - { label: "Secondary CTA Href", name: "secondaryHref", widget: "string", required: false }
-                  - label: "Alignment"
-                    name: "alignment"
-                    widget: "object"
-                    required: false
-                    fields:
-                      - { label: "Horizontal", name: "horizontal", widget: "select", options: ["left", "center", "right"], default: "center" }
-                      - { label: "Vertical", name: "vertical", widget: "select", options: ["top", "center", "bottom"], default: "center" }
-                      - { label: "Layout Hint", name: "layout", widget: "select", options: ["bgImage", "split"], default: "bgImage", required: false }
-                      - { label: "Overlay", name: "overlay", widget: "number", min: 0, max: 90, value_type: "int", default: 40, required: false }
-                  - label: "Images"
-                    name: "images"
-                    widget: "object"
-                    required: false
-                    fields:
-                      - { label: "Image Left", name: "left", widget: "image", required: false }
-                      - { label: "Image Right", name: "right", widget: "image", required: false }
-              - *section_mediaCopy
-              - *section_featureGrid
-              - *section_productGrid
-              - *section_communityCarousel
-              - *section_testimonials
-              - *section_faq
-              - *section_banner
-              - *section_newsletterSignup
-              - *section_videoGallery
-              - *section_trainingList
-              - *section_timeline
-      - name: shop
-        label: Shop Page
-        file: content/pages/en/shop.json
-        format: json
-        editor:
-          preview: true
-        description: "Edit sections from top to bottom. Drag to reorder. Use Hero, Media+Copy, Feature Grid, Product Grid, Testimonials, FAQ, Banner, Video."
-        i18n: true
-        fields: &page_fields
-          - label: "Meta Title"
-            name: "metaTitle"
-            widget: "string"
-            i18n: true
             required: false
-          - label: "Meta Description"
-            name: "metaDescription"
-            widget: "text"
-            i18n: true
-            required: false
+            hint: "Either upload imagery or reference an existing asset path. Left/right map to split layouts."
+            fields:
+              - { label: "Hero Image Left", name: "heroImageLeft", widget: "image", choose_url: true, required: false }
+              - { label: "Hero Image Left Path", name: "heroImageLeftRef", widget: "string", required: false, hint: "Optional reference such as /content/uploads/home-hero.jpg" }
+              - { label: "Hero Image Right", name: "heroImageRight", widget: "image", choose_url: true, required: false }
+              - { label: "Hero Image Right Path", name: "heroImageRightRef", widget: "string", required: false }
           - label: "Sections"
             name: "sections"
             widget: "list"
             i18n: true
             collapsed: true
-            summary: "{{fields.title}} — {{fields.type}}"
-            types:
-              - *section_mediaCopy
-              - *section_featureGrid
-              - *section_productGrid
-              - *section_communityCarousel
-              - *section_testimonials
-              - *section_faq
-              - *section_banner
-              - *section_newsletterSignup
-              - *section_videoGallery
-              - *section_trainingList
-              - *section_timeline
+            summary: "{{fields.type}} · {{fields.title}}"
+            hint: "Scroll, reorder, duplicate, or add sections in page order."
+            types: *section_library
       - name: learn
         label: Learn Page
-        file: content/pages/en/learn.json
+        file: content/pages/{{locale}}/learn.json
         format: json
-        editor:
-          preview: true
-        description: "Edit sections from top to bottom. Drag to reorder. Use Hero, Media+Copy, Feature Grid, Product Grid, Testimonials, FAQ, Banner, Video."
         i18n: true
-        fields: *page_fields
+        editor: { preview: true }
+        description: "Optional storytelling sections surrounding the Learn hub."
+        fields:
+          - *meta_title_field
+          - *meta_description_field
+          - *sections_field
       - name: method
         label: Method Page
-        file: content/pages/en/method.json
+        file: content/pages/{{locale}}/method.json
         format: json
-        editor:
-          preview: true
-        description: "Edit hero copy, clinical notes, and structured sections in order."
         i18n: true
+        editor: { preview: true }
+        description: "Clinical method overview plus supporting content blocks."
         fields:
-          - { label: "Meta Title", name: "metaTitle", widget: "string", i18n: true, required: false }
-          - { label: "Meta Description", name: "metaDescription", widget: "text", i18n: true, required: false }
+          - *meta_title_field
+          - *meta_description_field
           - { label: "Hero Title", name: "heroTitle", widget: "string", i18n: true, required: false }
           - { label: "Hero Subtitle", name: "heroSubtitle", widget: "text", i18n: true, required: false }
           - label: "Clinical Notes"
@@ -755,38 +661,110 @@ collections:
             name: "sections"
             widget: "list"
             collapsed: true
-            summary: "{{fields.title}} — {{fields.type}}"
+            summary: "{{fields.title}} · {{fields.type}}"
             types:
               - *section_facts
               - *section_bullets
               - *section_specialties
       - name: clinics
         label: For Clinics Page
-        file: content/pages/en/clinics.json
+        file: content/pages/{{locale}}/clinics.json
         format: json
-        editor:
-          preview: true
-        description: "Edit sections from top to bottom. Drag to reorder. Use Hero, Media+Copy, Feature Grid, Product Grid, Testimonials, FAQ, Banner, Video."
         i18n: true
-        fields: *page_fields
+        editor: { preview: true }
+        description: "Clinic partnership story arranged top-to-bottom."
+        fields:
+          - *meta_title_field
+          - *meta_description_field
+          - *sections_field
       - name: about
         label: About Page
-        file: content/pages/en/about.json
+        file: content/pages/{{locale}}/about.json
         format: json
-        editor:
-          preview: true
-        description: "Edit sections from top to bottom. Drag to reorder. Use Hero, Media+Copy, Feature Grid, Product Grid, Testimonials, FAQ, Banner, Video."
         i18n: true
-        fields: *page_fields
+        editor: { preview: true }
+        description: "Brand story sections in live page sequence."
+        fields:
+          - *meta_title_field
+          - *meta_description_field
+          - *sections_field
       - name: contact
         label: Contact Page
-        file: content/pages/en/contact.json
+        file: content/pages/{{locale}}/contact.json
         format: json
-        editor:
-          preview: true
-        description: "Edit sections from top to bottom. Drag to reorder. Use Hero, Media+Copy, Feature Grid, Product Grid, Testimonials, FAQ, Banner, Video."
         i18n: true
-        fields: *page_fields
+        editor: { preview: true }
+        description: "Contact introductions and optional follow-up sections."
+        fields:
+          - *meta_title_field
+          - *meta_description_field
+          - *sections_field
+      - name: shop
+        label: Shop Page
+        file: content/shop.json
+        format: json
+        editor: { preview: false }
+        description: "Curate shop collections, copy, and cross-links."
+        fields:
+          - { name: type, widget: hidden, default: shop }
+          - label: Collections
+            name: categories
+            widget: list
+            collapsed: true
+            summary: "{{fields.title.en}}"
+            fields:
+              - { label: ID, name: id, widget: string }
+              - label: Title
+                name: title
+                widget: object
+                fields:
+                  - { label: English, name: en, widget: string }
+                  - { label: Portuguese, name: pt, widget: string }
+                  - { label: Spanish, name: es, widget: string }
+              - label: Introductory Copy
+                name: intro
+                widget: object
+                fields:
+                  - { label: English, name: en, widget: text }
+                  - { label: Portuguese, name: pt, widget: text }
+                  - { label: Spanish, name: es, widget: text }
+              - label: Product IDs
+                name: productIds
+                widget: relation
+                multiple: true
+                collection: products
+                file: catalog
+                search_fields:
+                  - "items.*.name.en"
+                  - "items.*.name.pt"
+                  - "items.*.name.es"
+                display_fields:
+                  - "items.*.name.en"
+                value_field: "items.*.id"
+                hint: "Products shown for this collection."
+              - label: Related Links
+                name: links
+                widget: list
+                collapsed: true
+                summary: "{{fields.label.en}}"
+                fields:
+                  - { label: ID, name: id, widget: string }
+                  - label: Type
+                    name: type
+                    widget: select
+                    options:
+                      - { label: "Product", value: "product" }
+                      - { label: "Learn Article", value: "article" }
+                      - { label: "Clinic Use-Case", value: "clinics" }
+                  - { label: URL, name: url, widget: string }
+                  - label: Link Label
+                    name: label
+                    widget: object
+                    fields:
+                      - { label: English, name: en, widget: string }
+                      - { label: Portuguese, name: pt, widget: string }
+                      - { label: Spanish, name: es, widget: string }
+
   - name: "mediaSets"
     label: "Media Sets"
     folder: "content/media-sets"
@@ -1394,59 +1372,7 @@ collections:
           - <<: *clinics_fields
             label: Spanish
             name: es
-  - name: shop
-    label: Shop Page
-    files:
-      - name: categories
-        label: Shop Collections
-        file: content/shop.json
-        format: json
-        fields:
-          - label: Categories
-            name: categories
-            widget: list
-            summary: "{{fields.title.en}}"
-            fields:
-              - { label: ID, name: id, widget: string }
-              - label: Title
-                name: title
-                widget: object
-                fields:
-                  - { label: English, name: en, widget: string }
-                  - { label: Portuguese, name: pt, widget: string }
-                  - { label: Spanish, name: es, widget: string }
-              - label: Introductory Copy
-                name: intro
-                widget: object
-                fields:
-                  - { label: English, name: en, widget: text }
-                  - { label: Portuguese, name: pt, widget: text }
-                  - { label: Spanish, name: es, widget: text }
-              - label: Product IDs
-                name: productIds
-                widget: list
-                field: { label: Product ID, name: productId, widget: string }
-              - label: Related Links
-                name: links
-                widget: list
-                summary: "{{fields.label.en}}"
-                fields:
-                  - { label: ID, name: id, widget: string }
-                  - label: Type
-                    name: type
-                    widget: select
-                    options:
-                      - { label: Product, value: product }
-                      - { label: Learn Article, value: article }
-                      - { label: Clinic Use-Case, value: clinics }
-                  - { label: URL, name: url, widget: string }
-                  - label: Label
-                    name: label
-                    widget: object
-                    fields:
-                      - { label: English, name: en, widget: string }
-                      - { label: Portuguese, name: pt, widget: string }
-                      - { label: Spanish, name: es, widget: string }
+
   - name: products
     label: Products
     group: "9. Legacy / Catalog"
