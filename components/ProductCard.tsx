@@ -11,9 +11,12 @@ import type { Product } from '../types';
 interface ProductCardProps {
   product: Product;
   fieldPath?: string;
+  ['data-sb-field-path']?: string;
 }
 
-const ProductCard: React.FC<ProductCardProps> = ({ product, fieldPath }) => {
+const ProductCard: React.FC<ProductCardProps> = (props) => {
+  const { product, fieldPath } = props;
+  const dataSbFieldPath = props['data-sb-field-path'];
   const [selectedSizeId, setSelectedSizeId] = useState(product.sizes[0].id);
   const { addToCart } = useCart();
   const { openCart } = useUI();
@@ -53,7 +56,7 @@ const ProductCard: React.FC<ProductCardProps> = ({ product, fieldPath }) => {
       transition={{ duration: 0.6 }}
       className="group"
       data-nlv-field-path={fieldPath}
-      data-sb-field-path={fieldPath}
+      data-sb-field-path={dataSbFieldPath ?? fieldPath}
     >
       <Link to={`/product/${product.id}`} className="block">
         <div className="relative overflow-hidden rounded-lg">

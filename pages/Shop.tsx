@@ -264,6 +264,7 @@ const Shop: React.FC = () => {
                             ? `shop.categories.${activeCategoryIndex}.links.${linkIndex}.label.${language}`
                             : undefined
                         }
+                        data-sb-field-path={`.${linkIndex}`}
                       >
                         <Icon className="w-4 h-4" />
                         <span>{translate(link.label)}</span>
@@ -293,10 +294,17 @@ const Shop: React.FC = () => {
         </p>
       ) : (
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
-          {displayedProducts.map(product => {
+          {displayedProducts.map((product, index) => {
             const productIndex = products.findIndex((item) => item.id === product.id);
             const productFieldPath = productIndex >= 0 ? `products.items.${productIndex}` : undefined;
-            return <ProductCard key={product.id} product={product} fieldPath={productFieldPath} />;
+            return (
+              <ProductCard
+                key={product.id}
+                product={product}
+                fieldPath={productFieldPath}
+                data-sb-field-path={`.${index}`}
+              />
+            );
           })}
         </div>
       )}

@@ -10,19 +10,22 @@ interface ArticleCardProps {
   fieldPath?: string;
   categoryLabel?: string;
   categoryFieldPath?: string;
+  ['data-sb-field-path']?: string;
 }
 
 const fallbackCategoryLabel = (category: string): string => (
   category.replace('-', ' ').replace(/\b\w/g, (letter) => letter.toUpperCase())
 );
 
-const ArticleCard: React.FC<ArticleCardProps> = ({
-  article,
-  index,
-  fieldPath,
-  categoryLabel,
-  categoryFieldPath,
-}) => {
+const ArticleCard: React.FC<ArticleCardProps> = (props) => {
+  const {
+    article,
+    index,
+    fieldPath,
+    categoryLabel,
+    categoryFieldPath,
+  } = props;
+  const dataSbFieldPath = props['data-sb-field-path'];
   const { translate, t, language } = useLanguage();
 
   const translationCategoryKey = `learn.categories.${article.category}`;
@@ -42,7 +45,7 @@ const ArticleCard: React.FC<ArticleCardProps> = ({
       viewport={{ once: true, amount: 0.3 }}
       transition={{ duration: 0.6, delay: index * 0.1 }}
       data-nlv-field-path={fieldPath}
-      data-sb-field-path={fieldPath}
+      data-sb-field-path={dataSbFieldPath ?? fieldPath}
     >
       <Link to={`/learn/${article.slug}`} className="group block">
         <div className="overflow-hidden rounded-lg">

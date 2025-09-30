@@ -15,7 +15,14 @@ const SUPPORTED_LANGUAGES: Array<{ code: Language; name: string }> = [
   { code: 'es', name: 'ES' },
 ];
 
-const NavItem: React.FC<{ to: string; label: string; fieldPath?: string; sbFieldPath?: string; onClick?: () => void }> = ({ to, label, fieldPath, sbFieldPath, onClick }) => {
+const NavItem: React.FC<{
+  to: string;
+  label: string;
+  fieldPath?: string;
+  sbFieldPath?: string;
+  onClick?: () => void;
+  ['data-sb-field-path']?: string;
+}> = ({ to, label, fieldPath, sbFieldPath, onClick, 'data-sb-field-path': dataSbFieldPath }) => {
   const navLinkClassName = useCallback(({ isActive }: { isActive: boolean }) => (
     `relative transition-colors duration-300 ${
       isActive ? 'text-stone-900' : 'text-stone-500 hover:text-stone-900'
@@ -41,7 +48,7 @@ const NavItem: React.FC<{ to: string; label: string; fieldPath?: string; sbField
   ), [fieldPath, label, sbFieldPath]);
 
   return (
-    <NavLink to={to} onClick={onClick} className={navLinkClassName}>
+    <NavLink to={to} onClick={onClick} className={navLinkClassName} data-sb-field-path={dataSbFieldPath}>
       {renderNavContent}
     </NavLink>
   );
@@ -163,6 +170,7 @@ const Header: React.FC = () => {
                   label={link.label}
                   fieldPath={link.fieldPath}
                   sbFieldPath={`header.navLinks.${index}.label`}
+                  data-sb-field-path={`.${index}`}
                 />
               ))}
             </nav>
@@ -222,6 +230,7 @@ const Header: React.FC = () => {
                     label={link.label}
                     fieldPath={link.fieldPath}
                     sbFieldPath={`header.navLinks.${index}.label`}
+                    data-sb-field-path={`.${index}`}
                     onClick={handleMenuClose}
                   />
                 ))}

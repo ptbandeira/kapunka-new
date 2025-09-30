@@ -8,7 +8,9 @@ import { useCart } from '../contexts/CartContext';
 import { useLanguage } from '../contexts/LanguageContext';
 import type { CartItem, Product } from '../types';
 
-const MiniCartItem: React.FC<{ item: CartItem; products: Product[] }> = ({ item, products }) => {
+const MiniCartItem: React.FC<{ item: CartItem; products: Product[]; ['data-sb-field-path']?: string; }> = (props) => {
+  const { item, products } = props;
+  const dataSbFieldPath = props['data-sb-field-path'];
   const { updateQuantity, removeFromCart } = useCart();
   const { translate } = useLanguage();
 
@@ -31,7 +33,7 @@ const MiniCartItem: React.FC<{ item: CartItem; products: Product[] }> = ({ item,
   }, [removeFromCart, item.productId, item.sizeId]);
 
   return (
-    <div className="flex items-center space-x-4 py-4">
+    <div className="flex items-center space-x-4 py-4" data-sb-field-path={dataSbFieldPath}>
       <img src={product.imageUrl} alt={translate(product.name)} className="w-16 h-16 object-cover rounded" />
       <div className="flex-grow">
         <h4 className="font-semibold text-sm">{translate(product.name)}</h4>
@@ -95,7 +97,14 @@ const MiniCart: React.FC = () => {
             {cart.length > 0 && products.length > 0 ? (
               <>
                 <div className="flex-grow overflow-y-auto px-6 divide-y divide-stone-200">
-                  {cart.map(item => <MiniCartItem key={`${item.productId}-${item.sizeId}`} item={item} products={products} />)}
+                  {cart.map((item, index) => (
+                    <MiniCartItem
+                      key={`${item.productId}-${item.sizeId}`}
+                      item={item}
+                      products={products}
+                      data-sb-field-path={`.${index}`}
+                    />
+                  ))}
                 </div>
                 <div className="p-6 border-t border-stone-200">
                   <div className="flex justify-between items-center mb-4">

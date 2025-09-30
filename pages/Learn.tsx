@@ -235,6 +235,7 @@ const Learn: React.FC = () => {
                   fieldPath={fieldPath}
                   categoryLabel={categoryDetails?.label}
                   categoryFieldPath={categoryFieldPath}
+                  data-sb-field-path={`.${index}`}
                 />
               );
             })}

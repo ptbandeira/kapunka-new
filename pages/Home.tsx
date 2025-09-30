@@ -1087,10 +1087,17 @@ const Bestsellers: React.FC<BestsellersProps> = ({ intro, introFieldPath }) => {
                 )}
                 {featuredProducts.length > 0 ? (
                     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                        {featuredProducts.map((product) => {
+                        {featuredProducts.map((product, index) => {
                             const productIndex = products.findIndex((item) => item.id === product.id);
                             const productFieldPath = productIndex >= 0 ? `products.items.${productIndex}` : undefined;
-                            return <ProductCard key={product.id} product={product} fieldPath={productFieldPath} />;
+                            return (
+                                <ProductCard
+                                    key={product.id}
+                                    product={product}
+                                    fieldPath={productFieldPath}
+                                    data-sb-field-path={`.${index}`}
+                                />
+                            );
                         })}
                     </div>
                 ) : (
@@ -2386,11 +2393,16 @@ const Home: React.FC = () => {
               )}
               {resolvedProducts.length > 0 ? (
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                  {resolvedProducts.map((product) => {
+                  {resolvedProducts.map((product, index) => {
                     const productIndex = products.findIndex((item) => item.id === product.id);
                     const productFieldPath = productIndex >= 0 ? `products.items.${productIndex}` : undefined;
                     return (
-                      <ProductCard key={product.id} product={product} fieldPath={productFieldPath} />
+                      <ProductCard
+                        key={product.id}
+                        product={product}
+                        fieldPath={productFieldPath}
+                        data-sb-field-path={`.${index}`}
+                      />
                     );
                   })}
                 </div>

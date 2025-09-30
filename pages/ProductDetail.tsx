@@ -580,10 +580,17 @@ const ProductDetail: React.FC = () => {
                             {t('pdp.relatedProducts')}
                         </h2>
                         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
-                            {relatedProducts.map((p) => {
+                            {relatedProducts.map((p, index) => {
                                 const relatedIndex = allProducts.findIndex((productItem) => productItem.id === p.id);
                                 const relatedFieldPath = relatedIndex >= 0 ? `products.items.${relatedIndex}` : undefined;
-                                return <ProductCard key={p.id} product={p} fieldPath={relatedFieldPath} />;
+                                return (
+                                    <ProductCard
+                                        key={p.id}
+                                        product={p}
+                                        fieldPath={relatedFieldPath}
+                                        data-sb-field-path={`.${index}`}
+                                    />
+                                );
                             })}
                         </div>
                     </div>

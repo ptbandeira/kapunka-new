@@ -68,6 +68,7 @@ const Academy: React.FC = () => {
                   course={course}
                   index={index}
                   fieldPath={`courses.courses.${index}`}
+                  data-sb-field-path={`.${index}`}
                 />
                 ))}
             </div>

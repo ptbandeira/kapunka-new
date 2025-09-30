@@ -8,9 +8,12 @@ interface CourseCardProps {
   course: Course;
   index: number;
   fieldPath?: string;
+  ['data-sb-field-path']?: string;
 }
 
-const CourseCard: React.FC<CourseCardProps> = ({ course, index, fieldPath }) => {
+const CourseCard: React.FC<CourseCardProps> = (props) => {
+  const { course, index, fieldPath } = props;
+  const dataSbFieldPath = props['data-sb-field-path'];
   const { translate, t, language } = useLanguage();
   const baseFieldPath = `courses.courses.${index}`;
 
@@ -22,7 +25,7 @@ const CourseCard: React.FC<CourseCardProps> = ({ course, index, fieldPath }) => 
       transition={{ duration: 0.6, delay: index * 0.1 }}
       className="group"
       data-nlv-field-path={fieldPath ?? baseFieldPath}
-      data-sb-field-path={fieldPath ?? baseFieldPath}
+      data-sb-field-path={dataSbFieldPath ?? fieldPath ?? baseFieldPath}
     >
       <div className="overflow-hidden rounded-lg">
         <img
