@@ -5,7 +5,7 @@ import { FileSystemContentSource } from '@stackbit/cms-git';
 const metadataPath = resolve(process.cwd(), 'metadata.json');
 const metadata = JSON.parse(readFileSync(metadataPath, 'utf8'));
 
-const pageModels = [
+const pageModelExtensions = [
   {
     name: 'shop',
     type: 'page',
@@ -1446,43 +1446,41 @@ const customModels = [
 
 const normalizeModelForContentSource = (model) => {
   const normalized = { ...model };
-  if (normalized.filePath && !normalized.file) {
+
+  if (
+    typeof normalized.filePath === 'string' &&
+    !normalized.file &&
+    !/[{*}]/.test(normalized.filePath)
+  ) {
     normalized.file = normalized.filePath;
   }
+
   return normalized;
 };
 
-const metadataModelMap = Object.fromEntries(
-  metadata.models.map((model) => [model.name, normalizeModelForContentSource(model)])
-);
+const metadataModels = metadata.models.map(normalizeModelForContentSource);
+const customModelsNormalized = customModels.map(normalizeModelForContentSource);
 
-const customModelMap = Object.fromEntries(
-  customModels.map((model) => [model.name, normalizeModelForContentSource(model)])
-);
+const modelRegistry = new Map();
+for (const model of [...metadataModels, ...customModelsNormalized]) {
+  modelRegistry.set(model.name, model);
+}
 
-const pageModelMap = Object.fromEntries(
-  pageModels.map((model) => [model.name, normalizeModelForContentSource(model)])
-);
-
-const allModels = {
-  ...metadataModelMap,
-  ...customModelMap,
-  ...pageModelMap,
-};
-
+const allModels = Array.from(modelRegistry.values());
+const allModelsMap = Object.fromEntries(allModels.map((model) => [model.name, model]));
 const contentSource = new FileSystemContentSource({
   rootPath: process.cwd(),
   contentDirs: ['content'],
   documentFileExtensions: ['json'],
-  models: Object.values(allModels),
+  models: allModels,
 });
 
 /** @type {import('@stackbit/types').StackbitConfig} */
 const config = {
   stackbitVersion: '~0.6.0',
   contentSources: [contentSource],
-  modelExtensions: pageModels,
-  models: allModels,
+  modelExtensions: pageModelExtensions,
+  models: allModelsMap,
 };
 
 export default config;
