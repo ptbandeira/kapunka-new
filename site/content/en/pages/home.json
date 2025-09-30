@@ -30,80 +30,50 @@
   },
   "sections": [
     {
-      "type": "mediaCopy",
-      "title": "Born from gratitude",
-      "body": "“Kapunka” means “thank you.” We make argan care with clinical respect—simple routines that comfort, shield, and support healing. Our roots are in Morocco; our method grew in real clinics.",
-      "imageRef": "/content/uploads/roots-olive-tree.jpg",
-      "layout": "overlay",
-      "overlay": {
-        "columnStart": 1,
-        "columnSpan": 3,
-        "rowStart": 2,
-        "rowSpan": 3,
-        "textAlign": "left",
-        "verticalAlign": "center",
-        "theme": "light",
-        "background": "scrim-dark",
-        "cardWidth": "lg"
-      },
-      "imageAlt": "Hands applying argan oil in warm light"
-    },
-    {
-      "type": "mediaCopy",
-      "title": "Preferred by dermatologists, medspas, and holistic clinics",
-      "body": "Our treatments are gentle, low-residue, and knowledge-led, with skin acceptance, barrier stability, and aroma balance. Dedicated training and wholesale support keep your team confident.",
-      "imageRef": "/content/uploads/clinic-hands.jpg",
-      "layout": "overlay",
-      "overlay": {
-        "columnStart": 4,
-        "columnSpan": 3,
-        "rowStart": 2,
-        "rowSpan": 3,
-        "textAlign": "right",
-        "verticalAlign": "center",
-        "theme": "light",
-        "background": "scrim-dark",
-        "cardWidth": "lg"
-      },
-      "imageAlt": "Practitioner massaging a client's face with argan care"
-    },
-    {
-      "type": "mediaCopy",
-      "title": "Heritage sourcing, clinic-grade standards",
-      "body": "We source single-origin argan and trace the steps from cooperatives to lab certifications. Every lot is meticulously quality-tested to maintain human care at scale.",
-      "imageRef": "/content/uploads/argan-coop.jpg",
-      "layout": "overlay",
-      "overlay": {
-        "columnStart": 1,
-        "columnSpan": 3,
-        "rowStart": 1,
-        "rowSpan": 3,
-        "textAlign": "left",
-        "verticalAlign": "start",
-        "theme": "light",
-        "background": "panel",
-        "cardWidth": "md"
-      },
-      "imageAlt": "Harvested argan fruit gathered in a woven basket"
-    },
-    {
-      "type": "mediaCopy",
-      "title": "From hammam rituals to modern recovery",
-      "body": "Pure oil, floral mists, and clean washes. Old wisdom connected to the lives we live today: routines that calm discomfort, repair the barrier, and leave no heavy film.",
-      "imageRef": "/content/uploads/hammam-light.jpg",
-      "layout": "overlay",
-      "overlay": {
-        "columnStart": 4,
-        "columnSpan": 3,
-        "rowStart": 4,
-        "rowSpan": 3,
-        "textAlign": "right",
-        "verticalAlign": "end",
-        "theme": "light",
-        "background": "scrim-dark",
-        "cardWidth": "md"
-      },
-      "imageAlt": "Steam-filled hammam room with a person resting"
+      "type": "mediaShowcase",
+      "title": "Ritual Stories",
+      "items": [
+        {
+          "eyebrow": "From the blog",
+          "title": "Born from gratitude",
+          "body": "“Kapunka” means “thank you.” We make argan care with clinical respect—simple routines that comfort, shield, and support healing.",
+          "imageRef": "/content/uploads/roots-olive-tree.jpg",
+          "imageAlt": "Hands applying argan oil in warm light",
+          "ctaLabel": "Our Story",
+          "ctaHref": "/about",
+          "image": "/content/uploads/9bae3f87-12d5-43f4-a2a0-5cfc768e429d.jpg"
+        },
+        {
+          "eyebrow": "For clinics",
+          "title": "Preferred by dermatologists, medspas, and holistic clinics",
+          "body": "Gentle, low-residue treatments with barrier stability and aroma balance—supported by education for confident teams.",
+          "imageRef": "/content/uploads/clinic-hands.jpg",
+          "imageAlt": "Practitioner massaging a client's face with argan care",
+          "ctaLabel": "Partner With Us",
+          "ctaHref": "/clinics",
+          "image": "/content/uploads/pexels-elly-fairytale-3865548.jpg"
+        },
+        {
+          "eyebrow": "Supply chain",
+          "title": "Heritage sourcing, clinic-grade standards",
+          "body": "We source single-origin argan and trace every lot from cooperatives to certifications to maintain human care at scale.",
+          "imageRef": "/content/uploads/argan-coop.jpg",
+          "imageAlt": "Harvested argan fruit gathered in a woven basket",
+          "ctaLabel": "Our Standards",
+          "ctaHref": "/method",
+          "image": "/content/uploads/kapunka-argan-woman-picking.jpg"
+        },
+        {
+          "eyebrow": "Rituals",
+          "title": "From hammam rituals to modern recovery",
+          "body": "Pure oil, floral mists, and clean washes connect ancestral wisdom with today’s recovery routines.",
+          "imageRef": "/content/uploads/hammam-light.jpg",
+          "imageAlt": "Steam-filled hammam room with a person resting",
+          "ctaLabel": "Shop Rituals",
+          "ctaHref": "/shop",
+          "image": "/content/uploads/5b07cc3a-9b30-4a2d-b165-4781120e83b7.jpg"
+        }
+      ]
     },
     {
       "type": "featureGrid",

@@ -114,6 +114,27 @@ shared_sections: &shared_sections
               - { label: "Dark scrim", value: "scrim-dark" }
               - { label: "Solid panel", value: "panel" }
             hint: "Add a scrim or panel to improve contrast when using overlay layouts."
+  - &section_mediaShowcase
+    label: "Media Showcase"
+    name: "mediaShowcase"
+    widget: "object"
+    summary: "Media Showcase · {{fields.title}}"
+    fields:
+      - { name: "type", widget: "hidden", default: "mediaShowcase" }
+      - { label: "Title", name: "title", widget: "string", i18n: true, required: false }
+      - label: "Items"
+        name: "items"
+        widget: "list"
+        collapsed: false
+        fields:
+          - { label: "Eyebrow", name: "eyebrow", widget: "string", i18n: true, required: false }
+          - { label: "Title", name: "title", widget: "string", i18n: true, required: false }
+          - { label: "Body", name: "body", widget: "text", i18n: true, required: false }
+          - { label: "Image Upload", name: "image", widget: "image", choose_url: true, required: false }
+          - { label: "Image Path (optional)", name: "imageRef", widget: "string", required: false }
+          - { label: "Image Alt Text", name: "imageAlt", widget: "string", i18n: true, required: false }
+          - { label: "CTA Label", name: "ctaLabel", widget: "string", i18n: true, required: false }
+          - { label: "CTA Href", name: "ctaHref", widget: "string", required: false, hint: "Supports internal (#/ or /path) and external URLs." }
   - &section_featureGrid
     label: "Feature Grid"
     name: "featureGrid"
@@ -391,6 +412,7 @@ meta_description_field: &meta_description_field { label: "Meta Description", nam
 section_library: &section_library
   - *section_hero
   - *section_mediaCopy
+  - *section_mediaShowcase
   - *section_featureGrid
   - *section_productGrid
   - *section_communityCarousel

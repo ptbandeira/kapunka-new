@@ -10,6 +10,7 @@ import TimelineSection from '../components/TimelineSection';
 import ImageTextHalf from '../components/sections/ImageTextHalf';
 import ImageGrid from '../components/sections/ImageGrid';
 import CommunityCarousel from '../components/sections/CommunityCarousel';
+import MediaShowcase from '../components/sections/MediaShowcase';
 import { useLanguage } from '../contexts/LanguageContext';
 import { useSiteSettings } from '../contexts/SiteSettingsContext';
 import type {
@@ -128,6 +129,20 @@ type HomeSection =
       type: 'video';
       title?: string;
       url?: string;
+    }
+  | {
+      type: 'mediaShowcase';
+      title?: string;
+      items?: Array<{
+        eyebrow?: string;
+        title?: string;
+        body?: string;
+        image?: string;
+        imageRef?: string;
+        imageAlt?: string;
+        ctaLabel?: string;
+        ctaHref?: string;
+      }>;
     };
 
 const heroAlignmentSchema = z
@@ -350,6 +365,27 @@ const testimonialsSectionSchema = z
   })
   .passthrough();
 
+const mediaShowcaseItemSchema = z
+  .object({
+    eyebrow: z.string().optional(),
+    title: z.string().optional(),
+    body: z.string().optional(),
+    image: z.string().optional(),
+    imageRef: z.string().optional(),
+    imageAlt: z.string().optional(),
+    ctaLabel: z.string().optional(),
+    ctaHref: z.string().optional(),
+  })
+  .passthrough();
+
+const mediaShowcaseSectionSchema = z
+  .object({
+    type: z.literal('mediaShowcase'),
+    title: z.string().optional(),
+    items: z.array(mediaShowcaseItemSchema).optional(),
+  })
+  .passthrough();
+
 const structuredSectionSchema = z.discriminatedUnion('type', [
   communityCarouselSectionSchema,
   newsletterSignupSectionSchema,
@@ -359,6 +395,7 @@ const structuredSectionSchema = z.discriminatedUnion('type', [
   faqSectionSchema,
   bannerSectionSchema,
   videoSectionSchema,
+  mediaShowcaseSectionSchema,
 ]);
 
 const genericSectionSchema = z.object({ type: z.string() }).passthrough();
@@ -3321,6 +3358,45 @@ const Home: React.FC = () => {
               </div>
             </div>
           </section>
+        );
+      }
+      case 'mediaShowcase': {
+        const showcaseTitle = sanitizeString(section.title ?? null);
+        const items = (section.items ?? []).map((item, itemIndex) => {
+          const fieldScope = `${sectionFieldPath}.items.${itemIndex}`;
+          return {
+            eyebrow: sanitizeString(item.eyebrow ?? null) ?? undefined,
+            title: sanitizeString(item.title ?? null) ?? undefined,
+            body: sanitizeString(item.body ?? null) ?? undefined,
+            image: sanitizeString(pickImage(item.image, item.imageRef)) ?? undefined,
+            alt: sanitizeString(item.imageAlt ?? null) ?? undefined,
+            fieldPath: fieldScope,
+            imageFieldPath: item.image
+              ? `${fieldScope}.image`
+              : item.imageRef
+                ? `${fieldScope}.imageRef`
+                : `${fieldScope}.image`,
+            eyebrowFieldPath: `${fieldScope}.eyebrow`,
+            titleFieldPath: `${fieldScope}.title`,
+            bodyFieldPath: `${fieldScope}.body`,
+            ctaLabel: sanitizeString(item.ctaLabel ?? null) ?? undefined,
+            ctaHref: sanitizeString(item.ctaHref ?? null) ?? undefined,
+            ctaLabelFieldPath: `${fieldScope}.ctaLabel`,
+            ctaHrefFieldPath: `${fieldScope}.ctaHref`,
+          };
+        }).filter((item) => item.image || item.title || item.body);
+
+        if (items.length === 0) {
+          return null;
+        }
+
+        return (
+          <MediaShowcase
+            key={createKeyFromParts('section-media-showcase', [showcaseTitle, items.map((item) => item.title ?? item.image ?? '').join('|')])}
+            title={showcaseTitle}
+            items={items}
+            fieldPath={sectionFieldPath}
+          />
         );
       }
       default:

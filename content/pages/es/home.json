@@ -26,80 +26,46 @@
   },
   "sections": [
     {
-      "type": "mediaCopy",
-      "title": "Nacido de la gratitud",
-      "body": "“Kapunka” significa “gracias”. Elaboramos cuidados de argán con respeto clínico: rutinas sencillas que reconfortan, protegen y apoyan la recuperación. Nuestras raíces están en Marruecos; nuestro método creció en clínicas reales.",
-      "imageRef": "/content/uploads/roots-olive-tree.jpg",
-      "layout": "overlay",
-      "overlay": {
-        "columnStart": 1,
-        "columnSpan": 3,
-        "rowStart": 2,
-        "rowSpan": 3,
-        "textAlign": "left",
-        "verticalAlign": "center",
-        "theme": "light",
-        "background": "scrim-dark",
-        "cardWidth": "lg"
-      },
-      "imageAlt": "Manos aplicando aceite de argán con luz cálida"
-    },
-    {
-      "type": "mediaCopy",
-      "title": "Preferido por dermatólogos, medspas y clínicas holísticas",
-      "body": "Nuestros tratamientos son suaves, de bajo residuo y guiados por el conocimiento, con aceptación de la piel, estabilidad de la barrera y equilibrio aromático. La formación dedicada y el soporte mayorista mantienen a tu equipo con confianza.",
-      "imageRef": "/content/uploads/clinic-hands.jpg",
-      "layout": "overlay",
-      "overlay": {
-        "columnStart": 4,
-        "columnSpan": 3,
-        "rowStart": 2,
-        "rowSpan": 3,
-        "textAlign": "right",
-        "verticalAlign": "center",
-        "theme": "light",
-        "background": "scrim-dark",
-        "cardWidth": "lg"
-      },
-      "imageAlt": "Profesional masajeando el rostro de una clienta con cuidado de argán"
-    },
-    {
-      "type": "mediaCopy",
-      "title": "Abastecimiento patrimonial, estándares de grado clínico",
-      "body": "Obtenemos argán de origen único y seguimos cada paso desde las cooperativas hasta las certificaciones de laboratorio. Cada lote se somete a pruebas meticulosas para mantener un cuidado humano a escala.",
-      "imageRef": "/content/uploads/argan-coop.jpg",
-      "layout": "overlay",
-      "overlay": {
-        "columnStart": 1,
-        "columnSpan": 3,
-        "rowStart": 1,
-        "rowSpan": 3,
-        "textAlign": "left",
-        "verticalAlign": "start",
-        "theme": "light",
-        "background": "panel",
-        "cardWidth": "md"
-      },
-      "imageAlt": "Frutos de argán recién cosechados en una cesta tejida"
-    },
-    {
-      "type": "mediaCopy",
-      "title": "De los rituales de hammam a la recuperación moderna",
-      "body": "Aceite puro, brumas florales y limpiadores suaves. Sabiduría ancestral conectada con la vida de hoy: rutinas que calman el malestar, reparan la barrera y no dejan una película pesada.",
-      "imageRef": "/content/uploads/hammam-light.jpg",
-      "layout": "overlay",
-      "overlay": {
-        "columnStart": 4,
-        "columnSpan": 3,
-        "rowStart": 4,
-        "rowSpan": 3,
-        "textAlign": "right",
-        "verticalAlign": "end",
-        "theme": "light",
-        "background": "scrim-dark",
-        "cardWidth": "md"
-      },
-      "imageAlt": "Sala de hammam llena de vapor con una persona descansando"
+      "type": "mediaShowcase",
+      "title": "Historias de rituales",
+      "items": [
+        {
+          "eyebrow": "Desde el blog",
+          "title": "Nacido de la gratitud",
+          "body": "“Kapunka” significa “gracias”. Creamos cuidados de argán con respeto clínico: rutinas sencillas que reconfortan y acompañan la recuperación.",
+          "imageRef": "/content/uploads/roots-olive-tree.jpg",
+          "imageAlt": "Manos aplicando aceite de argán con luz cálida",
+          "ctaLabel": "Nuestra historia",
+          "ctaHref": "/about"
+        },
+        {
+          "eyebrow": "Para clínicas",
+          "title": "Preferido por dermatólogos, medspas y clínicas holísticas",
+          "body": "Tratamientos suaves, de bajo residuo y guiados por el conocimiento, con soporte educativo para equipos seguros.",
+          "imageRef": "/content/uploads/clinic-hands.jpg",
+          "imageAlt": "Profesional masajeando el rostro de una clienta con cuidado de argán",
+          "ctaLabel": "Aliarte con nosotros",
+          "ctaHref": "/clinics"
+        },
+        {
+          "eyebrow": "Cadena de suministro",
+          "title": "Abastecimiento patrimonial, estándares clínicos",
+          "body": "Obtenemos argán de origen único y seguimos cada lote desde las cooperativas hasta las certificaciones para cuidar a escala humana.",
+          "imageRef": "/content/uploads/argan-coop.jpg",
+          "imageAlt": "Frutos de argán recién cosechados en una cesta tejida",
+          "ctaLabel": "Nuestros estándares",
+          "ctaHref": "/method"
+        },
+        {
+          "eyebrow": "Rituales",
+          "title": "Del hammam a la recuperación moderna",
+          "body": "Aceites puros, brumas florales y lavados limpios enlazan la sabiduría ancestral con el cuidado diario.",
+          "imageRef": "/content/uploads/hammam-light.jpg",
+          "imageAlt": "Sala de hammam llena de vapor con una persona descansando",
+          "ctaLabel": "Comprar rituales",
+          "ctaHref": "/shop"
+        }
+      ]
     },
     {
       "type": "featureGrid",
