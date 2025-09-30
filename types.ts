@@ -237,6 +237,7 @@ export interface CommunityCarouselSectionContent {
   title?: string;
   slides?: CommunityCarouselSlide[];
   slideDuration?: number;
+  quoteDuration?: number;
 }
 
 export interface ClinicsBlockContent {

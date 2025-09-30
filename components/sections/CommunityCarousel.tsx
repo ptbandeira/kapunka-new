@@ -21,10 +21,12 @@ interface CommunityCarouselProps {
   fieldPath?: string;
   slidesFieldPath?: string;
   slideDuration?: number;
+  quoteDuration?: number;
 }
 
-const MIN_DURATION = 800;
-const DEFAULT_DURATION = 700;
+const MIN_DURATION = 4000;
+const DEFAULT_DURATION = 8000;
+const DEFAULT_QUOTE_DURATION = 12000;
 
 const OVERLAY_POSITIONS = [
   { top: '12%', left: '12%' },
@@ -40,8 +42,15 @@ const CommunityCarousel: React.FC<CommunityCarouselProps> = ({
   fieldPath,
   slidesFieldPath,
   slideDuration = DEFAULT_DURATION,
+  quoteDuration,
 }) => {
   const safeDuration = useMemo(() => Math.max(slideDuration, MIN_DURATION), [slideDuration]);
+  const resolvedQuoteDuration = useMemo(() => {
+    const overridden = typeof quoteDuration === 'number' && Number.isFinite(quoteDuration)
+      ? quoteDuration
+      : Math.max(safeDuration * 1.5, DEFAULT_QUOTE_DURATION);
+    return Math.max(overridden, MIN_DURATION);
+  }, [quoteDuration, safeDuration]);
   const slidesWithImages = useMemo(
     () => slides.filter((slide) => Boolean(slide?.image)),
     [slides],
@@ -66,10 +75,10 @@ const CommunityCarousel: React.FC<CommunityCarouselProps> = ({
     const timer = window.setInterval(() => {
       setQuoteIndex((prev) => (prev + 1) % slidesWithQuotes.length);
       setQuotePositionIndex((prev) => (prev + 1) % OVERLAY_POSITIONS.length);
-    }, Math.max(safeDuration, MIN_DURATION * 1.5));
+    }, resolvedQuoteDuration);
 
     return () => window.clearInterval(timer);
-  }, [slidesWithQuotes.length, safeDuration]);
+  }, [slidesWithQuotes.length, resolvedQuoteDuration]);
 
   const currentQuoteSlide = slidesWithQuotes[quoteIndex];
   const overlayPosition = OVERLAY_POSITIONS[quotePositionIndex % OVERLAY_POSITIONS.length];

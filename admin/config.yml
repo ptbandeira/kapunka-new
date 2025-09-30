@@ -172,6 +172,12 @@ shared_sections: &shared_sections
             value_type: "int"
             required: false
             hint: "Leave blank to use the default 8000ms timing."
+          - label: "Quote Duration (ms)"
+            name: "quoteDuration"
+            widget: "number"
+            value_type: "int"
+            required: false
+            hint: "Leave blank to keep quotes visible for the default 12000ms."
   - &section_faq
     label: "FAQ"
     name: "faq"

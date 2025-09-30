@@ -2332,6 +2332,11 @@ const Home: React.FC = () => {
             ? section.slideDuration
             : undefined;
 
+        const quoteDuration =
+          typeof section.quoteDuration === 'number' && Number.isFinite(section.quoteDuration)
+            ? section.quoteDuration
+            : undefined;
+
         if (!sectionTitle && slides.length === 0) {
           return null;
         }
@@ -2349,6 +2354,7 @@ const Home: React.FC = () => {
             fieldPath={sectionFieldPath}
             slidesFieldPath={`${sectionFieldPath}.slides`}
             slideDuration={slideDuration}
+            quoteDuration={quoteDuration}
           />
         );
       }
@@ -2432,6 +2438,11 @@ const Home: React.FC = () => {
             ? section.slideDuration
             : undefined;
 
+        const quoteDuration =
+          typeof section.quoteDuration === 'number' && Number.isFinite(section.quoteDuration)
+            ? section.quoteDuration
+            : undefined;
+
         if (!sectionTitle && slides.length === 0) {
           return null;
         }
@@ -2449,6 +2460,7 @@ const Home: React.FC = () => {
             fieldPath={sectionFieldPath}
             slidesFieldPath={`${sectionFieldPath}.slides`}
             slideDuration={slideDuration}
+            quoteDuration={quoteDuration}
           />
         );
       }

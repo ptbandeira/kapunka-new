@@ -17,6 +17,6 @@ These notes capture how page-specific migrations were completed so we can repeat
 ## Community Carousel Refresh (April 2025)
 - **New Layout**: `components/sections/CommunityCarousel.tsx` now renders a marquee-style slider with square imagery and a floating quote overlay, matching the requested visual style.
 - **Animations**: Tailwind config (`index.html`) adds a `carousel-scroll` keyframe; each slide is duplicated for a seamless loop and animation duration is computed from CMS-provided timing.
-- **Quotes Overlay**: Quotes rotate automatically, with randomised positions and inline Netlify Visual Editor bindings preserved for quote/name/role fields.
+- **Quotes Overlay**: Quotes rotate automatically, with randomised positions, a dedicated `quoteDuration` CMS field, and inline Netlify Visual Editor bindings preserved for quote/name/role fields.
 
 When migrating another page, follow the same pattern: move localized JSON into `content/pages/{locale}`, mirror into `site/content`, add a loader under `utils/`, update the page component to prefer the new JSON with translation fallbacks, and extend `admin/config.yml` accordingly.
