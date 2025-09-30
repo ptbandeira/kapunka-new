@@ -43,7 +43,8 @@
         "textAlign": "left",
         "verticalAlign": "center",
         "theme": "light",
-        "background": "scrim-dark"
+        "background": "scrim-dark",
+        "cardWidth": "lg"
       },
       "imageAlt": "Mãos aplicando óleo de argan sob luz quente"
     },
@@ -61,7 +62,8 @@
         "textAlign": "right",
         "verticalAlign": "center",
         "theme": "light",
-        "background": "scrim-dark"
+        "background": "scrim-dark",
+        "cardWidth": "lg"
       },
       "imageAlt": "Profissional massageando o rosto de uma cliente com cuidado de argan"
     },
@@ -79,7 +81,8 @@
         "textAlign": "left",
         "verticalAlign": "start",
         "theme": "light",
-        "background": "panel"
+        "background": "panel",
+        "cardWidth": "md"
       },
       "imageAlt": "Frutos de argan recém-colhidos em um cesto de palha"
     },
@@ -97,7 +100,8 @@
         "textAlign": "right",
         "verticalAlign": "end",
         "theme": "light",
-        "background": "scrim-dark"
+        "background": "scrim-dark",
+        "cardWidth": "md"
       },
       "imageAlt": "Sala de hammam com vapor e uma pessoa relaxando"
     },

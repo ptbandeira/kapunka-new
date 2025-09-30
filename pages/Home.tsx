@@ -38,6 +38,7 @@ type MediaCopyOverlaySettings = {
   verticalAlign?: 'start' | 'center' | 'end';
   theme?: 'light' | 'dark';
   background?: 'none' | 'scrim-light' | 'scrim-dark' | 'panel';
+  cardWidth?: 'sm' | 'md' | 'lg';
 };
 
 type HomeSection =
@@ -294,6 +295,7 @@ const mediaCopySectionSchema = z
         verticalAlign: z.enum(['start', 'center', 'end']).optional(),
         theme: z.enum(['light', 'dark']).optional(),
         background: z.enum(['none', 'scrim-light', 'scrim-dark', 'panel']).optional(),
+        cardWidth: z.enum(['sm', 'md', 'lg']).optional(),
       })
       .optional(),
   })
@@ -696,6 +698,7 @@ type NormalizedOverlaySettings = {
   verticalAlign: 'start' | 'center' | 'end';
   theme: 'light' | 'dark';
   background: 'none' | 'scrim-light' | 'scrim-dark' | 'panel';
+  cardWidth: 'sm' | 'md' | 'lg';
 };
 
 const normalizeOverlaySettings = (overlay?: MediaCopyOverlaySettings | null): NormalizedOverlaySettings => {
@@ -708,6 +711,7 @@ const normalizeOverlaySettings = (overlay?: MediaCopyOverlaySettings | null): No
     verticalAlign: 'start',
     theme: 'light',
     background: 'scrim-dark',
+    cardWidth: 'md',
   };
 
   if (!overlay || typeof overlay !== 'object') {
@@ -742,6 +746,10 @@ const normalizeOverlaySettings = (overlay?: MediaCopyOverlaySettings | null): No
       ? overlay.background
       : defaults.background;
 
+  const cardWidth = overlay.cardWidth === 'sm' || overlay.cardWidth === 'md' || overlay.cardWidth === 'lg'
+    ? overlay.cardWidth
+    : defaults.cardWidth;
+
   return {
     columnStart,
     columnEnd,
@@ -751,6 +759,7 @@ const normalizeOverlaySettings = (overlay?: MediaCopyOverlaySettings | null): No
     verticalAlign,
     theme,
     background,
+    cardWidth,
   };
 };
 
@@ -759,6 +768,12 @@ const overlayBackgroundClassMap: Record<NormalizedOverlaySettings['background'],
   'scrim-light': 'bg-white/80 backdrop-blur-sm',
   'scrim-dark': 'bg-black/60 backdrop-blur-sm',
   panel: 'bg-stone-900/85 backdrop-blur-sm',
+};
+
+const overlayCardWidthClassMap: Record<NormalizedOverlaySettings['cardWidth'], string> = {
+  sm: 'max-w-md',
+  md: 'max-w-xl',
+  lg: 'max-w-2xl',
 };
 
 const isInternalNavigationHref = (href?: string | null): href is string => {
@@ -2323,6 +2338,8 @@ const Home: React.FC = () => {
 
         if (layout === 'overlay' && hasImage) {
           const overlaySettings = normalizeOverlaySettings(section.overlay);
+          const overlayCardWidthClass = overlayCardWidthClassMap[overlaySettings.cardWidth];
+          const overlayCardWidthClass = overlayCardWidthClassMap[overlaySettings.cardWidth];
           const mediaCopyKey = createKeyFromParts('section-media-copy', [
             title,
             body,
@@ -2365,11 +2382,11 @@ const Home: React.FC = () => {
           return (
             <section
               key={mediaCopyKey}
-              className="py-16 sm:py-24 bg-white"
+              className="py-12 sm:py-16 bg-white"
               data-nlv-field-path={sectionFieldPath}
             >
-              <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-                <div className="relative overflow-hidden rounded-2xl shadow-lg">
+              <div className="container mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
+                <div className="relative overflow-hidden rounded-3xl shadow-xl lg:min-h-[520px]">
                   <img
                     src={mediaImage}
                     alt={imageAlt}
@@ -2384,7 +2401,7 @@ const Home: React.FC = () => {
                     }}
                   >
                     <div
-                      className={`pointer-events-auto flex max-w-xl flex-col gap-4 p-6 sm:p-8 rounded-xl shadow-xl ${overlayBackgroundClass} ${overlayThemeClass} ${overlayTextAlignClass}`}
+                      className={`pointer-events-auto flex flex-col gap-4 p-6 sm:p-8 lg:p-10 rounded-3xl shadow-xl ${overlayBackgroundClass} ${overlayThemeClass} ${overlayTextAlignClass} ${overlayCardWidthClass}`}
                       style={overlayPlacementStyle}
                     >
                       {title && (
@@ -2397,7 +2414,7 @@ const Home: React.FC = () => {
                       )}
                       {body && (
                         <div
-                          className="text-lg leading-relaxed"
+                          className="text-lg leading-relaxed lg:text-xl"
                           data-nlv-field-path={`${sectionFieldPath}.body`}
                         >
                           <ReactMarkdown>{body}</ReactMarkdown>
@@ -2428,7 +2445,7 @@ const Home: React.FC = () => {
           return (
             <section
               key={mediaCopyKey}
-              className="py-16 sm:py-24 bg-white"
+              className={layout === 'overlay' ? 'py-12 sm:py-16 bg-white' : 'py-16 sm:py-24 bg-white'}
               data-nlv-field-path={sectionFieldPath}
             >
               <div className="container mx-auto px-4 sm:px-6 lg:px-8">
@@ -2464,7 +2481,9 @@ const Home: React.FC = () => {
           );
         }
 
-        const gridClasses = 'grid grid-cols-1 lg:grid-cols-2 gap-10 items-center';
+        const gridClasses = layout === 'overlay'
+          ? 'grid grid-cols-1 lg:grid-cols-2 gap-10 items-center'
+          : 'grid grid-cols-1 lg:grid-cols-2 gap-10 items-center';
         const textColumnClasses = layout === 'image-left' ? 'order-2 lg:order-1 space-y-6' : 'order-1 space-y-6';
         const imageColumnClasses = layout === 'image-left' ? 'order-1 lg:order-2' : 'order-2';
         const mediaCopyKey = createKeyFromParts('section-media-copy', [title, body, mediaImage, layout]);
@@ -2472,7 +2491,7 @@ const Home: React.FC = () => {
         return (
           <section
             key={mediaCopyKey}
-            className="py-16 sm:py-24 bg-white"
+            className={layout === 'overlay' ? 'py-12 sm:py-16 bg-white' : 'py-16 sm:py-24 bg-white'}
             data-nlv-field-path={sectionFieldPath}
           >
             <div className="container mx-auto px-4 sm:px-6 lg:px-8">
@@ -2818,6 +2837,7 @@ const Home: React.FC = () => {
 
         if (layout === 'overlay' && hasImage) {
           const overlaySettings = normalizeOverlaySettings(section.overlay);
+          const overlayCardWidthClass = overlayCardWidthClassMap[overlaySettings.cardWidth];
           const structuredMediaCopyKey = createKeyFromParts('structured-media-copy', [
             title,
             body,
@@ -2860,11 +2880,11 @@ const Home: React.FC = () => {
           return (
             <section
               key={structuredMediaCopyKey}
-              className="py-16 sm:py-24 bg-white"
+              className="py-12 sm:py-16 bg-white"
               data-nlv-field-path={sectionFieldPath}
             >
-              <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-                <div className="relative overflow-hidden rounded-2xl shadow-lg">
+              <div className="container mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
+                <div className="relative overflow-hidden rounded-3xl shadow-xl lg:min-h-[520px]">
                   <img
                     src={mediaImage}
                     alt={imageAlt}
@@ -2879,7 +2899,7 @@ const Home: React.FC = () => {
                     }}
                   >
                     <div
-                      className={`pointer-events-auto flex max-w-xl flex-col gap-4 p-6 sm:p-8 rounded-xl shadow-xl ${overlayBackgroundClass} ${overlayThemeClass} ${overlayTextAlignClass}`}
+                      className={`pointer-events-auto flex flex-col gap-4 p-6 sm:p-8 lg:p-10 rounded-3xl shadow-xl ${overlayBackgroundClass} ${overlayThemeClass} ${overlayTextAlignClass} ${overlayCardWidthClass}`}
                       style={overlayPlacementStyle}
                     >
                       {title && (
@@ -2892,7 +2912,7 @@ const Home: React.FC = () => {
                       )}
                       {body && (
                         <div
-                          className="text-lg leading-relaxed"
+                          className="text-lg leading-relaxed lg:text-xl"
                           data-nlv-field-path={`${sectionFieldPath}.body`}
                         >
                           <ReactMarkdown>{body}</ReactMarkdown>
@@ -2929,7 +2949,7 @@ const Home: React.FC = () => {
           return (
             <section
               key={structuredMediaCopyKey}
-              className="py-16 sm:py-24 bg-white"
+              className={layout === 'overlay' ? 'py-12 sm:py-16 bg-white' : 'py-16 sm:py-24 bg-white'}
               data-nlv-field-path={sectionFieldPath}
             >
               <div className="container mx-auto px-4 sm:px-6 lg:px-8">
@@ -2978,7 +2998,7 @@ const Home: React.FC = () => {
         return (
           <section
             key={structuredMediaCopyKey}
-            className="py-16 sm:py-24 bg-white"
+            className={layout === 'overlay' ? 'py-12 sm:py-16 bg-white' : 'py-16 sm:py-24 bg-white'}
             data-nlv-field-path={sectionFieldPath}
           >
             <div className="container mx-auto px-4 sm:px-6 lg:px-8">

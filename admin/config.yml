@@ -89,6 +89,14 @@ shared_sections: &shared_sections
               - { label: "Start", value: "start" }
               - { label: "Center", value: "center" }
               - { label: "End", value: "end" }
+          - label: "Card width"
+            name: "cardWidth"
+            widget: "select"
+            required: false
+            options:
+              - { label: "Compact", value: "sm" }
+              - { label: "Balanced", value: "md" }
+              - { label: "Wide", value: "lg" }
           - label: "Text theme"
             name: "theme"
             widget: "select"

@@ -39,7 +39,8 @@
         "textAlign": "left",
         "verticalAlign": "center",
         "theme": "light",
-        "background": "scrim-dark"
+        "background": "scrim-dark",
+        "cardWidth": "lg"
       },
       "imageAlt": "Manos aplicando aceite de argán con luz cálida"
     },
@@ -57,7 +58,8 @@
         "textAlign": "right",
         "verticalAlign": "center",
         "theme": "light",
-        "background": "scrim-dark"
+        "background": "scrim-dark",
+        "cardWidth": "lg"
       },
       "imageAlt": "Profesional masajeando el rostro de una clienta con cuidado de argán"
     },
@@ -75,7 +77,8 @@
         "textAlign": "left",
         "verticalAlign": "start",
         "theme": "light",
-        "background": "panel"
+        "background": "panel",
+        "cardWidth": "md"
       },
       "imageAlt": "Frutos de argán recién cosechados en una cesta tejida"
     },
@@ -93,7 +96,8 @@
         "textAlign": "right",
         "verticalAlign": "end",
         "theme": "light",
-        "background": "scrim-dark"
+        "background": "scrim-dark",
+        "cardWidth": "md"
       },
       "imageAlt": "Sala de hammam llena de vapor con una persona descansando"
     },
