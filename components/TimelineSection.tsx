@@ -47,7 +47,11 @@ const TimelineSection: React.FC<TimelineSectionProps> = ({ title, entries, field
   };
 
   return (
-    <div className="space-y-16" data-nlv-field-path={fieldPath}>
+    <div
+      className="space-y-16"
+      data-nlv-field-path={fieldPath}
+      data-sb-field-path={fieldPath}
+    >
       {title && (
         <motion.h2
           initial={{ opacity: 0, y: 20 }}
@@ -56,11 +60,16 @@ const TimelineSection: React.FC<TimelineSectionProps> = ({ title, entries, field
           transition={{ duration: 0.6 }}
           className="text-3xl font-semibold text-center"
           data-nlv-field-path={fieldPath ? `${fieldPath}.title` : undefined}
+          data-sb-field-path={fieldPath ? `${fieldPath}.title` : undefined}
         >
           {title}
         </motion.h2>
       )}
-      <div className="space-y-16" data-nlv-field-path={entriesFieldPath}>
+      <div
+        className="space-y-16"
+        data-nlv-field-path={entriesFieldPath}
+        data-sb-field-path={entriesFieldPath}
+      >
         {entries.map((entry, index) => {
           const hasImage = Boolean(entry.image && entry.image.trim().length > 0);
           const isEven = index % 2 === 0;
@@ -76,6 +85,7 @@ const TimelineSection: React.FC<TimelineSectionProps> = ({ title, entries, field
               key={`${entry.year}-${entry.title}`}
               className={`grid grid-cols-1 ${hasImage ? 'md:grid-cols-2' : ''} gap-12 items-center`}
               data-nlv-field-path={entryFieldPath}
+              data-sb-field-path={entryFieldPath}
             >
               {hasImage && (
                 <motion.div
@@ -90,6 +100,7 @@ const TimelineSection: React.FC<TimelineSectionProps> = ({ title, entries, field
                     alt={entry.title}
                     className="rounded-lg shadow-lg w-full object-cover"
                     data-nlv-field-path={entryFieldPath ? `${entryFieldPath}.image` : undefined}
+                    data-sb-field-path={entryFieldPath ? `${entryFieldPath}.image` : undefined}
                   />
                 </motion.div>
               )}
@@ -103,16 +114,21 @@ const TimelineSection: React.FC<TimelineSectionProps> = ({ title, entries, field
                 <span
                   className="text-sm uppercase tracking-[0.3em] text-stone-500"
                   data-nlv-field-path={entryFieldPath ? `${entryFieldPath}.year` : undefined}
+                  data-sb-field-path={entryFieldPath ? `${entryFieldPath}.year` : undefined}
                 >
                   {entry.year}
                 </span>
                 <h3
                   className="mt-2 text-2xl font-semibold"
                   data-nlv-field-path={entryFieldPath ? `${entryFieldPath}.title` : undefined}
+                  data-sb-field-path={entryFieldPath ? `${entryFieldPath}.title` : undefined}
                 >
                   {entry.title}
                 </h3>
-                <div data-nlv-field-path={entryFieldPath ? `${entryFieldPath}.description` : undefined}>
+                <div
+                  data-nlv-field-path={entryFieldPath ? `${entryFieldPath}.description` : undefined}
+                  data-sb-field-path={entryFieldPath ? `${entryFieldPath}.description` : undefined}
+                >
                   <ReactMarkdown components={markdownComponents}>
                     {entry.description}
                   </ReactMarkdown>

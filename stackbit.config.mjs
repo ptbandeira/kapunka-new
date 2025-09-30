@@ -133,6 +133,171 @@ const customModels = [
       },
     ],
   },
+  {
+    name: 'ImageTextHalfSection',
+    type: 'object',
+    label: 'Image + Text Half Section',
+    fields: [
+      {
+        name: 'title',
+        type: 'string',
+        label: 'Heading',
+      },
+      {
+        name: 'subtitle',
+        type: 'string',
+        label: 'Subheading',
+      },
+      {
+        name: 'text',
+        type: 'markdown',
+        label: 'Body',
+      },
+      {
+        name: 'button',
+        type: 'model',
+        label: 'Button',
+        models: ['Link'],
+      },
+      {
+        name: 'image',
+        type: 'image',
+        label: 'Image',
+      },
+    ],
+  },
+  {
+    name: 'CommunityCarouselSection',
+    type: 'object',
+    label: 'Community Carousel Section',
+    fields: [
+      {
+        name: 'title',
+        type: 'string',
+        label: 'Heading',
+      },
+      {
+        name: 'subtitle',
+        type: 'string',
+        label: 'Subheading',
+      },
+      {
+        name: 'slides',
+        type: 'list',
+        label: 'Reviews',
+        items: {
+          type: 'model',
+          models: ['Review'],
+        },
+      },
+      {
+        name: 'slideDuration',
+        type: 'number',
+        label: 'Slide Duration (ms)',
+      },
+      {
+        name: 'quoteDuration',
+        type: 'number',
+        label: 'Quote Duration (ms)',
+      },
+    ],
+  },
+  {
+    name: 'ImageGridItem',
+    type: 'object',
+    label: 'Image Grid Item',
+    fields: [
+      {
+        name: 'image',
+        type: 'image',
+        label: 'Image',
+      },
+      {
+        name: 'title',
+        type: 'string',
+        label: 'Title',
+      },
+      {
+        name: 'subtitle',
+        type: 'string',
+        label: 'Text',
+      },
+    ],
+  },
+  {
+    name: 'ImageGridSection',
+    type: 'object',
+    label: 'Image Grid Section',
+    fields: [
+      {
+        name: 'heading',
+        type: 'string',
+        label: 'Heading',
+      },
+      {
+        name: 'subheading',
+        type: 'string',
+        label: 'Subheading',
+      },
+      {
+        name: 'items',
+        type: 'list',
+        label: 'Items',
+        items: {
+          type: 'model',
+          models: ['ImageGridItem'],
+        },
+      },
+    ],
+  },
+  {
+    name: 'TimelineEvent',
+    type: 'object',
+    label: 'Timeline Event',
+    fields: [
+      {
+        name: 'year',
+        type: 'string',
+        label: 'Date',
+      },
+      {
+        name: 'title',
+        type: 'string',
+        label: 'Title',
+      },
+      {
+        name: 'description',
+        type: 'markdown',
+        label: 'Description',
+      },
+      {
+        name: 'image',
+        type: 'image',
+        label: 'Image',
+      },
+    ],
+  },
+  {
+    name: 'TimelineSection',
+    type: 'object',
+    label: 'Timeline Section',
+    fields: [
+      {
+        name: 'title',
+        type: 'string',
+        label: 'Heading',
+      },
+      {
+        name: 'entries',
+        type: 'list',
+        label: 'Events',
+        items: {
+          type: 'model',
+          models: ['TimelineEvent'],
+        },
+      },
+    ],
+  },
 ];
 
 /** @type {import('@stackbit/types').StackbitConfig} */

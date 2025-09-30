@@ -17,7 +17,10 @@ const ImageGrid: React.FC<ImageGridProps> = ({ items, fieldPath }) => {
   }
 
   return (
-    <section className="py-16 sm:py-24 bg-stone-50">
+    <section
+      className="py-16 sm:py-24 bg-stone-50"
+      data-sb-field-path={fieldPath}
+    >
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
           {items.map((item, index) => {
@@ -31,11 +34,21 @@ const ImageGrid: React.FC<ImageGridProps> = ({ items, fieldPath }) => {
               <div
                 key={itemKey ?? `image-grid-item`}
                 className="flex flex-col bg-white rounded-lg shadow-sm overflow-hidden"
-                {...(itemFieldPath ? { 'data-nlv-field-path': itemFieldPath } : {})}
+                {...(itemFieldPath
+                  ? {
+                      'data-nlv-field-path': itemFieldPath,
+                      'data-sb-field-path': itemFieldPath,
+                    }
+                  : {})}
               >
                 <div
                   className="w-full aspect-[4/3] bg-stone-100 flex items-center justify-center"
-                  {...(itemFieldPath ? { 'data-nlv-field-path': `${itemFieldPath}.image` } : {})}
+                  {...(itemFieldPath
+                    ? {
+                        'data-nlv-field-path': `${itemFieldPath}.image`,
+                        'data-sb-field-path': `${itemFieldPath}.image`,
+                      }
+                    : {})}
                 >
                   {item.image ? (
                     <img src={item.image} alt={item.title ?? ''} className="w-full h-full object-cover" />
@@ -47,7 +60,12 @@ const ImageGrid: React.FC<ImageGridProps> = ({ items, fieldPath }) => {
                   {item.title && (
                     <h3
                       className="text-lg font-semibold text-stone-900"
-                      {...(itemFieldPath ? { 'data-nlv-field-path': `${itemFieldPath}.title` } : {})}
+                      {...(itemFieldPath
+                        ? {
+                            'data-nlv-field-path': `${itemFieldPath}.title`,
+                            'data-sb-field-path': `${itemFieldPath}.title`,
+                          }
+                        : {})}
                     >
                       {item.title}
                     </h3>
@@ -55,7 +73,12 @@ const ImageGrid: React.FC<ImageGridProps> = ({ items, fieldPath }) => {
                   {item.subtitle && (
                     <p
                       className="text-sm text-stone-600"
-                      {...(itemFieldPath ? { 'data-nlv-field-path': `${itemFieldPath}.subtitle` } : {})}
+                      {...(itemFieldPath
+                        ? {
+                            'data-nlv-field-path': `${itemFieldPath}.subtitle`,
+                            'data-sb-field-path': `${itemFieldPath}.subtitle`,
+                          }
+                        : {})}
                     >
                       {item.subtitle}
                     </p>

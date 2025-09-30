@@ -37,10 +37,18 @@ const normalizeInternal = (href: string) => {
 
 const MediaShowcase: React.FC<MediaShowcaseProps> = ({ title, items, fieldPath }) => {
   return (
-    <section className="py-20 sm:py-28 bg-white" data-nlv-field-path={fieldPath}>
+    <section
+      className="py-20 sm:py-28 bg-white"
+      data-nlv-field-path={fieldPath}
+      data-sb-field-path={fieldPath}
+    >
       <div className="w-full mx-auto px-4 sm:px-6 lg:px-0">
         {title && (
-          <div className="max-w-3xl mb-10" data-nlv-field-path={fieldPath ? `${fieldPath}.title` : undefined}>
+          <div
+            className="max-w-3xl mb-10"
+            data-nlv-field-path={fieldPath ? `${fieldPath}.title` : undefined}
+            data-sb-field-path={fieldPath ? `${fieldPath}.title` : undefined}
+          >
             <h2 className="text-3xl sm:text-4xl font-semibold text-stone-900 tracking-tight">{title}</h2>
           </div>
         )}
@@ -81,6 +89,7 @@ const MediaShowcase: React.FC<MediaShowcaseProps> = ({ title, items, fieldPath }
                 key={`${item.fieldPath ?? index}`}
                 className={`relative overflow-hidden bg-stone-900 text-white flex ${layoutClasses}`}
                 data-nlv-field-path={item.fieldPath}
+                data-sb-field-path={item.fieldPath}
               >
                 {imageSrc ? (
                   <img
@@ -88,11 +97,13 @@ const MediaShowcase: React.FC<MediaShowcaseProps> = ({ title, items, fieldPath }
                     alt={item.alt ?? itemTitle ?? 'Kapunka highlight'}
                     className="absolute inset-0 h-full w-full object-cover"
                     data-nlv-field-path={item.imageFieldPath}
+                    data-sb-field-path={item.imageFieldPath}
                   />
                 ) : (
                   <div
                     className="absolute inset-0 flex items-center justify-center border border-dashed border-white/40"
                     data-nlv-field-path={item.imageFieldPath}
+                    data-sb-field-path={item.imageFieldPath}
                   >
                     <span className="text-sm text-white/70">Add an image</span>
                   </div>
@@ -103,6 +114,7 @@ const MediaShowcase: React.FC<MediaShowcaseProps> = ({ title, items, fieldPath }
                       <span
                         className="text-xs font-semibold uppercase tracking-[0.24em] text-white/80"
                         data-nlv-field-path={item.eyebrowFieldPath}
+                        data-sb-field-path={item.eyebrowFieldPath}
                       >
                         {eyebrow}
                       </span>
@@ -111,6 +123,7 @@ const MediaShowcase: React.FC<MediaShowcaseProps> = ({ title, items, fieldPath }
                       <h3
                         className="text-2xl sm:text-3xl font-semibold leading-snug"
                         data-nlv-field-path={item.titleFieldPath}
+                        data-sb-field-path={item.titleFieldPath}
                       >
                         {itemTitle}
                       </h3>
@@ -119,6 +132,7 @@ const MediaShowcase: React.FC<MediaShowcaseProps> = ({ title, items, fieldPath }
                       <p
                         className="text-sm sm:text-base text-white/85 max-w-md"
                         data-nlv-field-path={item.bodyFieldPath}
+                        data-sb-field-path={item.bodyFieldPath}
                       >
                         {body}
                       </p>
@@ -130,18 +144,30 @@ const MediaShowcase: React.FC<MediaShowcaseProps> = ({ title, items, fieldPath }
                             to={normalizeInternal(ctaHref)}
                             className="inline-flex items-center rounded-full border border-white/60 bg-white/10 px-5 py-2 text-sm font-medium tracking-wide text-white transition hover:bg-white hover:text-stone-900"
                             data-nlv-field-path={item.ctaHrefFieldPath}
+                            data-sb-field-path={item.ctaHrefFieldPath}
                           >
-                            <span data-nlv-field-path={item.ctaLabelFieldPath}>{ctaLabel}</span>
+                            <span
+                              data-nlv-field-path={item.ctaLabelFieldPath}
+                              data-sb-field-path={item.ctaLabelFieldPath}
+                            >
+                              {ctaLabel}
+                            </span>
                           </Link>
                         ) : (
                           <a
                             href={ctaHref}
                             className="inline-flex items-center rounded-full border border-white/60 bg-white/10 px-5 py-2 text-sm font-medium tracking-wide text-white transition hover:bg-white hover:text-stone-900"
                             data-nlv-field-path={item.ctaHrefFieldPath}
+                            data-sb-field-path={item.ctaHrefFieldPath}
                             target="_blank"
                             rel="noreferrer"
                           >
-                            <span data-nlv-field-path={item.ctaLabelFieldPath}>{ctaLabel}</span>
+                            <span
+                              data-nlv-field-path={item.ctaLabelFieldPath}
+                              data-sb-field-path={item.ctaLabelFieldPath}
+                            >
+                              {ctaLabel}
+                            </span>
                           </a>
                         )}
                       </div>
