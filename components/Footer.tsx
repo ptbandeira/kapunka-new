@@ -4,9 +4,14 @@ import { useLanguage } from '../contexts/LanguageContext';
 import { Facebook, Instagram, Linkedin, Youtube, Globe } from 'lucide-react';
 import { useSiteSettings } from '../contexts/SiteSettingsContext';
 
-const FooterLink: React.FC<{ to: string; children: React.ReactNode; fieldPath?: string }> = ({ to, children, fieldPath }) => (
+const FooterLink: React.FC<{ to: string; children: React.ReactNode; fieldPath?: string; sbFieldPath?: string }> = ({ to, children, fieldPath, sbFieldPath }) => (
     <Link to={to} className="relative group text-stone-500 hover:text-stone-900 transition-colors duration-300">
-        <span data-nlv-field-path={fieldPath ?? undefined}>{children}</span>
+        <span
+          data-nlv-field-path={fieldPath ?? undefined}
+          data-sb-field-path={sbFieldPath ?? undefined}
+        >
+          {children}
+        </span>
         <span className="absolute bottom-0 left-0 block h-[1px] w-full bg-stone-700 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300 ease-in-out origin-left"></span>
     </Link>
 );
@@ -42,7 +47,7 @@ const Footer: React.FC = () => {
                   {t('footer.followUs')}
                 </h4>
                 {socialLinks.length > 0 && (
-                    <div className="flex space-x-4">
+                    <div className="flex space-x-4" data-sb-field-path="footer.socialLinks">
                         {socialLinks.map((link, index) => {
                             const iconKey = link.icon ? link.icon.toLowerCase() : '';
                             const Icon = socialIconMap[iconKey] ?? Globe;
@@ -55,6 +60,7 @@ const Footer: React.FC = () => {
                                     aria-label={link.label}
                                     className="text-stone-500 hover:text-stone-900 transition-colors"
                                     data-nlv-field-path={`site.footer.socialLinks.${index}`}
+                                    data-sb-field-path={`footer.socialLinks.${index}`}
                                 >
                                     <Icon size={20} />
                                 </a>
@@ -71,14 +77,22 @@ const Footer: React.FC = () => {
             >
               {t('footer.shop')}
             </h4>
-            <ul className="space-y-3 text-sm">
+            <ul className="space-y-3 text-sm" data-sb-field-path="footer.navLinks">
               <li>
-                <FooterLink to="/shop" fieldPath={`translations.${language}.footer.allProducts`}>
+                <FooterLink
+                  to="/shop"
+                  fieldPath={`translations.${language}.footer.allProducts`}
+                  sbFieldPath="footer.navLinks.0.label"
+                >
                   {t('footer.allProducts')}
                 </FooterLink>
               </li>
               <li>
-                <FooterLink to="/learn" fieldPath={`translations.${language}.footer.guides`}>
+                <FooterLink
+                  to="/learn"
+                  fieldPath={`translations.${language}.footer.guides`}
+                  sbFieldPath="footer.navLinks.1.label"
+                >
                   {t('footer.guides')}
                 </FooterLink>
               </li>
@@ -93,12 +107,20 @@ const Footer: React.FC = () => {
             </h4>
             <ul className="space-y-3 text-sm">
               <li>
-                <FooterLink to="/about" fieldPath={`translations.${language}.footer.ourStory`}>
+                <FooterLink
+                  to="/about"
+                  fieldPath={`translations.${language}.footer.ourStory`}
+                  sbFieldPath="footer.navLinks.2.label"
+                >
                   {t('footer.ourStory')}
                 </FooterLink>
               </li>
               <li>
-                <FooterLink to="/contact" fieldPath={`translations.${language}.footer.contact`}>
+                <FooterLink
+                  to="/contact"
+                  fieldPath={`translations.${language}.footer.contact`}
+                  sbFieldPath="footer.navLinks.3.label"
+                >
                   {t('footer.contact')}
                 </FooterLink>
               </li>
@@ -113,22 +135,38 @@ const Footer: React.FC = () => {
             </h4>
             <ul className="space-y-3 text-sm">
               <li>
-                <FooterLink to="/policy/shipping" fieldPath={`translations.${language}.footer.shipping`}>
+                <FooterLink
+                  to="/policy/shipping"
+                  fieldPath={`translations.${language}.footer.shipping`}
+                  sbFieldPath="footer.navLinks.4.label"
+                >
                   {t('footer.shipping')}
                 </FooterLink>
               </li>
               <li>
-                <FooterLink to="/policy/returns" fieldPath={`translations.${language}.footer.returns`}>
+                <FooterLink
+                  to="/policy/returns"
+                  fieldPath={`translations.${language}.footer.returns`}
+                  sbFieldPath="footer.navLinks.5.label"
+                >
                   {t('footer.returns')}
                 </FooterLink>
               </li>
               <li>
-                <FooterLink to="/policy/privacy" fieldPath={`translations.${language}.footer.privacy`}>
+                <FooterLink
+                  to="/policy/privacy"
+                  fieldPath={`translations.${language}.footer.privacy`}
+                  sbFieldPath="footer.navLinks.6.label"
+                >
                   {t('footer.privacy')}
                 </FooterLink>
               </li>
               <li>
-                <FooterLink to="/policy/terms" fieldPath={`translations.${language}.footer.terms`}>
+                <FooterLink
+                  to="/policy/terms"
+                  fieldPath={`translations.${language}.footer.terms`}
+                  sbFieldPath="footer.navLinks.7.label"
+                >
                   {t('footer.terms')}
                 </FooterLink>
               </li>

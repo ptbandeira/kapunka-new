@@ -15,7 +15,7 @@ const SUPPORTED_LANGUAGES: Array<{ code: Language; name: string }> = [
   { code: 'es', name: 'ES' },
 ];
 
-const NavItem: React.FC<{ to: string; label: string; fieldPath?: string; onClick?: () => void }> = ({ to, label, fieldPath, onClick }) => {
+const NavItem: React.FC<{ to: string; label: string; fieldPath?: string; sbFieldPath?: string; onClick?: () => void }> = ({ to, label, fieldPath, sbFieldPath, onClick }) => {
   const navLinkClassName = useCallback(({ isActive }: { isActive: boolean }) => (
     `relative transition-colors duration-300 ${
       isActive ? 'text-stone-900' : 'text-stone-500 hover:text-stone-900'
@@ -24,7 +24,12 @@ const NavItem: React.FC<{ to: string; label: string; fieldPath?: string; onClick
 
   const renderNavContent = useCallback(({ isActive }: { isActive: boolean }) => (
     <motion.div className="relative" whileHover={{ y: -2 }}>
-      <span data-nlv-field-path={fieldPath ?? undefined}>{label}</span>
+      <span
+        data-nlv-field-path={fieldPath ?? undefined}
+        data-sb-field-path={sbFieldPath ?? undefined}
+      >
+        {label}
+      </span>
       {isActive && (
         <motion.div
           className="absolute -bottom-1 left-0 right-0 h-0.5 bg-stone-900"
@@ -33,7 +38,7 @@ const NavItem: React.FC<{ to: string; label: string; fieldPath?: string; onClick
         />
       )}
     </motion.div>
-  ), [fieldPath, label]);
+  ), [fieldPath, label, sbFieldPath]);
 
   return (
     <NavLink to={to} onClick={onClick} className={navLinkClassName}>
@@ -147,9 +152,18 @@ const Header: React.FC = () => {
             </div>
 
             {/* Centered Navigation */}
-            <nav className="hidden lg:flex items-center justify-center space-x-8 text-sm font-medium">
-              {navLinks.map(link => (
-                <NavItem key={link.to} to={link.to} label={link.label} fieldPath={link.fieldPath} />
+            <nav
+              className="hidden lg:flex items-center justify-center space-x-8 text-sm font-medium"
+              data-sb-field-path="header.navLinks"
+            >
+              {navLinks.map((link, index) => (
+                <NavItem
+                  key={link.to}
+                  to={link.to}
+                  label={link.label}
+                  fieldPath={link.fieldPath}
+                  sbFieldPath={`header.navLinks.${index}.label`}
+                />
               ))}
             </nav>
 
@@ -197,9 +211,19 @@ const Header: React.FC = () => {
                   <X size={24} />
                 </button>
               </div>
-              <nav className="flex flex-col items-center space-y-8 text-xl font-medium">
-                {navLinks.map(link => (
-                  <NavItem key={link.to} to={link.to} label={link.label} fieldPath={link.fieldPath} onClick={handleMenuClose} />
+              <nav
+                className="flex flex-col items-center space-y-8 text-xl font-medium"
+                data-sb-field-path="header.navLinks"
+              >
+                {navLinks.map((link, index) => (
+                  <NavItem
+                    key={link.to}
+                    to={link.to}
+                    label={link.label}
+                    fieldPath={link.fieldPath}
+                    sbFieldPath={`header.navLinks.${index}.label`}
+                    onClick={handleMenuClose}
+                  />
                 ))}
               </nav>
               <div className="mt-auto mb-12 flex justify-center">
