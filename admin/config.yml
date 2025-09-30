@@ -54,8 +54,58 @@ shared_sections: &shared_sections
       - { label: "Image Upload", name: "image", widget: "image", choose_url: true, required: false }
       - { label: "Image Path (optional)", name: "imageRef", widget: "string", required: false, hint: "Use when referencing an existing asset path such as /content/uploads/example.jpg." }
       - { label: "Image Alt Text", name: "imageAlt", widget: "string", i18n: true, required: false }
-      - { label: "Layout", name: "layout", widget: "select", options: ["image-right", "image-left"], default: "image-right" }
+      - label: "Layout"
+        name: "layout"
+        widget: "select"
+        options:
+          - { label: "Image right", value: "image-right" }
+          - { label: "Image left", value: "image-left" }
+          - { label: "Overlay", value: "overlay" }
+        default: "image-right"
       - { label: "Columns", name: "columns", widget: "number", value_type: "int", min: 1, max: 3, required: false, hint: "Leave blank for the default two-column layout." }
+      - label: "Overlay Settings"
+        name: "overlay"
+        widget: "object"
+        collapsed: true
+        required: false
+        fields:
+          - { label: "Text column start (1-6)", name: "columnStart", widget: "number", value_type: "int", min: 1, max: 6, required: false }
+          - { label: "Text column span", name: "columnSpan", widget: "number", value_type: "int", min: 1, max: 6, required: false, hint: "How many columns (within 6) the text card should span." }
+          - { label: "Text row start (1-6)", name: "rowStart", widget: "number", value_type: "int", min: 1, max: 6, required: false }
+          - { label: "Text row span", name: "rowSpan", widget: "number", value_type: "int", min: 1, max: 6, required: false }
+          - label: "Horizontal alignment"
+            name: "textAlign"
+            widget: "select"
+            required: false
+            options:
+              - { label: "Left", value: "left" }
+              - { label: "Center", value: "center" }
+              - { label: "Right", value: "right" }
+          - label: "Vertical alignment"
+            name: "verticalAlign"
+            widget: "select"
+            required: false
+            options:
+              - { label: "Start", value: "start" }
+              - { label: "Center", value: "center" }
+              - { label: "End", value: "end" }
+          - label: "Text theme"
+            name: "theme"
+            widget: "select"
+            required: false
+            options:
+              - { label: "Light (white text)", value: "light" }
+              - { label: "Dark (near-black text)", value: "dark" }
+          - label: "Background style"
+            name: "background"
+            widget: "select"
+            required: false
+            options:
+              - { label: "None", value: "none" }
+              - { label: "Light scrim", value: "scrim-light" }
+              - { label: "Dark scrim", value: "scrim-dark" }
+              - { label: "Solid panel", value: "panel" }
+            hint: "Add a scrim or panel to improve contrast when using overlay layouts."
   - &section_featureGrid
     label: "Feature Grid"
     name: "featureGrid"

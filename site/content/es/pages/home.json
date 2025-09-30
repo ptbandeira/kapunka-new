@@ -34,32 +34,72 @@
       "title": "Nacido de la gratitud",
       "body": "“Kapunka” significa “gracias”. Elaboramos cuidados de argán con respeto clínico: rutinas sencillas que reconfortan, protegen y apoyan la recuperación. Nuestras raíces están en Marruecos; nuestro método creció en clínicas reales.",
       "imageRef": "/content/uploads/roots-olive-tree.jpg",
-      "layout": "image-right",
-      "columns": 2
+      "layout": "overlay",
+      "overlay": {
+        "columnStart": 1,
+        "columnSpan": 3,
+        "rowStart": 2,
+        "rowSpan": 3,
+        "textAlign": "left",
+        "verticalAlign": "center",
+        "theme": "light",
+        "background": "scrim-dark"
+      },
+      "imageAlt": "Manos aplicando aceite de argán con luz cálida"
     },
     {
       "type": "mediaCopy",
       "title": "Preferido por dermatólogos, medspas y clínicas holísticas",
       "body": "Nuestros tratamientos son suaves, de bajo residuo y guiados por el conocimiento, con aceptación de la piel, estabilidad de la barrera y equilibrio aromático. La formación dedicada y el soporte mayorista mantienen a tu equipo con confianza.",
       "imageRef": "/content/uploads/clinic-hands.jpg",
-      "layout": "image-left",
-      "columns": 2
+      "layout": "overlay",
+      "overlay": {
+        "columnStart": 4,
+        "columnSpan": 3,
+        "rowStart": 2,
+        "rowSpan": 3,
+        "textAlign": "right",
+        "verticalAlign": "center",
+        "theme": "light",
+        "background": "scrim-dark"
+      },
+      "imageAlt": "Profesional masajeando el rostro de una clienta con cuidado de argán"
     },
     {
       "type": "mediaCopy",
       "title": "Abastecimiento patrimonial, estándares de grado clínico",
       "body": "Obtenemos argán de origen único y seguimos cada paso desde las cooperativas hasta las certificaciones de laboratorio. Cada lote se somete a pruebas meticulosas para mantener un cuidado humano a escala.",
       "imageRef": "/content/uploads/argan-coop.jpg",
-      "layout": "image-right",
-      "columns": 2
+      "layout": "overlay",
+      "overlay": {
+        "columnStart": 1,
+        "columnSpan": 3,
+        "rowStart": 1,
+        "rowSpan": 3,
+        "textAlign": "left",
+        "verticalAlign": "start",
+        "theme": "light",
+        "background": "panel"
+      },
+      "imageAlt": "Frutos de argán recién cosechados en una cesta tejida"
     },
     {
       "type": "mediaCopy",
       "title": "De los rituales de hammam a la recuperación moderna",
       "body": "Aceite puro, brumas florales y limpiadores suaves. Sabiduría ancestral conectada con la vida de hoy: rutinas que calman el malestar, reparan la barrera y no dejan una película pesada.",
       "imageRef": "/content/uploads/hammam-light.jpg",
-      "layout": "image-left",
-      "columns": 2
+      "layout": "overlay",
+      "overlay": {
+        "columnStart": 4,
+        "columnSpan": 3,
+        "rowStart": 4,
+        "rowSpan": 3,
+        "textAlign": "right",
+        "verticalAlign": "end",
+        "theme": "light",
+        "background": "scrim-dark"
+      },
+      "imageAlt": "Sala de hammam llena de vapor con una persona descansando"
     },
     {
       "type": "featureGrid",
@@ -128,6 +168,16 @@
       ]
     },
     {
+      "type": "newsletterSignup",
+      "title": "Únete a la Lista",
+      "subtitle": "Consejos para rutinas de piel sensible, una o dos veces al mes. Sin spam. Baja cuando quieras.",
+      "placeholder": "Introduce tu correo electrónico",
+      "ctaLabel": "Suscribirse",
+      "confirmation": "¡Gracias por suscribirte!",
+      "background": "beige",
+      "alignment": "center"
+    },
+    {
       "type": "testimonials",
       "title": "Lo que dicen los profesionales",
       "quotes": [
@@ -142,16 +192,6 @@
           "role": "Esteticista"
         }
       ]
-    },
-    {
-      "type": "newsletterSignup",
-      "title": "Únete a la Lista",
-      "subtitle": "Consejos para rutinas de piel sensible, una o dos veces al mes. Sin spam. Baja cuando quieras.",
-      "placeholder": "Introduce tu correo electrónico",
-      "ctaLabel": "Suscribirse",
-      "confirmation": "¡Gracias por suscribirte!",
-      "background": "beige",
-      "alignment": "center"
     }
   ]
 }

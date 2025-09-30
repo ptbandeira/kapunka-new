@@ -30,32 +30,72 @@
       "title": "Nacido de la gratitud",
       "body": "“Kapunka” significa “gracias”. Elaboramos cuidados de argán con respeto clínico: rutinas sencillas que reconfortan, protegen y apoyan la recuperación. Nuestras raíces están en Marruecos; nuestro método creció en clínicas reales.",
       "imageRef": "/content/uploads/roots-olive-tree.jpg",
-      "layout": "image-right",
-      "columns": 2
+      "layout": "overlay",
+      "overlay": {
+        "columnStart": 1,
+        "columnSpan": 3,
+        "rowStart": 2,
+        "rowSpan": 3,
+        "textAlign": "left",
+        "verticalAlign": "center",
+        "theme": "light",
+        "background": "scrim-dark"
+      },
+      "imageAlt": "Manos aplicando aceite de argán con luz cálida"
     },
     {
       "type": "mediaCopy",
       "title": "Preferido por dermatólogos, medspas y clínicas holísticas",
       "body": "Nuestros tratamientos son suaves, de bajo residuo y guiados por el conocimiento, con aceptación de la piel, estabilidad de la barrera y equilibrio aromático. La formación dedicada y el soporte mayorista mantienen a tu equipo con confianza.",
       "imageRef": "/content/uploads/clinic-hands.jpg",
-      "layout": "image-left",
-      "columns": 2
+      "layout": "overlay",
+      "overlay": {
+        "columnStart": 4,
+        "columnSpan": 3,
+        "rowStart": 2,
+        "rowSpan": 3,
+        "textAlign": "right",
+        "verticalAlign": "center",
+        "theme": "light",
+        "background": "scrim-dark"
+      },
+      "imageAlt": "Profesional masajeando el rostro de una clienta con cuidado de argán"
     },
     {
       "type": "mediaCopy",
       "title": "Abastecimiento patrimonial, estándares de grado clínico",
       "body": "Obtenemos argán de origen único y seguimos cada paso desde las cooperativas hasta las certificaciones de laboratorio. Cada lote se somete a pruebas meticulosas para mantener un cuidado humano a escala.",
       "imageRef": "/content/uploads/argan-coop.jpg",
-      "layout": "image-right",
-      "columns": 2
+      "layout": "overlay",
+      "overlay": {
+        "columnStart": 1,
+        "columnSpan": 3,
+        "rowStart": 1,
+        "rowSpan": 3,
+        "textAlign": "left",
+        "verticalAlign": "start",
+        "theme": "light",
+        "background": "panel"
+      },
+      "imageAlt": "Frutos de argán recién cosechados en una cesta tejida"
     },
     {
       "type": "mediaCopy",
       "title": "De los rituales de hammam a la recuperación moderna",
       "body": "Aceite puro, brumas florales y limpiadores suaves. Sabiduría ancestral conectada con la vida de hoy: rutinas que calman el malestar, reparan la barrera y no dejan una película pesada.",
       "imageRef": "/content/uploads/hammam-light.jpg",
-      "layout": "image-left",
-      "columns": 2
+      "layout": "overlay",
+      "overlay": {
+        "columnStart": 4,
+        "columnSpan": 3,
+        "rowStart": 4,
+        "rowSpan": 3,
+        "textAlign": "right",
+        "verticalAlign": "end",
+        "theme": "light",
+        "background": "scrim-dark"
+      },
+      "imageAlt": "Sala de hammam llena de vapor con una persona descansando"
     },
     {
       "type": "featureGrid",
@@ -103,25 +143,35 @@
         {
           "image": "",
           "alt": "Añade una foto de un ritual de Kapunka en uso",
-          "quote": "\u201cUtiliza este espacio para contar c\u00f3mo alguien vive Kapunka en su rutina.\u201d",
+          "quote": "“Utiliza este espacio para contar cómo alguien vive Kapunka en su rutina.”",
           "name": "Nombre del cliente",
-          "role": "Cl\u00ednica o ciudad"
+          "role": "Clínica o ciudad"
         },
         {
           "image": "",
           "alt": "Sube otra imagen de la comunidad",
-          "quote": "\u201cDestaca un testimonio de un socio, una historia de recuperaci\u00f3n o un ritual diario.\u201d",
+          "quote": "“Destaca un testimonio de un socio, una historia de recuperación o un ritual diario.”",
           "name": "Socio o profesional",
           "role": "Rol o enfoque del tratamiento"
         },
         {
           "image": "",
-          "alt": "Añade im\u00e1genes de estilo de vida c\u00e1lidas y reales",
-          "quote": "\u201cA\u00f1ade una nota aut\u00e9ntica sobre c\u00f3mo Kapunka acompa\u00f1a sus objetivos de piel.\u201d",
+          "alt": "Añade imágenes de estilo de vida cálidas y reales",
+          "quote": "“Añade una nota auténtica sobre cómo Kapunka acompaña sus objetivos de piel.”",
           "name": "Añade un nombre",
-          "role": "Ubicaci\u00f3n o contexto"
+          "role": "Ubicación o contexto"
         }
       ]
+    },
+    {
+      "type": "newsletterSignup",
+      "title": "Únete a la Lista",
+      "subtitle": "Consejos para rutinas de piel sensible, una o dos veces al mes. Sin spam. Baja cuando quieras.",
+      "placeholder": "Introduce tu correo electrónico",
+      "ctaLabel": "Suscribirse",
+      "confirmation": "¡Gracias por suscribirte!",
+      "background": "beige",
+      "alignment": "center"
     },
     {
       "type": "testimonials",
@@ -138,16 +188,6 @@
           "role": "Esteticista"
         }
       ]
-    },
-    {
-      "type": "newsletterSignup",
-      "title": "Únete a la Lista",
-      "subtitle": "Consejos para rutinas de piel sensible, una o dos veces al mes. Sin spam. Baja cuando quieras.",
-      "placeholder": "Introduce tu correo electrónico",
-      "ctaLabel": "Suscribirse",
-      "confirmation": "¡Gracias por suscribirte!",
-      "background": "beige",
-      "alignment": "center"
     }
   ]
 }

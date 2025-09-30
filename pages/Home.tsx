@@ -29,6 +29,17 @@ type CmsCtaShape = {
   href?: string | null;
 };
 
+type MediaCopyOverlaySettings = {
+  columnStart?: number;
+  columnSpan?: number;
+  rowStart?: number;
+  rowSpan?: number;
+  textAlign?: 'left' | 'center' | 'right';
+  verticalAlign?: 'start' | 'center' | 'end';
+  theme?: 'light' | 'dark';
+  background?: 'none' | 'scrim-light' | 'scrim-dark' | 'panel';
+};
+
 type HomeSection =
   | {
       type: 'hero';
@@ -68,8 +79,10 @@ type HomeSection =
       body?: string;
       image?: string;
       imageRef?: string;
-      layout?: 'image-left' | 'image-right';
+      imageAlt?: string;
+      layout?: 'image-left' | 'image-right' | 'overlay';
       columns?: number;
+      overlay?: MediaCopyOverlaySettings;
     }
   | {
       type: 'testimonials';
@@ -268,7 +281,21 @@ const mediaCopySectionSchema = z
     body: z.string().optional(),
     image: z.string().optional(),
     imageRef: z.string().optional(),
-    layout: z.enum(['image-left', 'image-right']).optional(),
+    imageAlt: z.string().optional(),
+    layout: z.enum(['image-left', 'image-right', 'overlay']).optional(),
+    columns: z.number().int().optional(),
+    overlay: z
+      .object({
+        columnStart: z.number().int().min(1).max(6).optional(),
+        columnSpan: z.number().int().min(1).max(6).optional(),
+        rowStart: z.number().int().min(1).max(6).optional(),
+        rowSpan: z.number().int().min(1).max(6).optional(),
+        textAlign: z.enum(['left', 'center', 'right']).optional(),
+        verticalAlign: z.enum(['start', 'center', 'end']).optional(),
+        theme: z.enum(['light', 'dark']).optional(),
+        background: z.enum(['none', 'scrim-light', 'scrim-dark', 'panel']).optional(),
+      })
+      .optional(),
   })
   .passthrough();
 
@@ -641,6 +668,97 @@ const createKeyFromParts = (prefix: string, parts: Array<string | null | undefin
     .join('|');
 
   return key.length > 0 ? `${prefix}-${key}` : prefix;
+};
+
+const clampInteger = (value: unknown, min: number, max: number, fallback: number) => {
+  if (typeof value !== 'number' || Number.isNaN(value) || !Number.isFinite(value)) {
+    return fallback;
+  }
+
+  const rounded = Math.round(value);
+  if (rounded < min) {
+    return min;
+  }
+  if (rounded > max) {
+    return max;
+  }
+  return rounded;
+};
+
+const OVERLAY_GRID_SIZE = 6;
+
+type NormalizedOverlaySettings = {
+  columnStart: number;
+  columnEnd: number;
+  rowStart: number;
+  rowEnd: number;
+  textAlign: 'left' | 'center' | 'right';
+  verticalAlign: 'start' | 'center' | 'end';
+  theme: 'light' | 'dark';
+  background: 'none' | 'scrim-light' | 'scrim-dark' | 'panel';
+};
+
+const normalizeOverlaySettings = (overlay?: MediaCopyOverlaySettings | null): NormalizedOverlaySettings => {
+  const defaults: NormalizedOverlaySettings = {
+    columnStart: 2,
+    columnEnd: 5,
+    rowStart: 4,
+    rowEnd: 6,
+    textAlign: 'left',
+    verticalAlign: 'start',
+    theme: 'light',
+    background: 'scrim-dark',
+  };
+
+  if (!overlay || typeof overlay !== 'object') {
+    return defaults;
+  }
+
+  const columnStart = clampInteger(overlay.columnStart, 1, OVERLAY_GRID_SIZE, defaults.columnStart);
+  const columnSpan = clampInteger(overlay.columnSpan, 1, OVERLAY_GRID_SIZE, defaults.columnEnd - defaults.columnStart);
+  const maxColumnSpan = OVERLAY_GRID_SIZE - columnStart + 1;
+  const effectiveColumnSpan = Math.min(columnSpan, maxColumnSpan);
+  const columnEnd = Math.min(columnStart + effectiveColumnSpan, OVERLAY_GRID_SIZE + 1);
+
+  const rowStart = clampInteger(overlay.rowStart, 1, OVERLAY_GRID_SIZE, defaults.rowStart);
+  const rowSpan = clampInteger(overlay.rowSpan, 1, OVERLAY_GRID_SIZE, defaults.rowEnd - defaults.rowStart);
+  const maxRowSpan = OVERLAY_GRID_SIZE - rowStart + 1;
+  const effectiveRowSpan = Math.min(rowSpan, maxRowSpan);
+  const rowEnd = Math.min(rowStart + effectiveRowSpan, OVERLAY_GRID_SIZE + 1);
+
+  const textAlign = overlay.textAlign === 'left' || overlay.textAlign === 'center' || overlay.textAlign === 'right'
+    ? overlay.textAlign
+    : defaults.textAlign;
+
+  const verticalAlign =
+    overlay.verticalAlign === 'start' || overlay.verticalAlign === 'center' || overlay.verticalAlign === 'end'
+      ? overlay.verticalAlign
+      : defaults.verticalAlign;
+
+  const theme = overlay.theme === 'light' || overlay.theme === 'dark' ? overlay.theme : defaults.theme;
+
+  const background =
+    overlay.background === 'none' || overlay.background === 'scrim-light' || overlay.background === 'scrim-dark' || overlay.background === 'panel'
+      ? overlay.background
+      : defaults.background;
+
+  return {
+    columnStart,
+    columnEnd,
+    rowStart,
+    rowEnd,
+    textAlign,
+    verticalAlign,
+    theme,
+    background,
+  };
+};
+
+const overlayBackgroundClassMap: Record<NormalizedOverlaySettings['background'], string> = {
+  none: 'bg-transparent',
+  'scrim-light': 'bg-white/80 backdrop-blur-sm',
+  'scrim-dark': 'bg-black/60 backdrop-blur-sm',
+  panel: 'bg-stone-900/85 backdrop-blur-sm',
 };
 
 const isInternalNavigationHref = (href?: string | null): href is string => {
@@ -2186,17 +2304,112 @@ const Home: React.FC = () => {
         const title = sanitizeString(section.title ?? null);
         const body = sanitizeString(section.body ?? null);
         const mediaImage = sanitizeString(pickImage(section.image, section.imageRef));
+        const imageAlt = sanitizeString(section.imageAlt ?? null) ?? title ?? 'Media highlight';
         if (!title && !body && !mediaImage) {
           return null;
         }
 
-        const layout = section.layout === 'image-left' ? 'image-left' : 'image-right';
-        const requestedColumns = typeof section.columns === 'number' && Number.isFinite(section.columns)
-          ? Math.max(1, Math.min(Math.round(section.columns), 2))
-          : undefined;
+        const layout =
+          section.layout === 'image-left' || section.layout === 'image-right' || section.layout === 'overlay'
+            ? section.layout
+            : 'image-right';
+        const requestedColumns =
+          typeof section.columns === 'number' && Number.isFinite(section.columns)
+            ? Math.max(1, Math.min(Math.round(section.columns), 2))
+            : undefined;
         const hasImage = Boolean(mediaImage);
         const effectiveColumns = requestedColumns ?? (hasImage ? 2 : 1);
         const imageFieldKey = section.image ? 'image' : section.imageRef ? 'imageRef' : 'image';
+
+        if (layout === 'overlay' && hasImage) {
+          const overlaySettings = normalizeOverlaySettings(section.overlay);
+          const mediaCopyKey = createKeyFromParts('section-media-copy', [
+            title,
+            body,
+            mediaImage,
+            layout,
+            `${overlaySettings.columnStart}-${overlaySettings.columnEnd}`,
+            `${overlaySettings.rowStart}-${overlaySettings.rowEnd}`,
+            overlaySettings.textAlign,
+            overlaySettings.verticalAlign,
+            overlaySettings.theme,
+            overlaySettings.background,
+          ]);
+
+          const overlayPlacementStyle: React.CSSProperties = {
+            gridColumn: `${overlaySettings.columnStart} / ${overlaySettings.columnEnd}`,
+            gridRow: `${overlaySettings.rowStart} / ${overlaySettings.rowEnd}`,
+            justifySelf:
+              overlaySettings.textAlign === 'center'
+                ? 'center'
+                : overlaySettings.textAlign === 'right'
+                  ? 'end'
+                  : 'start',
+            alignSelf:
+              overlaySettings.verticalAlign === 'center'
+                ? 'center'
+                : overlaySettings.verticalAlign === 'end'
+                  ? 'end'
+                  : 'start',
+          };
+
+          const overlayTextAlignClass =
+            overlaySettings.textAlign === 'center'
+              ? 'text-center'
+              : overlaySettings.textAlign === 'right'
+                ? 'text-right'
+                : 'text-left';
+          const overlayThemeClass = overlaySettings.theme === 'dark' ? 'text-stone-900' : 'text-white';
+          const overlayBackgroundClass = overlayBackgroundClassMap[overlaySettings.background];
+
+          return (
+            <section
+              key={mediaCopyKey}
+              className="py-16 sm:py-24 bg-white"
+              data-nlv-field-path={sectionFieldPath}
+            >
+              <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+                <div className="relative overflow-hidden rounded-2xl shadow-lg">
+                  <img
+                    src={mediaImage}
+                    alt={imageAlt}
+                    className="h-full w-full object-cover"
+                    data-nlv-field-path={`${sectionFieldPath}.${imageFieldKey}`}
+                  />
+                  <div
+                    className="pointer-events-none absolute inset-0 grid"
+                    style={{
+                      gridTemplateColumns: 'repeat(6, minmax(0, 1fr))',
+                      gridTemplateRows: 'repeat(6, minmax(0, 1fr))',
+                    }}
+                  >
+                    <div
+                      className={`pointer-events-auto flex max-w-xl flex-col gap-4 p-6 sm:p-8 rounded-xl shadow-xl ${overlayBackgroundClass} ${overlayThemeClass} ${overlayTextAlignClass}`}
+                      style={overlayPlacementStyle}
+                    >
+                      {title && (
+                        <h2
+                          className="text-3xl sm:text-4xl font-semibold"
+                          data-nlv-field-path={`${sectionFieldPath}.title`}
+                        >
+                          {title}
+                        </h2>
+                      )}
+                      {body && (
+                        <div
+                          className="text-lg leading-relaxed"
+                          data-nlv-field-path={`${sectionFieldPath}.body`}
+                        >
+                          <ReactMarkdown>{body}</ReactMarkdown>
+                        </div>
+                      )}
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </section>
+          );
+        }
 
         if (!hasImage || effectiveColumns === 1) {
           const mediaCopyKey = createKeyFromParts('section-media-copy', [title, body, mediaImage, layout]);
@@ -2240,7 +2453,7 @@ const Home: React.FC = () => {
                     <div className="w-full" data-nlv-field-path={`${sectionFieldPath}.${imageFieldKey}`}>
                       <img
                         src={mediaImage}
-                        alt={title ?? 'Media highlight'}
+                        alt={imageAlt}
                         className="w-full rounded-lg object-cover shadow-sm"
                       />
                     </div>
@@ -2286,7 +2499,7 @@ const Home: React.FC = () => {
                   <div className={imageColumnClasses}>
                     <img
                       src={mediaImage}
-                      alt={title ?? 'Media highlight'}
+                      alt={imageAlt}
                       className="w-full h-full object-cover rounded-lg shadow-sm"
                       data-nlv-field-path={`${sectionFieldPath}.${imageFieldKey}`}
                     />
@@ -2581,25 +2794,185 @@ const Home: React.FC = () => {
       case 'mediaCopy': {
         const title = sanitizeString(section.title ?? null);
         const body = sanitizeString(section.body ?? null);
-        const image = sanitizeString(section.image ?? null);
-        const imageRef = sanitizeString(section.imageRef ?? null);
-        if (!title && !body && !image && !imageRef) {
+        const mediaImage = sanitizeString(pickImage(section.image, section.imageRef));
+        const imageAlt = sanitizeString(section.imageAlt ?? null) ?? title ?? 'Media highlight';
+        if (!title && !body && !mediaImage) {
           return null;
         }
 
-        const isImageLeft = section.layout === 'image-left';
-        const textColumnClasses = `space-y-6 ${isImageLeft ? 'order-2 lg:order-2' : 'order-2 lg:order-1'}`;
-        const imageColumnClasses = isImageLeft ? 'order-1 lg:order-1' : 'order-1 lg:order-2';
-        const mediaImage = image ?? imageRef;
-        const imageFieldPath = image
+        const layout =
+          section.layout === 'image-left' || section.layout === 'image-right' || section.layout === 'overlay'
+            ? section.layout
+            : 'image-right';
+        const requestedColumns =
+          typeof section.columns === 'number' && Number.isFinite(section.columns)
+            ? Math.max(1, Math.min(Math.round(section.columns), 2))
+            : undefined;
+        const hasImage = Boolean(mediaImage);
+        const effectiveColumns = requestedColumns ?? (hasImage ? 2 : 1);
+        const imageFieldPath = section.image
           ? `${sectionFieldPath}.image`
-          : imageRef
+          : section.imageRef
             ? `${sectionFieldPath}.imageRef`
             : `${sectionFieldPath}.image`;
+
+        if (layout === 'overlay' && hasImage) {
+          const overlaySettings = normalizeOverlaySettings(section.overlay);
+          const structuredMediaCopyKey = createKeyFromParts('structured-media-copy', [
+            title,
+            body,
+            mediaImage,
+            layout,
+            `${overlaySettings.columnStart}-${overlaySettings.columnEnd}`,
+            `${overlaySettings.rowStart}-${overlaySettings.rowEnd}`,
+            overlaySettings.textAlign,
+            overlaySettings.verticalAlign,
+            overlaySettings.theme,
+            overlaySettings.background,
+          ]);
+
+          const overlayPlacementStyle: React.CSSProperties = {
+            gridColumn: `${overlaySettings.columnStart} / ${overlaySettings.columnEnd}`,
+            gridRow: `${overlaySettings.rowStart} / ${overlaySettings.rowEnd}`,
+            justifySelf:
+              overlaySettings.textAlign === 'center'
+                ? 'center'
+                : overlaySettings.textAlign === 'right'
+                  ? 'end'
+                  : 'start',
+            alignSelf:
+              overlaySettings.verticalAlign === 'center'
+                ? 'center'
+                : overlaySettings.verticalAlign === 'end'
+                  ? 'end'
+                  : 'start',
+          };
+
+          const overlayTextAlignClass =
+            overlaySettings.textAlign === 'center'
+              ? 'text-center'
+              : overlaySettings.textAlign === 'right'
+                ? 'text-right'
+                : 'text-left';
+          const overlayThemeClass = overlaySettings.theme === 'dark' ? 'text-stone-900' : 'text-white';
+          const overlayBackgroundClass = overlayBackgroundClassMap[overlaySettings.background];
+
+          return (
+            <section
+              key={structuredMediaCopyKey}
+              className="py-16 sm:py-24 bg-white"
+              data-nlv-field-path={sectionFieldPath}
+            >
+              <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+                <div className="relative overflow-hidden rounded-2xl shadow-lg">
+                  <img
+                    src={mediaImage}
+                    alt={imageAlt}
+                    className="h-full w-full object-cover"
+                    data-nlv-field-path={imageFieldPath}
+                  />
+                  <div
+                    className="pointer-events-none absolute inset-0 grid"
+                    style={{
+                      gridTemplateColumns: 'repeat(6, minmax(0, 1fr))',
+                      gridTemplateRows: 'repeat(6, minmax(0, 1fr))',
+                    }}
+                  >
+                    <div
+                      className={`pointer-events-auto flex max-w-xl flex-col gap-4 p-6 sm:p-8 rounded-xl shadow-xl ${overlayBackgroundClass} ${overlayThemeClass} ${overlayTextAlignClass}`}
+                      style={overlayPlacementStyle}
+                    >
+                      {title && (
+                        <h2
+                          className="text-3xl sm:text-4xl font-semibold"
+                          data-nlv-field-path={`${sectionFieldPath}.title`}
+                        >
+                          {title}
+                        </h2>
+                      )}
+                      {body && (
+                        <div
+                          className="text-lg leading-relaxed"
+                          data-nlv-field-path={`${sectionFieldPath}.body`}
+                        >
+                          <ReactMarkdown>{body}</ReactMarkdown>
+                        </div>
+                      )}
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </section>
+          );
+        }
+
+        if (!hasImage || effectiveColumns === 1) {
+          const structuredMediaCopyKey = createKeyFromParts('structured-media-copy', [
+            title,
+            body,
+            mediaImage,
+            layout,
+          ]);
+
+          const singleColumnAlignment = (() => {
+            if (layout === 'image-left') {
+              return { container: 'items-start text-left', text: 'text-left' };
+            }
+
+            if (layout === 'image-right') {
+              return { container: 'items-end text-right', text: 'text-right' };
+            }
+
+            return { container: 'items-center text-center', text: 'text-center' };
+          })();
+
+          return (
+            <section
+              key={structuredMediaCopyKey}
+              className="py-16 sm:py-24 bg-white"
+              data-nlv-field-path={sectionFieldPath}
+            >
+              <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+                <div className={`mx-auto flex max-w-3xl flex-col gap-6 ${singleColumnAlignment.container}`}>
+                  {title && (
+                    <h2
+                      className={`text-3xl sm:text-4xl font-semibold ${singleColumnAlignment.text}`}
+                      data-nlv-field-path={`${sectionFieldPath}.title`}
+                    >
+                      {title}
+                    </h2>
+                  )}
+                  {body && (
+                    <div
+                      className={`${singleColumnAlignment.text} text-lg text-stone-600 space-y-4`}
+                      data-nlv-field-path={`${sectionFieldPath}.body`}
+                    >
+                      <ReactMarkdown>{body}</ReactMarkdown>
+                    </div>
+                  )}
+                  {hasImage && (
+                    <div className="w-full" data-nlv-field-path={imageFieldPath}>
+                      <img
+                        src={mediaImage}
+                        alt={imageAlt}
+                        className="w-full rounded-lg object-cover shadow-sm"
+                      />
+                    </div>
+                  )}
+                </div>
+              </div>
+            </section>
+          );
+        }
+
+        const isImageLeft = layout === 'image-left';
+        const textColumnClasses = `space-y-6 ${isImageLeft ? 'order-2 lg:order-2' : 'order-2 lg:order-1'}`;
+        const imageColumnClasses = isImageLeft ? 'order-1 lg:order-1' : 'order-1 lg:order-2';
         const structuredMediaCopyKey = createKeyFromParts('structured-media-copy', [
           title,
           body,
           mediaImage,
+          layout,
         ]);
 
         return (
@@ -2632,7 +3005,7 @@ const Home: React.FC = () => {
                   {mediaImage ? (
                     <img
                       src={mediaImage}
-                      alt={title ?? 'Media highlight'}
+                      alt={imageAlt}
                       className="w-full h-full object-cover rounded-lg shadow-sm"
                       data-nlv-field-path={imageFieldPath}
                     />
