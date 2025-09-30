@@ -24,7 +24,7 @@ interface CommunityCarouselProps {
 }
 
 const MIN_DURATION = 800;
-const DEFAULT_DURATION = 80;
+const DEFAULT_DURATION = 700;
 
 const OVERLAY_POSITIONS = [
   { top: '12%', left: '12%' },
