@@ -1452,33 +1452,37 @@ const normalizeModelForContentSource = (model) => {
   return normalized;
 };
 
-const allModels = [...metadata.models.map(normalizeModelForContentSource), ...customModels];
+const metadataModelMap = Object.fromEntries(
+  metadata.models.map((model) => [model.name, normalizeModelForContentSource(model)])
+);
+
+const customModelMap = Object.fromEntries(
+  customModels.map((model) => [model.name, normalizeModelForContentSource(model)])
+);
+
+const pageModelMap = Object.fromEntries(
+  pageModels.map((model) => [model.name, normalizeModelForContentSource(model)])
+);
+
+const allModels = {
+  ...metadataModelMap,
+  ...customModelMap,
+  ...pageModelMap,
+};
 
 const contentSource = new FileSystemContentSource({
   rootPath: process.cwd(),
   contentDirs: ['content'],
   documentFileExtensions: ['json'],
-  models: allModels,
+  models: Object.values(allModels),
 });
 
 /** @type {import('@stackbit/types').StackbitConfig} */
 const config = {
   stackbitVersion: '~0.6.0',
   contentSources: [contentSource],
-  mapModels: ({ models }) => {
-    console.log('mapModels input', models.map(model => model.name));
-    const srcType = contentSource.getContentSourceType();
-    const srcProjectId = contentSource.getProjectId();
-    return models.map((model) => {
-      const normalized = normalizeModelForContentSource(model);
-      return {
-        ...normalized,
-        srcType,
-        srcProjectId,
-      };
-    });
-  },
   modelExtensions: pageModels,
+  models: allModels,
 };
 
 export default config;
