@@ -1075,6 +1075,20 @@ const customModels = [
     ],
   },
   {
+    name: 'TestPage',
+    type: 'page',
+    label: 'Test Page',
+    filePath: 'content/pages/{lang}/test.json',
+    pageUrlPath: '/test',
+    fields: [
+      {
+        type: 'string',
+        name: 'title',
+        label: 'Title',
+      },
+    ],
+  },
+  {
     name: 'HomePage',
     type: 'page',
     label: 'Home Page',
