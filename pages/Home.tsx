@@ -2339,7 +2339,6 @@ const Home: React.FC = () => {
         if (layout === 'overlay' && hasImage) {
           const overlaySettings = normalizeOverlaySettings(section.overlay);
           const overlayCardWidthClass = overlayCardWidthClassMap[overlaySettings.cardWidth];
-          const overlayCardWidthClass = overlayCardWidthClassMap[overlaySettings.cardWidth];
           const mediaCopyKey = createKeyFromParts('section-media-copy', [
             title,
             body,
