@@ -116,6 +116,7 @@ const customModels = [
   {
     name: 'SiteConfig',
     type: 'data',
+    file: 'content/site.json',
     label: 'Site Config',
     filePath: 'content/site.json',
     fields: [
@@ -911,6 +912,7 @@ const customModels = [
   {
     name: 'ArticleCollection',
     type: 'data',
+    file: 'content/articles/index.json',
     label: 'Article Collection',
     filePath: 'content/articles/index.json',
     fields: [
@@ -934,6 +936,7 @@ const customModels = [
   {
     name: 'CourseCollection',
     type: 'data',
+    file: 'content/courses.json',
     label: 'Course Collection',
     filePath: 'content/courses.json',
     fields: [
@@ -957,6 +960,7 @@ const customModels = [
   {
     name: 'ProductCollection',
     type: 'data',
+    file: 'content/products/index.json',
     label: 'Product Collection',
     filePath: 'content/products/index.json',
     fields: [
@@ -980,6 +984,7 @@ const customModels = [
   {
     name: 'ReviewCollection',
     type: 'data',
+    file: 'content/reviews/index.json',
     label: 'Review Collection',
     filePath: 'content/reviews/index.json',
     fields: [
@@ -1003,6 +1008,7 @@ const customModels = [
   {
     name: 'PartnerCollection',
     type: 'data',
+    file: 'content/partners.json',
     label: 'Partner Collection',
     filePath: 'content/partners.json',
     fields: [
@@ -1026,6 +1032,7 @@ const customModels = [
   {
     name: 'DoctorCollection',
     type: 'data',
+    file: 'content/doctors.json',
     label: 'Doctor Collection',
     filePath: 'content/doctors.json',
     fields: [
@@ -1059,6 +1066,7 @@ const customModels = [
   {
     name: 'TrainingCollection',
     type: 'data',
+    file: 'content/training.json',
     label: 'Training Collection',
     filePath: 'content/training.json',
     fields: [
@@ -1076,6 +1084,7 @@ const customModels = [
   {
     name: 'ShopContent',
     type: 'data',
+    file: 'content/shop.json',
     label: 'Shop Content',
     filePath: 'content/shop.json',
     fields: [
@@ -1150,6 +1159,7 @@ const customModels = [
   {
     name: 'VideoCollection',
     type: 'data',
+    file: 'content/videos.json',
     label: 'Video Collection',
     filePath: 'content/videos.json',
     fields: [
@@ -1167,6 +1177,7 @@ const customModels = [
   {
     name: 'PolicyCollection',
     type: 'data',
+    file: 'content/policies.json',
     label: 'Policy Collection',
     filePath: 'content/policies.json',
     fields: [
