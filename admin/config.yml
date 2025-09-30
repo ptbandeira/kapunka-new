@@ -1,21 +1,66 @@
 # ===== Shared Section Templates (anchors) =====
 shared_sections: &shared_sections
+  - &section_hero
+    label: "Hero Section"
+    name: "hero"
+    widget: "object"
+    summary: "Hero · {{fields.headline}}"
+    fields:
+      - { name: "type", widget: "hidden", default: "hero" }
+      - { label: "Headline", name: "headline", widget: "string", i18n: true, required: false }
+      - { label: "Subheadline", name: "subheadline", widget: "text", i18n: true, required: false }
+      - label: "Primary CTA"
+        name: "ctaPrimary"
+        widget: "object"
+        collapsed: true
+        required: false
+        fields:
+          - { label: "Label", name: "label", widget: "string", i18n: true, required: false }
+          - { label: "Link URL", name: "href", widget: "string", required: false }
+      - label: "Secondary CTA"
+        name: "ctaSecondary"
+        widget: "object"
+        collapsed: true
+        required: false
+        fields:
+          - { label: "Label", name: "label", widget: "string", i18n: true, required: false }
+          - { label: "Link URL", name: "href", widget: "string", required: false }
+      - { label: "Image Upload", name: "image", widget: "image", choose_url: true, required: false }
+      - { label: "Image Path (optional)", name: "imageRef", widget: "string", required: false, hint: "Reference an existing asset such as /content/uploads/home-hero.jpg." }
+      - { label: "Image Alt Text", name: "imageAlt", widget: "string", i18n: true, required: false }
+      - label: "Text Anchor Override"
+        name: "position"
+        widget: "select"
+        required: false
+        options:
+          - { label: "Top left", value: "top-left" }
+          - { label: "Top center", value: "top-center" }
+          - { label: "Top right", value: "top-right" }
+          - { label: "Middle left", value: "middle-left" }
+          - { label: "Middle center", value: "middle-center" }
+          - { label: "Middle right", value: "middle-right" }
+          - { label: "Bottom left", value: "bottom-left" }
+          - { label: "Bottom center", value: "bottom-center" }
+          - { label: "Bottom right", value: "bottom-right" }
   - &section_mediaCopy
     label: "Media + Copy"
     name: "mediaCopy"
     widget: "object"
+    summary: "Media + Copy · {{fields.title}}"
     fields:
       - { name: "type", widget: "hidden", default: "mediaCopy" }
       - { label: "Title", name: "title", widget: "string", i18n: true, required: false }
       - { label: "Body", name: "body", widget: "markdown", i18n: true, required: false }
       - { label: "Image Upload", name: "image", widget: "image", choose_url: true, required: false }
       - { label: "Image Path (optional)", name: "imageRef", widget: "string", required: false, hint: "Use when referencing an existing asset path such as /content/uploads/example.jpg." }
+      - { label: "Image Alt Text", name: "imageAlt", widget: "string", i18n: true, required: false }
       - { label: "Layout", name: "layout", widget: "select", options: ["image-right", "image-left"], default: "image-right" }
       - { label: "Columns", name: "columns", widget: "number", value_type: "int", min: 1, max: 3, required: false, hint: "Leave blank for the default two-column layout." }
   - &section_featureGrid
     label: "Feature Grid"
     name: "featureGrid"
     widget: "object"
+    summary: "Feature Grid · {{fields.title}}"
     fields:
       - { name: "type", widget: "hidden", default: "featureGrid" }
       - { label: "Title", name: "title", widget: "string", i18n: true, required: false }
@@ -23,6 +68,7 @@ shared_sections: &shared_sections
       - label: "Items"
         name: "items"
         widget: "list"
+        collapsed: true
         summary: "{{fields.label}}"
         fields:
           - { label: "Label", name: "label", widget: "string", i18n: true, required: false }
@@ -31,6 +77,7 @@ shared_sections: &shared_sections
     label: "Product Grid"
     name: "productGrid"
     widget: "object"
+    summary: "Product Grid · {{fields.title}}"
     fields:
       - { name: "type", widget: "hidden", default: "productGrid" }
       - { label: "Title", name: "title", widget: "string", i18n: true, required: false }
@@ -38,6 +85,7 @@ shared_sections: &shared_sections
       - label: "Products"
         name: "products"
         widget: "list"
+        collapsed: true
         summary: "{{fields.id}}"
         field:
           label: "Product"
@@ -56,12 +104,15 @@ shared_sections: &shared_sections
     label: "Testimonials"
     name: "testimonials"
     widget: "object"
+    summary: "Testimonials · {{fields.title}}"
     fields:
       - { name: "type", widget: "hidden", default: "testimonials" }
       - { label: "Title", name: "title", widget: "string", i18n: true, required: false }
       - label: "Quotes"
         name: "quotes"
         widget: "list"
+        collapsed: true
+        summary: "{{fields.author}}"
         fields:
           - { label: "Quote", name: "text", widget: "markdown", i18n: true, required: false }
           - { label: "Author", name: "author", widget: "string", required: false }
@@ -70,6 +121,7 @@ shared_sections: &shared_sections
     label: "Community Carousel"
     name: "communityCarousel"
     widget: "object"
+    summary: "Community Carousel · {{fields.title}}"
     fields:
       - name: "type"
         widget: "hidden"
@@ -82,6 +134,7 @@ shared_sections: &shared_sections
       - label: "Slides"
         name: "slides"
         widget: "list"
+        collapsed: true
         summary: "{{fields.name}}"
         fields:
           - label: "Image Upload"
@@ -123,12 +176,15 @@ shared_sections: &shared_sections
     label: "FAQ"
     name: "faq"
     widget: "object"
+    summary: "FAQ · {{fields.title}}"
     fields:
       - { name: "type", widget: "hidden", default: "faq" }
       - { label: "Title", name: "title", widget: "string", i18n: true, required: false }
       - label: "Items"
         name: "items"
         widget: "list"
+        collapsed: true
+        summary: "{{fields.q}}"
         fields:
           - { label: "Question", name: "q", widget: "string", i18n: true }
           - { label: "Answer", name: "a", widget: "markdown", i18n: true }
@@ -136,6 +192,7 @@ shared_sections: &shared_sections
     label: "Banner"
     name: "banner"
     widget: "object"
+    summary: "Banner · {{fields.text}}"
     fields:
       - { name: "type", widget: "hidden", default: "banner" }
       - { label: "Text", name: "text", widget: "string", i18n: true, required: false }
@@ -146,6 +203,7 @@ shared_sections: &shared_sections
     label: "Newsletter Signup"
     name: "newsletterSignup"
     widget: "object"
+    summary: "Newsletter · {{fields.title}}"
     fields:
       - { name: "type", widget: "hidden", default: "newsletterSignup" }
       - { label: "Title", name: "title", widget: "string", i18n: true, required: false }
@@ -172,6 +230,7 @@ shared_sections: &shared_sections
     label: "Video Gallery"
     name: "videoGallery"
     widget: "object"
+    summary: "Video Gallery · {{fields.title}}"
     fields:
       - { name: "type", widget: "hidden", default: "videoGallery" }
       - { label: "Title", name: "title", widget: "string", i18n: true, required: false }
@@ -179,6 +238,8 @@ shared_sections: &shared_sections
       - label: "Entries"
         name: "entries"
         widget: "list"
+        collapsed: true
+        summary: "{{fields.title}}"
         fields:
           - { label: "Title", name: "title", widget: "string", i18n: true, required: false }
           - { label: "Description", name: "description", widget: "text", i18n: true, required: false }
@@ -188,6 +249,7 @@ shared_sections: &shared_sections
     label: "Training List"
     name: "trainingList"
     widget: "object"
+    summary: "Training List · {{fields.title}}"
     fields:
       - { name: "type", widget: "hidden", default: "trainingList" }
       - { label: "Title", name: "title", widget: "string", i18n: true, required: false }
@@ -195,6 +257,8 @@ shared_sections: &shared_sections
       - label: "Entries"
         name: "entries"
         widget: "list"
+        collapsed: true
+        summary: "{{fields.courseTitle}}"
         fields:
           - { label: "Course Title", name: "courseTitle", widget: "string", i18n: true, required: false }
           - { label: "Summary", name: "courseSummary", widget: "text", i18n: true, required: false }
@@ -203,12 +267,15 @@ shared_sections: &shared_sections
     label: "Timeline"
     name: "timeline"
     widget: "object"
+    summary: "Timeline · {{fields.title}}"
     fields:
       - { name: "type", widget: "hidden", default: "timeline" }
       - { label: "Title", name: "title", widget: "string", i18n: true, required: false }
       - label: "Entries"
         name: "entries"
         widget: "list"
+        collapsed: true
+        summary: "{{fields.year}}"
         fields:
           - { label: "Year", name: "year", widget: "string" }
           - { label: "Title", name: "title", widget: "string", i18n: true }
@@ -218,6 +285,7 @@ shared_sections: &shared_sections
     label: "Facts"
     name: "facts"
     widget: "object"
+    summary: "Facts · {{fields.title}}"
     fields:
       - { name: "type", widget: "hidden", default: "facts" }
       - { label: "Title", name: "title", widget: "string", i18n: true }
@@ -226,23 +294,27 @@ shared_sections: &shared_sections
     label: "Bulleted List"
     name: "bullets"
     widget: "object"
+    summary: "Bullets · {{fields.title}}"
     fields:
       - { name: "type", widget: "hidden", default: "bullets" }
       - { label: "Title", name: "title", widget: "string", i18n: true }
       - label: "Items"
         name: "items"
         widget: "list"
+        collapsed: true
         field: { label: "Item", name: "item", widget: "string", i18n: true }
   - &section_specialties
     label: "Specialties"
     name: "specialties"
     widget: "object"
+    summary: "Specialties · {{fields.title}}"
     fields:
       - { name: "type", widget: "hidden", default: "specialties" }
       - { label: "Title", name: "title", widget: "string", i18n: true, required: false }
       - label: "Specialties"
         name: "items"
         widget: "list"
+        collapsed: true
         summary: "{{fields.title}}"
         fields:
           - { label: "Specialty Title", name: "title", widget: "string", i18n: true }
@@ -250,6 +322,30 @@ shared_sections: &shared_sections
             name: "bullets"
             widget: "list"
             field: { label: "Bullet", name: "bullet", widget: "string", i18n: true }
+meta_title_field: &meta_title_field { label: "Meta Title", name: "metaTitle", widget: "string", i18n: true, required: false }
+meta_description_field: &meta_description_field { label: "Meta Description", name: "metaDescription", widget: "text", i18n: true, required: false }
+section_library: &section_library
+  - *section_hero
+  - *section_mediaCopy
+  - *section_featureGrid
+  - *section_productGrid
+  - *section_communityCarousel
+  - *section_testimonials
+  - *section_faq
+  - *section_banner
+  - *section_newsletterSignup
+  - *section_videoGallery
+  - *section_trainingList
+  - *section_timeline
+sections_field: &sections_field
+  label: "Sections"
+  name: "sections"
+  widget: "list"
+  i18n: true
+  collapsed: true
+  summary: "{{fields.type}} · {{fields.title}}"
+  types: *section_library
+
 
 # SINGLE SOURCE OF TRUTH for Decap CMS (production /admin). Do not edit site/admin/config.yml.
 backend:
