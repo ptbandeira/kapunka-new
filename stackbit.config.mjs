@@ -1458,16 +1458,18 @@ const normalizeModelForContentSource = (model) => {
   return normalized;
 };
 
-const metadataModels = metadata.models.map(normalizeModelForContentSource);
-const customModelsNormalized = customModels.map(normalizeModelForContentSource);
+const mergedModels = [...metadata.models];
+const metadataModelNames = new Set(metadata.models.map((model) => model.name));
 
-const modelRegistry = new Map();
-for (const model of [...metadataModels, ...customModelsNormalized]) {
-  modelRegistry.set(model.name, model);
+for (const customModel of customModels) {
+  if (!metadataModelNames.has(customModel.name)) {
+    mergedModels.push(customModel);
+  }
 }
 
-const allModels = Array.from(modelRegistry.values());
+const allModels = mergedModels.map(normalizeModelForContentSource);
 const allModelsMap = Object.fromEntries(allModels.map((model) => [model.name, model]));
+
 const contentSource = new FileSystemContentSource({
   rootPath: process.cwd(),
   contentDirs: ['content'],
@@ -1475,12 +1477,28 @@ const contentSource = new FileSystemContentSource({
   models: allModels,
 });
 
+const getSourceTaggedModels = () => {
+  const srcType = contentSource.getContentSourceType();
+  const srcProjectId = contentSource.getProjectId();
+  return allModels.map((model) => ({ ...model, srcType, srcProjectId }));
+};
+
 /** @type {import('@stackbit/types').StackbitConfig} */
 const config = {
   stackbitVersion: '~0.6.0',
   contentSources: [contentSource],
   modelExtensions: pageModelExtensions,
   models: allModelsMap,
+  mapModels: ({ models }) => {
+    const taggedModels = getSourceTaggedModels();
+    const existingForSource = new Set(
+      models
+        .filter((model) => model.srcType === contentSource.getContentSourceType() && model.srcProjectId === contentSource.getProjectId())
+        .map((model) => model.name)
+    );
+    const additional = taggedModels.filter((model) => !existingForSource.has(model.name));
+    return [...models, ...additional];
+  },
 };
 
 export default config;
