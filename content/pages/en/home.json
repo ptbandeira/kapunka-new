@@ -31,7 +31,8 @@
       "body": "“Kapunka” means “thank you.” We make argan care with clinical respect—simple routines that comfort, shield, and support healing. Our roots are in Morocco; our method grew in real clinics.",
       "imageRef": "/content/uploads/roots-olive-tree.jpg",
       "layout": "image-right",
-      "columns": 2
+      "columns": 2,
+      "image": "/content/uploads/9bae3f87-12d5-43f4-a2a0-5cfc768e429d.jpg"
     },
     {
       "type": "mediaCopy",
@@ -39,7 +40,8 @@
       "body": "Our treatments are gentle, low-residue, and knowledge-led, with skin acceptance, barrier stability, and aroma balance. Dedicated training and wholesale support keep your team confident.",
       "imageRef": "/content/uploads/clinic-hands.jpg",
       "layout": "image-left",
-      "columns": 2
+      "columns": 2,
+      "image": "/content/uploads/pexels-elly-fairytale-3865548.jpg"
     },
     {
       "type": "mediaCopy",
@@ -47,7 +49,8 @@
       "body": "We source single-origin argan and trace the steps from cooperatives to lab certifications. Every lot is meticulously quality-tested to maintain human care at scale.",
       "imageRef": "/content/uploads/argan-coop.jpg",
       "layout": "image-right",
-      "columns": 2
+      "columns": 2,
+      "image": "/content/uploads/kapunka-argan-woman-picking.jpg"
     },
     {
       "type": "mediaCopy",
@@ -55,7 +58,8 @@
       "body": "Pure oil, floral mists, and clean washes. Old wisdom connected to the lives we live today: routines that calm discomfort, repair the barrier, and leave no heavy film.",
       "imageRef": "/content/uploads/hammam-light.jpg",
       "layout": "image-left",
-      "columns": 2
+      "columns": 2,
+      "image": "/content/uploads/5b07cc3a-9b30-4a2d-b165-4781120e83b7.jpg"
     },
     {
       "type": "featureGrid",
