@@ -20,9 +20,9 @@ const NavItem: React.FC<{
   label: string;
   fieldPath?: string;
   sbFieldPath?: string;
+  sbObjectId?: string;
   onClick?: () => void;
-  ['data-sb-field-path']?: string;
-}> = ({ to, label, fieldPath, sbFieldPath, onClick, 'data-sb-field-path': dataSbFieldPath }) => {
+}> = ({ to, label, fieldPath, sbFieldPath, sbObjectId, onClick }) => {
   const navLinkClassName = useCallback(({ isActive }: { isActive: boolean }) => (
     `relative transition-colors duration-300 ${
       isActive ? 'text-stone-900' : 'text-stone-500 hover:text-stone-900'
@@ -48,7 +48,13 @@ const NavItem: React.FC<{
   ), [fieldPath, label, sbFieldPath]);
 
   return (
-    <NavLink to={to} onClick={onClick} className={navLinkClassName} data-sb-field-path={dataSbFieldPath}>
+    <NavLink
+      to={to}
+      onClick={onClick}
+      className={navLinkClassName}
+      data-sb-field-path={sbFieldPath}
+      data-sb-object-id={sbObjectId}
+    >
       {renderNavContent}
     </NavLink>
   );
@@ -115,20 +121,27 @@ const Header: React.FC = () => {
 
   const featureFlags = settings.featureFlags ?? {};
 
-  const navLinks = [
-    { to: '/shop', label: t('nav.shop'), fieldPath: `translations.${language}.nav.shop` },
-    { to: '/learn', label: t('nav.learn'), fieldPath: `translations.${language}.nav.learn` },
-    featureFlags.videos
-      ? { to: '/videos', label: t('nav.videos'), fieldPath: `translations.${language}.nav.videos` }
-      : null,
-    featureFlags.training
-      ? { to: '/training', label: t('nav.training'), fieldPath: `translations.${language}.nav.training` }
-      : null,
-    { to: '/method', label: t('nav.method'), fieldPath: `translations.${language}.nav.method` },
-    { to: '/for-clinics', label: t('nav.forClinics'), fieldPath: `translations.${language}.nav.forClinics` },
-    { to: '/about', label: t('nav.about'), fieldPath: `translations.${language}.nav.about` },
-    { to: '/contact', label: t('nav.contact'), fieldPath: `translations.${language}.nav.contact` },
-  ].filter((link): link is { to: string; label: string; fieldPath: string } => link !== null);
+  const NAV_LINK_CONFIG: Array<{ to: string; key: string; requires?: keyof typeof featureFlags }> = [
+    { to: '/shop', key: 'shop' },
+    { to: '/learn', key: 'learn' },
+    { to: '/videos', key: 'videos', requires: 'videos' },
+    { to: '/training', key: 'training', requires: 'training' },
+    { to: '/method', key: 'method' },
+    { to: '/for-clinics', key: 'forClinics' },
+    { to: '/about', key: 'about' },
+    { to: '/contact', key: 'contact' },
+  ];
+
+  const navLinks = NAV_LINK_CONFIG
+    .filter((link) => (link.requires ? !!featureFlags[link.requires] : true))
+    .map((link) => ({
+      to: link.to,
+      label: t(`nav.${link.key}`),
+      fieldPath: `translations.${language}.nav.${link.key}`,
+      sbFieldPath: `${language}.${link.key}`,
+    }));
+
+  const navTranslationsObjectId = 'translations_nav:content/translations/nav.json';
 
   return (
     <>
@@ -161,7 +174,8 @@ const Header: React.FC = () => {
             {/* Centered Navigation */}
             <nav
               className="hidden lg:flex items-center justify-center space-x-8 text-sm font-medium"
-              data-sb-field-path="header.navLinks"
+              data-sb-object-id={navTranslationsObjectId}
+              data-sb-field-path={language}
             >
               {navLinks.map((link, index) => (
                 <NavItem
@@ -169,8 +183,8 @@ const Header: React.FC = () => {
                   to={link.to}
                   label={link.label}
                   fieldPath={link.fieldPath}
-                  sbFieldPath={`header.navLinks.${index}.label`}
-                  data-sb-field-path={`.${index}`}
+                  sbFieldPath={link.sbFieldPath}
+                  sbObjectId={navTranslationsObjectId}
                 />
               ))}
             </nav>
@@ -221,7 +235,8 @@ const Header: React.FC = () => {
               </div>
               <nav
                 className="flex flex-col items-center space-y-8 text-xl font-medium"
-                data-sb-field-path="header.navLinks"
+                data-sb-object-id={navTranslationsObjectId}
+                data-sb-field-path={language}
               >
                 {navLinks.map((link, index) => (
                   <NavItem
@@ -229,8 +244,8 @@ const Header: React.FC = () => {
                     to={link.to}
                     label={link.label}
                     fieldPath={link.fieldPath}
-                    sbFieldPath={`header.navLinks.${index}.label`}
-                    data-sb-field-path={`.${index}`}
+                    sbFieldPath={link.sbFieldPath}
+                    sbObjectId={navTranslationsObjectId}
                     onClick={handleMenuClose}
                   />
                 ))}
