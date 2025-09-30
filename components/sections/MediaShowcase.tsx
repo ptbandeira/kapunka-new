@@ -44,7 +44,7 @@ const MediaShowcase: React.FC<MediaShowcaseProps> = ({ title, items, fieldPath }
             <h2 className="text-3xl sm:text-4xl font-semibold text-stone-900 tracking-tight">{title}</h2>
           </div>
         )}
-        <div className="grid auto-rows-[minmax(320px,1fr)] gap-y-0 md:grid-cols-4 md:gap-x-0">
+        <div className="grid auto-rows-[minmax(640px,1fr)] gap-y-0 md:grid-cols-4 md:gap-x-0">
           {items.map((item, index) => {
             const imageSrc = item.image;
             const eyebrow = item.eyebrow?.trim();
