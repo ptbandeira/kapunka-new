@@ -48,6 +48,25 @@ const pageModelExtensions = [
   },
 ];
 
+const sectionModelNames = [
+  'imageTextHalf',
+  'imageGrid',
+  'mediaCopy',
+  'mediaShowcase',
+  'featureGrid',
+  'productGrid',
+  'videoGallery',
+  'trainingList',
+  'banner',
+  'newsletterSignup',
+  'testimonials',
+  'communityCarousel',
+  'timeline',
+  'facts',
+  'bullets',
+  'specialties',
+];
+
 const customModels = [
   {
     name: 'Link',
@@ -129,7 +148,7 @@ const customModels = [
     ],
   },
   {
-    name: 'ImageTextHalfSection',
+    name: 'imageTextHalf',
     type: 'object',
     label: 'Image + Text Half Section',
     fields: [
@@ -158,42 +177,655 @@ const customModels = [
         name: 'image',
         type: 'image',
         label: 'Image',
+        required: false,
+      },
+      {
+        name: 'imageRef',
+        type: 'string',
+        label: 'Image Path',
+        required: false,
       },
     ],
   },
   {
-    name: 'CommunityCarouselSection',
+    name: 'MediaCopyOverlay',
+    type: 'object',
+    label: 'Media Copy Overlay Settings',
+    fields: [
+      {
+        name: 'columnStart',
+        type: 'number',
+        label: 'Column Start',
+        required: false,
+      },
+      {
+        name: 'columnSpan',
+        type: 'number',
+        label: 'Column Span',
+        required: false,
+      },
+      {
+        name: 'rowStart',
+        type: 'number',
+        label: 'Row Start',
+        required: false,
+      },
+      {
+        name: 'rowSpan',
+        type: 'number',
+        label: 'Row Span',
+        required: false,
+      },
+      {
+        name: 'textAlign',
+        type: 'enum',
+        label: 'Text Alignment',
+        options: [
+          { label: 'Left', value: 'left' },
+          { label: 'Center', value: 'center' },
+          { label: 'Right', value: 'right' },
+        ],
+        required: false,
+      },
+      {
+        name: 'verticalAlign',
+        type: 'enum',
+        label: 'Vertical Alignment',
+        options: [
+          { label: 'Start', value: 'start' },
+          { label: 'Center', value: 'center' },
+          { label: 'End', value: 'end' },
+        ],
+        required: false,
+      },
+      {
+        name: 'theme',
+        type: 'enum',
+        label: 'Text Theme',
+        options: [
+          { label: 'Light', value: 'light' },
+          { label: 'Dark', value: 'dark' },
+        ],
+        required: false,
+      },
+      {
+        name: 'background',
+        type: 'enum',
+        label: 'Background Style',
+        options: [
+          { label: 'None', value: 'none' },
+          { label: 'Light Scrim', value: 'scrim-light' },
+          { label: 'Dark Scrim', value: 'scrim-dark' },
+          { label: 'Panel', value: 'panel' },
+        ],
+        required: false,
+      },
+      {
+        name: 'cardWidth',
+        type: 'enum',
+        label: 'Card Width',
+        options: [
+          { label: 'Compact', value: 'sm' },
+          { label: 'Balanced', value: 'md' },
+          { label: 'Wide', value: 'lg' },
+        ],
+        required: false,
+      },
+    ],
+  },
+  {
+    name: 'mediaCopy',
+    type: 'object',
+    label: 'Media + Copy Section',
+    fields: [
+      {
+        name: 'title',
+        type: 'string',
+        label: 'Title',
+        required: false,
+      },
+      {
+        name: 'body',
+        type: 'markdown',
+        label: 'Body',
+        required: false,
+      },
+      {
+        name: 'image',
+        type: 'image',
+        label: 'Image Upload',
+        required: false,
+      },
+      {
+        name: 'imageRef',
+        type: 'string',
+        label: 'Image Path',
+        required: false,
+      },
+      {
+        name: 'imageAlt',
+        type: 'string',
+        label: 'Image Alt Text',
+        required: false,
+      },
+      {
+        name: 'layout',
+        type: 'enum',
+        label: 'Layout',
+        options: [
+          { label: 'Image Right', value: 'image-right' },
+          { label: 'Image Left', value: 'image-left' },
+          { label: 'Overlay', value: 'overlay' },
+        ],
+        required: false,
+      },
+      {
+        name: 'columns',
+        type: 'number',
+        label: 'Columns',
+        required: false,
+      },
+      {
+        name: 'overlay',
+        type: 'model',
+        label: 'Overlay Settings',
+        models: ['MediaCopyOverlay'],
+        required: false,
+      },
+    ],
+  },
+  {
+    name: 'MediaShowcaseItem',
+    type: 'object',
+    label: 'Media Showcase Item',
+    fields: [
+      {
+        name: 'eyebrow',
+        type: 'string',
+        label: 'Eyebrow',
+        required: false,
+      },
+      {
+        name: 'title',
+        type: 'string',
+        label: 'Title',
+        required: false,
+      },
+      {
+        name: 'body',
+        type: 'text',
+        label: 'Body',
+        required: false,
+      },
+      {
+        name: 'image',
+        type: 'image',
+        label: 'Image Upload',
+        required: false,
+      },
+      {
+        name: 'imageRef',
+        type: 'string',
+        label: 'Image Path',
+        required: false,
+      },
+      {
+        name: 'imageAlt',
+        type: 'string',
+        label: 'Image Alt Text',
+        required: false,
+      },
+      {
+        name: 'ctaLabel',
+        type: 'string',
+        label: 'CTA Label',
+        required: false,
+      },
+      {
+        name: 'ctaHref',
+        type: 'string',
+        label: 'CTA URL',
+        required: false,
+      },
+    ],
+  },
+  {
+    name: 'mediaShowcase',
+    type: 'object',
+    label: 'Media Showcase Section',
+    fields: [
+      {
+        name: 'title',
+        type: 'string',
+        label: 'Title',
+        required: false,
+      },
+      {
+        name: 'items',
+        type: 'list',
+        label: 'Items',
+        items: {
+          type: 'model',
+          models: ['MediaShowcaseItem'],
+        },
+      },
+    ],
+  },
+  {
+    name: 'FeatureGridItem',
+    type: 'object',
+    label: 'Feature Grid Item',
+    fields: [
+      {
+        name: 'label',
+        type: 'string',
+        label: 'Label',
+        required: false,
+      },
+      {
+        name: 'description',
+        type: 'markdown',
+        label: 'Description',
+        required: false,
+      },
+      {
+        name: 'icon',
+        type: 'image',
+        label: 'Icon',
+        required: false,
+      },
+    ],
+  },
+  {
+    name: 'featureGrid',
+    type: 'object',
+    label: 'Feature Grid Section',
+    fields: [
+      {
+        name: 'title',
+        type: 'string',
+        label: 'Title',
+        required: false,
+      },
+      {
+        name: 'columns',
+        type: 'number',
+        label: 'Columns',
+        required: false,
+      },
+      {
+        name: 'items',
+        type: 'list',
+        label: 'Items',
+        items: {
+          type: 'model',
+          models: ['FeatureGridItem'],
+        },
+      },
+    ],
+  },
+  {
+    name: 'ProductGridProduct',
+    type: 'object',
+    label: 'Product Grid Item',
+    fields: [
+      {
+        name: 'id',
+        type: 'string',
+        label: 'Product ID',
+      },
+    ],
+  },
+  {
+    name: 'productGrid',
+    type: 'object',
+    label: 'Product Grid Section',
+    fields: [
+      {
+        name: 'title',
+        type: 'string',
+        label: 'Title',
+        required: false,
+      },
+      {
+        name: 'columns',
+        type: 'number',
+        label: 'Columns',
+        required: false,
+      },
+      {
+        name: 'products',
+        type: 'list',
+        label: 'Products',
+        items: {
+          type: 'model',
+          models: ['ProductGridProduct'],
+        },
+      },
+    ],
+  },
+  {
+    name: 'VideoGalleryEntry',
+    type: 'object',
+    label: 'Video Gallery Entry',
+    fields: [
+      {
+        name: 'title',
+        type: 'string',
+        label: 'Title',
+        required: false,
+      },
+      {
+        name: 'description',
+        type: 'text',
+        label: 'Description',
+        required: false,
+      },
+      {
+        name: 'videoUrl',
+        type: 'string',
+        label: 'Video URL',
+        required: false,
+      },
+      {
+        name: 'thumbnail',
+        type: 'image',
+        label: 'Thumbnail',
+        required: false,
+      },
+    ],
+  },
+  {
+    name: 'videoGallery',
+    type: 'object',
+    label: 'Video Gallery Section',
+    fields: [
+      {
+        name: 'title',
+        type: 'string',
+        label: 'Title',
+        required: false,
+      },
+      {
+        name: 'description',
+        type: 'text',
+        label: 'Description',
+        required: false,
+      },
+      {
+        name: 'entries',
+        type: 'list',
+        label: 'Entries',
+        items: {
+          type: 'model',
+          models: ['VideoGalleryEntry'],
+        },
+      },
+    ],
+  },
+  {
+    name: 'TrainingListEntry',
+    type: 'object',
+    label: 'Training List Entry',
+    fields: [
+      {
+        name: 'courseTitle',
+        type: 'string',
+        label: 'Course Title',
+        required: false,
+      },
+      {
+        name: 'courseSummary',
+        type: 'text',
+        label: 'Summary',
+        required: false,
+      },
+      {
+        name: 'linkUrl',
+        type: 'string',
+        label: 'Link URL',
+        required: false,
+      },
+    ],
+  },
+  {
+    name: 'trainingList',
+    type: 'object',
+    label: 'Training List Section',
+    fields: [
+      {
+        name: 'title',
+        type: 'string',
+        label: 'Title',
+        required: false,
+      },
+      {
+        name: 'description',
+        type: 'text',
+        label: 'Description',
+        required: false,
+      },
+      {
+        name: 'entries',
+        type: 'list',
+        label: 'Entries',
+        items: {
+          type: 'model',
+          models: ['TrainingListEntry'],
+        },
+      },
+    ],
+  },
+  {
+    name: 'banner',
+    type: 'object',
+    label: 'Banner Section',
+    fields: [
+      {
+        name: 'text',
+        type: 'string',
+        label: 'Text',
+        required: false,
+      },
+      {
+        name: 'cta',
+        type: 'string',
+        label: 'CTA Label',
+        required: false,
+      },
+      {
+        name: 'url',
+        type: 'string',
+        label: 'CTA URL',
+        required: false,
+      },
+      {
+        name: 'style',
+        type: 'string',
+        label: 'Style Variant',
+        required: false,
+      },
+    ],
+  },
+  {
+    name: 'newsletterSignup',
+    type: 'object',
+    label: 'Newsletter Signup Section',
+    fields: [
+      {
+        name: 'title',
+        type: 'string',
+        label: 'Title',
+        required: false,
+      },
+      {
+        name: 'subtitle',
+        type: 'text',
+        label: 'Subtitle',
+        required: false,
+      },
+      {
+        name: 'placeholder',
+        type: 'string',
+        label: 'Email Placeholder',
+        required: false,
+      },
+      {
+        name: 'ctaLabel',
+        type: 'string',
+        label: 'CTA Label',
+        required: false,
+      },
+      {
+        name: 'confirmation',
+        type: 'text',
+        label: 'Confirmation Message',
+        required: false,
+      },
+      {
+        name: 'background',
+        type: 'enum',
+        label: 'Background Variant',
+        options: [
+          { label: 'Light', value: 'light' },
+          { label: 'Beige', value: 'beige' },
+          { label: 'Dark', value: 'dark' },
+        ],
+        required: false,
+      },
+      {
+        name: 'alignment',
+        type: 'enum',
+        label: 'Alignment',
+        options: [
+          { label: 'Center', value: 'center' },
+          { label: 'Left', value: 'left' },
+        ],
+        required: false,
+      },
+    ],
+  },
+  {
+    name: 'TestimonialQuote',
+    type: 'object',
+    label: 'Testimonial Quote',
+    fields: [
+      {
+        name: 'text',
+        type: 'markdown',
+        label: 'Quote',
+        required: false,
+      },
+      {
+        name: 'author',
+        type: 'string',
+        label: 'Author',
+        required: false,
+      },
+      {
+        name: 'role',
+        type: 'string',
+        label: 'Role',
+        required: false,
+      },
+    ],
+  },
+  {
+    name: 'testimonials',
+    type: 'object',
+    label: 'Testimonials Section',
+    fields: [
+      {
+        name: 'title',
+        type: 'string',
+        label: 'Title',
+        required: false,
+      },
+      {
+        name: 'quotes',
+        type: 'list',
+        label: 'Quotes',
+        items: {
+          type: 'model',
+          models: ['TestimonialQuote'],
+        },
+      },
+    ],
+  },
+  {
+    name: 'CommunityCarouselSlide',
+    type: 'object',
+    label: 'Community Carousel Slide',
+    fields: [
+      {
+        name: 'image',
+        type: 'image',
+        label: 'Image Upload',
+        required: false,
+      },
+      {
+        name: 'imageRef',
+        type: 'string',
+        label: 'Image Path',
+        required: false,
+      },
+      {
+        name: 'alt',
+        type: 'string',
+        label: 'Alt Text',
+        required: false,
+      },
+      {
+        name: 'quote',
+        type: 'markdown',
+        label: 'Quote',
+        required: false,
+      },
+      {
+        name: 'name',
+        type: 'string',
+        label: 'Name',
+        required: false,
+      },
+      {
+        name: 'role',
+        type: 'string',
+        label: 'Role or Context',
+        required: false,
+      },
+    ],
+  },
+  {
+    name: 'communityCarousel',
     type: 'object',
     label: 'Community Carousel Section',
     fields: [
       {
         name: 'title',
         type: 'string',
-        label: 'Heading',
-      },
-      {
-        name: 'subtitle',
-        type: 'string',
-        label: 'Subheading',
+        label: 'Title',
+        required: false,
       },
       {
         name: 'slides',
         type: 'list',
-        label: 'Reviews',
+        label: 'Slides',
         items: {
           type: 'model',
-          models: ['Review'],
+          models: ['CommunityCarouselSlide'],
         },
       },
       {
         name: 'slideDuration',
         type: 'number',
         label: 'Slide Duration (ms)',
+        required: false,
       },
       {
         name: 'quoteDuration',
         type: 'number',
         label: 'Quote Duration (ms)',
+        required: false,
       },
     ],
   },
@@ -220,7 +852,7 @@ const customModels = [
     ],
   },
   {
-    name: 'ImageGridSection',
+    name: 'imageGrid',
     type: 'object',
     label: 'Image Grid Section',
     fields: [
@@ -273,7 +905,7 @@ const customModels = [
     ],
   },
   {
-    name: 'TimelineSection',
+    name: 'timeline',
     type: 'object',
     label: 'Timeline Section',
     fields: [
@@ -289,6 +921,89 @@ const customModels = [
         items: {
           type: 'model',
           models: ['TimelineEvent'],
+        },
+      },
+    ],
+  },
+  {
+    name: 'facts',
+    type: 'object',
+    label: 'Facts Section',
+    fields: [
+      {
+        name: 'title',
+        type: 'string',
+        label: 'Title',
+        required: false,
+      },
+      {
+        name: 'text',
+        type: 'text',
+        label: 'Text',
+        required: false,
+      },
+    ],
+  },
+  {
+    name: 'bullets',
+    type: 'object',
+    label: 'Bullets Section',
+    fields: [
+      {
+        name: 'title',
+        type: 'string',
+        label: 'Title',
+        required: false,
+      },
+      {
+        name: 'items',
+        type: 'list',
+        label: 'Items',
+        items: {
+          type: 'string',
+        },
+      },
+    ],
+  },
+  {
+    name: 'SpecialtyItem',
+    type: 'object',
+    label: 'Specialty Item',
+    fields: [
+      {
+        name: 'title',
+        type: 'string',
+        label: 'Title',
+        required: false,
+      },
+      {
+        name: 'bullets',
+        type: 'list',
+        label: 'Bullets',
+        items: {
+          type: 'string',
+        },
+      },
+    ],
+  },
+  {
+    name: 'specialties',
+    type: 'object',
+    label: 'Specialties Section',
+    fields: [
+      {
+        name: 'title',
+        type: 'string',
+        label: 'Title',
+        required: false,
+      },
+      {
+        name: 'items',
+        type: 'list',
+        label: 'Specialties',
+        items: {
+          type: 'model',
+          models: ['SpecialtyItem'],
         },
       },
     ],
@@ -1212,7 +1927,7 @@ const customModels = [
         label: 'Sections',
         items: {
           type: 'model',
-          models: ['ImageTextHalfSection', 'CommunityCarouselSection', 'ImageGridSection', 'TimelineSection'],
+          models: sectionModelNames,
         },
       },
     ],
@@ -1231,7 +1946,7 @@ const customModels = [
         label: 'Sections',
         items: {
           type: 'model',
-          models: ['ImageTextHalfSection', 'CommunityCarouselSection', 'ImageGridSection', 'TimelineSection'],
+          models: sectionModelNames,
         },
       },
     ],
@@ -1250,7 +1965,7 @@ const customModels = [
         label: 'Sections',
         items: {
           type: 'model',
-          models: ['ImageTextHalfSection', 'CommunityCarouselSection', 'ImageGridSection', 'TimelineSection'],
+          models: sectionModelNames,
         },
       },
     ],
@@ -1269,7 +1984,7 @@ const customModels = [
         label: 'Sections',
         items: {
           type: 'model',
-          models: ['ImageTextHalfSection', 'CommunityCarouselSection', 'ImageGridSection', 'TimelineSection'],
+          models: sectionModelNames,
         },
       },
     ],
@@ -1288,7 +2003,7 @@ const customModels = [
         label: 'Sections',
         items: {
           type: 'model',
-          models: ['ImageTextHalfSection', 'CommunityCarouselSection', 'ImageGridSection', 'TimelineSection'],
+          models: sectionModelNames,
         },
       },
     ],
@@ -1307,7 +2022,7 @@ const customModels = [
         label: 'Sections',
         items: {
           type: 'model',
-          models: ['ImageTextHalfSection', 'CommunityCarouselSection', 'ImageGridSection', 'TimelineSection'],
+          models: sectionModelNames,
         },
       },
     ],
@@ -1326,7 +2041,7 @@ const customModels = [
         label: 'Sections',
         items: {
           type: 'model',
-          models: ['ImageTextHalfSection', 'CommunityCarouselSection', 'ImageGridSection', 'TimelineSection'],
+          models: sectionModelNames,
         },
       },
     ],
@@ -1345,7 +2060,7 @@ const customModels = [
         label: 'Sections',
         items: {
           type: 'model',
-          models: ['ImageTextHalfSection', 'CommunityCarouselSection', 'ImageGridSection', 'TimelineSection'],
+          models: sectionModelNames,
         },
       },
     ],
@@ -1364,7 +2079,7 @@ const customModels = [
         label: 'Sections',
         items: {
           type: 'model',
-          models: ['ImageTextHalfSection', 'CommunityCarouselSection', 'ImageGridSection', 'TimelineSection'],
+          models: sectionModelNames,
         },
       },
     ],
@@ -1383,7 +2098,7 @@ const customModels = [
         label: 'Sections',
         items: {
           type: 'model',
-          models: ['ImageTextHalfSection', 'CommunityCarouselSection', 'ImageGridSection', 'TimelineSection'],
+          models: sectionModelNames,
         },
       },
     ],
@@ -1402,7 +2117,7 @@ const customModels = [
         label: 'Sections',
         items: {
           type: 'model',
-          models: ['ImageTextHalfSection', 'CommunityCarouselSection', 'ImageGridSection', 'TimelineSection'],
+          models: sectionModelNames,
         },
       },
     ],
