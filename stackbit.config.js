@@ -685,11 +685,9 @@ const customModels = [
       },
       {
         name: 'tags',
-        type: 'list',
+        type: 'model',
+        models: ['LocalizedStringList'],
         label: 'Tags',
-        items: {
-          type: 'string',
-        },
         required: false,
       },
     ],
@@ -1191,7 +1189,7 @@ const customModels = [
     type: 'page',
     label: 'Test Page',
     filePath: 'content/pages/{lang}/test.json',
-    pageUrlPath: '/test',
+    urlPath: '/test',
     fields: [
       {
         type: 'string',
@@ -1205,11 +1203,8 @@ const customModels = [
     type: 'page',
     label: 'Home Page',
     filePath: 'content/pages/{lang}/home.json',
-    pageUrlPath: '/',
     urlPath: '/',
-    match: {
-      path: 'content/pages/**/home.json',
-    },
+    match: 'content/pages/**/home.json',
     fields: [
       {
         name: 'sections',
@@ -1227,11 +1222,8 @@ const customModels = [
     type: 'page',
     label: 'About Page',
     filePath: 'content/pages/{lang}/about.json',
-    pageUrlPath: '/about',
     urlPath: '/about',
-    match: {
-      path: 'content/pages/**/about.json',
-    },
+    match: 'content/pages/**/about.json',
     fields: [
       {
         name: 'sections',
@@ -1249,11 +1241,8 @@ const customModels = [
     type: 'page',
     label: 'Clinics Page',
     filePath: 'content/pages/{lang}/clinics.json',
-    pageUrlPath: '/clinics',
     urlPath: '/for-clinics',
-    match: {
-      path: 'content/pages/**/clinics.json',
-    },
+    match: 'content/pages/**/clinics.json',
     fields: [
       {
         name: 'sections',
@@ -1271,11 +1260,8 @@ const customModels = [
     type: 'page',
     label: 'Contact Page',
     filePath: 'content/pages/{lang}/contact.json',
-    pageUrlPath: '/contact',
     urlPath: '/contact',
-    match: {
-      path: 'content/pages/**/contact.json',
-    },
+    match: 'content/pages/**/contact.json',
     fields: [
       {
         name: 'sections',
@@ -1293,11 +1279,8 @@ const customModels = [
     type: 'page',
     label: 'Learn Page',
     filePath: 'content/pages/{lang}/learn.json',
-    pageUrlPath: '/learn',
     urlPath: '/learn',
-    match: {
-      path: 'content/pages/**/learn.json',
-    },
+    match: 'content/pages/**/learn.json',
     fields: [
       {
         name: 'sections',
@@ -1315,11 +1298,8 @@ const customModels = [
     type: 'page',
     label: 'Method Page',
     filePath: 'content/pages/{lang}/method.json',
-    pageUrlPath: '/method',
     urlPath: '/method',
-    match: {
-      path: 'content/pages/**/method.json',
-    },
+    match: 'content/pages/**/method.json',
     fields: [
       {
         name: 'sections',
@@ -1337,11 +1317,8 @@ const customModels = [
     type: 'page',
     label: 'Story Page',
     filePath: 'content/pages/{lang}/story.json',
-    pageUrlPath: '/story',
     urlPath: '/story',
-    match: {
-      path: 'content/pages/**/story.json',
-    },
+    match: 'content/pages/**/story.json',
     fields: [
       {
         name: 'sections',
@@ -1359,11 +1336,8 @@ const customModels = [
     type: 'page',
     label: 'Training Page',
     filePath: 'content/pages/{lang}/training.json',
-    pageUrlPath: '/training',
     urlPath: '/training',
-    match: {
-      path: 'content/pages/**/training.json',
-    },
+    match: 'content/pages/**/training.json',
     fields: [
       {
         name: 'sections',
@@ -1381,11 +1355,8 @@ const customModels = [
     type: 'page',
     label: 'Videos Page',
     filePath: 'content/pages/{lang}/videos.json',
-    pageUrlPath: '/videos',
     urlPath: '/videos',
-    match: {
-      path: 'content/pages/**/videos.json',
-    },
+    match: 'content/pages/**/videos.json',
     fields: [
       {
         name: 'sections',
@@ -1403,11 +1374,8 @@ const customModels = [
     type: 'page',
     label: 'Shop Page',
     filePath: 'content/pages/{lang}/shop.json',
-    pageUrlPath: '/shop',
     urlPath: '/shop',
-    match: {
-      path: 'content/pages/**/shop.json',
-    },
+    match: 'content/pages/**/shop.json',
     fields: [
       {
         name: 'sections',
@@ -1425,11 +1393,8 @@ const customModels = [
     type: 'page',
     label: 'Policy Page',
     filePath: 'content/pages/{lang}/policy.json',
-    pageUrlPath: '/policy',
     urlPath: '/policy/{type}',
-    match: {
-      path: 'content/pages/**/policy.json',
-    },
+    match: 'content/pages/**/policy.json',
     fields: [
       {
         name: 'sections',
