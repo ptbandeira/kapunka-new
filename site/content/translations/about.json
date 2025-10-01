@@ -1,0 +1,42 @@
+{
+  "type": "translations_about",
+  "en": {
+    "title": "Our Story",
+    "metaDescription": "Learn about Kapunka Skincare's mission to create effective, minimalist skincare that respects the skin barrier and the environment.",
+    "headerTitle": "Less, but better.",
+    "headerSubtitle": "We believe in the power of simplicity. Our philosophy is rooted in using pure, high-quality ingredients to create formulations that support your skin's long-term health.",
+    "storyTitle": "Our Story",
+    "storyText1": "Kapunka was born from a desire for transparent, effective skincare. We started by sourcing the purest, ECOCERT-certified Argan oil from women's cooperatives in Morocco.",
+    "storyText2": "Our goal is to create products that are not only a pleasure to use but also deliver tangible results, always prioritizing the health of your skin barrier.",
+    "sourcingTitle": "Ethical Sourcing",
+    "sourcingText1": "We are committed to ethical and sustainable practices. Our ingredients are sourced from suppliers who share our values of environmental responsibility and fair trade.",
+    "sourcingText2": "Our Argan oil is a prime example, providing economic empowerment to the Berber women who have perfected its traditional extraction method for centuries.",
+    "sourcingImageAlt": "Field of argan trees"
+  },
+  "pt": {
+    "title": "Nossa História",
+    "metaDescription": "Conheça a missão da Kapunka Skincare de criar cuidados com a pele eficazes e minimalistas que respeitam a barreira cutânea e o meio ambiente.",
+    "headerTitle": "Menos, mas melhor.",
+    "headerSubtitle": "Acreditamos no poder da simplicidade. Nossa filosofia está enraizada no uso de ingredientes puros e de alta qualidade para criar formulações que apoiam a saúde da sua pele a longo prazo.",
+    "storyTitle": "Nossa História",
+    "storyText1": "A Kapunka nasceu do desejo por cuidados com a pele transparentes e eficazes. Começamos por obter o mais puro óleo de Argan certificado pela ECOCERT de cooperativas de mulheres em Marrocos.",
+    "storyText2": "Nosso objetivo é criar produtos que não sejam apenas um prazer de usar, mas que também entreguem resultados tangíveis, priorizando sempre a saúde da sua barreira cutânea.",
+    "sourcingTitle": "Fornecimento Ético",
+    "sourcingText1": "Estamos comprometidos com práticas éticas e sustentáveis. Nossos ingredientes são provenientes de fornecedores que compartilham nossos valores de responsabilidade ambiental e comércio justo.",
+    "sourcingText2": "Nosso óleo de Argan é um excelente exemplo, proporcionando empoderamento econômico para as mulheres berberes que aperfeiçoaram seu método tradicional de extração por séculos.",
+    "sourcingImageAlt": "Campo de árvores de argan"
+  },
+  "es": {
+    "title": "Nuestra Historia",
+    "metaDescription": "Conoce la misión de Kapunka Skincare de crear un cuidado de la piel eficaz y minimalista que respete la barrera cutánea y el medio ambiente.",
+    "headerTitle": "Menos, pero mejor.",
+    "headerSubtitle": "Creemos en el poder de la simplicidad. Nuestra filosofía se basa en el uso de ingredientes puros y de alta calidad para crear formulaciones que apoyen la salud de tu piel a largo plazo.",
+    "storyTitle": "Nuestra Historia",
+    "storyText1": "Kapunka nació del deseo de un cuidado de la piel transparente y eficaz. Empezamos por obtener el aceite de Argán más puro, certificado por ECOCERT, de cooperativas de mujeres en Marruecos.",
+    "storyText2": "Nuestro objetivo es crear productos que no solo sean un placer de usar, sino que también ofrezcan resultados tangibles, priorizando siempre la salud de tu barrera cutánea.",
+    "sourcingTitle": "Abastecimiento Ético",
+    "sourcingText1": "Estamos comprometidos con prácticas éticas y sostenibles. Nuestros ingredientes provienen de proveedores que comparten nuestros valores de responsabilidad ambiental y comercio justo.",
+    "sourcingText2": "Nuestro aceite de Argán es un ejemplo primordial, proporcionando empoderamiento económico a las mujeres bereberes que han perfeccionado su método tradicional de extracción durante siglos.",
+    "sourcingImageAlt": "Campo de árboles de argán"
+  }
+}

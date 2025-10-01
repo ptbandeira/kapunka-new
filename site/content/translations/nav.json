@@ -1,0 +1,33 @@
+{
+  "type": "translations_nav",
+  "en": {
+    "shop": "Shop",
+    "learn": "Learn",
+    "videos": "Videos",
+    "training": "Training",
+    "method": "Method",
+    "forClinics": "For Clinics",
+    "about": "About",
+    "contact": "Contact"
+  },
+  "pt": {
+    "shop": "Loja",
+    "learn": "Aprender",
+    "videos": "Vídeos",
+    "training": "Treinamento",
+    "method": "Método",
+    "forClinics": "Para Clínicas",
+    "about": "Sobre",
+    "contact": "Contato"
+  },
+  "es": {
+    "shop": "Tienda",
+    "learn": "Aprender",
+    "videos": "Videos",
+    "training": "Formación",
+    "method": "Método",
+    "forClinics": "Para Clínicas",
+    "about": "Nosotros",
+    "contact": "Contacto"
+  }
+}

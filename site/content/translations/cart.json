@@ -1,0 +1,48 @@
+{
+  "type": "translations_cart",
+  "en": {
+    "title": "Your Cart",
+    "subtotal": "Subtotal",
+    "shippingNote": "Shipping and taxes calculated at checkout.",
+    "viewCart": "View Full Cart",
+    "empty": "Your cart is empty.",
+    "continueShopping": "Continue Shopping",
+    "pageTitle": "Shopping Cart",
+    "summary": "Order Summary",
+    "shipping": "Shipping",
+    "shippingCalculated": "Calculated at next step",
+    "total": "Total",
+    "checkout": "Proceed to Checkout",
+    "checkoutRedirect": "You will be redirected to a secure checkout page."
+  },
+  "pt": {
+    "title": "Seu Carrinho",
+    "subtotal": "Subtotal",
+    "shippingNote": "Envio e impostos calculados no checkout.",
+    "viewCart": "Ver Carrinho Completo",
+    "empty": "Seu carrinho está vazio.",
+    "continueShopping": "Continuar Comprando",
+    "pageTitle": "Carrinho de Compras",
+    "summary": "Resumo do Pedido",
+    "shipping": "Envio",
+    "shippingCalculated": "Calculado no próximo passo",
+    "total": "Total",
+    "checkout": "Ir para o Checkout",
+    "checkoutRedirect": "Você será redirecionado para uma página de checkout segura."
+  },
+  "es": {
+    "title": "Tu Carrito",
+    "subtotal": "Subtotal",
+    "shippingNote": "Envío e impuestos calculados en el checkout.",
+    "viewCart": "Ver Carrito Completo",
+    "empty": "Tu carrito está vacío.",
+    "continueShopping": "Seguir Comprando",
+    "pageTitle": "Carrito de Compras",
+    "summary": "Resumen del Pedido",
+    "shipping": "Envío",
+    "shippingCalculated": "Calculado en el siguiente paso",
+    "total": "Total",
+    "checkout": "Proceder al Pago",
+    "checkoutRedirect": "Serás redirigido a una página de pago segura."
+  }
+}

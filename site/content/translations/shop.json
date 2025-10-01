@@ -1,0 +1,45 @@
+{
+  "type": "translations_shop",
+  "en": {
+    "title": "All Products",
+    "metaDescription": "Shop our complete collection of skincare products formulated to support a healthy skin barrier.",
+    "subtitle": "Gentle yet effective solutions for every skin type, focusing on barrier health and minimalist formulas.",
+    "sortFeatured": "Featured",
+    "sortPriceAsc": "Price: Low to High",
+    "sortPriceDesc": "Price: High to Low",
+    "sortNameAsc": "Alphabetically: A-Z",
+    "sortNameDesc": "Alphabetically: Z-A",
+    "sortLabel": "Sort products",
+    "categoryFilterLabel": "Browse by collection",
+    "relatedResources": "Related resources",
+    "noProducts": "No products found in this collection."
+  },
+  "pt": {
+    "title": "Todos os Produtos",
+    "metaDescription": "Compre nossa coleção completa de produtos de skincare formulados para apoiar uma barreira cutânea saudável.",
+    "subtitle": "Soluções suaves mas eficazes para todos os tipos de pele, focando na saúde da barreira e em fórmulas minimalistas.",
+    "sortFeatured": "Destaque",
+    "sortPriceAsc": "Preço: Menor para Maior",
+    "sortPriceDesc": "Preço: Maior para Menor",
+    "sortNameAsc": "Alfabeticamente: A-Z",
+    "sortNameDesc": "Alfabeticamente: Z-A",
+    "sortLabel": "Ordenar produtos",
+    "categoryFilterLabel": "Navegue por coleção",
+    "relatedResources": "Recursos relacionados",
+    "noProducts": "Nenhum produto encontrado nesta coleção."
+  },
+  "es": {
+    "title": "Todos los Productos",
+    "metaDescription": "Compra nuestra colección completa de productos para el cuidado de la piel formulados para apoyar una barrera cutánea saludable.",
+    "subtitle": "Soluciones suaves pero eficaces para cada tipo de piel, centradas en la salud de la barrera y fórmulas minimalistas.",
+    "sortFeatured": "Destacado",
+    "sortPriceAsc": "Precio: Menor a Mayor",
+    "sortPriceDesc": "Precio: Mayor a Menor",
+    "sortNameAsc": "Alfabéticamente: A-Z",
+    "sortNameDesc": "Alfabéticamente: Z-A",
+    "sortLabel": "Ordenar productos",
+    "categoryFilterLabel": "Explorar por colección",
+    "relatedResources": "Recursos relacionados",
+    "noProducts": "No se encontraron productos en esta colección."
+  }
+}

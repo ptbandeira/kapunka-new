@@ -1,0 +1,246 @@
+{
+  "type": "translations_home",
+  "en": {
+    "metaTitle": "Kapunka Skincare | Moroccan Argan Rituals for Clinics & Sensitive Skin",
+    "metaDescription": "Kapunka formulates Moroccan argan oils, mists, and hammam treatments trusted by aesthetic clinics for post-procedure recovery, barrier repair, and daily rituals.",
+    "meta": {
+      "title": "Kapunka Skincare | Moroccan Argan Rituals for Clinics & Sensitive Skin",
+      "description": "Kapunka formulates Moroccan argan oils, mists, and hammam treatments trusted by aesthetic clinics for post-procedure recovery, barrier repair, and daily rituals."
+    },
+    "heroTitle": "Clinical-grade Moroccan argan rituals for sensitive, recovering skin",
+    "heroSubtitle": "From single-origin argan oil to dermal mists and hammam staples, Kapunka pairs Moroccan heritage with aesthetic expertise so post-procedure and delicate skin stays calm, nourished, and resilient.",
+    "hero": {
+      "title": "Clinical-grade Moroccan argan rituals for sensitive, recovering skin",
+      "subtitle": "From single-origin argan oil to dermal mists and hammam staples, Kapunka pairs Moroccan heritage with aesthetic expertise so post-procedure and delicate skin stays calm, nourished, and resilient.",
+      "ctaPrimary": "Shop argan rituals",
+      "ctaSecondary": "Clinics partnership"
+    },
+    "ctaShop": "Shop argan rituals",
+    "ctaClinics": "Clinics partnership",
+    "bestsellersTitle": "Our Bestsellers",
+    "bestsellers": {
+      "intro": "Meet the three-step ritual clinics rely on most—cleanse, replenish, and seal with nutrient-dense argan care.",
+      "cards": [
+        {
+          "slug": "pure-argan-oil",
+          "blurb": "Lightweight moisture; face, body, hair."
+        },
+        {
+          "slug": "kapunka-cicatrices",
+          "blurb": "Targeted argan care for scars and marks."
+        },
+        {
+          "slug": "pack-kapunka",
+          "blurb": "Travel-ready hammam pack with Kessa mitt."
+        }
+      ]
+    },
+    "value1": "Traceable Moroccan sourcing",
+    "value2": "Post-treatment safe",
+    "value3": "Multifunction rituals",
+    "value4": "Sustainable impact",
+    "valueProps": [
+      {
+        "title": "Traceable Moroccan sourcing",
+        "subtitle": "Hand-harvested kernels pressed within 24 hours to preserve omega density."
+      },
+      {
+        "title": "Post-treatment safe",
+        "subtitle": "Dermatology reviewed formulas bottled in GMP facilities for maximum purity."
+      },
+      {
+        "title": "Multifunction rituals",
+        "subtitle": "One oil to repair the barrier, soothe scalp flare-ups, and gloss the body without residue."
+      },
+      {
+        "title": "Sustainable impact",
+        "subtitle": "Partnership with Essaouira cooperatives reinvesting in women-led agriculture."
+      }
+    ],
+    "reviewsTitle": "What Professionals Say",
+    "clinics": {
+      "title": "Trusted by dermatologists and aesthetic clinics",
+      "copy": "Clinics select Kapunka for its purity and performance in post-laser and sensitive-skin care. Our minimalist routines support faster recovery, barrier integrity, and lasting comfort.",
+      "cta": "Become a Partner"
+    },
+    "socialProof": {
+      "line": "Seen in skin clinics and care practices across Europe."
+    },
+    "learn": {
+      "teaser": "Clear answers to real routines—post-procedure, scalp care, baby skin, and barrier support."
+    },
+    "newsletterTitle": "Join The List",
+    "newsletterSubtitle": "Tips for sensitive-skin routines, once or twice a month. No spam. Unsubscribe anytime.",
+    "newsletter": {
+      "pitch": "Join our community for monthly guidance on barrier health, post-treatment recovery, and skincare rooted in science. No spam, just insight."
+    },
+    "newsletterThanks": "Thank you for subscribing!",
+    "newsletterPlaceholder": "Enter your email address",
+    "newsletterSubmit": "Subscribe",
+    "footer": {
+      "complianceNote": "Cosmetic use only. Not intended to diagnose, treat, cure, or prevent disease."
+    }
+  },
+  "pt": {
+    "metaTitle": "Kapunka Skincare | Rituais de argan marroquino para clínicas e pele sensível",
+    "metaDescription": "A Kapunka formula óleos de argan, névoas e tratamentos de hammam marroquinos confiados por clínicas estéticas para recuperação pós-procedimento, reparo da barreira e rituais diários.",
+    "meta": {
+      "title": "Kapunka Skincare | Rituais de argan marroquino para clínicas e pele sensível",
+      "description": "A Kapunka formula óleos de argan, névoas e tratamentos de hammam marroquinos confiados por clínicas estéticas para recuperação pós-procedimento, reparo da barreira e rituais diários."
+    },
+    "heroTitle": "Rituais de argan marroquino de padrão clínico para pele sensível e em recuperação",
+    "heroSubtitle": "Dos óleos de argan de origem única às névoas dérmicas e clássicos do hammam, a Kapunka une herança marroquina e expertise estética para manter a pele pós-procedimento calma, nutrida e resiliente.",
+    "hero": {
+      "title": "Rituais de argan marroquino de padrão clínico para pele sensível e em recuperação",
+      "subtitle": "Dos óleos de argan de origem única às névoas dérmicas e clássicos do hammam, a Kapunka une herança marroquina e expertise estética para manter a pele pós-procedimento calma, nutrida e resiliente.",
+      "ctaPrimary": "Comprar rituais de argan",
+      "ctaSecondary": "Parceria para clínicas"
+    },
+    "ctaShop": "Comprar rituais de argan",
+    "ctaClinics": "Parceria para clínicas",
+    "bestsellersTitle": "Nossos Mais Vendidos",
+    "bestsellers": {
+      "intro": "Conheça o ritual em três etapas preferido nas clínicas—limpar, repor e selar com o cuidado nutritivo do argan.",
+      "cards": [
+        {
+          "slug": "pure-argan-oil",
+          "blurb": "Hidratação leve; rosto, corpo, cabelo."
+        },
+        {
+          "slug": "kapunka-cicatrices",
+          "blurb": "Cuidado de argan direcionado para cicatrizes e marcas."
+        },
+        {
+          "slug": "pack-kapunka",
+          "blurb": "Pack hammam pronto para viajar com luva Kessa."
+        }
+      ]
+    },
+    "value1": "Origem marroquina rastreável",
+    "value2": "Seguro pós-tratamento",
+    "value3": "Rituais multifuncionais",
+    "value4": "Impacto sustentável",
+    "valueProps": [
+      {
+        "title": "Origem marroquina rastreável",
+        "subtitle": "Sementes colhidas à mão e prensadas em até 24 horas para preservar os ômegas."
+      },
+      {
+        "title": "Seguro pós-tratamento",
+        "subtitle": "Fórmulas avaliadas por dermatologistas e envasadas em instalações GMP para pureza máxima."
+      },
+      {
+        "title": "Rituais multifuncionais",
+        "subtitle": "Um único óleo para reparar a barreira, acalmar o couro cabeludo e iluminar o corpo sem resíduos."
+      },
+      {
+        "title": "Impacto sustentável",
+        "subtitle": "Parcerias com cooperativas de Essaouira lideradas por mulheres que fortalecem a agricultura local."
+      }
+    ],
+    "reviewsTitle": "O Que Dizem os Profissionais",
+    "clinics": {
+      "title": "Confiado por dermatologistas e clínicas estéticas",
+      "copy": "As clínicas escolhem a Kapunka pela pureza e performance no cuidado pós-laser e pele sensível. Nossas rotinas minimalistas favorecem recuperação mais rápida, integridade da barreira e conforto duradouro.",
+      "cta": "Seja parceiro"
+    },
+    "socialProof": {
+      "line": "Presente em clínicas e consultórios de cuidados da pele na Europa."
+    },
+    "learn": {
+      "teaser": "Respostas claras para rotinas reais—pós-procedimento, couro cabeludo, pele do bebé e apoio da barreira."
+    },
+    "newsletterTitle": "Junte-se à Lista",
+    "newsletterSubtitle": "Dicas para rotinas de pele sensível, uma ou duas vezes por mês. Sem spam. Cancele quando quiser.",
+    "newsletter": {
+      "pitch": "Junte-se à nossa comunidade para orientações mensais sobre saúde da barreira, recuperação pós-tratamento e cuidados com a pele baseados em ciência. Sem spam, apenas insights."
+    },
+    "newsletterThanks": "Obrigado por se inscrever!",
+    "newsletterPlaceholder": "Digite seu e-mail",
+    "newsletterSubmit": "Inscrever-se",
+    "footer": {
+      "complianceNote": "Uso cosmético. Não destinado a diagnosticar, tratar, curar ou prevenir doenças."
+    }
+  },
+  "es": {
+    "metaTitle": "Kapunka Skincare | Rituales de argán marroquí para clínicas y piel sensible",
+    "metaDescription": "Kapunka formula aceites de argán, brumas y tratamientos de hammam marroquíes en los que confían las clínicas estéticas para la recuperación post-procedimiento, la reparación de la barrera y los rituales diarios.",
+    "meta": {
+      "title": "Kapunka Skincare | Rituales de argán marroquí para clínicas y piel sensible",
+      "description": "Kapunka formula aceites de argán, brumas y tratamientos de hammam marroquíes en los que confían las clínicas estéticas para la recuperación post-procedimiento, la reparación de la barrera y los rituales diarios."
+    },
+    "heroTitle": "Rituales de argán marroquí de nivel clínico para piel sensible y en recuperación",
+    "heroSubtitle": "Desde el argán de origen único hasta las brumas dérmicas y los clásicos del hammam, Kapunka une la herencia marroquí con la experiencia estética para que la piel post-procedimiento se mantenga calmada, nutrida y resiliente.",
+    "hero": {
+      "title": "Rituales de argán marroquí de nivel clínico para piel sensible y en recuperación",
+      "subtitle": "Desde el argán de origen único hasta las brumas dérmicas y los clásicos del hammam, Kapunka une la herencia marroquí con la experiencia estética para que la piel post-procedimiento se mantenga calmada, nutrida y resiliente.",
+      "ctaPrimary": "Comprar rituales de argán",
+      "ctaSecondary": "Alianza para clínicas"
+    },
+    "ctaShop": "Comprar rituales de argán",
+    "ctaClinics": "Alianza para clínicas",
+    "bestsellersTitle": "Nuestros Más Vendidos",
+    "bestsellers": {
+      "intro": "Conoce el ritual de tres pasos más querido por las clínicas: limpiar, reponer y sellar con el cuidado nutritivo del argán.",
+      "cards": [
+        {
+          "slug": "pure-argan-oil",
+          "blurb": "Hidratación ligera; rostro, cuerpo, cabello."
+        },
+        {
+          "slug": "kapunka-cicatrices",
+          "blurb": "Cuidado de argán focalizado para cicatrices y marcas."
+        },
+        {
+          "slug": "pack-kapunka",
+          "blurb": "Pack hammam listo para viajar con manopla Kessa."
+        }
+      ]
+    },
+    "value1": "Origen marroquí trazable",
+    "value2": "Seguro post-tratamiento",
+    "value3": "Rituales multifunción",
+    "value4": "Impacto sostenible",
+    "valueProps": [
+      {
+        "title": "Origen marroquí trazable",
+        "subtitle": "Semillas recolectadas a mano y prensadas en 24 horas para preservar los omegas."
+      },
+      {
+        "title": "Seguro post-tratamiento",
+        "subtitle": "Fórmulas revisadas por dermatología y envasadas en instalaciones GMP para pureza máxima."
+      },
+      {
+        "title": "Rituales multifunción",
+        "subtitle": "Un solo aceite para reparar la barrera, calmar el cuero cabelludo y dar brillo al cuerpo sin residuos."
+      },
+      {
+        "title": "Impacto sostenible",
+        "subtitle": "Alianza con cooperativas de Essaouira lideradas por mujeres que sostienen la agricultura local."
+      }
+    ],
+    "reviewsTitle": "Lo que Dicen los Profesionales",
+    "clinics": {
+      "title": "Confiado por dermatólogos y clínicas estéticas",
+      "copy": "Las clínicas eligen Kapunka por su pureza y desempeño en el cuidado post-láser y de piel sensible. Nuestras rutinas minimalistas favorecen una recuperación más rápida, la integridad de la barrera y un confort duradero.",
+      "cta": "Hazte partner"
+    },
+    "socialProof": {
+      "line": "Presente en clínicas y consultas de cuidado de la piel en Europa."
+    },
+    "learn": {
+      "teaser": "Respuestas claras para rutinas reales—post-procedimiento, cuero cabelludo, piel de bebé y apoyo de la barrera."
+    },
+    "newsletterTitle": "Únete a la Lista",
+    "newsletterSubtitle": "Consejos para rutinas de piel sensible, una o dos veces al mes. Sin spam. Baja cuando quieras.",
+    "newsletter": {
+      "pitch": "Únete a nuestra comunidad para recibir orientación mensual sobre salud de la barrera, recuperación post-tratamiento y cuidado de la piel basado en ciencia. Sin spam, solo ideas."
+    },
+    "newsletterThanks": "¡Gracias por suscribirte!",
+    "newsletterPlaceholder": "Introduce tu correo electrónico",
+    "newsletterSubmit": "Suscribirse",
+    "footer": {
+      "complianceNote": "Uso cosmético. No destinado a diagnosticar, tratar, curar ni prevenir enfermedades."
+    }
+  }
+}

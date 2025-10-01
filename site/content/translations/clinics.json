@@ -1,0 +1,345 @@
+{
+  "type": "translations_clinics",
+  "en": {
+    "title": "Professional Clinic Partnerships",
+    "metaDescription": "B2B skincare supply for post-treatment skin care. Access dermatologist-approved argan oil, clinical protocols, and training for your clinic.",
+    "headerTitle": "Professional Clinic Partnership Program",
+    "headerSubtitle": "Deliver consistent post-treatment skin care with dermatologist-approved argan oil and minimalist, clinic-tested formulas tailored for recovery and hormonal hydration.",
+    "section1Title": "Evidence-Led Support for Every Treatment Room",
+    "section1Text1": "Our B2B skincare supply combines ECOCERT argan oil, Damask rose water, and barrier-strengthening lipids with educational assets you can personalize. Protocols are reviewed by board-certified dermatologists so your team can offer confident guidance after microneedling, chemical peels, laser, or menopause-related dryness.",
+    "section1Text2": "Partners receive wholesale pricing, onboarding modules, and printable aftercare one-pagers in English, Portuguese, and Spanish. Kapunka simplifies the handoff from procedure to home care, helping you retain patients and build retail revenue.",
+    "protocolSection": {
+      "title": "Protocol Blueprints You Can Personalize",
+      "subtitle": "Downloadable, dermatologist-reviewed routines to guide patients through the most requested treatments.",
+      "cards": [
+        {
+          "title": "Microneedling Aftercare (0–72 hours)",
+          "focus": "Stabilize the barrier, reduce TEWL, and prevent microbial contamination.",
+          "steps": [
+            "Immediately post-treatment: mist Kapunka Damask Rose Water or sterile saline, then press three drops of our dermatologist-approved argan oil over treated zones to seal microchannels.",
+            "First night: instruct patients to avoid makeup and retinoids; reapply argan oil on damp skin every 6–8 hours to keep the lipid matrix saturated.",
+            "Days 2–3: layer a hyaluronic serum under argan oil; resume mineral SPF once erythema resolves."
+          ],
+          "evidence": "Guided by Fabbrocini et al., Journal of Clinical and Aesthetic Dermatology (2014), which documents barrier disruption for up to 48 hours post-microneedling and the benefits of lipid-rich emollients."
+        },
+        {
+          "title": "Medium-Depth Chemical Peel Recovery (Day 0–7)",
+          "focus": "Modulate inflammation, support desquamation, and rebuild the stratum corneum.",
+          "steps": [
+            "Day 0: neutralize the peel per manufacturer instructions; once skin temperature normalizes, mist Damask Rose Water and apply a thin veil of argan oil to buffer tightness.",
+            "Days 1–3: cleanse with pH-balanced milk cleansers; alternate rose water compresses with argan oil occlusion to minimize crusting.",
+            "Days 4–7: introduce ceramide cream over argan oil; reinforce broad-spectrum SPF 50 and avoid exfoliants until peeling completes."
+          ],
+          "evidence": "Informed by Soleymani et al., Journal of Clinical and Aesthetic Dermatology (2018), highlighting lipid replenishment as a key determinant of controlled re-epithelialization."
+        },
+        {
+          "title": "Hydration Support During Menopause",
+          "focus": "Restore lipids, improve elasticity, and calm neurogenic dryness linked to estrogen decline.",
+          "steps": [
+            "Morning: spritz Damask Rose Water, cocktail two drops of argan oil with ceramide moisturizer, and finish with SPF to address increased photosensitivity.",
+            "Evening: apply argan oil to face, neck, and décolletage while skin is damp; follow with light massage to stimulate microcirculation.",
+            "Weekly: suggest scalp massages with argan oil to offset hair density changes and provide hand and forearm treatments during in-clinic visits."
+          ],
+          "evidence": "Aligned with Lephart, Biomedicine & Pharmacotherapy (2016) and Sator et al., Journal of the American Academy of Dermatology (2001), which report improved elasticity and hydration in postmenopausal skin after topical phyto-lipids."
+        }
+      ]
+    },
+    "referencesSection": {
+      "title": "Clinical References & Expert Voices",
+      "studiesTitle": "Peer-reviewed highlights",
+      "studies": [
+        {
+          "title": "Fabbrocini A. et al. Microneedling in dermatology: A review.",
+          "details": "Journal of Clinical and Aesthetic Dermatology, 2014."
+        },
+        {
+          "title": "Soleymani T. et al. A practical approach to chemical peels.",
+          "details": "Journal of Clinical and Aesthetic Dermatology, 2018."
+        },
+        {
+          "title": "Lephart E.D. Skin aging and menopause: Implications for treatment.",
+          "details": "Biomedicine & Pharmacotherapy, 2016."
+        }
+      ],
+      "testimonialsTitle": "Dermatologist testimonials",
+      "testimonials": [
+        {
+          "quote": "\"Kapunka’s dermatologist-approved argan oil delivers the lipid profile I want for post-treatment skin care, and patients appreciate the sustainable sourcing.\"",
+          "name": "Dr. Sofia Mendes",
+          "credentials": "Board-Certified Dermatologist, Lisbon"
+        },
+        {
+          "quote": "\"The minimalist INCI keeps our sensitized patients comfortable after peels, while the brand’s training modules shorten staff onboarding.\"",
+          "name": "Dr. Elena Ruiz",
+          "credentials": "Dermatologic Surgeon, Madrid"
+        }
+      ]
+    },
+    "keywordSection": {
+      "title": "Optimized B2B Skincare Supply",
+      "subtitle": "Include these focus points in your listings and marketing to reach discerning patients.",
+      "keywords": [
+        "post-treatment skin care protocols",
+        "dermatologist-approved argan oil retail sets",
+        "B2B skincare supply for medical spas",
+        "hormonal hydration support kits",
+        "sustainable Moroccan argan oil wholesale"
+      ]
+    },
+    "faqSection": {
+      "title": "Clinic FAQs",
+      "subtitle": "Logistics, training, and application methods tailored for your team.",
+      "items": [
+        {
+          "question": "What is the minimum order quantity (MOQ)?",
+          "answer": "Opening orders start at 24 retail units or 6 professional back-bar units. Mixed product cases qualify for the same wholesale pricing so smaller clinics can curate assortments."
+        },
+        {
+          "question": "Do you provide protocol training?",
+          "answer": "Yes. Partners access a bilingual e-learning portal with microneedling, chemical peel, and menopause hydration modules. Live quarterly webinars review updates and allow Q&A with our medical advisory board."
+        },
+        {
+          "question": "How should clinicians apply the argan oil in treatment rooms?",
+          "answer": "Decant into sterile droppers. After finishing a treatment, mist the skin with rose water and press the oil in gloved hands to avoid friction. For scalp or body services, warm the oil to body temperature before massage."
+        },
+        {
+          "question": "Can Kapunka support white-label or co-branded materials?",
+          "answer": "We offer customizable post-treatment cards and co-branded sleeves after your third order. Our design team adapts assets to your brand within five business days."
+        }
+      ]
+    },
+    "doctorsTitle": "Trusted by Top Professionals",
+    "ctaTitle": "Become a Partner",
+    "ctaSubtitle": "Schedule a call to review wholesale pricing, sampling, and clinic launch support.",
+    "ctaButton": "Contact Us",
+    "partnersTitle": "As Seen In"
+  },
+  "pt": {
+    "title": "Parcerias Profissionais para Clínicas",
+    "metaDescription": "Fornecimento B2B de skincare para cuidados pós-tratamento. Acesse óleo de argan aprovado por dermatologistas, protocolos clínicos e treinamento para a sua clínica.",
+    "headerTitle": "Programa Profissional Kapunka",
+    "headerSubtitle": "Ofereça cuidados pós-tratamento consistentes com óleo de argan aprovado por dermatologistas e fórmulas minimalistas testadas em clínica para recuperação e hidratação hormonal.",
+    "section1Title": "Suporte baseado em evidências para cada sala de tratamento",
+    "section1Text1": "Nosso fornecimento B2B de skincare combina óleo de argan ECOCERT, água de rosas Damascena e lipídios fortalecedores da barreira com materiais educativos que você pode personalizar. Os protocolos são revisados por dermatologistas certificados para que a sua equipa ofereça orientações seguras após microagulhamento, peelings químicos, laser ou ressecamento relacionado à menopausa.",
+    "section1Text2": "Os parceiros recebem preços no atacado, módulos de onboarding e folhetos de pós-tratamento prontos para imprimir em inglês, português e espanhol. A Kapunka simplifica a transição do procedimento para o cuidado em casa, ajudando a reter pacientes e ampliar a receita de varejo.",
+    "protocolSection": {
+      "title": "Modelos de protocolo para personalizar",
+      "subtitle": "Rotinas revisadas por dermatologistas e disponíveis para download, guiando pacientes nos tratamentos mais procurados.",
+      "cards": [
+        {
+          "title": "Pós-tratamento de microagulhamento (0–72 horas)",
+          "focus": "Estabilize a barreira, reduza a TEWL e previna contaminação microbiana.",
+          "steps": [
+            "Imediatamente após o procedimento: borrife Água de Rosas Damascena Kapunka ou soro fisiológico estéril e pressione três gotas do nosso óleo de argan aprovado por dermatologistas sobre as zonas tratadas para selar os microcanais.",
+            "Primeira noite: oriente as pacientes a evitarem maquiagem e retinoides; reaplique o óleo de argan na pele úmida a cada 6–8 horas para manter a matriz lipídica saturada.",
+            "Dias 2–3: estratifique um sérum de ácido hialurônico sob o óleo de argan; retome o protetor solar mineral quando o eritema diminuir."
+          ],
+          "evidence": "Orientado por Fabbrocini et al., Journal of Clinical and Aesthetic Dermatology (2014), que documenta a interrupção da barreira por até 48 horas após o microagulhamento e os benefícios de emolientes ricos em lipídios."
+        },
+        {
+          "title": "Recuperação de peeling químico médio (Dia 0–7)",
+          "focus": "Modere a inflamação, apoie a descamação e reconstrua o estrato córneo.",
+          "steps": [
+            "Dia 0: neutralize o peeling conforme as instruções do fabricante; quando a pele voltar à temperatura normal, borrife Água de Rosas Damascena e aplique um véu fino de óleo de argan para amenizar a sensação de repuxamento.",
+            "Dias 1–3: higienize com limpadores lácteos de pH equilibrado; alterne compressas de água de rosas com oclusão de óleo de argan para minimizar a formação de crostas.",
+            "Dias 4–7: introduza um creme com ceramidas sobre o óleo de argan; reforce o uso de protetor solar FPS 50 de amplo espectro e evite esfoliantes até o término da descamação."
+          ],
+          "evidence": "Baseado em Soleymani et al., Journal of Clinical and Aesthetic Dermatology (2018), que destaca a reposição lipídica como determinante para a reepitelização controlada."
+        },
+        {
+          "title": "Suporte de hidratação durante a menopausa",
+          "focus": "Restaure lipídios, melhore a elasticidade e acalme o ressecamento neurogênico ligado à queda estrogênica.",
+          "steps": [
+            "Manhã: borrife Água de Rosas Damascena, misture duas gotas de óleo de argan ao hidratante com ceramidas e finalize com protetor solar para lidar com a fotossensibilidade aumentada.",
+            "Noite: aplique óleo de argan no rosto, pescoço e colo com a pele úmida; faça uma massagem suave para estimular a microcirculação.",
+            "Semanalmente: sugerir massagens no couro cabeludo com óleo de argan para compensar mudanças na densidade capilar e oferecer tratamentos de mãos e antebraços durante as visitas à clínica."
+          ],
+          "evidence": "Alinhado a Lephart, Biomedicine & Pharmacotherapy (2016) e Sator et al., Journal of the American Academy of Dermatology (2001), que relatam melhora de elasticidade e hidratação na pele pós-menopausa após o uso tópico de fito-lipídios."
+        }
+      ]
+    },
+    "referencesSection": {
+      "title": "Referências clínicas e vozes especialistas",
+      "studiesTitle": "Destaques revisados por pares",
+      "studies": [
+        {
+          "title": "Fabbrocini A. et al. Microneedling in dermatology: A review.",
+          "details": "Journal of Clinical and Aesthetic Dermatology, 2014."
+        },
+        {
+          "title": "Soleymani T. et al. A practical approach to chemical peels.",
+          "details": "Journal of Clinical and Aesthetic Dermatology, 2018."
+        },
+        {
+          "title": "Lephart E.D. Skin aging and menopause: Implications for treatment.",
+          "details": "Biomedicine & Pharmacotherapy, 2016."
+        }
+      ],
+      "testimonialsTitle": "Depoimentos de dermatologistas",
+      "testimonials": [
+        {
+          "quote": "\"O óleo de argan aprovado por dermatologistas da Kapunka oferece o perfil lipídico que desejo para o post-treatment skin care, e as pacientes valorizam a origem sustentável.\"",
+          "name": "Dra. Sofia Mendes",
+          "credentials": "Dermatologista certificada, Lisboa"
+        },
+        {
+          "quote": "\"O INCI minimalista mantém as pacientes sensibilizadas confortáveis após os peelings, enquanto os módulos de treinamento da marca encurtam o onboarding da equipa.\"",
+          "name": "Dra. Elena Ruiz",
+          "credentials": "Cirurgiã dermatológica, Madri"
+        }
+      ]
+    },
+    "keywordSection": {
+      "title": "Fornecimento B2B de skincare otimizado",
+      "subtitle": "Inclua estes focos nas suas listas e campanhas para alcançar pacientes exigentes.",
+      "keywords": [
+        "post-treatment skin care protocols (protocolos de cuidados pós-tratamento)",
+        "dermatologist-approved argan oil retail sets (kits de óleo de argan aprovado por dermatologistas)",
+        "B2B skincare supply for medical spas (fornecimento B2B de skincare para clínicas e spas médicos)",
+        "hormonal hydration support kits (kits de suporte de hidratação hormonal)",
+        "sustainable Moroccan argan oil wholesale (óleo de argan marroquino sustentável no atacado)"
+      ]
+    },
+    "faqSection": {
+      "title": "Perguntas frequentes para clínicas",
+      "subtitle": "Logística, treinamento e métodos de aplicação adaptados à sua equipa.",
+      "items": [
+        {
+          "question": "Qual é a quantidade mínima de pedido (MOQ)?",
+          "answer": "Os pedidos iniciais começam com 24 unidades de varejo ou 6 unidades profissionais de back bar. Caixas com produtos variados mantêm o mesmo preço de atacado para que clínicas menores possam montar assortments personalizados."
+        },
+        {
+          "question": "Vocês oferecem treinamento de protocolos?",
+          "answer": "Sim. Os parceiros acessam uma plataforma de e-learning bilíngue com módulos de microagulhamento, peeling químico e hidratação na menopausa. Webinars trimestrais ao vivo trazem atualizações e um Q&A com o nosso conselho médico."
+        },
+        {
+          "question": "Como os clínicos devem aplicar o óleo de argan na sala de tratamento?",
+          "answer": "Transfira para conta-gotas estéreis. Ao finalizar o procedimento, borrife água de rosas na pele e pressione o óleo com as mãos enluvadas para evitar fricção. Em serviços de couro cabeludo ou corpo, aqueça o óleo à temperatura corporal antes da massagem."
+        },
+        {
+          "question": "A Kapunka oferece materiais em white label ou co-branded?",
+          "answer": "Oferecemos cartões pós-tratamento personalizáveis e sleeves co-branded após o terceiro pedido. A nossa equipa de design adapta os materiais à sua marca em até cinco dias úteis."
+        }
+      ]
+    },
+    "doctorsTitle": "Aprovado pelos melhores profissionais",
+    "ctaTitle": "Torne-se um parceiro",
+    "ctaSubtitle": "Agende uma chamada para conhecer preços de atacado, amostras e suporte de lançamento na clínica.",
+    "ctaButton": "Fale conosco",
+    "partnersTitle": "Como visto em"
+  },
+  "es": {
+    "title": "Alianzas Profesionales para Clínicas",
+    "metaDescription": "Suministro B2B de cuidado de la piel para el post-tratamiento. Accede a aceite de argán aprobado por dermatólogos, protocolos clínicos y capacitación para tu clínica.",
+    "headerTitle": "Programa Profesional Kapunka",
+    "headerSubtitle": "Ofrece un post-treatment skin care coherente con aceite de argán aprobado por dermatólogos y fórmulas minimalistas, probadas en clínica para la recuperación y la hidratación hormonal.",
+    "section1Title": "Soporte basado en evidencia para cada sala de tratamiento",
+    "section1Text1": "Nuestro suministro B2B de skincare combina aceite de argán ECOCERT, agua de rosas de Damasco y lípidos que refuerzan la barrera con materiales educativos personalizables. Los protocolos son revisados por dermatólogos certificados para que tu equipo brinde indicaciones seguras tras microneedling, peelings químicos, láser o sequedad ligada a la menopausia.",
+    "section1Text2": "Los socios reciben precios mayoristas, módulos de onboarding y fichas de cuidados post-tratamiento listas para imprimir en inglés, portugués y español. Kapunka simplifica el traspaso del procedimiento al cuidado en casa, ayudando a fidelizar pacientes y aumentar el ticket minorista.",
+    "protocolSection": {
+      "title": "Planos de protocolo para personalizar",
+      "subtitle": "Rutinas revisadas por dermatólogos y descargables para guiar a los pacientes en los tratamientos más solicitados.",
+      "cards": [
+        {
+          "title": "Cuidados tras microneedling (0–72 horas)",
+          "focus": "Estabiliza la barrera, reduce la TEWL y evita la contaminación microbiana.",
+          "steps": [
+            "Inmediatamente después del tratamiento: pulveriza Agua de Rosas de Damasco Kapunka o suero fisiológico estéril y presiona tres gotas de nuestro aceite de argán aprobado por dermatólogos sobre las zonas tratadas para sellar los microcanales.",
+            "Primera noche: indica a los pacientes que eviten maquillaje y retinoides; reaplica el aceite de argán sobre la piel húmeda cada 6–8 horas para mantener saturada la matriz lipídica.",
+            "Días 2–3: coloca un sérum de ácido hialurónico bajo el aceite de argán; retoma el protector solar mineral cuando el eritema disminuya."
+          ],
+          "evidence": "Basado en Fabbrocini et al., Journal of Clinical and Aesthetic Dermatology (2014), que documenta la alteración de la barrera hasta 48 horas después del microneedling y los beneficios de los emolientes ricos en lípidos."
+        },
+        {
+          "title": "Recuperación de peeling químico medio (Día 0–7)",
+          "focus": "Modera la inflamación, favorece la descamación y reconstruye el estrato córneo.",
+          "steps": [
+            "Día 0: neutraliza el peeling según las instrucciones del fabricante; cuando la piel recupere su temperatura, pulveriza Agua de Rosas de Damasco y aplica un velo fino de aceite de argán para aliviar la tirantez.",
+            "Días 1–3: limpia con leches de pH equilibrado; alterna compresas de agua de rosas con oclusión de aceite de argán para minimizar las costras.",
+            "Días 4–7: incorpora una crema con ceramidas sobre el aceite de argán; refuerza el fotoprotector FPS 50 de amplio espectro y evita exfoliantes hasta finalizar la descamación."
+          ],
+          "evidence": "Respaldado por Soleymani et al., Journal of Clinical and Aesthetic Dermatology (2018), que destaca la reposición lipídica como clave para una reepitelización controlada."
+        },
+        {
+          "title": "Soporte de hidratación durante la menopausia",
+          "focus": "Restituye lípidos, mejora la elasticidad y calma la sequedad neurogénica asociada al descenso de estrógenos.",
+          "steps": [
+            "Mañana: pulveriza Agua de Rosas de Damasco, mezcla dos gotas de aceite de argán con la crema de ceramidas y finaliza con protector solar para abordar la fotosensibilidad aumentada.",
+            "Noche: aplica aceite de argán en rostro, cuello y escote con la piel húmeda; realiza un masaje ligero para estimular la microcirculación.",
+            "Semanalmente: sugiere masajes capilares con aceite de argán para compensar los cambios en la densidad del cabello y ofrece tratamientos de manos y antebrazos durante las visitas a la clínica."
+          ],
+          "evidence": "En línea con Lephart, Biomedicine & Pharmacotherapy (2016) y Sator et al., Journal of the American Academy of Dermatology (2001), que informan mejoras de elasticidad e hidratación en la piel posmenopáusica tras lípidos tópicos."
+        }
+      ]
+    },
+    "referencesSection": {
+      "title": "Referencias clínicas y voces expertas",
+      "studiesTitle": "Destacados revisados por pares",
+      "studies": [
+        {
+          "title": "Fabbrocini A. et al. Microneedling in dermatology: A review.",
+          "details": "Journal of Clinical and Aesthetic Dermatology, 2014."
+        },
+        {
+          "title": "Soleymani T. et al. A practical approach to chemical peels.",
+          "details": "Journal of Clinical and Aesthetic Dermatology, 2018."
+        },
+        {
+          "title": "Lephart E.D. Skin aging and menopause: Implications for treatment.",
+          "details": "Biomedicine & Pharmacotherapy, 2016."
+        }
+      ],
+      "testimonialsTitle": "Testimonios de dermatólogos",
+      "testimonials": [
+        {
+          "quote": "\"El aceite de argán aprobado por dermatólogos de Kapunka aporta el perfil lipídico que necesito para el post-treatment skin care, y las pacientes valoran su origen sostenible.\"",
+          "name": "Dra. Sofia Mendes",
+          "credentials": "Dermatóloga certificada, Lisboa"
+        },
+        {
+          "quote": "\"El INCI minimalista mantiene cómodos a nuestros pacientes sensibilizados tras los peelings, y los módulos formativos de la marca acortan la capacitación del personal.\"",
+          "name": "Dra. Elena Ruiz",
+          "credentials": "Cirujana dermatológica, Madrid"
+        }
+      ]
+    },
+    "keywordSection": {
+      "title": "Suministro B2B de skincare optimizado",
+      "subtitle": "Incluye estos enfoques en tus listados y campañas para llegar a pacientes exigentes.",
+      "keywords": [
+        "post-treatment skin care protocols (protocolos de cuidado post-tratamiento)",
+        "dermatologist-approved argan oil retail sets (sets minoristas de aceite de argán aprobado por dermatólogos)",
+        "B2B skincare supply for medical spas (suministro B2B de skincare para clínicas y spas médicos)",
+        "hormonal hydration support kits (kits de soporte de hidratación hormonal)",
+        "sustainable Moroccan argan oil wholesale (aceite de argán marroquí sostenible al por mayor)"
+      ]
+    },
+    "faqSection": {
+      "title": "Preguntas frecuentes para clínicas",
+      "subtitle": "Logística, formación y métodos de aplicación adaptados a tu equipo.",
+      "items": [
+        {
+          "question": "¿Cuál es la cantidad mínima de pedido (MOQ)?",
+          "answer": "Los pedidos iniciales comienzan con 24 unidades minoristas o 6 unidades profesionales de back bar. Los estuches mixtos califican para el mismo precio mayorista para que las clínicas más pequeñas puedan curar su surtido."
+        },
+        {
+          "question": "¿Ofrecen capacitación en protocolos?",
+          "answer": "Sí. Los socios acceden a un portal e-learning bilingüe con módulos de microneedling, peeling químico e hidratación en la menopausia. Webinars trimestrales en vivo repasan novedades y permiten preguntas a nuestro comité médico."
+        },
+        {
+          "question": "¿Cómo deben aplicar los clínicos el aceite de argán en cabina?",
+          "answer": "Transfiérelo a cuentagotas estériles. Tras finalizar el tratamiento, pulveriza agua de rosas sobre la piel y presiona el aceite con manos enguantadas para evitar fricción. En servicios capilares o corporales, templa el aceite a temperatura corporal antes del masaje."
+        },
+        {
+          "question": "¿Kapunka puede proporcionar materiales white label o co-brandeados?",
+          "answer": "Ofrecemos tarjetas post-tratamiento personalizables y fundas co-brandeadas después de tu tercer pedido. Nuestro equipo de diseño adapta los materiales a tu marca en un máximo de cinco días hábiles."
+        }
+      ]
+    },
+    "doctorsTitle": "Con la confianza de los mejores profesionales",
+    "ctaTitle": "Conviértete en socio",
+    "ctaSubtitle": "Agenda una llamada para revisar precios mayoristas, sampling y soporte de lanzamiento en clínica.",
+    "ctaButton": "Contáctanos",
+    "partnersTitle": "Como visto en"
+  }
+}

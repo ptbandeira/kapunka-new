@@ -1,0 +1,39 @@
+{
+  "type": "translations_common",
+  "en": {
+    "loading": "Loading...",
+    "loadingProducts": "Loading products...",
+    "loadingBestsellers": "Loading bestsellers...",
+    "loadingReviews": "Loading reviews...",
+    "loadingCourses": "Loading courses...",
+    "loadingProfessionals": "Loading professionals...",
+    "loadingArticle": "Loading article...",
+    "loadingPolicies": "Loading policy...",
+    "loadingCart": "Loading cart...",
+    "loadingProduct": "Loading product..."
+  },
+  "pt": {
+    "loading": "Carregando...",
+    "loadingProducts": "Carregando produtos...",
+    "loadingBestsellers": "Carregando mais vendidos...",
+    "loadingReviews": "Carregando avaliações...",
+    "loadingCourses": "Carregando cursos...",
+    "loadingProfessionals": "Carregando profissionais...",
+    "loadingArticle": "Carregando artigo...",
+    "loadingPolicies": "Carregando política...",
+    "loadingCart": "Carregando carrinho...",
+    "loadingProduct": "Carregando produto..."
+  },
+  "es": {
+    "loading": "Cargando...",
+    "loadingProducts": "Cargando productos...",
+    "loadingBestsellers": "Cargando más vendidos...",
+    "loadingReviews": "Cargando reseñas...",
+    "loadingCourses": "Cargando cursos...",
+    "loadingProfessionals": "Cargando profesionales...",
+    "loadingArticle": "Cargando artículo...",
+    "loadingPolicies": "Cargando política...",
+    "loadingCart": "Cargando carrito...",
+    "loadingProduct": "Cargando producto..."
+  }
+}
