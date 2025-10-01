@@ -1,4 +1,4 @@
-import React, { Suspense, lazy } from 'react';
+import React, { Suspense, lazy, useEffect } from 'react';
 import { HashRouter, Routes, Route, useLocation } from 'react-router-dom';
 import { AnimatePresence, motion } from 'framer-motion';
 import { Helmet, HelmetProvider } from 'react-helmet-async';
@@ -10,6 +10,7 @@ import CookieConsent from './components/CookieConsent';
 import { useSiteSettings } from './contexts/SiteSettingsContext';
 import { useLanguage } from './contexts/LanguageContext';
 import type { Language, LocalizedText } from './types';
+import { initializeVisualEditorAnnotations } from './utils/visualEditorAnnotations';
 
 const Home = lazy(() => import('./pages/Home'));
 const Shop = lazy(() => import('./pages/Shop'));
@@ -131,6 +132,15 @@ const App: React.FC = () => {
   const defaultTitle = getLocalizedValue(settings.seo?.defaultTitle, language) ?? FALLBACK_TITLE;
   const defaultDescription =
     getLocalizedValue(settings.seo?.defaultDescription, language) ?? FALLBACK_DESCRIPTION;
+
+  useEffect(() => {
+    const cleanup = initializeVisualEditorAnnotations();
+    return () => {
+      if (cleanup) {
+        cleanup();
+      }
+    };
+  }, []);
 
   return (
     <HelmetProvider>
