@@ -49,22 +49,22 @@ const pageModelExtensions = [
 ];
 
 const sectionModelNames = [
-  'ImageTextHalfSection',
-  'ImageGridSection',
-  'MediaCopySection',
-  'MediaShowcaseSection',
-  'FeatureGridSection',
-  'ProductGridSection',
-  'VideoGallerySection',
-  'TrainingListSection',
-  'BannerSection',
-  'NewsletterSignupSection',
-  'TestimonialsSection',
-  'CommunityCarouselSection',
-  'TimelineSection',
-  'FactsSection',
-  'BulletsSection',
-  'SpecialtiesSection',
+  'imageTextHalf',
+  'imageGrid',
+  'mediaCopy',
+  'mediaShowcase',
+  'featureGrid',
+  'productGrid',
+  'videoGallery',
+  'trainingList',
+  'banner',
+  'newsletterSignup',
+  'testimonials',
+  'communityCarousel',
+  'timeline',
+  'facts',
+  'bullets',
+  'specialties',
 ];
 
 const customModels = [
@@ -148,7 +148,7 @@ const customModels = [
     ],
   },
   {
-    name: 'ImageTextHalfSection',
+    name: 'imageTextHalf',
     type: 'object',
     label: 'Image + Text Half Section',
     fields: [
@@ -274,7 +274,7 @@ const customModels = [
     ],
   },
   {
-    name: 'MediaCopySection',
+    name: 'mediaCopy',
     type: 'object',
     label: 'Media + Copy Section',
     fields: [
@@ -390,7 +390,7 @@ const customModels = [
     ],
   },
   {
-    name: 'MediaShowcaseSection',
+    name: 'mediaShowcase',
     type: 'object',
     label: 'Media Showcase Section',
     fields: [
@@ -437,7 +437,7 @@ const customModels = [
     ],
   },
   {
-    name: 'FeatureGridSection',
+    name: 'featureGrid',
     type: 'object',
     label: 'Feature Grid Section',
     fields: [
@@ -477,7 +477,7 @@ const customModels = [
     ],
   },
   {
-    name: 'ProductGridSection',
+    name: 'productGrid',
     type: 'object',
     label: 'Product Grid Section',
     fields: [
@@ -536,7 +536,7 @@ const customModels = [
     ],
   },
   {
-    name: 'VideoGallerySection',
+    name: 'videoGallery',
     type: 'object',
     label: 'Video Gallery Section',
     fields: [
@@ -589,7 +589,7 @@ const customModels = [
     ],
   },
   {
-    name: 'TrainingListSection',
+    name: 'trainingList',
     type: 'object',
     label: 'Training List Section',
     fields: [
@@ -617,7 +617,7 @@ const customModels = [
     ],
   },
   {
-    name: 'BannerSection',
+    name: 'banner',
     type: 'object',
     label: 'Banner Section',
     fields: [
@@ -648,7 +648,7 @@ const customModels = [
     ],
   },
   {
-    name: 'NewsletterSignupSection',
+    name: 'newsletterSignup',
     type: 'object',
     label: 'Newsletter Signup Section',
     fields: [
@@ -731,7 +731,7 @@ const customModels = [
     ],
   },
   {
-    name: 'TestimonialsSection',
+    name: 'testimonials',
     type: 'object',
     label: 'Testimonials Section',
     fields: [
@@ -796,7 +796,7 @@ const customModels = [
     ],
   },
   {
-    name: 'CommunityCarouselSection',
+    name: 'communityCarousel',
     type: 'object',
     label: 'Community Carousel Section',
     fields: [
@@ -852,7 +852,7 @@ const customModels = [
     ],
   },
   {
-    name: 'ImageGridSection',
+    name: 'imageGrid',
     type: 'object',
     label: 'Image Grid Section',
     fields: [
@@ -905,7 +905,7 @@ const customModels = [
     ],
   },
   {
-    name: 'TimelineSection',
+    name: 'timeline',
     type: 'object',
     label: 'Timeline Section',
     fields: [
@@ -926,7 +926,7 @@ const customModels = [
     ],
   },
   {
-    name: 'FactsSection',
+    name: 'facts',
     type: 'object',
     label: 'Facts Section',
     fields: [
@@ -945,7 +945,7 @@ const customModels = [
     ],
   },
   {
-    name: 'BulletsSection',
+    name: 'bullets',
     type: 'object',
     label: 'Bullets Section',
     fields: [
@@ -987,7 +987,7 @@ const customModels = [
     ],
   },
   {
-    name: 'SpecialtiesSection',
+    name: 'specialties',
     type: 'object',
     label: 'Specialties Section',
     fields: [
