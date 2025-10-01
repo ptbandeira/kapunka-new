@@ -1433,12 +1433,10 @@ for (const customModel of customModels) {
 }
 
 const allModels = mergedModels.map(normalizeModelForContentSource);
-const allModelsMap = Object.fromEntries(allModels.map((model) => [model.name, model]));
 
 const contentSource = new FileSystemContentSource({
   rootPath: process.cwd(),
   contentDirs: ['content'],
-  documentFileExtensions: ['json'],
   models: allModels,
 });
 
@@ -1453,7 +1451,6 @@ const config = {
   stackbitVersion: '~0.6.0',
   contentSources: [contentSource],
   modelExtensions: pageModelExtensions,
-  models: allModelsMap,
   mapModels: ({ models }) => {
     const taggedModels = getSourceTaggedModels();
     const existingForSource = new Set(
