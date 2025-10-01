@@ -2153,6 +2153,12 @@ const contentSource = new FileSystemContentSource({
   rootPath: process.cwd(),
   contentDirs: ['content'],
   models: allModels,
+  assetsConfig: {
+    referenceType: 'static',
+    staticDir: 'content',
+    publicPath: '/content',
+    uploadDir: 'uploads',
+  },
 });
 
 const getSourceTaggedModels = () => {
