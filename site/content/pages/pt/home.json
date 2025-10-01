@@ -1,0 +1,164 @@
+{
+  "type": "HomePage",
+  "metaTitle": "Kapunka — Rituais de argão para pele sensível e pós-procedimento",
+  "metaDescription": "Cuidado clínico com argão marroquino, de confiança em clínicas, pensado para o dia a dia.",
+  "heroHeadline": "Agradece à tua pele.",
+  "heroSubheadline": "Rituais suaves de argão de Marrocos para pele sensível e pós-procedimento. Kapunka 2.0: cuidado calmo, humano.",
+  "heroCtas": {
+    "ctaPrimary": {
+      "label": "Comprar rituais",
+      "href": "/shop"
+    },
+    "ctaSecondary": {
+      "label": "Parceria para clínicas",
+      "href": "/clinics"
+    }
+  },
+  "heroAlignment": {
+    "heroAlignX": "center",
+    "heroAlignY": "middle",
+    "heroTextPosition": "overlay",
+    "heroTextAnchor": "middle-center",
+    "heroOverlay": "medium",
+    "heroLayoutHint": "bg"
+  },
+  "heroImages": {
+    "heroImageLeft": "/content/uploads/hero-dark-water.jpg"
+  },
+  "sections": [
+    {
+      "type": "mediaShowcase",
+      "title": "Histórias de rituais",
+      "items": [
+        {
+          "eyebrow": "Do blog",
+          "title": "Nascido da gratidão",
+          "body": "“Kapunka” significa “obrigado”. Criamos cuidados de argan com respeito clínico — rotinas simples que confortam e apoiam a recuperação.",
+          "imageRef": "/content/uploads/roots-olive-tree.jpg",
+          "imageAlt": "Mãos aplicando óleo de argan sob luz quente",
+          "ctaLabel": "Nossa história",
+          "ctaHref": "/about"
+        },
+        {
+          "eyebrow": "Para clínicas",
+          "title": "Preferido por dermatologistas, spas médicos e clínicas holísticas",
+          "body": "Tratamentos suaves e de baixo resíduo, com estabilidade de barreira e aprendizado contínuo para equipes confiantes.",
+          "imageRef": "/content/uploads/clinic-hands.jpg",
+          "imageAlt": "Profissional massageando o rosto de uma cliente com cuidado de argan",
+          "ctaLabel": "Parceria conosco",
+          "ctaHref": "/clinics"
+        },
+        {
+          "eyebrow": "Cadeia de fornecimento",
+          "title": "Origem patrimonial, padrões clínicos",
+          "body": "Selecionamos argan de origem única e acompanhamos cada lote das cooperativas às certificações para manter o cuidado humano.",
+          "imageRef": "/content/uploads/argan-coop.jpg",
+          "imageAlt": "Frutos de argan recém-colhidos em um cesto de palha",
+          "ctaLabel": "Nossos padrões",
+          "ctaHref": "/method"
+        },
+        {
+          "eyebrow": "Rituais",
+          "title": "Dos rituais de hammam à recuperação moderna",
+          "body": "Óleos puros, brumas florais e lavagens suaves conectam sabedoria ancestral ao cuidado diário.",
+          "imageRef": "/content/uploads/hammam-light.jpg",
+          "imageAlt": "Sala de hammam com vapor e uma pessoa relaxando",
+          "ctaLabel": "Comprar rituais",
+          "ctaHref": "/shop"
+        }
+      ]
+    },
+    {
+      "type": "featureGrid",
+      "title": "",
+      "columns": 4,
+      "items": [
+        {
+          "label": "Lotes prontos para clínica",
+          "description": "Amigável para a pele, puro e prensado a frio."
+        },
+        {
+          "label": "Cuidado sensorial holístico",
+          "description": "Texturas de baixa deposição e aromas suaves para pele sensível."
+        },
+        {
+          "label": "Histórias de retalho flexíveis",
+          "description": "Conjuntos iniciais e formação para rotinas consistentes em casa."
+        },
+        {
+          "label": "Parcerias sustentáveis",
+          "description": "Relações justas com as cooperativas de Marrocos."
+        }
+      ]
+    },
+    {
+      "type": "productGrid",
+      "title": "Os nossos mais vendidos",
+      "products": [
+        {
+          "id": "pure-argan-100"
+        },
+        {
+          "id": "scar-care"
+        },
+        {
+          "id": "ritual-pack"
+        }
+      ],
+      "columns": 3
+    },
+    {
+      "type": "communityCarousel",
+      "title": "Rituais na nossa comunidade",
+      "slides": [
+        {
+          "image": "",
+          "alt": "Adiciona uma foto de um ritual Kapunka em uso",
+          "quote": "“Usa este espaço para partilhar como alguém vive Kapunka na rotina.”",
+          "name": "Nome do cliente",
+          "role": "Clínica ou cidade"
+        },
+        {
+          "image": "",
+          "alt": "Carrega outra imagem da comunidade",
+          "quote": "“Destaque um testemunho de parceiro, uma história de recuperação ou um ritual diário.”",
+          "name": "Parceiro ou profissional",
+          "role": "Função ou foco do tratamento"
+        },
+        {
+          "image": "",
+          "alt": "Adiciona imagens de lifestyle reais e acolhedoras",
+          "quote": "“Acrescenta uma nota autêntica sobre como Kapunka apoia os objetivos de pele.”",
+          "name": "Adiciona um nome",
+          "role": "Localização ou contexto"
+        }
+      ]
+    },
+    {
+      "type": "newsletterSignup",
+      "title": "Junte-se à Lista",
+      "subtitle": "Dicas para rotinas de pele sensível, uma ou duas vezes por mês. Sem spam. Cancele quando quiser.",
+      "placeholder": "Digite seu e-mail",
+      "ctaLabel": "Inscrever-se",
+      "confirmation": "Obrigado por se inscrever!",
+      "background": "beige",
+      "alignment": "center"
+    },
+    {
+      "type": "testimonials",
+      "title": "O que dizem os profissionais",
+      "quotes": [
+        {
+          "text": "Após tratamentos a laser, recomendo o argão puro da Kapunka para uma reparação mais rápida da barreira. As minhas pacientes notam menos repuxamento e vermelhidão.",
+          "author": "Dra. Isabella Rossi",
+          "role": "Dermatologista"
+        },
+        {
+          "text": "Finalmente, um cleanser que respeita a pele sensível enquanto remove a maquilhagem de forma eficaz.",
+          "author": "Chloe Davis",
+          "role": "Esteticista"
+        }
+      ]
+    }
+  ]
+}

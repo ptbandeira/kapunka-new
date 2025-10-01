@@ -1,0 +1,14 @@
+{
+  "type": "ContactPage",
+  "metaTitle": "Fale com a Kapunka — Estamos aqui por você",
+  "metaDescription": "Fale conosco para receber rotinas, treinamentos ou opções de atacado sob medida.",
+  "sections": [
+    {
+      "type": "mediaCopy",
+      "title": "Estamos aqui para ouvir",
+      "body": "Clínicas, parceiros e pessoas queridas—conte o que você precisa e guiamos você até a rotina, o treinamento ou a opção de atacado ideal.",
+      "imageRef": "/content/uploads/argan-fields.jpg",
+      "layout": "image-right"
+    }
+  ]
+}

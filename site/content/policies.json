@@ -1,0 +1,261 @@
+{
+  "type": "PolicyCollection",
+  "items": [
+    {
+      "id": "shipping",
+      "title": {
+        "en": "Shipping Policy",
+        "pt": "Política de Envio",
+        "es": "Política de Envío"
+      },
+      "metaTitle": {
+        "en": "Shipping Policy | Kapunka Skincare",
+        "pt": "Política de Envio | Kapunka Skincare",
+        "es": "Política de Envío | Kapunka Skincare"
+      },
+      "metaDescription": {
+        "en": "Understand processing times, delivery windows, and customs guidance for every Kapunka order.",
+        "pt": "Saiba como funcionam os prazos de preparação, entrega e alfândega em cada pedido Kapunka.",
+        "es": "Conoce los tiempos de preparación, los plazos de entrega y las orientaciones aduaneras en cada pedido Kapunka."
+      },
+      "content": {
+        "en": "We prepare each Kapunka order within one to two business days, coordinating with our clinic logistics partners to keep products protected throughout transit.",
+        "pt": "Preparamos cada pedido Kapunka em um a dois dias úteis, coordenando com os nossos parceiros logísticos de clínicas para manter os produtos protegidos durante todo o transporte.",
+        "es": "Preparamos cada pedido Kapunka en uno o dos días laborables, coordinándonos con nuestros socios logísticos de clínicas para mantener los productos protegidos durante todo el transporte."
+      },
+      "sections": [
+        {
+          "id": "processing",
+          "title": {
+            "en": "Processing & dispatch",
+            "pt": "Processamento e expedição",
+            "es": "Procesamiento y envío"
+          },
+          "body": {
+            "en": "- Orders confirmed before 1 p.m. GMT ship the same business day whenever stock is verified.\n- Purchases placed after the cut-off or on weekends leave our Casablanca hub on the next working day.\n- If an item requires fresh bottling, we will email a preparation window and ship immediately once complete.",
+            "pt": "- Pedidos confirmados antes das 13h (GMT) são enviados no mesmo dia útil sempre que o stock esteja verificado.\n- Compras realizadas após esse horário ou aos fins de semana saem do nosso hub em Casablanca no dia útil seguinte.\n- Se algum item precisar de envase fresco, enviaremos por e-mail o novo prazo de preparação e faremos o envio assim que estiver concluído.",
+            "es": "- Los pedidos confirmados antes de las 13:00 (GMT) se envían el mismo día laborable siempre que el stock esté verificado.\n- Las compras realizadas después de esa hora o en fin de semana salen de nuestro centro de Casablanca el siguiente día laborable.\n- Si algún artículo requiere un nuevo envasado, avisaremos por correo electrónico del plazo de preparación y enviaremos en cuanto esté listo."
+          }
+        },
+        {
+          "id": "timelines",
+          "title": {
+            "en": "Delivery windows & carriers",
+            "pt": "Prazos de entrega e transportadoras",
+            "es": "Plazos de entrega y transportistas"
+          },
+          "body": {
+            "en": "- Morocco and Portugal standard service: 2–4 business days via Chronopost or CTT with doorstep delivery.\n- European Union express: 3–5 business days via DHL Express with signature confirmation.\n- United States and Canada: 5–7 business days via FedEx International Priority.\n- Rural addresses or islands may require an additional 1–2 business days beyond the quoted windows.",
+            "pt": "- Serviço padrão para Marrocos e Portugal: 2 a 4 dias úteis via Chronopost ou CTT com entrega na porta.\n- União Europeia (expresso): 3 a 5 dias úteis via DHL Express com confirmação por assinatura.\n- Estados Unidos e Canadá: 5 a 7 dias úteis via FedEx International Priority.\n- Endereços rurais ou ilhas podem exigir 1 a 2 dias úteis adicionais além dos prazos indicados.",
+            "es": "- Servicio estándar para Marruecos y Portugal: 2 a 4 días laborables con Chronopost o CTT y entrega a domicilio.\n- Unión Europea exprés: 3 a 5 días laborables con DHL Express y confirmación con firma.\n- Estados Unidos y Canadá: 5 a 7 días laborables con FedEx International Priority.\n- Las direcciones rurales o en islas pueden requerir 1 a 2 días laborables adicionales sobre los plazos indicados."
+          }
+        },
+        {
+          "id": "customs",
+          "title": {
+            "en": "Customs, duties & tracking",
+            "pt": "Alfândega, taxas e rastreamento",
+            "es": "Aduanas, aranceles y seguimiento"
+          },
+          "body": {
+            "en": "- Tracking links activate as soon as the parcel departs our warehouse; please allow up to 12 hours for the first scan to appear.\n- Deliveries within the European Union include duties in the final checkout total. Other regions may receive a separate customs invoice from the carrier.\n- If your order is delayed beyond the estimated window, contact support@kapunka.com with your order number so we can investigate with the courier.",
+            "pt": "- Os links de rastreamento são ativados assim que a encomenda sai do nosso armazém; aguarde até 12 horas para que o primeiro registo apareça.\n- Entregas dentro da União Europeia incluem taxas alfandegárias no valor final do checkout. Outras regiões podem receber uma fatura de alfândega emitida pela transportadora.\n- Se o seu pedido sofrer atraso além do prazo estimado, entre em contato pelo e-mail support@kapunka.com com o número do pedido para investigarmos junto à transportadora.",
+            "es": "- Los enlaces de seguimiento se activan en cuanto el paquete sale de nuestro almacén; permita hasta 12 horas para que aparezca el primer escaneo.\n- Las entregas dentro de la Unión Europea incluyen los aranceles en el importe final del checkout. Otras regiones pueden recibir una factura aduanera separada emitida por el transportista.\n- Si tu pedido se retrasa más allá del plazo estimado, escribe a support@kapunka.com con tu número de pedido para que podamos investigar con la empresa de transporte."
+          }
+        }
+      ]
+    },
+    {
+      "id": "returns",
+      "title": {
+        "en": "Return Policy",
+        "pt": "Política de Devolução",
+        "es": "Política de Devoluciones"
+      },
+      "metaTitle": {
+        "en": "Return Policy | Kapunka Skincare",
+        "pt": "Política de Devolução | Kapunka Skincare",
+        "es": "Política de Devoluciones | Kapunka Skincare"
+      },
+      "metaDescription": {
+        "en": "Learn how to request a Kapunka return, the condition requirements, and how refunds are issued.",
+        "pt": "Saiba como solicitar uma devolução Kapunka, quais são os requisitos de condição e como os reembolsos são emitidos.",
+        "es": "Conoce cómo solicitar una devolución Kapunka, los requisitos de estado y cómo se gestionan los reembolsos."
+      },
+      "content": {
+        "en": "Our treatments are formulated to perform in clinics and at home, but we understand that texture or aroma preferences can change. We support adjustments through a flexible return experience.",
+        "pt": "Os nossos tratamentos são formulados para ter desempenho na clínica e em casa, mas entendemos que preferências de textura ou aroma podem mudar. Estamos prontos para ajudar com uma experiência de devolução flexível.",
+        "es": "Nuestros tratamientos están formulados para rendir en la clínica y en casa, pero sabemos que las preferencias de textura o aroma pueden cambiar. Te acompañamos con una experiencia de devolución flexible."
+      },
+      "sections": [
+        {
+          "id": "eligibility",
+          "title": {
+            "en": "Eligibility window",
+            "pt": "Prazo de elegibilidade",
+            "es": "Plazo de elegibilidad"
+          },
+          "body": {
+            "en": "- Returns are accepted within 30 days of delivery; please retain your proof of purchase.\n- Liquids and oils must be at least half full and sealed properly for transport.\n- Tools such as the Kessa glove or vanity pouch must be clean and completely dry before shipping back to us.",
+            "pt": "- Aceitamos devoluções em até 30 dias após a entrega; guarde o comprovante de compra.\n- Líquidos e óleos precisam estar pelo menos pela metade e bem vedados para o transporte.\n- Ferramentas como a luva Kessa ou a nécessaire devem estar limpas e totalmente secas antes do reenvio.",
+            "es": "- Aceptamos devoluciones dentro de los 30 días posteriores a la entrega; conserva tu comprobante de compra.\n- Los líquidos y aceites deben estar al menos a la mitad y correctamente sellados para el transporte.\n- Las herramientas como la manopla Kessa o el neceser deben estar limpias y completamente secas antes de su envío de vuelta."
+          }
+        },
+        {
+          "id": "start",
+          "title": {
+            "en": "How to request a return",
+            "pt": "Como solicitar a devolução",
+            "es": "Cómo solicitar la devolución"
+          },
+          "body": {
+            "en": "- Email support@kapunka.com with your order number, the items you wish to return, and the reason for the request.\n- Our team will reply within one business day with a prepaid label for eligible regions or detailed packing instructions.\n- Package the products securely to prevent leaks or breakage in transit.",
+            "pt": "- Envie um e-mail para support@kapunka.com com o número do pedido, os itens que deseja devolver e o motivo da solicitação.\n- Nossa equipa responde em até um dia útil com uma etiqueta pré-paga para regiões elegíveis ou com instruções detalhadas de envio.\n- Embale os produtos com segurança para evitar vazamentos ou danos durante o transporte.",
+            "es": "- Escribe a support@kapunka.com con tu número de pedido, los artículos que deseas devolver y el motivo de la solicitud.\n- Nuestro equipo responderá en un día laborable con una etiqueta prepagada para las regiones elegibles o con instrucciones detalladas de embalaje.\n- Empaqueta los productos de forma segura para evitar derrames o daños durante el transporte."
+          }
+        },
+        {
+          "id": "refunds",
+          "title": {
+            "en": "Refunds & exchanges",
+            "pt": "Reembolsos e trocas",
+            "es": "Reembolsos y cambios"
+          },
+          "body": {
+            "en": "- Refunds are processed to the original payment method within five business days of receiving your return.\n- Exchanges are shipped once the original items are inspected; we will email a fresh tracking link.\n- Shipping fees are non-refundable unless the return is due to a Kapunka error or carrier damage.",
+            "pt": "- Os reembolsos são processados no método de pagamento original em até cinco dias úteis após recebermos a devolução.\n- Trocas são enviadas assim que os itens originais são inspecionados; enviaremos um novo link de rastreamento por e-mail.\n- As taxas de envio não são reembolsáveis, exceto quando a devolução ocorre devido a erro da Kapunka ou dano do transportador.",
+            "es": "- Los reembolsos se procesan en el método de pago original en un máximo de cinco días laborables después de recibir la devolución.\n- Los cambios se envían una vez que se inspeccionan los artículos originales; enviaremos un nuevo enlace de seguimiento por correo electrónico.\n- Las tarifas de envío no son reembolsables, salvo que la devolución se deba a un error de Kapunka o a un daño del transportista."
+          }
+        }
+      ]
+    },
+    {
+      "id": "privacy",
+      "title": {
+        "en": "Privacy Policy",
+        "pt": "Política de Privacidade",
+        "es": "Política de Privacidad"
+      },
+      "metaTitle": {
+        "en": "Privacy Policy | Kapunka Skincare",
+        "pt": "Política de Privacidade | Kapunka Skincare",
+        "es": "Política de Privacidad | Kapunka Skincare"
+      },
+      "metaDescription": {
+        "en": "Discover how Kapunka collects, uses, and protects personal information across our website and clinic services.",
+        "pt": "Descubra como a Kapunka recolhe, utiliza e protege os dados pessoais no site e nos serviços de clínica.",
+        "es": "Descubre cómo Kapunka recopila, utiliza y protege los datos personales en el sitio web y en los servicios de clínica."
+      },
+      "content": {
+        "en": "This policy explains how Kapunka gathers, uses, and safeguards data provided online or during professional treatments. We keep patient and customer information confidential and only process it for legitimate purposes.",
+        "pt": "Esta política explica como a Kapunka recolhe, utiliza e protege os dados fornecidos online ou durante tratamentos profissionais. Mantemos as informações de pacientes e clientes em confidencialidade e apenas as tratamos para fins legítimos.",
+        "es": "Esta política explica cómo Kapunka recopila, utiliza y protege los datos proporcionados en línea o durante tratamientos profesionales. Mantenemos la información de pacientes y clientes en confidencialidad y solo la tratamos con fines legítimos."
+      },
+      "sections": [
+        {
+          "id": "data-collected",
+          "title": {
+            "en": "Information we collect",
+            "pt": "Informações que recolhemos",
+            "es": "Información que recopilamos"
+          },
+          "body": {
+            "en": "- Contact details such as name, email, phone number, and shipping address when you place an order or join our newsletter.\n- Purchase history and treatment preferences shared during consultations.\n- Website usage analytics captured through cookies to improve site performance.\n- Optional health information provided voluntarily for personalised protocol guidance.",
+            "pt": "- Dados de contacto como nome, e-mail, telefone e morada de envio ao realizar uma compra ou subscrever a newsletter.\n- Histórico de compras e preferências de tratamento partilhadas durante consultas.\n- Dados de utilização do site recolhidos por cookies para melhorar o desempenho.\n- Informações de saúde opcionais fornecidas voluntariamente para orientação personalizada de protocolos.",
+            "es": "- Datos de contacto como nombre, correo electrónico, teléfono y dirección de envío al realizar una compra o suscribirte al boletín.\n- Historial de compras y preferencias de tratamiento compartidas durante consultas.\n- Datos de uso del sitio web recopilados mediante cookies para mejorar el rendimiento.\n- Información de salud opcional proporcionada voluntariamente para obtener orientación personalizada de protocolos."
+          }
+        },
+        {
+          "id": "usage",
+          "title": {
+            "en": "How we use your data",
+            "pt": "Como utilizamos os seus dados",
+            "es": "Cómo utilizamos tus datos"
+          },
+          "body": {
+            "en": "- To process and deliver orders, including payment collection, shipping, and confirmation emails.\n- To recommend routines or training based on your previous purchases or clinic history.\n- To send service messages, policy updates, and marketing communications when you opt in.\n- To comply with legal, tax, and regulatory obligations in the regions where we operate.",
+            "pt": "- Processar e entregar pedidos, incluindo cobrança, envio e e-mails de confirmação.\n- Recomendar rotinas ou formações com base nas compras anteriores ou no histórico na clínica.\n- Enviar mensagens de serviço, atualizações de política e comunicações de marketing quando houver consentimento.\n- Cumprir obrigações legais, fiscais e regulatórias nas regiões em que atuamos.",
+            "es": "- Procesar y entregar pedidos, incluida la gestión de pagos, el envío y los correos electrónicos de confirmación.\n- Recomendar rutinas o formaciones según tus compras anteriores o tu historial en la clínica.\n- Enviar mensajes de servicio, actualizaciones de políticas y comunicaciones de marketing cuando exista consentimiento.\n- Cumplir con obligaciones legales, fiscales y normativas en las regiones donde operamos."
+          }
+        },
+        {
+          "id": "rights",
+          "title": {
+            "en": "Your rights & controls",
+            "pt": "Os seus direitos e controlos",
+            "es": "Tus derechos y controles"
+          },
+          "body": {
+            "en": "- Request access, correction, or deletion of your personal data at any time by emailing privacy@kapunka.com.\n- Opt out of marketing communications through the unsubscribe link in each email.\n- Adjust cookie preferences through your browser settings or our on-site banner.\n- We store data only as long as necessary to provide services or meet regulatory requirements.",
+            "pt": "- Solicite acesso, correção ou eliminação dos seus dados pessoais a qualquer momento através do e-mail privacy@kapunka.com.\n- Cancele comunicações de marketing pelo link de descadastramento presente em cada e-mail.\n- Ajuste as preferências de cookies nas configurações do seu navegador ou no nosso banner no site.\n- Armazenamos os dados apenas pelo tempo necessário para prestar serviços ou cumprir exigências legais.",
+            "es": "- Solicita acceso, corrección o eliminación de tus datos personales en cualquier momento escribiendo a privacy@kapunka.com.\n- Date de baja de las comunicaciones de marketing mediante el enlace de cancelación presente en cada correo electrónico.\n- Ajusta tus preferencias de cookies desde la configuración del navegador o desde nuestro banner en el sitio.\n- Conservamos los datos solo el tiempo necesario para prestar servicios o cumplir con requisitos legales."
+          }
+        }
+      ]
+    },
+    {
+      "id": "terms",
+      "title": {
+        "en": "Terms of Service",
+        "pt": "Termos de Serviço",
+        "es": "Términos de Servicio"
+      },
+      "metaTitle": {
+        "en": "Terms of Service | Kapunka Skincare",
+        "pt": "Termos de Serviço | Kapunka Skincare",
+        "es": "Términos de Servicio | Kapunka Skincare"
+      },
+      "metaDescription": {
+        "en": "Review the conditions of using kapunka.com, purchasing products, and accessing our professional resources.",
+        "pt": "Revise as condições de uso do kapunka.com, da compra de produtos e do acesso aos nossos recursos profissionais.",
+        "es": "Revisa las condiciones de uso de kapunka.com, la compra de productos y el acceso a nuestros recursos profesionales."
+      },
+      "content": {
+        "en": "By visiting kapunka.com you agree to the terms below, which ensure a respectful community for clients, professionals, and partners.",
+        "pt": "Ao visitar kapunka.com, concorda com os termos abaixo, que garantem uma comunidade respeitosa para clientes, profissionais e parceiros.",
+        "es": "Al visitar kapunka.com aceptas los términos a continuación, que garantizan una comunidad respetuosa para clientes, profesionales y socios."
+      },
+      "sections": [
+        {
+          "id": "site-use",
+          "title": {
+            "en": "Use of the website",
+            "pt": "Uso do website",
+            "es": "Uso del sitio web"
+          },
+          "body": {
+            "en": "- Provide accurate account information and update it when details change.\n- Do not misuse the site by introducing viruses, scraping data, or attempting unauthorised access.\n- Content on this site, including photography and copy, is owned by Kapunka and may not be reproduced without permission.",
+            "pt": "- Forneça informações corretas na sua conta e atualize-as sempre que houver alterações.\n- Não utilize o site de forma indevida introduzindo vírus, extraindo dados ou tentando acessos não autorizados.\n- O conteúdo do site, incluindo fotografias e textos, é propriedade da Kapunka e não pode ser reproduzido sem autorização.",
+            "es": "- Proporciona información correcta en tu cuenta y actualízala cuando haya cambios.\n- No hagas un uso indebido del sitio introduciendo virus, extrayendo datos o intentando accesos no autorizados.\n- El contenido del sitio, incluidas fotografías y textos, es propiedad de Kapunka y no puede reproducirse sin autorización."
+          }
+        },
+        {
+          "id": "purchases",
+          "title": {
+            "en": "Purchases & payment",
+            "pt": "Compras e pagamento",
+            "es": "Compras y pago"
+          },
+          "body": {
+            "en": "- Prices are displayed in local currency where available and may change without notice.\n- We reserve the right to refuse or cancel orders that appear fraudulent or exceed product limits.\n- Taxes and shipping charges are calculated at checkout based on your delivery location.",
+            "pt": "- Os preços são exibidos na moeda local quando disponível e podem ser alterados sem aviso prévio.\n- Reservamo-nos o direito de recusar ou cancelar pedidos que pareçam fraudulentos ou excedam limites de compra.\n- Impostos e taxas de envio são calculados no checkout de acordo com a morada de entrega.",
+            "es": "- Los precios se muestran en la moneda local cuando está disponible y pueden cambiar sin previo aviso.\n- Nos reservamos el derecho de rechazar o cancelar pedidos que parezcan fraudulentos o superen los límites de compra.\n- Los impuestos y los gastos de envío se calculan en el checkout según la dirección de entrega."
+          }
+        },
+        {
+          "id": "liability",
+          "title": {
+            "en": "Liability & governing law",
+            "pt": "Responsabilidade e legislação aplicável",
+            "es": "Responsabilidad y ley aplicable"
+          },
+          "body": {
+            "en": "- Kapunka is not liable for indirect damages resulting from improper product use or third-party logistics delays.\n- Our total liability for any claim is limited to the amount you paid for the product or service.\n- These terms are governed by Portuguese law, and any dispute will be handled by the courts of Lisbon, Portugal.",
+            "pt": "- A Kapunka não se responsabiliza por danos indiretos resultantes do uso indevido dos produtos ou de atrasos logísticos de terceiros.\n- A nossa responsabilidade total por qualquer reclamação limita-se ao valor pago pelo produto ou serviço.\n- Estes termos são regidos pela lei portuguesa e quaisquer disputas serão tratadas pelos tribunais de Lisboa, Portugal.",
+            "es": "- Kapunka no se hace responsable de los daños indirectos derivados del uso inadecuado de los productos o de retrasos logísticos de terceros.\n- Nuestra responsabilidad total por cualquier reclamación se limita al importe pagado por el producto o servicio.\n- Estos términos se rigen por la legislación portuguesa y cualquier disputa se resolverá en los tribunales de Lisboa, Portugal."
+          }
+        }
+      ]
+    }
+  ]
+}
