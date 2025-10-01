@@ -10,7 +10,7 @@ import CookieConsent from './components/CookieConsent';
 import { useSiteSettings } from './contexts/SiteSettingsContext';
 import { useLanguage } from './contexts/LanguageContext';
 import type { Language, LocalizedText } from './types';
-import { initializeVisualEditorAnnotations } from './utils/visualEditorAnnotations';
+import { ensureVisualEditorAnnotations } from './utils/visualEditorAnnotations';
 
 const Home = lazy(() => import('./pages/Home'));
 const Shop = lazy(() => import('./pages/Shop'));
@@ -134,12 +134,7 @@ const App: React.FC = () => {
     getLocalizedValue(settings.seo?.defaultDescription, language) ?? FALLBACK_DESCRIPTION;
 
   useEffect(() => {
-    const cleanup = initializeVisualEditorAnnotations();
-    return () => {
-      if (cleanup) {
-        cleanup();
-      }
-    };
+    ensureVisualEditorAnnotations();
   }, []);
 
   return (

@@ -3,6 +3,9 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import App from './App';
 import { AppProvider } from './contexts/AppContext';
+import { ensureVisualEditorAnnotations } from './utils/visualEditorAnnotations';
+
+ensureVisualEditorAnnotations();
 
 const rootElement = document.getElementById('root');
 if (!rootElement) {
