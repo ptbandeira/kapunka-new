@@ -1,19 +1,4 @@
 {
-  "type": "HomePage",
-  "metaTitle": "Kapunka — Argan rituals for sensitive and post-procedure skin",
-  "metaDescription": "Clinical-grade Moroccan argan care trusted by clinics, designed for everyday recovery.",
-  "heroHeadline": "Be thankful to your skin.",
-  "heroSubheadline": "Gentle argan rituals from Morocco, made for sensitive and post-procedure skin. Welcome to Kapunka 2.0: calm care that feels human.",
-  "heroCtas": {
-    "ctaPrimary": {
-      "label": "Shop argan rituals",
-      "href": "/shop"
-    },
-    "ctaSecondary": {
-      "label": "Clinics partnership",
-      "href": "/clinics"
-    }
-  },
   "heroAlignment": {
     "heroAlignX": "left",
     "heroAlignY": "middle",
@@ -21,9 +6,6 @@
     "heroTextAnchor": "middle-left",
     "heroOverlay": "medium",
     "heroLayoutHint": "bg"
-  },
-  "heroImages": {
-    "heroImageLeft": ""
   },
   "sections": [
     {
@@ -68,7 +50,7 @@
           "imageAlt": "Steam-filled hammam room with a person resting",
           "ctaLabel": "Shop Rituals",
           "ctaHref": "/shop",
-          "image": "/content/uploads/5b07cc3a-9b30-4a2d-b165-4781120e83b7.jpg"
+          "image": "/content/uploads/342cecc0-3c00-4094-97d6-5c9d9da02330.jpg"
         }
       ]
     },
@@ -191,5 +173,23 @@
         }
       ]
     }
-  ]
+  ],
+  "heroHeadline": "Be thankful to your skin.",
+  "heroImages": {
+    "heroImageLeft": ""
+  },
+  "metaTitle": "Kapunka — Argan rituals for sensitive and post-procedure skin",
+  "metaDescription": "Clinical-grade Moroccan argan care trusted by clinics, designed for everyday recovery.",
+  "type": "HomePage",
+  "heroSubheadline": "Gentle argan rituals from Morocco, made for sensitive and post-procedure skin. Welcome to Kapunka 2.0: calm care that feels human.",
+  "heroCtas": {
+    "ctaPrimary": {
+      "label": "Shop argan rituals",
+      "href": "/shop"
+    },
+    "ctaSecondary": {
+      "label": "Clinics partnership",
+      "href": "/clinics"
+    }
+  }
 }
