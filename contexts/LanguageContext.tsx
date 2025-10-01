@@ -8,6 +8,7 @@ import React, {
   useEffect,
 } from 'react';
 import type { Language } from '../types';
+import { fetchVisualEditorJson } from '../utils/fetchVisualEditorJson';
 
 type TranslationPrimitive = string | number | boolean | null;
 type TranslationNode = TranslationPrimitive | TranslationPrimitive[] | { [key: string]: TranslationNode };
@@ -88,11 +89,9 @@ export const LanguageProvider: React.FC<{ children: React.ReactNode }> = ({ chil
       try {
         const responses = await Promise.all(
           translationEntries.map(async ([key]) => {
-            const res = await fetch(`/content/translations/${key}.json`);
-            if (!res.ok) {
-              throw new Error(`Failed to load ${key} translations`);
-            }
-            const data = (await res.json()) as TranslationModule;
+            const data = await fetchVisualEditorJson<TranslationModule>(
+              `/content/translations/${key}.json`,
+            );
             return [key, data] as [string, TranslationModule];
           }),
         );

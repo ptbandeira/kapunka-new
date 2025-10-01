@@ -2,10 +2,15 @@ import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { useLanguage } from '../contexts/LanguageContext';
 import type { Partner } from '../types';
+import { fetchVisualEditorJson } from '../utils/fetchVisualEditorJson';
 
 interface PartnerCarouselProps {
   title?: string;
   fieldPath?: string;
+}
+
+interface PartnerResponse {
+    partners?: Partner[];
 }
 
 const PartnerCarousel: React.FC<PartnerCarouselProps> = ({ title, fieldPath }) => {
@@ -15,9 +20,27 @@ const PartnerCarousel: React.FC<PartnerCarouselProps> = ({ title, fieldPath }) =
     const resolvedFieldPath = fieldPath ?? `translations.${language}.clinics.partnersTitle`;
 
     useEffect(() => {
-        fetch('/content/partners.json')
-            .then(res => res.json())
-            .then(data => setPartners(data.partners));
+        let isMounted = true;
+
+        const loadPartners = async () => {
+            try {
+                const data = await fetchVisualEditorJson<PartnerResponse>('/content/partners.json');
+                if (!isMounted) {
+                    return;
+                }
+                setPartners(Array.isArray(data.partners) ? data.partners : []);
+            } catch (error) {
+                console.error('Failed to load partners', error);
+            }
+        };
+
+        loadPartners().catch(error => {
+            console.error('Unhandled error while loading partners', error);
+        });
+
+        return () => {
+            isMounted = false;
+        };
     }, []);
 
     const containerVariants = {

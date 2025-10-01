@@ -10,6 +10,11 @@ import { useUI } from '../contexts/UIContext';
 import SectionRenderer from '../components/_legacy/SectionRenderer';
 import type { Product, ProductKnowledge, ProductTabsSectionContent } from '../types';
 import ProductCard from '../components/ProductCard';
+import { fetchVisualEditorJson } from '../utils/fetchVisualEditorJson';
+
+interface ProductsResponse {
+    items?: Product[];
+}
 
 const ProductDetail: React.FC = () => {
     const { id } = useParams<{ id: string }>();
@@ -23,18 +28,41 @@ const ProductDetail: React.FC = () => {
     const [selectedSizeId, setSelectedSizeId] = useState<string | null>(null);
 
     useEffect(() => {
-        fetch('/content/products/index.json')
-            .then(res => res.json())
-            .then(data => {
-                const products: Product[] = data.items;
+        let isMounted = true;
+
+        const loadProducts = async () => {
+            try {
+                const data = await fetchVisualEditorJson<ProductsResponse>('/content/products/index.json');
+                if (!isMounted) {
+                    return;
+                }
+                const products: Product[] = Array.isArray(data.items) ? data.items : [];
                 setAllProducts(products);
-                const currentProduct = products.find(p => p.id === id);
-                if (currentProduct) {
-                    setProduct(currentProduct);
+                const currentProduct = products.find(p => p.id === id) ?? null;
+                setProduct(currentProduct);
+                if (currentProduct && currentProduct.sizes.length > 0) {
                     setSelectedSizeId(currentProduct.sizes[0].id);
                 }
-                setLoading(false);
-            });
+            } catch (error) {
+                if (isMounted) {
+                    console.error('Failed to load product detail data', error);
+                    setAllProducts([]);
+                    setProduct(null);
+                }
+            } finally {
+                if (isMounted) {
+                    setLoading(false);
+                }
+            }
+        };
+
+        loadProducts().catch((error) => {
+            console.error('Unhandled error while loading product detail data', error);
+        });
+
+        return () => {
+            isMounted = false;
+        };
     }, [id]);
 
     const selectedSize = useMemo(() => {

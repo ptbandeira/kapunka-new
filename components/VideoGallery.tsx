@@ -3,6 +3,7 @@ import { motion } from 'framer-motion';
 import { Play } from 'lucide-react';
 import type { VideoEntry, VideoLibraryContent } from '../types';
 import { useLanguage } from '../contexts/LanguageContext';
+import { fetchVisualEditorJson } from '../utils/fetchVisualEditorJson';
 
 interface VideoGalleryProps {
   title?: string;
@@ -16,12 +17,7 @@ const placeholderThumbnailClasses =
 
 const loadVideoLibrary = async (): Promise<VideoEntry[]> => {
   try {
-    const response = await fetch('/content/videos.json');
-    if (!response.ok) {
-      return [];
-    }
-
-    const data = (await response.json()) as VideoLibraryContent;
+    const data = await fetchVisualEditorJson<VideoLibraryContent>('/content/videos.json');
     if (!data || !Array.isArray(data.videos)) {
       return [];
     }

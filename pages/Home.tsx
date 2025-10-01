@@ -24,6 +24,15 @@ import type {
   PageContent,
   Language,
 } from '../types';
+import { fetchVisualEditorJson } from '../utils/fetchVisualEditorJson';
+
+interface ProductsResponse {
+  items?: Product[];
+}
+
+interface ReviewsResponse {
+  items?: Review[];
+}
 
 type CmsCtaShape = {
   label?: string | null;
@@ -1032,9 +1041,30 @@ const Bestsellers: React.FC<BestsellersProps> = ({ intro, introFieldPath }) => {
     const { settings } = useSiteSettings();
 
     useEffect(() => {
-        fetch('/content/products/index.json')
-            .then(res => res.json())
-            .then(data => setProducts(data.items ?? []));
+        let isMounted = true;
+
+        const loadProducts = async () => {
+            try {
+                const data = await fetchVisualEditorJson<ProductsResponse>('/content/products/index.json');
+                if (!isMounted) {
+                    return;
+                }
+                setProducts(Array.isArray(data.items) ? data.items : []);
+            } catch (error) {
+                if (isMounted) {
+                    console.error('Failed to load bestseller products', error);
+                    setProducts([]);
+                }
+            }
+        };
+
+        loadProducts().catch((error) => {
+            console.error('Unhandled error while loading bestseller products', error);
+        });
+
+        return () => {
+            isMounted = false;
+        };
     }, []);
 
     const featuredProductIds = useMemo(() => {
@@ -1362,9 +1392,31 @@ const Reviews: React.FC = () => {
     const [reviews, setReviews] = useState<Review[]>([]);
 
     useEffect(() => {
-        fetch('/content/reviews/index.json')
-            .then(res => res.json())
-            .then(data => setReviews(data.items.slice(0, 3)));
+        let isMounted = true;
+
+        const loadReviews = async () => {
+            try {
+                const data = await fetchVisualEditorJson<ReviewsResponse>('/content/reviews/index.json');
+                if (!isMounted) {
+                    return;
+                }
+                const items = Array.isArray(data.items) ? data.items : [];
+                setReviews(items.slice(0, 3));
+            } catch (error) {
+                if (isMounted) {
+                    console.error('Failed to load reviews', error);
+                    setReviews([]);
+                }
+            }
+        };
+
+        loadReviews().catch((error) => {
+            console.error('Unhandled error while loading reviews', error);
+        });
+
+        return () => {
+            isMounted = false;
+        };
     }, []);
 
     return (
@@ -1565,12 +1617,7 @@ const Home: React.FC = () => {
 
     const loadProducts = async () => {
       try {
-        const response = await fetch('/content/products/index.json');
-        if (!response.ok) {
-          return;
-        }
-
-        const data = (await response.json()) as { items?: Product[] };
+        const data = await fetchVisualEditorJson<ProductsResponse>('/content/products/index.json');
         if (!isMounted) {
           return;
         }
@@ -1579,6 +1626,7 @@ const Home: React.FC = () => {
       } catch (error) {
         if (isMounted) {
           console.error('Failed to load products for home sections', error);
+          setProducts([]);
         }
       }
     };

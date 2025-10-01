@@ -4,6 +4,7 @@ import { motion } from 'framer-motion';
 import SectionRenderer from '../components/_legacy/SectionRenderer';
 import { useLanguage } from '../contexts/LanguageContext';
 import type { PageContent, PageSection } from '../types';
+import { fetchVisualEditorJson } from '../utils/fetchVisualEditorJson';
 
 const SUPPORTED_SECTION_TYPES = new Set<PageSection['type']>([
   'timeline',
@@ -74,12 +75,9 @@ const Training: React.FC = () => {
 
       for (const locale of localesToTry) {
         try {
-          const response = await fetch(`/content/pages/${locale}/training.json`);
-          if (!response.ok) {
-            continue;
-          }
-
-          const data = (await response.json()) as unknown;
+          const data = await fetchVisualEditorJson<unknown>(
+            `/content/pages/${locale}/training.json`,
+          );
           if (!isMounted) {
             return;
           }

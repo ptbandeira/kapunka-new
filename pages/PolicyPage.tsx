@@ -4,6 +4,11 @@ import { Helmet } from 'react-helmet-async';
 import ReactMarkdown from 'react-markdown';
 import { useLanguage } from '../contexts/LanguageContext';
 import type { Policy, PolicySection } from '../types';
+import { fetchVisualEditorJson } from '../utils/fetchVisualEditorJson';
+
+interface PoliciesResponse {
+    items?: Policy[];
+}
 
 const PolicyPage: React.FC = () => {
     const { type } = useParams<{ type: string }>();
@@ -12,15 +17,34 @@ const PolicyPage: React.FC = () => {
     const [loading, setLoading] = useState(true);
 
     useEffect(() => {
-        fetch('/content/policies.json')
-            .then((res) => res.json())
-            .then((data) => {
-                setPolicies(data.items);
-            })
-            .catch((error) => {
-                console.error('Failed to load policies', error);
-            })
-            .finally(() => setLoading(false));
+        let isMounted = true;
+
+        const loadPolicies = async () => {
+            try {
+                const data = await fetchVisualEditorJson<PoliciesResponse>('/content/policies.json');
+                if (!isMounted) {
+                    return;
+                }
+                setPolicies(Array.isArray(data.items) ? data.items : []);
+            } catch (error) {
+                if (isMounted) {
+                    console.error('Failed to load policies', error);
+                    setPolicies([]);
+                }
+            } finally {
+                if (isMounted) {
+                    setLoading(false);
+                }
+            }
+        };
+
+        loadPolicies().catch((error) => {
+            console.error('Unhandled error while loading policies', error);
+        });
+
+        return () => {
+            isMounted = false;
+        };
     }, []);
 
     const policyIndex = useMemo(() => policies.findIndex((item) => item.id === type), [policies, type]);

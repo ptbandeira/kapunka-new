@@ -7,6 +7,7 @@ import type { LucideIcon } from 'lucide-react';
 import ProductCard from '../components/ProductCard';
 import { useLanguage } from '../contexts/LanguageContext';
 import type { Product, ShopCategory, ShopCategoryLink, ShopContent } from '../types';
+import { fetchVisualEditorJson } from '../utils/fetchVisualEditorJson';
 
 const linkIcons: Record<ShopCategoryLink['type'], LucideIcon> = {
   product: ArrowUpRight,
@@ -40,24 +41,36 @@ const Shop: React.FC = () => {
   useEffect(() => {
     let isMounted = true;
 
-    Promise.all([
-      fetch('/content/products/index.json').then(res => res.json() as Promise<ProductsResponse>),
-      fetch('/content/shop.json').then(res => res.json() as Promise<ShopContent>),
-    ])
-      .then(([productData, shopData]) => {
-        if (!isMounted) return;
-        setProducts(productData?.items ?? []);
+    const loadShopData = async () => {
+      try {
+        const [productData, shopData] = await Promise.all([
+          fetchVisualEditorJson<ProductsResponse>('/content/products/index.json'),
+          fetchVisualEditorJson<ShopContent>('/content/shop.json'),
+        ]);
+
+        if (!isMounted) {
+          return;
+        }
+
+        setProducts(Array.isArray(productData?.items) ? productData.items : []);
         setCategories(shopData?.categories ?? []);
-      })
-      .catch(() => {
-        if (!isMounted) return;
+      } catch (error) {
+        if (!isMounted) {
+          return;
+        }
+        console.error('Failed to load shop content', error);
         setProducts([]);
         setCategories([]);
-      })
-      .finally(() => {
-        if (!isMounted) return;
-        setLoading(false);
-      });
+      } finally {
+        if (isMounted) {
+          setLoading(false);
+        }
+      }
+    };
+
+    loadShopData().catch((error) => {
+      console.error('Unhandled error while loading shop content', error);
+    });
 
     return () => {
       isMounted = false;

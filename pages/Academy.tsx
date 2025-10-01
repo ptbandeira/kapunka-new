@@ -4,6 +4,11 @@ import { motion } from 'framer-motion';
 import { useLanguage } from '../contexts/LanguageContext';
 import CourseCard from '../components/CourseCard';
 import type { Course } from '../types';
+import { fetchVisualEditorJson } from '../utils/fetchVisualEditorJson';
+
+interface CoursesResponse {
+    courses?: Course[];
+}
 
 const Academy: React.FC = () => {
     const { t, language } = useLanguage();
@@ -11,12 +16,34 @@ const Academy: React.FC = () => {
     const [loading, setLoading] = useState(true);
 
     useEffect(() => {
-        fetch('/content/courses.json')
-            .then(res => res.json())
-            .then(data => {
-                setCourses(data.courses);
-                setLoading(false);
-            });
+        let isMounted = true;
+
+        const loadCourses = async () => {
+            try {
+                const data = await fetchVisualEditorJson<CoursesResponse>('/content/courses.json');
+                if (!isMounted) {
+                    return;
+                }
+                setCourses(Array.isArray(data.courses) ? data.courses : []);
+            } catch (error) {
+                if (isMounted) {
+                    console.error('Failed to load courses', error);
+                    setCourses([]);
+                }
+            } finally {
+                if (isMounted) {
+                    setLoading(false);
+                }
+            }
+        };
+
+        loadCourses().catch((error) => {
+            console.error('Unhandled error while loading courses', error);
+        });
+
+        return () => {
+            isMounted = false;
+        };
     }, []);
 
   return (
