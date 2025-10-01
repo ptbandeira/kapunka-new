@@ -1,6 +1,7 @@
 import React, { createContext, useContext, useEffect, useMemo, useState } from 'react';
 import type { SiteSettings } from '../types';
 import defaultSettings from '@/content/site.json';
+import { fetchVisualEditorJson } from '../utils/fetchVisualEditorJson';
 
 type SiteSettingsContextValue = {
   settings: SiteSettings;
@@ -14,15 +15,31 @@ export const SiteSettingsProvider: React.FC<{ children: React.ReactNode }> = ({ 
   const [isLoading, setIsLoading] = useState<boolean>(true);
 
   useEffect(() => {
-    fetch('/content/site.json')
-      .then((res) => res.json())
-      .then((data: SiteSettings) => {
+    let isMounted = true;
+
+    const loadSettings = async () => {
+      try {
+        const data = await fetchVisualEditorJson<SiteSettings>('/content/site.json');
+        if (!isMounted) {
+          return;
+        }
         setSettings(data);
-      })
-      .catch((error) => {
+      } catch (error) {
         console.error('Failed to load site settings', error);
-      })
-      .finally(() => setIsLoading(false));
+      } finally {
+        if (isMounted) {
+          setIsLoading(false);
+        }
+      }
+    };
+
+    loadSettings().catch((error) => {
+      console.error('Unhandled error while loading site settings', error);
+    });
+
+    return () => {
+      isMounted = false;
+    };
   }, []);
 
   const value = useMemo(() => ({ settings, isLoading }), [settings, isLoading]);

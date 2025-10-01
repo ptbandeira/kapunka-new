@@ -15,6 +15,15 @@ import {
   loadLearnPageContent,
   type LearnPageContentResult,
 } from '../utils/loadLearnPageContent';
+import { fetchVisualEditorJson } from '../utils/fetchVisualEditorJson';
+
+interface ArticlesResponse {
+    items?: Article[];
+}
+
+interface ProductsResponse {
+    items?: Product[];
+}
 
 const ArticlePage: React.FC = () => {
     const { slug } = useParams<{ slug: string }>();
@@ -55,11 +64,10 @@ const ArticlePage: React.FC = () => {
 
         const fetchArticleData = async () => {
             try {
-                const articlesRes = await fetch('/content/articles/index.json');
-                const articlesData = await articlesRes.json();
+                const articlesData = await fetchVisualEditorJson<ArticlesResponse>('/content/articles/index.json');
                 if (!isMounted) return;
 
-                const articleItems: Article[] = articlesData.items ?? [];
+                const articleItems: Article[] = Array.isArray(articlesData.items) ? articlesData.items : [];
                 const currentArticleIndex = articleItems.findIndex((a: Article) => a.slug === slug);
                 const currentArticle = currentArticleIndex >= 0 ? articleItems[currentArticleIndex] : null;
                 setArticle(currentArticle);
@@ -70,11 +78,10 @@ const ArticlePage: React.FC = () => {
 
                 if (productIds.length > 0) {
                     try {
-                        const productsRes = await fetch('/content/products/index.json');
-                        const productsData = await productsRes.json();
+                        const productsData = await fetchVisualEditorJson<ProductsResponse>('/content/products/index.json');
                         if (!isMounted) return;
 
-                        const productItems: Product[] = productsData.items ?? [];
+                        const productItems: Product[] = Array.isArray(productsData.items) ? productsData.items : [];
                         setAllProducts(productItems);
 
                         const matchedProducts = productIds

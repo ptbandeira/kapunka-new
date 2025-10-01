@@ -2,6 +2,7 @@ import React, { useEffect, useMemo, useState } from 'react';
 import { motion } from 'framer-motion';
 import type { TrainingCatalogContent, TrainingEntry } from '../types';
 import { useLanguage } from '../contexts/LanguageContext';
+import { fetchVisualEditorJson } from '../utils/fetchVisualEditorJson';
 
 interface TrainingListProps {
   title?: string;
@@ -12,12 +13,7 @@ interface TrainingListProps {
 
 const loadTrainingCatalog = async (): Promise<TrainingEntry[]> => {
   try {
-    const response = await fetch('/content/training.json');
-    if (!response.ok) {
-      return [];
-    }
-
-    const data = (await response.json()) as TrainingCatalogContent;
+    const data = await fetchVisualEditorJson<TrainingCatalogContent>('/content/training.json');
     if (!data || !Array.isArray(data.trainings)) {
       return [];
     }

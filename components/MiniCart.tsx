@@ -7,6 +7,11 @@ import { useUI } from '../contexts/UIContext';
 import { useCart } from '../contexts/CartContext';
 import { useLanguage } from '../contexts/LanguageContext';
 import type { CartItem, Product } from '../types';
+import { fetchVisualEditorJson } from '../utils/fetchVisualEditorJson';
+
+interface ProductIndexResponse {
+  items?: Product[];
+}
 
 const MiniCartItem: React.FC<{ item: CartItem; products: Product[]; ['data-sb-field-path']?: string; }> = (props) => {
   const { item, products } = props;
@@ -59,10 +64,27 @@ const MiniCart: React.FC = () => {
   const [products, setProducts] = useState<Product[]>([]);
 
   useEffect(() => {
-    // Fetch all products data to resolve cart items
-    fetch('/content/products/index.json')
-      .then(res => res.json())
-      .then(data => setProducts(data.items));
+    let isMounted = true;
+
+    const loadProducts = async () => {
+      try {
+        const data = await fetchVisualEditorJson<ProductIndexResponse>('/content/products/index.json');
+        if (!isMounted) {
+          return;
+        }
+        setProducts(Array.isArray(data.items) ? data.items : []);
+      } catch (error) {
+        console.error('Failed to load products for mini cart', error);
+      }
+    };
+
+    loadProducts().catch(error => {
+      console.error('Unhandled error while loading mini cart products', error);
+    });
+
+    return () => {
+      isMounted = false;
+    };
   }, []);
 
   const subtotal = cart.reduce((total, item) => {

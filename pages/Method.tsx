@@ -3,6 +3,7 @@ import { Helmet } from 'react-helmet-async';
 import { motion } from 'framer-motion';
 import { useLanguage } from '../contexts/LanguageContext';
 import type { Language } from '../types';
+import { fetchVisualEditorJson } from '../utils/fetchVisualEditorJson';
 
 interface SpecialtyItem {
   title: string;
@@ -140,12 +141,9 @@ const Method: React.FC = () => {
 
       for (const locale of localesToTry) {
         try {
-          const response = await fetch(`/content/pages/${locale}/method.json`);
-          if (!response.ok) {
-            continue;
-          }
-
-          const data = (await response.json()) as unknown;
+          const data = await fetchVisualEditorJson<unknown>(
+            `/content/pages/${locale}/method.json`,
+          );
           if (!isMounted) {
             return;
           }

@@ -7,6 +7,11 @@ import { Minus, Plus, Trash2 } from 'lucide-react';
 import { useCart } from '../contexts/CartContext';
 import { useLanguage } from '../contexts/LanguageContext';
 import type { CartItem, Product } from '../types';
+import { fetchVisualEditorJson } from '../utils/fetchVisualEditorJson';
+
+interface ProductsResponse {
+  items?: Product[];
+}
 
 const CartItemRow: React.FC<{ item: CartItem; product?: Product; productFieldPath?: string }> = ({ item, product, productFieldPath }) => {
   const { updateQuantity, removeFromCart } = useCart();
@@ -84,12 +89,34 @@ const CartPage: React.FC = () => {
     const commonFieldPath = `translations.${language}.common`;
     
     useEffect(() => {
-        fetch('/content/products/index.json')
-          .then(res => res.json())
-          .then(data => {
-            setProducts(data.items);
-            setLoading(false);
-          });
+        let isMounted = true;
+
+        const loadProducts = async () => {
+          try {
+            const data = await fetchVisualEditorJson<ProductsResponse>('/content/products/index.json');
+            if (!isMounted) {
+              return;
+            }
+            setProducts(Array.isArray(data.items) ? data.items : []);
+          } catch (error) {
+            if (isMounted) {
+              console.error('Failed to load cart products', error);
+              setProducts([]);
+            }
+          } finally {
+            if (isMounted) {
+              setLoading(false);
+            }
+          }
+        };
+
+        loadProducts().catch((error) => {
+          console.error('Unhandled error while loading cart products', error);
+        });
+
+        return () => {
+          isMounted = false;
+        };
       }, []);
 
     const subtotal = cart.reduce((total, item) => {

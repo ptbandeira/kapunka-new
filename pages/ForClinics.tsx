@@ -5,6 +5,7 @@ import { useLanguage } from '../contexts/LanguageContext';
 import { useSiteSettings } from '../contexts/SiteSettingsContext';
 import PartnerCarousel from '../components/PartnerCarousel';
 import type { Doctor } from '../types';
+import { fetchVisualEditorJson } from '../utils/fetchVisualEditorJson';
 import {
   loadClinicsPageContent,
   type ClinicsPageContentResult,
@@ -40,6 +41,10 @@ interface ClinicReferencesSection {
   studies: ClinicStudy[];
   testimonialsTitle: string;
   testimonials: ClinicTestimonial[];
+}
+
+interface DoctorsResponse {
+  doctors?: Doctor[];
 }
 
 interface ClinicFAQ {
@@ -241,9 +246,29 @@ const ForClinics: React.FC = () => {
   const partnersTitleFieldPath = `${clinicsFieldPath}.partnersTitle`;
 
   useEffect(() => {
-    fetch('/content/doctors.json')
-      .then((res) => res.json())
-      .then((data) => setDoctors(data.doctors));
+    let isMounted = true;
+
+    const loadDoctors = async () => {
+      try {
+        const data = await fetchVisualEditorJson<DoctorsResponse>('/content/doctors.json');
+        if (!isMounted) {
+          return;
+        }
+        setDoctors(Array.isArray(data.doctors) ? data.doctors : []);
+      } catch (error) {
+        if (isMounted) {
+          console.error('Failed to load doctors', error);
+        }
+      }
+    };
+
+    loadDoctors().catch((error) => {
+      console.error('Unhandled error while loading doctors', error);
+    });
+
+    return () => {
+      isMounted = false;
+    };
   }, []);
 
   return (

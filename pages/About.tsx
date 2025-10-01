@@ -5,6 +5,7 @@ import { useLanguage } from '../contexts/LanguageContext';
 import { useSiteSettings } from '../contexts/SiteSettingsContext';
 import SectionRenderer from '../components/_legacy/SectionRenderer';
 import type { PageContent, PageSection, TimelineEntry, TimelineSectionContent } from '../types';
+import { fetchVisualEditorJson } from '../utils/fetchVisualEditorJson';
 
 const isTimelineEntry = (value: unknown): value is TimelineEntry => {
   if (!value || typeof value !== 'object') {
@@ -190,12 +191,9 @@ const About: React.FC = () => {
 
             for (const locale of localesToTry) {
                 try {
-                    const response = await fetch(`/content/pages/${locale}/about.json`);
-                    if (!response.ok) {
-                        continue;
-                    }
-
-                    const data = (await response.json()) as unknown;
+                    const data = await fetchVisualEditorJson<unknown>(
+                        `/content/pages/${locale}/about.json`,
+                    );
                     if (!isMounted) {
                         return;
                     }
@@ -234,12 +232,9 @@ const About: React.FC = () => {
 
             for (const locale of localesToTry) {
                 try {
-                    const response = await fetch(`/content/pages/${locale}/story.json`);
-                    if (!response.ok) {
-                        continue;
-                    }
-
-                    const data = (await response.json()) as unknown;
+                    const data = await fetchVisualEditorJson<unknown>(
+                        `/content/pages/${locale}/story.json`,
+                    );
                     if (!isMounted) {
                         return;
                     }

@@ -14,6 +14,11 @@ import {
   type LearnPageContentResult,
   type LearnPageCategory,
 } from '../utils/loadLearnPageContent';
+import { fetchVisualEditorJson } from '../utils/fetchVisualEditorJson';
+
+interface ArticlesResponse {
+  items?: Article[];
+}
 
 const normalizeCategoryLabel = (value: string): string => (
   value.replace('-', ' ').replace(/\b\w/g, (letter) => letter.toUpperCase())
@@ -56,12 +61,34 @@ const Learn: React.FC = () => {
   }, [setActiveCategory]);
 
   useEffect(() => {
-    fetch('/content/articles/index.json')
-        .then(res => res.json())
-        .then(data => {
-            setArticles(data.items);
-            setLoading(false);
-        });
+    let isMounted = true;
+
+    const loadArticles = async () => {
+      try {
+        const data = await fetchVisualEditorJson<ArticlesResponse>('/content/articles/index.json');
+        if (!isMounted) {
+          return;
+        }
+        setArticles(Array.isArray(data.items) ? data.items : []);
+      } catch (error) {
+        if (isMounted) {
+          console.error('Failed to load learn articles', error);
+          setArticles([]);
+        }
+      } finally {
+        if (isMounted) {
+          setLoading(false);
+        }
+      }
+    };
+
+    loadArticles().catch((error) => {
+      console.error('Unhandled error while loading learn articles', error);
+    });
+
+    return () => {
+      isMounted = false;
+    };
   }, []);
 
   const translationCategories = useMemo(() => {
