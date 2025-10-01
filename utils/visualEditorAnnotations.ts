@@ -37,6 +37,22 @@ interface Binding {
 
 const translationPattern = /^translations\.([a-z]{2})\.([^.]+)(?:\.(.+))?$/;
 
+const bracketNotationPattern = /\[(\d+)\]/g;
+
+const normalizeStackbitFieldPath = (value?: string): string | undefined => {
+  if (!value) {
+    return undefined;
+  }
+
+  const trimmed = value.trim();
+  if (!trimmed) {
+    return undefined;
+  }
+
+  const converted = trimmed.replace(bracketNotationPattern, '.$1');
+  return converted.startsWith('.') ? converted.slice(1) : converted;
+};
+
 const normalizeFieldPath = (value: string): string | undefined => {
   const trimmed = value.trim();
   return trimmed.length > 0 ? trimmed : undefined;
@@ -54,7 +70,8 @@ const resolveTranslationBinding = (value: string): Binding | null => {
   }
 
   const objectId = `translations_${module}:content/translations/${module}.json`;
-  const fieldPath = rest ? `${lang}.${rest}` : lang;
+  const normalizedRest = normalizeStackbitFieldPath(rest);
+  const fieldPath = normalizedRest ? `${lang}.${normalizedRest}` : lang;
   return { objectId, fieldPath };
 };
 
@@ -74,7 +91,7 @@ const resolveSiteBinding = (value: string): Binding | null => {
     const [maybeLocale, ...restParts] = parts;
     const locale = maybeLocale as Language;
     if (!SUPPORTED_LANGUAGES.includes(locale)) {
-      const fallbackPath = remainder.length > 0 ? remainder : undefined;
+      const fallbackPath = normalizeStackbitFieldPath(remainder);
       return { objectId: SITE_CONFIG_OBJECT_ID, fieldPath: fallbackPath };
     }
 
@@ -87,7 +104,7 @@ const resolveSiteBinding = (value: string): Binding | null => {
 
       const filePath = `content/pages/${locale}/${slug}.json`;
       const joined = restParts.slice(2).join('.');
-      const fieldPath = joined.length > 0 ? joined : undefined;
+      const fieldPath = normalizeStackbitFieldPath(joined);
       return {
         objectId: `${model}:${filePath}`,
         fieldPath,
@@ -95,12 +112,12 @@ const resolveSiteBinding = (value: string): Binding | null => {
     }
 
     const joined = restParts.join('.');
-    const fieldPath = joined.length > 0 ? joined : undefined;
+    const fieldPath = normalizeStackbitFieldPath(joined);
     return { objectId: SITE_CONFIG_OBJECT_ID, fieldPath };
   }
 
   const sliced = value.slice(sitePrefix.length);
-  const fieldPath = sliced.length > 0 ? sliced : undefined;
+  const fieldPath = normalizeStackbitFieldPath(sliced);
   return { objectId: SITE_CONFIG_OBJECT_ID, fieldPath };
 };
 
@@ -108,7 +125,7 @@ const resolveCollectionBinding = (value: string): Binding | null => {
   for (const [prefix, objectId] of Object.entries(COLLECTION_OBJECT_IDS)) {
     if (value === prefix || value.startsWith(`${prefix}.`)) {
       const remainder = value === prefix ? '' : value.slice(prefix.length + 1);
-      const fieldPath = remainder.length > 0 ? remainder : undefined;
+      const fieldPath = normalizeStackbitFieldPath(remainder);
       return { objectId, fieldPath };
     }
   }
@@ -139,7 +156,7 @@ const resolvePageBinding = (value: string): Binding | null => {
 
   const filePath = `content/pages/${locale}/${slug}.json`;
   const joined = restParts.join('.');
-  const fieldPath = joined.length > 0 ? joined : undefined;
+  const fieldPath = normalizeStackbitFieldPath(joined);
   return {
     objectId: `${model}:${filePath}`,
     fieldPath,
@@ -154,7 +171,7 @@ const resolveColonBinding = (value: string): Binding | null => {
 
   const objectId = value.slice(0, colonIndex);
   const remainder = value.slice(colonIndex + 1);
-  const fieldPath = remainder.length > 0 ? remainder : undefined;
+  const fieldPath = normalizeStackbitFieldPath(remainder);
   if (!objectId || !fieldPath) {
     return null;
   }
