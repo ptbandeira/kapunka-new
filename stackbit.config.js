@@ -5,16 +5,33 @@ import { FileSystemContentSource } from '@stackbit/cms-git';
 const metadataPath = resolve(process.cwd(), 'metadata.json');
 const metadata = JSON.parse(readFileSync(metadataPath, 'utf8'));
 
+const localizedPageRoutes = [
+  { slug: 'home', urlPath: '/' },
+  { slug: 'about', urlPath: '/about' },
+  { slug: 'clinics', urlPath: '/for-clinics' },
+  { slug: 'contact', urlPath: '/contact' },
+  { slug: 'learn', urlPath: '/learn' },
+  { slug: 'story', urlPath: '/story' },
+  { slug: 'training', urlPath: '/training' },
+  { slug: 'videos', urlPath: '/videos' },
+  { slug: 'test', urlPath: '/test' },
+  { slug: 'method', urlPath: '/method' },
+];
+
+const supportedLocales = ['en', 'pt', 'es'];
+
 const pageModelExtensions = [
+  ...localizedPageRoutes.flatMap(({ slug, urlPath }) =>
+    supportedLocales.map((locale) => ({
+      name: locale === 'en' ? slug : `${slug}_${locale}`,
+      type: 'page',
+      urlPath,
+    })),
+  ),
   {
     name: 'shop',
     type: 'page',
     urlPath: '/shop',
-  },
-  {
-    name: 'method',
-    type: 'page',
-    urlPath: '/method',
   },
   {
     name: 'products',
@@ -25,16 +42,6 @@ const pageModelExtensions = [
     name: 'articles',
     type: 'page',
     urlPath: '/learn/{slug}',
-  },
-  {
-    name: 'videos',
-    type: 'page',
-    urlPath: '/videos',
-  },
-  {
-    name: 'training',
-    type: 'page',
-    urlPath: '/training',
   },
   {
     name: 'policies',
