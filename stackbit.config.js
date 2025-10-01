@@ -1925,6 +1925,7 @@ const customModels = [
         name: 'sections',
         type: 'list',
         label: 'Sections',
+        models: sectionModelNames,
         items: {
           type: 'model',
           models: sectionModelNames,
@@ -1944,6 +1945,7 @@ const customModels = [
         name: 'sections',
         type: 'list',
         label: 'Sections',
+        models: sectionModelNames,
         items: {
           type: 'model',
           models: sectionModelNames,
@@ -1963,6 +1965,7 @@ const customModels = [
         name: 'sections',
         type: 'list',
         label: 'Sections',
+        models: sectionModelNames,
         items: {
           type: 'model',
           models: sectionModelNames,
@@ -1982,6 +1985,7 @@ const customModels = [
         name: 'sections',
         type: 'list',
         label: 'Sections',
+        models: sectionModelNames,
         items: {
           type: 'model',
           models: sectionModelNames,
@@ -2001,6 +2005,7 @@ const customModels = [
         name: 'sections',
         type: 'list',
         label: 'Sections',
+        models: sectionModelNames,
         items: {
           type: 'model',
           models: sectionModelNames,
@@ -2020,6 +2025,7 @@ const customModels = [
         name: 'sections',
         type: 'list',
         label: 'Sections',
+        models: sectionModelNames,
         items: {
           type: 'model',
           models: sectionModelNames,
@@ -2039,6 +2045,7 @@ const customModels = [
         name: 'sections',
         type: 'list',
         label: 'Sections',
+        models: sectionModelNames,
         items: {
           type: 'model',
           models: sectionModelNames,
@@ -2058,6 +2065,7 @@ const customModels = [
         name: 'sections',
         type: 'list',
         label: 'Sections',
+        models: sectionModelNames,
         items: {
           type: 'model',
           models: sectionModelNames,
@@ -2077,6 +2085,7 @@ const customModels = [
         name: 'sections',
         type: 'list',
         label: 'Sections',
+        models: sectionModelNames,
         items: {
           type: 'model',
           models: sectionModelNames,
@@ -2096,6 +2105,7 @@ const customModels = [
         name: 'sections',
         type: 'list',
         label: 'Sections',
+        models: sectionModelNames,
         items: {
           type: 'model',
           models: sectionModelNames,
@@ -2115,6 +2125,7 @@ const customModels = [
         name: 'sections',
         type: 'list',
         label: 'Sections',
+        models: sectionModelNames,
         items: {
           type: 'model',
           models: sectionModelNames,
