@@ -24,8 +24,8 @@ export default defineConfig(({ mode }) => {
         : [
             "localhost",
             "127.0.0.1",
-            "devserver-main--kapunka-new.netlify.app",
-            "devserver-preview--kapunka-new.netlify.app"
+            "*.netlify.app",
+            "*.stackbit.dev"
           ],
       hmr: { protocol: "wss", clientPort: 443 } // reliable HMR behind Netlify proxy
     }
