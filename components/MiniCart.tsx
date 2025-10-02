@@ -8,6 +8,7 @@ import { useCart } from '../contexts/CartContext';
 import { useLanguage } from '../contexts/LanguageContext';
 import type { CartItem, Product } from '../types';
 import { fetchVisualEditorJson } from '../utils/fetchVisualEditorJson';
+import { useVisualEditorSync } from '../contexts/VisualEditorSyncContext';
 
 interface ProductIndexResponse {
   items?: Product[];
@@ -62,6 +63,7 @@ const MiniCart: React.FC = () => {
   const { cart, cartCount } = useCart();
   const { t } = useLanguage();
   const [products, setProducts] = useState<Product[]>([]);
+  const { contentVersion } = useVisualEditorSync();
 
   useEffect(() => {
     let isMounted = true;
@@ -85,7 +87,7 @@ const MiniCart: React.FC = () => {
     return () => {
       isMounted = false;
     };
-  }, []);
+  }, [contentVersion]);
 
   const subtotal = cart.reduce((total, item) => {
     const product = products.find(p => p.id === item.productId);

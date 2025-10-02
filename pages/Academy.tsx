@@ -5,6 +5,7 @@ import { useLanguage } from '../contexts/LanguageContext';
 import CourseCard from '../components/CourseCard';
 import type { Course } from '../types';
 import { fetchVisualEditorJson } from '../utils/fetchVisualEditorJson';
+import { useVisualEditorSync } from '../contexts/VisualEditorSyncContext';
 import { getVisualEditorAttributes } from '../utils/stackbitBindings';
 
 interface CoursesResponse {
@@ -15,11 +16,13 @@ const Academy: React.FC = () => {
     const { t, language } = useLanguage();
     const [courses, setCourses] = useState<Course[]>([]);
     const [loading, setLoading] = useState(true);
+    const { contentVersion } = useVisualEditorSync();
 
     useEffect(() => {
         let isMounted = true;
 
         const loadCourses = async () => {
+            setLoading(true);
             try {
                 const data = await fetchVisualEditorJson<CoursesResponse>('/content/courses.json');
                 if (!isMounted) {
@@ -45,7 +48,7 @@ const Academy: React.FC = () => {
         return () => {
             isMounted = false;
         };
-    }, []);
+    }, [contentVersion]);
 
   return (
     <div>

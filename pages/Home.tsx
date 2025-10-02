@@ -13,6 +13,7 @@ import CommunityCarousel from '../components/sections/CommunityCarousel';
 import MediaShowcase from '../components/sections/MediaShowcase';
 import { useLanguage } from '../contexts/LanguageContext';
 import { useSiteSettings } from '../contexts/SiteSettingsContext';
+import { useVisualEditorSync } from '../contexts/VisualEditorSyncContext';
 import type {
   Product,
   Review,
@@ -1040,6 +1041,7 @@ const Bestsellers: React.FC<BestsellersProps> = ({ intro, introFieldPath }) => {
     const { t, language } = useLanguage();
     const [products, setProducts] = useState<Product[]>([]);
     const { settings } = useSiteSettings();
+    const { contentVersion } = useVisualEditorSync();
 
     useEffect(() => {
         let isMounted = true;
@@ -1066,7 +1068,7 @@ const Bestsellers: React.FC<BestsellersProps> = ({ intro, introFieldPath }) => {
         return () => {
             isMounted = false;
         };
-    }, []);
+    }, [contentVersion]);
 
     const featuredProductIds = useMemo(() => {
         const ids = settings.home?.featuredProductIds ?? [];
@@ -1390,6 +1392,7 @@ const GalleryRows: React.FC<GalleryRowsProps> = ({ rows, fieldPath }) => {
 const Reviews: React.FC = () => {
     const { t, translate, language } = useLanguage();
     const [reviews, setReviews] = useState<Review[]>([]);
+    const { contentVersion } = useVisualEditorSync();
 
     useEffect(() => {
         let isMounted = true;
@@ -1417,7 +1420,7 @@ const Reviews: React.FC = () => {
         return () => {
             isMounted = false;
         };
-    }, []);
+    }, [contentVersion]);
 
     return (
         <div className="py-16 sm:py-24 bg-stone-50">
@@ -1598,6 +1601,7 @@ const NewsletterSignup: React.FC<NewsletterSignupProps> = ({
 const Home: React.FC = () => {
   const { t, language } = useLanguage();
   const { settings: siteSettings } = useSiteSettings();
+  const { contentVersion } = useVisualEditorSync();
   const heroFallbackRaw = (() => {
     const extendedSettings = siteSettings as typeof siteSettings & { heroFallback?: string | null };
     const fallbackCandidate = extendedSettings.heroFallback ?? siteSettings.home?.heroImage;
@@ -1638,7 +1642,7 @@ const Home: React.FC = () => {
     return () => {
       isMounted = false;
     };
-  }, []);
+  }, [contentVersion]);
 
   useEffect(() => {
     let isMounted = true;
@@ -1793,7 +1797,7 @@ const Home: React.FC = () => {
     return () => {
       isMounted = false;
     };
-  }, [language, heroFallbackRaw]);
+  }, [language, heroFallbackRaw, contentVersion]);
 
   const sanitizeString = sanitizeCmsString;
 

@@ -5,6 +5,7 @@ import { useLanguage } from '../contexts/LanguageContext';
 import type { Language } from '../types';
 import { fetchVisualEditorJson } from '../utils/fetchVisualEditorJson';
 import { getVisualEditorAttributes } from '../utils/stackbitBindings';
+import { useVisualEditorSync } from '../contexts/VisualEditorSyncContext';
 
 interface SpecialtyItem {
   title: string;
@@ -130,6 +131,7 @@ const isMethodPageContent = (value: unknown): value is MethodPageContent => {
 const Method: React.FC = () => {
   const { language, t } = useLanguage();
   const [content, setContent] = useState<MethodPageContent | null>(null);
+  const { contentVersion } = useVisualEditorSync();
 
   useEffect(() => {
     let isMounted = true;
@@ -172,7 +174,7 @@ const Method: React.FC = () => {
     return () => {
       isMounted = false;
     };
-  }, [language]);
+  }, [language, contentVersion]);
 
   const heroTitle = content?.heroTitle ?? fallbackHeroTitles[language];
   const heroSubtitle = content?.heroSubtitle ?? fallbackMetaDescriptions[language];

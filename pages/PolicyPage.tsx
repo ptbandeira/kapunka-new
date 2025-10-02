@@ -6,6 +6,7 @@ import { useLanguage } from '../contexts/LanguageContext';
 import type { Policy, PolicySection } from '../types';
 import { fetchVisualEditorJson } from '../utils/fetchVisualEditorJson';
 import { getVisualEditorAttributes } from '../utils/stackbitBindings';
+import { useVisualEditorSync } from '../contexts/VisualEditorSyncContext';
 
 interface PoliciesResponse {
     items?: Policy[];
@@ -16,11 +17,13 @@ const PolicyPage: React.FC = () => {
     const { t, translate, language } = useLanguage();
     const [policies, setPolicies] = useState<Policy[]>([]);
     const [loading, setLoading] = useState(true);
+    const { contentVersion } = useVisualEditorSync();
 
     useEffect(() => {
         let isMounted = true;
 
         const loadPolicies = async () => {
+            setLoading(true);
             try {
                 const data = await fetchVisualEditorJson<PoliciesResponse>('/content/policies.json');
                 if (!isMounted) {
@@ -46,7 +49,7 @@ const PolicyPage: React.FC = () => {
         return () => {
             isMounted = false;
         };
-    }, []);
+    }, [contentVersion]);
 
     const policyIndex = useMemo(() => policies.findIndex((item) => item.id === type), [policies, type]);
     const policy = useMemo(() => {

@@ -4,6 +4,7 @@ import { Play } from 'lucide-react';
 import type { VideoEntry, VideoLibraryContent } from '../types';
 import { useLanguage } from '../contexts/LanguageContext';
 import { fetchVisualEditorJson } from '../utils/fetchVisualEditorJson';
+import { useVisualEditorSync } from '../contexts/VisualEditorSyncContext';
 import { getVisualEditorAttributes } from '../utils/stackbitBindings';
 
 interface VideoGalleryProps {
@@ -33,6 +34,7 @@ const loadVideoLibrary = async (): Promise<VideoEntry[]> => {
 const VideoGallery: React.FC<VideoGalleryProps> = ({ title, description, entries, fieldPath }) => {
   const [libraryEntries, setLibraryEntries] = useState<VideoEntry[]>([]);
   const { t, language } = useLanguage();
+  const { contentVersion } = useVisualEditorSync();
 
   useEffect(() => {
     if (entries && entries.length > 0) {
@@ -55,7 +57,7 @@ const VideoGallery: React.FC<VideoGalleryProps> = ({ title, description, entries
     return () => {
       isMounted = false;
     };
-  }, [entries]);
+  }, [entries, contentVersion]);
 
   const items = useMemo(() => {
     if (entries && entries.length > 0) {

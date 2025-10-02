@@ -16,6 +16,7 @@ import {
 } from '../utils/loadLearnPageContent';
 import { fetchVisualEditorJson } from '../utils/fetchVisualEditorJson';
 import { getVisualEditorAttributes } from '../utils/stackbitBindings';
+import { useVisualEditorSync } from '../contexts/VisualEditorSyncContext';
 
 interface ArticlesResponse {
   items?: Article[];
@@ -31,9 +32,12 @@ const Learn: React.FC = () => {
   const [loading, setLoading] = useState(true);
   const [pageContent, setPageContent] = useState<LearnPageContentResult | null>(null);
   const { t, language } = useLanguage();
+  const { contentVersion } = useVisualEditorSync();
 
   useEffect(() => {
     let isMounted = true;
+
+    setPageContent(null);
 
     loadLearnPageContent(language)
       .then((result) => {
@@ -52,7 +56,7 @@ const Learn: React.FC = () => {
     return () => {
       isMounted = false;
     };
-  }, [language]);
+  }, [language, contentVersion]);
 
   const handleCategoryClick = useCallback((event: React.MouseEvent<HTMLButtonElement>) => {
     const { category } = event.currentTarget.dataset;
@@ -65,6 +69,7 @@ const Learn: React.FC = () => {
     let isMounted = true;
 
     const loadArticles = async () => {
+      setLoading(true);
       try {
         const data = await fetchVisualEditorJson<ArticlesResponse>('/content/articles/index.json');
         if (!isMounted) {
@@ -90,7 +95,7 @@ const Learn: React.FC = () => {
     return () => {
       isMounted = false;
     };
-  }, []);
+  }, [contentVersion]);
 
   const translationCategories = useMemo(() => {
     const value = t<Record<string, string>>('learn.categories');
