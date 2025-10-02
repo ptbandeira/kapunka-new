@@ -546,11 +546,37 @@ const HERO_CTA_ALIGNMENT_CLASSES: Record<HeroHorizontalAlignment, string> = {
   right: 'sm:justify-end',
 };
 
-const HERO_VERTICAL_ALIGNMENT_CLASSES: Record<HeroVerticalAlignment, string> = {
-  top: 'justify-start',
-  middle: 'justify-center',
-  bottom: 'justify-end',
+const HERO_GRID_CONTAINER_CLASSES = 'grid grid-cols-3 grid-rows-3 w-full h-full p-6 sm:p-10';
+
+const HERO_GRID_COLUMN_CLASSES: Record<HeroHorizontalAlignment, string> = {
+  left: 'col-start-1 col-end-2',
+  center: 'col-start-2 col-end-3',
+  right: 'col-start-3 col-end-4',
 };
+
+const HERO_GRID_ROW_CLASSES: Record<HeroVerticalAlignment, string> = {
+  top: 'row-start-1 row-end-2',
+  middle: 'row-start-2 row-end-3',
+  bottom: 'row-start-3 row-end-4',
+};
+
+const HERO_GRID_JUSTIFY_CLASSES: Record<HeroHorizontalAlignment, string> = {
+  left: 'justify-self-start',
+  center: 'justify-self-center',
+  right: 'justify-self-end',
+};
+
+const HERO_GRID_ALIGN_CLASSES: Record<HeroVerticalAlignment, string> = {
+  top: 'self-start',
+  middle: 'self-center',
+  bottom: 'self-end',
+};
+
+const getHeroGridCellClasses = (
+  horizontal: HeroHorizontalAlignment,
+  vertical: HeroVerticalAlignment,
+) =>
+  `${HERO_GRID_COLUMN_CLASSES[horizontal]} ${HERO_GRID_ROW_CLASSES[vertical]} ${HERO_GRID_JUSTIFY_CLASSES[horizontal]} ${HERO_GRID_ALIGN_CLASSES[vertical]}`;
 
 const HERO_TEXT_POSITION_MAP: Record<
   NonNullable<PageContent['heroTextPosition']>,
@@ -1888,10 +1914,10 @@ const Home: React.FC = () => {
   );
   const heroAlignX: HeroHorizontalAlignment = heroAlignXFromAlignment ?? heroTextPositionTuple?.[0] ?? 'center';
   const heroAlignY: HeroVerticalAlignment = heroAlignYFromAlignment ?? heroTextPositionTuple?.[1] ?? 'middle';
-  const heroAlignmentClasses = `${HERO_HORIZONTAL_ALIGNMENT_CONTAINER_CLASSES[heroAlignX]} ${HERO_VERTICAL_ALIGNMENT_CLASSES[heroAlignY]}`;
   const heroMiddleNudge = heroLayoutHint === 'image-full' && heroAlignY === 'middle' ? 'pb-24 md:pb-28' : '';
   const heroTextAlignmentClass = HERO_HORIZONTAL_TEXT_ALIGNMENT_CLASSES[heroAlignX];
   const heroCtaAlignmentClass = HERO_CTA_ALIGNMENT_CLASSES[heroAlignX];
+  const heroOverlayCellClasses = getHeroGridCellClasses(heroAlignX, heroAlignY);
 
   let heroInlineImage: string | undefined;
   if (heroLayoutHint === 'image-left') {
@@ -1931,7 +1957,9 @@ const Home: React.FC = () => {
           : heroImageRightFieldPath;
   const heroGridClasses = shouldRenderInlineImage
     ? 'grid grid-cols-1 lg:grid-cols-2 gap-12 items-center'
-    : 'flex flex-col items-center text-center';
+    : heroTextPlacement === 'overlay'
+      ? `flex flex-col ${HERO_HORIZONTAL_ALIGNMENT_CONTAINER_CLASSES[heroAlignX]}`
+      : 'flex flex-col items-center text-center';
   const heroTextWrapperBaseClasses = shouldRenderInlineImage
     ? `${heroLayoutHint === 'image-left' ? 'order-1 lg:order-2' : 'order-1'} space-y-6 max-w-xl`
     : 'space-y-6 max-w-3xl mx-auto';
@@ -1990,8 +2018,9 @@ const Home: React.FC = () => {
       </motion.div>
     )
     : null;
+  const heroContainerMarginClass = heroTextPlacement === 'overlay' ? 'mx-0' : 'mx-auto';
   const heroTextContent = (
-    <div className={`container mx-auto px-4 sm:px-6 lg:px-8 ${heroGridClasses}`}>
+    <div className={`container ${heroContainerMarginClass} px-4 sm:px-6 lg:px-8 ${heroGridClasses}`}>
       <div className={heroTextWrapperClasses}>
         <h1
           className="text-4xl md:text-6xl font-semibold tracking-tight"
@@ -2138,7 +2167,7 @@ const Home: React.FC = () => {
         };
 
         const { x: sectionAlignX, y: sectionAlignY } = mapPos(heroSection.position);
-        const sectionAlignmentClasses = `${HERO_HORIZONTAL_ALIGNMENT_CONTAINER_CLASSES[sectionAlignX]} ${HERO_VERTICAL_ALIGNMENT_CLASSES[sectionAlignY]}`;
+        const sectionOverlayCellClasses = getHeroGridCellClasses(sectionAlignX, sectionAlignY);
         const sectionMiddleNudge = heroLayoutHint === 'image-full' && sectionAlignY === 'middle' ? 'pb-24 md:pb-28' : '';
         const sectionTextAlignmentClass = HERO_HORIZONTAL_TEXT_ALIGNMENT_CLASSES[sectionAlignX];
         const sectionCtaAlignmentClass = HERO_CTA_ALIGNMENT_CLASSES[sectionAlignX];
@@ -2194,7 +2223,9 @@ const Home: React.FC = () => {
           : 'px-8 py-3 bg-white/70 backdrop-blur-sm text-stone-900 font-semibold rounded-md hover:bg-white transition-colors';
         const sectionGridClasses = sectionShouldRenderInlineImage
           ? 'grid grid-cols-1 lg:grid-cols-2 gap-12 items-center'
-          : 'flex flex-col items-center text-center';
+          : heroTextPlacement === 'overlay'
+            ? `flex flex-col ${HERO_HORIZONTAL_ALIGNMENT_CONTAINER_CLASSES[sectionAlignX]}`
+            : 'flex flex-col items-center text-center';
         const sectionTextWrapperBaseClasses = sectionShouldRenderInlineImage
           ? `${heroLayoutHint === 'image-left' ? 'order-1 lg:order-2' : 'order-1'} space-y-6 max-w-xl`
           : 'space-y-6 max-w-3xl mx-auto';
@@ -2223,8 +2254,9 @@ const Home: React.FC = () => {
             </motion.div>
           )
           : null;
+        const sectionContainerMarginClass = heroTextPlacement === 'overlay' ? 'mx-0' : 'mx-auto';
         const sectionTextContent = (
-          <div className={`container mx-auto px-4 sm:px-6 lg:px-8 ${sectionGridClasses}`}>
+          <div className={`container ${sectionContainerMarginClass} px-4 sm:px-6 lg:px-8 ${sectionGridClasses}`}>
             <div className={sectionTextWrapperClasses}>
               <h1
                 className="text-4xl md:text-6xl font-semibold tracking-tight"
@@ -2316,16 +2348,16 @@ const Home: React.FC = () => {
               >
                 <div className="absolute inset-0" style={sectionOverlayStyle}></div>
                 {heroTextPlacement === 'overlay' && (
-                  <div className={`relative h-full flex flex-col ${sectionAlignmentClasses} ${sectionMiddleNudge}`}>
-                    {sectionTextMotion}
+                  <div className={`relative h-full ${HERO_GRID_CONTAINER_CLASSES} ${sectionMiddleNudge}`}>
+                    <div className={sectionOverlayCellClasses}>{sectionTextMotion}</div>
                   </div>
                 )}
               </div>
             ) : (
               <div className="relative h-screen bg-stone-900" {...getVisualEditorAttributes(sectionFieldPath)}>
                 {heroTextPlacement === 'overlay' && (
-                  <div className={`relative h-full flex flex-col ${sectionAlignmentClasses} ${sectionMiddleNudge}`}>
-                    {sectionTextMotion}
+                  <div className={`relative h-full ${HERO_GRID_CONTAINER_CLASSES} ${sectionMiddleNudge}`}>
+                    <div className={sectionOverlayCellClasses}>{sectionTextMotion}</div>
                   </div>
                 )}
               </div>
@@ -3507,8 +3539,8 @@ const Home: React.FC = () => {
             >
               <div className="absolute inset-0" style={overlayStyle}></div>
               {heroTextPlacement === 'overlay' && (
-                <div className={`relative h-full flex flex-col ${heroAlignmentClasses} ${heroMiddleNudge}`}>
-                  {heroTextMotion}
+                <div className={`relative h-full ${HERO_GRID_CONTAINER_CLASSES} ${heroMiddleNudge}`}>
+                  <div className={heroOverlayCellClasses}>{heroTextMotion}</div>
                 </div>
               )}
             </div>
@@ -3518,8 +3550,8 @@ const Home: React.FC = () => {
               {...getVisualEditorAttributes('site.home.heroImage')}
             >
               {heroTextPlacement === 'overlay' && (
-                <div className={`relative h-full flex flex-col ${heroAlignmentClasses} ${heroMiddleNudge}`}>
-                  {heroTextMotion}
+                <div className={`relative h-full ${HERO_GRID_CONTAINER_CLASSES} ${heroMiddleNudge}`}>
+                  <div className={heroOverlayCellClasses}>{heroTextMotion}</div>
                 </div>
               )}
             </div>
