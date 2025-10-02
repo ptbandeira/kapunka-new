@@ -1,4 +1,5 @@
 import type { Language } from '../types';
+import { loadUnifiedPage } from './unifiedPageLoader';
 
 export interface LearnPageCategory {
   id: string;
@@ -20,7 +21,7 @@ export interface LearnPageContentResult {
   source: 'site' | 'content';
 }
 
-const buildCandidates = (language: Language): Array<{
+const buildLegacyCandidates = (language: Language): Array<{
   url: string;
   locale: Language;
   source: 'site' | 'content';
@@ -47,7 +48,12 @@ const buildCandidates = (language: Language): Array<{
 export const loadLearnPageContent = async (
   language: Language,
 ): Promise<LearnPageContentResult | null> => {
-  const candidates = buildCandidates(language);
+  const unified = await loadUnifiedPage<LearnPageData>('learn', language);
+  if (unified) {
+    return unified;
+  }
+
+  const candidates = buildLegacyCandidates(language);
 
   for (const candidate of candidates) {
     try {

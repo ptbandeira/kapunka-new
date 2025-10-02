@@ -1,4 +1,5 @@
 import type { Language } from '../types';
+import { loadUnifiedPage } from './unifiedPageLoader';
 
 export interface ClinicsPageData {
   metaTitle?: string;
@@ -31,7 +32,7 @@ export interface ClinicsPageContentResult {
   source: 'site' | 'content';
 }
 
-const buildCandidates = (language: Language): Array<{
+const buildLegacyCandidates = (language: Language): Array<{
   url: string;
   locale: Language;
   source: 'site' | 'content';
@@ -58,7 +59,12 @@ const buildCandidates = (language: Language): Array<{
 export const loadClinicsPageContent = async (
   language: Language,
 ): Promise<ClinicsPageContentResult | null> => {
-  const candidates = buildCandidates(language);
+  const unified = await loadUnifiedPage<ClinicsPageData>('clinics', language);
+  if (unified) {
+    return unified;
+  }
+
+  const candidates = buildLegacyCandidates(language);
 
   for (const candidate of candidates) {
     try {
