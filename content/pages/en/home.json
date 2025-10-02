@@ -9,6 +9,22 @@
   },
   "sections": [
     {
+      "type": "productGrid",
+      "title": "Our Bestsellers",
+      "products": [
+        {
+          "id": "pure-argan-100"
+        },
+        {
+          "id": "scar-care"
+        },
+        {
+          "id": "ritual-pack"
+        }
+      ],
+      "columns": 3
+    },
+    {
       "type": "mediaShowcase",
       "title": "Ritual Stories",
       "items": [
@@ -76,22 +92,6 @@
           "description": "Fair relationships across Morocco’s cooperatives."
         }
       ]
-    },
-    {
-      "type": "productGrid",
-      "title": "Our Bestsellers",
-      "products": [
-        {
-          "id": "pure-argan-100"
-        },
-        {
-          "id": "scar-care"
-        },
-        {
-          "id": "ritual-pack"
-        }
-      ],
-      "columns": 3
     },
     {
       "type": "communityCarousel",
