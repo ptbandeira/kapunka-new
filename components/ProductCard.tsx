@@ -11,12 +11,10 @@ import type { Product } from '../types';
 interface ProductCardProps {
   product: Product;
   fieldPath?: string;
-  ['data-sb-field-path']?: string;
 }
 
 const ProductCard: React.FC<ProductCardProps> = (props) => {
   const { product, fieldPath } = props;
-  const dataSbFieldPath = props['data-sb-field-path'];
   const [selectedSizeId, setSelectedSizeId] = useState(product.sizes[0].id);
   const { addToCart } = useCart();
   const { openCart } = useUI();
@@ -56,7 +54,6 @@ const ProductCard: React.FC<ProductCardProps> = (props) => {
       transition={{ duration: 0.6 }}
       className="group"
       data-nlv-field-path={fieldPath}
-      data-sb-field-path={dataSbFieldPath ?? fieldPath}
     >
       <Link to={`/product/${product.id}`} className="block">
         <div className="relative overflow-hidden rounded-lg">
@@ -65,7 +62,6 @@ const ProductCard: React.FC<ProductCardProps> = (props) => {
             alt={translate(product.name)}
             className="w-full h-auto aspect-[3/4] object-cover transition-transform duration-500 group-hover:scale-105"
             data-nlv-field-path={fieldPath ? `${fieldPath}.imageUrl` : undefined}
-            data-sb-field-path={fieldPath ? `${fieldPath}.imageUrl` : undefined}
           />
           <button
             onClick={handleAddToCart}
@@ -79,7 +75,6 @@ const ProductCard: React.FC<ProductCardProps> = (props) => {
           <h3
             className="font-semibold text-stone-800"
             data-nlv-field-path={fieldPath ? `${fieldPath}.name.${language}` : undefined}
-            data-sb-field-path={fieldPath ? `${fieldPath}.name.${language}` : undefined}
           >
             {translate(product.name)}
           </h3>
@@ -87,7 +82,6 @@ const ProductCard: React.FC<ProductCardProps> = (props) => {
             <p
               className="text-xs uppercase tracking-wide text-stone-500 mt-1"
               data-nlv-field-path={fieldPath ? `${fieldPath}.titleAddition.${language}` : undefined}
-              data-sb-field-path={fieldPath ? `${fieldPath}.titleAddition.${language}` : undefined}
             >
               {translatedTitleAddition}
             </p>
@@ -96,7 +90,6 @@ const ProductCard: React.FC<ProductCardProps> = (props) => {
             <p
               className="text-sm text-stone-500 mt-1"
               data-nlv-field-path={fieldPath ? `${fieldPath}.tagline.${language}` : undefined}
-              data-sb-field-path={fieldPath ? `${fieldPath}.tagline.${language}` : undefined}
             >
               {translatedTagline}
             </p>
@@ -114,11 +107,9 @@ const ProductCard: React.FC<ProductCardProps> = (props) => {
                   }`}
                   data-size-id={size.id}
                   data-nlv-field-path={fieldPath ? `${fieldPath}.sizes.${sizeIndex}` : undefined}
-                  data-sb-field-path={fieldPath ? `${fieldPath}.sizes.${sizeIndex}` : undefined}
                 >
                   <span
                     data-nlv-field-path={fieldPath ? `${fieldPath}.sizes.${sizeIndex}.size` : undefined}
-                    data-sb-field-path={fieldPath ? `${fieldPath}.sizes.${sizeIndex}.size` : undefined}
                   >
                     {size.size}
                   </span>
@@ -129,11 +120,6 @@ const ProductCard: React.FC<ProductCardProps> = (props) => {
             <p className="text-sm font-medium text-stone-800">
               <span
                 data-nlv-field-path={
-                  fieldPath && selectedSize
-                    ? `${fieldPath}.sizes.${product.sizes.findIndex((s) => s.id === selectedSize.id)}.price`
-                    : undefined
-                }
-                data-sb-field-path={
                   fieldPath && selectedSize
                     ? `${fieldPath}.sizes.${product.sizes.findIndex((s) => s.id === selectedSize.id)}.price`
                     : undefined

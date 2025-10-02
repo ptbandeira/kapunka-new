@@ -359,7 +359,6 @@ const ArticlePage: React.FC = () => {
                                         key={product.id}
                                         product={product}
                                         fieldPath={productFieldPath}
-                                        data-sb-field-path={`.${index}`}
                                     />
                                 );
                             })}

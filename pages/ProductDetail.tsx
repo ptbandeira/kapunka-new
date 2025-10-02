@@ -616,7 +616,6 @@ const ProductDetail: React.FC = () => {
                                         key={p.id}
                                         product={p}
                                         fieldPath={relatedFieldPath}
-                                        data-sb-field-path={`.${index}`}
                                     />
                                 );
                             })}
