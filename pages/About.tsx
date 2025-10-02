@@ -6,6 +6,7 @@ import { useSiteSettings } from '../contexts/SiteSettingsContext';
 import SectionRenderer from '../components/_legacy/SectionRenderer';
 import type { PageContent, PageSection, TimelineEntry, TimelineSectionContent } from '../types';
 import { fetchVisualEditorJson } from '../utils/fetchVisualEditorJson';
+import { getVisualEditorAttributes } from '../utils/stackbitBindings';
 
 const isTimelineEntry = (value: unknown): value is TimelineEntry => {
   if (!value || typeof value !== 'object') {
@@ -303,7 +304,7 @@ const About: React.FC = () => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
             className="text-4xl sm:text-5xl font-semibold tracking-tight"
-            data-nlv-field-path={`${translationsAboutFieldPath}.headerTitle`}
+            {...getVisualEditorAttributes(`${translationsAboutFieldPath}.headerTitle`)}
           >
             {t('about.headerTitle')}
           </motion.h1>
@@ -312,7 +313,7 @@ const About: React.FC = () => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.1 }}
             className="mt-4 text-lg text-stone-600 max-w-3xl mx-auto"
-            data-nlv-field-path={`${translationsAboutFieldPath}.headerSubtitle`}
+            {...getVisualEditorAttributes(`${translationsAboutFieldPath}.headerSubtitle`)}
           >
             {t('about.headerSubtitle')}
           </motion.p>
@@ -347,7 +348,7 @@ const About: React.FC = () => {
                             {block.heading ? (
                                 <h2
                                     className="text-3xl font-semibold mb-6"
-                                    data-nlv-field-path={`${storyBlockFieldPath}.heading`}
+                                    {...getVisualEditorAttributes(`${storyBlockFieldPath}.heading`)}
                                 >
                                     {block.heading}
                                 </h2>
@@ -355,7 +356,7 @@ const About: React.FC = () => {
                             {block.body ? (
                                 <div
                                     className="text-stone-600 leading-relaxed space-y-4"
-                                    data-nlv-field-path={`${storyBlockFieldPath}.body`}
+                                    {...getVisualEditorAttributes(`${storyBlockFieldPath}.body`)}
                                 >
                                     {bodyParagraphs.length > 0
                                         ? bodyParagraphs.map((paragraph) => (
@@ -374,7 +375,7 @@ const About: React.FC = () => {
                             viewport={{ once: true }}
                             transition={{ duration: 0.6 }}
                             className={imageOrderClass}
-                            data-nlv-field-path={imageFieldPath}
+                            {...getVisualEditorAttributes(imageFieldPath)}
                         >
                             <img
                                 src={imageUrl}
@@ -417,15 +418,15 @@ const About: React.FC = () => {
                 >
                   <h2
                     className="text-3xl font-semibold mb-6"
-                    data-nlv-field-path={`${translationsAboutFieldPath}.storyTitle`}
+                    {...getVisualEditorAttributes(`${translationsAboutFieldPath}.storyTitle`)}
                   >
                     {t('about.storyTitle')}
                   </h2>
                   <div className="text-stone-600 leading-relaxed space-y-4">
-                    <p data-nlv-field-path={`${translationsAboutFieldPath}.storyText1`}>
+                    <p {...getVisualEditorAttributes(`${translationsAboutFieldPath}.storyText1`)}>
                       {t('about.storyText1')}
                     </p>
-                    <p data-nlv-field-path={`${translationsAboutFieldPath}.storyText2`}>
+                    <p {...getVisualEditorAttributes(`${translationsAboutFieldPath}.storyText2`)}>
                       {t('about.storyText2')}
                     </p>
                   </div>
@@ -440,7 +441,7 @@ const About: React.FC = () => {
                     src={storyImage}
                     alt={storyAlt}
                     className="rounded-lg shadow-lg"
-                    data-nlv-field-path="site.about.storyImage"
+                    {...getVisualEditorAttributes('site.about.storyImage')}
                   />
                 </motion.div>
               </div>
@@ -461,15 +462,15 @@ const About: React.FC = () => {
                 >
                   <h2
                     className="text-3xl font-semibold mb-6"
-                    data-nlv-field-path={`${translationsAboutFieldPath}.sourcingTitle`}
+                    {...getVisualEditorAttributes(`${translationsAboutFieldPath}.sourcingTitle`)}
                   >
                     {t('about.sourcingTitle')}
                   </h2>
                   <div className="text-stone-600 leading-relaxed space-y-4">
-                    <p data-nlv-field-path={`${translationsAboutFieldPath}.sourcingText1`}>
+                    <p {...getVisualEditorAttributes(`${translationsAboutFieldPath}.sourcingText1`)}>
                       {t('about.sourcingText1')}
                     </p>
-                    <p data-nlv-field-path={`${translationsAboutFieldPath}.sourcingText2`}>
+                    <p {...getVisualEditorAttributes(`${translationsAboutFieldPath}.sourcingText2`)}>
                       {t('about.sourcingText2')}
                     </p>
                   </div>
@@ -485,7 +486,7 @@ const About: React.FC = () => {
                     src={sourcingImage}
                     alt={sourcingAlt}
                     className="rounded-lg shadow-lg"
-                    data-nlv-field-path="site.about.sourcingImage"
+                    {...getVisualEditorAttributes('site.about.sourcingImage')}
                   />
                 </motion.div>
               </div>

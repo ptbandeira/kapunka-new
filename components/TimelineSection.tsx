@@ -3,6 +3,7 @@ import { motion } from 'framer-motion';
 import ReactMarkdown from 'react-markdown';
 import type { Components } from 'react-markdown';
 import type { TimelineEntry } from '../types';
+import { getVisualEditorAttributes } from '../utils/stackbitBindings';
 
 interface TimelineSectionProps {
   title?: string;
@@ -49,7 +50,7 @@ const TimelineSection: React.FC<TimelineSectionProps> = ({ title, entries, field
   return (
     <div
       className="space-y-16"
-      data-nlv-field-path={fieldPath}
+      {...getVisualEditorAttributes(fieldPath)}
       data-sb-field-path={fieldPath}
     >
       {title && (
@@ -59,7 +60,7 @@ const TimelineSection: React.FC<TimelineSectionProps> = ({ title, entries, field
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
           className="text-3xl font-semibold text-center"
-          data-nlv-field-path={fieldPath ? `${fieldPath}.title` : undefined}
+          {...getVisualEditorAttributes(fieldPath ? `${fieldPath}.title` : undefined)}
           data-sb-field-path={fieldPath ? `${fieldPath}.title` : undefined}
         >
           {title}
@@ -67,7 +68,7 @@ const TimelineSection: React.FC<TimelineSectionProps> = ({ title, entries, field
       )}
       <div
         className="space-y-16"
-        data-nlv-field-path={entriesFieldPath}
+        {...getVisualEditorAttributes(entriesFieldPath)}
         data-sb-field-path={entriesFieldPath}
       >
         {entries.map((entry, index) => {
@@ -84,7 +85,7 @@ const TimelineSection: React.FC<TimelineSectionProps> = ({ title, entries, field
             <div
               key={`${entry.year}-${entry.title}`}
               className={`grid grid-cols-1 ${hasImage ? 'md:grid-cols-2' : ''} gap-12 items-center`}
-              data-nlv-field-path={entryFieldPath}
+              {...getVisualEditorAttributes(entryFieldPath)}
               data-sb-field-path={entryFieldPath}
             >
               {hasImage && (
@@ -99,7 +100,7 @@ const TimelineSection: React.FC<TimelineSectionProps> = ({ title, entries, field
                     src={entry.image}
                     alt={entry.title}
                     className="rounded-lg shadow-lg w-full object-cover"
-                    data-nlv-field-path={entryFieldPath ? `${entryFieldPath}.image` : undefined}
+                    {...getVisualEditorAttributes(entryFieldPath ? `${entryFieldPath}.image` : undefined)}
                     data-sb-field-path={entryFieldPath ? `${entryFieldPath}.image` : undefined}
                   />
                 </motion.div>
@@ -113,20 +114,20 @@ const TimelineSection: React.FC<TimelineSectionProps> = ({ title, entries, field
               >
                 <span
                   className="text-sm uppercase tracking-[0.3em] text-stone-500"
-                  data-nlv-field-path={entryFieldPath ? `${entryFieldPath}.year` : undefined}
+                  {...getVisualEditorAttributes(entryFieldPath ? `${entryFieldPath}.year` : undefined)}
                   data-sb-field-path={entryFieldPath ? `${entryFieldPath}.year` : undefined}
                 >
                   {entry.year}
                 </span>
                 <h3
                   className="mt-2 text-2xl font-semibold"
-                  data-nlv-field-path={entryFieldPath ? `${entryFieldPath}.title` : undefined}
+                  {...getVisualEditorAttributes(entryFieldPath ? `${entryFieldPath}.title` : undefined)}
                   data-sb-field-path={entryFieldPath ? `${entryFieldPath}.title` : undefined}
                 >
                   {entry.title}
                 </h3>
                 <div
-                  data-nlv-field-path={entryFieldPath ? `${entryFieldPath}.description` : undefined}
+                  {...getVisualEditorAttributes(entryFieldPath ? `${entryFieldPath}.description` : undefined)}
                   data-sb-field-path={entryFieldPath ? `${entryFieldPath}.description` : undefined}
                 >
                   <ReactMarkdown components={markdownComponents}>

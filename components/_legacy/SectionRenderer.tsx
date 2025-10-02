@@ -5,6 +5,7 @@ import ImageTextHalf from '../sections/ImageTextHalf';
 import ImageGrid from '../sections/ImageGrid';
 import VideoGallery from '../VideoGallery';
 import TrainingList from '../TrainingList';
+import { getVisualEditorAttributes } from '../../utils/stackbitBindings';
 import type { PageSection, ProductTabsSectionContent, ProductTab } from '../../types';
 
 const ProductTabsSection: React.FC<{ section: ProductTabsSectionContent }> = ({ section }) => {
@@ -43,7 +44,7 @@ const ProductTabsSection: React.FC<{ section: ProductTabsSectionContent }> = ({ 
               } whitespace-nowrap py-4 px-1 border-b-2 font-medium text-sm`}
               data-tab-id={tab.id}
             >
-              <span data-nlv-field-path={tab.labelFieldPath}>{tab.label}</span>
+              <span {...getVisualEditorAttributes(tab.labelFieldPath)}>{tab.label}</span>
             </button>
           ))}
         </nav>

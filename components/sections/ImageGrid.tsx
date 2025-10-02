@@ -1,4 +1,5 @@
 import React from 'react';
+import { getVisualEditorAttributes } from '../../utils/stackbitBindings';
 
 interface ImageGridItemProps {
   image?: string;
@@ -34,21 +35,11 @@ const ImageGrid: React.FC<ImageGridProps> = ({ items, fieldPath }) => {
               <div
                 key={itemKey ?? `image-grid-item`}
                 className="flex flex-col bg-white rounded-lg shadow-sm overflow-hidden"
-                {...(itemFieldPath
-                  ? {
-                      'data-nlv-field-path': itemFieldPath,
-                      'data-sb-field-path': itemFieldPath,
-                    }
-                  : {})}
+                {...(itemFieldPath ? getVisualEditorAttributes(itemFieldPath) : {})}
               >
                 <div
                   className="w-full aspect-[4/3] bg-stone-100 flex items-center justify-center"
-                  {...(itemFieldPath
-                    ? {
-                        'data-nlv-field-path': `${itemFieldPath}.image`,
-                        'data-sb-field-path': `${itemFieldPath}.image`,
-                      }
-                    : {})}
+                  {...(itemFieldPath ? getVisualEditorAttributes(`${itemFieldPath}.image`) : {})}
                 >
                   {item.image ? (
                     <img src={item.image} alt={item.title ?? ''} className="w-full h-full object-cover" />
@@ -60,12 +51,7 @@ const ImageGrid: React.FC<ImageGridProps> = ({ items, fieldPath }) => {
                   {item.title && (
                     <h3
                       className="text-lg font-semibold text-stone-900"
-                      {...(itemFieldPath
-                        ? {
-                            'data-nlv-field-path': `${itemFieldPath}.title`,
-                            'data-sb-field-path': `${itemFieldPath}.title`,
-                          }
-                        : {})}
+                      {...(itemFieldPath ? getVisualEditorAttributes(`${itemFieldPath}.title`) : {})}
                     >
                       {item.title}
                     </h3>
@@ -73,12 +59,7 @@ const ImageGrid: React.FC<ImageGridProps> = ({ items, fieldPath }) => {
                   {item.subtitle && (
                     <p
                       className="text-sm text-stone-600"
-                      {...(itemFieldPath
-                        ? {
-                            'data-nlv-field-path': `${itemFieldPath}.subtitle`,
-                            'data-sb-field-path': `${itemFieldPath}.subtitle`,
-                          }
-                        : {})}
+                      {...(itemFieldPath ? getVisualEditorAttributes(`${itemFieldPath}.subtitle`) : {})}
                     >
                       {item.subtitle}
                     </p>

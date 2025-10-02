@@ -8,6 +8,7 @@ import ProductCard from '../components/ProductCard';
 import { useLanguage } from '../contexts/LanguageContext';
 import type { Product, ShopCategory, ShopCategoryLink, ShopContent } from '../types';
 import { fetchVisualEditorJson } from '../utils/fetchVisualEditorJson';
+import { getVisualEditorAttributes } from '../utils/stackbitBindings';
 
 const linkIcons: Record<ShopCategoryLink['type'], LucideIcon> = {
   product: ArrowUpRight,
@@ -169,13 +170,13 @@ const Shop: React.FC = () => {
       <header className="text-center mb-12">
         <h1
           className="text-4xl sm:text-5xl font-semibold tracking-tight"
-          data-nlv-field-path={`translations.${language}.shop.title`}
+          {...getVisualEditorAttributes(`translations.${language}.shop.title`)}
         >
           {t('shop.title')}
         </h1>
         <p
           className="mt-4 text-lg text-stone-600 max-w-2xl mx-auto"
-          data-nlv-field-path={`translations.${language}.shop.subtitle`}
+          {...getVisualEditorAttributes(`translations.${language}.shop.subtitle`)}
         >
           {t('shop.subtitle')}
         </p>
@@ -184,7 +185,7 @@ const Shop: React.FC = () => {
       <div className="flex flex-col gap-6 md:flex-row md:items-center md:justify-between mb-10">
         <div className="md:flex-1">
           <p className="text-xs uppercase tracking-widest text-stone-500">
-            <span data-nlv-field-path={`translations.${language}.shop.categoryFilterLabel`}>
+            <span {...getVisualEditorAttributes(`translations.${language}.shop.categoryFilterLabel`)}>
               {t('shop.categoryFilterLabel')}
             </span>
           </p>
@@ -201,7 +202,7 @@ const Shop: React.FC = () => {
                 }`}
                 data-tab-id={tab.id}
               >
-                <span data-nlv-field-path={tab.fieldPath}>{tab.label}</span>
+                <span {...getVisualEditorAttributes(tab.fieldPath)}>{tab.label}</span>
               </button>
             ))}
           </div>
@@ -209,7 +210,7 @@ const Shop: React.FC = () => {
 
         <div className="md:w-60">
           <label htmlFor="shop-sort" className="sr-only">
-            <span data-nlv-field-path={`translations.${language}.shop.sortLabel`}>
+            <span {...getVisualEditorAttributes(`translations.${language}.shop.sortLabel`)}>
               {t('shop.sortLabel')}
             </span>
           </label>
@@ -219,19 +220,19 @@ const Shop: React.FC = () => {
             onChange={handleSortChange}
             className="w-full border-stone-300 rounded-md shadow-sm focus:border-stone-500 focus:ring-stone-500"
           >
-            <option value="featured" data-nlv-field-path={`translations.${language}.shop.sortFeatured`}>
+            <option value="featured" {...getVisualEditorAttributes(`translations.${language}.shop.sortFeatured`)}>
               {t('shop.sortFeatured')}
             </option>
-            <option value="price-asc" data-nlv-field-path={`translations.${language}.shop.sortPriceAsc`}>
+            <option value="price-asc" {...getVisualEditorAttributes(`translations.${language}.shop.sortPriceAsc`)}>
               {t('shop.sortPriceAsc')}
             </option>
-            <option value="price-desc" data-nlv-field-path={`translations.${language}.shop.sortPriceDesc`}>
+            <option value="price-desc" {...getVisualEditorAttributes(`translations.${language}.shop.sortPriceDesc`)}>
               {t('shop.sortPriceDesc')}
             </option>
-            <option value="name-asc" data-nlv-field-path={`translations.${language}.shop.sortNameAsc`}>
+            <option value="name-asc" {...getVisualEditorAttributes(`translations.${language}.shop.sortNameAsc`)}>
               {t('shop.sortNameAsc')}
             </option>
-            <option value="name-desc" data-nlv-field-path={`translations.${language}.shop.sortNameDesc`}>
+            <option value="name-desc" {...getVisualEditorAttributes(`translations.${language}.shop.sortNameDesc`)}>
               {t('shop.sortNameDesc')}
             </option>
           </select>
@@ -243,24 +244,24 @@ const Shop: React.FC = () => {
           <div className="bg-white border border-stone-200 rounded-xl p-6 sm:p-8 shadow-sm">
             <h2
               className="text-2xl font-semibold text-stone-900"
-              data-nlv-field-path={
+              {...getVisualEditorAttributes(
                 activeCategoryIndex >= 0 ? `shop.categories.${activeCategoryIndex}.title.${language}` : undefined
-              }
+              )}
             >
               {translate(activeCategory.title)}
             </h2>
             <p
               className="mt-3 text-stone-600 leading-relaxed"
-              data-nlv-field-path={
+              {...getVisualEditorAttributes(
                 activeCategoryIndex >= 0 ? `shop.categories.${activeCategoryIndex}.intro.${language}` : undefined
-              }
+              )}
             >
               {translate(activeCategory.intro)}
             </p>
             {activeCategory.links.length > 0 && (
               <div className="mt-6">
                 <p className="text-xs uppercase tracking-widest text-stone-500 mb-3">
-                  <span data-nlv-field-path={`translations.${language}.shop.relatedResources`}>
+                  <span {...getVisualEditorAttributes(`translations.${language}.shop.relatedResources`)}>
                     {t('shop.relatedResources')}
                   </span>
                 </p>
@@ -272,11 +273,11 @@ const Shop: React.FC = () => {
                         key={link.id}
                         to={link.url}
                         className="inline-flex items-center gap-2 px-3 py-2 bg-stone-100 text-stone-700 rounded-full text-sm font-medium hover:bg-stone-200 transition-colors"
-                        data-nlv-field-path={
+                        {...getVisualEditorAttributes(
                           activeCategoryIndex >= 0
                             ? `shop.categories.${activeCategoryIndex}.links.${linkIndex}.label.${language}`
                             : undefined
-                        }
+                        )}
                       >
                         <Icon className="w-4 h-4" />
                         <span>{translate(link.label)}</span>
@@ -289,7 +290,7 @@ const Shop: React.FC = () => {
           </div>
         ) : (
           <div className="text-stone-600 leading-relaxed max-w-3xl">
-            <p data-nlv-field-path={`translations.${language}.shop.subtitle`}>
+            <p {...getVisualEditorAttributes(`translations.${language}.shop.subtitle`)}>
               {t('shop.subtitle')}
             </p>
           </div>
@@ -297,11 +298,11 @@ const Shop: React.FC = () => {
       </div>
 
       {loading ? (
-        <p className="text-center py-10" data-nlv-field-path={`translations.${language}.common.loadingProducts`}>
+        <p className="text-center py-10" {...getVisualEditorAttributes(`translations.${language}.common.loadingProducts`)}>
           {t('common.loadingProducts')}
         </p>
       ) : displayedProducts.length === 0 ? (
-        <p className="text-center py-10" data-nlv-field-path={`translations.${language}.shop.noProducts`}>
+        <p className="text-center py-10" {...getVisualEditorAttributes(`translations.${language}.shop.noProducts`)}>
           {t('shop.noProducts')}
         </p>
       ) : (

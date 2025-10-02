@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { useLanguage } from '../contexts/LanguageContext';
 import { Facebook, Instagram, Linkedin, Youtube, Globe } from 'lucide-react';
 import { useSiteSettings } from '../contexts/SiteSettingsContext';
+import { getVisualEditorAttributes } from '../utils/stackbitBindings';
 
 const FooterLink: React.FC<{
     to: string;
@@ -18,7 +19,7 @@ const FooterLink: React.FC<{
         data-sb-object-id={sbObjectId}
     >
         <span
-          data-nlv-field-path={fieldPath ?? undefined}
+          {...getVisualEditorAttributes(fieldPath ?? undefined)}
         >
           {children}
         </span>
@@ -47,10 +48,12 @@ const Footer: React.FC = () => {
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-12">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
           <div>
-            <h3 className="text-lg font-semibold mb-4" data-nlv-field-path="site.brand.name">{brandName}</h3>
+            <h3 className="text-lg font-semibold mb-4" {...getVisualEditorAttributes('site.brand.name')}>
+                {brandName}
+            </h3>
             <p
               className="text-sm text-stone-500"
-              data-nlv-field-path={`translations.${language}.footer.tagline`}
+              {...getVisualEditorAttributes(`translations.${language}.footer.tagline`)}
               data-sb-object-id={footerTranslationsObjectId}
               data-sb-field-path={`${language}.tagline`}
             >
@@ -59,7 +62,7 @@ const Footer: React.FC = () => {
             <div className="mt-6">
                 <h4
                   className="font-semibold mb-3 text-sm"
-                  data-nlv-field-path={`translations.${language}.footer.followUs`}
+                  {...getVisualEditorAttributes(`translations.${language}.footer.followUs`)}
                   data-sb-object-id={footerTranslationsObjectId}
                   data-sb-field-path={`${language}.followUs`}
                 >
@@ -82,7 +85,7 @@ const Footer: React.FC = () => {
                                     rel="noopener noreferrer"
                                     aria-label={link.label}
                                     className="text-stone-500 hover:text-stone-900 transition-colors"
-                                    data-nlv-field-path={`site.footer.socialLinks.${index}`}
+                                    {...getVisualEditorAttributes(`site.footer.socialLinks.${index}`)}
                                     data-sb-field-path={`footer.socialLinks.${index}`}
                                     data-sb-object-id={siteConfigObjectId}
                                 >
@@ -97,7 +100,7 @@ const Footer: React.FC = () => {
           <div>
             <h4
               className="font-semibold mb-4"
-              data-nlv-field-path={`translations.${language}.footer.shop`}
+              {...getVisualEditorAttributes(`translations.${language}.footer.shop`)}
               data-sb-object-id={footerTranslationsObjectId}
               data-sb-field-path={`${language}.shop`}
             >
@@ -129,7 +132,7 @@ const Footer: React.FC = () => {
           <div>
             <h4
               className="font-semibold mb-4"
-              data-nlv-field-path={`translations.${language}.footer.about`}
+              {...getVisualEditorAttributes(`translations.${language}.footer.about`)}
               data-sb-object-id={footerTranslationsObjectId}
               data-sb-field-path={`${language}.about`}
             >
@@ -161,7 +164,7 @@ const Footer: React.FC = () => {
           <div>
             <h4
               className="font-semibold mb-4"
-              data-nlv-field-path={`translations.${language}.footer.policies`}
+              {...getVisualEditorAttributes(`translations.${language}.footer.policies`)}
               data-sb-object-id={footerTranslationsObjectId}
               data-sb-field-path={`${language}.policies`}
             >
@@ -212,7 +215,9 @@ const Footer: React.FC = () => {
           </div>
         </div>
         <div className="mt-12 pt-8 border-t border-stone-200 text-center text-sm text-stone-400">
-          <p data-nlv-field-path="site.footer.legalName">&copy; {new Date().getFullYear()} {legalName}. All Rights Reserved.</p>
+          <p {...getVisualEditorAttributes('site.footer.legalName')}>
+            &copy; {new Date().getFullYear()} {legalName}. All Rights Reserved.
+          </p>
         </div>
       </div>
     </footer>

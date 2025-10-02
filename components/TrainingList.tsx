@@ -3,6 +3,7 @@ import { motion } from 'framer-motion';
 import type { TrainingCatalogContent, TrainingEntry } from '../types';
 import { useLanguage } from '../contexts/LanguageContext';
 import { fetchVisualEditorJson } from '../utils/fetchVisualEditorJson';
+import { getVisualEditorAttributes } from '../utils/stackbitBindings';
 
 interface TrainingListProps {
   title?: string;
@@ -66,7 +67,7 @@ const TrainingList: React.FC<TrainingListProps> = ({ title, description, entries
   return (
     <section
       className="py-16 sm:py-24"
-      data-nlv-field-path={fieldPath}
+      {...getVisualEditorAttributes(fieldPath)}
       data-sb-field-path={fieldPath}
     >
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
@@ -79,7 +80,7 @@ const TrainingList: React.FC<TrainingListProps> = ({ title, description, entries
                 viewport={{ once: true }}
                 transition={{ duration: 0.5 }}
                 className="text-3xl sm:text-4xl font-semibold tracking-tight text-stone-900"
-                data-nlv-field-path={fieldPath ? `${fieldPath}.title` : undefined}
+                {...getVisualEditorAttributes(fieldPath ? `${fieldPath}.title` : undefined)}
                 data-sb-field-path={fieldPath ? `${fieldPath}.title` : undefined}
               >
                 {title}
@@ -92,7 +93,7 @@ const TrainingList: React.FC<TrainingListProps> = ({ title, description, entries
                 viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: 0.05 }}
                 className="mt-4 text-lg text-stone-600"
-                data-nlv-field-path={fieldPath ? `${fieldPath}.description` : undefined}
+                {...getVisualEditorAttributes(fieldPath ? `${fieldPath}.description` : undefined)}
                 data-sb-field-path={fieldPath ? `${fieldPath}.description` : undefined}
               >
                 {description}
@@ -104,7 +105,7 @@ const TrainingList: React.FC<TrainingListProps> = ({ title, description, entries
         {items.length === 0 ? (
           <p
             className="text-stone-500"
-            data-nlv-field-path={`translations.${language}.training.emptyState`}
+            {...getVisualEditorAttributes(`translations.${language}.training.emptyState`)}
             data-sb-field-path={`translations.${language}.training.emptyState`}
           >
             {t('training.emptyState')}
@@ -123,14 +124,14 @@ const TrainingList: React.FC<TrainingListProps> = ({ title, description, entries
                   viewport={{ once: true }}
                   transition={{ duration: 0.45, delay: index * 0.05 }}
                   className="flex h-full flex-col justify-between rounded-3xl border border-stone-200 bg-white p-8 shadow-sm shadow-stone-100"
-                  data-nlv-field-path={itemFieldPath}
+                  {...getVisualEditorAttributes(itemFieldPath)}
                   data-sb-field-path={itemFieldPath}
                 >
                   <div>
                     {item.courseTitle && (
                       <h3
                         className="text-xl font-semibold text-stone-900"
-                        data-nlv-field-path={itemFieldPath ? `${itemFieldPath}.courseTitle` : undefined}
+                        {...getVisualEditorAttributes(itemFieldPath ? `${itemFieldPath}.courseTitle` : undefined)}
                         data-sb-field-path={itemFieldPath ? `${itemFieldPath}.courseTitle` : undefined}
                       >
                         {item.courseTitle}
@@ -139,7 +140,7 @@ const TrainingList: React.FC<TrainingListProps> = ({ title, description, entries
                     {item.courseSummary && (
                       <p
                         className="mt-4 text-sm text-stone-600"
-                        data-nlv-field-path={itemFieldPath ? `${itemFieldPath}.courseSummary` : undefined}
+                        {...getVisualEditorAttributes(itemFieldPath ? `${itemFieldPath}.courseSummary` : undefined)}
                         data-sb-field-path={itemFieldPath ? `${itemFieldPath}.courseSummary` : undefined}
                       >
                         {item.courseSummary}
@@ -157,11 +158,11 @@ const TrainingList: React.FC<TrainingListProps> = ({ title, description, entries
                       target={item.linkUrl ? '_blank' : undefined}
                       rel={item.linkUrl ? 'noopener noreferrer' : undefined}
                       aria-disabled={!item.linkUrl}
-                      data-nlv-field-path={itemFieldPath ? `${itemFieldPath}.linkUrl` : undefined}
+                      {...getVisualEditorAttributes(itemFieldPath ? `${itemFieldPath}.linkUrl` : undefined)}
                       data-sb-field-path={itemFieldPath ? `${itemFieldPath}.linkUrl` : undefined}
                     >
                       <span
-                        data-nlv-field-path={`translations.${language}.training.learnMore`}
+                        {...getVisualEditorAttributes(`translations.${language}.training.learnMore`)}
                         data-sb-field-path={`translations.${language}.training.learnMore`}
                       >
                         {t('training.learnMore')}

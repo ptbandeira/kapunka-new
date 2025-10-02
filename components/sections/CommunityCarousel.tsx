@@ -1,5 +1,6 @@
 import React, { useEffect, useMemo, useState, useCallback } from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
+import { getVisualEditorAttributes } from '../../utils/stackbitBindings';
 
 export interface CommunityCarouselSlideProps {
   image?: string;
@@ -118,14 +119,14 @@ const CommunityCarousel: React.FC<CommunityCarouselProps> = ({
   return (
     <section
       className="py-20 sm:py-28 bg-stone-50"
-      data-nlv-field-path={fieldPath}
+      {...getVisualEditorAttributes(fieldPath)}
       data-sb-field-path={fieldPath}
     >
       <div className="container mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
         {title && (
           <div
             className="max-w-3xl"
-            data-nlv-field-path={fieldPath ? `${fieldPath}.title` : undefined}
+            {...getVisualEditorAttributes(fieldPath ? `${fieldPath}.title` : undefined)}
             data-sb-field-path={fieldPath ? `${fieldPath}.title` : undefined}
           >
             <h2 className="text-3xl sm:text-4xl font-semibold tracking-tight text-stone-900">{title}</h2>
@@ -136,7 +137,7 @@ const CommunityCarousel: React.FC<CommunityCarouselProps> = ({
             <div
               className="relative overflow-hidden"
               style={maskStyle}
-              data-nlv-field-path={slidesFieldPath}
+              {...getVisualEditorAttributes(slidesFieldPath)}
               data-sb-field-path={slidesFieldPath}
             >
               {marqueeSlides.length > 0 ? (
@@ -148,7 +149,7 @@ const CommunityCarousel: React.FC<CommunityCarouselProps> = ({
                     <figure
                       key={buildSlideKey(slide, `marquee-slide-${index}`)}
                       className="group relative flex-shrink-0 w-40 h-40 sm:w-48 sm:h-48 lg:w-56 lg:h-56 overflow-hidden bg-stone-100"
-                      data-nlv-field-path={slide.fieldPath}
+                      {...getVisualEditorAttributes(slide.fieldPath)}
                       data-sb-field-path={slide.fieldPath}
                     >
                       {slide.image ? (
@@ -156,13 +157,13 @@ const CommunityCarousel: React.FC<CommunityCarouselProps> = ({
                           src={slide.image}
                           alt={slide.alt ?? 'Kapunka ritual in our community'}
                           className="h-full w-full object-cover"
-                          data-nlv-field-path={slide.imageFieldPath}
+                          {...getVisualEditorAttributes(slide.imageFieldPath)}
                           data-sb-field-path={slide.imageFieldPath}
                         />
                       ) : (
                         <div
                           className="flex h-full w-full flex-col items-center justify-center gap-2 text-center text-xs text-stone-400"
-                          data-nlv-field-path={slide.imageFieldPath}
+                          {...getVisualEditorAttributes(slide.imageFieldPath)}
                           data-sb-field-path={slide.imageFieldPath}
                         >
                           <span className="font-medium text-stone-500">Add a photo</span>
@@ -171,7 +172,7 @@ const CommunityCarousel: React.FC<CommunityCarouselProps> = ({
                       )}
                       <span
                         className="sr-only"
-                        data-nlv-field-path={slide.altFieldPath}
+                        {...getVisualEditorAttributes(slide.altFieldPath)}
                         data-sb-field-path={slide.altFieldPath}
                       >
                         {slide.alt ?? 'Community carousel image'}
@@ -200,14 +201,14 @@ const CommunityCarousel: React.FC<CommunityCarouselProps> = ({
                 >
                   <p
                     className="leading-relaxed"
-                    data-nlv-field-path={currentQuoteSlide.quoteFieldPath}
+                    {...getVisualEditorAttributes(currentQuoteSlide.quoteFieldPath)}
                     data-sb-field-path={currentQuoteSlide.quoteFieldPath}
                   >
                     {currentQuoteSlide.quote?.trim() ?? 'Share how Kapunka shows up in your community.'}
                   </p>
                   <div className="mt-3 text-xs font-semibold uppercase tracking-[0.2em] text-white/70">
                     <span
-                      data-nlv-field-path={currentQuoteSlide.nameFieldPath}
+                      {...getVisualEditorAttributes(currentQuoteSlide.nameFieldPath)}
                       data-sb-field-path={currentQuoteSlide.nameFieldPath}
                     >
                       {currentQuoteSlide.name ?? 'Community voice'}
@@ -216,7 +217,7 @@ const CommunityCarousel: React.FC<CommunityCarouselProps> = ({
                   {(currentQuoteSlide.role ?? '').trim().length > 0 && (
                     <div
                       className="mt-1 text-[11px] font-medium uppercase tracking-[0.12em] text-white/60"
-                      data-nlv-field-path={currentQuoteSlide.roleFieldPath}
+                      {...getVisualEditorAttributes(currentQuoteSlide.roleFieldPath)}
                       data-sb-field-path={currentQuoteSlide.roleFieldPath}
                     >
                       {currentQuoteSlide.role}

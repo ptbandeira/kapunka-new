@@ -5,6 +5,7 @@ import { useLanguage } from '../contexts/LanguageContext';
 import CourseCard from '../components/CourseCard';
 import type { Course } from '../types';
 import { fetchVisualEditorJson } from '../utils/fetchVisualEditorJson';
+import { getVisualEditorAttributes } from '../utils/stackbitBindings';
 
 interface CoursesResponse {
     courses?: Course[];
@@ -59,7 +60,7 @@ const Academy: React.FC = () => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
             className="text-4xl sm:text-5xl font-semibold tracking-tight"
-            data-nlv-field-path={`translations.${language}.academy.headerTitle`}
+            {...getVisualEditorAttributes(`translations.${language}.academy.headerTitle`)}
           >
             {t('academy.headerTitle')}
           </motion.h1>
@@ -68,7 +69,7 @@ const Academy: React.FC = () => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.1 }}
             className="mt-4 text-lg text-stone-600 max-w-3xl mx-auto"
-            data-nlv-field-path={`translations.${language}.academy.headerSubtitle`}
+            {...getVisualEditorAttributes(`translations.${language}.academy.headerSubtitle`)}
           >
             {t('academy.headerSubtitle')}
           </motion.p>
@@ -79,12 +80,12 @@ const Academy: React.FC = () => {
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <h2
             className="text-3xl font-semibold text-center mb-12"
-            data-nlv-field-path={`translations.${language}.academy.coursesTitle`}
+            {...getVisualEditorAttributes(`translations.${language}.academy.coursesTitle`)}
           >
             {t('academy.coursesTitle')}
           </h2>
           {loading ? (
-            <p className="text-center" data-nlv-field-path={`translations.${language}.common.loadingCourses`}>
+            <p className="text-center" {...getVisualEditorAttributes(`translations.${language}.common.loadingCourses`)}>
               {t('common.loadingCourses')}
             </p>
           ) : (

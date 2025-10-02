@@ -8,6 +8,7 @@ import { useCart } from '../contexts/CartContext';
 import { useUI } from '../contexts/UIContext';
 import type { Language } from '../types';
 import { useSiteSettings } from '../contexts/SiteSettingsContext';
+import { getVisualEditorAttributes } from '../utils/stackbitBindings';
 
 const SUPPORTED_LANGUAGES: Array<{ code: Language; name: string }> = [
   { code: 'en', name: 'EN' },
@@ -32,7 +33,7 @@ const NavItem: React.FC<{
   const renderNavContent = useCallback(({ isActive }: { isActive: boolean }) => (
     <motion.div className="relative" whileHover={{ y: -2 }}>
       <span
-        data-nlv-field-path={fieldPath ?? undefined}
+        {...getVisualEditorAttributes(fieldPath ?? undefined)}
         data-sb-field-path={sbFieldPath ?? undefined}
       >
         {label}
@@ -167,7 +168,7 @@ const Header: React.FC = () => {
                 to="/"
                 className="text-2xl font-bold tracking-wider text-stone-900 transition-transform duration-300 hover:scale-105 text-center lg:text-left"
               >
-                <span data-nlv-field-path="site.brand.name">{brandName}</span>
+                <span {...getVisualEditorAttributes('site.brand.name')}>{brandName}</span>
               </Link>
             </div>
 
@@ -227,7 +228,7 @@ const Header: React.FC = () => {
             <div className="container mx-auto px-4 sm:px-6 lg:px-8 pt-6 h-full flex flex-col">
               <div className="flex justify-between items-center mb-12">
                 <Link to="/" onClick={handleMenuClose} className="text-2xl font-bold tracking-wider text-stone-900">
-                  <span data-nlv-field-path="site.brand.name">{brandName}</span>
+                  <span {...getVisualEditorAttributes('site.brand.name')}>{brandName}</span>
                 </Link>
                 <button onClick={handleMenuClose} className="p-2">
                   <X size={24} />
