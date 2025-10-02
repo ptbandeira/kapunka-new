@@ -1,5 +1,5 @@
 import React, { Suspense, lazy, useEffect } from 'react';
-import { HashRouter, Routes, Route, useLocation } from 'react-router-dom';
+import { BrowserRouter, Routes, Route, useLocation } from 'react-router-dom';
 import { AnimatePresence, motion } from 'framer-motion';
 import { Helmet, HelmetProvider } from 'react-helmet-async';
 
@@ -139,7 +139,7 @@ const App: React.FC = () => {
 
   return (
     <HelmetProvider>
-      <HashRouter>
+      <BrowserRouter>
         <div className="bg-stone-50 text-stone-800 min-h-screen flex flex-col">
           <Helmet>
             <title>{defaultTitle}</title>
@@ -155,7 +155,7 @@ const App: React.FC = () => {
           <MiniCart />
           <CookieConsent />
         </div>
-      </HashRouter>
+      </BrowserRouter>
     </HelmetProvider>
   );
 };
