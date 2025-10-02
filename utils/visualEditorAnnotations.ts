@@ -1,4 +1,5 @@
-import { getStackbitBinding } from './stackbitBindings';
+import { getStackbitBinding, prepareStackbitMetadata } from './stackbitBindings';
+import { isVisualEditorRuntime } from './visualEditorRuntime';
 
 const annotateElement = (element: Element): void => {
   if (!(element instanceof HTMLElement)) {
@@ -84,6 +85,12 @@ export const ensureVisualEditorAnnotations = (): void => {
   if (typeof document === 'undefined' || isInitialized) {
     return;
   }
+
+  if (!isVisualEditorRuntime()) {
+    return;
+  }
+
+  prepareStackbitMetadata();
 
   const start = () => {
     connectObserver();

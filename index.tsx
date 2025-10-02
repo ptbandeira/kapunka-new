@@ -6,7 +6,8 @@ import * as ReactJsxDevRuntime from 'react/jsx-dev-runtime';
 import App from './App';
 import { AppProvider } from './contexts/AppContext';
 import { ensureVisualEditorAnnotations } from './utils/visualEditorAnnotations';
-import { getStackbitAttributes } from './utils/stackbitBindings';
+import { getStackbitAttributes, prepareStackbitMetadata } from './utils/stackbitBindings';
+import { isVisualEditorRuntime } from './utils/visualEditorRuntime';
 
 type ReactWithPatchedCreateElement = typeof React & {
   __sbCreateElementPatched?: boolean;
@@ -57,18 +58,6 @@ const applyVisualEditorAnnotationsToProps = <T extends VisualEditorProps | null 
   return nextProps as T;
 };
 
-if (!reactNamespace.__sbCreateElementPatched) {
-  const originalCreateElement = React.createElement;
-
-  const patchedCreateElement: typeof React.createElement = (type, props, ...children) => {
-    const nextProps = applyVisualEditorAnnotationsToProps(props as VisualEditorProps | null | undefined);
-    return originalCreateElement(type, nextProps, ...children);
-  };
-
-  (React as unknown as { createElement: typeof React.createElement }).createElement = patchedCreateElement;
-  reactNamespace.__sbCreateElementPatched = true;
-}
-
 type JsxRuntimeModule =
   | (typeof ReactJsxRuntime & { __sbPatched?: boolean })
   | (typeof ReactJsxDevRuntime & { __sbPatched?: boolean });
@@ -99,10 +88,26 @@ const patchJsxRuntime = (runtime: JsxRuntimeModule): void => {
   runtime.__sbPatched = true;
 };
 
-patchJsxRuntime(ReactJsxRuntime as JsxRuntimeModule);
-patchJsxRuntime(ReactJsxDevRuntime as JsxRuntimeModule);
+const visualEditorEnabled = isVisualEditorRuntime();
 
-ensureVisualEditorAnnotations();
+if (visualEditorEnabled && !reactNamespace.__sbCreateElementPatched) {
+  const originalCreateElement = React.createElement;
+
+  const patchedCreateElement: typeof React.createElement = (type, props, ...children) => {
+    const nextProps = applyVisualEditorAnnotationsToProps(props as VisualEditorProps | null | undefined);
+    return originalCreateElement(type, nextProps, ...children);
+  };
+
+  (React as unknown as { createElement: typeof React.createElement }).createElement = patchedCreateElement;
+  reactNamespace.__sbCreateElementPatched = true;
+}
+
+if (visualEditorEnabled) {
+  patchJsxRuntime(ReactJsxRuntime as JsxRuntimeModule);
+  patchJsxRuntime(ReactJsxDevRuntime as JsxRuntimeModule);
+  prepareStackbitMetadata();
+  ensureVisualEditorAnnotations();
+}
 
 const rootElement = document.getElementById('root');
 if (!rootElement) {

@@ -11,6 +11,7 @@ import { useSiteSettings } from './contexts/SiteSettingsContext';
 import { useLanguage } from './contexts/LanguageContext';
 import type { Language, LocalizedText } from './types';
 import { ensureVisualEditorAnnotations } from './utils/visualEditorAnnotations';
+import { isVisualEditorRuntime } from './utils/visualEditorRuntime';
 
 const Home = lazy(() => import('./pages/Home'));
 const Shop = lazy(() => import('./pages/Shop'));
@@ -134,6 +135,10 @@ const App: React.FC = () => {
     getLocalizedValue(settings.seo?.defaultDescription, language) ?? FALLBACK_DESCRIPTION;
 
   useEffect(() => {
+    if (!isVisualEditorRuntime()) {
+      return;
+    }
+
     ensureVisualEditorAnnotations();
   }, []);
 
