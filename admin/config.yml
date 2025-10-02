@@ -1924,6 +1924,7 @@ collections:
             name: pages
             widget: list
             collapsed: true
+            label_singular: Page
             summary: "{{fields.label}} · {{fields.slug}}"
             fields:
               - { label: Page Label, name: label, widget: string }
@@ -1933,16 +1934,19 @@ collections:
                 name: sections
                 widget: list
                 collapsed: true
-                summary: "{{fields.name}}"
+                label_singular: Section
+                summary: "{{fields.name}} · {{fields.key}}"
                 fields:
                   - { label: Section Key, name: key, widget: string }
                   - { label: Section Name, name: name, widget: string }
-                  - label: Copy Blocks
+                  - label: Content Blocks
                     name: copy
                     widget: list
                     collapsed: true
-                    summary: "{{fields.key}}"
+                    label_singular: Content block
+                    summary: "{% if fields.label %}{{fields.label}} · {% endif %}{{fields.key}}"
                     fields:
+                      - { label: Admin Label (e.g. Headline), name: label, widget: string, required: false, hint: "Optional helper name used only inside the editor." }
                       - { label: Field Key, name: key, widget: string }
                       - label: Text
                         name: value
@@ -1951,24 +1955,35 @@ collections:
                           - { label: English, name: en, widget: text, required: false }
                           - { label: Portuguese, name: pt, widget: text, required: false }
                           - { label: Spanish, name: es, widget: text, required: false }
-                  - label: Assets & Media
+                  - label: Media & Assets
                     name: assets
                     widget: list
                     required: false
                     collapsed: true
-                    summary: "{{fields.key}}"
+                    label_singular: Asset
+                    summary: "{% if fields.label %}{{fields.label}} · {% endif %}{{fields.key}}"
                     fields:
+                      - { label: Admin Label (e.g. Hero Image), name: label, widget: string, required: false, hint: "Optional helper name used only inside the editor." }
                       - { label: Field Key, name: key, widget: string }
                       - { label: "URL or Path", name: value, widget: string, required: false }
-                  - label: Options & Layout
+                  - label: Layout & Settings
                     name: options
                     widget: list
                     required: false
                     collapsed: true
-                    summary: "{{fields.key}}"
+                    label_singular: Setting
+                    summary: "{% if fields.label %}{{fields.label}} · {% endif %}{{fields.key}}"
                     fields:
+                      - { label: Admin Label (e.g. Columns), name: label, widget: string, required: false, hint: "Optional helper name used only inside the editor." }
                       - { label: Setting Key, name: key, widget: string }
-                      - { label: Value, name: value, widget: string, required: false }
+                      - label: Value
+                        name: value
+                        widget: object
+                        required: false
+                        fields:
+                          - { label: English, name: en, widget: string, required: false, hint: "Stored as raw text. Numbers or booleans will be auto-detected at runtime." }
+                          - { label: Portuguese, name: pt, widget: string, required: false }
+                          - { label: Spanish, name: es, widget: string, required: false }
   - name: courses
     label: Courses
     group: "9. Legacy / Catalog"
