@@ -2,15 +2,15 @@
   "type": "HomePage",
   "metaTitle": "Kapunka — Rituales de argán para piel sensible y post-procedimiento",
   "metaDescription": "Cuidado clínico con argán marroquí, de confianza en clínicas y pensado para el día a día.",
-  "heroHeadline": "Sé agradecido con tu piel.",
-  "heroSubheadline": "Rituales suaves de argán desde Marruecos para piel sensible y post-procedimiento. Kapunka 2.0: un cuidado sereno y humano.",
+  "heroHeadline": "Da las gracias a tu piel.",
+  "heroSubheadline": "Nacida en clínicas, perfeccionada con el tacto. Kapunka une rituales terapéuticos y aceite de argán puro de Marruecos — un cuidado que reconecta cuerpo y mente.",
   "heroCtas": {
     "ctaPrimary": {
-      "label": "Ver rituales",
+      "label": "Comprar rituales de argán",
       "href": "/shop"
     },
     "ctaSecondary": {
-      "label": "Alianzas con clínicas",
+      "label": "Para clínicas y profesionales",
       "href": "/clinics"
     }
   },
@@ -28,12 +28,12 @@
   "sections": [
     {
       "type": "mediaShowcase",
-      "title": "Historias de rituales",
+      "title": "Historias de Rituales",
       "items": [
         {
           "eyebrow": "Desde el blog",
-          "title": "Nacido de la gratitud",
-          "body": "“Kapunka” significa “gracias”. Creamos cuidados de argán con respeto clínico: rutinas sencillas que reconfortan y acompañan la recuperación.",
+          "title": "De la gratitud al método",
+          "body": "De un gesto sencillo nació un protocolo terapéutico.",
           "imageRef": "/content/uploads/roots-olive-tree.jpg",
           "imageAlt": "Manos aplicando aceite de argán con luz cálida",
           "ctaLabel": "Nuestra historia",
@@ -41,8 +41,8 @@
         },
         {
           "eyebrow": "Para clínicas",
-          "title": "Preferido por dermatólogos, medspas y clínicas holísticas",
-          "body": "Tratamientos suaves, de bajo residuo y guiados por el conocimiento, con soporte educativo para equipos seguros.",
+          "title": "De confianza profesional",
+          "body": "Utilizado desde hace más de una década por dermatólogos y clínicas de recuperación.",
           "imageRef": "/content/uploads/clinic-hands.jpg",
           "imageAlt": "Profesional masajeando el rostro de una clienta con cuidado de argán",
           "ctaLabel": "Aliarte con nosotros",
@@ -50,8 +50,8 @@
         },
         {
           "eyebrow": "Cadena de suministro",
-          "title": "Abastecimiento patrimonial, estándares clínicos",
-          "body": "Obtenemos argán de origen único y seguimos cada lote desde las cooperativas hasta las certificaciones para cuidar a escala humana.",
+          "title": "Origen con herencia, estándar clínico",
+          "body": "De las cooperativas marroquíes a las salas hospitalarias.",
           "imageRef": "/content/uploads/argan-coop.jpg",
           "imageAlt": "Frutos de argán recién cosechados en una cesta tejida",
           "ctaLabel": "Nuestros estándares",
@@ -60,7 +60,7 @@
         {
           "eyebrow": "Rituales",
           "title": "Del hammam a la recuperación moderna",
-          "body": "Aceites puros, brumas florales y lavados limpios enlazan la sabiduría ancestral con el cuidado diario.",
+          "body": "Sabiduría ancestral, estructura científica.",
           "imageRef": "/content/uploads/hammam-light.jpg",
           "imageAlt": "Sala de hammam llena de vapor con una persona descansando",
           "ctaLabel": "Comprar rituales",
@@ -93,7 +93,7 @@
     },
     {
       "type": "productGrid",
-      "title": "Nuestros más vendidos",
+      "title": "Esenciales para rituales diarios",
       "products": [
         {
           "id": "pure-argan-100"
@@ -137,16 +137,16 @@
     {
       "type": "newsletterSignup",
       "title": "Únete a la Lista",
-      "subtitle": "Consejos para rutinas de piel sensible, una o dos veces al mes. Sin spam. Baja cuando quieras.",
+      "subtitle": "Reflexiones mensuales sobre piel, cuidado y recuperación. Sin ruido — solo mensajes con propósito de Kapunka.",
       "placeholder": "Introduce tu correo electrónico",
-      "ctaLabel": "Suscribirse",
+      "ctaLabel": "Suscribirme",
       "confirmation": "¡Gracias por suscribirte!",
       "background": "beige",
       "alignment": "center"
     },
     {
       "type": "testimonials",
-      "title": "Lo que dicen los profesionales",
+      "title": "Lo que dicen los Profesionales",
       "quotes": [
         {
           "text": "Después de los tratamientos con láser, recomiendo el argán puro de Kapunka para acelerar la reparación de la barrera. Mis pacientes notan menos tirantez y enrojecimiento.",

@@ -10,7 +10,7 @@
   "sections": [
     {
       "type": "productGrid",
-      "title": "Our Bestsellers",
+      "title": "Essentials for daily rituals",
       "products": [
         {
           "id": "pure-argan-100"
@@ -30,8 +30,8 @@
       "items": [
         {
           "eyebrow": "From the blog",
-          "title": "Born from gratitude",
-          "body": "“Kapunka” means “thank you.” We make argan care with clinical respect—simple routines that comfort, shield, and support healing.",
+          "title": "From gratitude to method",
+          "body": "How a simple gesture of care became a therapeutic protocol.",
           "imageRef": "/content/uploads/roots-olive-tree.jpg",
           "imageAlt": "Hands applying argan oil in warm light",
           "ctaLabel": "Our Story",
@@ -40,8 +40,8 @@
         },
         {
           "eyebrow": "For clinics",
-          "title": "Preferred by dermatologists, medspas, and holistic clinics",
-          "body": "Gentle, low-residue treatments with barrier stability and aroma balance—supported by education for confident teams.",
+          "title": "Trusted by professionals",
+          "body": "Used by dermatologists, medspas, and recovery clinics for over a decade.",
           "imageRef": "/content/uploads/clinic-hands.jpg",
           "imageAlt": "Practitioner massaging a client's face with argan care",
           "ctaLabel": "Partner With Us",
@@ -50,8 +50,8 @@
         },
         {
           "eyebrow": "Supply chain",
-          "title": "Heritage sourcing, clinic-grade standards",
-          "body": "We source single-origin argan and trace every lot from cooperatives to certifications to maintain human care at scale.",
+          "title": "Heritage sourcing, clinical standards",
+          "body": "From Moroccan cooperatives to hospital rooms.",
           "imageRef": "/content/uploads/argan-coop.jpg",
           "imageAlt": "Harvested argan fruit gathered in a woven basket",
           "ctaLabel": "Our Standards",
@@ -61,7 +61,7 @@
         {
           "eyebrow": "Rituals",
           "title": "From hammam rituals to modern recovery",
-          "body": "Pure oil, floral mists, and clean washes connect ancestral wisdom with today’s recovery routines.",
+          "body": "Ancient wisdom, scientifically structured.",
           "imageRef": "/content/uploads/hammam-light.jpg",
           "imageAlt": "Steam-filled hammam room with a person resting",
           "ctaLabel": "Shop Rituals",
@@ -150,7 +150,7 @@
     {
       "type": "newsletterSignup",
       "title": "Join The List",
-      "subtitle": "Tips for sensitive-skin routines, once or twice a month. No spam. Unsubscribe anytime.",
+      "subtitle": "Monthly reflections on skin, care, and recovery. No noise — just thoughtful notes from Kapunka.",
       "placeholder": "Enter your email address",
       "ctaLabel": "Subscribe",
       "confirmation": "Thank you for subscribing!",
@@ -181,14 +181,14 @@
   "metaTitle": "Kapunka — Argan rituals for sensitive and post-procedure skin",
   "metaDescription": "Clinical-grade Moroccan argan care trusted by clinics, designed for everyday recovery.",
   "type": "HomePage",
-  "heroSubheadline": "Gentle argan rituals from Morocco, made for sensitive and post-procedure skin. Welcome to Kapunka 2.0: calm care that feels human.",
+  "heroSubheadline": "Born in clinics, refined by touch. Kapunka brings therapeutic rituals with pure Moroccan argan oil — care that reconnects body and mind.",
   "heroCtas": {
     "ctaPrimary": {
       "label": "Shop argan rituals",
       "href": "/shop"
     },
     "ctaSecondary": {
-      "label": "Clinics partnership",
+      "label": "For clinics & professionals",
       "href": "/clinics"
     }
   }
