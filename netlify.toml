@@ -16,3 +16,15 @@
 [visual_editor]
   devCommand = "npm run dev"
   previewPort = 5173
+
+[[headers]]
+  for = "/_static/app-assets/*"
+  [headers.values]
+    Access-Control-Allow-Origin = "https://create.netlify.com"
+    Access-Control-Allow-Credentials = "true"
+
+[[headers]]
+  for = "/content/uploads/*"
+  [headers.values]
+    Access-Control-Allow-Origin = "https://create.netlify.com"
+    Access-Control-Allow-Credentials = "true"
