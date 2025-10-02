@@ -1,261 +1,300 @@
 {
-  "type": "PolicyCollection",
-  "items": [
-    {
-      "id": "shipping",
-      "title": {
-        "en": "Shipping Policy",
-        "pt": "Política de Envio",
-        "es": "Política de Envío"
-      },
-      "metaTitle": {
-        "en": "Shipping Policy | Kapunka Skincare",
-        "pt": "Política de Envio | Kapunka Skincare",
-        "es": "Política de Envío | Kapunka Skincare"
-      },
-      "metaDescription": {
-        "en": "Understand processing times, delivery windows, and customs guidance for every Kapunka order.",
-        "pt": "Saiba como funcionam os prazos de preparação, entrega e alfândega em cada pedido Kapunka.",
-        "es": "Conoce los tiempos de preparación, los plazos de entrega y las orientaciones aduaneras en cada pedido Kapunka."
-      },
-      "content": {
-        "en": "We prepare each Kapunka order within one to two business days, coordinating with our clinic logistics partners to keep products protected throughout transit.",
-        "pt": "Preparamos cada pedido Kapunka em um a dois dias úteis, coordenando com os nossos parceiros logísticos de clínicas para manter os produtos protegidos durante todo o transporte.",
-        "es": "Preparamos cada pedido Kapunka en uno o dos días laborables, coordinándonos con nuestros socios logísticos de clínicas para mantener los productos protegidos durante todo el transporte."
-      },
-      "sections": [
+    "type": "PolicyCollection",
+    "items": [
         {
-          "id": "processing",
-          "title": {
-            "en": "Processing & dispatch",
-            "pt": "Processamento e expedição",
-            "es": "Procesamiento y envío"
-          },
-          "body": {
-            "en": "- Orders confirmed before 1 p.m. GMT ship the same business day whenever stock is verified.\n- Purchases placed after the cut-off or on weekends leave our Casablanca hub on the next working day.\n- If an item requires fresh bottling, we will email a preparation window and ship immediately once complete.",
-            "pt": "- Pedidos confirmados antes das 13h (GMT) são enviados no mesmo dia útil sempre que o stock esteja verificado.\n- Compras realizadas após esse horário ou aos fins de semana saem do nosso hub em Casablanca no dia útil seguinte.\n- Se algum item precisar de envase fresco, enviaremos por e-mail o novo prazo de preparação e faremos o envio assim que estiver concluído.",
-            "es": "- Los pedidos confirmados antes de las 13:00 (GMT) se envían el mismo día laborable siempre que el stock esté verificado.\n- Las compras realizadas después de esa hora o en fin de semana salen de nuestro centro de Casablanca el siguiente día laborable.\n- Si algún artículo requiere un nuevo envasado, avisaremos por correo electrónico del plazo de preparación y enviaremos en cuanto esté listo."
-          }
+            "id": "shipping",
+            "title": {
+                "en": "Shipping Policy",
+                "pt": "Pol\u00edtica de Envio",
+                "es": "Pol\u00edtica de Env\u00edo"
+            },
+            "metaTitle": {
+                "en": "Shipping Policy | Kapunka Skincare",
+                "pt": "Pol\u00edtica de Envio | Kapunka Skincare",
+                "es": "Pol\u00edtica de Env\u00edo | Kapunka Skincare"
+            },
+            "metaDescription": {
+                "en": "Review Kapunka home delivery schedules, responsibilities, and how to report transport damage or exercise withdrawal.",
+                "pt": "Consulte os hor\u00e1rios de entrega da Kapunka, as responsabilidades e como comunicar danos de transporte ou exercer o direito de livre resolu\u00e7\u00e3o.",
+                "es": "Revisa los horarios de entrega de Kapunka, las responsabilidades y c\u00f3mo comunicar da\u00f1os en el transporte o ejercer el desistimiento."
+            },
+            "content": {
+                "en": "Kapunka organises home deliveries from Monday to Friday, offering time slots during checkout and coordinating transport agencies according to the destination.",
+                "pt": "A Kapunka organiza entregas ao domic\u00edlio de segunda a sexta-feira, disponibilizando janelas hor\u00e1rias no checkout e coordenando ag\u00eancias de transporte conforme o destino.",
+                "es": "Kapunka organiza entregas a domicilio de lunes a viernes, ofreciendo franjas horarias durante el checkout y coordinando agencias de transporte seg\u00fan el destino."
+            },
+            "sections": [
+                {
+                    "id": "delivery-schedule",
+                    "title": {
+                        "en": "Delivery schedule and time slots",
+                        "pt": "Hor\u00e1rio de entrega e janelas dispon\u00edveis",
+                        "es": "Horario de entrega y franjas disponibles"
+                    },
+                    "body": {
+                        "en": "Home delivery is carried out from Monday to Friday. The USER may choose the preferred day and time slot for receiving the order among the options shown at checkout.\n\nIf no slot is selected, deliveries within the provinces of Barcelona or Lleida will take place within 72 working hours from the business day after the order is placed. For addresses outside these provinces, the order will be handled by a transport agency, unless otherwise indicated, within 72 working hours from confirmation.",
+                        "pt": "A entrega ao domic\u00edlio \u00e9 realizada de segunda a sexta-feira. O UTILIZADOR pode escolher o dia e a janela hor\u00e1ria preferidos para receber a encomenda entre as op\u00e7\u00f5es apresentadas no checkout.\n\nSe nenhuma janela for selecionada, as entregas nas prov\u00edncias de Barcelona ou Lleida ocorrer\u00e3o no prazo de 72 horas \u00fateis a contar do dia \u00fatil seguinte \u00e0 realiza\u00e7\u00e3o do pedido. Para moradas fora destas prov\u00edncias, a encomenda ser\u00e1 tratada por uma ag\u00eancia de transporte, salvo indica\u00e7\u00e3o em contr\u00e1rio, no prazo de 72 horas \u00fateis ap\u00f3s a confirma\u00e7\u00e3o.",
+                        "es": "La entrega a domicilio se realizar\u00e1 de lunes a viernes. El USUARIO podr\u00e1 elegir el d\u00eda y la franja horaria de su preferencia para la recepci\u00f3n del pedido entre las opciones mostradas al cerrar la compra.\n\nEn su defecto, si el domicilio indicado se encuentra dentro de la provincia de Barcelona o Lleida, la entrega se efectuar\u00e1 a las 72 horas del d\u00eda h\u00e1bil siguiente a la realizaci\u00f3n del pedido. Para domicilios fuera de estas provincias, la entrega se realizar\u00e1 mediante una agencia de transporte, salvo indicaci\u00f3n en contrario, dentro de las 72 horas h\u00e1biles siguientes a la realizaci\u00f3n del pedido."
+                    }
+                },
+                {
+                    "id": "delivery-liability",
+                    "title": {
+                        "en": "Transfer of risk and failed deliveries",
+                        "pt": "Transfer\u00eancia de risco e entregas falhadas",
+                        "es": "Transmisi\u00f3n del riesgo y entregas fallidas"
+                    },
+                    "body": {
+                        "en": "Home delivery implies the transfer of risk; from the moment the parcel is delivered, any deterioration, loss, or theft will no longer be Kapunka's responsibility.\n\nIf the USER is absent, our staff will leave a card with the office phone number so a new time slot and day can be arranged. If delivery is not possible, KAPUNKA may cancel the CONTRACT due to impossibility of performance and seek compensation if there is fraud or fault by the client.\n\nKAPUNKA will not be responsible for the condition of the products when the failure to deliver within the agreed period is attributable to the USER. P.O. boxes are not accepted as valid delivery addresses; if one is provided, the CONTRACT will not be valid and KAPUNKA may reverse any charges made.",
+                        "pt": "A entrega ao domic\u00edlio implica a transfer\u00eancia do risco; a partir do momento da entrega, qualquer deteriora\u00e7\u00e3o, perda ou roubo deixa de ser responsabilidade da Kapunka.\n\nSe o UTILIZADOR estiver ausente, a nossa equipa deixar\u00e1 um cart\u00e3o com o n\u00famero de telefone das oficinas para agendar um novo hor\u00e1rio e dia. Se a entrega n\u00e3o for poss\u00edvel, a KAPUNKA poder\u00e1 cancelar o CONTRATO por impossibilidade de cumprimento e reclamar indemniza\u00e7\u00e3o em caso de dolo ou culpa do cliente.\n\nA KAPUNKA n\u00e3o ser\u00e1 respons\u00e1vel pelo estado dos produtos quando o incumprimento do prazo acordado se deva ao UTILIZADOR. N\u00e3o se aceitam apartados de correio como moradas v\u00e1lidas; se for fornecido um, o CONTRATO carecer\u00e1 de validade e a KAPUNKA poder\u00e1 anular os encargos efetuados.",
+                        "es": "La entrega a domicilio conlleva la transmisi\u00f3n del riesgo; a partir de la entrega, el deterioro, p\u00e9rdida o robo de los productos dejar\u00e1n de ser responsabilidad de KAPUNKA.\n\nEn caso de ausencia, nuestro personal dejar\u00e1 una tarjeta con el n\u00famero de tel\u00e9fono de las oficinas para concertar un nuevo tramo horario y d\u00eda. Si no resulta posible realizar la entrega, KAPUNKA podr\u00e1 cancelar el CONTRATO por imposibilidad de cumplimiento y reclamar los da\u00f1os derivados de dolo o culpa del cliente.\n\nKAPUNKA no ser\u00e1 responsable del estado de los productos cuando la imposibilidad de entrega en el plazo acordado se deba a causas imputables al USUARIO. No se aceptan apartados de correos como direcciones de env\u00edo; si se facilita uno, el CONTRATO carecer\u00e1 de validez y KAPUNKA podr\u00e1 anular los cargos realizados."
+                    }
+                },
+                {
+                    "id": "damaged-goods",
+                    "title": {
+                        "en": "Damaged products during transport",
+                        "pt": "Produtos danificados durante o transporte",
+                        "es": "Productos da\u00f1ados durante el transporte"
+                    },
+                    "body": {
+                        "en": "Products must be returned protected, inside a box or protective bag. KAPUNKA will cover the shipping costs for delivery and return.\n\nIf the USER prefers to return the goods with a different carrier than the one proposed by KAPUNKA and that carrier charges higher rates, the USER will assume the difference. When a product is damaged during transport, the USER must report it by phone on the same day of receipt and note it on the carrier's delivery slip.\n\nBefore opening any product, the USER must verify that the packaging matches the order (model, colour, size, finish, etc.). If an anomaly is detected, KAPUNKA asks that the seal or packaging not be opened.",
+                        "pt": "Os produtos devem ser devolvidos protegidos, dentro de uma caixa ou bolsa protetora. A KAPUNKA suportar\u00e1 os custos de envio da entrega e da devolu\u00e7\u00e3o.\n\nSe o UTILIZADOR optar por devolver a mercadoria com uma transportadora diferente da proposta pela KAPUNKA e esta aplicar tarifas superiores, o UTILIZADOR assumir\u00e1 a diferen\u00e7a. Quando um produto for danificado durante o transporte, o UTILIZADOR deve comunic\u00e1-lo telefonicamente no mesmo dia da rece\u00e7\u00e3o e regist\u00e1-lo no comprovativo do transportador.\n\nAntes de abrir qualquer produto, o UTILIZADOR deve verificar que a embalagem corresponde ao pedido (modelo, cor, tamanho, acabamento, etc.). Se detetar alguma anomalia, a KAPUNKA solicita que n\u00e3o se rompa o selo nem a embalagem.",
+                        "es": "Los productos adquiridos deben devolverse protegidos, incluidos dentro de una caja o bolsa protectora. KAPUNKA asumir\u00e1 los gastos de env\u00edo por la entrega y la devoluci\u00f3n del producto.\n\nSi el USUARIO desea devolver la mercanc\u00eda con una empresa distinta a la propuesta por KAPUNKA y \u00e9sta aplica tarifas superiores, el USUARIO asumir\u00e1 la diferencia. Cuando el producto se haya da\u00f1ado durante el transporte es imprescindible comunicarlo telef\u00f3nicamente el mismo d\u00eda de la recepci\u00f3n y anotarlo en el albar\u00e1n del transportista.\n\nAntes de abrir cualquier producto, el USUARIO deber\u00e1 verificar que el embalaje coincide con lo solicitado (modelo, color, medida, acabado, etc.). Si detecta alguna anomal\u00eda, KAPUNKA ruega no abrir el precinto ni el embalaje."
+                    }
+                },
+                {
+                    "id": "withdrawal",
+                    "title": {
+                        "en": "Right of withdrawal for shipped orders",
+                        "pt": "Direito de livre resolu\u00e7\u00e3o para encomendas enviadas",
+                        "es": "Derecho de desistimiento para pedidos enviados"
+                    },
+                    "body": {
+                        "en": "Under Article 45 of Law 7/1996 on Retail Trade Regulation, the right of withdrawal does not apply to products with a shelf life of less than one month.\n\nTo exercise the right of withdrawal, the USER must notify KAPUNKA, with registered office at Els Alam\u00fas (25221) Barcelona, calle de la Pla\u00e7a la Placeta, 2, Piso 2, telephone 637520704 and email info@kapunkargan.com, by sending an unequivocal statement via postal letter, fax, or email.",
+                        "pt": "Nos termos do artigo 45 da Lei 7/1996 de Ordena\u00e7\u00e3o do Com\u00e9rcio Retalhista, n\u00e3o \u00e9 admitido o exerc\u00edcio do direito de livre resolu\u00e7\u00e3o sobre produtos com um prazo de validade inferior a um m\u00eas.\n\nPara exercer o direito de livre resolu\u00e7\u00e3o, o UTILIZADOR deve notificar a KAPUNKA, com sede em Els Alam\u00fas (25221) Barcelona, calle de la Pla\u00e7a la Placeta, 2, Piso 2, telefone 637520704 e e-mail info@kapunkargan.com, mediante declara\u00e7\u00e3o inequ\u00edvoca enviada por carta postal, fax ou correio eletr\u00f3nico.",
+                        "es": "Seg\u00fan lo establecido en el art\u00edculo 45 de la Ley 7/1996 de Ordenaci\u00f3n del Comercio Minorista, no se admitir\u00e1 el ejercicio del derecho de desistimiento sobre productos con una caducidad inferior a un mes.\n\nPara ejercer el derecho de desistimiento, el USUARIO deber\u00e1 notificar a KAPUNKA, con domicilio en Els Alam\u00fas (25221) Barcelona, calle de la Pla\u00e7a la Placeta, 2, Piso 2, tel\u00e9fono 637520704 y correo electr\u00f3nico info@kapunkargan.com, mediante una declaraci\u00f3n inequ\u00edvoca enviada por carta postal, fax o correo electr\u00f3nico."
+                    }
+                }
+            ]
         },
         {
-          "id": "timelines",
-          "title": {
-            "en": "Delivery windows & carriers",
-            "pt": "Prazos de entrega e transportadoras",
-            "es": "Plazos de entrega y transportistas"
-          },
-          "body": {
-            "en": "- Morocco and Portugal standard service: 2–4 business days via Chronopost or CTT with doorstep delivery.\n- European Union express: 3–5 business days via DHL Express with signature confirmation.\n- United States and Canada: 5–7 business days via FedEx International Priority.\n- Rural addresses or islands may require an additional 1–2 business days beyond the quoted windows.",
-            "pt": "- Serviço padrão para Marrocos e Portugal: 2 a 4 dias úteis via Chronopost ou CTT com entrega na porta.\n- União Europeia (expresso): 3 a 5 dias úteis via DHL Express com confirmação por assinatura.\n- Estados Unidos e Canadá: 5 a 7 dias úteis via FedEx International Priority.\n- Endereços rurais ou ilhas podem exigir 1 a 2 dias úteis adicionais além dos prazos indicados.",
-            "es": "- Servicio estándar para Marruecos y Portugal: 2 a 4 días laborables con Chronopost o CTT y entrega a domicilio.\n- Unión Europea exprés: 3 a 5 días laborables con DHL Express y confirmación con firma.\n- Estados Unidos y Canadá: 5 a 7 días laborables con FedEx International Priority.\n- Las direcciones rurales o en islas pueden requerir 1 a 2 días laborables adicionales sobre los plazos indicados."
-          }
+            "id": "returns",
+            "title": {
+                "en": "Return Policy",
+                "pt": "Pol\u00edtica de Devolu\u00e7\u00e3o",
+                "es": "Pol\u00edtica de Devoluciones"
+            },
+            "metaTitle": {
+                "en": "Return Policy | Kapunka Skincare",
+                "pt": "Pol\u00edtica de Devolu\u00e7\u00e3o | Kapunka Skincare",
+                "es": "Pol\u00edtica de Devoluciones | Kapunka Skincare"
+            },
+            "metaDescription": {
+                "en": "Learn how to request a Kapunka return, contact customer service, and understand refund timelines and conditions.",
+                "pt": "Saiba como solicitar uma devolu\u00e7\u00e3o Kapunka, contactar o apoio ao cliente e conhecer prazos e condi\u00e7\u00f5es de reembolso.",
+                "es": "Descubre c\u00f3mo solicitar una devoluci\u00f3n Kapunka, contactar con atenci\u00f3n al cliente y conocer los plazos y condiciones de reembolso."
+            },
+            "content": {
+                "en": "Kapunka manages returns directly to ensure that each request is handled with personal support and clear timelines.",
+                "pt": "A Kapunka gere as devolu\u00e7\u00f5es diretamente para garantir acompanhamento personalizado e prazos claros.",
+                "es": "Kapunka gestiona las devoluciones de forma directa para garantizar un acompa\u00f1amiento personalizado y plazos claros."
+            },
+            "sections": [
+                {
+                    "id": "return-requests",
+                    "title": {
+                        "en": "Requesting a return",
+                        "pt": "Solicitar uma devolu\u00e7\u00e3o",
+                        "es": "Solicitar una devoluci\u00f3n"
+                    },
+                    "body": {
+                        "en": "If the USER is not satisfied with the condition of the delivered products, they must immediately contact KAPUNKA at +34 637 520 704. Under Article 45 of Law 7/1996 on Retail Trade Regulation, the right of withdrawal does not apply to products with a shelf life under one month.",
+                        "pt": "Se o UTILIZADOR n\u00e3o estiver satisfeito com o estado dos produtos entregues, deve contactar imediatamente a KAPUNKA atrav\u00e9s do +34 637 520 704. Nos termos do artigo 45 da Lei 7/1996 de Ordena\u00e7\u00e3o do Com\u00e9rcio Retalhista, n\u00e3o \u00e9 poss\u00edvel exercer o direito de livre resolu\u00e7\u00e3o sobre produtos com prazo de validade inferior a um m\u00eas.",
+                        "es": "En caso de que el USUARIO no est\u00e9 conforme con el estado de los productos entregados deber\u00e1 contactar de forma inmediata con KAPUNKA en el n\u00famero +34 637 520 704. Seg\u00fan lo establecido en el art\u00edculo 45 de la Ley 7/1996 de Ordenaci\u00f3n del Comercio Minorista, no se admitir\u00e1 el ejercicio del derecho de desistimiento sobre productos con una caducidad inferior a un mes."
+                    }
+                },
+                {
+                    "id": "customer-service",
+                    "title": {
+                        "en": "Customer service contact",
+                        "pt": "Contacto de apoio ao cliente",
+                        "es": "Contacto de atenci\u00f3n al cliente"
+                    },
+                    "body": {
+                        "en": "For any enquiry or incident, you can reach Kapunka's customer service within business hours.\n\n- Phone: 637520704\n- Address: Els Alam\u00fas (25221) Lleida, calle de la Pla\u00e7a la Placeta, 2, Pis 2.\n- Service hours: 10:00 to 13:00\n- Email: info@kapunkargan.com\n\nReturn shipping costs arising from the exercise of the right of withdrawal are borne by the USER.",
+                        "pt": "Para qualquer quest\u00e3o ou incidente, pode contactar o servi\u00e7o de apoio ao cliente da Kapunka dentro do hor\u00e1rio comercial.\n\n- Telefone: 637520704\n- Morada: Els Alam\u00fas (25221) Lleida, calle de la Pla\u00e7a la Placeta, 2, Pis 2.\n- Hor\u00e1rio de atendimento: 10h00 \u00e0s 13h00\n- E-mail: info@kapunkargan.com\n\nAs despesas de devolu\u00e7\u00e3o decorrentes do exerc\u00edcio do direito de livre resolu\u00e7\u00e3o s\u00e3o suportadas pelo UTILIZADOR.",
+                        "es": "Para cualquier consulta o incidencia puede contactar con el servicio de atenci\u00f3n al cliente de KAPUNKA dentro del horario comercial.\n\n- Tel\u00e9fono: 637520704\n- Direcci\u00f3n: Els Alam\u00fas (25221) Lleida, calle de la Pla\u00e7a la Placeta, 2, Pis 2.\n- Horario de atenci\u00f3n: 10.00 a 13.00\n- Correo electr\u00f3nico: info@kapunkargan.com\n\nLos gastos de devoluci\u00f3n derivados del ejercicio del derecho de desistimiento ser\u00e1n por cuenta del USUARIO."
+                    }
+                },
+                {
+                    "id": "return-conditions",
+                    "title": {
+                        "en": "Condition requirements",
+                        "pt": "Requisitos de condi\u00e7\u00e3o",
+                        "es": "Requisitos de estado"
+                    },
+                    "body": {
+                        "en": "1) The product must be in the same condition as delivered and retain instructions, documentation, accessories, and, where possible, its original packaging and labelling.\n2) The return to KAPUNKA must be made using the same box or envelope as the delivery or a similar format that ensures the items arrive in perfect condition.\n3) The delivery note for the products must be included inside the package.",
+                        "pt": "1) O produto deve estar no mesmo estado em que foi entregue e conservar instru\u00e7\u00f5es, documenta\u00e7\u00e3o, acess\u00f3rios e, sempre que poss\u00edvel, a embalagem e rotulagem originais.\n2) A devolu\u00e7\u00e3o \u00e0 KAPUNKA deve ser feita utilizando a mesma caixa ou envelope da entrega ou um formato semelhante que garanta a chegada dos produtos em perfeito estado.\n3) Deve ser inclu\u00edda a guia de devolu\u00e7\u00e3o dos produtos dentro da embalagem.",
+                        "es": "1) El producto debe estar en el mismo estado en que se entreg\u00f3 y conservar instrucciones, documentaci\u00f3n, accesorios y, en la medida de lo posible, su embalaje y etiquetado original.\n2) La devoluci\u00f3n a KAPUNKA debe hacerse usando la misma caja o sobre utilizado en la entrega o, en su defecto, un formato similar que garantice la devoluci\u00f3n de los productos en perfecto estado.\n3) Deber\u00e1 incluirse el albar\u00e1n de devoluci\u00f3n de los productos dentro del paquete."
+                    }
+                },
+                {
+                    "id": "withdrawal-process",
+                    "title": {
+                        "en": "Withdrawal process and refunds",
+                        "pt": "Processo de livre resolu\u00e7\u00e3o e reembolsos",
+                        "es": "Proceso de desistimiento y reembolsos"
+                    },
+                    "body": {
+                        "en": "To exercise the right of withdrawal, the USER must notify KAPUNKA at Els Alam\u00fas (25221) Barcelona, calle de la Pla\u00e7a la Placeta, 2, Piso 2, telephone 637520704 and email info@kapunkargan.com, through an unequivocal statement sent by postal letter, fax, or email.\n\nRefunds will be issued once the condition of the merchandise has been verified, using the same payment method, within a maximum of fourteen calendar days from receipt of the withdrawal request when KAPUNKA manages the collection. If the USER ships the product via a carrier of their choice, the fourteen-day period will start when KAPUNKA is informed of the shipment or receives the product.\n\nReturn costs derived from exercising the right of withdrawal are borne by the USER. If the products do not arrive in perfect condition, KAPUNKA reserves the right to refund a lower amount.",
+                        "pt": "Para exercer o direito de livre resolu\u00e7\u00e3o, o UTILIZADOR deve notificar a KAPUNKA, em Els Alam\u00fas (25221) Barcelona, calle de la Pla\u00e7a la Placeta, 2, Piso 2, telefone 637520704 e e-mail info@kapunkargan.com, atrav\u00e9s de declara\u00e7\u00e3o inequ\u00edvoca enviada por carta postal, fax ou correio eletr\u00f3nico.\n\nOs reembolsos ser\u00e3o efetuados ap\u00f3s verifica\u00e7\u00e3o do estado da mercadoria, utilizando o mesmo meio de pagamento, no prazo m\u00e1ximo de catorze dias de calend\u00e1rio a contar da rece\u00e7\u00e3o do pedido de livre resolu\u00e7\u00e3o quando a KAPUNKA gere a recolha. Se o UTILIZADOR enviar o produto por uma transportadora da sua escolha, o prazo de catorze dias come\u00e7ar\u00e1 quando a KAPUNKA tiver conhecimento do envio ou receber o produto.\n\nAs despesas de devolu\u00e7\u00e3o resultantes do exerc\u00edcio do direito de livre resolu\u00e7\u00e3o s\u00e3o suportadas pelo UTILIZADOR. Se os produtos n\u00e3o chegarem em perfeitas condi\u00e7\u00f5es, a KAPUNKA reserva-se o direito de reembolsar um montante inferior.",
+                        "es": "Para ejercer el derecho de desistimiento, el USUARIO deber\u00e1 notificar a KAPUNKA, con domicilio en Els Alam\u00fas (25221) Barcelona, calle de la Pla\u00e7a la Placeta, 2, Piso 2, tel\u00e9fono 637520704 y correo electr\u00f3nico info@kapunkargan.com, mediante una declaraci\u00f3n inequ\u00edvoca remitida por carta postal, fax o correo electr\u00f3nico.\n\nEl reembolso del importe de la compra se efectuar\u00e1 una vez haya sido comprobado el estado de la mercanc\u00eda y con el mismo medio de pago utilizado, en un m\u00e1ximo de catorce d\u00edas naturales desde la recepci\u00f3n fehaciente de la solicitud de desistimiento siempre que KAPUNKA gestione la recogida. Si el USUARIO devuelve el producto a trav\u00e9s de una empresa de transporte de su elecci\u00f3n, el plazo de catorce d\u00edas comenzar\u00e1 cuando KAPUNKA tenga conocimiento efectivo del env\u00edo o, en su defecto, desde la recepci\u00f3n del producto.\n\nLos gastos de devoluci\u00f3n derivados del ejercicio del derecho de desistimiento ser\u00e1n por cuenta del USUARIO. En caso de que los productos no lleguen en perfectas condiciones, KAPUNKA se reserva el derecho a abonar una cantidad inferior por el pedido."
+                    }
+                }
+            ]
         },
         {
-          "id": "customs",
-          "title": {
-            "en": "Customs, duties & tracking",
-            "pt": "Alfândega, taxas e rastreamento",
-            "es": "Aduanas, aranceles y seguimiento"
-          },
-          "body": {
-            "en": "- Tracking links activate as soon as the parcel departs our warehouse; please allow up to 12 hours for the first scan to appear.\n- Deliveries within the European Union include duties in the final checkout total. Other regions may receive a separate customs invoice from the carrier.\n- If your order is delayed beyond the estimated window, contact support@kapunka.com with your order number so we can investigate with the courier.",
-            "pt": "- Os links de rastreamento são ativados assim que a encomenda sai do nosso armazém; aguarde até 12 horas para que o primeiro registo apareça.\n- Entregas dentro da União Europeia incluem taxas alfandegárias no valor final do checkout. Outras regiões podem receber uma fatura de alfândega emitida pela transportadora.\n- Se o seu pedido sofrer atraso além do prazo estimado, entre em contato pelo e-mail support@kapunka.com com o número do pedido para investigarmos junto à transportadora.",
-            "es": "- Los enlaces de seguimiento se activan en cuanto el paquete sale de nuestro almacén; permita hasta 12 horas para que aparezca el primer escaneo.\n- Las entregas dentro de la Unión Europea incluyen los aranceles en el importe final del checkout. Otras regiones pueden recibir una factura aduanera separada emitida por el transportista.\n- Si tu pedido se retrasa más allá del plazo estimado, escribe a support@kapunka.com con tu número de pedido para que podamos investigar con la empresa de transporte."
-          }
+            "id": "privacy",
+            "title": {
+                "en": "Privacy Policy",
+                "pt": "Pol\u00edtica de Privacidade",
+                "es": "Pol\u00edtica de Privacidad"
+            },
+            "metaTitle": {
+                "en": "Privacy Policy | Kapunka Skincare",
+                "pt": "Pol\u00edtica de Privacidade | Kapunka Skincare",
+                "es": "Pol\u00edtica de Privacidad | Kapunka Skincare"
+            },
+            "metaDescription": {
+                "en": "Understand how Kapunka collects, uses, and protects personal data, and the rights available to each USER.",
+                "pt": "Saiba como a Kapunka recolhe, utiliza e protege os dados pessoais, bem como os direitos de cada UTILIZADOR.",
+                "es": "Conoce c\u00f3mo Kapunka recopila, utiliza y protege los datos personales y qu\u00e9 derechos tiene cada USUARIO."
+            },
+            "content": {
+                "en": "Kapunka treats every online purchase and consultation with strict respect for personal data protection and the limits set by Spanish law.",
+                "pt": "A Kapunka trata cada compra online e consulta com absoluto respeito pela prote\u00e7\u00e3o de dados pessoais e pelos limites da lei espanhola.",
+                "es": "Kapunka trata cada compra online y consulta con absoluto respeto por la protecci\u00f3n de datos personales y los l\u00edmites fijados por la ley espa\u00f1ola."
+            },
+            "sections": [
+                {
+                    "id": "data-protection",
+                    "title": {
+                        "en": "Personal data protection",
+                        "pt": "Prote\u00e7\u00e3o de dados pessoais",
+                        "es": "Protecci\u00f3n de datos personales"
+                    },
+                    "body": {
+                        "en": "Personal data collected during the online purchase process will be incorporated into a file owned by KAPUNKA to process, ship, and invoice the products acquired, as well as to carry out commercial prospecting actions. KAPUNKA will only communicate to the transport and logistics company the data necessary to deliver the products.\n\nTo place orders online, the USER will voluntarily and under their responsibility provide truthful and accurate personal data, declaring themselves to be the owner of the information or authorised to provide it. Only adults may place orders; minors require their parents or legal guardians to assume responsibility.\n\nThe USER may exercise the rights of access, rectification, cancellation, and opposition by emailing info@kapunkargan.com or by sending a letter to KAPUNKA at Els Alam\u00fas (25221) Lleida, calle de la Pla\u00e7a la Placeta, 2, Piso 2.",
+                        "pt": "Os dados pessoais recolhidos durante o processo de compra online ser\u00e3o incorporados num ficheiro da KAPUNKA com a finalidade de processar, enviar e faturar os produtos adquiridos, bem como realizar a\u00e7\u00f5es de prospe\u00e7\u00e3o comercial. A KAPUNKA apenas comunicar\u00e1 \u00e0 empresa de transportes e log\u00edstica os dados necess\u00e1rios para entregar os produtos.\n\nPara realizar pedidos online, o UTILIZADOR fornece voluntariamente e sob sua responsabilidade dados pessoais verdadeiros e exatos, declarando ser titular da informa\u00e7\u00e3o ou estar autorizado a fornec\u00ea-la. Apenas maiores de idade podem efetuar pedidos; a aquisi\u00e7\u00e3o por menores implica a responsabilidade dos pais ou tutores legais.\n\nO UTILIZADOR pode exercer os direitos de acesso, retifica\u00e7\u00e3o, cancelamento e oposi\u00e7\u00e3o enviando um e-mail para info@kapunkargan.com ou uma carta para a KAPUNKA em Els Alam\u00fas (25221) Lleida, calle de la Pla\u00e7a la Placeta, 2, Piso 2.",
+                        "es": "Los datos de car\u00e1cter personal recabados en el proceso de compra online se incorporar\u00e1n a un fichero titularidad de KAPUNKA, con la finalidad de tramitar, enviar y facturar los productos adquiridos, as\u00ed como realizar acciones de prospecci\u00f3n comercial. KAPUNKA \u00fanicamente comunicar\u00e1 a la empresa de transportes y log\u00edstica los datos necesarios para remitir los productos.\n\nPara poder realizar los pedidos online, el USUARIO proporcionar\u00e1 de forma voluntaria y bajo su responsabilidad datos veraces y exactos, declarando ser el titular de la informaci\u00f3n facilitada o contar con autorizaci\u00f3n. Solo podr\u00e1n contratar mayores de edad; la adquisici\u00f3n por parte de menores ser\u00e1 responsabilidad de los padres o tutores legales.\n\nEl USUARIO podr\u00e1 ejercer los derechos de acceso, rectificaci\u00f3n, cancelaci\u00f3n y oposici\u00f3n enviando un correo electr\u00f3nico a info@kapunkargan.com o mediante carta dirigida al domicilio de KAPUNKA en Els Alam\u00fas (25221) Lleida, calle de la Pla\u00e7a la Placeta, 2, Piso 2."
+                    }
+                },
+                {
+                    "id": "liability-exclusion",
+                    "title": {
+                        "en": "Exclusion of liability",
+                        "pt": "Exclus\u00e3o de responsabilidade",
+                        "es": "Exclusi\u00f3n de la responsabilidad"
+                    },
+                    "body": {
+                        "en": "Products sold through the website are intended exclusively for cosmetic use. Ingestion, application to eyes or mucous membranes, or any use other than applying the product to hair or skin is strictly prohibited. KAPUNKA is not responsible for improper use by clients or third parties or for any damages that may result. If the application of a product triggers an allergic or adverse reaction, contact a physician immediately.",
+                        "pt": "Os produtos comercializados atrav\u00e9s do website destinam-se exclusivamente a uso cosm\u00e9tico. \u00c9 estritamente proibida a ingest\u00e3o, a aplica\u00e7\u00e3o nos olhos ou em mucosas, ou qualquer utiliza\u00e7\u00e3o diferente da aplica\u00e7\u00e3o do produto no cabelo ou na pele. A KAPUNKA n\u00e3o se responsabiliza pela utiliza\u00e7\u00e3o indevida por clientes ou terceiros, nem pelos danos que da\u00ed possam resultar. Caso a aplica\u00e7\u00e3o do produto provoque uma rea\u00e7\u00e3o al\u00e9rgica ou inc\u00f3moda, contacte de imediato um m\u00e9dico.",
+                        "es": "Los productos comercializados por KAPUNKA a trav\u00e9s de la p\u00e1gina web son de uso exclusivamente cosm\u00e9tico. Queda totalmente prohibida su ingesta, su introducci\u00f3n en los ojos o en mucosas, as\u00ed como cualquier otro uso distinto del de aplicar el producto sobre cabello o piel. KAPUNKA no se responsabiliza del uso inadecuado que los clientes o terceros den a los productos, ni de los posibles da\u00f1os o perjuicios que se deriven de ello. En caso de que la aplicaci\u00f3n del producto provoque alguna reacci\u00f3n al\u00e9rgica o molesta, contacte inmediatamente con un m\u00e9dico."
+                    }
+                },
+                {
+                    "id": "nullity-law",
+                    "title": {
+                        "en": "Nullity and applicable law",
+                        "pt": "Nulidade e lei aplic\u00e1vel",
+                        "es": "Nulidad y ley aplicable"
+                    },
+                    "body": {
+                        "en": "If any clause of this CONTRACT is null, voidable, illegal, or unlawful, the rest of the CONTRACT will remain valid and effective, and the affected clause will be replaced or adjusted to the extent permitted by law.\n\nThese conditions are governed and interpreted in accordance with Spanish legislation. KAPUNKA and the USER expressly submit any dispute arising from these terms to the Courts and Tribunals of Barcelona (Spain), waiving any other jurisdiction.",
+                        "pt": "Se alguma cl\u00e1usula deste CONTRATO for nula, anul\u00e1vel, ilegal ou il\u00edcita, o restante do CONTRATO manter-se-\u00e1 v\u00e1lido e eficaz, devendo a cl\u00e1usula afetada ser substitu\u00edda ou ajustada na medida permitida por lei.\n\nAs presentes condi\u00e7\u00f5es regem-se e interpretam-se de acordo com a legisla\u00e7\u00e3o espanhola. A KAPUNKA e o UTILIZADOR submetem expressamente qualquer lit\u00edgio decorrente destas condi\u00e7\u00f5es aos Tribunais de Barcelona (Espanha), renunciando a qualquer outro foro.",
+                        "es": "Si cualquiera de las cl\u00e1usulas de este CONTRATO resultara nula, anulable, ilegal o il\u00edcita, el resto del CONTRATO mantendr\u00e1 su vigencia y eficacia, debiendo reemplazarse o ajustarse la cl\u00e1usula afectada en la medida permitida por la ley.\n\nLas anteriores condiciones se regir\u00e1n e interpretar\u00e1n conforme a la legislaci\u00f3n espa\u00f1ola. KAPUNKA y el USUARIO acuerdan renunciar expresamente a cualquier otro fuero y someter cualquier controversia a los Juzgados y Tribunales de Barcelona (Espa\u00f1a)."
+                    }
+                }
+            ]
+        },
+        {
+            "id": "terms",
+            "title": {
+                "en": "Terms of Service",
+                "pt": "Termos de Servi\u00e7o",
+                "es": "T\u00e9rminos de Servicio"
+            },
+            "metaTitle": {
+                "en": "Terms of Service | Kapunka Skincare",
+                "pt": "Termos de Servi\u00e7o | Kapunka Skincare",
+                "es": "T\u00e9rminos de Servicio | Kapunka Skincare"
+            },
+            "metaDescription": {
+                "en": "Review the conditions for using kapunkaargan.com, purchasing products, and managing your customer account.",
+                "pt": "Revise as condi\u00e7\u00f5es de utiliza\u00e7\u00e3o de kapunkaargan.com, de compra de produtos e de gest\u00e3o da sua conta de cliente.",
+                "es": "Revisa las condiciones de uso de kapunkaargan.com, la compra de productos y la gesti\u00f3n de tu cuenta de cliente."
+            },
+            "content": {
+                "en": "These Terms of Service govern every purchase made through kapunkaargan.com and form part of the contract accepted when you confirm payment.",
+                "pt": "Estes Termos de Servi\u00e7o regulam cada compra efetuada atrav\u00e9s de kapunkaargan.com e integram o contrato aceite ao confirmar o pagamento.",
+                "es": "Estos T\u00e9rminos de Servicio regulan cada compra realizada a trav\u00e9s de kapunkaargan.com y forman parte del contrato aceptado al confirmar el pago."
+            },
+            "sections": [
+                {
+                    "id": "object",
+                    "title": {
+                        "en": "Purpose of the contract",
+                        "pt": "Objeto do contrato",
+                        "es": "Objeto del contrato"
+                    },
+                    "body": {
+                        "en": "These General Conditions regulate the electronic purchase that the interested buyer (hereinafter, the USER) makes through the website www.kapunkaargan.com (hereinafter, the PORTAL) and become part of the purchase contract (the CONTRACT) when the USER clicks \"Realizar Pago\" at the end of the process. From that moment, the USER is obliged to comply with the stipulations.\n\nThe PORTAL is owned by Ms. M\u00f3nica Ruiz Borrego, ID 46657919-G, residing at Els Alam\u00fas (25221) Lleida, calle de la Pla\u00e7a la Placeta, 2, Piso 2, and holder of the registered trademark \"KAPUNKA\" (hereinafter, KAPUNKA).\n\nKAPUNKA may modify these General Conditions at any time, without affecting purchases completed prior to approval of the modifications. It is the USER's responsibility to know the conditions in force before initiating a purchase. These General Conditions may be completed or modified by specific clauses for certain products, especially regarding exclusions of withdrawal, exchanges, or returns; please review the product information carefully.\n\nThe electronic document formalising the CONTRACT will be archived by KAPUNKA and may be consulted through our website using your username and password or the means established in each case. A paper copy may be requested from Customer Service (info@kapunkargan.com).",
+                        "pt": "Estas Condi\u00e7\u00f5es Gerais regulam a compra eletr\u00f3nica que o comprador interessado (doravante, o UTILIZADOR) realiza atrav\u00e9s do website www.kapunkaargan.com (doravante, o PORTAL) e passam a integrar o contrato de compra (o CONTRATO) quando o UTILIZADOR clica em \"Realizar Pago\" no final do processo. A partir desse momento, o UTILIZADOR fica obrigado a cumprir o estipulado.\n\nO PORTAL \u00e9 propriedade de D.\u00aa M\u00f3nica Ruiz Borrego, DNI 46657919-G, com domic\u00edlio em Els Alam\u00fas (25221) Lleida, calle de la Pla\u00e7a la Placeta, 2, Piso 2, titular da marca registada \"KAPUNKA\" (doravante, KAPUNKA).\n\nA KAPUNKA pode modificar estas Condi\u00e7\u00f5es Gerais em qualquer momento, sem afetar compras conclu\u00eddas antes da aprova\u00e7\u00e3o das altera\u00e7\u00f5es. Cabe ao UTILIZADOR conhecer as condi\u00e7\u00f5es vigentes antes de iniciar uma compra. Estas Condi\u00e7\u00f5es Gerais podem ser completadas ou modificadas por cl\u00e1usulas espec\u00edficas de determinados produtos, nomeadamente no que respeita \u00e0 exclus\u00e3o do direito de livre resolu\u00e7\u00e3o, trocas ou devolu\u00e7\u00f5es; consulte atentamente a informa\u00e7\u00e3o de cada produto.\n\nO documento eletr\u00f3nico que formaliza o CONTRATO ser\u00e1 arquivado pela KAPUNKA e poder\u00e1 ser consultado atrav\u00e9s do website mediante autentica\u00e7\u00e3o com utilizador e palavra-passe ou pelos meios estabelecidos em cada caso. Pode ser solicitada uma c\u00f3pia em papel ao servi\u00e7o de Apoio ao Cliente (info@kapunkargan.com).",
+                        "es": "Las presentes Condiciones Generales regulan la compra electr\u00f3nica que el comprador interesado (en adelante, el USUARIO) realice a trav\u00e9s de la p\u00e1gina web www.kapunkaargan.com (en adelante, el PORTAL), y quedar\u00e1n incorporadas a su contrato de compra (en adelante, el CONTRATO) al pulsar el bot\u00f3n de \"Realizar Pago\" al final del proceso de compra, quedando obligado desde ese momento al cumplimiento de lo estipulado.\n\nEl PORTAL es titularidad de D\u00aa. M\u00f3nica Ruiz Borrego, provista de DNI n\u00famero 46657919-G, con domicilio en Els Alam\u00fas (25221) Lleida, calle de la Pla\u00e7a la Placeta, 2, Piso 2, titular asimismo de la Marca Registrada \"KAPUNKA\" (en adelante, KAPUNKA).\n\nKAPUNKA puede modificar estas Condiciones Generales de Compra en cualquier momento. Las modificaciones no afectar\u00e1n a las compras anteriores a su aprobaci\u00f3n, que se regir\u00e1n por las condiciones vigentes en el momento de su realizaci\u00f3n. Es responsabilidad del USUARIO conocer las Condiciones Generales vigentes antes de iniciar el proceso de compra. Estas Condiciones Generales pueden ser completadas o modificadas por cl\u00e1usulas particulares de ciertos productos, especialmente en lo relativo a exclusiones de desistimiento, cambios o devoluciones; consulte atentamente la informaci\u00f3n del producto.\n\nEl documento electr\u00f3nico en el que se formalice el CONTRATO ser\u00e1 archivado por KAPUNKA y podr\u00e1 consultarse a trav\u00e9s de nuestra web previa autenticaci\u00f3n con su usuario y contrase\u00f1a o los medios que se establezcan en cada caso. Puede solicitarse una copia en soporte papel al servicio de Atenci\u00f3n al Cliente (info@kapunkargan.com)."
+                    }
+                },
+                {
+                    "id": "applicable-law",
+                    "title": {
+                        "en": "Applicable regulations",
+                        "pt": "Normativa aplic\u00e1vel",
+                        "es": "Normativa aplicable"
+                    },
+                    "body": {
+                        "en": "This electronic CONTRACT is concluded under Spanish law, specifically Law 34/2002 on Information Society Services and Electronic Commerce (LSSICE). The CONTRACT will not be archived by a third party and the language for its conclusion is Spanish. These General Conditions may be saved and reproduced by the USER at any time using their browser options and must be accepted before paying for the products.",
+                        "pt": "O presente CONTRATO eletr\u00f3nico \u00e9 celebrado ao abrigo da legisla\u00e7\u00e3o espanhola, em particular da Lei 34/2002 de Servi\u00e7os da Sociedade da Informa\u00e7\u00e3o e do Com\u00e9rcio Eletr\u00f3nico (LSSICE). O CONTRATO n\u00e3o ser\u00e1 arquivado por terceiros e o idioma para a sua conclus\u00e3o \u00e9 o espanhol. Estas Condi\u00e7\u00f5es Gerais podem ser guardadas e reproduzidas pelo UTILIZADOR a qualquer momento atrav\u00e9s das op\u00e7\u00f5es do navegador e devem ser aceites antes de proceder ao pagamento dos produtos.",
+                        "es": "El presente CONTRATO electr\u00f3nico se celebra bajo la normativa espa\u00f1ola y, en concreto, bajo el r\u00e9gimen legal impuesto por la Ley 34/2002 de Servicios de la Sociedad de la Informaci\u00f3n y el Comercio Electr\u00f3nico (LSSICE). El CONTRATO electr\u00f3nico no ser\u00e1 archivado por un tercero y el idioma para su conclusi\u00f3n es el castellano. Las presentes Condiciones Generales podr\u00e1n ser guardadas y reproducidas en cualquier momento por el USUARIO mediante las opciones de su navegador y deben ser aceptadas antes de proceder al pago de los productos."
+                    }
+                },
+                {
+                    "id": "user-registration",
+                    "title": {
+                        "en": "User registration",
+                        "pt": "Registo de utilizador",
+                        "es": "Registro como usuario"
+                    },
+                    "body": {
+                        "en": "To access the online purchase of Kapunka products, it is necessary to register as a USER on www.kapunkaargan.com. Registration is free and completed through the \"Registrarse\" tab. Upon completion, you will receive an email confirming the process.\n\nThe USER can access their profile with a username and password or through the methods enabled by KAPUNKA, where they will find information such as past orders or saved addresses. The USER may unsubscribe at any time by emailing info@kapunkargan.com; unsubscribing will delete personal data and prevent online purchases until registration is renewed.",
+                        "pt": "Para aceder \u00e0 compra online dos produtos Kapunka \u00e9 necess\u00e1rio registar-se como UTILIZADOR em www.kapunkaargan.com. O registo \u00e9 gratuito e \u00e9 efetuado atrav\u00e9s do separador \"Registrarse\". No final do processo, receber\u00e1 um e-mail a confirmar a conclus\u00e3o.\n\nO UTILIZADOR pode aceder ao seu perfil com nome de utilizador e palavra-passe ou pelos meios habilitados pela KAPUNKA, onde encontrar\u00e1 informa\u00e7\u00e3o como pedidos anteriores ou moradas guardadas. O UTILIZADOR pode cancelar o registo a qualquer momento enviando um e-mail para info@kapunkargan.com; a baixa implica a elimina\u00e7\u00e3o dos dados pessoais e a impossibilidade de realizar compras online at\u00e9 novo registo.",
+                        "es": "Para poder acceder a la compra electr\u00f3nica de los productos KAPUNKA es necesario registrarse como USUARIO de la p\u00e1gina www.kapunkaargan.com. El registro es gratuito y debe realizarse a trav\u00e9s de la pesta\u00f1a \"Registrarse\". Al t\u00e9rmino del proceso recibir\u00e1 un correo electr\u00f3nico confirmando que se ha realizado correctamente.\n\nEl USUARIO podr\u00e1 acceder a la secci\u00f3n de usuarios registrados con su nombre de usuario y contrase\u00f1a o los medios que habilite KAPUNKA, donde encontrar\u00e1 informaci\u00f3n relevante como pedidos anteriores o la direcci\u00f3n de env\u00edo facilitada. El USUARIO podr\u00e1 darse de baja en cualquier momento enviando un correo a info@kapunkargan.com; la baja conllevar\u00e1 la cancelaci\u00f3n de sus datos personales y la imposibilidad de realizar compras online hasta un nuevo alta."
+                    }
+                },
+                {
+                    "id": "offer-validity",
+                    "title": {
+                        "en": "Validity of offers",
+                        "pt": "Vig\u00eancia das ofertas",
+                        "es": "Vigencia de la oferta"
+                    },
+                    "body": {
+                        "en": "Without prejudice to specific legislation, electronic offers or proposals for contracting remain valid for the period established by KAPUNKA or, failing that, for as long as they remain accessible to recipients through the PORTAL.",
+                        "pt": "Sem preju\u00edzo da legisla\u00e7\u00e3o espec\u00edfica, as ofertas ou propostas de contrata\u00e7\u00e3o por via eletr\u00f3nica ser\u00e3o v\u00e1lidas durante o per\u00edodo fixado pela KAPUNKA ou, na sua falta, enquanto permanecerem acess\u00edveis aos destinat\u00e1rios atrav\u00e9s do PORTAL.",
+                        "es": "Sin perjuicio de la legislaci\u00f3n espec\u00edfica, las ofertas o propuestas de contrataci\u00f3n por v\u00eda electr\u00f3nica ser\u00e1n v\u00e1lidas durante el per\u00edodo que fije KAPUNKA o, en su defecto, mientras permanezcan accesibles a los destinatarios a trav\u00e9s del PORTAL."
+                    }
+                }
+            ]
         }
-      ]
-    },
-    {
-      "id": "returns",
-      "title": {
-        "en": "Return Policy",
-        "pt": "Política de Devolução",
-        "es": "Política de Devoluciones"
-      },
-      "metaTitle": {
-        "en": "Return Policy | Kapunka Skincare",
-        "pt": "Política de Devolução | Kapunka Skincare",
-        "es": "Política de Devoluciones | Kapunka Skincare"
-      },
-      "metaDescription": {
-        "en": "Learn how to request a Kapunka return, the condition requirements, and how refunds are issued.",
-        "pt": "Saiba como solicitar uma devolução Kapunka, quais são os requisitos de condição e como os reembolsos são emitidos.",
-        "es": "Conoce cómo solicitar una devolución Kapunka, los requisitos de estado y cómo se gestionan los reembolsos."
-      },
-      "content": {
-        "en": "Our treatments are formulated to perform in clinics and at home, but we understand that texture or aroma preferences can change. We support adjustments through a flexible return experience.",
-        "pt": "Os nossos tratamentos são formulados para ter desempenho na clínica e em casa, mas entendemos que preferências de textura ou aroma podem mudar. Estamos prontos para ajudar com uma experiência de devolução flexível.",
-        "es": "Nuestros tratamientos están formulados para rendir en la clínica y en casa, pero sabemos que las preferencias de textura o aroma pueden cambiar. Te acompañamos con una experiencia de devolución flexible."
-      },
-      "sections": [
-        {
-          "id": "eligibility",
-          "title": {
-            "en": "Eligibility window",
-            "pt": "Prazo de elegibilidade",
-            "es": "Plazo de elegibilidad"
-          },
-          "body": {
-            "en": "- Returns are accepted within 30 days of delivery; please retain your proof of purchase.\n- Liquids and oils must be at least half full and sealed properly for transport.\n- Tools such as the Kessa glove or vanity pouch must be clean and completely dry before shipping back to us.",
-            "pt": "- Aceitamos devoluções em até 30 dias após a entrega; guarde o comprovante de compra.\n- Líquidos e óleos precisam estar pelo menos pela metade e bem vedados para o transporte.\n- Ferramentas como a luva Kessa ou a nécessaire devem estar limpas e totalmente secas antes do reenvio.",
-            "es": "- Aceptamos devoluciones dentro de los 30 días posteriores a la entrega; conserva tu comprobante de compra.\n- Los líquidos y aceites deben estar al menos a la mitad y correctamente sellados para el transporte.\n- Las herramientas como la manopla Kessa o el neceser deben estar limpias y completamente secas antes de su envío de vuelta."
-          }
-        },
-        {
-          "id": "start",
-          "title": {
-            "en": "How to request a return",
-            "pt": "Como solicitar a devolução",
-            "es": "Cómo solicitar la devolución"
-          },
-          "body": {
-            "en": "- Email support@kapunka.com with your order number, the items you wish to return, and the reason for the request.\n- Our team will reply within one business day with a prepaid label for eligible regions or detailed packing instructions.\n- Package the products securely to prevent leaks or breakage in transit.",
-            "pt": "- Envie um e-mail para support@kapunka.com com o número do pedido, os itens que deseja devolver e o motivo da solicitação.\n- Nossa equipa responde em até um dia útil com uma etiqueta pré-paga para regiões elegíveis ou com instruções detalhadas de envio.\n- Embale os produtos com segurança para evitar vazamentos ou danos durante o transporte.",
-            "es": "- Escribe a support@kapunka.com con tu número de pedido, los artículos que deseas devolver y el motivo de la solicitud.\n- Nuestro equipo responderá en un día laborable con una etiqueta prepagada para las regiones elegibles o con instrucciones detalladas de embalaje.\n- Empaqueta los productos de forma segura para evitar derrames o daños durante el transporte."
-          }
-        },
-        {
-          "id": "refunds",
-          "title": {
-            "en": "Refunds & exchanges",
-            "pt": "Reembolsos e trocas",
-            "es": "Reembolsos y cambios"
-          },
-          "body": {
-            "en": "- Refunds are processed to the original payment method within five business days of receiving your return.\n- Exchanges are shipped once the original items are inspected; we will email a fresh tracking link.\n- Shipping fees are non-refundable unless the return is due to a Kapunka error or carrier damage.",
-            "pt": "- Os reembolsos são processados no método de pagamento original em até cinco dias úteis após recebermos a devolução.\n- Trocas são enviadas assim que os itens originais são inspecionados; enviaremos um novo link de rastreamento por e-mail.\n- As taxas de envio não são reembolsáveis, exceto quando a devolução ocorre devido a erro da Kapunka ou dano do transportador.",
-            "es": "- Los reembolsos se procesan en el método de pago original en un máximo de cinco días laborables después de recibir la devolución.\n- Los cambios se envían una vez que se inspeccionan los artículos originales; enviaremos un nuevo enlace de seguimiento por correo electrónico.\n- Las tarifas de envío no son reembolsables, salvo que la devolución se deba a un error de Kapunka o a un daño del transportista."
-          }
-        }
-      ]
-    },
-    {
-      "id": "privacy",
-      "title": {
-        "en": "Privacy Policy",
-        "pt": "Política de Privacidade",
-        "es": "Política de Privacidad"
-      },
-      "metaTitle": {
-        "en": "Privacy Policy | Kapunka Skincare",
-        "pt": "Política de Privacidade | Kapunka Skincare",
-        "es": "Política de Privacidad | Kapunka Skincare"
-      },
-      "metaDescription": {
-        "en": "Discover how Kapunka collects, uses, and protects personal information across our website and clinic services.",
-        "pt": "Descubra como a Kapunka recolhe, utiliza e protege os dados pessoais no site e nos serviços de clínica.",
-        "es": "Descubre cómo Kapunka recopila, utiliza y protege los datos personales en el sitio web y en los servicios de clínica."
-      },
-      "content": {
-        "en": "This policy explains how Kapunka gathers, uses, and safeguards data provided online or during professional treatments. We keep patient and customer information confidential and only process it for legitimate purposes.",
-        "pt": "Esta política explica como a Kapunka recolhe, utiliza e protege os dados fornecidos online ou durante tratamentos profissionais. Mantemos as informações de pacientes e clientes em confidencialidade e apenas as tratamos para fins legítimos.",
-        "es": "Esta política explica cómo Kapunka recopila, utiliza y protege los datos proporcionados en línea o durante tratamientos profesionales. Mantenemos la información de pacientes y clientes en confidencialidad y solo la tratamos con fines legítimos."
-      },
-      "sections": [
-        {
-          "id": "data-collected",
-          "title": {
-            "en": "Information we collect",
-            "pt": "Informações que recolhemos",
-            "es": "Información que recopilamos"
-          },
-          "body": {
-            "en": "- Contact details such as name, email, phone number, and shipping address when you place an order or join our newsletter.\n- Purchase history and treatment preferences shared during consultations.\n- Website usage analytics captured through cookies to improve site performance.\n- Optional health information provided voluntarily for personalised protocol guidance.",
-            "pt": "- Dados de contacto como nome, e-mail, telefone e morada de envio ao realizar uma compra ou subscrever a newsletter.\n- Histórico de compras e preferências de tratamento partilhadas durante consultas.\n- Dados de utilização do site recolhidos por cookies para melhorar o desempenho.\n- Informações de saúde opcionais fornecidas voluntariamente para orientação personalizada de protocolos.",
-            "es": "- Datos de contacto como nombre, correo electrónico, teléfono y dirección de envío al realizar una compra o suscribirte al boletín.\n- Historial de compras y preferencias de tratamiento compartidas durante consultas.\n- Datos de uso del sitio web recopilados mediante cookies para mejorar el rendimiento.\n- Información de salud opcional proporcionada voluntariamente para obtener orientación personalizada de protocolos."
-          }
-        },
-        {
-          "id": "usage",
-          "title": {
-            "en": "How we use your data",
-            "pt": "Como utilizamos os seus dados",
-            "es": "Cómo utilizamos tus datos"
-          },
-          "body": {
-            "en": "- To process and deliver orders, including payment collection, shipping, and confirmation emails.\n- To recommend routines or training based on your previous purchases or clinic history.\n- To send service messages, policy updates, and marketing communications when you opt in.\n- To comply with legal, tax, and regulatory obligations in the regions where we operate.",
-            "pt": "- Processar e entregar pedidos, incluindo cobrança, envio e e-mails de confirmação.\n- Recomendar rotinas ou formações com base nas compras anteriores ou no histórico na clínica.\n- Enviar mensagens de serviço, atualizações de política e comunicações de marketing quando houver consentimento.\n- Cumprir obrigações legais, fiscais e regulatórias nas regiões em que atuamos.",
-            "es": "- Procesar y entregar pedidos, incluida la gestión de pagos, el envío y los correos electrónicos de confirmación.\n- Recomendar rutinas o formaciones según tus compras anteriores o tu historial en la clínica.\n- Enviar mensajes de servicio, actualizaciones de políticas y comunicaciones de marketing cuando exista consentimiento.\n- Cumplir con obligaciones legales, fiscales y normativas en las regiones donde operamos."
-          }
-        },
-        {
-          "id": "rights",
-          "title": {
-            "en": "Your rights & controls",
-            "pt": "Os seus direitos e controlos",
-            "es": "Tus derechos y controles"
-          },
-          "body": {
-            "en": "- Request access, correction, or deletion of your personal data at any time by emailing privacy@kapunka.com.\n- Opt out of marketing communications through the unsubscribe link in each email.\n- Adjust cookie preferences through your browser settings or our on-site banner.\n- We store data only as long as necessary to provide services or meet regulatory requirements.",
-            "pt": "- Solicite acesso, correção ou eliminação dos seus dados pessoais a qualquer momento através do e-mail privacy@kapunka.com.\n- Cancele comunicações de marketing pelo link de descadastramento presente em cada e-mail.\n- Ajuste as preferências de cookies nas configurações do seu navegador ou no nosso banner no site.\n- Armazenamos os dados apenas pelo tempo necessário para prestar serviços ou cumprir exigências legais.",
-            "es": "- Solicita acceso, corrección o eliminación de tus datos personales en cualquier momento escribiendo a privacy@kapunka.com.\n- Date de baja de las comunicaciones de marketing mediante el enlace de cancelación presente en cada correo electrónico.\n- Ajusta tus preferencias de cookies desde la configuración del navegador o desde nuestro banner en el sitio.\n- Conservamos los datos solo el tiempo necesario para prestar servicios o cumplir con requisitos legales."
-          }
-        }
-      ]
-    },
-    {
-      "id": "terms",
-      "title": {
-        "en": "Terms of Service",
-        "pt": "Termos de Serviço",
-        "es": "Términos de Servicio"
-      },
-      "metaTitle": {
-        "en": "Terms of Service | Kapunka Skincare",
-        "pt": "Termos de Serviço | Kapunka Skincare",
-        "es": "Términos de Servicio | Kapunka Skincare"
-      },
-      "metaDescription": {
-        "en": "Review the conditions of using kapunka.com, purchasing products, and accessing our professional resources.",
-        "pt": "Revise as condições de uso do kapunka.com, da compra de produtos e do acesso aos nossos recursos profissionais.",
-        "es": "Revisa las condiciones de uso de kapunka.com, la compra de productos y el acceso a nuestros recursos profesionales."
-      },
-      "content": {
-        "en": "By visiting kapunka.com you agree to the terms below, which ensure a respectful community for clients, professionals, and partners.",
-        "pt": "Ao visitar kapunka.com, concorda com os termos abaixo, que garantem uma comunidade respeitosa para clientes, profissionais e parceiros.",
-        "es": "Al visitar kapunka.com aceptas los términos a continuación, que garantizan una comunidad respetuosa para clientes, profesionales y socios."
-      },
-      "sections": [
-        {
-          "id": "site-use",
-          "title": {
-            "en": "Use of the website",
-            "pt": "Uso do website",
-            "es": "Uso del sitio web"
-          },
-          "body": {
-            "en": "- Provide accurate account information and update it when details change.\n- Do not misuse the site by introducing viruses, scraping data, or attempting unauthorised access.\n- Content on this site, including photography and copy, is owned by Kapunka and may not be reproduced without permission.",
-            "pt": "- Forneça informações corretas na sua conta e atualize-as sempre que houver alterações.\n- Não utilize o site de forma indevida introduzindo vírus, extraindo dados ou tentando acessos não autorizados.\n- O conteúdo do site, incluindo fotografias e textos, é propriedade da Kapunka e não pode ser reproduzido sem autorização.",
-            "es": "- Proporciona información correcta en tu cuenta y actualízala cuando haya cambios.\n- No hagas un uso indebido del sitio introduciendo virus, extrayendo datos o intentando accesos no autorizados.\n- El contenido del sitio, incluidas fotografías y textos, es propiedad de Kapunka y no puede reproducirse sin autorización."
-          }
-        },
-        {
-          "id": "purchases",
-          "title": {
-            "en": "Purchases & payment",
-            "pt": "Compras e pagamento",
-            "es": "Compras y pago"
-          },
-          "body": {
-            "en": "- Prices are displayed in local currency where available and may change without notice.\n- We reserve the right to refuse or cancel orders that appear fraudulent or exceed product limits.\n- Taxes and shipping charges are calculated at checkout based on your delivery location.",
-            "pt": "- Os preços são exibidos na moeda local quando disponível e podem ser alterados sem aviso prévio.\n- Reservamo-nos o direito de recusar ou cancelar pedidos que pareçam fraudulentos ou excedam limites de compra.\n- Impostos e taxas de envio são calculados no checkout de acordo com a morada de entrega.",
-            "es": "- Los precios se muestran en la moneda local cuando está disponible y pueden cambiar sin previo aviso.\n- Nos reservamos el derecho de rechazar o cancelar pedidos que parezcan fraudulentos o superen los límites de compra.\n- Los impuestos y los gastos de envío se calculan en el checkout según la dirección de entrega."
-          }
-        },
-        {
-          "id": "liability",
-          "title": {
-            "en": "Liability & governing law",
-            "pt": "Responsabilidade e legislação aplicável",
-            "es": "Responsabilidad y ley aplicable"
-          },
-          "body": {
-            "en": "- Kapunka is not liable for indirect damages resulting from improper product use or third-party logistics delays.\n- Our total liability for any claim is limited to the amount you paid for the product or service.\n- These terms are governed by Portuguese law, and any dispute will be handled by the courts of Lisbon, Portugal.",
-            "pt": "- A Kapunka não se responsabiliza por danos indiretos resultantes do uso indevido dos produtos ou de atrasos logísticos de terceiros.\n- A nossa responsabilidade total por qualquer reclamação limita-se ao valor pago pelo produto ou serviço.\n- Estes termos são regidos pela lei portuguesa e quaisquer disputas serão tratadas pelos tribunais de Lisboa, Portugal.",
-            "es": "- Kapunka no se hace responsable de los daños indirectos derivados del uso inadecuado de los productos o de retrasos logísticos de terceros.\n- Nuestra responsabilidad total por cualquier reclamación se limita al importe pagado por el producto o servicio.\n- Estos términos se rigen por la legislación portuguesa y cualquier disputa se resolverá en los tribunales de Lisboa, Portugal."
-          }
-        }
-      ]
-    }
-  ]
+    ]
 }
