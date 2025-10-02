@@ -2,6 +2,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { useLanguage } from '../contexts/LanguageContext';
+import { getVisualEditorAttributes } from '../utils/stackbitBindings';
 import type { Course } from '../types';
 
 interface CourseCardProps {
@@ -24,7 +25,7 @@ const CourseCard: React.FC<CourseCardProps> = (props) => {
       viewport={{ once: true, amount: 0.3 }}
       transition={{ duration: 0.6, delay: index * 0.1 }}
       className="group"
-      data-nlv-field-path={fieldPath ?? baseFieldPath}
+      {...getVisualEditorAttributes(fieldPath ?? baseFieldPath)}
       data-sb-field-path={dataSbFieldPath ?? fieldPath ?? baseFieldPath}
     >
       <div className="overflow-hidden rounded-lg">
@@ -32,14 +33,14 @@ const CourseCard: React.FC<CourseCardProps> = (props) => {
           src={course.imageUrl}
           alt={translate(course.title)}
           className="w-full h-56 object-cover transition-transform duration-500 group-hover:scale-105"
-          data-nlv-field-path={`${fieldPath ?? baseFieldPath}.imageUrl`}
+          {...getVisualEditorAttributes(`${fieldPath ?? baseFieldPath}.imageUrl`)}
           data-sb-field-path={`${fieldPath ?? baseFieldPath}.imageUrl`}
         />
       </div>
       <div className="mt-4">
         <h3
           className="font-semibold text-lg text-stone-800"
-          data-nlv-field-path={`${fieldPath ?? baseFieldPath}.title.${language}`}
+          {...getVisualEditorAttributes(`${fieldPath ?? baseFieldPath}.title.${language}`)}
           data-sb-field-path={`${fieldPath ?? baseFieldPath}.title.${language}`}
         >
           {translate(course.title)}
@@ -47,7 +48,7 @@ const CourseCard: React.FC<CourseCardProps> = (props) => {
         <div className="flex items-center justify-between mt-4">
           <p
             className="text-xl font-bold text-stone-900"
-            data-nlv-field-path={`${fieldPath ?? baseFieldPath}.price`}
+            {...getVisualEditorAttributes(`${fieldPath ?? baseFieldPath}.price`)}
             data-sb-field-path={`${fieldPath ?? baseFieldPath}.price`}
           >
             ${course.price.toFixed(2)}
@@ -57,11 +58,11 @@ const CourseCard: React.FC<CourseCardProps> = (props) => {
             target="_blank"
             rel="noopener noreferrer"
             className="px-5 py-2 bg-stone-900 text-white text-sm font-semibold rounded-md hover:bg-stone-700 transition-colors"
-            data-nlv-field-path={`${fieldPath ?? baseFieldPath}.enrollLink`}
+            {...getVisualEditorAttributes(`${fieldPath ?? baseFieldPath}.enrollLink`)}
             data-sb-field-path={`${fieldPath ?? baseFieldPath}.enrollLink`}
           >
             <span
-              data-nlv-field-path={`translations.${language}.academy.enrollNow`}
+              {...getVisualEditorAttributes(`translations.${language}.academy.enrollNow`)}
               data-sb-field-path={`translations.${language}.academy.enrollNow`}
             >
               {t('academy.enrollNow')}

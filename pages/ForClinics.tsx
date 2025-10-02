@@ -6,6 +6,7 @@ import { useSiteSettings } from '../contexts/SiteSettingsContext';
 import PartnerCarousel from '../components/PartnerCarousel';
 import type { Doctor } from '../types';
 import { fetchVisualEditorJson } from '../utils/fetchVisualEditorJson';
+import { getVisualEditorAttributes } from '../utils/stackbitBindings';
 import {
   loadClinicsPageContent,
   type ClinicsPageContentResult,
@@ -284,7 +285,7 @@ const ForClinics: React.FC = () => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
             className="text-4xl sm:text-5xl font-semibold tracking-tight"
-            data-nlv-field-path={headerTitleFieldPath}
+            {...getVisualEditorAttributes(headerTitleFieldPath)}
           >
             {headerTitle}
           </motion.h1>
@@ -293,7 +294,7 @@ const ForClinics: React.FC = () => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.1 }}
             className="mt-4 text-lg text-stone-600 max-w-3xl mx-auto"
-            data-nlv-field-path={headerSubtitleFieldPath}
+            {...getVisualEditorAttributes(headerSubtitleFieldPath)}
           >
             {headerSubtitle}
           </motion.p>
@@ -305,15 +306,15 @@ const ForClinics: React.FC = () => {
           <div className="text-center max-w-3xl mx-auto">
             <h2
               className="text-3xl font-semibold mb-6"
-              data-nlv-field-path={introTitleFieldPath}
+              {...getVisualEditorAttributes(introTitleFieldPath)}
             >
               {introTitle}
             </h2>
             <div className="text-stone-600 leading-relaxed space-y-4">
-              <p data-nlv-field-path={introText1FieldPath}>
+              <p {...getVisualEditorAttributes(introText1FieldPath)}>
                 {introText1}
               </p>
-              <p data-nlv-field-path={introText2FieldPath}>
+              <p {...getVisualEditorAttributes(introText2FieldPath)}>
                 {introText2}
               </p>
             </div>
@@ -327,20 +328,20 @@ const ForClinics: React.FC = () => {
             <div className="text-center max-w-3xl mx-auto">
               <h2
                 className="text-3xl font-semibold mb-4"
-                data-nlv-field-path={`${clinicsFieldPath}.protocolSection.title`}
+                {...getVisualEditorAttributes(`${clinicsFieldPath}.protocolSection.title`)}
               >
                 {protocolSectionData.title}
               </h2>
               <p
                 className="text-stone-600"
-                data-nlv-field-path={`${clinicsFieldPath}.protocolSection.subtitle`}
+                {...getVisualEditorAttributes(`${clinicsFieldPath}.protocolSection.subtitle`)}
               >
                 {protocolSectionData.subtitle}
               </p>
             </div>
             <div
               className="mt-12 grid gap-10 lg:grid-cols-3"
-              data-nlv-field-path={`${clinicsFieldPath}.protocolSection.cards`}
+              {...getVisualEditorAttributes(`${clinicsFieldPath}.protocolSection.cards`)}
             >
               {protocolCards.map((protocol, index) => (
                 <motion.div
@@ -350,17 +351,17 @@ const ForClinics: React.FC = () => {
                   viewport={{ once: true }}
                   transition={{ duration: 0.5, delay: index * 0.1 }}
                   className="p-8 bg-stone-50 border border-stone-200 rounded-2xl shadow-sm text-left h-full flex flex-col"
-                  data-nlv-field-path={`${clinicsFieldPath}.protocolSection.cards.${index}`}
+                  {...getVisualEditorAttributes(`${clinicsFieldPath}.protocolSection.cards.${index}`)}
                 >
                   <h3
                     className="text-2xl font-semibold text-stone-900"
-                    data-nlv-field-path={`${clinicsFieldPath}.protocolSection.cards.${index}.title`}
+                    {...getVisualEditorAttributes(`${clinicsFieldPath}.protocolSection.cards.${index}.title`)}
                   >
                     {protocol.title}
                   </h3>
                   <p
                     className="mt-2 text-sm uppercase tracking-wide text-stone-500"
-                    data-nlv-field-path={`${clinicsFieldPath}.protocolSection.cards.${index}.focus`}
+                    {...getVisualEditorAttributes(`${clinicsFieldPath}.protocolSection.cards.${index}.focus`)}
                   >
                     {protocol.focus}
                   </p>
@@ -369,7 +370,7 @@ const ForClinics: React.FC = () => {
                       <li
                         key={`${protocol.title}-${step}`}
                         className="relative pl-6"
-                        data-nlv-field-path={`${clinicsFieldPath}.protocolSection.cards.${index}.steps.${stepIndex}`}
+                        {...getVisualEditorAttributes(`${clinicsFieldPath}.protocolSection.cards.${index}.steps.${stepIndex}`)}
                       >
                         <span className="absolute left-0 top-2 h-2 w-2 rounded-full bg-stone-400" />
                         {step}
@@ -378,7 +379,7 @@ const ForClinics: React.FC = () => {
                   </ul>
                   <p
                     className="mt-6 text-sm text-stone-500 italic"
-                    data-nlv-field-path={`${clinicsFieldPath}.protocolSection.cards.${index}.evidence`}
+                    {...getVisualEditorAttributes(`${clinicsFieldPath}.protocolSection.cards.${index}.evidence`)}
                   >
                     {protocol.evidence}
                   </p>
@@ -395,17 +396,17 @@ const ForClinics: React.FC = () => {
             <div className="text-center max-w-3xl mx-auto">
               <h2
                 className="text-3xl font-semibold"
-                data-nlv-field-path={`${clinicsFieldPath}.referencesSection.title`}
+                {...getVisualEditorAttributes(`${clinicsFieldPath}.referencesSection.title`)}
               >
                 {referencesSectionData.title}
               </h2>
             </div>
             <div className="mt-12 grid gap-12 md:grid-cols-2">
               {studies.length > 0 && (
-                <div data-nlv-field-path={`${clinicsFieldPath}.referencesSection.studies`}>
+                <div {...getVisualEditorAttributes(`${clinicsFieldPath}.referencesSection.studies`)}>
                   <h3
                     className="text-xl font-semibold text-stone-900"
-                    data-nlv-field-path={`${clinicsFieldPath}.referencesSection.studiesTitle`}
+                    {...getVisualEditorAttributes(`${clinicsFieldPath}.referencesSection.studiesTitle`)}
                   >
                     {referencesSectionData.studiesTitle}
                   </h3>
@@ -414,17 +415,17 @@ const ForClinics: React.FC = () => {
                       <li
                         key={study.title}
                         className="border-l-2 border-stone-400 pl-4"
-                        data-nlv-field-path={`${clinicsFieldPath}.referencesSection.studies.${index}`}
+                        {...getVisualEditorAttributes(`${clinicsFieldPath}.referencesSection.studies.${index}`)}
                       >
                         <p
                           className="font-medium"
-                          data-nlv-field-path={`${clinicsFieldPath}.referencesSection.studies.${index}.title`}
+                          {...getVisualEditorAttributes(`${clinicsFieldPath}.referencesSection.studies.${index}.title`)}
                         >
                           {study.title}
                         </p>
                         <p
                           className="text-sm text-stone-500"
-                          data-nlv-field-path={`${clinicsFieldPath}.referencesSection.studies.${index}.details`}
+                          {...getVisualEditorAttributes(`${clinicsFieldPath}.referencesSection.studies.${index}.details`)}
                         >
                           {study.details}
                         </p>
@@ -434,10 +435,10 @@ const ForClinics: React.FC = () => {
                 </div>
               )}
               {testimonials.length > 0 && (
-                <div data-nlv-field-path={`${clinicsFieldPath}.referencesSection.testimonials`}>
+                <div {...getVisualEditorAttributes(`${clinicsFieldPath}.referencesSection.testimonials`)}>
                   <h3
                     className="text-xl font-semibold text-stone-900"
-                    data-nlv-field-path={`${clinicsFieldPath}.referencesSection.testimonialsTitle`}
+                    {...getVisualEditorAttributes(`${clinicsFieldPath}.referencesSection.testimonialsTitle`)}
                   >
                     {referencesSectionData.testimonialsTitle}
                   </h3>
@@ -446,24 +447,24 @@ const ForClinics: React.FC = () => {
                       <blockquote
                         key={testimonial.quote}
                         className="bg-white rounded-2xl border border-stone-200 p-6 shadow-sm"
-                        data-nlv-field-path={`${clinicsFieldPath}.referencesSection.testimonials.${index}`}
+                        {...getVisualEditorAttributes(`${clinicsFieldPath}.referencesSection.testimonials.${index}`)}
                       >
                         <p
                           className="text-stone-700 leading-relaxed"
-                          data-nlv-field-path={`${clinicsFieldPath}.referencesSection.testimonials.${index}.quote`}
+                          {...getVisualEditorAttributes(`${clinicsFieldPath}.referencesSection.testimonials.${index}.quote`)}
                         >
                           {testimonial.quote}
                         </p>
                         <footer className="mt-4 text-sm text-stone-500">
                           <span
                             className="font-semibold text-stone-700"
-                            data-nlv-field-path={`${clinicsFieldPath}.referencesSection.testimonials.${index}.name`}
+                            {...getVisualEditorAttributes(`${clinicsFieldPath}.referencesSection.testimonials.${index}.name`)}
                           >
                             {testimonial.name}
                           </span>
                           <span
                             className="block"
-                            data-nlv-field-path={`${clinicsFieldPath}.referencesSection.testimonials.${index}.credentials`}
+                            {...getVisualEditorAttributes(`${clinicsFieldPath}.referencesSection.testimonials.${index}.credentials`)}
                           >
                             {testimonial.credentials}
                           </span>
@@ -482,7 +483,7 @@ const ForClinics: React.FC = () => {
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <h2
             className="text-3xl font-semibold text-center mb-12"
-            data-nlv-field-path={doctorsTitleFieldPath}
+            {...getVisualEditorAttributes(doctorsTitleFieldPath)}
           >
             {doctorsTitle}
           </h2>
@@ -495,17 +496,17 @@ const ForClinics: React.FC = () => {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ duration: 0.5, delay: index * 0.1 }}
-                  data-nlv-field-path={`doctors.doctors.${index}`}
+                  {...getVisualEditorAttributes(`doctors.doctors.${index}`)}
                 >
                   <img
                     src={doctor.imageUrl}
                     alt={doctor.name}
                     className="w-24 h-24 rounded-full mx-auto object-cover shadow-md"
-                    data-nlv-field-path={`doctors.doctors.${index}.imageUrl`}
+                    {...getVisualEditorAttributes(`doctors.doctors.${index}.imageUrl`)}
                   />
                   <p
                     className="mt-4 font-semibold text-sm"
-                    data-nlv-field-path={`doctors.doctors.${index}.name`}
+                    {...getVisualEditorAttributes(`doctors.doctors.${index}.name`)}
                   >
                     {doctor.name}
                   </p>
@@ -513,7 +514,7 @@ const ForClinics: React.FC = () => {
               ))}
             </div>
           ) : (
-            <p className="text-center" data-nlv-field-path={`${commonFieldPath}.loadingProfessionals`}>
+            <p className="text-center" {...getVisualEditorAttributes(`${commonFieldPath}.loadingProfessionals`)}>
               {t('common.loadingProfessionals')}
             </p>
           )}
@@ -525,25 +526,25 @@ const ForClinics: React.FC = () => {
           <div className="container mx-auto px-4 sm:px-6 lg:px-8 text-center">
             <h2
               className="text-3xl font-semibold"
-              data-nlv-field-path={`${clinicsFieldPath}.keywordSection.title`}
+              {...getVisualEditorAttributes(`${clinicsFieldPath}.keywordSection.title`)}
             >
               {keywordSectionData.title}
             </h2>
             <p
               className="mt-4 text-stone-600 max-w-2xl mx-auto"
-              data-nlv-field-path={`${clinicsFieldPath}.keywordSection.subtitle`}
+              {...getVisualEditorAttributes(`${clinicsFieldPath}.keywordSection.subtitle`)}
             >
               {keywordSectionData.subtitle}
             </p>
             <div
               className="mt-8 flex flex-wrap justify-center gap-3"
-              data-nlv-field-path={`${clinicsFieldPath}.keywordSection.keywords`}
+              {...getVisualEditorAttributes(`${clinicsFieldPath}.keywordSection.keywords`)}
             >
               {keywordPhrases.map((keyword, index) => (
                 <span
                   key={keyword}
                   className="px-4 py-2 bg-stone-100 text-stone-700 rounded-full border border-stone-200 text-sm"
-                  data-nlv-field-path={`${clinicsFieldPath}.keywordSection.keywords.${index}`}
+                  {...getVisualEditorAttributes(`${clinicsFieldPath}.keywordSection.keywords.${index}`)}
                 >
                   {keyword}
                 </span>
@@ -559,18 +560,18 @@ const ForClinics: React.FC = () => {
             <div className="text-center">
               <h2
                 className="text-3xl font-semibold"
-                data-nlv-field-path={`${clinicsFieldPath}.faqSection.title`}
+                {...getVisualEditorAttributes(`${clinicsFieldPath}.faqSection.title`)}
               >
                 {faqSectionData.title}
               </h2>
               <p
                 className="mt-4 text-stone-600"
-                data-nlv-field-path={`${clinicsFieldPath}.faqSection.subtitle`}
+                {...getVisualEditorAttributes(`${clinicsFieldPath}.faqSection.subtitle`)}
               >
                 {faqSectionData.subtitle}
               </p>
             </div>
-            <div className="mt-12 space-y-6" data-nlv-field-path={`${clinicsFieldPath}.faqSection.items`}>
+            <div className="mt-12 space-y-6" {...getVisualEditorAttributes(`${clinicsFieldPath}.faqSection.items`)}>
               {faqItems.map((faq, index) => (
                 <motion.div
                   key={faq.question}
@@ -579,17 +580,17 @@ const ForClinics: React.FC = () => {
                   viewport={{ once: true }}
                   transition={{ duration: 0.4, delay: index * 0.05 }}
                   className="bg-stone-50 border border-stone-200 rounded-2xl p-6"
-                  data-nlv-field-path={`${clinicsFieldPath}.faqSection.items.${index}`}
+                  {...getVisualEditorAttributes(`${clinicsFieldPath}.faqSection.items.${index}`)}
                 >
                   <h3
                     className="text-xl font-semibold text-stone-900"
-                    data-nlv-field-path={`${clinicsFieldPath}.faqSection.items.${index}.question`}
+                    {...getVisualEditorAttributes(`${clinicsFieldPath}.faqSection.items.${index}.question`)}
                   >
                     {faq.question}
                   </h3>
                   <p
                     className="mt-3 text-stone-600 leading-relaxed"
-                    data-nlv-field-path={`${clinicsFieldPath}.faqSection.items.${index}.answer`}
+                    {...getVisualEditorAttributes(`${clinicsFieldPath}.faqSection.items.${index}.answer`)}
                   >
                     {faq.answer}
                   </p>
@@ -606,13 +607,13 @@ const ForClinics: React.FC = () => {
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 text-center max-w-2xl">
           <h2
             className="text-3xl font-semibold mb-4"
-            data-nlv-field-path={ctaTitleFieldPath}
+            {...getVisualEditorAttributes(ctaTitleFieldPath)}
           >
             {ctaTitle}
           </h2>
           <p
             className="text-stone-600 mb-8"
-            data-nlv-field-path={ctaSubtitleFieldPath}
+            {...getVisualEditorAttributes(ctaSubtitleFieldPath)}
           >
             {ctaSubtitle}
           </p>
@@ -620,7 +621,7 @@ const ForClinics: React.FC = () => {
             href={clinicsCtaLink}
             className="px-8 py-3 bg-stone-900 text-white font-semibold rounded-md hover:bg-stone-700 transition-colors"
           >
-            <span data-nlv-field-path={ctaButtonFieldPath}>
+            <span {...getVisualEditorAttributes(ctaButtonFieldPath)}>
               {ctaButtonLabel}
             </span>
           </a>

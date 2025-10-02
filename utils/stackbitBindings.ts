@@ -356,3 +356,26 @@ export const getStackbitObjectId = (fieldPath?: string | null): string | undefin
 
 export const normalizeStackbitPathForTesting = normalizeStackbitFieldPath;
 
+type VisualEditorAttributes = {
+  'data-nlv-field-path'?: string;
+  'data-sb-field-path'?: string;
+  'data-sb-object-id'?: string;
+};
+
+export const getVisualEditorAttributes = (fieldPath?: string | null): VisualEditorAttributes => {
+  if (typeof fieldPath !== 'string') {
+    return {};
+  }
+
+  const trimmed = fieldPath.trim();
+  if (!trimmed) {
+    return {};
+  }
+
+  const attributes = getStackbitAttributes(trimmed);
+  return {
+    'data-nlv-field-path': trimmed,
+    ...attributes,
+  };
+};
+

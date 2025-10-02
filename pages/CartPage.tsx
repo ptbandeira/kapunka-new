@@ -8,6 +8,7 @@ import { useCart } from '../contexts/CartContext';
 import { useLanguage } from '../contexts/LanguageContext';
 import type { CartItem, Product } from '../types';
 import { fetchVisualEditorJson } from '../utils/fetchVisualEditorJson';
+import { getVisualEditorAttributes } from '../utils/stackbitBindings';
 
 interface ProductsResponse {
   items?: Product[];
@@ -35,24 +36,24 @@ const CartItemRow: React.FC<{ item: CartItem; product?: Product; productFieldPat
   if (!product || !size) return null;
 
   return (
-    <div className="grid grid-cols-12 gap-4 items-center py-4 border-b border-stone-200" data-nlv-field-path={productFieldPath}>
+    <div className="grid grid-cols-12 gap-4 items-center py-4 border-b border-stone-200" {...getVisualEditorAttributes(productFieldPath)}>
       <div className="col-span-2">
         <img
           src={product.imageUrl}
           alt={translate(product.name)}
           className="w-20 h-20 object-cover rounded-md"
-          data-nlv-field-path={productFieldPath ? `${productFieldPath}.imageUrl` : undefined}
+          {...getVisualEditorAttributes(productFieldPath ? `${productFieldPath}.imageUrl` : undefined)}
         />
       </div>
       <div className="col-span-4">
-        <p className="font-semibold" data-nlv-field-path={productFieldPath ? `${productFieldPath}.name.en` : undefined}>
+        <p className="font-semibold" {...getVisualEditorAttributes(productFieldPath ? `${productFieldPath}.name.en` : undefined)}>
           {translate(product.name)}
         </p>
         <p
           className="text-sm text-stone-500"
-          data-nlv-field-path={
+          {...getVisualEditorAttributes(
             productFieldPath && sizeIndex >= 0 ? `${productFieldPath}.sizes.${sizeIndex}.size` : undefined
-          }
+          )}
         >
           {size.size}ml
         </p>
@@ -65,9 +66,9 @@ const CartItemRow: React.FC<{ item: CartItem; product?: Product; productFieldPat
       <div className="col-span-2 text-right">
         <p
           className="font-semibold"
-          data-nlv-field-path={
+          {...getVisualEditorAttributes(
             productFieldPath && sizeIndex >= 0 ? `${productFieldPath}.sizes.${sizeIndex}.price` : undefined
-          }
+          )}
         >
           ${(size.price * item.quantity).toFixed(2)}
         </p>
@@ -127,7 +128,7 @@ const CartPage: React.FC = () => {
     
     if (loading) {
         return (
-            <div className="text-center py-20" data-nlv-field-path={`${commonFieldPath}.loadingCart`}>
+            <div className="text-center py-20" {...getVisualEditorAttributes(`${commonFieldPath}.loadingCart`)}>
                 {t('common.loadingCart')}
             </div>
         );
@@ -141,7 +142,7 @@ const CartPage: React.FC = () => {
             <header className="text-center mb-12">
                 <h1
                     className="text-4xl sm:text-5xl font-semibold tracking-tight"
-                    data-nlv-field-path={`${cartFieldPath}.pageTitle`}
+                    {...getVisualEditorAttributes(`${cartFieldPath}.pageTitle`)}
                 >
                     {t('cart.pageTitle')}
                 </h1>
@@ -168,41 +169,41 @@ const CartPage: React.FC = () => {
                         <div className="bg-stone-100 p-8 rounded-lg">
                             <h2
                                 className="text-2xl font-semibold mb-6"
-                                data-nlv-field-path={`${cartFieldPath}.summary`}
+                                {...getVisualEditorAttributes(`${cartFieldPath}.summary`)}
                             >
                                 {t('cart.summary')}
                             </h2>
                             <div className="space-y-4">
                                 <div className="flex justify-between">
-                                    <span data-nlv-field-path={`${cartFieldPath}.subtotal`}>
+                                    <span {...getVisualEditorAttributes(`${cartFieldPath}.subtotal`)}>
                                         {t('cart.subtotal')}
                                     </span>
                                     <span>${subtotal.toFixed(2)}</span>
                                 </div>
                                 <div className="flex justify-between">
-                                    <span data-nlv-field-path={`${cartFieldPath}.shipping`}>
+                                    <span {...getVisualEditorAttributes(`${cartFieldPath}.shipping`)}>
                                         {t('cart.shipping')}
                                     </span>
-                                    <span data-nlv-field-path={`${cartFieldPath}.shippingCalculated`}>
+                                    <span {...getVisualEditorAttributes(`${cartFieldPath}.shippingCalculated`)}>
                                         {t('cart.shippingCalculated')}
                                     </span>
                                 </div>
                                 <div className="border-t border-stone-300 my-4"></div>
                                 <div className="flex justify-between font-bold text-lg">
-                                    <span data-nlv-field-path={`${cartFieldPath}.total`}>
+                                    <span {...getVisualEditorAttributes(`${cartFieldPath}.total`)}>
                                         {t('cart.total')}
                                     </span>
                                     <span>${subtotal.toFixed(2)}</span>
                                 </div>
                             </div>
                             <button className="mt-8 w-full bg-stone-900 text-white py-3 rounded-md font-semibold hover:bg-stone-700 transition-colors">
-                                <span data-nlv-field-path={`${cartFieldPath}.checkout`}>
+                                <span {...getVisualEditorAttributes(`${cartFieldPath}.checkout`)}>
                                     {t('cart.checkout')}
                                 </span>
                             </button>
                              <p
                                 className="text-xs text-stone-500 text-center mt-2"
-                                data-nlv-field-path={`${cartFieldPath}.checkoutRedirect`}
+                                {...getVisualEditorAttributes(`${cartFieldPath}.checkoutRedirect`)}
                              >
                                 {t('cart.checkoutRedirect')}
                              </p>
@@ -217,7 +218,7 @@ const CartPage: React.FC = () => {
                 >
                     <p
                         className="text-xl text-stone-600 mb-6"
-                        data-nlv-field-path={`${cartFieldPath}.empty`}
+                        {...getVisualEditorAttributes(`${cartFieldPath}.empty`)}
                     >
                         {t('cart.empty')}
                     </p>
@@ -225,7 +226,7 @@ const CartPage: React.FC = () => {
                         to="/shop"
                         className="px-8 py-3 bg-stone-900 text-white font-semibold rounded-md hover:bg-stone-700 transition-colors"
                     >
-                        <span data-nlv-field-path={`${cartFieldPath}.continueShopping`}>
+                        <span {...getVisualEditorAttributes(`${cartFieldPath}.continueShopping`)}>
                             {t('cart.continueShopping')}
                         </span>
                     </Link>

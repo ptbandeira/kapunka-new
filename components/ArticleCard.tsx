@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { useLanguage } from '../contexts/LanguageContext';
 import type { Article } from '../types';
+import { getVisualEditorAttributes } from '../utils/stackbitBindings';
 
 interface ArticleCardProps {
   article: Article;
@@ -44,7 +45,7 @@ const ArticleCard: React.FC<ArticleCardProps> = (props) => {
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, amount: 0.3 }}
       transition={{ duration: 0.6, delay: index * 0.1 }}
-      data-nlv-field-path={fieldPath}
+      {...getVisualEditorAttributes(fieldPath)}
       data-sb-field-path={dataSbFieldPath ?? fieldPath}
     >
       <Link to={`/learn/${article.slug}`} className="group block">
@@ -53,28 +54,28 @@ const ArticleCard: React.FC<ArticleCardProps> = (props) => {
             src={article.imageUrl}
             alt={translate(article.title)}
             className="w-full h-56 object-cover transition-transform duration-500 group-hover:scale-105"
-            data-nlv-field-path={fieldPath ? `${fieldPath}.imageUrl` : undefined}
+            {...getVisualEditorAttributes(fieldPath ? `${fieldPath}.imageUrl` : undefined)}
             data-sb-field-path={fieldPath ? `${fieldPath}.imageUrl` : undefined}
           />
         </div>
         <div className="mt-4">
           <p
             className="text-sm text-stone-500 uppercase tracking-wider"
-            data-nlv-field-path={resolvedCategoryFieldPath}
+            {...getVisualEditorAttributes(resolvedCategoryFieldPath)}
             data-sb-field-path={resolvedCategoryFieldPath}
           >
             {displayCategory}
           </p>
           <h3
             className="font-semibold text-xl mt-2 text-stone-800 group-hover:text-stone-900 transition-colors"
-            data-nlv-field-path={fieldPath ? `${fieldPath}.title.${language}` : undefined}
+            {...getVisualEditorAttributes(fieldPath ? `${fieldPath}.title.${language}` : undefined)}
             data-sb-field-path={fieldPath ? `${fieldPath}.title.${language}` : undefined}
           >
             {translate(article.title)}
           </h3>
           <p
             className="text-sm text-stone-600 mt-2"
-            data-nlv-field-path={fieldPath ? `${fieldPath}.preview.${language}` : undefined}
+            {...getVisualEditorAttributes(fieldPath ? `${fieldPath}.preview.${language}` : undefined)}
             data-sb-field-path={fieldPath ? `${fieldPath}.preview.${language}` : undefined}
           >
             {translate(article.preview)}

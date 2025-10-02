@@ -25,6 +25,7 @@ import type {
   Language,
 } from '../types';
 import { fetchVisualEditorJson } from '../utils/fetchVisualEditorJson';
+import { getVisualEditorAttributes } from '../utils/stackbitBindings';
 
 interface ProductsResponse {
   items?: Product[];
@@ -1099,7 +1100,7 @@ const Bestsellers: React.FC<BestsellersProps> = ({ intro, introFieldPath }) => {
                     viewport={{ once: true }}
                     transition={{ duration: 0.6 }}
                     className="text-3xl sm:text-4xl font-semibold text-center mb-12"
-                    data-nlv-field-path={`translations.${language}.home.bestsellersTitle`}
+                    {...getVisualEditorAttributes(`translations.${language}.home.bestsellersTitle`)}
                 >
                     {t('home.bestsellersTitle')}
                 </motion.h2>
@@ -1110,7 +1111,7 @@ const Bestsellers: React.FC<BestsellersProps> = ({ intro, introFieldPath }) => {
                         viewport={{ once: true }}
                         transition={{ duration: 0.6, delay: 0.1 }}
                         className="text-center text-stone-600 max-w-3xl mx-auto -mt-8 mb-12"
-                        data-nlv-field-path={introFieldPath}
+                        {...getVisualEditorAttributes(introFieldPath)}
                     >
                         {intro}
                     </motion.p>
@@ -1132,7 +1133,7 @@ const Bestsellers: React.FC<BestsellersProps> = ({ intro, introFieldPath }) => {
                 ) : (
                     <p
                         className="text-center"
-                        data-nlv-field-path={`translations.${language}.common.loadingBestsellers`}
+                        {...getVisualEditorAttributes(`translations.${language}.common.loadingBestsellers`)}
                     >
                         {t('common.loadingBestsellers')}
                     </p>
@@ -1196,7 +1197,7 @@ const ClinicsBlock: React.FC<ClinicsBlockProps> = ({ data, fieldPath, fallbackCt
     const ctaLabel = clinicsCtaLabel && clinicsCtaLabel.trim().length > 0 ? clinicsCtaLabel : fallbackCtaLabel;
 
     return (
-        <div className="py-16 sm:py-24 bg-white" data-nlv-field-path={fieldPath}>
+        <div className="py-16 sm:py-24 bg-white" {...getVisualEditorAttributes(fieldPath)}>
             <div className="container mx-auto px-4 sm:px-6 lg:px-8">
                 <div className={`grid grid-cols-1 gap-12 ${hasImage ? 'lg:grid-cols-2 items-center' : ''}`}>
                     <div>
@@ -1207,7 +1208,7 @@ const ClinicsBlock: React.FC<ClinicsBlockProps> = ({ data, fieldPath, fallbackCt
                                 viewport={{ once: true }}
                                 transition={{ duration: 0.6 }}
                                 className="text-3xl sm:text-4xl font-semibold"
-                                data-nlv-field-path={fieldPath ? `${fieldPath}.clinicsTitle` : undefined}
+                                {...getVisualEditorAttributes(fieldPath ? `${fieldPath}.clinicsTitle` : undefined)}
                             >
                                 {clinicsTitle}
                             </motion.h2>
@@ -1219,7 +1220,7 @@ const ClinicsBlock: React.FC<ClinicsBlockProps> = ({ data, fieldPath, fallbackCt
                                 viewport={{ once: true }}
                                 transition={{ duration: 0.6, delay: 0.1 }}
                                 className="mt-6 space-y-4"
-                                data-nlv-field-path={fieldPath ? `${fieldPath}.clinicsBody` : undefined}
+                                {...getVisualEditorAttributes(fieldPath ? `${fieldPath}.clinicsBody` : undefined)}
                             >
                                 <ReactMarkdown components={clinicsMarkdownComponents}>
                                     {clinicsBody}
@@ -1238,9 +1239,9 @@ const ClinicsBlock: React.FC<ClinicsBlockProps> = ({ data, fieldPath, fallbackCt
                                     <Link
                                         to={internalPath.startsWith('/') ? internalPath : `/${internalPath}`}
                                         className="inline-flex items-center px-6 py-3 bg-stone-900 text-white font-semibold rounded-md hover:bg-stone-700 transition-colors"
-                                        data-nlv-field-path={fieldPath ? `${fieldPath}.clinicsCtaHref` : undefined}
+                                        {...getVisualEditorAttributes(fieldPath ? `${fieldPath}.clinicsCtaHref` : undefined)}
                                     >
-                                        <span data-nlv-field-path={fieldPath ? `${fieldPath}.clinicsCtaLabel` : undefined}>
+                                        <span {...getVisualEditorAttributes(fieldPath ? `${fieldPath}.clinicsCtaLabel` : undefined)}>
                                             {ctaLabel}
                                         </span>
                                     </Link>
@@ -1250,9 +1251,9 @@ const ClinicsBlock: React.FC<ClinicsBlockProps> = ({ data, fieldPath, fallbackCt
                                         className="inline-flex items-center px-6 py-3 bg-stone-900 text-white font-semibold rounded-md hover:bg-stone-700 transition-colors"
                                         target="_blank"
                                         rel="noreferrer"
-                                        data-nlv-field-path={fieldPath ? `${fieldPath}.clinicsCtaHref` : undefined}
+                                        {...getVisualEditorAttributes(fieldPath ? `${fieldPath}.clinicsCtaHref` : undefined)}
                                     >
-                                        <span data-nlv-field-path={fieldPath ? `${fieldPath}.clinicsCtaLabel` : undefined}>
+                                        <span {...getVisualEditorAttributes(fieldPath ? `${fieldPath}.clinicsCtaLabel` : undefined)}>
                                             {ctaLabel}
                                         </span>
                                     </a>
@@ -1272,7 +1273,7 @@ const ClinicsBlock: React.FC<ClinicsBlockProps> = ({ data, fieldPath, fallbackCt
                                 src={clinicsImage}
                                 alt={clinicsTitle ?? 'Clinics highlight'}
                                 className="w-full rounded-lg shadow-lg object-cover"
-                                data-nlv-field-path={fieldPath ? `${fieldPath}.clinicsImage` : undefined}
+                                {...getVisualEditorAttributes(fieldPath ? `${fieldPath}.clinicsImage` : undefined)}
                             />
                         </motion.div>
                     )}
@@ -1315,7 +1316,7 @@ const GalleryRows: React.FC<GalleryRowsProps> = ({ rows, fieldPath }) => {
     }
 
     return (
-        <section className="py-12 md:py-16 bg-stone-50" data-nlv-field-path={fieldPath}>
+        <section className="py-12 md:py-16 bg-stone-50" {...getVisualEditorAttributes(fieldPath)}>
             <div className="container mx-auto px-4 sm:px-6 lg:px-8 space-y-10">
                 {sanitizedRows.map((row, rowIndex) => {
                     const rowFieldPath = fieldPath ? `${fieldPath}[${rowIndex}]` : undefined;
@@ -1332,7 +1333,7 @@ const GalleryRows: React.FC<GalleryRowsProps> = ({ rows, fieldPath }) => {
                         <div
                             key={rowKey}
                             className={gridClasses}
-                            data-nlv-field-path={rowFieldPath}
+                            {...getVisualEditorAttributes(rowFieldPath)}
                         >
                             {items.map((item, itemIndex) => {
                                 if (!item) {
@@ -1359,18 +1360,18 @@ const GalleryRows: React.FC<GalleryRowsProps> = ({ rows, fieldPath }) => {
                                         viewport={{ once: true }}
                                         transition={{ duration: 0.5, delay: itemIndex * 0.05 }}
                                         className="space-y-2"
-                                        data-nlv-field-path={itemFieldPath}
+                                        {...getVisualEditorAttributes(itemFieldPath)}
                                     >
                                         <img
                                             src={imageSrc}
                                             alt={altText}
                                             className="w-full aspect-[4/3] object-cover rounded-lg shadow-md"
-                                            data-nlv-field-path={itemFieldPath ? `${itemFieldPath}.image` : undefined}
+                                            {...getVisualEditorAttributes(itemFieldPath ? `${itemFieldPath}.image` : undefined)}
                                         />
                                         {caption && (
                                             <figcaption
                                                 className="mt-2 text-sm text-stone-600"
-                                                data-nlv-field-path={itemFieldPath ? `${itemFieldPath}.caption` : undefined}
+                                                {...getVisualEditorAttributes(itemFieldPath ? `${itemFieldPath}.caption` : undefined)}
                                             >
                                                 {caption}
                                             </figcaption>
@@ -1427,7 +1428,7 @@ const Reviews: React.FC = () => {
                     viewport={{ once: true }}
                     transition={{ duration: 0.6 }}
                     className="text-3xl sm:text-4xl font-semibold text-center mb-12"
-                    data-nlv-field-path={`translations.${language}.home.reviewsTitle`}
+                    {...getVisualEditorAttributes(`translations.${language}.home.reviewsTitle`)}
                 >
                     {t('home.reviewsTitle')}
                 </motion.h2>
@@ -1441,24 +1442,24 @@ const Reviews: React.FC = () => {
                                 viewport={{ once: true }}
                                 transition={{ duration: 0.6, delay: index * 0.1 }}
                                 className="p-8 bg-stone-100 rounded-lg text-center"
-                                data-nlv-field-path={`reviews.items.${index}`}
+                                {...getVisualEditorAttributes(`reviews.items.${index}`)}
                             >
                                 <p className="text-stone-700 italic">
                                     &ldquo;
-                                    <span data-nlv-field-path={`reviews.items.${index}.text.${language}`}>
+                                    <span {...getVisualEditorAttributes(`reviews.items.${index}.text.${language}`)}>
                                         {translate(review.text)}
                                     </span>
                                     &rdquo;
                                 </p>
                                 <p
                                     className="mt-6 font-semibold"
-                                    data-nlv-field-path={`reviews.items.${index}.author.${language}`}
+                                    {...getVisualEditorAttributes(`reviews.items.${index}.author.${language}`)}
                                 >
                                     {translate(review.author)}
                                 </p>
                                 <p
                                     className="text-sm text-stone-500"
-                                    data-nlv-field-path={`reviews.items.${index}.role.${language}`}
+                                    {...getVisualEditorAttributes(`reviews.items.${index}.role.${language}`)}
                                 >
                                     {translate(review.role)}
                                 </p>
@@ -1468,7 +1469,7 @@ const Reviews: React.FC = () => {
                 ) : (
                     <p
                         className="text-center"
-                        data-nlv-field-path={`translations.${language}.common.loadingReviews`}
+                        {...getVisualEditorAttributes(`translations.${language}.common.loadingReviews`)}
                     >
                         {t('common.loadingReviews')}
                     </p>
@@ -1539,7 +1540,7 @@ const NewsletterSignup: React.FC<NewsletterSignupProps> = ({
     : 'px-6 py-3 bg-stone-900 text-white font-semibold rounded-md hover:bg-stone-700 transition-colors';
 
   return (
-    <div className={`py-16 sm:py-24 ${backgroundClass}`} data-nlv-field-path={fieldPath}>
+    <div className={`py-16 sm:py-24 ${backgroundClass}`} {...getVisualEditorAttributes(fieldPath)}>
       <div className={`container mx-auto px-4 sm:px-6 lg:px-8 ${containerMaxWidth}`}>
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -1550,14 +1551,14 @@ const NewsletterSignup: React.FC<NewsletterSignupProps> = ({
         >
           <h2
             className="text-3xl sm:text-4xl font-semibold"
-            data-nlv-field-path={fieldPath ? `${fieldPath}.title` : undefined}
+            {...getVisualEditorAttributes(fieldPath ? `${fieldPath}.title` : undefined)}
           >
             {resolvedTitle}
           </h2>
           {resolvedSubtitle && (
             <p
               className={`text-base sm:text-lg ${isDark ? 'text-white/80' : 'text-stone-600'}`}
-              data-nlv-field-path={fieldPath ? `${fieldPath}.subtitle` : undefined}
+              {...getVisualEditorAttributes(fieldPath ? `${fieldPath}.subtitle` : undefined)}
             >
               {resolvedSubtitle}
             </p>
@@ -1565,7 +1566,7 @@ const NewsletterSignup: React.FC<NewsletterSignupProps> = ({
           {submitted ? (
             <p
               className={`text-lg font-semibold ${isDark ? 'text-white' : 'text-green-700'}`}
-              data-nlv-field-path={fieldPath ? `${fieldPath}.confirmation` : undefined}
+              {...getVisualEditorAttributes(fieldPath ? `${fieldPath}.confirmation` : undefined)}
             >
               {resolvedConfirmation}
             </p>
@@ -1581,10 +1582,10 @@ const NewsletterSignup: React.FC<NewsletterSignupProps> = ({
                 placeholder={resolvedPlaceholder}
                 required
                 className={inputClasses}
-                data-nlv-field-path={fieldPath ? `${fieldPath}.placeholder` : undefined}
+                {...getVisualEditorAttributes(fieldPath ? `${fieldPath}.placeholder` : undefined)}
               />
               <button type="submit" className={buttonClasses}>
-                <span data-nlv-field-path={fieldPath ? `${fieldPath}.ctaLabel` : undefined}>{resolvedCtaLabel}</span>
+                <span {...getVisualEditorAttributes(fieldPath ? `${fieldPath}.ctaLabel` : undefined)}>{resolvedCtaLabel}</span>
               </button>
             </form>
           )}
@@ -1980,7 +1981,7 @@ const Home: React.FC = () => {
           src={heroInlineImage}
           alt={heroImageAlt}
           className="w-full max-h-[540px] rounded-lg shadow-lg object-cover"
-          data-nlv-field-path={heroImageFieldPath}
+          {...getVisualEditorAttributes(heroImageFieldPath)}
         />
       </motion.div>
     )
@@ -1990,12 +1991,12 @@ const Home: React.FC = () => {
       <div className={heroTextWrapperClasses}>
         <h1
           className="text-4xl md:text-6xl font-semibold tracking-tight"
-          data-nlv-field-path={`${homeFieldPath}.heroHeadline`}
+          {...getVisualEditorAttributes(`${homeFieldPath}.heroHeadline`)}
         >
           {heroHeadline}
         </h1>
         {heroSubheadline && (
-          <div data-nlv-field-path={`${homeFieldPath}.heroSubheadline`}>
+          <div {...getVisualEditorAttributes(`${homeFieldPath}.heroSubheadline`)}>
             <ReactMarkdown components={heroMarkdownComponents}>
               {heroSubheadline}
             </ReactMarkdown>
@@ -2006,9 +2007,9 @@ const Home: React.FC = () => {
             <Link
               to={heroPrimaryLinkTarget}
               className={heroPrimaryButtonClasses}
-              data-nlv-field-path={heroPrimaryCtaHrefFieldPath}
+              {...getVisualEditorAttributes(heroPrimaryCtaHrefFieldPath)}
             >
-              <span data-nlv-field-path={heroPrimaryCtaFieldPath}>
+              <span {...getVisualEditorAttributes(heroPrimaryCtaFieldPath)}>
                 {heroPrimaryCta}
               </span>
             </Link>
@@ -2016,11 +2017,11 @@ const Home: React.FC = () => {
             <a
               href={heroPrimaryLinkTarget}
               className={heroPrimaryButtonClasses}
-              data-nlv-field-path={heroPrimaryCtaHrefFieldPath}
+              {...getVisualEditorAttributes(heroPrimaryCtaHrefFieldPath)}
               target={isExternalHttpUrl(heroPrimaryLinkTarget) ? '_blank' : undefined}
               rel={isExternalHttpUrl(heroPrimaryLinkTarget) ? 'noreferrer' : undefined}
             >
-              <span data-nlv-field-path={heroPrimaryCtaFieldPath}>
+              <span {...getVisualEditorAttributes(heroPrimaryCtaFieldPath)}>
                 {heroPrimaryCta}
               </span>
             </a>
@@ -2029,9 +2030,9 @@ const Home: React.FC = () => {
             <Link
               to={heroSecondaryLinkTarget}
               className={heroSecondaryButtonClasses}
-              data-nlv-field-path={heroSecondaryCtaHrefFieldPath}
+              {...getVisualEditorAttributes(heroSecondaryCtaHrefFieldPath)}
             >
-              <span data-nlv-field-path={heroSecondaryCtaFieldPath}>
+              <span {...getVisualEditorAttributes(heroSecondaryCtaFieldPath)}>
                 {heroSecondaryCta}
               </span>
             </Link>
@@ -2039,11 +2040,11 @@ const Home: React.FC = () => {
             <a
               href={heroSecondaryLinkTarget}
               className={heroSecondaryButtonClasses}
-              data-nlv-field-path={heroSecondaryCtaHrefFieldPath}
+              {...getVisualEditorAttributes(heroSecondaryCtaHrefFieldPath)}
               target={isExternalHttpUrl(heroSecondaryLinkTarget) ? '_blank' : undefined}
               rel={isExternalHttpUrl(heroSecondaryLinkTarget) ? 'noreferrer' : undefined}
             >
-              <span data-nlv-field-path={heroSecondaryCtaFieldPath}>
+              <span {...getVisualEditorAttributes(heroSecondaryCtaFieldPath)}>
                 {heroSecondaryCta}
               </span>
             </a>
@@ -2208,7 +2209,7 @@ const Home: React.FC = () => {
               viewport={{ once: true }}
               transition={{ duration: 0.6, delay: 0.1 }}
               className={sectionImageWrapperClasses}
-              data-nlv-field-path={heroImageFieldPathForSection}
+              {...getVisualEditorAttributes(heroImageFieldPathForSection)}
             >
               <img
                 src={inlineImageCandidate}
@@ -2223,12 +2224,12 @@ const Home: React.FC = () => {
             <div className={sectionTextWrapperClasses}>
               <h1
                 className="text-4xl md:text-6xl font-semibold tracking-tight"
-                data-nlv-field-path={`${sectionFieldPath}.headline`}
+                {...getVisualEditorAttributes(`${sectionFieldPath}.headline`)}
               >
                 {headline}
               </h1>
               {subheadline && (
-                <div data-nlv-field-path={`${sectionFieldPath}.subheadline`}>
+                <div {...getVisualEditorAttributes(`${sectionFieldPath}.subheadline`)}>
                   <ReactMarkdown components={heroMarkdownComponents}>
                     {subheadline}
                   </ReactMarkdown>
@@ -2240,19 +2241,19 @@ const Home: React.FC = () => {
                     <Link
                       to={normalizeInternalHref(primaryCtaHref)}
                       className={sectionPrimaryButtonClasses}
-                      data-nlv-field-path={sectionPrimaryCtaHrefFieldPath}
+                      {...getVisualEditorAttributes(sectionPrimaryCtaHrefFieldPath)}
                     >
-                      <span data-nlv-field-path={sectionPrimaryCtaLabelFieldPath}>{primaryCta}</span>
+                      <span {...getVisualEditorAttributes(sectionPrimaryCtaLabelFieldPath)}>{primaryCta}</span>
                     </Link>
                   ) : (
                     <a
                       href={primaryCtaHref}
                       className={sectionPrimaryButtonClasses}
-                      data-nlv-field-path={sectionPrimaryCtaHrefFieldPath}
+                      {...getVisualEditorAttributes(sectionPrimaryCtaHrefFieldPath)}
                       target={isExternalHttpUrl(primaryCtaHref) ? '_blank' : undefined}
                       rel={isExternalHttpUrl(primaryCtaHref) ? 'noreferrer' : undefined}
                     >
-                      <span data-nlv-field-path={sectionPrimaryCtaLabelFieldPath}>{primaryCta}</span>
+                      <span {...getVisualEditorAttributes(sectionPrimaryCtaLabelFieldPath)}>{primaryCta}</span>
                     </a>
                   )
                 )}
@@ -2261,19 +2262,19 @@ const Home: React.FC = () => {
                     <Link
                       to={normalizeInternalHref(secondaryCtaHref)}
                       className={sectionSecondaryButtonClasses}
-                      data-nlv-field-path={sectionSecondaryCtaHrefFieldPath}
+                      {...getVisualEditorAttributes(sectionSecondaryCtaHrefFieldPath)}
                     >
-                      <span data-nlv-field-path={sectionSecondaryCtaLabelFieldPath}>{secondaryCta}</span>
+                      <span {...getVisualEditorAttributes(sectionSecondaryCtaLabelFieldPath)}>{secondaryCta}</span>
                     </Link>
                   ) : (
                     <a
                       href={secondaryCtaHref}
                       className={sectionSecondaryButtonClasses}
-                      data-nlv-field-path={sectionSecondaryCtaHrefFieldPath}
+                      {...getVisualEditorAttributes(sectionSecondaryCtaHrefFieldPath)}
                       target={isExternalHttpUrl(secondaryCtaHref) ? '_blank' : undefined}
                       rel={isExternalHttpUrl(secondaryCtaHref) ? 'noreferrer' : undefined}
                     >
-                      <span data-nlv-field-path={sectionSecondaryCtaLabelFieldPath}>{secondaryCta}</span>
+                      <span {...getVisualEditorAttributes(sectionSecondaryCtaLabelFieldPath)}>{secondaryCta}</span>
                     </a>
                   )
                 )}
@@ -2307,7 +2308,7 @@ const Home: React.FC = () => {
               <div
                 className="relative h-screen bg-cover bg-center"
                 style={{ backgroundImage: `url('${sectionBackgroundImage}')` }}
-                data-nlv-field-path={sectionFieldPath}
+                {...getVisualEditorAttributes(sectionFieldPath)}
               >
                 <div className="absolute inset-0" style={sectionOverlayStyle}></div>
                 {heroTextPlacement === 'overlay' && (
@@ -2317,7 +2318,7 @@ const Home: React.FC = () => {
                 )}
               </div>
             ) : (
-              <div className="relative h-screen bg-stone-900" data-nlv-field-path={sectionFieldPath}>
+              <div className="relative h-screen bg-stone-900" {...getVisualEditorAttributes(sectionFieldPath)}>
                 {heroTextPlacement === 'overlay' && (
                   <div className={`relative h-full flex flex-col ${sectionAlignmentClasses} ${sectionMiddleNudge}`}>
                     {sectionTextMotion}
@@ -2360,12 +2361,12 @@ const Home: React.FC = () => {
           <section
             key={featureGridKey}
             className="py-16 sm:py-24 bg-white"
-            data-nlv-field-path={sectionFieldPath}
+            {...getVisualEditorAttributes(sectionFieldPath)}
           >
             <div className="container mx-auto px-4 sm:px-6 lg:px-8">
               {sectionTitle && (
                 <h2 className="text-3xl sm:text-4xl font-semibold text-center">
-                  <span data-nlv-field-path={`${sectionFieldPath}.title`}>{sectionTitle}</span>
+                  <span {...getVisualEditorAttributes(`${sectionFieldPath}.title`)}>{sectionTitle}</span>
                 </h2>
               )}
               {items.length > 0 && (
@@ -2374,20 +2375,20 @@ const Home: React.FC = () => {
                     <div
                       key={createKeyFromParts('feature-grid-item', [item.label, item.icon, item.description])}
                       className="bg-white border border-stone-200 rounded-xl p-6 shadow-sm flex flex-col gap-3"
-                      data-nlv-field-path={`${sectionFieldPath}.items.${itemIndex}`}
+                      {...getVisualEditorAttributes(`${sectionFieldPath}.items.${itemIndex}`)}
                     >
                       {item.icon && (
                         <img
                           src={item.icon}
                           alt={item.label ?? 'Feature icon'}
                           className="h-12 w-12 object-contain"
-                          data-nlv-field-path={`${sectionFieldPath}.items.${itemIndex}.icon`}
+                          {...getVisualEditorAttributes(`${sectionFieldPath}.items.${itemIndex}.icon`)}
                         />
                       )}
                       {item.label && (
                         <h3
                           className="text-lg font-semibold text-stone-900"
-                          data-nlv-field-path={`${sectionFieldPath}.items.${itemIndex}.label`}
+                          {...getVisualEditorAttributes(`${sectionFieldPath}.items.${itemIndex}.label`)}
                         >
                           {item.label}
                         </h3>
@@ -2395,7 +2396,7 @@ const Home: React.FC = () => {
                       {item.description && (
                         <p
                           className="text-sm text-stone-600"
-                          data-nlv-field-path={`${sectionFieldPath}.items.${itemIndex}.description`}
+                          {...getVisualEditorAttributes(`${sectionFieldPath}.items.${itemIndex}.description`)}
                         >
                           {item.description}
                         </p>
@@ -2430,12 +2431,12 @@ const Home: React.FC = () => {
           <section
             key={productGridKey}
             className="py-16 sm:py-24 bg-stone-100"
-            data-nlv-field-path={sectionFieldPath}
+            {...getVisualEditorAttributes(sectionFieldPath)}
           >
             <div className="container mx-auto px-4 sm:px-6 lg:px-8">
               {sectionTitle && (
                 <h2 className="text-3xl sm:text-4xl font-semibold text-center mb-12">
-                  <span data-nlv-field-path={`${sectionFieldPath}.title`}>{sectionTitle}</span>
+                  <span {...getVisualEditorAttributes(`${sectionFieldPath}.title`)}>{sectionTitle}</span>
                 </h2>
               )}
               {resolvedProducts.length > 0 ? (
@@ -2455,7 +2456,7 @@ const Home: React.FC = () => {
               ) : (
                 <p
                   className="text-center"
-                  data-nlv-field-path={`translations.${language}.common.loadingProducts`}
+                  {...getVisualEditorAttributes(`translations.${language}.common.loadingProducts`)}
                 >
                   {t('common.loadingProducts')}
                 </p>
@@ -2531,7 +2532,7 @@ const Home: React.FC = () => {
             <section
               key={mediaCopyKey}
               className="py-12 sm:py-16 bg-white"
-              data-nlv-field-path={sectionFieldPath}
+              {...getVisualEditorAttributes(sectionFieldPath)}
             >
               <div className="container mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
                 <div className="relative overflow-hidden rounded-3xl shadow-xl lg:min-h-[520px]">
@@ -2539,7 +2540,7 @@ const Home: React.FC = () => {
                     src={mediaImage}
                     alt={imageAlt}
                     className="h-full w-full object-cover"
-                    data-nlv-field-path={`${sectionFieldPath}.${imageFieldKey}`}
+                    {...getVisualEditorAttributes(`${sectionFieldPath}.${imageFieldKey}`)}
                   />
                   <div
                     className="pointer-events-none absolute inset-0 grid"
@@ -2555,7 +2556,7 @@ const Home: React.FC = () => {
                       {title && (
                         <h2
                           className="text-3xl sm:text-4xl font-semibold"
-                          data-nlv-field-path={`${sectionFieldPath}.title`}
+                          {...getVisualEditorAttributes(`${sectionFieldPath}.title`)}
                         >
                           {title}
                         </h2>
@@ -2563,7 +2564,7 @@ const Home: React.FC = () => {
                       {body && (
                         <div
                           className="text-lg leading-relaxed lg:text-xl"
-                          data-nlv-field-path={`${sectionFieldPath}.body`}
+                          {...getVisualEditorAttributes(`${sectionFieldPath}.body`)}
                         >
                           <ReactMarkdown>{body}</ReactMarkdown>
                         </div>
@@ -2594,14 +2595,14 @@ const Home: React.FC = () => {
             <section
               key={mediaCopyKey}
               className={layout === 'overlay' ? 'py-12 sm:py-16 bg-white' : 'py-16 sm:py-24 bg-white'}
-              data-nlv-field-path={sectionFieldPath}
+              {...getVisualEditorAttributes(sectionFieldPath)}
             >
               <div className="container mx-auto px-4 sm:px-6 lg:px-8">
                 <div className={`mx-auto flex max-w-3xl flex-col gap-6 ${singleColumnAlignment.container}`}>
                   {title && (
                     <h2
                       className={`text-3xl sm:text-4xl font-semibold ${singleColumnAlignment.text}`}
-                      data-nlv-field-path={`${sectionFieldPath}.title`}
+                      {...getVisualEditorAttributes(`${sectionFieldPath}.title`)}
                     >
                       {title}
                     </h2>
@@ -2609,13 +2610,13 @@ const Home: React.FC = () => {
                   {body && (
                     <div
                       className={`${singleColumnAlignment.text} text-lg text-stone-600 space-y-4`}
-                      data-nlv-field-path={`${sectionFieldPath}.body`}
+                      {...getVisualEditorAttributes(`${sectionFieldPath}.body`)}
                     >
                       <ReactMarkdown>{body}</ReactMarkdown>
                     </div>
                   )}
                   {hasImage && (
-                    <div className="w-full" data-nlv-field-path={`${sectionFieldPath}.${imageFieldKey}`}>
+                    <div className="w-full" {...getVisualEditorAttributes(`${sectionFieldPath}.${imageFieldKey}`)}>
                       <img
                         src={mediaImage}
                         alt={imageAlt}
@@ -2640,7 +2641,7 @@ const Home: React.FC = () => {
           <section
             key={mediaCopyKey}
             className={layout === 'overlay' ? 'py-12 sm:py-16 bg-white' : 'py-16 sm:py-24 bg-white'}
-            data-nlv-field-path={sectionFieldPath}
+            {...getVisualEditorAttributes(sectionFieldPath)}
           >
             <div className="container mx-auto px-4 sm:px-6 lg:px-8">
               <div className={gridClasses}>
@@ -2648,7 +2649,7 @@ const Home: React.FC = () => {
                   {title && (
                     <h2
                       className="text-3xl sm:text-4xl font-semibold"
-                      data-nlv-field-path={`${sectionFieldPath}.title`}
+                      {...getVisualEditorAttributes(`${sectionFieldPath}.title`)}
                     >
                       {title}
                     </h2>
@@ -2656,7 +2657,7 @@ const Home: React.FC = () => {
                   {body && (
                     <div
                       className="text-lg text-stone-600 space-y-4"
-                      data-nlv-field-path={`${sectionFieldPath}.body`}
+                      {...getVisualEditorAttributes(`${sectionFieldPath}.body`)}
                     >
                       <ReactMarkdown>{body}</ReactMarkdown>
                     </div>
@@ -2668,7 +2669,7 @@ const Home: React.FC = () => {
                       src={mediaImage}
                       alt={imageAlt}
                       className="w-full h-full object-cover rounded-lg shadow-sm"
-                      data-nlv-field-path={`${sectionFieldPath}.${imageFieldKey}`}
+                      {...getVisualEditorAttributes(`${sectionFieldPath}.${imageFieldKey}`)}
                     />
                   </div>
                 )}
@@ -2910,12 +2911,12 @@ const Home: React.FC = () => {
           <section
             key={pillarsKey}
             className="py-16 sm:py-24 bg-white"
-            data-nlv-field-path={sectionFieldPath}
+            {...getVisualEditorAttributes(sectionFieldPath)}
           >
             <div className="container mx-auto px-4 sm:px-6 lg:px-8">
               {sectionTitle && (
                 <h2 className="text-3xl sm:text-4xl font-semibold text-center">
-                  <span data-nlv-field-path={`${sectionFieldPath}.title`}>{sectionTitle}</span>
+                  <span {...getVisualEditorAttributes(`${sectionFieldPath}.title`)}>{sectionTitle}</span>
                 </h2>
               )}
               {items.length > 0 && (
@@ -2924,20 +2925,20 @@ const Home: React.FC = () => {
                     <div
                       key={createKeyFromParts('pillar-item', [item.label, item.icon, item.description])}
                       className="bg-white border border-stone-200 rounded-xl p-6 shadow-sm flex flex-col gap-3"
-                      data-nlv-field-path={`${sectionFieldPath}.items.${itemIndex}`}
+                      {...getVisualEditorAttributes(`${sectionFieldPath}.items.${itemIndex}`)}
                     >
                       {item.icon && (
                         <img
                           src={item.icon}
                           alt={item.label ?? 'Feature icon'}
                           className="h-12 w-12 object-contain"
-                          data-nlv-field-path={`${sectionFieldPath}.items.${itemIndex}.icon`}
+                          {...getVisualEditorAttributes(`${sectionFieldPath}.items.${itemIndex}.icon`)}
                         />
                       )}
                       {item.label && (
                         <h3
                           className="text-lg font-semibold text-stone-900"
-                          data-nlv-field-path={`${sectionFieldPath}.items.${itemIndex}.label`}
+                          {...getVisualEditorAttributes(`${sectionFieldPath}.items.${itemIndex}.label`)}
                         >
                           {item.label}
                         </h3>
@@ -2945,7 +2946,7 @@ const Home: React.FC = () => {
                       {item.description && (
                         <p
                           className="text-sm text-stone-600"
-                          data-nlv-field-path={`${sectionFieldPath}.items.${itemIndex}.description`}
+                          {...getVisualEditorAttributes(`${sectionFieldPath}.items.${itemIndex}.description`)}
                         >
                           {item.description}
                         </p>
@@ -3029,7 +3030,7 @@ const Home: React.FC = () => {
             <section
               key={structuredMediaCopyKey}
               className="py-12 sm:py-16 bg-white"
-              data-nlv-field-path={sectionFieldPath}
+              {...getVisualEditorAttributes(sectionFieldPath)}
             >
               <div className="container mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
                 <div className="relative overflow-hidden rounded-3xl shadow-xl lg:min-h-[520px]">
@@ -3037,7 +3038,7 @@ const Home: React.FC = () => {
                     src={mediaImage}
                     alt={imageAlt}
                     className="h-full w-full object-cover"
-                    data-nlv-field-path={imageFieldPath}
+                    {...getVisualEditorAttributes(imageFieldPath)}
                   />
                   <div
                     className="pointer-events-none absolute inset-0 grid"
@@ -3053,7 +3054,7 @@ const Home: React.FC = () => {
                       {title && (
                         <h2
                           className="text-3xl sm:text-4xl font-semibold"
-                          data-nlv-field-path={`${sectionFieldPath}.title`}
+                          {...getVisualEditorAttributes(`${sectionFieldPath}.title`)}
                         >
                           {title}
                         </h2>
@@ -3061,7 +3062,7 @@ const Home: React.FC = () => {
                       {body && (
                         <div
                           className="text-lg leading-relaxed lg:text-xl"
-                          data-nlv-field-path={`${sectionFieldPath}.body`}
+                          {...getVisualEditorAttributes(`${sectionFieldPath}.body`)}
                         >
                           <ReactMarkdown>{body}</ReactMarkdown>
                         </div>
@@ -3098,14 +3099,14 @@ const Home: React.FC = () => {
             <section
               key={structuredMediaCopyKey}
               className={layout === 'overlay' ? 'py-12 sm:py-16 bg-white' : 'py-16 sm:py-24 bg-white'}
-              data-nlv-field-path={sectionFieldPath}
+              {...getVisualEditorAttributes(sectionFieldPath)}
             >
               <div className="container mx-auto px-4 sm:px-6 lg:px-8">
                 <div className={`mx-auto flex max-w-3xl flex-col gap-6 ${singleColumnAlignment.container}`}>
                   {title && (
                     <h2
                       className={`text-3xl sm:text-4xl font-semibold ${singleColumnAlignment.text}`}
-                      data-nlv-field-path={`${sectionFieldPath}.title`}
+                      {...getVisualEditorAttributes(`${sectionFieldPath}.title`)}
                     >
                       {title}
                     </h2>
@@ -3113,13 +3114,13 @@ const Home: React.FC = () => {
                   {body && (
                     <div
                       className={`${singleColumnAlignment.text} text-lg text-stone-600 space-y-4`}
-                      data-nlv-field-path={`${sectionFieldPath}.body`}
+                      {...getVisualEditorAttributes(`${sectionFieldPath}.body`)}
                     >
                       <ReactMarkdown>{body}</ReactMarkdown>
                     </div>
                   )}
                   {hasImage && (
-                    <div className="w-full" data-nlv-field-path={imageFieldPath}>
+                    <div className="w-full" {...getVisualEditorAttributes(imageFieldPath)}>
                       <img
                         src={mediaImage}
                         alt={imageAlt}
@@ -3147,7 +3148,7 @@ const Home: React.FC = () => {
           <section
             key={structuredMediaCopyKey}
             className={layout === 'overlay' ? 'py-12 sm:py-16 bg-white' : 'py-16 sm:py-24 bg-white'}
-            data-nlv-field-path={sectionFieldPath}
+            {...getVisualEditorAttributes(sectionFieldPath)}
           >
             <div className="container mx-auto px-4 sm:px-6 lg:px-8">
               <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
@@ -3155,7 +3156,7 @@ const Home: React.FC = () => {
                   {title && (
                     <h2
                       className="text-3xl font-semibold text-stone-900"
-                      data-nlv-field-path={`${sectionFieldPath}.title`}
+                      {...getVisualEditorAttributes(`${sectionFieldPath}.title`)}
                     >
                       {title}
                     </h2>
@@ -3163,7 +3164,7 @@ const Home: React.FC = () => {
                   {body && (
                     <div
                       className="prose prose-stone max-w-none text-stone-700"
-                      data-nlv-field-path={`${sectionFieldPath}.body`}
+                      {...getVisualEditorAttributes(`${sectionFieldPath}.body`)}
                     >
                       <ReactMarkdown>{body}</ReactMarkdown>
                     </div>
@@ -3175,12 +3176,12 @@ const Home: React.FC = () => {
                       src={mediaImage}
                       alt={imageAlt}
                       className="w-full h-full object-cover rounded-lg shadow-sm"
-                      data-nlv-field-path={imageFieldPath}
+                      {...getVisualEditorAttributes(imageFieldPath)}
                     />
                   ) : (
                     <div
                       className="w-full aspect-[4/3] rounded-lg border border-dashed border-stone-300 bg-stone-100 flex items-center justify-center text-sm text-stone-400"
-                      data-nlv-field-path={imageFieldPath}
+                      {...getVisualEditorAttributes(imageFieldPath)}
                     >
                       Image coming soon
                     </div>
@@ -3219,7 +3220,7 @@ const Home: React.FC = () => {
           <section
             key={testimonialsKey}
             className="py-16 sm:py-24 bg-stone-100"
-            data-nlv-field-path={sectionFieldPath}
+            {...getVisualEditorAttributes(sectionFieldPath)}
           >
             <div className="container mx-auto px-4 sm:px-6 lg:px-8">
               <div className="grid gap-8 md:grid-cols-2">
@@ -3231,7 +3232,7 @@ const Home: React.FC = () => {
                     <blockquote
                       key={quoteKey}
                       className="bg-white rounded-2xl border border-stone-200 p-6 shadow-sm h-full flex flex-col"
-                      data-nlv-field-path={`${sectionFieldPath}.quotes.${quoteIndex}`}
+                      {...getVisualEditorAttributes(`${sectionFieldPath}.quotes.${quoteIndex}`)}
                     >
                       <p className="text-stone-700 leading-relaxed flex-1">
                         <span className="text-3xl leading-none text-stone-300" aria-hidden="true">“</span>
@@ -3241,7 +3242,7 @@ const Home: React.FC = () => {
                         {quote.author && (
                           <span
                             className="font-semibold text-stone-700"
-                            data-nlv-field-path={`${sectionFieldPath}.quotes.${quoteIndex}.author`}
+                            {...getVisualEditorAttributes(`${sectionFieldPath}.quotes.${quoteIndex}.author`)}
                           >
                             {quote.author}
                           </span>
@@ -3249,7 +3250,7 @@ const Home: React.FC = () => {
                         {quote.role && (
                           <span
                             className="block"
-                            data-nlv-field-path={`${sectionFieldPath}.quotes.${quoteIndex}.role`}
+                            {...getVisualEditorAttributes(`${sectionFieldPath}.quotes.${quoteIndex}.role`)}
                           >
                             {quote.role}
                           </span>
@@ -3286,33 +3287,33 @@ const Home: React.FC = () => {
           <section
             key={faqSectionKey}
             className="py-16 sm:py-24 bg-white"
-            data-nlv-field-path={sectionFieldPath}
+            {...getVisualEditorAttributes(sectionFieldPath)}
           >
             <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-4xl">
               {sectionTitle && (
                 <h2
                   className="text-3xl sm:text-4xl font-semibold text-center"
-                  data-nlv-field-path={`${sectionFieldPath}.title`}
+                  {...getVisualEditorAttributes(`${sectionFieldPath}.title`)}
                 >
                   {sectionTitle}
                 </h2>
               )}
-              <div className={listWrapperClasses} data-nlv-field-path={`${sectionFieldPath}.items`}>
+              <div className={listWrapperClasses} {...getVisualEditorAttributes(`${sectionFieldPath}.items`)}>
               {items.map((item, itemIndex) => (
                 <div
                     key={createKeyFromParts('faq-item', [item.question, item.answer])}
                     className="bg-stone-50 border border-stone-200 rounded-2xl p-6"
-                    data-nlv-field-path={`${sectionFieldPath}.items.${itemIndex}`}
+                    {...getVisualEditorAttributes(`${sectionFieldPath}.items.${itemIndex}`)}
                   >
                     <h3
                       className="text-xl font-semibold text-stone-900"
-                      data-nlv-field-path={`${sectionFieldPath}.items.${itemIndex}.q`}
+                      {...getVisualEditorAttributes(`${sectionFieldPath}.items.${itemIndex}.q`)}
                     >
                       {item.question}
                     </h3>
                     <p
                       className="mt-3 text-stone-600 leading-relaxed"
-                      data-nlv-field-path={`${sectionFieldPath}.items.${itemIndex}.a`}
+                      {...getVisualEditorAttributes(`${sectionFieldPath}.items.${itemIndex}.a`)}
                     >
                       {item.answer}
                     </p>
@@ -3343,10 +3344,10 @@ const Home: React.FC = () => {
           <section
             key={bannerKey}
             className="py-12 sm:py-16 bg-stone-900 text-white"
-            data-nlv-field-path={sectionFieldPath}
+            {...getVisualEditorAttributes(sectionFieldPath)}
           >
             <div className="container mx-auto px-4 sm:px-6 lg:px-8 text-center max-w-3xl">
-              <p className="text-xl sm:text-2xl font-semibold" data-nlv-field-path={`${sectionFieldPath}.text`}>
+              <p className="text-xl sm:text-2xl font-semibold" {...getVisualEditorAttributes(`${sectionFieldPath}.text`)}>
                 {text}
               </p>
               {cta && url && (
@@ -3355,9 +3356,9 @@ const Home: React.FC = () => {
                     <Link
                       to={internalPath?.startsWith('/') ? internalPath : `/${internalPath ?? ''}`}
                       className={buttonClasses}
-                      data-nlv-field-path={`${sectionFieldPath}.url`}
+                      {...getVisualEditorAttributes(`${sectionFieldPath}.url`)}
                     >
-                      <span data-nlv-field-path={`${sectionFieldPath}.cta`}>{cta}</span>
+                      <span {...getVisualEditorAttributes(`${sectionFieldPath}.cta`)}>{cta}</span>
                     </Link>
                   ) : (
                     <a
@@ -3365,9 +3366,9 @@ const Home: React.FC = () => {
                       className={buttonClasses}
                       target="_blank"
                       rel="noreferrer"
-                      data-nlv-field-path={`${sectionFieldPath}.url`}
+                      {...getVisualEditorAttributes(`${sectionFieldPath}.url`)}
                     >
-                      <span data-nlv-field-path={`${sectionFieldPath}.cta`}>{cta}</span>
+                      <span {...getVisualEditorAttributes(`${sectionFieldPath}.cta`)}>{cta}</span>
                     </a>
                   )}
                 </div>
@@ -3390,20 +3391,20 @@ const Home: React.FC = () => {
           <section
             key={videoKey}
             className="py-16 sm:py-24 bg-white"
-            data-nlv-field-path={sectionFieldPath}
+            {...getVisualEditorAttributes(sectionFieldPath)}
           >
             <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-5xl">
               {title && (
                 <h2
                   className="text-3xl sm:text-4xl font-semibold text-center mb-8"
-                  data-nlv-field-path={`${sectionFieldPath}.title`}
+                  {...getVisualEditorAttributes(`${sectionFieldPath}.title`)}
                 >
                   {title}
                 </h2>
               )}
               <div
                 className="relative w-full overflow-hidden rounded-2xl shadow-lg aspect-video"
-                data-nlv-field-path={`${sectionFieldPath}.url`}
+                {...getVisualEditorAttributes(`${sectionFieldPath}.url`)}
               >
                 <iframe
                   src={videoUrl}
@@ -3498,7 +3499,7 @@ const Home: React.FC = () => {
             <div
               className="relative h-screen bg-cover bg-center"
               style={{ backgroundImage: `url('${heroBackgroundImage}')` }}
-              data-nlv-field-path="site.home.heroImage"
+              {...getVisualEditorAttributes('site.home.heroImage')}
             >
               <div className="absolute inset-0" style={overlayStyle}></div>
               {heroTextPlacement === 'overlay' && (
@@ -3510,7 +3511,7 @@ const Home: React.FC = () => {
           ) : (
             <div
               className="relative h-screen bg-stone-900"
-              data-nlv-field-path="site.home.heroImage"
+              {...getVisualEditorAttributes('site.home.heroImage')}
             >
               {heroTextPlacement === 'overlay' && (
                 <div className={`relative h-full flex flex-col ${heroAlignmentClasses} ${heroMiddleNudge}`}>
@@ -3525,7 +3526,7 @@ const Home: React.FC = () => {
               {brandIntroTitle && (
                 <h2
                   className="text-3xl sm:text-4xl font-semibold text-center"
-                  data-nlv-field-path={`${homeFieldPath}.brandIntro.title`}
+                  {...getVisualEditorAttributes(`${homeFieldPath}.brandIntro.title`)}
                 >
                   {brandIntroTitle}
                 </h2>
@@ -3533,7 +3534,7 @@ const Home: React.FC = () => {
               {brandIntroText && (
                 <p
                   className="mt-6 prose prose-stone max-w-none text-stone-700 text-center"
-                  data-nlv-field-path={`${homeFieldPath}.brandIntro.text`}
+                  {...getVisualEditorAttributes(`${homeFieldPath}.brandIntro.text`)}
                 >
                   {brandIntroText}
                 </p>

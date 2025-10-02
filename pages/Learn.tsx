@@ -15,6 +15,7 @@ import {
   type LearnPageCategory,
 } from '../utils/loadLearnPageContent';
 import { fetchVisualEditorJson } from '../utils/fetchVisualEditorJson';
+import { getVisualEditorAttributes } from '../utils/stackbitBindings';
 
 interface ArticlesResponse {
   items?: Article[];
@@ -206,13 +207,13 @@ const Learn: React.FC = () => {
       >
         <h1
           className="text-4xl sm:text-5xl font-semibold tracking-tight"
-          data-nlv-field-path={heroTitleFieldPath}
+          {...getVisualEditorAttributes(heroTitleFieldPath)}
         >
           {heroTitle}
         </h1>
         <p
           className="mt-4 text-lg text-stone-600 max-w-2xl mx-auto"
-          data-nlv-field-path={heroSubtitleFieldPath}
+          {...getVisualEditorAttributes(heroSubtitleFieldPath)}
         >
           {heroSubtitle}
         </p>
@@ -233,7 +234,7 @@ const Learn: React.FC = () => {
                   : 'border-stone-300 text-stone-500 hover:border-stone-800 hover:text-stone-800'
               }`}
               data-category={category.id}
-              data-nlv-field-path={categoryFieldPath}
+              {...getVisualEditorAttributes(categoryFieldPath)}
             >
               {formatCategoryLabel(category.id)}
             </button>
@@ -242,7 +243,7 @@ const Learn: React.FC = () => {
       </div>
 
       {loading ? (
-        <p className="text-center py-10" data-nlv-field-path={`translations.${language}.common.loading`}>
+        <p className="text-center py-10" {...getVisualEditorAttributes(`translations.${language}.common.loading`)}>
           {t('common.loading')}
         </p>
       ) : (

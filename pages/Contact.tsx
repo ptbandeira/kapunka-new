@@ -5,6 +5,7 @@ import { motion } from 'framer-motion';
 import { Mail, Phone, MessageSquare } from 'lucide-react';
 import { useLanguage } from '../contexts/LanguageContext';
 import { useSiteSettings } from '../contexts/SiteSettingsContext';
+import { getVisualEditorAttributes } from '../utils/stackbitBindings';
 
 const ContactForm: React.FC = () => {
     const { t, language } = useLanguage();
@@ -29,7 +30,7 @@ const ContactForm: React.FC = () => {
                     placeholder={t('contact.form.name')}
                     required
                     className="p-3 border border-stone-300 rounded-md focus:ring-stone-500 focus:border-stone-500"
-                    data-nlv-field-path={`${contactFormFieldPath}.name`}
+                    {...getVisualEditorAttributes(`${contactFormFieldPath}.name`)}
                 />
                 <input
                     type="email"
@@ -37,7 +38,7 @@ const ContactForm: React.FC = () => {
                     placeholder={t('contact.form.email')}
                     required
                     className="p-3 border border-stone-300 rounded-md focus:ring-stone-500 focus:border-stone-500"
-                    data-nlv-field-path={`${contactFormFieldPath}.email`}
+                    {...getVisualEditorAttributes(`${contactFormFieldPath}.email`)}
                 />
             </div>
             <textarea
@@ -46,7 +47,7 @@ const ContactForm: React.FC = () => {
                 rows={5}
                 required
                 className="w-full p-3 border border-stone-300 rounded-md focus:ring-stone-500 focus:border-stone-500"
-                data-nlv-field-path={`${contactFormFieldPath}.message`}
+                {...getVisualEditorAttributes(`${contactFormFieldPath}.message`)}
             ></textarea>
 
             <button
@@ -55,23 +56,23 @@ const ContactForm: React.FC = () => {
                 className="w-full bg-stone-900 text-white py-3 rounded-md font-semibold hover:bg-stone-700 transition-colors duration-300 disabled:bg-stone-400"
             >
                 {status === 'submitting' ? (
-                    <span data-nlv-field-path={`${contactFormFieldPath}.sending`}>
+                    <span {...getVisualEditorAttributes(`${contactFormFieldPath}.sending`)}>
                         {t('contact.form.sending')}
                     </span>
                 ) : (
-                    <span data-nlv-field-path={`${contactFormFieldPath}.submit`}>
+                    <span {...getVisualEditorAttributes(`${contactFormFieldPath}.submit`)}>
                         {t('contact.form.submit')}
                     </span>
                 )}
             </button>
 
             {status === 'success' && (
-                <p className="text-center text-green-600" data-nlv-field-path={`${contactFormFieldPath}.success`}>
+                <p className="text-center text-green-600" {...getVisualEditorAttributes(`${contactFormFieldPath}.success`)}>
                     {t('contact.form.success')}
                 </p>
             )}
             {status === 'error' && (
-                <p className="text-center text-red-600" data-nlv-field-path={`${contactFormFieldPath}.error`}>
+                <p className="text-center text-red-600" {...getVisualEditorAttributes(`${contactFormFieldPath}.error`)}>
                     {t('contact.form.error')}
                 </p>
             )}
@@ -98,13 +99,13 @@ const Contact: React.FC = () => {
                 <header className="text-center mb-16">
                 <h1
                     className="text-4xl sm:text-5xl font-semibold tracking-tight"
-                    data-nlv-field-path={`${contactFieldPath}.headerTitle`}
+                    {...getVisualEditorAttributes(`${contactFieldPath}.headerTitle`)}
                 >
                     {t('contact.headerTitle')}
                 </h1>
                 <p
                     className="mt-4 text-lg text-stone-600 max-w-2xl mx-auto"
-                    data-nlv-field-path={`${contactFieldPath}.headerSubtitle`}
+                    {...getVisualEditorAttributes(`${contactFieldPath}.headerSubtitle`)}
                 >
                     {t('contact.headerSubtitle')}
                 </p>
@@ -121,7 +122,7 @@ const Contact: React.FC = () => {
                     <div>
                         <h2
                             className="text-2xl font-semibold mb-4"
-                            data-nlv-field-path={`${contactFieldPath}.formTitle`}
+                            {...getVisualEditorAttributes(`${contactFieldPath}.formTitle`)}
                         >
                             {t('contact.formTitle')}
                         </h2>
@@ -137,7 +138,7 @@ const Contact: React.FC = () => {
                 >
                     <h2
                         className="text-2xl font-semibold"
-                        data-nlv-field-path={`${contactFieldPath}.infoTitle`}
+                        {...getVisualEditorAttributes(`${contactFieldPath}.infoTitle`)}
                     >
                         {t('contact.infoTitle')}
                     </h2>
@@ -147,14 +148,14 @@ const Contact: React.FC = () => {
                             <div>
                                 <h3
                                     className="font-semibold"
-                                    data-nlv-field-path={`${contactFieldPath}.emailTitle`}
+                                    {...getVisualEditorAttributes(`${contactFieldPath}.emailTitle`)}
                                 >
                                     {t('contact.emailTitle')}
                                 </h3>
                                 <a
                                     href={emailLink}
                                     className="text-stone-600 hover:text-stone-900 transition-colors"
-                                    data-nlv-field-path="site.contact.email"
+                                    {...getVisualEditorAttributes('site.contact.email')}
                                 >
                                     {contactSettings.email}
                                 </a>
@@ -165,14 +166,14 @@ const Contact: React.FC = () => {
                             <div>
                                 <h3
                                     className="font-semibold"
-                                    data-nlv-field-path={`${contactFieldPath}.phoneTitle`}
+                                    {...getVisualEditorAttributes(`${contactFieldPath}.phoneTitle`)}
                                 >
                                     {t('contact.phoneTitle')}
                                 </h3>
                                 <a
                                     href={phoneLink}
                                     className="text-stone-600 hover:text-stone-900 transition-colors"
-                                    data-nlv-field-path="site.contact.phone"
+                                    {...getVisualEditorAttributes('site.contact.phone')}
                                 >
                                     {contactSettings.phone}
                                 </a>
@@ -183,7 +184,7 @@ const Contact: React.FC = () => {
                             <div>
                                 <h3
                                     className="font-semibold"
-                                    data-nlv-field-path={`${contactFieldPath}.whatsappTitle`}
+                                    {...getVisualEditorAttributes(`${contactFieldPath}.whatsappTitle`)}
                                 >
                                     {t('contact.whatsappTitle')}
                                 </h3>
@@ -192,9 +193,9 @@ const Contact: React.FC = () => {
                                     target="_blank"
                                     rel="noopener noreferrer"
                                     className="text-stone-600 hover:text-stone-900 transition-colors"
-                                    data-nlv-field-path="site.contact.whatsapp"
+                                    {...getVisualEditorAttributes('site.contact.whatsapp')}
                                 >
-                                    <span data-nlv-field-path={`${contactFieldPath}.whatsappAction`}>
+                                    <span {...getVisualEditorAttributes(`${contactFieldPath}.whatsappAction`)}>
                                         {t('contact.whatsappAction')}
                                     </span>
                                 </a>

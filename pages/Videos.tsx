@@ -5,6 +5,7 @@ import SectionRenderer from '../components/_legacy/SectionRenderer';
 import { useLanguage } from '../contexts/LanguageContext';
 import type { PageContent, PageSection } from '../types';
 import { fetchVisualEditorJson } from '../utils/fetchVisualEditorJson';
+import { getVisualEditorAttributes } from '../utils/stackbitBindings';
 
 const SUPPORTED_SECTION_TYPES = new Set<PageSection['type']>([
   'timeline',
@@ -126,7 +127,7 @@ const Videos: React.FC = () => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
             className="text-4xl sm:text-5xl font-semibold tracking-tight"
-            data-nlv-field-path={`translations.${language}.videos.title`}
+            {...getVisualEditorAttributes(`translations.${language}.videos.title`)}
           >
             {t('videos.title')}
           </motion.h1>
@@ -135,7 +136,7 @@ const Videos: React.FC = () => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.1 }}
             className="mt-4 text-lg text-stone-600 max-w-2xl mx-auto"
-            data-nlv-field-path={`translations.${language}.videos.subtitle`}
+            {...getVisualEditorAttributes(`translations.${language}.videos.subtitle`)}
           >
             {t('videos.subtitle')}
           </motion.p>
@@ -146,7 +147,7 @@ const Videos: React.FC = () => {
         <SectionRenderer sections={sections} fieldPath={sectionsFieldPath} />
       ) : (
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-16">
-          <p className="text-center text-stone-500" data-nlv-field-path={`translations.${language}.common.loading`}>
+          <p className="text-center text-stone-500" {...getVisualEditorAttributes(`translations.${language}.common.loading`)}>
             {t('common.loading')}
           </p>
         </div>

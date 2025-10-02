@@ -5,6 +5,7 @@ import ReactMarkdown from 'react-markdown';
 import { useLanguage } from '../contexts/LanguageContext';
 import type { Policy, PolicySection } from '../types';
 import { fetchVisualEditorJson } from '../utils/fetchVisualEditorJson';
+import { getVisualEditorAttributes } from '../utils/stackbitBindings';
 
 interface PoliciesResponse {
     items?: Policy[];
@@ -54,7 +55,7 @@ const PolicyPage: React.FC = () => {
 
     if (loading) {
         return (
-            <div className="text-center py-20" data-nlv-field-path={`translations.${language}.policy.loading`}>
+            <div className="text-center py-20" {...getVisualEditorAttributes(`translations.${language}.policy.loading`)}>
                 {t('policy.loading')}
             </div>
         );
@@ -62,7 +63,7 @@ const PolicyPage: React.FC = () => {
 
     if (!policy) {
         return (
-            <div className="text-center py-20" data-nlv-field-path={`translations.${language}.policy.notFound`}>
+            <div className="text-center py-20" {...getVisualEditorAttributes(`translations.${language}.policy.notFound`)}>
                 {t('policy.notFound')}
             </div>
         );
@@ -92,7 +93,7 @@ const PolicyPage: React.FC = () => {
     const helmetDescription = metaDescription || fallbackDescription;
 
     return (
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-4xl py-12 sm:py-16" data-nlv-field-path={policyFieldPath}>
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-4xl py-12 sm:py-16" {...getVisualEditorAttributes(policyFieldPath)}>
             <Helmet>
                 <title>{helmetTitle}</title>
                 {helmetDescription && <meta name="description" content={helmetDescription} />}
@@ -100,14 +101,14 @@ const PolicyPage: React.FC = () => {
             <header className="mb-12">
                 <h1
                     className="text-4xl sm:text-5xl font-semibold tracking-tight"
-                    data-nlv-field-path={policyFieldPath ? `${policyFieldPath}.title.${language}` : undefined}
+                    {...getVisualEditorAttributes(policyFieldPath ? `${policyFieldPath}.title.${language}` : undefined)}
                 >
                     {title}
                 </h1>
             </header>
             <div className="prose prose-stone lg:prose-lg max-w-none text-stone-700 leading-relaxed space-y-8">
                 {typeof introContent === 'string' && introContent.trim().length > 0 && (
-                    <ReactMarkdown data-nlv-field-path={policyFieldPath ? `${policyFieldPath}.content.${language}` : undefined}>
+                    <ReactMarkdown {...getVisualEditorAttributes(policyFieldPath ? `${policyFieldPath}.content.${language}` : undefined)}>
                         {introContent}
                     </ReactMarkdown>
                 )}
@@ -122,22 +123,22 @@ const PolicyPage: React.FC = () => {
                         || JSON.stringify(section.body)
                         || 'policy-section';
                     return (
-                        <div key={sectionKey} className="space-y-3" data-nlv-field-path={sectionFieldPath}>
-                            <h2 className="text-2xl font-semibold text-stone-900" data-nlv-field-path={sectionFieldPath ? `${sectionFieldPath}.title.${language}` : undefined}>
+                        <div key={sectionKey} className="space-y-3" {...getVisualEditorAttributes(sectionFieldPath)}>
+                            <h2 className="text-2xl font-semibold text-stone-900" {...getVisualEditorAttributes(sectionFieldPath ? `${sectionFieldPath}.title.${language}` : undefined)}>
                                 {translatedHeading}
                             </h2>
-                            <ReactMarkdown className="leading-relaxed" data-nlv-field-path={sectionFieldPath ? `${sectionFieldPath}.body.${language}` : undefined}>
+                            <ReactMarkdown className="leading-relaxed" {...getVisualEditorAttributes(sectionFieldPath ? `${sectionFieldPath}.body.${language}` : undefined)}>
                                 {translatedBody}
                             </ReactMarkdown>
                         </div>
                     );
                 })}
-                <p data-nlv-field-path={`translations.${language}.policy.contactPrompt`}>
+                <p {...getVisualEditorAttributes(`translations.${language}.policy.contactPrompt`)}>
                     {t('policy.contactPrompt')}
                 </p>
                 <p>
                     <Link to="/contact" className="text-stone-700 underline hover:text-stone-900">
-                        <span data-nlv-field-path={`translations.${language}.footer.contact`}>
+                        <span {...getVisualEditorAttributes(`translations.${language}.footer.contact`)}>
                             {t('footer.contact')}
                         </span>
                     </Link>

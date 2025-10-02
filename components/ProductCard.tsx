@@ -6,6 +6,7 @@ import { Plus } from 'lucide-react';
 import { useCart } from '../contexts/CartContext';
 import { useUI } from '../contexts/UIContext';
 import { useLanguage } from '../contexts/LanguageContext';
+import { getVisualEditorAttributes } from '../utils/stackbitBindings';
 import type { Product } from '../types';
 
 interface ProductCardProps {
@@ -53,7 +54,7 @@ const ProductCard: React.FC<ProductCardProps> = (props) => {
       viewport={{ once: true, amount: 0.3 }}
       transition={{ duration: 0.6 }}
       className="group"
-      data-nlv-field-path={fieldPath}
+      {...getVisualEditorAttributes(fieldPath)}
     >
       <Link to={`/product/${product.id}`} className="block">
         <div className="relative overflow-hidden rounded-lg">
@@ -61,7 +62,7 @@ const ProductCard: React.FC<ProductCardProps> = (props) => {
             src={product.imageUrl}
             alt={translate(product.name)}
             className="w-full h-auto aspect-[3/4] object-cover transition-transform duration-500 group-hover:scale-105"
-            data-nlv-field-path={fieldPath ? `${fieldPath}.imageUrl` : undefined}
+            {...getVisualEditorAttributes(fieldPath ? `${fieldPath}.imageUrl` : undefined)}
           />
           <button
             onClick={handleAddToCart}
@@ -74,14 +75,14 @@ const ProductCard: React.FC<ProductCardProps> = (props) => {
         <div className="mt-4">
           <h3
             className="font-semibold text-stone-800"
-            data-nlv-field-path={fieldPath ? `${fieldPath}.name.${language}` : undefined}
+            {...getVisualEditorAttributes(fieldPath ? `${fieldPath}.name.${language}` : undefined)}
           >
             {translate(product.name)}
           </h3>
           {translatedTitleAddition && (
             <p
               className="text-xs uppercase tracking-wide text-stone-500 mt-1"
-              data-nlv-field-path={fieldPath ? `${fieldPath}.titleAddition.${language}` : undefined}
+              {...getVisualEditorAttributes(fieldPath ? `${fieldPath}.titleAddition.${language}` : undefined)}
             >
               {translatedTitleAddition}
             </p>
@@ -89,7 +90,7 @@ const ProductCard: React.FC<ProductCardProps> = (props) => {
           {(!translatedTitleAddition || translatedTitleAddition !== translatedTagline) && (
             <p
               className="text-sm text-stone-500 mt-1"
-              data-nlv-field-path={fieldPath ? `${fieldPath}.tagline.${language}` : undefined}
+              {...getVisualEditorAttributes(fieldPath ? `${fieldPath}.tagline.${language}` : undefined)}
             >
               {translatedTagline}
             </p>
@@ -106,10 +107,10 @@ const ProductCard: React.FC<ProductCardProps> = (props) => {
                       : 'border-stone-300 text-stone-500 hover:border-stone-800 hover:text-stone-800'
                   }`}
                   data-size-id={size.id}
-                  data-nlv-field-path={fieldPath ? `${fieldPath}.sizes.${sizeIndex}` : undefined}
+                  {...getVisualEditorAttributes(fieldPath ? `${fieldPath}.sizes.${sizeIndex}` : undefined)}
                 >
                   <span
-                    data-nlv-field-path={fieldPath ? `${fieldPath}.sizes.${sizeIndex}.size` : undefined}
+                    {...getVisualEditorAttributes(fieldPath ? `${fieldPath}.sizes.${sizeIndex}.size` : undefined)}
                   >
                     {size.size}
                   </span>
@@ -119,11 +120,11 @@ const ProductCard: React.FC<ProductCardProps> = (props) => {
             </div>
             <p className="text-sm font-medium text-stone-800">
               <span
-                data-nlv-field-path={
+                {...getVisualEditorAttributes(
                   fieldPath && selectedSize
                     ? `${fieldPath}.sizes.${product.sizes.findIndex((s) => s.id === selectedSize.id)}.price`
                     : undefined
-                }
+                )}
               >
                 ${selectedSize.price.toFixed(2)}
               </span>

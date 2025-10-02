@@ -4,6 +4,7 @@ import { Play } from 'lucide-react';
 import type { VideoEntry, VideoLibraryContent } from '../types';
 import { useLanguage } from '../contexts/LanguageContext';
 import { fetchVisualEditorJson } from '../utils/fetchVisualEditorJson';
+import { getVisualEditorAttributes } from '../utils/stackbitBindings';
 
 interface VideoGalleryProps {
   title?: string;
@@ -70,7 +71,7 @@ const VideoGallery: React.FC<VideoGalleryProps> = ({ title, description, entries
   return (
     <section
       className="py-16 sm:py-24"
-      data-nlv-field-path={fieldPath}
+      {...getVisualEditorAttributes(fieldPath)}
       data-sb-field-path={fieldPath}
     >
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
@@ -83,7 +84,7 @@ const VideoGallery: React.FC<VideoGalleryProps> = ({ title, description, entries
                 viewport={{ once: true }}
                 transition={{ duration: 0.5 }}
                 className="text-3xl sm:text-4xl font-semibold tracking-tight text-stone-900"
-                data-nlv-field-path={fieldPath ? `${fieldPath}.title` : undefined}
+                {...getVisualEditorAttributes(fieldPath ? `${fieldPath}.title` : undefined)}
                 data-sb-field-path={fieldPath ? `${fieldPath}.title` : undefined}
               >
                 {title}
@@ -96,7 +97,7 @@ const VideoGallery: React.FC<VideoGalleryProps> = ({ title, description, entries
                 viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: 0.05 }}
                 className="mt-4 text-lg text-stone-600"
-                data-nlv-field-path={fieldPath ? `${fieldPath}.description` : undefined}
+                {...getVisualEditorAttributes(fieldPath ? `${fieldPath}.description` : undefined)}
                 data-sb-field-path={fieldPath ? `${fieldPath}.description` : undefined}
               >
                 {description}
@@ -108,7 +109,7 @@ const VideoGallery: React.FC<VideoGalleryProps> = ({ title, description, entries
         {items.length === 0 ? (
           <p
             className="text-stone-500"
-            data-nlv-field-path={`translations.${language}.videos.emptyState`}
+            {...getVisualEditorAttributes(`translations.${language}.videos.emptyState`)}
             data-sb-field-path={`translations.${language}.videos.emptyState`}
           >
             {t('videos.emptyState')}
@@ -128,7 +129,7 @@ const VideoGallery: React.FC<VideoGalleryProps> = ({ title, description, entries
                 viewport={{ once: true }}
                 transition={{ duration: 0.45, delay: index * 0.05 }}
                 className="rounded-3xl bg-white p-6 shadow-sm shadow-stone-200"
-                data-nlv-field-path={itemFieldPath}
+                {...getVisualEditorAttributes(itemFieldPath)}
                 data-sb-field-path={itemFieldPath}
               >
                 <div className="relative overflow-hidden rounded-xl">
@@ -138,7 +139,7 @@ const VideoGallery: React.FC<VideoGalleryProps> = ({ title, description, entries
                       alt={item.title ?? 'Video thumbnail'}
                       className="h-48 w-full object-cover"
                       loading="lazy"
-                      data-nlv-field-path={itemFieldPath ? `${itemFieldPath}.thumbnail` : undefined}
+                      {...getVisualEditorAttributes(itemFieldPath ? `${itemFieldPath}.thumbnail` : undefined)}
                       data-sb-field-path={itemFieldPath ? `${itemFieldPath}.thumbnail` : undefined}
                     />
                   ) : (
@@ -154,7 +155,7 @@ const VideoGallery: React.FC<VideoGalleryProps> = ({ title, description, entries
                   {item.title && (
                     <h3
                       className="mt-6 text-xl font-semibold text-stone-900"
-                      data-nlv-field-path={itemFieldPath ? `${itemFieldPath}.title` : undefined}
+                      {...getVisualEditorAttributes(itemFieldPath ? `${itemFieldPath}.title` : undefined)}
                       data-sb-field-path={itemFieldPath ? `${itemFieldPath}.title` : undefined}
                     >
                       {item.title}
@@ -164,7 +165,7 @@ const VideoGallery: React.FC<VideoGalleryProps> = ({ title, description, entries
                   {item.description && (
                     <p
                       className="mt-3 text-sm text-stone-600"
-                      data-nlv-field-path={itemFieldPath ? `${itemFieldPath}.description` : undefined}
+                      {...getVisualEditorAttributes(itemFieldPath ? `${itemFieldPath}.description` : undefined)}
                       data-sb-field-path={itemFieldPath ? `${itemFieldPath}.description` : undefined}
                     >
                       {item.description}
@@ -177,11 +178,11 @@ const VideoGallery: React.FC<VideoGalleryProps> = ({ title, description, entries
                       className="mt-6 inline-flex items-center text-sm font-semibold text-stone-900 underline decoration-stone-300 decoration-2 underline-offset-4 transition hover:decoration-stone-500"
                       target="_blank"
                       rel="noopener noreferrer"
-                      data-nlv-field-path={itemFieldPath ? `${itemFieldPath}.videoUrl` : undefined}
+                      {...getVisualEditorAttributes(itemFieldPath ? `${itemFieldPath}.videoUrl` : undefined)}
                       data-sb-field-path={itemFieldPath ? `${itemFieldPath}.videoUrl` : undefined}
                     >
                       <span
-                        data-nlv-field-path={`translations.${language}.videos.watchLabel`}
+                        {...getVisualEditorAttributes(`translations.${language}.videos.watchLabel`)}
                         data-sb-field-path={`translations.${language}.videos.watchLabel`}
                       >
                         {t('videos.watchLabel')}

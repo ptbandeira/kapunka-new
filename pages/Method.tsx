@@ -4,6 +4,7 @@ import { motion } from 'framer-motion';
 import { useLanguage } from '../contexts/LanguageContext';
 import type { Language } from '../types';
 import { fetchVisualEditorJson } from '../utils/fetchVisualEditorJson';
+import { getVisualEditorAttributes } from '../utils/stackbitBindings';
 
 interface SpecialtyItem {
   title: string;
@@ -212,17 +213,17 @@ const createMethodKey = (prefix: string, parts: Array<string | null | undefined>
           viewport={{ once: true }}
           transition={{ duration: 0.5, delay: animationDelay }}
           className="max-w-3xl mx-auto text-center"
-          data-nlv-field-path={sectionFieldPath}
+          {...getVisualEditorAttributes(sectionFieldPath)}
         >
           <h3
             className="text-2xl font-semibold text-stone-900"
-            data-nlv-field-path={`${sectionFieldPath}.title`}
+            {...getVisualEditorAttributes(`${sectionFieldPath}.title`)}
           >
             {section.title}
           </h3>
           <p
             className="mt-4 text-stone-700 leading-relaxed"
-            data-nlv-field-path={`${sectionFieldPath}.text`}
+            {...getVisualEditorAttributes(`${sectionFieldPath}.text`)}
           >
             {section.text}
           </p>
@@ -240,15 +241,15 @@ const createMethodKey = (prefix: string, parts: Array<string | null | undefined>
           viewport={{ once: true }}
           transition={{ duration: 0.5, delay: animationDelay }}
           className="max-w-3xl mx-auto"
-          data-nlv-field-path={sectionFieldPath}
+          {...getVisualEditorAttributes(sectionFieldPath)}
         >
           <h3
             className="text-2xl font-semibold text-stone-900"
-            data-nlv-field-path={`${sectionFieldPath}.title`}
+            {...getVisualEditorAttributes(`${sectionFieldPath}.title`)}
           >
             {section.title}
           </h3>
-          <ul className="mt-4 space-y-2 text-stone-700" data-nlv-field-path={`${sectionFieldPath}.items`}>
+          <ul className="mt-4 space-y-2 text-stone-700" {...getVisualEditorAttributes(`${sectionFieldPath}.items`)}>
             {bulletItems.map((item) => (
               <li key={item} className="flex items-start gap-2">
                 <span className="mt-1 h-1.5 w-1.5 rounded-full bg-stone-400" aria-hidden="true" />
@@ -275,19 +276,19 @@ const createMethodKey = (prefix: string, parts: Array<string | null | undefined>
         viewport={{ once: true }}
         transition={{ duration: 0.5, delay: animationDelay }}
         className="max-w-3xl mx-auto"
-        data-nlv-field-path={sectionFieldPath}
+        {...getVisualEditorAttributes(sectionFieldPath)}
       >
         {section.title ? (
           <h3
             className="text-2xl font-semibold text-stone-900"
-            data-nlv-field-path={`${sectionFieldPath}.title`}
+            {...getVisualEditorAttributes(`${sectionFieldPath}.title`)}
           >
             {section.title}
           </h3>
         ) : null}
         <div
           className={`mt-6 space-y-4 ${section.title ? '' : 'mt-0'}`}
-          data-nlv-field-path={`${sectionFieldPath}.items`}
+          {...getVisualEditorAttributes(`${sectionFieldPath}.items`)}
         >
           {specialtyItems.map((item, itemIndex) => (
             <details
@@ -295,14 +296,14 @@ const createMethodKey = (prefix: string, parts: Array<string | null | undefined>
               className="group border border-stone-200 rounded-2xl px-4 py-3 bg-white/60 backdrop-blur-sm"
             >
               <summary className="cursor-pointer text-lg font-medium text-stone-900 list-none flex items-center justify-between gap-4">
-                <span data-nlv-field-path={`${sectionFieldPath}.items.${itemIndex}.title`}>{item.title}</span>
+                <span {...getVisualEditorAttributes(`${sectionFieldPath}.items.${itemIndex}.title`)}>{item.title}</span>
                 <span className="transition-transform duration-200 group-open:rotate-45 text-stone-400" aria-hidden="true">
                   +
                 </span>
               </summary>
               <ul
                 className="mt-3 pl-4 space-y-2 text-stone-700"
-                data-nlv-field-path={`${sectionFieldPath}.items.${itemIndex}.bullets`}
+                {...getVisualEditorAttributes(`${sectionFieldPath}.items.${itemIndex}.bullets`)}
               >
                 {(item.bullets ?? []).map((bullet, bulletIndex) => (
                   <li key={`${item.title ?? 'bullet'}-${bullet}`} className="list-disc">
@@ -331,7 +332,7 @@ const createMethodKey = (prefix: string, parts: Array<string | null | undefined>
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
             className="text-4xl sm:text-5xl font-semibold tracking-tight"
-            data-nlv-field-path={`${baseFieldPath}.heroTitle`}
+            {...getVisualEditorAttributes(`${baseFieldPath}.heroTitle`)}
           >
             {heroTitle}
           </motion.h1>
@@ -340,7 +341,7 @@ const createMethodKey = (prefix: string, parts: Array<string | null | undefined>
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.1 }}
             className="mt-4 text-lg text-stone-600 max-w-3xl mx-auto"
-            data-nlv-field-path={`${baseFieldPath}.heroSubtitle`}
+            {...getVisualEditorAttributes(`${baseFieldPath}.heroSubtitle`)}
           >
             {heroSubtitle}
           </motion.p>
@@ -356,24 +357,24 @@ const createMethodKey = (prefix: string, parts: Array<string | null | undefined>
               viewport={{ once: true }}
               transition={{ duration: 0.5 }}
               className="space-y-8"
-              data-nlv-field-path={clinicalNotesFieldPath}
+              {...getVisualEditorAttributes(clinicalNotesFieldPath)}
             >
               <div className="grid gap-12 md:grid-cols-2">
                 {clinicalNotes.map((note, noteIndex) => (
                   <div
                     key={`${note.title}-${noteIndex}`}
                     className="space-y-4"
-                    data-nlv-field-path={`${clinicalNotesFieldPath}.${noteIndex}`}
+                    {...getVisualEditorAttributes(`${clinicalNotesFieldPath}.${noteIndex}`)}
                   >
                     <h3
                       className="text-2xl font-semibold text-stone-900"
-                      data-nlv-field-path={`${clinicalNotesFieldPath}.${noteIndex}.title`}
+                      {...getVisualEditorAttributes(`${clinicalNotesFieldPath}.${noteIndex}.title`)}
                     >
                       {note.title}
                     </h3>
                     <ul
                       className="space-y-2 text-stone-700"
-                      data-nlv-field-path={`${clinicalNotesFieldPath}.${noteIndex}.bullets`}
+                      {...getVisualEditorAttributes(`${clinicalNotesFieldPath}.${noteIndex}.bullets`)}
                     >
                       {note.bullets.map((bullet, bulletIndex) => (
                         <li key={`${note.title}-${bulletIndex}`} className="flex items-start gap-2">
@@ -393,7 +394,7 @@ const createMethodKey = (prefix: string, parts: Array<string | null | undefined>
           ) : !hasClinicalNotes ? (
             <p
               className="text-center text-stone-600"
-              data-nlv-field-path={`translations.${language}.common.loading`}
+              {...getVisualEditorAttributes(`translations.${language}.common.loading`)}
             >
               {t('common.loading')}
             </p>

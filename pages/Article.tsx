@@ -16,6 +16,7 @@ import {
   type LearnPageContentResult,
 } from '../utils/loadLearnPageContent';
 import { fetchVisualEditorJson } from '../utils/fetchVisualEditorJson';
+import { getVisualEditorAttributes } from '../utils/stackbitBindings';
 
 interface ArticlesResponse {
     items?: Article[];
@@ -215,7 +216,7 @@ const ArticlePage: React.FC = () => {
 
     if (loading) {
         return (
-            <div className="text-center py-20" data-nlv-field-path={`translations.${language}.article.loading`}>
+            <div className="text-center py-20" {...getVisualEditorAttributes(`translations.${language}.article.loading`)}>
                 {t('article.loading')}
             </div>
         );
@@ -223,7 +224,7 @@ const ArticlePage: React.FC = () => {
 
     if (!article) {
         return (
-            <div className="text-center py-20" data-nlv-field-path={`translations.${language}.article.notFound`}>
+            <div className="text-center py-20" {...getVisualEditorAttributes(`translations.${language}.article.notFound`)}>
                 {t('article.notFound')}
             </div>
         );
@@ -249,7 +250,7 @@ const ArticlePage: React.FC = () => {
 
             <div
                 className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-4xl py-12 sm:py-16"
-                data-nlv-field-path={articleFieldPath}
+                {...getVisualEditorAttributes(articleFieldPath)}
             >
                 <motion.header 
                     initial={{ opacity: 0, y: 20 }}
@@ -259,13 +260,13 @@ const ArticlePage: React.FC = () => {
                 >
                     <p
                         className="text-sm text-stone-500 uppercase tracking-wider"
-                        data-nlv-field-path={categoryFieldPath}
+                        {...getVisualEditorAttributes(categoryFieldPath)}
                     >
                         {formatCategoryLabel(article.category)}
                     </p>
                     <h1
                         className="text-3xl sm:text-4xl md:text-5xl font-semibold tracking-tight mt-2"
-                        data-nlv-field-path={articleFieldPath ? `${articleFieldPath}.title.${language}` : undefined}
+                        {...getVisualEditorAttributes(articleFieldPath ? `${articleFieldPath}.title.${language}` : undefined)}
                     >
                         {translate(article.title)}
                     </h1>
@@ -281,7 +282,7 @@ const ArticlePage: React.FC = () => {
                         src={article.imageUrl}
                         alt={translate(article.title)}
                         className="w-full h-auto max-h-[500px] object-cover rounded-lg shadow-lg"
-                        data-nlv-field-path={articleFieldPath ? `${articleFieldPath}.imageUrl` : undefined}
+                        {...getVisualEditorAttributes(articleFieldPath ? `${articleFieldPath}.imageUrl` : undefined)}
                     />
                 </motion.div>
                 
@@ -290,7 +291,7 @@ const ArticlePage: React.FC = () => {
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.6, delay: 0.4 }}
                     className="prose prose-stone lg:prose-lg max-w-none text-stone-700 leading-relaxed"
-                    data-nlv-field-path={articleFieldPath ? `${articleFieldPath}.content.${language}` : undefined}
+                    {...getVisualEditorAttributes(articleFieldPath ? `${articleFieldPath}.content.${language}` : undefined)}
                 >
                     {formattedContent}
                 </motion.div>
@@ -301,11 +302,11 @@ const ArticlePage: React.FC = () => {
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ duration: 0.6, delay: 0.6 }}
                         className="mt-12"
-                        data-nlv-field-path={articleFieldPath ? `${articleFieldPath}.faqs` : undefined}
+                        {...getVisualEditorAttributes(articleFieldPath ? `${articleFieldPath}.faqs` : undefined)}
                     >
                         <h2
                             className="text-2xl font-semibold text-stone-800"
-                            data-nlv-field-path={`translations.${language}.article.faqTitle`}
+                            {...getVisualEditorAttributes(`translations.${language}.article.faqTitle`)}
                         >
                             {t('article.faqTitle')}
                         </h2>
@@ -314,21 +315,21 @@ const ArticlePage: React.FC = () => {
                                 <div key={faq.question} className="border-t border-stone-200 pt-6">
                                     <h3
                                         className="text-lg font-medium text-stone-800"
-                                        data-nlv-field-path={
+                                        {...getVisualEditorAttributes(
                                             articleFieldPath
                                                 ? `${articleFieldPath}.faqs.${index}.question.${language}`
                                                 : undefined
-                                        }
+                                        )}
                                     >
                                         {faq.question}
                                     </h3>
                                     <p
                                         className="mt-2 text-stone-600"
-                                        data-nlv-field-path={
+                                        {...getVisualEditorAttributes(
                                             articleFieldPath
                                                 ? `${articleFieldPath}.faqs.${index}.answer.${language}`
                                                 : undefined
-                                        }
+                                        )}
                                     >
                                         {faq.answer}
                                     </p>
@@ -344,7 +345,7 @@ const ArticlePage: React.FC = () => {
                     <div className="container mx-auto px-4 sm:px-6 lg:px-8">
                         <h2
                             className="text-3xl font-semibold text-center mb-12"
-                            data-nlv-field-path={`translations.${language}.article.featuredProduct`}
+                            {...getVisualEditorAttributes(`translations.${language}.article.featuredProduct`)}
                         >
                             {t('article.featuredProduct')}
                         </h2>
@@ -369,7 +370,7 @@ const ArticlePage: React.FC = () => {
             
             <div className="text-center pb-16 sm:pb-24">
                 <Link to="/learn" className="px-8 py-3 bg-stone-200 text-stone-800 font-semibold rounded-md hover:bg-stone-300 transition-colors">
-                    <span data-nlv-field-path={`translations.${language}.article.backToLibrary`}>
+                    <span {...getVisualEditorAttributes(`translations.${language}.article.backToLibrary`)}>
                         {t('article.backToLibrary')}
                     </span>
                 </Link>

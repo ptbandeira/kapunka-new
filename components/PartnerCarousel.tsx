@@ -3,6 +3,7 @@ import { motion } from 'framer-motion';
 import { useLanguage } from '../contexts/LanguageContext';
 import type { Partner } from '../types';
 import { fetchVisualEditorJson } from '../utils/fetchVisualEditorJson';
+import { getVisualEditorAttributes } from '../utils/stackbitBindings';
 
 interface PartnerCarouselProps {
   title?: string;
@@ -67,7 +68,7 @@ const PartnerCarousel: React.FC<PartnerCarouselProps> = ({ title, fieldPath }) =
             <div className="container mx-auto px-4 sm:px-6 lg:px-8">
                 <h2
                     className="text-2xl font-semibold text-center text-stone-600 mb-12"
-                    data-nlv-field-path={resolvedFieldPath}
+                    {...getVisualEditorAttributes(resolvedFieldPath)}
                 >
                     {resolvedTitle}
                 </h2>
@@ -77,20 +78,20 @@ const PartnerCarousel: React.FC<PartnerCarouselProps> = ({ title, fieldPath }) =
                     initial="hidden"
                     whileInView="visible"
                     viewport={{ once: true, amount: 0.5 }}
-                    data-nlv-field-path="partners.partners"
+                    {...getVisualEditorAttributes('partners.partners')}
                 >
                     {partners.map((partner, index) => (
                         <motion.div
                             key={partner.id}
                             variants={itemVariants}
                             className="flex-shrink-0"
-                            data-nlv-field-path={`partners.partners.${index}`}
+                            {...getVisualEditorAttributes(`partners.partners.${index}`)}
                         >
                             <img
                                 src={partner.logoUrl}
                                 alt={partner.name}
                                 className="h-8 object-contain grayscale opacity-60 hover:opacity-100 hover:grayscale-0 transition-all duration-300"
-                                data-nlv-field-path={`partners.partners.${index}.logoUrl`}
+                                {...getVisualEditorAttributes(`partners.partners.${index}.logoUrl`)}
                             />
                         </motion.div>
                     ))}

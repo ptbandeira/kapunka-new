@@ -1,5 +1,6 @@
 import React from 'react';
 import ReactMarkdown from 'react-markdown';
+import { getVisualEditorAttributes } from '../../utils/stackbitBindings';
 
 interface ImageTextHalfProps {
   image?: string;
@@ -26,12 +27,7 @@ const ImageTextHalf: React.FC<ImageTextHalfProps> = ({ image, title, text, field
             {title && (
               <h2
                 className="text-3xl font-semibold text-stone-900 mb-6"
-                {...(fieldPath
-                  ? {
-                    'data-nlv-field-path': `${fieldPath}.title`,
-                    'data-sb-field-path': `${fieldPath}.title`,
-                  }
-                  : {})}
+                {...(fieldPath ? getVisualEditorAttributes(`${fieldPath}.title`) : {})}
               >
                 {title}
               </h2>
@@ -39,12 +35,7 @@ const ImageTextHalf: React.FC<ImageTextHalfProps> = ({ image, title, text, field
             {markdownSource && (
               <div
                 className="prose prose-stone max-w-none text-stone-700"
-                {...(fieldPath
-                  ? {
-                    'data-nlv-field-path': `${fieldPath}.text`,
-                    'data-sb-field-path': `${fieldPath}.text`,
-                  }
-                  : {})}
+                {...(fieldPath ? getVisualEditorAttributes(`${fieldPath}.text`) : {})}
               >
                 <ReactMarkdown>{markdownSource}</ReactMarkdown>
               </div>
@@ -56,22 +47,12 @@ const ImageTextHalf: React.FC<ImageTextHalfProps> = ({ image, title, text, field
                 src={image}
                 alt={title ?? ''}
                 className="w-full h-full object-cover rounded-lg shadow-sm"
-                {...(fieldPath
-                  ? {
-                    'data-nlv-field-path': `${fieldPath}.image`,
-                    'data-sb-field-path': `${fieldPath}.image`,
-                  }
-                  : {})}
+                {...(fieldPath ? getVisualEditorAttributes(`${fieldPath}.image`) : {})}
               />
             ) : (
               <div
                 className="w-full aspect-[4/3] rounded-lg border border-dashed border-stone-300 bg-stone-100 flex items-center justify-center text-sm text-stone-400"
-                {...(fieldPath
-                  ? {
-                    'data-nlv-field-path': `${fieldPath}.image`,
-                    'data-sb-field-path': `${fieldPath}.image`,
-                  }
-                  : {})}
+                {...(fieldPath ? getVisualEditorAttributes(`${fieldPath}.image`) : {})}
               >
                 Image coming soon
               </div>
