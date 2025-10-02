@@ -198,7 +198,9 @@ const resolveTranslationBinding = (value: string): StackbitBinding | null => {
     return null;
   }
 
-  const objectId = `translations_${module}:content/translations/${module}.json`;
+  const filePath = `content/translations/${module}.json`;
+  const modelName = modelNameByFilePath.get(filePath) ?? `translations_${module}`;
+  const objectId = `${modelName}:${filePath}`;
   const normalizedRest = normalizeStackbitFieldPath(rest);
   const fieldPath = normalizedRest ? `${lang}.${normalizedRest}` : lang;
   return { objectId, fieldPath };
