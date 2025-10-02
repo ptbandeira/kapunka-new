@@ -129,6 +129,7 @@ const Header: React.FC = () => {
     { to: '/training', key: 'training', requires: 'training' },
     { to: '/method', key: 'method' },
     { to: '/for-clinics', key: 'forClinics' },
+    { to: '/story', key: 'story' },
     { to: '/about', key: 'about' },
     { to: '/contact', key: 'contact' },
   ];

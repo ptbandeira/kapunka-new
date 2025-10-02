@@ -7,6 +7,7 @@
     "training": "Training",
     "method": "Method",
     "forClinics": "For Clinics",
+    "story": "Story",
     "about": "About",
     "contact": "Contact"
   },
@@ -17,6 +18,7 @@
     "training": "Treinamento",
     "method": "Método",
     "forClinics": "Para Clínicas",
+    "story": "História",
     "about": "Sobre",
     "contact": "Contato"
   },
@@ -27,6 +29,7 @@
     "training": "Formación",
     "method": "Método",
     "forClinics": "Para Clínicas",
+    "story": "Historia",
     "about": "Nosotros",
     "contact": "Contacto"
   }
