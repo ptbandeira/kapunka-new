@@ -1908,6 +1908,67 @@ collections:
                   - { label: English, name: en, widget: string }
                   - { label: Portuguese, name: pt, widget: string }
                   - { label: Spanish, name: es, widget: string }
+  - name: unified_pages
+    label: Unified Pages (Beta)
+    label_singular: Unified Page
+    group: "1. Pages"
+    description: "Experimental unified workflow with multilingual copy and section hierarchy."
+    editor: { preview: false }
+    files:
+      - name: unified_pages_index
+        label: Unified Pages (Beta)
+        file: content/pages_v2/index.json
+        format: json
+        fields:
+          - label: Pages
+            name: pages
+            widget: list
+            collapsed: true
+            summary: "{{fields.label}} · {{fields.slug}}"
+            fields:
+              - { label: Page Label, name: label, widget: string }
+              - { label: Page Identifier, name: id, widget: string }
+              - { label: Route (e.g. /about), name: slug, widget: string }
+              - label: Sections
+                name: sections
+                widget: list
+                collapsed: true
+                summary: "{{fields.name}}"
+                fields:
+                  - { label: Section Key, name: key, widget: string }
+                  - { label: Section Name, name: name, widget: string }
+                  - label: Copy Blocks
+                    name: copy
+                    widget: list
+                    collapsed: true
+                    summary: "{{fields.key}}"
+                    fields:
+                      - { label: Field Key, name: key, widget: string }
+                      - label: Text
+                        name: value
+                        widget: object
+                        fields:
+                          - { label: English, name: en, widget: text, required: false }
+                          - { label: Portuguese, name: pt, widget: text, required: false }
+                          - { label: Spanish, name: es, widget: text, required: false }
+                  - label: Assets & Media
+                    name: assets
+                    widget: list
+                    required: false
+                    collapsed: true
+                    summary: "{{fields.key}}"
+                    fields:
+                      - { label: Field Key, name: key, widget: string }
+                      - { label: "URL or Path", name: value, widget: string, required: false }
+                  - label: Options & Layout
+                    name: options
+                    widget: list
+                    required: false
+                    collapsed: true
+                    summary: "{{fields.key}}"
+                    fields:
+                      - { label: Setting Key, name: key, widget: string }
+                      - { label: Value, name: value, widget: string, required: false }
   - name: courses
     label: Courses
     group: "9. Legacy / Catalog"
