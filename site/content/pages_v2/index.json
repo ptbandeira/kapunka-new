@@ -1,3 +1,3631 @@
 {
-  "pages": []
+  "pages": [
+    {
+      "id": "about",
+      "label": "Our Story",
+      "slug": "/about",
+      "sections": [
+        {
+          "key": "page",
+          "name": "Page Content",
+          "copy": [
+            {
+              "key": "headerSubtitle",
+              "value": {
+                "en": "We believe in the power of simplicity. Our philosophy is rooted in using pure, high-quality ingredients to create formulations that support your skin's long-term health.",
+                "pt": "Acreditamos no poder da simplicidade. Nossa filosofia está enraizada no uso de ingredientes puros e de alta qualidade para criar formulações que apoiam a saúde da sua pele a longo prazo.",
+                "es": "Creemos en el poder de la simplicidad. Nuestra filosofía se basa en el uso de ingredientes puros y de alta calidad para crear formulaciones que apoyen la salud de tu piel a largo plazo."
+              }
+            },
+            {
+              "key": "headerTitle",
+              "value": {
+                "en": "Less, but better.",
+                "pt": "Menos, mas melhor.",
+                "es": "Menos, pero mejor."
+              }
+            },
+            {
+              "key": "metaDescription",
+              "value": {
+                "en": "A calm standard of care born from gratitude.",
+                "pt": "Um padrão sereno de cuidado nascido da gratidão.",
+                "es": "Un estándar sereno de cuidado nacido de la gratitud."
+              }
+            },
+            {
+              "key": "metaTitle",
+              "value": {
+                "en": "About Kapunka",
+                "pt": "Sobre a Kapunka",
+                "es": "Sobre Kapunka"
+              }
+            },
+            {
+              "key": "sections.0.body",
+              "value": {
+                "en": "Kapunka began with a simple idea: the way we touch changes how we heal. Years beside clinicians shaped a method that is careful, precise, and kind.",
+                "pt": "A Kapunka começou com uma ideia simples: a forma como tocamos muda a maneira como curamos. Anos ao lado de equipes clínicas moldaram um método cuidadoso, preciso e gentil.",
+                "es": "Kapunka nació de una idea sencilla: la forma en que tocamos transforma cómo sanamos. Años junto a profesionales clínicos dieron forma a un método atento, preciso y amable."
+              }
+            },
+            {
+              "key": "sections.0.imageRef",
+              "value": {
+                "en": "/content/uploads/founder-portrait.jpg",
+                "pt": "/content/uploads/founder-portrait.jpg",
+                "es": "/content/uploads/founder-portrait.jpg"
+              }
+            },
+            {
+              "key": "sections.0.layout",
+              "value": {
+                "en": "image-right",
+                "pt": "image-right",
+                "es": "image-right"
+              }
+            },
+            {
+              "key": "sections.0.title",
+              "value": {
+                "en": "Where Kapunka comes from",
+                "pt": "De onde vem a Kapunka",
+                "es": "De dónde viene Kapunka"
+              }
+            },
+            {
+              "key": "sections.0.type",
+              "value": {
+                "en": "mediaCopy",
+                "pt": "mediaCopy",
+                "es": "mediaCopy"
+              }
+            },
+            {
+              "key": "sections.1.body",
+              "value": {
+                "en": "‘Kapunka’ was first heard by our founder in a school in Ubud. The word—thank you—became a promise: make care that gives back. Be thankful to your skin.",
+                "pt": "Nossa fundadora ouviu ‘Kapunka’ pela primeira vez em uma escola em Ubud. A palavra — obrigado — tornou-se uma promessa: criar um cuidado que retribua. Seja grato à sua pele.",
+                "es": "Nuestra fundadora escuchó por primera vez ‘Kapunka’ en una escuela de Ubud. La palabra —gracias— se convirtió en una promesa: crear un cuidado que devuelva. Agradece a tu piel."
+              }
+            },
+            {
+              "key": "sections.1.imageRef",
+              "value": {
+                "en": "/content/uploads/ubud-moment.jpg",
+                "pt": "/content/uploads/ubud-moment.jpg",
+                "es": "/content/uploads/ubud-moment.jpg"
+              }
+            },
+            {
+              "key": "sections.1.layout",
+              "value": {
+                "en": "image-right",
+                "pt": "image-right",
+                "es": "image-right"
+              }
+            },
+            {
+              "key": "sections.1.title",
+              "value": {
+                "en": "The name",
+                "pt": "O nome",
+                "es": "El nombre"
+              }
+            },
+            {
+              "key": "sections.1.type",
+              "value": {
+                "en": "mediaCopy",
+                "pt": "mediaCopy",
+                "es": "mediaCopy"
+              }
+            },
+            {
+              "key": "sourcingImageAlt",
+              "value": {
+                "en": "Field of argan trees",
+                "pt": "Campo de árvores de argan",
+                "es": "Campo de árboles de argán"
+              }
+            },
+            {
+              "key": "sourcingText1",
+              "value": {
+                "en": "We are committed to ethical and sustainable practices. Our ingredients are sourced from suppliers who share our values of environmental responsibility and fair trade.",
+                "pt": "Estamos comprometidos com práticas éticas e sustentáveis. Nossos ingredientes são provenientes de fornecedores que compartilham nossos valores de responsabilidade ambiental e comércio justo.",
+                "es": "Estamos comprometidos con prácticas éticas y sostenibles. Nuestros ingredientes provienen de proveedores que comparten nuestros valores de responsabilidad ambiental y comercio justo."
+              }
+            },
+            {
+              "key": "sourcingText2",
+              "value": {
+                "en": "Our Argan oil is a prime example, providing economic empowerment to the Berber women who have perfected its traditional extraction method for centuries.",
+                "pt": "Nosso óleo de Argan é um excelente exemplo, proporcionando empoderamento econômico para as mulheres berberes que aperfeiçoaram seu método tradicional de extração por séculos.",
+                "es": "Nuestro aceite de Argán es un ejemplo primordial, proporcionando empoderamiento económico a las mujeres bereberes que han perfeccionado su método tradicional de extracción durante siglos."
+              }
+            },
+            {
+              "key": "sourcingTitle",
+              "value": {
+                "en": "Ethical Sourcing",
+                "pt": "Fornecimento Ético",
+                "es": "Abastecimiento Ético"
+              }
+            },
+            {
+              "key": "storyText1",
+              "value": {
+                "en": "Kapunka was born from a desire for transparent, effective skincare. We started by sourcing the purest, ECOCERT-certified Argan oil from women's cooperatives in Morocco.",
+                "pt": "A Kapunka nasceu do desejo por cuidados com a pele transparentes e eficazes. Começamos por obter o mais puro óleo de Argan certificado pela ECOCERT de cooperativas de mulheres em Marrocos.",
+                "es": "Kapunka nació del deseo de un cuidado de la piel transparente y eficaz. Empezamos por obtener el aceite de Argán más puro, certificado por ECOCERT, de cooperativas de mujeres en Marruecos."
+              }
+            },
+            {
+              "key": "storyText2",
+              "value": {
+                "en": "Our goal is to create products that are not only a pleasure to use but also deliver tangible results, always prioritizing the health of your skin barrier.",
+                "pt": "Nosso objetivo é criar produtos que não sejam apenas um prazer de usar, mas que também entreguem resultados tangíveis, priorizando sempre a saúde da sua barreira cutânea.",
+                "es": "Nuestro objetivo es crear productos que no solo sean un placer de usar, sino que también ofrezcan resultados tangibles, priorizando siempre la salud de tu barrera cutánea."
+              }
+            },
+            {
+              "key": "storyTitle",
+              "value": {
+                "en": "Our Story",
+                "pt": "Nossa História",
+                "es": "Nuestra Historia"
+              }
+            },
+            {
+              "key": "title",
+              "value": {
+                "en": "Our Story",
+                "pt": "Nossa História",
+                "es": "Nuestra Historia"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "clinics",
+      "label": "Professional Clinic Partnerships",
+      "slug": "/for-clinics",
+      "sections": [
+        {
+          "key": "page",
+          "name": "Page Content",
+          "copy": [
+            {
+              "key": "ctaButton",
+              "value": {
+                "en": "Contact Us",
+                "pt": "Fale conosco",
+                "es": "Contáctanos"
+              }
+            },
+            {
+              "key": "ctaSubtitle",
+              "value": {
+                "en": "Schedule a call to review wholesale pricing, sampling, and clinic launch support.",
+                "pt": "Agende uma chamada para conhecer preços de atacado, amostras e suporte de lançamento na clínica.",
+                "es": "Agenda una llamada para revisar precios mayoristas, sampling y soporte de lanzamiento en clínica."
+              }
+            },
+            {
+              "key": "ctaTitle",
+              "value": {
+                "en": "Become a Partner",
+                "pt": "Torne-se um parceiro",
+                "es": "Conviértete en socio"
+              }
+            },
+            {
+              "key": "doctorsTitle",
+              "value": {
+                "en": "Trusted by Top Professionals",
+                "pt": "Aprovado pelos melhores profissionais",
+                "es": "Con la confianza de los mejores profesionales"
+              }
+            },
+            {
+              "key": "faqSection.items.0.answer",
+              "value": {
+                "en": "Opening orders start at 24 retail units or 6 professional back-bar units. Mixed product cases qualify for the same wholesale pricing so smaller clinics can curate assortments.",
+                "pt": "Os pedidos iniciais começam com 24 unidades de varejo ou 6 unidades profissionais de back bar. Caixas com produtos variados mantêm o mesmo preço de atacado para que clínicas menores possam montar assortments personalizados.",
+                "es": "Los pedidos iniciales comienzan con 24 unidades minoristas o 6 unidades profesionales de back bar. Los estuches mixtos califican para el mismo precio mayorista para que las clínicas más pequeñas puedan curar su surtido."
+              }
+            },
+            {
+              "key": "faqSection.items.0.question",
+              "value": {
+                "en": "What is the minimum order quantity (MOQ)?",
+                "pt": "Qual é a quantidade mínima de pedido (MOQ)?",
+                "es": "¿Cuál es la cantidad mínima de pedido (MOQ)?"
+              }
+            },
+            {
+              "key": "faqSection.items.1.answer",
+              "value": {
+                "en": "Yes. Partners access a bilingual e-learning portal with microneedling, chemical peel, and menopause hydration modules. Live quarterly webinars review updates and allow Q&A with our medical advisory board.",
+                "pt": "Sim. Os parceiros acessam uma plataforma de e-learning bilíngue com módulos de microagulhamento, peeling químico e hidratação na menopausa. Webinars trimestrais ao vivo trazem atualizações e um Q&A com o nosso conselho médico.",
+                "es": "Sí. Los socios acceden a un portal e-learning bilingüe con módulos de microneedling, peeling químico e hidratación en la menopausia. Webinars trimestrales en vivo repasan novedades y permiten preguntas a nuestro comité médico."
+              }
+            },
+            {
+              "key": "faqSection.items.1.question",
+              "value": {
+                "en": "Do you provide protocol training?",
+                "pt": "Vocês oferecem treinamento de protocolos?",
+                "es": "¿Ofrecen capacitación en protocolos?"
+              }
+            },
+            {
+              "key": "faqSection.items.2.answer",
+              "value": {
+                "en": "Decant into sterile droppers. After finishing a treatment, mist the skin with rose water and press the oil in gloved hands to avoid friction. For scalp or body services, warm the oil to body temperature before massage.",
+                "pt": "Transfira para conta-gotas estéreis. Ao finalizar o procedimento, borrife água de rosas na pele e pressione o óleo com as mãos enluvadas para evitar fricção. Em serviços de couro cabeludo ou corpo, aqueça o óleo à temperatura corporal antes da massagem.",
+                "es": "Transfiérelo a cuentagotas estériles. Tras finalizar el tratamiento, pulveriza agua de rosas sobre la piel y presiona el aceite con manos enguantadas para evitar fricción. En servicios capilares o corporales, templa el aceite a temperatura corporal antes del masaje."
+              }
+            },
+            {
+              "key": "faqSection.items.2.question",
+              "value": {
+                "en": "How should clinicians apply the argan oil in treatment rooms?",
+                "pt": "Como os clínicos devem aplicar o óleo de argan na sala de tratamento?",
+                "es": "¿Cómo deben aplicar los clínicos el aceite de argán en cabina?"
+              }
+            },
+            {
+              "key": "faqSection.items.3.answer",
+              "value": {
+                "en": "We offer customizable post-treatment cards and co-branded sleeves after your third order. Our design team adapts assets to your brand within five business days.",
+                "pt": "Oferecemos cartões pós-tratamento personalizáveis e sleeves co-branded após o terceiro pedido. A nossa equipa de design adapta os materiais à sua marca em até cinco dias úteis.",
+                "es": "Ofrecemos tarjetas post-tratamiento personalizables y fundas co-brandeadas después de tu tercer pedido. Nuestro equipo de diseño adapta los materiales a tu marca en un máximo de cinco días hábiles."
+              }
+            },
+            {
+              "key": "faqSection.items.3.question",
+              "value": {
+                "en": "Can Kapunka support white-label or co-branded materials?",
+                "pt": "A Kapunka oferece materiais em white label ou co-branded?",
+                "es": "¿Kapunka puede proporcionar materiales white label o co-brandeados?"
+              }
+            },
+            {
+              "key": "faqSection.subtitle",
+              "value": {
+                "en": "Logistics, training, and application methods tailored for your team.",
+                "pt": "Logística, treinamento e métodos de aplicação adaptados à sua equipa.",
+                "es": "Logística, formación y métodos de aplicación adaptados a tu equipo."
+              }
+            },
+            {
+              "key": "faqSection.title",
+              "value": {
+                "en": "Clinic FAQs",
+                "pt": "Perguntas frequentes para clínicas",
+                "es": "Preguntas frecuentes para clínicas"
+              }
+            },
+            {
+              "key": "headerSubtitle",
+              "value": {
+                "en": "Deliver consistent post-treatment skin care with dermatologist-approved argan oil and minimalist, clinic-tested formulas tailored for recovery and hormonal hydration.",
+                "pt": "Ofereça cuidados pós-tratamento consistentes com óleo de argan aprovado por dermatologistas e fórmulas minimalistas testadas em clínica para recuperação e hidratação hormonal.",
+                "es": "Ofrece un post-treatment skin care coherente con aceite de argán aprobado por dermatólogos y fórmulas minimalistas, probadas en clínica para la recuperación y la hidratación hormonal."
+              }
+            },
+            {
+              "key": "headerTitle",
+              "value": {
+                "en": "Professional Clinic Partnership Program",
+                "pt": "Programa Profissional Kapunka",
+                "es": "Programa Profesional Kapunka"
+              }
+            },
+            {
+              "key": "intro.text1",
+              "value": {
+                "en": "Our B2B skincare supply combines ECOCERT argan oil, Damask rose water, and barrier-strengthening lipids with educational assets you can personalize. Protocols are reviewed by board-certified dermatologists so your team can offer confident guidance after microneedling, chemical peels, laser, or menopause-related dryness.",
+                "pt": "Nosso fornecimento B2B de skincare combina óleo de argan ECOCERT, água de rosas Damascena e lipídios fortalecedores da barreira com materiais educativos que você pode personalizar. Os protocolos são revisados por dermatologistas certificados para que a sua equipa ofereça orientações seguras após microagulhamento, peelings químicos, laser ou ressecamento relacionado à menopausa.",
+                "es": "Nuestro suministro B2B de skincare combina aceite de argán ECOCERT, agua de rosas de Damasco y lípidos que refuerzan la barrera con materiales educativos personalizables. Los protocolos son revisados por dermatólogos certificados para que tu equipo brinde indicaciones seguras tras microneedling, peelings químicos, láser o sequedad ligada a la menopausia."
+              }
+            },
+            {
+              "key": "intro.text2",
+              "value": {
+                "en": "Partners receive wholesale pricing, onboarding modules, and printable aftercare one-pagers in English, Portuguese, and Spanish. Kapunka simplifies the handoff from procedure to home care, helping you retain patients and build retail revenue.",
+                "pt": "Os parceiros recebem preços no atacado, módulos de onboarding e folhetos de pós-tratamento prontos para imprimir em inglês, português e espanhol. A Kapunka simplifica a transição do procedimento para o cuidado em casa, ajudando a reter pacientes e ampliar a receita de varejo.",
+                "es": "Los socios reciben precios mayoristas, módulos de onboarding y fichas de cuidados post-tratamiento listas para imprimir en inglés, portugués y español. Kapunka simplifica el traspaso del procedimiento al cuidado en casa, ayudando a fidelizar pacientes y aumentar el ticket minorista."
+              }
+            },
+            {
+              "key": "intro.title",
+              "value": {
+                "en": "Evidence-Led Support for Every Treatment Room",
+                "pt": "Suporte baseado em evidências para cada sala de tratamento",
+                "es": "Soporte basado en evidencia para cada sala de tratamiento"
+              }
+            },
+            {
+              "key": "keywordSection.keywords.0",
+              "value": {
+                "en": "post-treatment skin care protocols",
+                "pt": "post-treatment skin care protocols (protocolos de cuidados pós-tratamento)",
+                "es": "post-treatment skin care protocols (protocolos de cuidado post-tratamiento)"
+              }
+            },
+            {
+              "key": "keywordSection.keywords.1",
+              "value": {
+                "en": "dermatologist-approved argan oil retail sets",
+                "pt": "dermatologist-approved argan oil retail sets (kits de óleo de argan aprovado por dermatologistas)",
+                "es": "dermatologist-approved argan oil retail sets (sets minoristas de aceite de argán aprobado por dermatólogos)"
+              }
+            },
+            {
+              "key": "keywordSection.keywords.2",
+              "value": {
+                "en": "B2B skincare supply for medical spas",
+                "pt": "B2B skincare supply for medical spas (fornecimento B2B de skincare para clínicas e spas médicos)",
+                "es": "B2B skincare supply for medical spas (suministro B2B de skincare para clínicas y spas médicos)"
+              }
+            },
+            {
+              "key": "keywordSection.keywords.3",
+              "value": {
+                "en": "hormonal hydration support kits",
+                "pt": "hormonal hydration support kits (kits de suporte de hidratação hormonal)",
+                "es": "hormonal hydration support kits (kits de soporte de hidratación hormonal)"
+              }
+            },
+            {
+              "key": "keywordSection.keywords.4",
+              "value": {
+                "en": "sustainable Moroccan argan oil wholesale",
+                "pt": "sustainable Moroccan argan oil wholesale (óleo de argan marroquino sustentável no atacado)",
+                "es": "sustainable Moroccan argan oil wholesale (aceite de argán marroquí sostenible al por mayor)"
+              }
+            },
+            {
+              "key": "keywordSection.subtitle",
+              "value": {
+                "en": "Include these focus points in your listings and marketing to reach discerning patients.",
+                "pt": "Inclua estes focos nas suas listas e campanhas para alcançar pacientes exigentes.",
+                "es": "Incluye estos enfoques en tus listados y campañas para llegar a pacientes exigentes."
+              }
+            },
+            {
+              "key": "keywordSection.title",
+              "value": {
+                "en": "Optimized B2B Skincare Supply",
+                "pt": "Fornecimento B2B de skincare otimizado",
+                "es": "Suministro B2B de skincare optimizado"
+              }
+            },
+            {
+              "key": "metaDescription",
+              "value": {
+                "en": "B2B skincare supply for post-treatment skin care. Access dermatologist-approved argan oil, clinical protocols, and training for your clinic.",
+                "pt": "Fornecimento B2B de skincare para cuidados pós-tratamento. Acesse óleo de argan aprovado por dermatologistas, protocolos clínicos e treinamento para a sua clínica.",
+                "es": "Suministro B2B de cuidado de la piel para el post-tratamiento. Accede a aceite de argán aprobado por dermatólogos, protocolos clínicos y capacitación para tu clínica."
+              }
+            },
+            {
+              "key": "metaTitle",
+              "value": {
+                "en": "For Clinics — Trusted, simple, teachable",
+                "pt": "Para clínicas — Confiável, simples, ensinável",
+                "es": "Para clínicas — Confiable, sencillo, enseñable"
+              }
+            },
+            {
+              "key": "partnersTitle",
+              "value": {
+                "en": "As Seen In",
+                "pt": "Como visto em",
+                "es": "Como visto en"
+              }
+            },
+            {
+              "key": "protocolSection.cards.0.evidence",
+              "value": {
+                "en": "Guided by Fabbrocini et al., Journal of Clinical and Aesthetic Dermatology (2014), which documents barrier disruption for up to 48 hours post-microneedling and the benefits of lipid-rich emollients.",
+                "pt": "Orientado por Fabbrocini et al., Journal of Clinical and Aesthetic Dermatology (2014), que documenta a interrupção da barreira por até 48 horas após o microagulhamento e os benefícios de emolientes ricos em lipídios.",
+                "es": "Basado en Fabbrocini et al., Journal of Clinical and Aesthetic Dermatology (2014), que documenta la alteración de la barrera hasta 48 horas después del microneedling y los beneficios de los emolientes ricos en lípidos."
+              }
+            },
+            {
+              "key": "protocolSection.cards.0.focus",
+              "value": {
+                "en": "Stabilize the barrier, reduce TEWL, and prevent microbial contamination.",
+                "pt": "Estabilize a barreira, reduza a TEWL e previna contaminação microbiana.",
+                "es": "Estabiliza la barrera, reduce la TEWL y evita la contaminación microbiana."
+              }
+            },
+            {
+              "key": "protocolSection.cards.0.steps.0",
+              "value": {
+                "en": "Immediately post-treatment: mist Kapunka Damask Rose Water or sterile saline, then press three drops of our dermatologist-approved argan oil over treated zones to seal microchannels.",
+                "pt": "Imediatamente após o procedimento: borrife Água de Rosas Damascena Kapunka ou soro fisiológico estéril e pressione três gotas do nosso óleo de argan aprovado por dermatologistas sobre as zonas tratadas para selar os microcanais.",
+                "es": "Inmediatamente después del tratamiento: pulveriza Agua de Rosas de Damasco Kapunka o suero fisiológico estéril y presiona tres gotas de nuestro aceite de argán aprobado por dermatólogos sobre las zonas tratadas para sellar los microcanales."
+              }
+            },
+            {
+              "key": "protocolSection.cards.0.steps.1",
+              "value": {
+                "en": "First night: instruct patients to avoid makeup and retinoids; reapply argan oil on damp skin every 6–8 hours to keep the lipid matrix saturated.",
+                "pt": "Primeira noite: oriente as pacientes a evitarem maquiagem e retinoides; reaplique o óleo de argan na pele úmida a cada 6–8 horas para manter a matriz lipídica saturada.",
+                "es": "Primera noche: indica a los pacientes que eviten maquillaje y retinoides; reaplica el aceite de argán sobre la piel húmeda cada 6–8 horas para mantener saturada la matriz lipídica."
+              }
+            },
+            {
+              "key": "protocolSection.cards.0.steps.2",
+              "value": {
+                "en": "Days 2–3: layer a hyaluronic serum under argan oil; resume mineral SPF once erythema resolves.",
+                "pt": "Dias 2–3: estratifique um sérum de ácido hialurônico sob o óleo de argan; retome o protetor solar mineral quando o eritema diminuir.",
+                "es": "Días 2–3: coloca un sérum de ácido hialurónico bajo el aceite de argán; retoma el protector solar mineral cuando el eritema disminuya."
+              }
+            },
+            {
+              "key": "protocolSection.cards.0.title",
+              "value": {
+                "en": "Microneedling Aftercare (0–72 hours)",
+                "pt": "Pós-tratamento de microagulhamento (0–72 horas)",
+                "es": "Cuidados tras microneedling (0–72 horas)"
+              }
+            },
+            {
+              "key": "protocolSection.cards.1.evidence",
+              "value": {
+                "en": "Informed by Soleymani et al., Journal of Clinical and Aesthetic Dermatology (2018), highlighting lipid replenishment as a key determinant of controlled re-epithelialization.",
+                "pt": "Baseado em Soleymani et al., Journal of Clinical and Aesthetic Dermatology (2018), que destaca a reposição lipídica como determinante para a reepitelização controlada.",
+                "es": "Respaldado por Soleymani et al., Journal of Clinical and Aesthetic Dermatology (2018), que destaca la reposición lipídica como clave para una reepitelización controlada."
+              }
+            },
+            {
+              "key": "protocolSection.cards.1.focus",
+              "value": {
+                "en": "Modulate inflammation, support desquamation, and rebuild the stratum corneum.",
+                "pt": "Modere a inflamação, apoie a descamação e reconstrua o estrato córneo.",
+                "es": "Modera la inflamación, favorece la descamación y reconstruye el estrato córneo."
+              }
+            },
+            {
+              "key": "protocolSection.cards.1.steps.0",
+              "value": {
+                "en": "Day 0: neutralize the peel per manufacturer instructions; once skin temperature normalizes, mist Damask Rose Water and apply a thin veil of argan oil to buffer tightness.",
+                "pt": "Dia 0: neutralize o peeling conforme as instruções do fabricante; quando a pele voltar à temperatura normal, borrife Água de Rosas Damascena e aplique um véu fino de óleo de argan para amenizar a sensação de repuxamento.",
+                "es": "Día 0: neutraliza el peeling según las instrucciones del fabricante; cuando la piel recupere su temperatura, pulveriza Agua de Rosas de Damasco y aplica un velo fino de aceite de argán para aliviar la tirantez."
+              }
+            },
+            {
+              "key": "protocolSection.cards.1.steps.1",
+              "value": {
+                "en": "Days 1–3: cleanse with pH-balanced milk cleansers; alternate rose water compresses with argan oil occlusion to minimize crusting.",
+                "pt": "Dias 1–3: higienize com limpadores lácteos de pH equilibrado; alterne compressas de água de rosas com oclusão de óleo de argan para minimizar a formação de crostas.",
+                "es": "Días 1–3: limpia con leches de pH equilibrado; alterna compresas de agua de rosas con oclusión de aceite de argán para minimizar las costras."
+              }
+            },
+            {
+              "key": "protocolSection.cards.1.steps.2",
+              "value": {
+                "en": "Days 4–7: introduce ceramide cream over argan oil; reinforce broad-spectrum SPF 50 and avoid exfoliants until peeling completes.",
+                "pt": "Dias 4–7: introduza um creme com ceramidas sobre o óleo de argan; reforce o uso de protetor solar FPS 50 de amplo espectro e evite esfoliantes até o término da descamação.",
+                "es": "Días 4–7: incorpora una crema con ceramidas sobre el aceite de argán; refuerza el fotoprotector FPS 50 de amplio espectro y evita exfoliantes hasta finalizar la descamación."
+              }
+            },
+            {
+              "key": "protocolSection.cards.1.title",
+              "value": {
+                "en": "Medium-Depth Chemical Peel Recovery (Day 0–7)",
+                "pt": "Recuperação de peeling químico médio (Dia 0–7)",
+                "es": "Recuperación de peeling químico medio (Día 0–7)"
+              }
+            },
+            {
+              "key": "protocolSection.cards.2.evidence",
+              "value": {
+                "en": "Aligned with Lephart, Biomedicine & Pharmacotherapy (2016) and Sator et al., Journal of the American Academy of Dermatology (2001), which report improved elasticity and hydration in postmenopausal skin after topical phyto-lipids.",
+                "pt": "Alinhado a Lephart, Biomedicine & Pharmacotherapy (2016) e Sator et al., Journal of the American Academy of Dermatology (2001), que relatam melhora de elasticidade e hidratação na pele pós-menopausa após o uso tópico de fito-lipídios.",
+                "es": "En línea con Lephart, Biomedicine & Pharmacotherapy (2016) y Sator et al., Journal of the American Academy of Dermatology (2001), que informan mejoras de elasticidad e hidratación en la piel posmenopáusica tras lípidos tópicos."
+              }
+            },
+            {
+              "key": "protocolSection.cards.2.focus",
+              "value": {
+                "en": "Restore lipids, improve elasticity, and calm neurogenic dryness linked to estrogen decline.",
+                "pt": "Restaure lipídios, melhore a elasticidade e acalme o ressecamento neurogênico ligado à queda estrogênica.",
+                "es": "Restituye lípidos, mejora la elasticidad y calma la sequedad neurogénica asociada al descenso de estrógenos."
+              }
+            },
+            {
+              "key": "protocolSection.cards.2.steps.0",
+              "value": {
+                "en": "Morning: spritz Damask Rose Water, cocktail two drops of argan oil with ceramide moisturizer, and finish with SPF to address increased photosensitivity.",
+                "pt": "Manhã: borrife Água de Rosas Damascena, misture duas gotas de óleo de argan ao hidratante com ceramidas e finalize com protetor solar para lidar com a fotossensibilidade aumentada.",
+                "es": "Mañana: pulveriza Agua de Rosas de Damasco, mezcla dos gotas de aceite de argán con la crema de ceramidas y finaliza con protector solar para abordar la fotosensibilidad aumentada."
+              }
+            },
+            {
+              "key": "protocolSection.cards.2.steps.1",
+              "value": {
+                "en": "Evening: apply argan oil to face, neck, and décolletage while skin is damp; follow with light massage to stimulate microcirculation.",
+                "pt": "Noite: aplique óleo de argan no rosto, pescoço e colo com a pele úmida; faça uma massagem suave para estimular a microcirculação.",
+                "es": "Noche: aplica aceite de argán en rostro, cuello y escote con la piel húmeda; realiza un masaje ligero para estimular la microcirculación."
+              }
+            },
+            {
+              "key": "protocolSection.cards.2.steps.2",
+              "value": {
+                "en": "Weekly: suggest scalp massages with argan oil to offset hair density changes and provide hand and forearm treatments during in-clinic visits.",
+                "pt": "Semanalmente: sugerir massagens no couro cabeludo com óleo de argan para compensar mudanças na densidade capilar e oferecer tratamentos de mãos e antebraços durante as visitas à clínica.",
+                "es": "Semanalmente: sugiere masajes capilares con aceite de argán para compensar los cambios en la densidad del cabello y ofrece tratamientos de manos y antebrazos durante las visitas a la clínica."
+              }
+            },
+            {
+              "key": "protocolSection.cards.2.title",
+              "value": {
+                "en": "Hydration Support During Menopause",
+                "pt": "Suporte de hidratação durante a menopausa",
+                "es": "Soporte de hidratación durante la menopausia"
+              }
+            },
+            {
+              "key": "protocolSection.subtitle",
+              "value": {
+                "en": "Downloadable, dermatologist-reviewed routines to guide patients through the most requested treatments.",
+                "pt": "Rotinas revisadas por dermatologistas e disponíveis para download, guiando pacientes nos tratamentos mais procurados.",
+                "es": "Rutinas revisadas por dermatólogos y descargables para guiar a los pacientes en los tratamientos más solicitados."
+              }
+            },
+            {
+              "key": "protocolSection.title",
+              "value": {
+                "en": "Protocol Blueprints You Can Personalize",
+                "pt": "Modelos de protocolo para personalizar",
+                "es": "Planos de protocolo para personalizar"
+              }
+            },
+            {
+              "key": "referencesSection.studies.0.details",
+              "value": {
+                "en": "Journal of Clinical and Aesthetic Dermatology, 2014.",
+                "pt": "Journal of Clinical and Aesthetic Dermatology, 2014.",
+                "es": "Journal of Clinical and Aesthetic Dermatology, 2014."
+              }
+            },
+            {
+              "key": "referencesSection.studies.0.title",
+              "value": {
+                "en": "Fabbrocini A. et al. Microneedling in dermatology: A review.",
+                "pt": "Fabbrocini A. et al. Microneedling in dermatology: A review.",
+                "es": "Fabbrocini A. et al. Microneedling in dermatology: A review."
+              }
+            },
+            {
+              "key": "referencesSection.studies.1.details",
+              "value": {
+                "en": "Journal of Clinical and Aesthetic Dermatology, 2018.",
+                "pt": "Journal of Clinical and Aesthetic Dermatology, 2018.",
+                "es": "Journal of Clinical and Aesthetic Dermatology, 2018."
+              }
+            },
+            {
+              "key": "referencesSection.studies.1.title",
+              "value": {
+                "en": "Soleymani T. et al. A practical approach to chemical peels.",
+                "pt": "Soleymani T. et al. A practical approach to chemical peels.",
+                "es": "Soleymani T. et al. A practical approach to chemical peels."
+              }
+            },
+            {
+              "key": "referencesSection.studies.2.details",
+              "value": {
+                "en": "Biomedicine & Pharmacotherapy, 2016.",
+                "pt": "Biomedicine & Pharmacotherapy, 2016.",
+                "es": "Biomedicine & Pharmacotherapy, 2016."
+              }
+            },
+            {
+              "key": "referencesSection.studies.2.title",
+              "value": {
+                "en": "Lephart E.D. Skin aging and menopause: Implications for treatment.",
+                "pt": "Lephart E.D. Skin aging and menopause: Implications for treatment.",
+                "es": "Lephart E.D. Skin aging and menopause: Implications for treatment."
+              }
+            },
+            {
+              "key": "referencesSection.studiesTitle",
+              "value": {
+                "en": "Peer-reviewed highlights",
+                "pt": "Destaques revisados por pares",
+                "es": "Destacados revisados por pares"
+              }
+            },
+            {
+              "key": "referencesSection.testimonials.0.credentials",
+              "value": {
+                "en": "Board-Certified Dermatologist, Lisbon",
+                "pt": "Dermatologista certificada, Lisboa",
+                "es": "Dermatóloga certificada, Lisboa"
+              }
+            },
+            {
+              "key": "referencesSection.testimonials.0.name",
+              "value": {
+                "en": "Dr. Sofia Mendes",
+                "pt": "Dra. Sofia Mendes",
+                "es": "Dra. Sofia Mendes"
+              }
+            },
+            {
+              "key": "referencesSection.testimonials.0.quote",
+              "value": {
+                "en": "\"Kapunka’s dermatologist-approved argan oil delivers the lipid profile I want for post-treatment skin care, and patients appreciate the sustainable sourcing.\"",
+                "pt": "\"O óleo de argan aprovado por dermatologistas da Kapunka oferece o perfil lipídico que desejo para o post-treatment skin care, e as pacientes valorizam a origem sustentável.\"",
+                "es": "\"El aceite de argán aprobado por dermatólogos de Kapunka aporta el perfil lipídico que necesito para el post-treatment skin care, y las pacientes valoran su origen sostenible.\""
+              }
+            },
+            {
+              "key": "referencesSection.testimonials.1.credentials",
+              "value": {
+                "en": "Dermatologic Surgeon, Madrid",
+                "pt": "Cirurgiã dermatológica, Madri",
+                "es": "Cirujana dermatológica, Madrid"
+              }
+            },
+            {
+              "key": "referencesSection.testimonials.1.name",
+              "value": {
+                "en": "Dr. Elena Ruiz",
+                "pt": "Dra. Elena Ruiz",
+                "es": "Dra. Elena Ruiz"
+              }
+            },
+            {
+              "key": "referencesSection.testimonials.1.quote",
+              "value": {
+                "en": "\"The minimalist INCI keeps our sensitized patients comfortable after peels, while the brand’s training modules shorten staff onboarding.\"",
+                "pt": "\"O INCI minimalista mantém as pacientes sensibilizadas confortáveis após os peelings, enquanto os módulos de treinamento da marca encurtam o onboarding da equipa.\"",
+                "es": "\"El INCI minimalista mantiene cómodos a nuestros pacientes sensibilizados tras los peelings, y los módulos formativos de la marca acortan la capacitación del personal.\""
+              }
+            },
+            {
+              "key": "referencesSection.testimonialsTitle",
+              "value": {
+                "en": "Dermatologist testimonials",
+                "pt": "Depoimentos de dermatologistas",
+                "es": "Testimonios de dermatólogos"
+              }
+            },
+            {
+              "key": "referencesSection.title",
+              "value": {
+                "en": "Clinical References & Expert Voices",
+                "pt": "Referências clínicas e vozes especialistas",
+                "es": "Referencias clínicas y voces expertas"
+              }
+            },
+            {
+              "key": "section1Text1",
+              "value": {
+                "en": "Our B2B skincare supply combines ECOCERT argan oil, Damask rose water, and barrier-strengthening lipids with educational assets you can personalize. Protocols are reviewed by board-certified dermatologists so your team can offer confident guidance after microneedling, chemical peels, laser, or menopause-related dryness.",
+                "pt": "Nosso fornecimento B2B de skincare combina óleo de argan ECOCERT, água de rosas Damascena e lipídios fortalecedores da barreira com materiais educativos que você pode personalizar. Os protocolos são revisados por dermatologistas certificados para que a sua equipa ofereça orientações seguras após microagulhamento, peelings químicos, laser ou ressecamento relacionado à menopausa.",
+                "es": "Nuestro suministro B2B de skincare combina aceite de argán ECOCERT, agua de rosas de Damasco y lípidos que refuerzan la barrera con materiales educativos personalizables. Los protocolos son revisados por dermatólogos certificados para que tu equipo brinde indicaciones seguras tras microneedling, peelings químicos, láser o sequedad ligada a la menopausia."
+              }
+            },
+            {
+              "key": "section1Text2",
+              "value": {
+                "en": "Partners receive wholesale pricing, onboarding modules, and printable aftercare one-pagers in English, Portuguese, and Spanish. Kapunka simplifies the handoff from procedure to home care, helping you retain patients and build retail revenue.",
+                "pt": "Os parceiros recebem preços no atacado, módulos de onboarding e folhetos de pós-tratamento prontos para imprimir em inglês, português e espanhol. A Kapunka simplifica a transição do procedimento para o cuidado em casa, ajudando a reter pacientes e ampliar a receita de varejo.",
+                "es": "Los socios reciben precios mayoristas, módulos de onboarding y fichas de cuidados post-tratamiento listas para imprimir en inglés, portugués y español. Kapunka simplifica el traspaso del procedimiento al cuidado en casa, ayudando a fidelizar pacientes y aumentar el ticket minorista."
+              }
+            },
+            {
+              "key": "section1Title",
+              "value": {
+                "en": "Evidence-Led Support for Every Treatment Room",
+                "pt": "Suporte baseado em evidências para cada sala de tratamento",
+                "es": "Soporte basado en evidencia para cada sala de tratamiento"
+              }
+            },
+            {
+              "key": "sections.0.body",
+              "value": {
+                "en": "Trusted by dermatology and aesthetic teams for scar care and recovery. Low-residue, fragrance-considerate options and printable protocols.",
+                "pt": "Equipes de dermatologia e estética confiam em nós para cuidados com cicatrizes e recuperação. Opções de baixo resíduo, atentas à fragrância e protocolos imprimíveis.",
+                "es": "Equipos de dermatología y estética confían en nosotros para el cuidado de cicatrices y la recuperación. Opciones de bajo residuo, consideradas con la fragancia y protocolos imprimibles."
+              }
+            },
+            {
+              "key": "sections.0.imageRef",
+              "value": {
+                "en": "/content/uploads/clinic-tray.jpg",
+                "pt": "/content/uploads/clinic-tray.jpg",
+                "es": "/content/uploads/clinic-tray.jpg"
+              }
+            },
+            {
+              "key": "sections.0.layout",
+              "value": {
+                "en": "image-right",
+                "pt": "image-right",
+                "es": "image-right"
+              }
+            },
+            {
+              "key": "sections.0.title",
+              "value": {
+                "en": "From operating room to everyday routine",
+                "pt": "Do centro cirúrgico à rotina diária",
+                "es": "Del quirófano a la rutina diaria"
+              }
+            },
+            {
+              "key": "sections.0.type",
+              "value": {
+                "en": "mediaCopy",
+                "pt": "mediaCopy",
+                "es": "mediaCopy"
+              }
+            },
+            {
+              "key": "sections.1.items.0.description",
+              "value": {
+                "en": "Simple steps for pre-op, post-op, and home care.",
+                "pt": "Etapas simples para pré-operatório, pós-operatório e cuidado em casa.",
+                "es": "Pasos sencillos para preoperatorio, postoperatorio y cuidado en casa."
+              }
+            },
+            {
+              "key": "sections.1.items.0.label",
+              "value": {
+                "en": "Protocols",
+                "pt": "Protocolos",
+                "es": "Protocolos"
+              }
+            },
+            {
+              "key": "sections.1.items.1.description",
+              "value": {
+                "en": "Short onboarding and in-service training.",
+                "pt": "Integração rápida e treinamentos em serviço.",
+                "es": "Onboarding breve y capacitaciones en servicio."
+              }
+            },
+            {
+              "key": "sections.1.items.1.label",
+              "value": {
+                "en": "Education",
+                "pt": "Educação",
+                "es": "Formación"
+              }
+            },
+            {
+              "key": "sections.1.items.2.description",
+              "value": {
+                "en": "Starter kits and steady replenishment.",
+                "pt": "Kits iniciais e reposição constante.",
+                "es": "Kits iniciales y reposición constante."
+              }
+            },
+            {
+              "key": "sections.1.items.2.label",
+              "value": {
+                "en": "Wholesale",
+                "pt": "Atacado",
+                "es": "Mayoristas"
+              }
+            },
+            {
+              "key": "sections.1.type",
+              "value": {
+                "en": "featureGrid",
+                "pt": "featureGrid",
+                "es": "featureGrid"
+              }
+            },
+            {
+              "key": "sections.2.cta",
+              "value": {
+                "en": "Contact our team",
+                "pt": "Fale com nossa equipe",
+                "es": "Contacta a nuestro equipo"
+              }
+            },
+            {
+              "key": "sections.2.text",
+              "value": {
+                "en": "Explore wholesale and training",
+                "pt": "Explore atacado e treinamentos",
+                "es": "Explora mayoristas y capacitación"
+              }
+            },
+            {
+              "key": "sections.2.type",
+              "value": {
+                "en": "banner",
+                "pt": "banner",
+                "es": "banner"
+              }
+            },
+            {
+              "key": "sections.2.url",
+              "value": {
+                "en": "/contact",
+                "pt": "/contact",
+                "es": "/contact"
+              }
+            },
+            {
+              "key": "title",
+              "value": {
+                "en": "Professional Clinic Partnerships",
+                "pt": "Parcerias Profissionais para Clínicas",
+                "es": "Alianzas Profesionales para Clínicas"
+              }
+            }
+          ],
+          "options": [
+            {
+              "key": "sections.1.columns",
+              "value": {
+                "en": "3",
+                "pt": "3",
+                "es": "3"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "contact",
+      "label": "Contact Us",
+      "slug": "/contact",
+      "sections": [
+        {
+          "key": "page",
+          "name": "Page Content",
+          "copy": [
+            {
+              "key": "emailTitle",
+              "value": {
+                "en": "Email",
+                "pt": "E-mail",
+                "es": "Correo electrónico"
+              }
+            },
+            {
+              "key": "form.email",
+              "value": {
+                "en": "Email Address",
+                "pt": "Endereço de E-mail",
+                "es": "Correo Electrónico"
+              }
+            },
+            {
+              "key": "form.error",
+              "value": {
+                "en": "Sorry, something went wrong. Please try again.",
+                "pt": "Desculpe, algo deu errado. Por favor, tente novamente.",
+                "es": "Lo sentimos, algo salió mal. Por favor, inténtalo de nuevo."
+              }
+            },
+            {
+              "key": "form.message",
+              "value": {
+                "en": "Your Message",
+                "pt": "Sua Mensagem",
+                "es": "Tu Mensaje"
+              }
+            },
+            {
+              "key": "form.name",
+              "value": {
+                "en": "Full Name",
+                "pt": "Nome Completo",
+                "es": "Nombre Completo"
+              }
+            },
+            {
+              "key": "form.sending",
+              "value": {
+                "en": "Sending...",
+                "pt": "Enviando...",
+                "es": "Enviando..."
+              }
+            },
+            {
+              "key": "form.submit",
+              "value": {
+                "en": "Send Message",
+                "pt": "Enviar Mensagem",
+                "es": "Enviar Mensaje"
+              }
+            },
+            {
+              "key": "form.success",
+              "value": {
+                "en": "Thank you! Your message has been sent.",
+                "pt": "Obrigado! Sua mensagem foi enviada.",
+                "es": "¡Gracias! Tu mensaje ha sido enviado."
+              }
+            },
+            {
+              "key": "formTitle",
+              "value": {
+                "en": "Send us a message",
+                "pt": "Envie-nos uma mensagem",
+                "es": "Envíanos un mensaje"
+              }
+            },
+            {
+              "key": "headerSubtitle",
+              "value": {
+                "en": "We're here to help. Whether you have a question about our products or want to share your skin journey, we'd love to hear from you.",
+                "pt": "Estamos aqui para ajudar. Se você tem uma pergunta sobre nossos produtos ou quer compartilhar sua jornada com a pele, adoraríamos ouvir de você.",
+                "es": "Estamos aquí para ayudar. Ya sea que tengas una pregunta sobre nuestros productos o quieras compartir tu viaje con la piel, nos encantaría saber de ti."
+              }
+            },
+            {
+              "key": "headerTitle",
+              "value": {
+                "en": "Get in Touch",
+                "pt": "Entre em Contato",
+                "es": "Ponte en Contacto"
+              }
+            },
+            {
+              "key": "infoTitle",
+              "value": {
+                "en": "Other ways to connect",
+                "pt": "Outras formas de conectar",
+                "es": "Otras formas de conectar"
+              }
+            },
+            {
+              "key": "metaDescription",
+              "value": {
+                "en": "Reach out to Kapunka for tailored routines, training, or wholesale support.",
+                "pt": "Fale conosco para receber rotinas, treinamentos ou opções de atacado sob medida.",
+                "es": "Escríbenos para recibir rutinas, formación u opciones mayoristas a tu medida."
+              }
+            },
+            {
+              "key": "metaTitle",
+              "value": {
+                "en": "Contact Kapunka — We're here for you",
+                "pt": "Fale com a Kapunka — Estamos aqui por você",
+                "es": "Contacta a Kapunka — Estamos aquí para ti"
+              }
+            },
+            {
+              "key": "phoneTitle",
+              "value": {
+                "en": "Phone",
+                "pt": "Telefone",
+                "es": "Teléfono"
+              }
+            },
+            {
+              "key": "sections.0.body",
+              "value": {
+                "en": "Clinics, partners, and individuals—tell us what you need and we’ll guide you to the right routine, training, or wholesale option.",
+                "pt": "Clínicas, parceiros e pessoas queridas—conte o que você precisa e guiamos você até a rotina, o treinamento ou a opção de atacado ideal.",
+                "es": "Clínicas, aliados y personas—cuéntanos qué necesitas y te guiamos hacia la rutina, la formación u opción mayorista adecuada."
+              }
+            },
+            {
+              "key": "sections.0.imageRef",
+              "value": {
+                "en": "/content/uploads/argan-fields.jpg",
+                "pt": "/content/uploads/argan-fields.jpg",
+                "es": "/content/uploads/argan-fields.jpg"
+              }
+            },
+            {
+              "key": "sections.0.layout",
+              "value": {
+                "en": "image-right",
+                "pt": "image-right",
+                "es": "image-right"
+              }
+            },
+            {
+              "key": "sections.0.title",
+              "value": {
+                "en": "We're ready to listen",
+                "pt": "Estamos aqui para ouvir",
+                "es": "Estamos aquí para escucharte"
+              }
+            },
+            {
+              "key": "sections.0.type",
+              "value": {
+                "en": "mediaCopy",
+                "pt": "mediaCopy",
+                "es": "mediaCopy"
+              }
+            },
+            {
+              "key": "title",
+              "value": {
+                "en": "Contact Us",
+                "pt": "Fale Conosco",
+                "es": "Contáctanos"
+              }
+            },
+            {
+              "key": "whatsappAction",
+              "value": {
+                "en": "Chat with us",
+                "pt": "Converse conosco",
+                "es": "Chatea con nosotros"
+              }
+            },
+            {
+              "key": "whatsappTitle",
+              "value": {
+                "en": "WhatsApp",
+                "pt": "WhatsApp",
+                "es": "WhatsApp"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "home",
+      "label": "Home",
+      "slug": "/",
+      "sections": [
+        {
+          "key": "page",
+          "name": "Page Content",
+          "copy": [
+            {
+              "key": "bestsellers.cards.0.blurb",
+              "value": {
+                "en": "Lightweight moisture; face, body, hair.",
+                "pt": "Hidratação leve; rosto, corpo, cabelo.",
+                "es": "Hidratación ligera; rostro, cuerpo, cabello."
+              }
+            },
+            {
+              "key": "bestsellers.cards.0.slug",
+              "value": {
+                "en": "pure-argan-oil",
+                "pt": "pure-argan-oil",
+                "es": "pure-argan-oil"
+              }
+            },
+            {
+              "key": "bestsellers.cards.1.blurb",
+              "value": {
+                "en": "Targeted argan care for scars and marks.",
+                "pt": "Cuidado de argan direcionado para cicatrizes e marcas.",
+                "es": "Cuidado de argán focalizado para cicatrices y marcas."
+              }
+            },
+            {
+              "key": "bestsellers.cards.1.slug",
+              "value": {
+                "en": "kapunka-cicatrices",
+                "pt": "kapunka-cicatrices",
+                "es": "kapunka-cicatrices"
+              }
+            },
+            {
+              "key": "bestsellers.cards.2.blurb",
+              "value": {
+                "en": "Travel-ready hammam pack with Kessa mitt.",
+                "pt": "Pack hammam pronto para viajar com luva Kessa.",
+                "es": "Pack hammam listo para viajar con manopla Kessa."
+              }
+            },
+            {
+              "key": "bestsellers.cards.2.slug",
+              "value": {
+                "en": "pack-kapunka",
+                "pt": "pack-kapunka",
+                "es": "pack-kapunka"
+              }
+            },
+            {
+              "key": "bestsellers.intro",
+              "value": {
+                "en": "Meet the three-step ritual clinics rely on most—cleanse, replenish, and seal with nutrient-dense argan care.",
+                "pt": "Conheça o ritual em três etapas preferido nas clínicas—limpar, repor e selar com o cuidado nutritivo do argan.",
+                "es": "Conoce el ritual de tres pasos más querido por las clínicas: limpiar, reponer y sellar con el cuidado nutritivo del argán."
+              }
+            },
+            {
+              "key": "bestsellers.title",
+              "value": {
+                "en": "Essentials for daily rituals",
+                "pt": "Essenciais para rituais diários",
+                "es": "Esenciales para rituales diarios"
+              }
+            },
+            {
+              "key": "bestsellersTitle",
+              "value": {
+                "en": "Essentials for daily rituals",
+                "pt": "Essenciais para rituais diários",
+                "es": "Esenciales para rituales diarios"
+              }
+            },
+            {
+              "key": "clinics.copy",
+              "value": {
+                "en": "Clinics select Kapunka for its purity and performance in post-laser and sensitive-skin care. Our minimalist routines support faster recovery, barrier integrity, and lasting comfort.",
+                "pt": "As clínicas escolhem a Kapunka pela pureza e performance no cuidado pós-laser e pele sensível. Nossas rotinas minimalistas favorecem recuperação mais rápida, integridade da barreira e conforto duradouro.",
+                "es": "Las clínicas eligen Kapunka por su pureza y desempeño en el cuidado post-láser y de piel sensible. Nuestras rutinas minimalistas favorecen una recuperación más rápida, la integridad de la barrera y un confort duradero."
+              }
+            },
+            {
+              "key": "clinics.cta",
+              "value": {
+                "en": "Become a Partner",
+                "pt": "Seja parceiro",
+                "es": "Hazte partner"
+              }
+            },
+            {
+              "key": "clinics.title",
+              "value": {
+                "en": "Trusted by dermatologists and aesthetic clinics",
+                "pt": "Confiado por dermatologistas e clínicas estéticas",
+                "es": "Confiado por dermatólogos y clínicas estéticas"
+              }
+            },
+            {
+              "key": "community.intro",
+              "value": {
+                "en": "A ritual of gratitude shared by people, clinics, and caregivers around the world.",
+                "pt": "Um ritual de gratidão partilhado por pessoas, clínicas e cuidadores em todo o mundo.",
+                "es": "Un ritual de gratitud compartido por personas, clínicas y cuidadores de todo el mundo."
+              }
+            },
+            {
+              "key": "community.title",
+              "value": {
+                "en": "Rituals in our community",
+                "pt": "Rituais na nossa comunidade",
+                "es": "Rituales en nuestra comunidad"
+              }
+            },
+            {
+              "key": "ctaClinics",
+              "value": {
+                "en": "For clinics & professionals",
+                "pt": "Para clínicas e profissionais",
+                "es": "Para clínicas y profesionales"
+              }
+            },
+            {
+              "key": "ctaShop",
+              "value": {
+                "en": "Shop argan rituals",
+                "pt": "Comprar rituais de argão",
+                "es": "Comprar rituales de argán"
+              }
+            },
+            {
+              "key": "footer.complianceNote",
+              "value": {
+                "en": "Cosmetic use only. Not intended to diagnose, treat, cure, or prevent disease.",
+                "pt": "Uso cosmético. Não destinado a diagnosticar, tratar, curar ou prevenir doenças.",
+                "es": "Uso cosmético. No destinado a diagnosticar, tratar, curar ni prevenir enfermedades."
+              }
+            },
+            {
+              "key": "footerTagline",
+              "value": {
+                "en": "Science-backed skincare for a calmer, healthier body.",
+                "pt": "Cuidado da pele com base científica para um corpo mais calmo e saudável.",
+                "es": "Cuidado de la piel con base científica para un cuerpo más tranquilo y saludable."
+              }
+            },
+            {
+              "key": "hero.ctaPrimary",
+              "value": {
+                "en": "Shop argan rituals",
+                "pt": "Comprar rituais de argão",
+                "es": "Comprar rituales de argán"
+              }
+            },
+            {
+              "key": "hero.ctaPro",
+              "value": {
+                "en": "For clinics & professionals",
+                "pt": "Para clínicas e profissionais",
+                "es": "Para clínicas y profesionales"
+              }
+            },
+            {
+              "key": "hero.ctaSecondary",
+              "value": {
+                "en": "For clinics & professionals",
+                "pt": "Para clínicas e profissionais",
+                "es": "Para clínicas y profesionales"
+              }
+            },
+            {
+              "key": "hero.ctaShop",
+              "value": {
+                "en": "Shop argan rituals",
+                "pt": "Comprar rituais de argão",
+                "es": "Comprar rituales de argán"
+              }
+            },
+            {
+              "key": "hero.headline",
+              "value": {
+                "en": "Be thankful to your skin.",
+                "pt": "Gratidão para a sua pele.",
+                "es": "Da las gracias a tu piel."
+              }
+            },
+            {
+              "key": "hero.sub1",
+              "value": {
+                "en": "Born in clinics, refined by touch.",
+                "pt": "Nascida em clínicas, aperfeiçoada pelo toque.",
+                "es": "Nacida en clínicas, perfeccionada con el tacto."
+              }
+            },
+            {
+              "key": "hero.sub2",
+              "value": {
+                "en": "Kapunka brings therapeutic rituals with pure Moroccan argan oil — care that reconnects body and mind.",
+                "pt": "A Kapunka une rituais terapêuticos e óleo de argão puro de Marrocos — cuidado que reconecta corpo e mente.",
+                "es": "Kapunka une rituales terapéuticos y aceite de argán puro de Marruecos — un cuidado que reconecta cuerpo y mente."
+              }
+            },
+            {
+              "key": "hero.subtitle",
+              "value": {
+                "en": "Born in clinics, refined by touch. Kapunka brings therapeutic rituals with pure Moroccan argan oil — care that reconnects body and mind.",
+                "pt": "Nascida em clínicas, aperfeiçoada pelo toque. A Kapunka une rituais terapêuticos e óleo de argão puro de Marrocos — cuidado que reconecta corpo e mente.",
+                "es": "Nacida en clínicas, perfeccionada con el tacto. Kapunka une rituales terapéuticos y aceite de argán puro de Marruecos — un cuidado que reconecta cuerpo y mente."
+              }
+            },
+            {
+              "key": "hero.title",
+              "value": {
+                "en": "Be thankful to your skin.",
+                "pt": "Gratidão para a sua pele.",
+                "es": "Da las gracias a tu piel."
+              }
+            },
+            {
+              "key": "heroAlignment.heroAlignX",
+              "value": {
+                "en": "left",
+                "pt": "center",
+                "es": "center"
+              }
+            },
+            {
+              "key": "heroAlignment.heroAlignY",
+              "value": {
+                "en": "middle",
+                "pt": "middle",
+                "es": "middle"
+              }
+            },
+            {
+              "key": "heroAlignment.heroLayoutHint",
+              "value": {
+                "en": "bg",
+                "pt": "bg",
+                "es": "bg"
+              }
+            },
+            {
+              "key": "heroAlignment.heroOverlay",
+              "value": {
+                "en": "medium",
+                "pt": "medium",
+                "es": "medium"
+              }
+            },
+            {
+              "key": "heroAlignment.heroTextAnchor",
+              "value": {
+                "en": "bottom-left",
+                "pt": "middle-center",
+                "es": "middle-center"
+              }
+            },
+            {
+              "key": "heroAlignment.heroTextPosition",
+              "value": {
+                "en": "overlay",
+                "pt": "overlay",
+                "es": "overlay"
+              }
+            },
+            {
+              "key": "heroCtas.ctaPrimary.href",
+              "value": {
+                "en": "/shop",
+                "pt": "/shop",
+                "es": "/shop"
+              }
+            },
+            {
+              "key": "heroCtas.ctaPrimary.label",
+              "value": {
+                "en": "Shop argan rituals",
+                "pt": "Comprar rituais de argão",
+                "es": "Comprar rituales de argán"
+              }
+            },
+            {
+              "key": "heroCtas.ctaSecondary.href",
+              "value": {
+                "en": "/clinics",
+                "pt": "/clinics",
+                "es": "/clinics"
+              }
+            },
+            {
+              "key": "heroCtas.ctaSecondary.label",
+              "value": {
+                "en": "For clinics & professionals",
+                "pt": "Para clínicas e profissionais",
+                "es": "Para clínicas y profesionales"
+              }
+            },
+            {
+              "key": "heroHeadline",
+              "value": {
+                "en": "Be thankful to your skin.",
+                "pt": "Gratidão para a sua pele.",
+                "es": "Da las gracias a tu piel."
+              }
+            },
+            {
+              "key": "heroSubheadline",
+              "value": {
+                "en": "Born in clinics, refined by touch. Kapunka brings therapeutic rituals with pure Moroccan argan oil — care that reconnects body and mind.",
+                "pt": "Nascida em clínicas, aperfeiçoada pelo toque. A Kapunka une rituais terapêuticos e óleo de argão puro de Marrocos — cuidado que reconecta corpo e mente.",
+                "es": "Nacida en clínicas, perfeccionada con el tacto. Kapunka une rituales terapéuticos y aceite de argán puro de Marruecos — un cuidado que reconecta cuerpo y mente."
+              }
+            },
+            {
+              "key": "heroSubtitle",
+              "value": {
+                "en": "Born in clinics, refined by touch. Kapunka brings therapeutic rituals with pure Moroccan argan oil — care that reconnects body and mind.",
+                "pt": "Nascida em clínicas, aperfeiçoada pelo toque. A Kapunka une rituais terapêuticos e óleo de argão puro de Marrocos — cuidado que reconecta corpo e mente.",
+                "es": "Nacida en clínicas, perfeccionada con el tacto. Kapunka une rituales terapéuticos y aceite de argán puro de Marruecos — un cuidado que reconecta cuerpo y mente."
+              }
+            },
+            {
+              "key": "heroTitle",
+              "value": {
+                "en": "Be thankful to your skin.",
+                "pt": "Gratidão para a sua pele.",
+                "es": "Da las gracias a tu piel."
+              }
+            },
+            {
+              "key": "learn.teaser",
+              "value": {
+                "en": "Clear answers to real routines—post-procedure, scalp care, baby skin, and barrier support.",
+                "pt": "Respostas claras para rotinas reais—pós-procedimento, couro cabeludo, pele do bebé e apoio da barreira.",
+                "es": "Respuestas claras para rutinas reales—post-procedimiento, cuero cabelludo, piel de bebé y apoyo de la barrera."
+              }
+            },
+            {
+              "key": "meta.description",
+              "value": {
+                "en": "Kapunka formulates Moroccan argan oils, mists, and hammam treatments trusted by aesthetic clinics for post-procedure recovery, barrier repair, and daily rituals.",
+                "pt": "A Kapunka formula óleos de argan, névoas e tratamentos de hammam marroquinos confiados por clínicas estéticas para recuperação pós-procedimento, reparo da barreira e rituais diários.",
+                "es": "Kapunka formula aceites de argán, brumas y tratamientos de hammam marroquíes en los que confían las clínicas estéticas para la recuperación post-procedimiento, la reparación de la barrera y los rituales diarios."
+              }
+            },
+            {
+              "key": "meta.title",
+              "value": {
+                "en": "Kapunka Skincare | Moroccan Argan Rituals for Clinics & Sensitive Skin",
+                "pt": "Kapunka Skincare | Rituais de argan marroquino para clínicas e pele sensível",
+                "es": "Kapunka Skincare | Rituales de argán marroquí para clínicas y piel sensible"
+              }
+            },
+            {
+              "key": "metaDescription",
+              "value": {
+                "en": "Clinical-grade Moroccan argan care trusted by clinics, designed for everyday recovery.",
+                "pt": "Cuidado clínico com argão marroquino, de confiança em clínicas, pensado para o dia a dia.",
+                "es": "Cuidado clínico con argán marroquí, de confianza en clínicas y pensado para el día a día."
+              }
+            },
+            {
+              "key": "metaTitle",
+              "value": {
+                "en": "Kapunka — Argan rituals for sensitive and post-procedure skin",
+                "pt": "Kapunka — Rituais de argão para pele sensível e pós-procedimento",
+                "es": "Kapunka — Rituales de argán para piel sensible y post-procedimiento"
+              }
+            },
+            {
+              "key": "newsletter.ctaSubscribe",
+              "value": {
+                "en": "Subscribe",
+                "pt": "Subscrever",
+                "es": "Suscribirme"
+              }
+            },
+            {
+              "key": "newsletter.pitch",
+              "value": {
+                "en": "Join our community for monthly guidance on barrier health, post-treatment recovery, and skincare rooted in science. No spam, just insight.",
+                "pt": "Junte-se à nossa comunidade para orientações mensais sobre saúde da barreira, recuperação pós-tratamento e cuidados com a pele baseados em ciência. Sem spam, apenas insights.",
+                "es": "Únete a nuestra comunidad para recibir orientación mensual sobre salud de la barrera, recuperación post-tratamiento y cuidado de la piel basado en ciencia. Sin spam, solo ideas."
+              }
+            },
+            {
+              "key": "newsletter.placeholderEmail",
+              "value": {
+                "en": "Enter your email address",
+                "pt": "Introduza o seu e-mail",
+                "es": "Introduce tu correo electrónico"
+              }
+            },
+            {
+              "key": "newsletter.subtitle",
+              "value": {
+                "en": "Monthly reflections on skin, care, and recovery. No noise — just thoughtful notes from Kapunka.",
+                "pt": "Reflexões mensais sobre pele, cuidado e recuperação. Sem ruído — apenas notas com sentido da Kapunka.",
+                "es": "Reflexiones mensuales sobre piel, cuidado y recuperación. Sin ruido — solo mensajes con propósito de Kapunka."
+              }
+            },
+            {
+              "key": "newsletter.title",
+              "value": {
+                "en": "Join The List",
+                "pt": "Junte-se à Lista",
+                "es": "Únete a la Lista"
+              }
+            },
+            {
+              "key": "newsletterPlaceholder",
+              "value": {
+                "en": "Enter your email address",
+                "pt": "Introduza o seu e-mail",
+                "es": "Introduce tu correo electrónico"
+              }
+            },
+            {
+              "key": "newsletterSubmit",
+              "value": {
+                "en": "Subscribe",
+                "pt": "Subscrever",
+                "es": "Suscribirme"
+              }
+            },
+            {
+              "key": "newsletterSubtitle",
+              "value": {
+                "en": "Monthly reflections on skin, care, and recovery. No noise — just thoughtful notes from Kapunka.",
+                "pt": "Reflexões mensais sobre pele, cuidado e recuperação. Sem ruído — apenas notas com sentido da Kapunka.",
+                "es": "Reflexiones mensuales sobre piel, cuidado y recuperación. Sin ruido — solo mensajes con propósito de Kapunka."
+              }
+            },
+            {
+              "key": "newsletterThanks",
+              "value": {
+                "en": "Thank you for subscribing!",
+                "pt": "Obrigado por se inscrever!",
+                "es": "¡Gracias por suscribirte!"
+              }
+            },
+            {
+              "key": "newsletterTitle",
+              "value": {
+                "en": "Join The List",
+                "pt": "Junte-se à Lista",
+                "es": "Únete a la Lista"
+              }
+            },
+            {
+              "key": "professionalsSay.intro",
+              "value": {
+                "en": "Professionals who integrate Kapunka in medical and therapeutic care.",
+                "pt": "Profissionais que integram a Kapunka nos cuidados médicos e terapêuticos.",
+                "es": "Profesionales que integran Kapunka en la atención médica y terapéutica."
+              }
+            },
+            {
+              "key": "professionalsSay.title",
+              "value": {
+                "en": "What Professionals Say",
+                "pt": "O que dizem os Profissionais",
+                "es": "Lo que dicen los Profesionales"
+              }
+            },
+            {
+              "key": "reviewsTitle",
+              "value": {
+                "en": "What Professionals Say",
+                "pt": "O que dizem os Profissionais",
+                "es": "Lo que dicen los Profesionales"
+              }
+            },
+            {
+              "key": "sections.0.items.0.body",
+              "value": {
+                "pt": "De um gesto simples nasceu um protocolo terapêutico.",
+                "es": "De un gesto sencillo nació un protocolo terapéutico."
+              }
+            },
+            {
+              "key": "sections.0.items.0.ctaHref",
+              "value": {
+                "pt": "/about",
+                "es": "/about"
+              }
+            },
+            {
+              "key": "sections.0.items.0.ctaLabel",
+              "value": {
+                "pt": "Nossa história",
+                "es": "Nuestra historia"
+              }
+            },
+            {
+              "key": "sections.0.items.0.eyebrow",
+              "value": {
+                "pt": "Do blog",
+                "es": "Desde el blog"
+              }
+            },
+            {
+              "key": "sections.0.items.0.imageAlt",
+              "value": {
+                "pt": "Mãos aplicando óleo de argan sob luz quente",
+                "es": "Manos aplicando aceite de argán con luz cálida"
+              }
+            },
+            {
+              "key": "sections.0.items.0.imageRef",
+              "value": {
+                "pt": "/content/uploads/roots-olive-tree.jpg",
+                "es": "/content/uploads/roots-olive-tree.jpg"
+              }
+            },
+            {
+              "key": "sections.0.items.0.title",
+              "value": {
+                "pt": "Da gratidão ao método",
+                "es": "De la gratitud al método"
+              }
+            },
+            {
+              "key": "sections.0.items.1.body",
+              "value": {
+                "pt": "Utilizado há mais de uma década por dermatologistas e clínicas de recuperação.",
+                "es": "Utilizado desde hace más de una década por dermatólogos y clínicas de recuperación."
+              }
+            },
+            {
+              "key": "sections.0.items.1.ctaHref",
+              "value": {
+                "pt": "/clinics",
+                "es": "/clinics"
+              }
+            },
+            {
+              "key": "sections.0.items.1.ctaLabel",
+              "value": {
+                "pt": "Parceria conosco",
+                "es": "Aliarte con nosotros"
+              }
+            },
+            {
+              "key": "sections.0.items.1.eyebrow",
+              "value": {
+                "pt": "Para clínicas",
+                "es": "Para clínicas"
+              }
+            },
+            {
+              "key": "sections.0.items.1.imageAlt",
+              "value": {
+                "pt": "Profissional massageando o rosto de uma cliente com cuidado de argan",
+                "es": "Profesional masajeando el rostro de una clienta con cuidado de argán"
+              }
+            },
+            {
+              "key": "sections.0.items.1.imageRef",
+              "value": {
+                "pt": "/content/uploads/clinic-hands.jpg",
+                "es": "/content/uploads/clinic-hands.jpg"
+              }
+            },
+            {
+              "key": "sections.0.items.1.title",
+              "value": {
+                "pt": "De confiança profissional",
+                "es": "De confianza profesional"
+              }
+            },
+            {
+              "key": "sections.0.items.2.body",
+              "value": {
+                "pt": "Das cooperativas marroquinas às salas de hospital.",
+                "es": "De las cooperativas marroquíes a las salas hospitalarias."
+              }
+            },
+            {
+              "key": "sections.0.items.2.ctaHref",
+              "value": {
+                "pt": "/method",
+                "es": "/method"
+              }
+            },
+            {
+              "key": "sections.0.items.2.ctaLabel",
+              "value": {
+                "pt": "Nossos padrões",
+                "es": "Nuestros estándares"
+              }
+            },
+            {
+              "key": "sections.0.items.2.eyebrow",
+              "value": {
+                "pt": "Cadeia de fornecimento",
+                "es": "Cadena de suministro"
+              }
+            },
+            {
+              "key": "sections.0.items.2.imageAlt",
+              "value": {
+                "pt": "Frutos de argan recém-colhidos em um cesto de palha",
+                "es": "Frutos de argán recién cosechados en una cesta tejida"
+              }
+            },
+            {
+              "key": "sections.0.items.2.imageRef",
+              "value": {
+                "pt": "/content/uploads/argan-coop.jpg",
+                "es": "/content/uploads/argan-coop.jpg"
+              }
+            },
+            {
+              "key": "sections.0.items.2.title",
+              "value": {
+                "pt": "Origem com herança, padrão clínico",
+                "es": "Origen con herencia, estándar clínico"
+              }
+            },
+            {
+              "key": "sections.0.items.3.body",
+              "value": {
+                "pt": "Sabedoria ancestral com estrutura científica.",
+                "es": "Sabiduría ancestral, estructura científica."
+              }
+            },
+            {
+              "key": "sections.0.items.3.ctaHref",
+              "value": {
+                "pt": "/shop",
+                "es": "/shop"
+              }
+            },
+            {
+              "key": "sections.0.items.3.ctaLabel",
+              "value": {
+                "pt": "Comprar rituais",
+                "es": "Comprar rituales"
+              }
+            },
+            {
+              "key": "sections.0.items.3.eyebrow",
+              "value": {
+                "pt": "Rituais",
+                "es": "Rituales"
+              }
+            },
+            {
+              "key": "sections.0.items.3.imageAlt",
+              "value": {
+                "pt": "Sala de hammam com vapor e uma pessoa relaxando",
+                "es": "Sala de hammam llena de vapor con una persona descansando"
+              }
+            },
+            {
+              "key": "sections.0.items.3.imageRef",
+              "value": {
+                "pt": "/content/uploads/hammam-light.jpg",
+                "es": "/content/uploads/hammam-light.jpg"
+              }
+            },
+            {
+              "key": "sections.0.items.3.title",
+              "value": {
+                "pt": "Do hammam à recuperação moderna",
+                "es": "Del hammam a la recuperación moderna"
+              }
+            },
+            {
+              "key": "sections.0.products.0.id",
+              "value": {
+                "en": "pure-argan-100"
+              }
+            },
+            {
+              "key": "sections.0.products.1.id",
+              "value": {
+                "en": "scar-care"
+              }
+            },
+            {
+              "key": "sections.0.products.2.id",
+              "value": {
+                "en": "ritual-pack"
+              }
+            },
+            {
+              "key": "sections.0.title",
+              "value": {
+                "en": "Essentials for daily rituals",
+                "pt": "Histórias de Rituais",
+                "es": "Historias de Rituales"
+              }
+            },
+            {
+              "key": "sections.0.type",
+              "value": {
+                "en": "productGrid",
+                "pt": "mediaShowcase",
+                "es": "mediaShowcase"
+              }
+            },
+            {
+              "key": "sections.1.items.0.body",
+              "value": {
+                "en": "How a simple gesture of care became a therapeutic protocol."
+              }
+            },
+            {
+              "key": "sections.1.items.0.ctaHref",
+              "value": {
+                "en": "/about"
+              }
+            },
+            {
+              "key": "sections.1.items.0.ctaLabel",
+              "value": {
+                "en": "Our Story"
+              }
+            },
+            {
+              "key": "sections.1.items.0.description",
+              "value": {
+                "pt": "Amigável para a pele, puro e prensado a frio.",
+                "es": "Amables con la piel, puros y prensados en frío."
+              }
+            },
+            {
+              "key": "sections.1.items.0.eyebrow",
+              "value": {
+                "en": "From the blog"
+              }
+            },
+            {
+              "key": "sections.1.items.0.image",
+              "value": {
+                "en": "/content/uploads/9bae3f87-12d5-43f4-a2a0-5cfc768e429d.jpg"
+              }
+            },
+            {
+              "key": "sections.1.items.0.imageAlt",
+              "value": {
+                "en": "Hands applying argan oil in warm light"
+              }
+            },
+            {
+              "key": "sections.1.items.0.imageRef",
+              "value": {
+                "en": "/content/uploads/roots-olive-tree.jpg"
+              }
+            },
+            {
+              "key": "sections.1.items.0.label",
+              "value": {
+                "pt": "Lotes prontos para clínica",
+                "es": "Lotes listos para clínica"
+              }
+            },
+            {
+              "key": "sections.1.items.0.title",
+              "value": {
+                "en": "From gratitude to method"
+              }
+            },
+            {
+              "key": "sections.1.items.1.body",
+              "value": {
+                "en": "Used by dermatologists, medspas, and recovery clinics for over a decade."
+              }
+            },
+            {
+              "key": "sections.1.items.1.ctaHref",
+              "value": {
+                "en": "/clinics"
+              }
+            },
+            {
+              "key": "sections.1.items.1.ctaLabel",
+              "value": {
+                "en": "Partner With Us"
+              }
+            },
+            {
+              "key": "sections.1.items.1.description",
+              "value": {
+                "pt": "Texturas de baixa deposição e aromas suaves para pele sensível.",
+                "es": "Texturas de bajo residuo y aromas suaves para piel sensible."
+              }
+            },
+            {
+              "key": "sections.1.items.1.eyebrow",
+              "value": {
+                "en": "For clinics"
+              }
+            },
+            {
+              "key": "sections.1.items.1.image",
+              "value": {
+                "en": "/content/uploads/pexels-elly-fairytale-3865548.jpg"
+              }
+            },
+            {
+              "key": "sections.1.items.1.imageAlt",
+              "value": {
+                "en": "Practitioner massaging a client's face with argan care"
+              }
+            },
+            {
+              "key": "sections.1.items.1.imageRef",
+              "value": {
+                "en": "/content/uploads/clinic-hands.jpg"
+              }
+            },
+            {
+              "key": "sections.1.items.1.label",
+              "value": {
+                "pt": "Cuidado sensorial holístico",
+                "es": "Cuidado sensorial holístico"
+              }
+            },
+            {
+              "key": "sections.1.items.1.title",
+              "value": {
+                "en": "Trusted by professionals"
+              }
+            },
+            {
+              "key": "sections.1.items.2.body",
+              "value": {
+                "en": "From Moroccan cooperatives to hospital rooms."
+              }
+            },
+            {
+              "key": "sections.1.items.2.ctaHref",
+              "value": {
+                "en": "/method"
+              }
+            },
+            {
+              "key": "sections.1.items.2.ctaLabel",
+              "value": {
+                "en": "Our Standards"
+              }
+            },
+            {
+              "key": "sections.1.items.2.description",
+              "value": {
+                "pt": "Conjuntos iniciais e formação para rotinas consistentes em casa.",
+                "es": "Sets iniciales y formación para rutinas constantes en casa."
+              }
+            },
+            {
+              "key": "sections.1.items.2.eyebrow",
+              "value": {
+                "en": "Supply chain"
+              }
+            },
+            {
+              "key": "sections.1.items.2.image",
+              "value": {
+                "en": "/content/uploads/a-woman-picks-fruit-from-an-argan-tree-1-.jpg"
+              }
+            },
+            {
+              "key": "sections.1.items.2.imageAlt",
+              "value": {
+                "en": "Harvested argan fruit gathered in a woven basket"
+              }
+            },
+            {
+              "key": "sections.1.items.2.imageRef",
+              "value": {
+                "en": "/content/uploads/argan-coop.jpg"
+              }
+            },
+            {
+              "key": "sections.1.items.2.label",
+              "value": {
+                "pt": "Histórias de retalho flexíveis",
+                "es": "Historias minoristas flexibles"
+              }
+            },
+            {
+              "key": "sections.1.items.2.title",
+              "value": {
+                "en": "Heritage sourcing, clinical standards"
+              }
+            },
+            {
+              "key": "sections.1.items.3.body",
+              "value": {
+                "en": "Ancient wisdom, scientifically structured."
+              }
+            },
+            {
+              "key": "sections.1.items.3.ctaHref",
+              "value": {
+                "en": "/shop"
+              }
+            },
+            {
+              "key": "sections.1.items.3.ctaLabel",
+              "value": {
+                "en": "Shop Rituals"
+              }
+            },
+            {
+              "key": "sections.1.items.3.description",
+              "value": {
+                "pt": "Relações justas com as cooperativas de Marrocos.",
+                "es": "Relaciones justas con las cooperativas de Marruecos."
+              }
+            },
+            {
+              "key": "sections.1.items.3.eyebrow",
+              "value": {
+                "en": "Rituals"
+              }
+            },
+            {
+              "key": "sections.1.items.3.image",
+              "value": {
+                "en": "/content/uploads/342cecc0-3c00-4094-97d6-5c9d9da02330.jpg"
+              }
+            },
+            {
+              "key": "sections.1.items.3.imageAlt",
+              "value": {
+                "en": "Steam-filled hammam room with a person resting"
+              }
+            },
+            {
+              "key": "sections.1.items.3.imageRef",
+              "value": {
+                "en": "/content/uploads/hammam-light.jpg"
+              }
+            },
+            {
+              "key": "sections.1.items.3.label",
+              "value": {
+                "pt": "Parcerias sustentáveis",
+                "es": "Alianzas sostenibles"
+              }
+            },
+            {
+              "key": "sections.1.items.3.title",
+              "value": {
+                "en": "From hammam rituals to modern recovery"
+              }
+            },
+            {
+              "key": "sections.1.type",
+              "value": {
+                "en": "mediaShowcase",
+                "pt": "featureGrid",
+                "es": "featureGrid"
+              }
+            },
+            {
+              "key": "sections.2.items.0.description",
+              "value": {
+                "en": "Skin-friendly, clean, cold-pressed."
+              }
+            },
+            {
+              "key": "sections.2.items.0.label",
+              "value": {
+                "en": "Clinic-ready batching"
+              }
+            },
+            {
+              "key": "sections.2.items.1.description",
+              "value": {
+                "en": "Low-residue textures and gentle aromas for sensitive skin."
+              }
+            },
+            {
+              "key": "sections.2.items.1.label",
+              "value": {
+                "en": "Holistic sensorial care"
+              }
+            },
+            {
+              "key": "sections.2.items.2.description",
+              "value": {
+                "en": "Starter sets and education for consistent home routines."
+              }
+            },
+            {
+              "key": "sections.2.items.2.label",
+              "value": {
+                "en": "Flexible retail stories"
+              }
+            },
+            {
+              "key": "sections.2.items.3.description",
+              "value": {
+                "en": "Fair relationships across Morocco’s cooperatives."
+              }
+            },
+            {
+              "key": "sections.2.items.3.label",
+              "value": {
+                "en": "Sustainable partnerships"
+              }
+            },
+            {
+              "key": "sections.2.products.0.id",
+              "value": {
+                "pt": "pure-argan-100",
+                "es": "pure-argan-100"
+              }
+            },
+            {
+              "key": "sections.2.products.1.id",
+              "value": {
+                "pt": "scar-care",
+                "es": "scar-care"
+              }
+            },
+            {
+              "key": "sections.2.products.2.id",
+              "value": {
+                "pt": "ritual-pack",
+                "es": "ritual-pack"
+              }
+            },
+            {
+              "key": "sections.2.title",
+              "value": {
+                "pt": "Essenciais para rituais diários",
+                "es": "Esenciales para rituales diarios"
+              }
+            },
+            {
+              "key": "sections.2.type",
+              "value": {
+                "en": "featureGrid",
+                "pt": "productGrid",
+                "es": "productGrid"
+              }
+            },
+            {
+              "key": "sections.3.slides.0.alt",
+              "value": {
+                "en": "Add a photo of a Kapunka ritual in use",
+                "pt": "Adiciona uma foto de um ritual Kapunka em uso",
+                "es": "Añade una foto de un ritual de Kapunka en uso"
+              }
+            },
+            {
+              "key": "sections.3.slides.0.image",
+              "value": {
+                "en": "/content/uploads/img_20200328_165251-copia-3-.jpg"
+              }
+            },
+            {
+              "key": "sections.3.slides.0.name",
+              "value": {
+                "en": "Customer name",
+                "pt": "Nome do cliente",
+                "es": "Nombre del cliente"
+              }
+            },
+            {
+              "key": "sections.3.slides.0.quote",
+              "value": {
+                "en": "“Use this placeholder to share how someone experiences Kapunka in their routine.”",
+                "pt": "“Usa este espaço para partilhar como alguém vive Kapunka na rotina.”",
+                "es": "“Utiliza este espacio para contar cómo alguien vive Kapunka en su rutina.”"
+              }
+            },
+            {
+              "key": "sections.3.slides.0.role",
+              "value": {
+                "en": "Clinic or city",
+                "pt": "Clínica ou cidade",
+                "es": "Clínica o ciudad"
+              }
+            },
+            {
+              "key": "sections.3.slides.1.alt",
+              "value": {
+                "en": "Upload another community image",
+                "pt": "Carrega outra imagem da comunidade",
+                "es": "Sube otra imagen de la comunidad"
+              }
+            },
+            {
+              "key": "sections.3.slides.1.image",
+              "value": {
+                "en": "/content/uploads/img_20200328_165441-copia-2-.jpg"
+              }
+            },
+            {
+              "key": "sections.3.slides.1.name",
+              "value": {
+                "en": "Partner or practitioner",
+                "pt": "Parceiro ou profissional",
+                "es": "Socio o profesional"
+              }
+            },
+            {
+              "key": "sections.3.slides.1.quote",
+              "value": {
+                "en": "“Highlight a partner testimonial, recovery story, or everyday ritual.”",
+                "pt": "“Destaque um testemunho de parceiro, uma história de recuperação ou um ritual diário.”",
+                "es": "“Destaca un testimonio de un socio, una historia de recuperación o un ritual diario.”"
+              }
+            },
+            {
+              "key": "sections.3.slides.1.role",
+              "value": {
+                "en": "Role or treatment focus",
+                "pt": "Função ou foco do tratamento",
+                "es": "Rol o enfoque del tratamiento"
+              }
+            },
+            {
+              "key": "sections.3.slides.10.image",
+              "value": {
+                "en": "/content/uploads/kapunka-in-the-wild.jpg"
+              }
+            },
+            {
+              "key": "sections.3.slides.11.image",
+              "value": {
+                "en": "/content/uploads/kapunka-instagrammer-lidia-simon-canut-.jpg"
+              }
+            },
+            {
+              "key": "sections.3.slides.2.alt",
+              "value": {
+                "en": "Add lifestyle imagery that feels real and warm",
+                "pt": "Adiciona imagens de lifestyle reais e acolhedoras",
+                "es": "Añade imágenes de estilo de vida cálidas y reales"
+              }
+            },
+            {
+              "key": "sections.3.slides.2.image",
+              "value": {
+                "en": "/content/uploads/img_20200328_165521-copia-2-.jpg"
+              }
+            },
+            {
+              "key": "sections.3.slides.2.name",
+              "value": {
+                "en": "Add a name",
+                "pt": "Adiciona um nome",
+                "es": "Añade un nombre"
+              }
+            },
+            {
+              "key": "sections.3.slides.2.quote",
+              "value": {
+                "en": "“Add an authentic note about how Kapunka supports their skin goals.”",
+                "pt": "“Acrescenta uma nota autêntica sobre como Kapunka apoia os objetivos de pele.”",
+                "es": "“Añade una nota auténtica sobre cómo Kapunka acompaña sus objetivos de piel.”"
+              }
+            },
+            {
+              "key": "sections.3.slides.2.role",
+              "value": {
+                "en": "Location or context",
+                "pt": "Localização ou contexto",
+                "es": "Ubicación o contexto"
+              }
+            },
+            {
+              "key": "sections.3.slides.3.image",
+              "value": {
+                "en": "/content/uploads/img_20200328_162420-copia-3-.jpg"
+              }
+            },
+            {
+              "key": "sections.3.slides.4.image",
+              "value": {
+                "en": "/content/uploads/img_20200328_165740-copia-2-.jpg"
+              }
+            },
+            {
+              "key": "sections.3.slides.5.image",
+              "value": {
+                "en": "/content/uploads/img_20200328_165916-copia-2-.jpg"
+              }
+            },
+            {
+              "key": "sections.3.slides.6.image",
+              "value": {
+                "en": "/content/uploads/img_20200328_165948-copia-2-.jpg"
+              }
+            },
+            {
+              "key": "sections.3.slides.7.image",
+              "value": {
+                "en": "/content/uploads/img_20200328_170735-copia-2-.jpg"
+              }
+            },
+            {
+              "key": "sections.3.slides.8.image",
+              "value": {
+                "en": "/content/uploads/instagrammer-kapunka-maria-capell-.jpg"
+              }
+            },
+            {
+              "key": "sections.3.slides.9.image",
+              "value": {
+                "en": "/content/uploads/instagrammer-kapunka-nieves-bolós.jpg"
+              }
+            },
+            {
+              "key": "sections.3.title",
+              "value": {
+                "en": "Rituals in our community",
+                "pt": "Rituais na nossa comunidade",
+                "es": "Rituales en nuestra comunidad"
+              }
+            },
+            {
+              "key": "sections.3.type",
+              "value": {
+                "en": "communityCarousel",
+                "pt": "communityCarousel",
+                "es": "communityCarousel"
+              }
+            },
+            {
+              "key": "sections.4.alignment",
+              "value": {
+                "en": "center",
+                "pt": "center",
+                "es": "center"
+              }
+            },
+            {
+              "key": "sections.4.background",
+              "value": {
+                "en": "beige",
+                "pt": "beige",
+                "es": "beige"
+              }
+            },
+            {
+              "key": "sections.4.confirmation",
+              "value": {
+                "en": "Thank you for subscribing!",
+                "pt": "Obrigado por se inscrever!",
+                "es": "¡Gracias por suscribirte!"
+              }
+            },
+            {
+              "key": "sections.4.ctaLabel",
+              "value": {
+                "en": "Subscribe",
+                "pt": "Subscrever",
+                "es": "Suscribirme"
+              }
+            },
+            {
+              "key": "sections.4.placeholder",
+              "value": {
+                "en": "Enter your email address",
+                "pt": "Introduza o seu e-mail",
+                "es": "Introduce tu correo electrónico"
+              }
+            },
+            {
+              "key": "sections.4.subtitle",
+              "value": {
+                "en": "Monthly reflections on skin, care, and recovery. No noise — just thoughtful notes from Kapunka.",
+                "pt": "Reflexões mensais sobre pele, cuidado e recuperação. Sem ruído — apenas notas com sentido da Kapunka.",
+                "es": "Reflexiones mensuales sobre piel, cuidado y recuperación. Sin ruido — solo mensajes con propósito de Kapunka."
+              }
+            },
+            {
+              "key": "sections.4.title",
+              "value": {
+                "en": "Join The List",
+                "pt": "Junte-se à Lista",
+                "es": "Únete a la Lista"
+              }
+            },
+            {
+              "key": "sections.4.type",
+              "value": {
+                "en": "newsletterSignup",
+                "pt": "newsletterSignup",
+                "es": "newsletterSignup"
+              }
+            },
+            {
+              "key": "sections.5.quotes.0.author",
+              "value": {
+                "en": "Dr. Isabella Rossi",
+                "pt": "Dra. Isabella Rossi",
+                "es": "Dra. Isabella Rossi"
+              }
+            },
+            {
+              "key": "sections.5.quotes.0.role",
+              "value": {
+                "en": "Dermatologist",
+                "pt": "Dermatologista",
+                "es": "Dermatóloga"
+              }
+            },
+            {
+              "key": "sections.5.quotes.0.text",
+              "value": {
+                "en": "After laser treatments, I recommend Kapunka pure argan for faster barrier repair. My patients notice less tightness and redness.",
+                "pt": "Após tratamentos a laser, recomendo o argão puro da Kapunka para uma reparação mais rápida da barreira. As minhas pacientes notam menos repuxamento e vermelhidão.",
+                "es": "Después de los tratamientos con láser, recomiendo el argán puro de Kapunka para acelerar la reparación de la barrera. Mis pacientes notan menos tirantez y enrojecimiento."
+              }
+            },
+            {
+              "key": "sections.5.quotes.1.author",
+              "value": {
+                "en": "Chloe Davis",
+                "pt": "Chloe Davis",
+                "es": "Chloe Davis"
+              }
+            },
+            {
+              "key": "sections.5.quotes.1.role",
+              "value": {
+                "en": "Esthetician",
+                "pt": "Esteticista",
+                "es": "Esteticista"
+              }
+            },
+            {
+              "key": "sections.5.quotes.1.text",
+              "value": {
+                "en": "Finally, a cleanser that respects sensitive skin while effectively removing makeup.",
+                "pt": "Finalmente, um cleanser que respeita a pele sensível enquanto remove a maquilhagem de forma eficaz.",
+                "es": "Por fin, un limpiador que respeta la piel sensible y aun así elimina el maquillaje de forma eficaz."
+              }
+            },
+            {
+              "key": "sections.5.title",
+              "value": {
+                "en": "What Professionals Say",
+                "pt": "O que dizem os Profissionais",
+                "es": "Lo que dicen los Profesionales"
+              }
+            },
+            {
+              "key": "sections.5.type",
+              "value": {
+                "en": "testimonials",
+                "pt": "testimonials",
+                "es": "testimonials"
+              }
+            },
+            {
+              "key": "socialProof.line",
+              "value": {
+                "en": "Seen in skin clinics and care practices across Europe.",
+                "pt": "Presente em clínicas e consultórios de cuidados da pele na Europa.",
+                "es": "Presente en clínicas y consultas de cuidado de la piel en Europa."
+              }
+            },
+            {
+              "key": "stories.card1Sub",
+              "value": {
+                "en": "How a simple gesture of care became a therapeutic protocol.",
+                "pt": "De um gesto simples nasceu um protocolo terapêutico.",
+                "es": "De un gesto sencillo nació un protocolo terapéutico."
+              }
+            },
+            {
+              "key": "stories.card1Title",
+              "value": {
+                "en": "From gratitude to method",
+                "pt": "Da gratidão ao método",
+                "es": "De la gratitud al método"
+              }
+            },
+            {
+              "key": "stories.card2Sub",
+              "value": {
+                "en": "Used by dermatologists, medspas, and recovery clinics for over a decade.",
+                "pt": "Utilizado há mais de uma década por dermatologistas e clínicas de recuperação.",
+                "es": "Utilizado desde hace más de una década por dermatólogos y clínicas de recuperación."
+              }
+            },
+            {
+              "key": "stories.card2Title",
+              "value": {
+                "en": "Trusted by professionals",
+                "pt": "De confiança profissional",
+                "es": "De confianza profesional"
+              }
+            },
+            {
+              "key": "stories.card3Sub",
+              "value": {
+                "en": "From Moroccan cooperatives to hospital rooms.",
+                "pt": "Das cooperativas marroquinas às salas de hospital.",
+                "es": "De las cooperativas marroquíes a las salas hospitalarias."
+              }
+            },
+            {
+              "key": "stories.card3Title",
+              "value": {
+                "en": "Heritage sourcing, clinical standards",
+                "pt": "Origem com herança, padrão clínico",
+                "es": "Origen con herencia, estándar clínico"
+              }
+            },
+            {
+              "key": "stories.card4Sub",
+              "value": {
+                "en": "Ancient wisdom, scientifically structured.",
+                "pt": "Sabedoria ancestral com estrutura científica.",
+                "es": "Sabiduría ancestral, estructura científica."
+              }
+            },
+            {
+              "key": "stories.card4Title",
+              "value": {
+                "en": "From hammam rituals to modern recovery",
+                "pt": "Do hammam à recuperação moderna",
+                "es": "Del hammam a la recuperación moderna"
+              }
+            },
+            {
+              "key": "stories.title",
+              "value": {
+                "en": "Ritual Stories",
+                "pt": "Histórias de Rituais",
+                "es": "Historias de Rituales"
+              }
+            },
+            {
+              "key": "value1",
+              "value": {
+                "en": "Traceable Moroccan sourcing",
+                "pt": "Origem marroquina rastreável",
+                "es": "Origen marroquí trazable"
+              }
+            },
+            {
+              "key": "value2",
+              "value": {
+                "en": "Post-treatment safe",
+                "pt": "Seguro pós-tratamento",
+                "es": "Seguro post-tratamiento"
+              }
+            },
+            {
+              "key": "value3",
+              "value": {
+                "en": "Multifunction rituals",
+                "pt": "Rituais multifuncionais",
+                "es": "Rituales multifunción"
+              }
+            },
+            {
+              "key": "value4",
+              "value": {
+                "en": "Sustainable impact",
+                "pt": "Impacto sustentável",
+                "es": "Impacto sostenible"
+              }
+            },
+            {
+              "key": "valueProps.0.subtitle",
+              "value": {
+                "en": "Hand-harvested kernels pressed within 24 hours to preserve omega density.",
+                "pt": "Sementes colhidas à mão e prensadas em até 24 horas para preservar os ômegas.",
+                "es": "Semillas recolectadas a mano y prensadas en 24 horas para preservar los omegas."
+              }
+            },
+            {
+              "key": "valueProps.0.title",
+              "value": {
+                "en": "Traceable Moroccan sourcing",
+                "pt": "Origem marroquina rastreável",
+                "es": "Origen marroquí trazable"
+              }
+            },
+            {
+              "key": "valueProps.1.subtitle",
+              "value": {
+                "en": "Dermatology reviewed formulas bottled in GMP facilities for maximum purity.",
+                "pt": "Fórmulas avaliadas por dermatologistas e envasadas em instalações GMP para pureza máxima.",
+                "es": "Fórmulas revisadas por dermatología y envasadas en instalaciones GMP para pureza máxima."
+              }
+            },
+            {
+              "key": "valueProps.1.title",
+              "value": {
+                "en": "Post-treatment safe",
+                "pt": "Seguro pós-tratamento",
+                "es": "Seguro post-tratamiento"
+              }
+            },
+            {
+              "key": "valueProps.2.subtitle",
+              "value": {
+                "en": "One oil to repair the barrier, soothe scalp flare-ups, and gloss the body without residue.",
+                "pt": "Um único óleo para reparar a barreira, acalmar o couro cabeludo e iluminar o corpo sem resíduos.",
+                "es": "Un solo aceite para reparar la barrera, calmar el cuero cabelludo y dar brillo al cuerpo sin residuos."
+              }
+            },
+            {
+              "key": "valueProps.2.title",
+              "value": {
+                "en": "Multifunction rituals",
+                "pt": "Rituais multifuncionais",
+                "es": "Rituales multifunción"
+              }
+            },
+            {
+              "key": "valueProps.3.subtitle",
+              "value": {
+                "en": "Partnership with Essaouira cooperatives reinvesting in women-led agriculture.",
+                "pt": "Parcerias com cooperativas de Essaouira lideradas por mulheres que fortalecem a agricultura local.",
+                "es": "Alianza con cooperativas de Essaouira lideradas por mujeres que sostienen la agricultura local."
+              }
+            },
+            {
+              "key": "valueProps.3.title",
+              "value": {
+                "en": "Sustainable impact",
+                "pt": "Impacto sustentável",
+                "es": "Impacto sostenible"
+              }
+            }
+          ],
+          "options": [
+            {
+              "key": "sections.0.columns",
+              "value": {
+                "en": "3"
+              }
+            },
+            {
+              "key": "sections.1.columns",
+              "value": {
+                "pt": "4",
+                "es": "4"
+              }
+            },
+            {
+              "key": "sections.2.columns",
+              "value": {
+                "en": "4",
+                "pt": "3",
+                "es": "3"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "learn",
+      "label": "Skincare Library",
+      "slug": "/learn",
+      "sections": [
+        {
+          "key": "page",
+          "name": "Page Content",
+          "copy": [
+            {
+              "key": "categories.0.id",
+              "value": {
+                "en": "all",
+                "pt": "all",
+                "es": "all"
+              }
+            },
+            {
+              "key": "categories.0.label",
+              "value": {
+                "en": "All topics",
+                "pt": "Todos os temas",
+                "es": "Todos los temas"
+              }
+            },
+            {
+              "key": "categories.1.id",
+              "value": {
+                "en": "argan-oil",
+                "pt": "argan-oil",
+                "es": "argan-oil"
+              }
+            },
+            {
+              "key": "categories.1.label",
+              "value": {
+                "en": "Argan Oil",
+                "pt": "Óleo de Argan",
+                "es": "Aceite de Argán"
+              }
+            },
+            {
+              "key": "categories.2.id",
+              "value": {
+                "en": "uses-applications",
+                "pt": "uses-applications",
+                "es": "uses-applications"
+              }
+            },
+            {
+              "key": "categories.2.label",
+              "value": {
+                "en": "Uses & Applications",
+                "pt": "Usos e Aplicações",
+                "es": "Usos y Aplicaciones"
+              }
+            },
+            {
+              "key": "categories.3.id",
+              "value": {
+                "en": "post-procedure",
+                "pt": "post-procedure",
+                "es": "post-procedure"
+              }
+            },
+            {
+              "key": "categories.3.label",
+              "value": {
+                "en": "Post-Procedure",
+                "pt": "Pós-Procedimento",
+                "es": "Post-Procedimiento"
+              }
+            },
+            {
+              "key": "categories.4.id",
+              "value": {
+                "en": "skin-barrier",
+                "pt": "skin-barrier",
+                "es": "skin-barrier"
+              }
+            },
+            {
+              "key": "categories.4.label",
+              "value": {
+                "en": "Skin Barrier",
+                "pt": "Barreira Cutânea",
+                "es": "Barrera Cutánea"
+              }
+            },
+            {
+              "key": "categories.5.id",
+              "value": {
+                "en": "baby",
+                "pt": "baby",
+                "es": "baby"
+              }
+            },
+            {
+              "key": "categories.5.label",
+              "value": {
+                "en": "Baby Care",
+                "pt": "Cuidados com Bebês",
+                "es": "Cuidado del Bebé"
+              }
+            },
+            {
+              "key": "categories.6.id",
+              "value": {
+                "en": "scars",
+                "pt": "scars",
+                "es": "scars"
+              }
+            },
+            {
+              "key": "categories.6.label",
+              "value": {
+                "en": "Scars & Recovery",
+                "pt": "Cicatrizes e Recuperação",
+                "es": "Cicatrices y Recuperación"
+              }
+            },
+            {
+              "key": "categories.all",
+              "value": {
+                "en": "All topics",
+                "pt": "Todos os temas",
+                "es": "Todos los temas"
+              }
+            },
+            {
+              "key": "categories.argan-oil",
+              "value": {
+                "en": "Argan Oil",
+                "pt": "Óleo de Argan",
+                "es": "Aceite de Argán"
+              }
+            },
+            {
+              "key": "categories.baby",
+              "value": {
+                "en": "Baby Care",
+                "pt": "Cuidados com Bebês",
+                "es": "Cuidado del Bebé"
+              }
+            },
+            {
+              "key": "categories.post-procedure",
+              "value": {
+                "en": "Post-Procedure",
+                "pt": "Pós-Procedimento",
+                "es": "Post-Procedimiento"
+              }
+            },
+            {
+              "key": "categories.scars",
+              "value": {
+                "en": "Scars & Recovery",
+                "pt": "Cicatrizes e Recuperação",
+                "es": "Cicatrices y Recuperación"
+              }
+            },
+            {
+              "key": "categories.skin-barrier",
+              "value": {
+                "en": "Skin Barrier",
+                "pt": "Barreira Cutânea",
+                "es": "Barrera Cutánea"
+              }
+            },
+            {
+              "key": "categories.uses-applications",
+              "value": {
+                "en": "Uses & Applications",
+                "pt": "Usos e Aplicações",
+                "es": "Usos y Aplicaciones"
+              }
+            },
+            {
+              "key": "heroSubtitle",
+              "value": {
+                "en": "Guides and insights to help you understand your skin better.",
+                "pt": "Guias e insights para ajudar você a entender melhor a sua pele.",
+                "es": "Guías e ideas para ayudarte a entender mejor tu piel."
+              }
+            },
+            {
+              "key": "heroTitle",
+              "value": {
+                "en": "Skincare Library",
+                "pt": "Biblioteca de Skincare",
+                "es": "Biblioteca de Skincare"
+              }
+            },
+            {
+              "key": "metaDescription",
+              "value": {
+                "en": "Explore articles and guides on skincare, ingredients, and maintaining a healthy skin barrier.",
+                "pt": "Explore artigos e guias sobre skincare, ingredientes e como manter uma barreira cutânea saudável.",
+                "es": "Explora artículos y guías sobre skincare, ingredientes y cómo mantener una barrera cutánea saludable."
+              }
+            },
+            {
+              "key": "metaTitle",
+              "value": {
+                "en": "Skincare Library",
+                "pt": "Biblioteca de Skincare",
+                "es": "Biblioteca de Skincare"
+              }
+            },
+            {
+              "key": "subtitle",
+              "value": {
+                "en": "Guides and insights to help you understand your skin better.",
+                "pt": "Guias e insights para ajudar você a entender melhor a sua pele.",
+                "es": "Guías e ideas para ayudarte a entender mejor tu piel."
+              }
+            },
+            {
+              "key": "title",
+              "value": {
+                "en": "Skincare Library",
+                "pt": "Biblioteca de Skincare",
+                "es": "Biblioteca de Skincare"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "method",
+      "label": "Method",
+      "slug": "/method",
+      "sections": [
+        {
+          "key": "page",
+          "name": "Page Content",
+          "copy": [
+            {
+              "key": "clinicalNotes.0.bullets.0",
+              "value": {
+                "en": "UNESCO biosphere reserve spanning 828k hectares",
+                "pt": "Reserva da biosfera da UNESCO com 828 mil hectares",
+                "es": "Reserva de la biosfera de la UNESCO con 828 mil hectáreas"
+              }
+            },
+            {
+              "key": "clinicalNotes.0.bullets.1",
+              "value": {
+                "en": "Fair-trade cooperatives oversee harvesting and revenue",
+                "pt": "Cooperativas de comércio justo coordenam a colheita e a receita",
+                "es": "Las cooperativas de comercio justo coordinan la cosecha y los ingresos"
+              }
+            },
+            {
+              "key": "clinicalNotes.0.title",
+              "value": {
+                "en": "Forest & sourcing commitments",
+                "pt": "Compromissos com a floresta e o abastecimento",
+                "es": "Compromisos con el bosque y el abastecimiento"
+              }
+            },
+            {
+              "key": "clinicalNotes.1.bullets.0",
+              "value": {
+                "en": "No solvents",
+                "pt": "Sem solventes",
+                "es": "Sin disolventes"
+              }
+            },
+            {
+              "key": "clinicalNotes.1.bullets.1",
+              "value": {
+                "en": "Physical decanting then double filtration",
+                "pt": "Decantação física seguida de dupla filtração",
+                "es": "Decantación física con doble filtrado"
+              }
+            },
+            {
+              "key": "clinicalNotes.1.bullets.2",
+              "value": {
+                "en": "No chemical refining",
+                "pt": "Sem refino químico",
+                "es": "Sin refinado químico"
+              }
+            },
+            {
+              "key": "clinicalNotes.1.title",
+              "value": {
+                "en": "Clarification protocol",
+                "pt": "Protocolo de clarificação",
+                "es": "Protocolo de clarificación"
+              }
+            },
+            {
+              "key": "heroSubtitle",
+              "value": {
+                "en": "Sensitive care rooted in Berber tradition and validated with modern dermal science.",
+                "pt": "Cuidado sensível enraizado na tradição berbere e validado pela ciência dérmica moderna.",
+                "es": "Cuidado sensible arraigado en la tradición bereber y validado por la ciencia dérmica moderna."
+              }
+            },
+            {
+              "key": "heroTitle",
+              "value": {
+                "en": "Method Kapunka",
+                "pt": "Método Kapunka",
+                "es": "Método Kapunka"
+              }
+            },
+            {
+              "key": "metaDescription",
+              "value": {
+                "en": "Clean argan protocols that balance rural stewardship with dermatology-backed recovery.",
+                "pt": "Protocolos limpos de argan que equilibram o cuidado cooperativo com a recuperação validada pela dermatologia.",
+                "es": "Protocolos limpios de argán que equilibran el trabajo cooperativo con la recuperación avalada por la dermatología."
+              }
+            },
+            {
+              "key": "metaTitle",
+              "value": {
+                "en": "Method Kapunka",
+                "pt": "Método Kapunka",
+                "es": "Método Kapunka"
+              }
+            },
+            {
+              "key": "sections.0.text",
+              "value": {
+                "en": "The Argan forest spans 828k hectares and is a UNESCO biosphere reserve. We source through cooperatives and fair rural labor.",
+                "pt": "A floresta de argan ocupa 828 mil hectares e é uma reserva da biosfera da UNESCO. Fazemos o abastecimento através de cooperativas e trabalho rural justo.",
+                "es": "El bosque de argán se extiende por 828 mil hectáreas y es una reserva de la biosfera de la UNESCO. Abastecemos a través de cooperativas y trabajo rural justo."
+              }
+            },
+            {
+              "key": "sections.0.title",
+              "value": {
+                "en": "Argan forest & sourcing",
+                "pt": "Floresta de argan & abastecimento",
+                "es": "Bosque de argán y abastecimiento"
+              }
+            },
+            {
+              "key": "sections.0.type",
+              "value": {
+                "en": "facts",
+                "pt": "facts",
+                "es": "facts"
+              }
+            },
+            {
+              "key": "sections.1.items.0",
+              "value": {
+                "en": "No solvents",
+                "pt": "Sem solventes",
+                "es": "Sin disolventes"
+              }
+            },
+            {
+              "key": "sections.1.items.1",
+              "value": {
+                "en": "Physical decanting then double filtration",
+                "pt": "Decantação física seguida de dupla filtração",
+                "es": "Decantación física con doble filtrado"
+              }
+            },
+            {
+              "key": "sections.1.items.2",
+              "value": {
+                "en": "No chemical refining",
+                "pt": "Sem refino químico",
+                "es": "Sin refinado químico"
+              }
+            },
+            {
+              "key": "sections.1.title",
+              "value": {
+                "en": "Clarification",
+                "pt": "Clarificação",
+                "es": "Clarificación"
+              }
+            },
+            {
+              "key": "sections.1.type",
+              "value": {
+                "en": "bullets",
+                "pt": "bullets",
+                "es": "bullets"
+              }
+            },
+            {
+              "key": "sections.2.items.0.bullets.0",
+              "value": {
+                "en": "Hydration from 3 months",
+                "pt": "Hidratação a partir dos 3 meses",
+                "es": "Hidratación desde los 3 meses"
+              }
+            },
+            {
+              "key": "sections.2.items.0.bullets.1",
+              "value": {
+                "en": "Diaper dermatitis",
+                "pt": "Dermatite da fralda",
+                "es": "Dermatitis del pañal"
+              }
+            },
+            {
+              "key": "sections.2.items.0.bullets.2",
+              "value": {
+                "en": "Atopic dermatitis",
+                "pt": "Dermatite atópica",
+                "es": "Dermatitis atópica"
+              }
+            },
+            {
+              "key": "sections.2.items.0.title",
+              "value": {
+                "en": "Pediatrics",
+                "pt": "Pediatria",
+                "es": "Pediatría"
+              }
+            },
+            {
+              "key": "sections.2.items.1.bullets.0",
+              "value": {
+                "en": "Dry, scaly skin",
+                "pt": "Pele seca e descamativa",
+                "es": "Piel seca y descamada"
+              }
+            },
+            {
+              "key": "sections.2.items.1.bullets.1",
+              "value": {
+                "en": "Psoriasis/dermatitis",
+                "pt": "Psoríase/dermatite",
+                "es": "Psoriasis/dermatitis"
+              }
+            },
+            {
+              "key": "sections.2.items.1.bullets.2",
+              "value": {
+                "en": "Post-acne or surgery marks",
+                "pt": "Marcas pós-acne ou cirurgia",
+                "es": "Marcas postacné o cirugía"
+              }
+            },
+            {
+              "key": "sections.2.items.1.title",
+              "value": {
+                "en": "Dermatology",
+                "pt": "Dermatologia",
+                "es": "Dermatología"
+              }
+            },
+            {
+              "key": "sections.2.items.2.bullets.0",
+              "value": {
+                "en": "Supports faster epithelial recovery with lighter scarring",
+                "pt": "Favorece recuperação epitelial mais rápida com cicatrização leve",
+                "es": "Favorece una recuperación epitelial más rápida con cicatrices ligeras"
+              }
+            },
+            {
+              "key": "sections.2.items.2.title",
+              "value": {
+                "en": "Post-op",
+                "pt": "Pós-operatório",
+                "es": "Postoperatorio"
+              }
+            },
+            {
+              "key": "sections.2.items.3.bullets.0",
+              "value": {
+                "en": "Rehabilitative massage",
+                "pt": "Massagem reabilitadora",
+                "es": "Masaje rehabilitador"
+              }
+            },
+            {
+              "key": "sections.2.items.3.bullets.1",
+              "value": {
+                "en": "Skin recovery after dressings",
+                "pt": "Recuperação da pele após curativos",
+                "es": "Recuperación cutánea tras vendajes"
+              }
+            },
+            {
+              "key": "sections.2.items.3.title",
+              "value": {
+                "en": "Physio",
+                "pt": "Fisioterapia",
+                "es": "Fisioterapia"
+              }
+            },
+            {
+              "key": "sections.2.items.4.bullets.0",
+              "value": {
+                "en": "Post-treatment care (waxing/peels/RF)",
+                "pt": "Cuidados pós-tratamento (depilação/peelings/RF)",
+                "es": "Cuidado posterior a tratamientos (depilación/peelings/RF)"
+              }
+            },
+            {
+              "key": "sections.2.items.4.bullets.1",
+              "value": {
+                "en": "After Sun",
+                "pt": "Pós-sol",
+                "es": "Post-solar"
+              }
+            },
+            {
+              "key": "sections.2.items.4.title",
+              "value": {
+                "en": "Aesthetics",
+                "pt": "Estética",
+                "es": "Estética"
+              }
+            },
+            {
+              "key": "sections.2.specialties.0.bullets.0",
+              "value": {
+                "en": "Hydration from 3 months",
+                "pt": "Hidratação a partir dos 3 meses",
+                "es": "Hidratación desde los 3 meses"
+              }
+            },
+            {
+              "key": "sections.2.specialties.0.bullets.1",
+              "value": {
+                "en": "Diaper dermatitis",
+                "pt": "Dermatite da fralda",
+                "es": "Dermatitis del pañal"
+              }
+            },
+            {
+              "key": "sections.2.specialties.0.bullets.2",
+              "value": {
+                "en": "Atopic dermatitis",
+                "pt": "Dermatite atópica",
+                "es": "Dermatitis atópica"
+              }
+            },
+            {
+              "key": "sections.2.specialties.0.title",
+              "value": {
+                "en": "Pediatrics",
+                "pt": "Pediatria",
+                "es": "Pediatría"
+              }
+            },
+            {
+              "key": "sections.2.specialties.1.bullets.0",
+              "value": {
+                "en": "Dry, scaly skin",
+                "pt": "Pele seca e descamativa",
+                "es": "Piel seca y descamada"
+              }
+            },
+            {
+              "key": "sections.2.specialties.1.bullets.1",
+              "value": {
+                "en": "Psoriasis/dermatitis",
+                "pt": "Psoríase/dermatite",
+                "es": "Psoriasis/dermatitis"
+              }
+            },
+            {
+              "key": "sections.2.specialties.1.bullets.2",
+              "value": {
+                "en": "Post-acne or surgery marks",
+                "pt": "Marcas pós-acne ou cirurgia",
+                "es": "Marcas postacné o cirugía"
+              }
+            },
+            {
+              "key": "sections.2.specialties.1.title",
+              "value": {
+                "en": "Dermatology",
+                "pt": "Dermatologia",
+                "es": "Dermatología"
+              }
+            },
+            {
+              "key": "sections.2.specialties.2.bullets.0",
+              "value": {
+                "en": "Supports faster epithelial recovery with lighter scarring",
+                "pt": "Favorece recuperação epitelial mais rápida com cicatrização leve",
+                "es": "Favorece una recuperación epitelial más rápida con cicatrices ligeras"
+              }
+            },
+            {
+              "key": "sections.2.specialties.2.title",
+              "value": {
+                "en": "Post-op",
+                "pt": "Pós-operatório",
+                "es": "Postoperatorio"
+              }
+            },
+            {
+              "key": "sections.2.specialties.3.bullets.0",
+              "value": {
+                "en": "Rehabilitative massage",
+                "pt": "Massagem reabilitadora",
+                "es": "Masaje rehabilitador"
+              }
+            },
+            {
+              "key": "sections.2.specialties.3.bullets.1",
+              "value": {
+                "en": "Skin recovery after dressings",
+                "pt": "Recuperação da pele após curativos",
+                "es": "Recuperación cutánea tras vendajes"
+              }
+            },
+            {
+              "key": "sections.2.specialties.3.title",
+              "value": {
+                "en": "Physio",
+                "pt": "Fisioterapia",
+                "es": "Fisioterapia"
+              }
+            },
+            {
+              "key": "sections.2.specialties.4.bullets.0",
+              "value": {
+                "en": "Post-treatment care (waxing/peels/RF)",
+                "pt": "Cuidados pós-tratamento (depilação/peelings/RF)",
+                "es": "Cuidado posterior a tratamientos (depilación/peelings/RF)"
+              }
+            },
+            {
+              "key": "sections.2.specialties.4.bullets.1",
+              "value": {
+                "en": "After Sun",
+                "pt": "Pós-sol",
+                "es": "Post-solar"
+              }
+            },
+            {
+              "key": "sections.2.specialties.4.title",
+              "value": {
+                "en": "Aesthetics",
+                "pt": "Estética",
+                "es": "Estética"
+              }
+            },
+            {
+              "key": "sections.2.title",
+              "value": {
+                "en": "Clinical specialties we support",
+                "pt": "Especialidades clínicas que atendemos",
+                "es": "Especialidades clínicas que acompañamos"
+              }
+            },
+            {
+              "key": "sections.2.type",
+              "value": {
+                "en": "specialties",
+                "pt": "specialties",
+                "es": "specialties"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "story",
+      "label": "Story",
+      "slug": "/story",
+      "sections": [
+        {
+          "key": "page",
+          "name": "Page Content",
+          "copy": [
+            {
+              "key": "metaDescription",
+              "value": {
+                "en": "Follow how Kapunka's argan rituals moved from Moroccan cooperatives to modern dermatology partners.",
+                "pt": "Acompanhe como os rituais de argan Kapunka passaram das cooperativas marroquinas para parceiros de dermatologia moderna.",
+                "es": "Sigue cómo los rituales de argán de Kapunka pasaron de las cooperativas marroquíes a los socios de dermatología moderna."
+              }
+            },
+            {
+              "key": "metaTitle",
+              "value": {
+                "en": "Kapunka Story – From hammams to derm clinics",
+                "pt": "História Kapunka – Dos hammams às clínicas dermatológicas",
+                "es": "Historia Kapunka – De los hammams a las clínicas dermatológicas"
+              }
+            },
+            {
+              "key": "sections.0.entries.0.description",
+              "value": {
+                "en": "Kapunka emerges from our founders' return to the argan cooperatives of Tazghlilt.\n\nWe begin bottling the first cold-pressed batches by working directly with women artisans who teach us their extraction rituals.",
+                "pt": "A Kapunka nasce quando nossas fundadoras regressam às cooperativas de argan em Tazghlilt.\n\nComeçamos a envasar os primeiros lotes prensados a frio trabalhando diretamente com as artesãs que nos transmitem seus rituais de extração.",
+                "es": "Kapunka surge cuando nuestras fundadoras regresan a las cooperativas de argán de Tazghlilt.\n\nComenzamos a envasar los primeros lotes prensados en frío trabajando codo a codo con las artesanas que nos enseñan sus rituales de extracción."
+              }
+            },
+            {
+              "key": "sections.0.entries.0.title",
+              "value": {
+                "en": "Origins in the Souss Valley",
+                "pt": "Origens no Vale do Souss",
+                "es": "Orígenes en el Valle del Souss"
+              }
+            },
+            {
+              "key": "sections.0.entries.0.year",
+              "value": {
+                "en": "2014",
+                "pt": "2014",
+                "es": "2014"
+              }
+            },
+            {
+              "key": "sections.0.entries.1.description",
+              "value": {
+                "en": "Method Kapunka earns the trust of dermatology teams across Lisbon, Barcelona, and Casablanca.\n\nCooperatives expand membership, and we formalize long-term purchasing agreements that guarantee equitable pricing.",
+                "pt": "O Método Kapunka conquista a confiança de equipes de dermatologia em Lisboa, Barcelona e Casablanca.\n\nAs cooperativas ampliam o número de integrantes e formalizamos acordos de compra que garantem preços justos e previsíveis.",
+                "es": "El Método Kapunka gana la confianza de equipos de dermatología en Lisboa, Barcelona y Casablanca.\n\nLas cooperativas suman nuevas integrantes y formalizamos acuerdos de compra a largo plazo que aseguran precios equitativos."
+              }
+            },
+            {
+              "key": "sections.0.entries.1.title",
+              "value": {
+                "en": "Partnerships that scale impact",
+                "pt": "Parcerias que ampliam o impacto",
+                "es": "Alianzas que amplían el impacto"
+              }
+            },
+            {
+              "key": "sections.0.entries.1.year",
+              "value": {
+                "en": "2017",
+                "pt": "2017",
+                "es": "2017"
+              }
+            },
+            {
+              "key": "sections.0.entries.2.description",
+              "value": {
+                "en": "We introduce the second generation of Kapunka formulas, pairing clinical validation with regenerative sourcing.\n\nOur hybrid ritual of home care and in-clinic recovery now reaches patients in three continents.",
+                "pt": "Apresentamos a segunda geração das fórmulas Kapunka, unindo validação clínica e abastecimento regenerativo.\n\nNosso ritual híbrido de cuidados em casa e recuperação em clínicas chega agora a pacientes em três continentes.",
+                "es": "Presentamos la segunda generación de fórmulas Kapunka, combinando validación clínica con abastecimiento regenerativo.\n\nNuestro ritual híbrido de cuidado en casa y recuperación en clínica llega ahora a pacientes en tres continentes."
+              }
+            },
+            {
+              "key": "sections.0.entries.2.title",
+              "value": {
+                "en": "Version 2.0 launches globally",
+                "pt": "Lançamento da versão 2.0",
+                "es": "Lanzamiento de la versión 2.0"
+              }
+            },
+            {
+              "key": "sections.0.entries.2.year",
+              "value": {
+                "en": "2021",
+                "pt": "2021",
+                "es": "2021"
+              }
+            },
+            {
+              "key": "sections.0.title",
+              "value": {
+                "en": "Kapunka through the years",
+                "pt": "Kapunka ao longo dos anos",
+                "es": "Kapunka a través de los años"
+              }
+            },
+            {
+              "key": "sections.0.type",
+              "value": {
+                "en": "timeline",
+                "pt": "timeline",
+                "es": "timeline"
+              }
+            },
+            {
+              "key": "story.0.body",
+              "value": {
+                "en": "Kapunka was born from a desire for transparent, effective skincare. We started by sourcing the purest, ECOCERT-certified Argan oil from women's cooperatives in Morocco.",
+                "pt": "A Kapunka nasceu do desejo por cuidados com a pele transparentes e eficazes. Começamos por obter o mais puro óleo de Argan certificado pela ECOCERT de cooperativas de mulheres em Marrocos.",
+                "es": "Kapunka nació del deseo de un cuidado de la piel transparente y eficaz. Empezamos por obtener el aceite de Argán más puro, certificado por ECOCERT, de cooperativas de mujeres en Marruecos."
+              }
+            },
+            {
+              "key": "story.0.heading",
+              "value": {
+                "en": "Our Story",
+                "pt": "Nossa História",
+                "es": "Nuestra Historia"
+              }
+            },
+            {
+              "key": "story.1.body",
+              "value": {
+                "en": "We are committed to ethical and sustainable practices. Our ingredients are sourced from suppliers who share our values of environmental responsibility and fair trade. Our Argan oil is a prime example, providing economic empowerment to the Berber women who have perfected its traditional extraction method for centuries.",
+                "pt": "Estamos comprometidos com práticas éticas e sustentáveis. Nossos ingredientes são provenientes de fornecedores que compartilham nossos valores de responsabilidade ambiental e comércio justo. Nosso óleo de Argan é um excelente exemplo, proporcionando empoderamento econômico para as mulheres berberes que aperfeiçoaram seu método tradicional de extração por séculos.",
+                "es": "Estamos comprometidos con prácticas éticas y sostenibles. Nuestros ingredientes provienen de proveedores que comparten nuestros valores de responsabilidad ambiental y comercio justo. Nuestro aceite de Argán es un ejemplo primordial, proporcionando empoderamiento económico a las mujeres bereberes que han perfeccionado su método tradicional de extracción durante siglos."
+              }
+            },
+            {
+              "key": "story.1.heading",
+              "value": {
+                "en": "Ethical Sourcing",
+                "pt": "Fornecimento Ético",
+                "es": "Abastecimiento Ético"
+              }
+            },
+            {
+              "key": "tagline",
+              "value": {
+                "en": "Less, but better.",
+                "pt": "Menos, mas melhor.",
+                "es": "Menos, pero mejor."
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "test",
+      "label": "Test",
+      "slug": "/test",
+      "sections": [
+        {
+          "key": "page",
+          "name": "Page Content",
+          "copy": [
+            {
+              "key": "title",
+              "value": {
+                "en": "This is a test page"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "training",
+      "label": "Training Hub",
+      "slug": "/training",
+      "sections": [
+        {
+          "key": "page",
+          "name": "Page Content",
+          "copy": [
+            {
+              "key": "emptyState",
+              "value": {
+                "en": "Training resources are coming soon.",
+                "pt": "Os recursos de treinamento estarão disponíveis em breve.",
+                "es": "Los recursos de formación estarán disponibles pronto."
+              }
+            },
+            {
+              "key": "learnMore",
+              "value": {
+                "en": "Learn More",
+                "pt": "Saiba mais",
+                "es": "Más información"
+              }
+            },
+            {
+              "key": "metaDescription",
+              "value": {
+                "en": "Schedule advanced argan protocol training, video refreshers, and onboarding support tailored to your practice.",
+                "pt": "Agende formações avançadas de protocolos com argan, refrescos em vídeo e suporte de onboarding feito para a sua clínica.",
+                "es": "Programa formaciones avanzadas de protocolos con argán, repasos en vídeo y soporte de onboarding adaptado a tu consulta."
+              }
+            },
+            {
+              "key": "metaTitle",
+              "value": {
+                "en": "Kapunka Training – Workshops for clinics and partners",
+                "pt": "Treinamento Kapunka – Workshops para clínicas e parceiros",
+                "es": "Formación Kapunka – Workshops para clínicas y socios"
+              }
+            },
+            {
+              "key": "sections.0.type",
+              "value": {
+                "en": "trainingList",
+                "pt": "trainingList",
+                "es": "trainingList"
+              }
+            },
+            {
+              "key": "subtitle",
+              "value": {
+                "en": "Stay ahead with courses and professional content curated for practitioners and partners.",
+                "pt": "Atualize-se com cursos e conteúdos profissionais selecionados para praticantes e parceiros.",
+                "es": "Mantente al día con cursos y contenidos profesionales creados para practicantes y socios."
+              }
+            },
+            {
+              "key": "title",
+              "value": {
+                "en": "Training Hub",
+                "pt": "Centro de Treinamento",
+                "es": "Centro de Formación"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "videos",
+      "label": "Video Library",
+      "slug": "/videos",
+      "sections": [
+        {
+          "key": "page",
+          "name": "Page Content",
+          "copy": [
+            {
+              "key": "emptyState",
+              "value": {
+                "en": "Video programming is coming soon.",
+                "pt": "Os vídeos estarão disponíveis em breve.",
+                "es": "El contenido en video estará disponible pronto."
+              }
+            },
+            {
+              "key": "metaDescription",
+              "value": {
+                "en": "Stream guided protocols, pro tips, and client explainers filmed inside the Kapunka studio.",
+                "pt": "Assista a protocolos guiados, dicas profissionais e explicações para clientes gravadas no estúdio Kapunka.",
+                "es": "Reproduce protocolos guiados, consejos profesionales y explicaciones para clientes grabadas en el estudio Kapunka."
+              }
+            },
+            {
+              "key": "metaTitle",
+              "value": {
+                "en": "Kapunka Video Library – Ritual demonstrations",
+                "pt": "Videoteca Kapunka – Demonstrações de rituais",
+                "es": "Videoteca Kapunka – Demostraciones de rituales"
+              }
+            },
+            {
+              "key": "sections.0.type",
+              "value": {
+                "en": "videoGallery",
+                "pt": "videoGallery",
+                "es": "videoGallery"
+              }
+            },
+            {
+              "key": "subtitle",
+              "value": {
+                "en": "Discover tutorials, rituals, and behind-the-scenes moments from the Kapunka world.",
+                "pt": "Descubra tutoriais, rituais e bastidores do universo Kapunka.",
+                "es": "Descubre tutoriales, rituales y momentos detrás de escena del mundo Kapunka."
+              }
+            },
+            {
+              "key": "title",
+              "value": {
+                "en": "Video Library",
+                "pt": "Videoteca",
+                "es": "Videoteca"
+              }
+            },
+            {
+              "key": "watchLabel",
+              "value": {
+                "en": "Watch Video",
+                "pt": "Assistir ao vídeo",
+                "es": "Ver video"
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
 }
