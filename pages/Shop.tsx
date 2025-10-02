@@ -277,7 +277,6 @@ const Shop: React.FC = () => {
                             ? `shop.categories.${activeCategoryIndex}.links.${linkIndex}.label.${language}`
                             : undefined
                         }
-                        data-sb-field-path={`.${linkIndex}`}
                       >
                         <Icon className="w-4 h-4" />
                         <span>{translate(link.label)}</span>
@@ -315,7 +314,6 @@ const Shop: React.FC = () => {
                 key={product.id}
                 product={product}
                 fieldPath={productFieldPath}
-                data-sb-field-path={`.${index}`}
               />
             );
           })}
