@@ -3,7 +3,7 @@
     "heroAlignX": "left",
     "heroAlignY": "middle",
     "heroTextPosition": "overlay",
-    "heroTextAnchor": "middle-left",
+    "heroTextAnchor": "bottom-left",
     "heroOverlay": "medium",
     "heroLayoutHint": "bg"
   },
@@ -26,7 +26,7 @@
     },
     {
       "type": "mediaShowcase",
-      "title": "Ritual Stories",
+      "title": "",
       "items": [
         {
           "eyebrow": "From the blog",
@@ -175,9 +175,6 @@
     }
   ],
   "heroHeadline": "Be thankful to your skin.",
-  "heroImages": {
-    "heroImageLeft": ""
-  },
   "metaTitle": "Kapunka — Argan rituals for sensitive and post-procedure skin",
   "metaDescription": "Clinical-grade Moroccan argan care trusted by clinics, designed for everyday recovery.",
   "type": "HomePage",
