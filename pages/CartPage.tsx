@@ -10,6 +10,7 @@ import type { CartItem, Product } from '../types';
 import { fetchVisualEditorJson } from '../utils/fetchVisualEditorJson';
 import { getVisualEditorAttributes } from '../utils/stackbitBindings';
 import { useVisualEditorSync } from '../contexts/VisualEditorSyncContext';
+import { formatCurrency } from '../utils/currency';
 
 interface ProductsResponse {
   items?: Product[];
@@ -17,7 +18,7 @@ interface ProductsResponse {
 
 const CartItemRow: React.FC<{ item: CartItem; product?: Product; productFieldPath?: string }> = ({ item, product, productFieldPath }) => {
   const { updateQuantity, removeFromCart } = useCart();
-  const { translate } = useLanguage();
+  const { translate, language } = useLanguage();
 
   const size = product?.sizes.find(s => s.id === item.sizeId);
   const sizeIndex = product?.sizes.findIndex(s => s.id === item.sizeId) ?? -1;
@@ -71,7 +72,7 @@ const CartItemRow: React.FC<{ item: CartItem; product?: Product; productFieldPat
             productFieldPath && sizeIndex >= 0 ? `${productFieldPath}.sizes.${sizeIndex}.price` : undefined
           )}
         >
-          ${(size.price * item.quantity).toFixed(2)}
+          {formatCurrency(size.price * item.quantity, language)}
         </p>
       </div>
       <div className="col-span-1 text-right">
@@ -181,7 +182,7 @@ const CartPage: React.FC = () => {
                                     <span {...getVisualEditorAttributes(`${cartFieldPath}.subtotal`)}>
                                         {t('cart.subtotal')}
                                     </span>
-                                    <span>${subtotal.toFixed(2)}</span>
+                                    <span>{formatCurrency(subtotal, language)}</span>
                                 </div>
                                 <div className="flex justify-between">
                                     <span {...getVisualEditorAttributes(`${cartFieldPath}.shipping`)}>
@@ -196,7 +197,7 @@ const CartPage: React.FC = () => {
                                     <span {...getVisualEditorAttributes(`${cartFieldPath}.total`)}>
                                         {t('cart.total')}
                                     </span>
-                                    <span>${subtotal.toFixed(2)}</span>
+                                    <span>{formatCurrency(subtotal, language)}</span>
                                 </div>
                             </div>
                             <button className="mt-8 w-full bg-stone-900 text-white py-3 rounded-md font-semibold hover:bg-stone-700 transition-colors">

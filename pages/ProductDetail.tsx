@@ -12,6 +12,7 @@ import type { Product, ProductKnowledge, ProductTabsSectionContent } from '../ty
 import ProductCard from '../components/ProductCard';
 import { fetchVisualEditorJson } from '../utils/fetchVisualEditorJson';
 import { getVisualEditorAttributes } from '../utils/stackbitBindings';
+import { formatCurrency } from '../utils/currency';
 import { useVisualEditorSync } from '../contexts/VisualEditorSyncContext';
 
 interface ProductsResponse {
@@ -439,7 +440,16 @@ const ProductDetail: React.FC = () => {
                                 </div>
                             </div>
                             <div className="flex items-center justify-between">
-                                <p className="text-3xl font-bold" {...getVisualEditorAttributes(productFieldPath && selectedSizeIndex >= 0 ? `${productFieldPath}.sizes.${selectedSizeIndex}.price` : undefined)}>${selectedSize?.price.toFixed(2)}</p>
+                                <p
+                                    className="text-3xl font-bold"
+                                    {...getVisualEditorAttributes(
+                                        productFieldPath && selectedSizeIndex >= 0
+                                            ? `${productFieldPath}.sizes.${selectedSizeIndex}.price`
+                                            : undefined
+                                    )}
+                                >
+                                    {selectedSize ? formatCurrency(selectedSize.price, language) : ''}
+                                </p>
                                 <button
                                     onClick={handleAddToCart}
                                     className="flex items-center gap-2 px-8 py-3 bg-stone-900 text-white font-semibold rounded-md hover:bg-stone-700 transition-colors"
