@@ -1,7 +1,6 @@
 {
-  "type": "SiteConfig",
   "contact": {
-    "email": "info@kapunka.com",
+    "email": "global@kapunka.com",
     "phone": "+1 (234) 567-890",
     "whatsapp": "https://wa.me/1234567890"
   },
@@ -18,9 +17,10 @@
     "sourcingAlt": "Sourcing argan oil"
   },
   "featureFlags": {
-    "videos": false,
-    "training": false
+    "videos": true,
+    "training": true
   },
+  "type": "SiteConfig",
   "footer": {
     "legalName": "Kapunka Skincare",
     "socialLinks": [
