@@ -7,6 +7,7 @@ import { useCart } from '../contexts/CartContext';
 import { useUI } from '../contexts/UIContext';
 import { useLanguage } from '../contexts/LanguageContext';
 import { getVisualEditorAttributes } from '../utils/stackbitBindings';
+import { formatCurrency } from '../utils/currency';
 import type { Product } from '../types';
 
 interface ProductCardProps {
@@ -30,7 +31,11 @@ const ProductCard: React.FC<ProductCardProps> = (props) => {
   }, [selectedSizeId, product.sizes]);
 
   const pricePerMl = useMemo(() => {
-    return (selectedSize.price / selectedSize.size).toFixed(2);
+    if (!selectedSize || selectedSize.size === 0) {
+      return null;
+    }
+
+    return selectedSize.price / selectedSize.size;
   }, [selectedSize]);
 
   const handleAddToCart = (e: React.MouseEvent) => {
@@ -126,9 +131,11 @@ const ProductCard: React.FC<ProductCardProps> = (props) => {
                     : undefined
                 )}
               >
-                ${selectedSize.price.toFixed(2)}
+                {formatCurrency(selectedSize.price, language)}
               </span>
-              <span className="text-xs text-stone-400 ml-1">(${pricePerMl}/ml)</span>
+              {pricePerMl !== null && (
+                <span className="text-xs text-stone-400 ml-1">({formatCurrency(pricePerMl, language)}/ml)</span>
+              )}
             </p>
           </div>
         </div>

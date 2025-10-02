@@ -3,6 +3,7 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import { useLanguage } from '../contexts/LanguageContext';
 import { getVisualEditorAttributes } from '../utils/stackbitBindings';
+import { formatCurrency } from '../utils/currency';
 import type { Course } from '../types';
 
 interface CourseCardProps {
@@ -51,7 +52,7 @@ const CourseCard: React.FC<CourseCardProps> = (props) => {
             {...getVisualEditorAttributes(`${fieldPath ?? baseFieldPath}.price`)}
             data-sb-field-path={`${fieldPath ?? baseFieldPath}.price`}
           >
-            ${course.price.toFixed(2)}
+            {formatCurrency(course.price, language)}
           </p>
           <a
             href={course.enrollLink}

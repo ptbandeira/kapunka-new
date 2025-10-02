@@ -9,6 +9,7 @@ import { useLanguage } from '../contexts/LanguageContext';
 import type { CartItem, Product } from '../types';
 import { fetchVisualEditorJson } from '../utils/fetchVisualEditorJson';
 import { useVisualEditorSync } from '../contexts/VisualEditorSyncContext';
+import { formatCurrency } from '../utils/currency';
 
 interface ProductIndexResponse {
   items?: Product[];
@@ -18,7 +19,7 @@ const MiniCartItem: React.FC<{ item: CartItem; products: Product[]; ['data-sb-fi
   const { item, products } = props;
   const dataSbFieldPath = props['data-sb-field-path'];
   const { updateQuantity, removeFromCart } = useCart();
-  const { translate } = useLanguage();
+  const { translate, language } = useLanguage();
 
   const product = products.find(p => p.id === item.productId);
   if (!product) return null;
@@ -51,7 +52,7 @@ const MiniCartItem: React.FC<{ item: CartItem; products: Product[]; ['data-sb-fi
         </div>
       </div>
       <div className="text-right">
-        <p className="font-semibold text-sm">${(size.price * item.quantity).toFixed(2)}</p>
+        <p className="font-semibold text-sm">{formatCurrency(size.price * item.quantity, language)}</p>
         <button onClick={handleRemoveItem} className="text-stone-400 hover:text-red-500 mt-2"><Trash2 size={16} /></button>
       </div>
     </div>
@@ -61,7 +62,7 @@ const MiniCartItem: React.FC<{ item: CartItem; products: Product[]; ['data-sb-fi
 const MiniCart: React.FC = () => {
   const { isCartOpen, closeCart } = useUI();
   const { cart, cartCount } = useCart();
-  const { t } = useLanguage();
+  const { t, language } = useLanguage();
   const [products, setProducts] = useState<Product[]>([]);
   const { contentVersion } = useVisualEditorSync();
 
@@ -133,7 +134,7 @@ const MiniCart: React.FC = () => {
                 <div className="p-6 border-t border-stone-200">
                   <div className="flex justify-between items-center mb-4">
                     <span className="text-stone-600">{t('cart.subtotal')}</span>
-                    <span className="font-semibold text-lg">${subtotal.toFixed(2)}</span>
+                    <span className="font-semibold text-lg">{formatCurrency(subtotal, language)}</span>
                   </div>
                   <p className="text-xs text-stone-400 text-center mb-4">{t('cart.shippingNote')}</p>
                   <Link to="/cart" onClick={closeCart} className="block w-full text-center bg-stone-900 text-white py-3 rounded-md hover:bg-stone-700 transition-colors duration-300">
