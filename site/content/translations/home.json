@@ -7,18 +7,24 @@
       "title": "Kapunka Skincare | Moroccan Argan Rituals for Clinics & Sensitive Skin",
       "description": "Kapunka formulates Moroccan argan oils, mists, and hammam treatments trusted by aesthetic clinics for post-procedure recovery, barrier repair, and daily rituals."
     },
-    "heroTitle": "Clinical-grade Moroccan argan rituals for sensitive, recovering skin",
-    "heroSubtitle": "From single-origin argan oil to dermal mists and hammam staples, Kapunka pairs Moroccan heritage with aesthetic expertise so post-procedure and delicate skin stays calm, nourished, and resilient.",
+    "heroTitle": "Be thankful to your skin.",
+    "heroSubtitle": "Born in clinics, refined by touch. Kapunka brings therapeutic rituals with pure Moroccan argan oil — care that reconnects body and mind.",
     "hero": {
-      "title": "Clinical-grade Moroccan argan rituals for sensitive, recovering skin",
-      "subtitle": "From single-origin argan oil to dermal mists and hammam staples, Kapunka pairs Moroccan heritage with aesthetic expertise so post-procedure and delicate skin stays calm, nourished, and resilient.",
+      "title": "Be thankful to your skin.",
+      "subtitle": "Born in clinics, refined by touch. Kapunka brings therapeutic rituals with pure Moroccan argan oil — care that reconnects body and mind.",
       "ctaPrimary": "Shop argan rituals",
-      "ctaSecondary": "Clinics partnership"
+      "ctaSecondary": "For clinics & professionals",
+      "headline": "Be thankful to your skin.",
+      "sub1": "Born in clinics, refined by touch.",
+      "sub2": "Kapunka brings therapeutic rituals with pure Moroccan argan oil — care that reconnects body and mind.",
+      "ctaShop": "Shop argan rituals",
+      "ctaPro": "For clinics & professionals"
     },
     "ctaShop": "Shop argan rituals",
-    "ctaClinics": "Clinics partnership",
-    "bestsellersTitle": "Our Bestsellers",
+    "ctaClinics": "For clinics & professionals",
+    "bestsellersTitle": "Essentials for daily rituals",
     "bestsellers": {
+      "title": "Essentials for daily rituals",
       "intro": "Meet the three-step ritual clinics rely on most—cleanse, replenish, and seal with nutrient-dense argan care.",
       "cards": [
         {
@@ -70,13 +76,37 @@
       "teaser": "Clear answers to real routines—post-procedure, scalp care, baby skin, and barrier support."
     },
     "newsletterTitle": "Join The List",
-    "newsletterSubtitle": "Tips for sensitive-skin routines, once or twice a month. No spam. Unsubscribe anytime.",
+    "newsletterSubtitle": "Monthly reflections on skin, care, and recovery. No noise — just thoughtful notes from Kapunka.",
     "newsletter": {
-      "pitch": "Join our community for monthly guidance on barrier health, post-treatment recovery, and skincare rooted in science. No spam, just insight."
+      "pitch": "Join our community for monthly guidance on barrier health, post-treatment recovery, and skincare rooted in science. No spam, just insight.",
+      "title": "Join The List",
+      "subtitle": "Monthly reflections on skin, care, and recovery. No noise — just thoughtful notes from Kapunka.",
+      "placeholderEmail": "Enter your email address",
+      "ctaSubscribe": "Subscribe"
     },
     "newsletterThanks": "Thank you for subscribing!",
     "newsletterPlaceholder": "Enter your email address",
     "newsletterSubmit": "Subscribe",
+    "stories": {
+      "title": "Ritual Stories",
+      "card1Title": "From gratitude to method",
+      "card1Sub": "How a simple gesture of care became a therapeutic protocol.",
+      "card2Title": "Trusted by professionals",
+      "card2Sub": "Used by dermatologists, medspas, and recovery clinics for over a decade.",
+      "card3Title": "Heritage sourcing, clinical standards",
+      "card3Sub": "From Moroccan cooperatives to hospital rooms.",
+      "card4Title": "From hammam rituals to modern recovery",
+      "card4Sub": "Ancient wisdom, scientifically structured."
+    },
+    "community": {
+      "title": "Rituals in our community",
+      "intro": "A ritual of gratitude shared by people, clinics, and caregivers around the world."
+    },
+    "professionalsSay": {
+      "title": "What Professionals Say",
+      "intro": "Professionals who integrate Kapunka in medical and therapeutic care."
+    },
+    "footerTagline": "Science-backed skincare for a calmer, healthier body.",
     "footer": {
       "complianceNote": "Cosmetic use only. Not intended to diagnose, treat, cure, or prevent disease."
     }
@@ -88,18 +118,24 @@
       "title": "Kapunka Skincare | Rituais de argan marroquino para clínicas e pele sensível",
       "description": "A Kapunka formula óleos de argan, névoas e tratamentos de hammam marroquinos confiados por clínicas estéticas para recuperação pós-procedimento, reparo da barreira e rituais diários."
     },
-    "heroTitle": "Rituais de argan marroquino de padrão clínico para pele sensível e em recuperação",
-    "heroSubtitle": "Dos óleos de argan de origem única às névoas dérmicas e clássicos do hammam, a Kapunka une herança marroquina e expertise estética para manter a pele pós-procedimento calma, nutrida e resiliente.",
+    "heroTitle": "Gratidão para a sua pele.",
+    "heroSubtitle": "Nascida em clínicas, aperfeiçoada pelo toque. A Kapunka une rituais terapêuticos e óleo de argão puro de Marrocos — cuidado que reconecta corpo e mente.",
     "hero": {
-      "title": "Rituais de argan marroquino de padrão clínico para pele sensível e em recuperação",
-      "subtitle": "Dos óleos de argan de origem única às névoas dérmicas e clássicos do hammam, a Kapunka une herança marroquina e expertise estética para manter a pele pós-procedimento calma, nutrida e resiliente.",
-      "ctaPrimary": "Comprar rituais de argan",
-      "ctaSecondary": "Parceria para clínicas"
+      "title": "Gratidão para a sua pele.",
+      "subtitle": "Nascida em clínicas, aperfeiçoada pelo toque. A Kapunka une rituais terapêuticos e óleo de argão puro de Marrocos — cuidado que reconecta corpo e mente.",
+      "ctaPrimary": "Comprar rituais de argão",
+      "ctaSecondary": "Para clínicas e profissionais",
+      "headline": "Gratidão para a sua pele.",
+      "sub1": "Nascida em clínicas, aperfeiçoada pelo toque.",
+      "sub2": "A Kapunka une rituais terapêuticos e óleo de argão puro de Marrocos — cuidado que reconecta corpo e mente.",
+      "ctaShop": "Comprar rituais de argão",
+      "ctaPro": "Para clínicas e profissionais"
     },
-    "ctaShop": "Comprar rituais de argan",
-    "ctaClinics": "Parceria para clínicas",
-    "bestsellersTitle": "Nossos Mais Vendidos",
+    "ctaShop": "Comprar rituais de argão",
+    "ctaClinics": "Para clínicas e profissionais",
+    "bestsellersTitle": "Essenciais para rituais diários",
     "bestsellers": {
+      "title": "Essenciais para rituais diários",
       "intro": "Conheça o ritual em três etapas preferido nas clínicas—limpar, repor e selar com o cuidado nutritivo do argan.",
       "cards": [
         {
@@ -138,7 +174,7 @@
         "subtitle": "Parcerias com cooperativas de Essaouira lideradas por mulheres que fortalecem a agricultura local."
       }
     ],
-    "reviewsTitle": "O Que Dizem os Profissionais",
+    "reviewsTitle": "O que dizem os Profissionais",
     "clinics": {
       "title": "Confiado por dermatologistas e clínicas estéticas",
       "copy": "As clínicas escolhem a Kapunka pela pureza e performance no cuidado pós-laser e pele sensível. Nossas rotinas minimalistas favorecem recuperação mais rápida, integridade da barreira e conforto duradouro.",
@@ -151,13 +187,37 @@
       "teaser": "Respostas claras para rotinas reais—pós-procedimento, couro cabeludo, pele do bebé e apoio da barreira."
     },
     "newsletterTitle": "Junte-se à Lista",
-    "newsletterSubtitle": "Dicas para rotinas de pele sensível, uma ou duas vezes por mês. Sem spam. Cancele quando quiser.",
+    "newsletterSubtitle": "Reflexões mensais sobre pele, cuidado e recuperação. Sem ruído — apenas notas com sentido da Kapunka.",
     "newsletter": {
-      "pitch": "Junte-se à nossa comunidade para orientações mensais sobre saúde da barreira, recuperação pós-tratamento e cuidados com a pele baseados em ciência. Sem spam, apenas insights."
+      "pitch": "Junte-se à nossa comunidade para orientações mensais sobre saúde da barreira, recuperação pós-tratamento e cuidados com a pele baseados em ciência. Sem spam, apenas insights.",
+      "title": "Junte-se à Lista",
+      "subtitle": "Reflexões mensais sobre pele, cuidado e recuperação. Sem ruído — apenas notas com sentido da Kapunka.",
+      "placeholderEmail": "Introduza o seu e-mail",
+      "ctaSubscribe": "Subscrever"
     },
     "newsletterThanks": "Obrigado por se inscrever!",
-    "newsletterPlaceholder": "Digite seu e-mail",
-    "newsletterSubmit": "Inscrever-se",
+    "newsletterPlaceholder": "Introduza o seu e-mail",
+    "newsletterSubmit": "Subscrever",
+    "stories": {
+      "title": "Histórias de Rituais",
+      "card1Title": "Da gratidão ao método",
+      "card1Sub": "De um gesto simples nasceu um protocolo terapêutico.",
+      "card2Title": "De confiança profissional",
+      "card2Sub": "Utilizado há mais de uma década por dermatologistas e clínicas de recuperação.",
+      "card3Title": "Origem com herança, padrão clínico",
+      "card3Sub": "Das cooperativas marroquinas às salas de hospital.",
+      "card4Title": "Do hammam à recuperação moderna",
+      "card4Sub": "Sabedoria ancestral com estrutura científica."
+    },
+    "community": {
+      "title": "Rituais na nossa comunidade",
+      "intro": "Um ritual de gratidão partilhado por pessoas, clínicas e cuidadores em todo o mundo."
+    },
+    "professionalsSay": {
+      "title": "O que dizem os Profissionais",
+      "intro": "Profissionais que integram a Kapunka nos cuidados médicos e terapêuticos."
+    },
+    "footerTagline": "Cuidado da pele com base científica para um corpo mais calmo e saudável.",
     "footer": {
       "complianceNote": "Uso cosmético. Não destinado a diagnosticar, tratar, curar ou prevenir doenças."
     }
@@ -169,18 +229,24 @@
       "title": "Kapunka Skincare | Rituales de argán marroquí para clínicas y piel sensible",
       "description": "Kapunka formula aceites de argán, brumas y tratamientos de hammam marroquíes en los que confían las clínicas estéticas para la recuperación post-procedimiento, la reparación de la barrera y los rituales diarios."
     },
-    "heroTitle": "Rituales de argán marroquí de nivel clínico para piel sensible y en recuperación",
-    "heroSubtitle": "Desde el argán de origen único hasta las brumas dérmicas y los clásicos del hammam, Kapunka une la herencia marroquí con la experiencia estética para que la piel post-procedimiento se mantenga calmada, nutrida y resiliente.",
+    "heroTitle": "Da las gracias a tu piel.",
+    "heroSubtitle": "Nacida en clínicas, perfeccionada con el tacto. Kapunka une rituales terapéuticos y aceite de argán puro de Marruecos — un cuidado que reconecta cuerpo y mente.",
     "hero": {
-      "title": "Rituales de argán marroquí de nivel clínico para piel sensible y en recuperación",
-      "subtitle": "Desde el argán de origen único hasta las brumas dérmicas y los clásicos del hammam, Kapunka une la herencia marroquí con la experiencia estética para que la piel post-procedimiento se mantenga calmada, nutrida y resiliente.",
+      "title": "Da las gracias a tu piel.",
+      "subtitle": "Nacida en clínicas, perfeccionada con el tacto. Kapunka une rituales terapéuticos y aceite de argán puro de Marruecos — un cuidado que reconecta cuerpo y mente.",
       "ctaPrimary": "Comprar rituales de argán",
-      "ctaSecondary": "Alianza para clínicas"
+      "ctaSecondary": "Para clínicas y profesionales",
+      "headline": "Da las gracias a tu piel.",
+      "sub1": "Nacida en clínicas, perfeccionada con el tacto.",
+      "sub2": "Kapunka une rituales terapéuticos y aceite de argán puro de Marruecos — un cuidado que reconecta cuerpo y mente.",
+      "ctaShop": "Comprar rituales de argán",
+      "ctaPro": "Para clínicas y profesionales"
     },
     "ctaShop": "Comprar rituales de argán",
-    "ctaClinics": "Alianza para clínicas",
-    "bestsellersTitle": "Nuestros Más Vendidos",
+    "ctaClinics": "Para clínicas y profesionales",
+    "bestsellersTitle": "Esenciales para rituales diarios",
     "bestsellers": {
+      "title": "Esenciales para rituales diarios",
       "intro": "Conoce el ritual de tres pasos más querido por las clínicas: limpiar, reponer y sellar con el cuidado nutritivo del argán.",
       "cards": [
         {
@@ -219,7 +285,7 @@
         "subtitle": "Alianza con cooperativas de Essaouira lideradas por mujeres que sostienen la agricultura local."
       }
     ],
-    "reviewsTitle": "Lo que Dicen los Profesionales",
+    "reviewsTitle": "Lo que dicen los Profesionales",
     "clinics": {
       "title": "Confiado por dermatólogos y clínicas estéticas",
       "copy": "Las clínicas eligen Kapunka por su pureza y desempeño en el cuidado post-láser y de piel sensible. Nuestras rutinas minimalistas favorecen una recuperación más rápida, la integridad de la barrera y un confort duradero.",
@@ -232,13 +298,37 @@
       "teaser": "Respuestas claras para rutinas reales—post-procedimiento, cuero cabelludo, piel de bebé y apoyo de la barrera."
     },
     "newsletterTitle": "Únete a la Lista",
-    "newsletterSubtitle": "Consejos para rutinas de piel sensible, una o dos veces al mes. Sin spam. Baja cuando quieras.",
+    "newsletterSubtitle": "Reflexiones mensuales sobre piel, cuidado y recuperación. Sin ruido — solo mensajes con propósito de Kapunka.",
     "newsletter": {
-      "pitch": "Únete a nuestra comunidad para recibir orientación mensual sobre salud de la barrera, recuperación post-tratamiento y cuidado de la piel basado en ciencia. Sin spam, solo ideas."
+      "pitch": "Únete a nuestra comunidad para recibir orientación mensual sobre salud de la barrera, recuperación post-tratamiento y cuidado de la piel basado en ciencia. Sin spam, solo ideas.",
+      "title": "Únete a la Lista",
+      "subtitle": "Reflexiones mensuales sobre piel, cuidado y recuperación. Sin ruido — solo mensajes con propósito de Kapunka.",
+      "placeholderEmail": "Introduce tu correo electrónico",
+      "ctaSubscribe": "Suscribirme"
     },
     "newsletterThanks": "¡Gracias por suscribirte!",
     "newsletterPlaceholder": "Introduce tu correo electrónico",
-    "newsletterSubmit": "Suscribirse",
+    "newsletterSubmit": "Suscribirme",
+    "stories": {
+      "title": "Historias de Rituales",
+      "card1Title": "De la gratitud al método",
+      "card1Sub": "De un gesto sencillo nació un protocolo terapéutico.",
+      "card2Title": "De confianza profesional",
+      "card2Sub": "Utilizado desde hace más de una década por dermatólogos y clínicas de recuperación.",
+      "card3Title": "Origen con herencia, estándar clínico",
+      "card3Sub": "De las cooperativas marroquíes a las salas hospitalarias.",
+      "card4Title": "Del hammam a la recuperación moderna",
+      "card4Sub": "Sabiduría ancestral, estructura científica."
+    },
+    "community": {
+      "title": "Rituales en nuestra comunidad",
+      "intro": "Un ritual de gratitud compartido por personas, clínicas y cuidadores de todo el mundo."
+    },
+    "professionalsSay": {
+      "title": "Lo que dicen los Profesionales",
+      "intro": "Profesionales que integran Kapunka en la atención médica y terapéutica."
+    },
+    "footerTagline": "Cuidado de la piel con base científica para un cuerpo más tranquilo y saludable.",
     "footer": {
       "complianceNote": "Uso cosmético. No destinado a diagnosticar, tratar, curar ni prevenir enfermedades."
     }
