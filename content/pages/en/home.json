@@ -1,9 +1,9 @@
 {
   "heroAlignment": {
     "heroAlignX": "left",
-    "heroAlignY": "middle",
+    "heroAlignY": "bottom",
     "heroTextPosition": "overlay",
-    "heroTextAnchor": "middle-left",
+    "heroTextAnchor": "bottom-left",
     "heroOverlay": "medium",
     "heroLayoutHint": "bg"
   },
