@@ -1,5 +1,5 @@
-import metadata from '../metadata.json';
 import type { Language } from '../types';
+import { isVisualEditorRuntime } from './visualEditorRuntime';
 
 type MetadataModel = {
   name?: unknown;
@@ -10,28 +10,85 @@ type MetadataContent = {
   models?: unknown;
 };
 
-const metadataModels: MetadataModel[] = Array.isArray((metadata as MetadataContent).models)
-  ? ((metadata as MetadataContent).models as MetadataModel[])
-  : [];
+type MetadataModule = {
+  default: MetadataContent;
+};
 
 const modelFilePathByName = new Map<string, string>();
 const modelNameByFilePath = new Map<string, string>();
 const validObjectIds = new Set<string>();
 
-for (const model of metadataModels) {
-  if (typeof model.name !== 'string' || typeof model.filePath !== 'string') {
-    continue;
-  }
-
-  modelFilePathByName.set(model.name, model.filePath);
-  modelNameByFilePath.set(model.filePath, model.name);
-  validObjectIds.add(`${model.name}:${model.filePath}`);
-}
-
-const SUPPORTED_LANGUAGES: Language[] = ['en', 'es', 'pt'];
+let metadataReady = false;
+let metadataLoadPromise: Promise<void> | null = null;
+let metadataImportPromise: Promise<MetadataContent> | null = null;
 
 type PageModelMap = Map<string, Partial<Record<Language, string>>>;
 
+let pageModelBySlugCache: PageModelMap | null = null;
+let collectionObjectIdsCache: Record<string, string> | null = null;
+let siteConfigObjectIdCache: string | null = null;
+
+const loadMetadataModule = async (): Promise<MetadataContent> => {
+  if (!metadataImportPromise) {
+    metadataImportPromise = import('../metadata.json').then((module: MetadataModule) => module.default);
+  }
+
+  return metadataImportPromise;
+};
+
+const resetCaches = (): void => {
+  pageModelBySlugCache = null;
+  collectionObjectIdsCache = null;
+  siteConfigObjectIdCache = null;
+};
+
+const applyMetadataModels = (models: MetadataModel[]): void => {
+  modelFilePathByName.clear();
+  modelNameByFilePath.clear();
+  validObjectIds.clear();
+
+  for (const model of models) {
+    if (typeof model.name !== 'string' || typeof model.filePath !== 'string') {
+      continue;
+    }
+
+    modelFilePathByName.set(model.name, model.filePath);
+    modelNameByFilePath.set(model.filePath, model.name);
+    validObjectIds.add(`${model.name}:${model.filePath}`);
+  }
+
+  metadataReady = true;
+  resetCaches();
+
+  const siteConfigObjectId = getObjectIdForModel('site') ?? 'SiteConfig:content/site.json';
+  siteConfigObjectIdCache = siteConfigObjectId;
+  validObjectIds.add(siteConfigObjectId);
+};
+
+const ensureMetadataLoaded = (): void => {
+  if (metadataReady || metadataLoadPromise || !isVisualEditorRuntime()) {
+    return;
+  }
+
+  metadataLoadPromise = loadMetadataModule()
+    .then((content) => {
+      const models = Array.isArray(content.models) ? (content.models as MetadataModel[]) : [];
+      applyMetadataModels(models);
+    })
+    .catch((error) => {
+      console.error('[visual-editor] Failed to load metadata.json', error);
+      metadataImportPromise = null;
+    })
+    .finally(() => {
+      metadataLoadPromise = null;
+    });
+};
+
+export const prepareStackbitMetadata = (): void => {
+  ensureMetadataLoaded();
+};
+
+const SUPPORTED_LANGUAGES: Language[] = ['en', 'es', 'pt'];
 const buildPageModelMap = (): PageModelMap => {
   const pageModels: PageModelMap = new Map();
 
@@ -54,7 +111,13 @@ const buildPageModelMap = (): PageModelMap => {
   return pageModels;
 };
 
-const PAGE_MODEL_BY_SLUG: PageModelMap = buildPageModelMap();
+const getPageModelMap = (): PageModelMap => {
+  if (!pageModelBySlugCache) {
+    pageModelBySlugCache = buildPageModelMap();
+  }
+
+  return pageModelBySlugCache;
+};
 
 const LEGACY_PAGE_MODEL_BY_SLUG: Record<string, string> = {
   home: 'HomePage',
@@ -72,12 +135,16 @@ const LEGACY_PAGE_MODEL_BY_SLUG: Record<string, string> = {
 const missingPageModelWarnings = new Set<string>();
 
 const getPageModelName = (slug: string, locale: Language): string | undefined => {
-  const pageModel = PAGE_MODEL_BY_SLUG.get(slug);
+  const pageModel = getPageModelMap().get(slug);
   if (pageModel) {
     const localizedModel = pageModel[locale] ?? pageModel.en ?? pageModel.pt ?? pageModel.es;
     if (localizedModel) {
       return localizedModel;
     }
+  }
+
+  if (!metadataReady) {
+    return LEGACY_PAGE_MODEL_BY_SLUG[slug];
   }
 
   const warningKey = `${slug}:${locale}`;
@@ -125,6 +192,11 @@ const buildCollectionObjectIds = (): Record<string, string> => {
       continue;
     }
 
+    if (!metadataReady) {
+      entries.push([collection, fallback]);
+      continue;
+    }
+
     if (!missingCollectionWarnings.has(collection)) {
       missingCollectionWarnings.add(collection);
       console.warn(
@@ -138,17 +210,33 @@ const buildCollectionObjectIds = (): Record<string, string> => {
   return Object.fromEntries(entries);
 };
 
-const COLLECTION_OBJECT_IDS = buildCollectionObjectIds();
+const getCollectionObjectIds = (): Record<string, string> => {
+  if (!collectionObjectIdsCache) {
+    collectionObjectIdsCache = buildCollectionObjectIds();
+  }
 
-const SITE_CONFIG_OBJECT_ID = getObjectIdForModel('site') ?? 'SiteConfig:content/site.json';
+  return collectionObjectIdsCache;
+};
 
-if (!validObjectIds.has(SITE_CONFIG_OBJECT_ID)) {
-  validObjectIds.add(SITE_CONFIG_OBJECT_ID);
-}
+const getSiteConfigObjectId = (): string => {
+  if (!siteConfigObjectIdCache) {
+    siteConfigObjectIdCache = getObjectIdForModel('site') ?? 'SiteConfig:content/site.json';
+
+    if (metadataReady) {
+      validObjectIds.add(siteConfigObjectIdCache);
+    }
+  }
+
+  return siteConfigObjectIdCache;
+};
 
 const missingObjectIdWarnings = new Set<string>();
 
 const validateObjectId = (objectId?: string): void => {
+  if (!metadataReady) {
+    return;
+  }
+
   if (!objectId || validObjectIds.has(objectId) || missingObjectIdWarnings.has(objectId)) {
     return;
   }
@@ -207,6 +295,7 @@ const resolveTranslationBinding = (value: string): StackbitBinding | null => {
 };
 
 const resolveSiteBinding = (value: string): StackbitBinding | null => {
+  const siteConfigObjectId = getSiteConfigObjectId();
   const sitePrefix = 'site.';
   if (!value.startsWith(sitePrefix)) {
     return null;
@@ -223,7 +312,7 @@ const resolveSiteBinding = (value: string): StackbitBinding | null => {
     const locale = maybeLocale as Language;
     if (!SUPPORTED_LANGUAGES.includes(locale)) {
       const fallbackPath = normalizeStackbitFieldPath(remainder);
-      return { objectId: SITE_CONFIG_OBJECT_ID, fieldPath: fallbackPath };
+      return { objectId: siteConfigObjectId, fieldPath: fallbackPath };
     }
 
     if (restParts[0] === 'pages' && restParts.length >= 2) {
@@ -244,16 +333,18 @@ const resolveSiteBinding = (value: string): StackbitBinding | null => {
 
     const joined = restParts.join('.');
     const fieldPath = normalizeStackbitFieldPath(joined);
-    return { objectId: SITE_CONFIG_OBJECT_ID, fieldPath };
+    return { objectId: siteConfigObjectId, fieldPath };
   }
 
   const sliced = value.slice(sitePrefix.length);
   const fieldPath = normalizeStackbitFieldPath(sliced);
-  return { objectId: SITE_CONFIG_OBJECT_ID, fieldPath };
+  return { objectId: siteConfigObjectId, fieldPath };
 };
 
 const resolveCollectionBinding = (value: string): StackbitBinding | null => {
-  for (const [prefix, objectId] of Object.entries(COLLECTION_OBJECT_IDS)) {
+  const collectionObjectIds = getCollectionObjectIds();
+
+  for (const [prefix, objectId] of Object.entries(collectionObjectIds)) {
     if (value === prefix || value.startsWith(`${prefix}.`)) {
       const remainder = value === prefix ? '' : value.slice(prefix.length + 1);
       const fieldPath = normalizeStackbitFieldPath(remainder);
@@ -333,6 +424,10 @@ const resolveBindingInternal = (value: string): StackbitBinding | null => {
 export const getStackbitBinding = (fieldPath?: string | null): StackbitBinding | undefined => {
   if (!fieldPath) {
     return undefined;
+  }
+
+  if (!metadataReady) {
+    ensureMetadataLoaded();
   }
 
   return resolveBindingInternal(fieldPath) ?? undefined;
