@@ -22,9 +22,6 @@
     "heroOverlay": "medium",
     "heroLayoutHint": "bg"
   },
-  "heroImages": {
-    "heroImageLeft": "/content/uploads/hero-dark-water.jpg"
-  },
   "sections": [
     {
       "type": "mediaShowcase",
