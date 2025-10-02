@@ -80,7 +80,6 @@ The AI agent must proactively search for and eliminate architectural bloat and r
 
 To ensure high-quality, non-breaking changes, the agent must employ detailed specification (similar to Chain-of-Thought prompting, which yields measurable gains):
 
-* **Ask for a Plan First:** Before writing or modifying code, output a detailed, step-by-step diagnostic and correction plan.
 * **Summarize Conflicts and Sequence Changes:** The plan must summarize configuration conflicts and outline the sequence of structural changes (annotations/refactors).
 * **Limit Edits and Provide Context:** Changes must be scoped tightly (bite-sized updates) to avoid unintended side effects across multiple files. The agent must leverage the available codebase context during reasoning.
 * **Deliver Minimal Diff and Tests:** The final deliverable must be a minimal diff containing only necessary code additions and corrections.
