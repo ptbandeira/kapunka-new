@@ -1125,7 +1125,6 @@ const Bestsellers: React.FC<BestsellersProps> = ({ intro, introFieldPath }) => {
                                     key={product.id}
                                     product={product}
                                     fieldPath={productFieldPath}
-                                    data-sb-field-path={`.${index}`}
                                 />
                             );
                         })}
@@ -2449,7 +2448,6 @@ const Home: React.FC = () => {
                         key={product.id}
                         product={product}
                         fieldPath={productFieldPath}
-                        data-sb-field-path={`.${index}`}
                       />
                     );
                   })}
