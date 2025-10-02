@@ -122,7 +122,7 @@ const Footer: React.FC = () => {
             <ul className="space-y-3 text-sm">
               <li>
                 <FooterLink
-                  to="/about"
+                  to="/story"
                   fieldPath={`translations.${language}.footer.ourStory`}
                 >
                   {t('footer.ourStory')}

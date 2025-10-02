@@ -19,6 +19,7 @@ const Learn = lazy(() => import('./pages/Learn'));
 const ArticlePage = lazy(() => import('./pages/Article'));
 const ForClinics = lazy(() => import('./pages/ForClinics'));
 const About = lazy(() => import('./pages/About'));
+const Story = lazy(() => import('./pages/Story'));
 const Contact = lazy(() => import('./pages/Contact'));
 const CartPage = lazy(() => import('./pages/CartPage'));
 const PolicyPage = lazy(() => import('./pages/PolicyPage'));
@@ -111,6 +112,7 @@ const AnimatedRoutes: React.FC = () => {
         <Route path="/method" element={<PageWrapper pageKey="method"><Method /></PageWrapper>} />
         <Route path="/for-clinics" element={<PageWrapper pageKey="clinics"><ForClinics /></PageWrapper>} />
         <Route path="/academy" element={<PageWrapper pageKey="academy"><Academy /></PageWrapper>} />
+        <Route path="/story" element={<PageWrapper pageKey="story"><Story /></PageWrapper>} />
         <Route path="/about" element={<PageWrapper pageKey="about"><About /></PageWrapper>} />
         <Route path="/contact" element={<PageWrapper pageKey="contact"><Contact /></PageWrapper>} />
         <Route path="/cart" element={<PageWrapper pageKey="cart"><CartPage /></PageWrapper>} />
