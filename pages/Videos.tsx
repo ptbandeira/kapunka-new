@@ -6,6 +6,7 @@ import { useLanguage } from '../contexts/LanguageContext';
 import type { PageContent, PageSection } from '../types';
 import { fetchVisualEditorJson } from '../utils/fetchVisualEditorJson';
 import { getVisualEditorAttributes } from '../utils/stackbitBindings';
+import { useVisualEditorSync } from '../contexts/VisualEditorSyncContext';
 
 const SUPPORTED_SECTION_TYPES = new Set<PageSection['type']>([
   'timeline',
@@ -66,6 +67,7 @@ const isPageContent = (value: unknown): value is PageContent => {
 const Videos: React.FC = () => {
   const { t, language } = useLanguage();
   const [pageContent, setPageContent] = useState<PageContent | null>(null);
+  const { contentVersion } = useVisualEditorSync();
 
   useEffect(() => {
     let isMounted = true;
@@ -106,7 +108,7 @@ const Videos: React.FC = () => {
     return () => {
       isMounted = false;
     };
-  }, [language]);
+  }, [language, contentVersion]);
 
   const sections = pageContent?.sections ?? [];
   const sectionsFieldPath = `pages.videos_${language}.sections`;

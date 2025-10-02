@@ -2,6 +2,7 @@ import React, { createContext, useContext, useEffect, useMemo, useState } from '
 import type { SiteSettings } from '../types';
 import defaultSettings from '@/content/site.json';
 import { fetchVisualEditorJson } from '../utils/fetchVisualEditorJson';
+import { useVisualEditorSync } from './VisualEditorSyncContext';
 
 type SiteSettingsContextValue = {
   settings: SiteSettings;
@@ -13,11 +14,13 @@ const SiteSettingsContext = createContext<SiteSettingsContextValue | undefined>(
 export const SiteSettingsProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const [settings, setSettings] = useState<SiteSettings>(defaultSettings as SiteSettings);
   const [isLoading, setIsLoading] = useState<boolean>(true);
+  const { contentVersion } = useVisualEditorSync();
 
   useEffect(() => {
     let isMounted = true;
 
     const loadSettings = async () => {
+      setIsLoading(true);
       try {
         const data = await fetchVisualEditorJson<SiteSettings>('/content/site.json');
         if (!isMounted) {
@@ -40,7 +43,7 @@ export const SiteSettingsProvider: React.FC<{ children: React.ReactNode }> = ({ 
     return () => {
       isMounted = false;
     };
-  }, []);
+  }, [contentVersion]);
 
   const value = useMemo(() => ({ settings, isLoading }), [settings, isLoading]);
 

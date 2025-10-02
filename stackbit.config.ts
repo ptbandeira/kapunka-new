@@ -1,6 +1,7 @@
 import { readFileSync } from 'node:fs';
 import { resolve } from 'node:path';
 import { FileSystemContentSource } from '@stackbit/cms-git';
+import type { StackbitConfig } from '@stackbit/types';
 
 const metadataPath = resolve(process.cwd(), 'metadata.json');
 const metadata = JSON.parse(readFileSync(metadataPath, 'utf8'));
@@ -2354,9 +2355,26 @@ const getSourceTaggedModels = () => {
   return allModels.map((model) => ({ ...model, srcType, srcProjectId }));
 };
 
-/** @type {import('@stackbit/types').StackbitConfig} */
-const config = {
+const config: StackbitConfig = {
   stackbitVersion: '~0.6.0',
+  ssgName: 'custom',
+  nodeVersion: '18',
+  devCommand: 'npm run dev -- --host {HOSTNAME} --port {PORT}',
+  customContentReload: true,
+  experimental: {
+    ssg: {
+      passthrough: [
+        '/@vite',
+        '/@react-refresh',
+        '/@fs/',
+        '/@id/',
+        '/src/',
+        '/node_modules/.vite/',
+        '/vite.svg',
+      ],
+      proxyWebsockets: true,
+    },
+  },
   contentSources: [contentSource],
   modelExtensions: pageModelExtensions,
   mapModels: ({ models }) => {

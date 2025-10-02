@@ -3,6 +3,7 @@ import { motion } from 'framer-motion';
 import type { TrainingCatalogContent, TrainingEntry } from '../types';
 import { useLanguage } from '../contexts/LanguageContext';
 import { fetchVisualEditorJson } from '../utils/fetchVisualEditorJson';
+import { useVisualEditorSync } from '../contexts/VisualEditorSyncContext';
 import { getVisualEditorAttributes } from '../utils/stackbitBindings';
 
 interface TrainingListProps {
@@ -29,6 +30,7 @@ const loadTrainingCatalog = async (): Promise<TrainingEntry[]> => {
 const TrainingList: React.FC<TrainingListProps> = ({ title, description, entries, fieldPath }) => {
   const [catalogEntries, setCatalogEntries] = useState<TrainingEntry[]>([]);
   const { t, language } = useLanguage();
+  const { contentVersion } = useVisualEditorSync();
 
   useEffect(() => {
     if (entries && entries.length > 0) {
@@ -51,7 +53,7 @@ const TrainingList: React.FC<TrainingListProps> = ({ title, description, entries
     return () => {
       isMounted = false;
     };
-  }, [entries]);
+  }, [entries, contentVersion]);
 
   const items = useMemo(() => {
     if (entries && entries.length > 0) {

@@ -7,6 +7,7 @@ import SectionRenderer from '../components/_legacy/SectionRenderer';
 import type { PageContent, PageSection, TimelineEntry, TimelineSectionContent } from '../types';
 import { fetchVisualEditorJson } from '../utils/fetchVisualEditorJson';
 import { getVisualEditorAttributes } from '../utils/stackbitBindings';
+import { useVisualEditorSync } from '../contexts/VisualEditorSyncContext';
 
 const isTimelineEntry = (value: unknown): value is TimelineEntry => {
   if (!value || typeof value !== 'object') {
@@ -182,6 +183,7 @@ const About: React.FC = () => {
     const sourcingAlt = settings.about?.sourcingAlt || t('about.sourcingImageAlt');
     const [aboutContent, setAboutContent] = useState<AboutPageContent | null>(null);
     const [storyContent, setStoryContent] = useState<PageContent | null>(null);
+    const { contentVersion } = useVisualEditorSync();
 
     useEffect(() => {
         let isMounted = true;
@@ -222,7 +224,7 @@ const About: React.FC = () => {
         return () => {
             isMounted = false;
         };
-    }, [language]);
+    }, [language, contentVersion]);
 
     useEffect(() => {
         let isMounted = true;
@@ -263,7 +265,7 @@ const About: React.FC = () => {
         return () => {
             isMounted = false;
         };
-    }, [language]);
+    }, [language, contentVersion]);
 
     const aboutStoryBlocks = aboutContent?.story?.filter((block) => {
         if (!block) {

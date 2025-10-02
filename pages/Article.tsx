@@ -17,6 +17,7 @@ import {
 } from '../utils/loadLearnPageContent';
 import { fetchVisualEditorJson } from '../utils/fetchVisualEditorJson';
 import { getVisualEditorAttributes } from '../utils/stackbitBindings';
+import { useVisualEditorSync } from '../contexts/VisualEditorSyncContext';
 
 interface ArticlesResponse {
     items?: Article[];
@@ -29,6 +30,7 @@ interface ProductsResponse {
 const ArticlePage: React.FC = () => {
     const { slug } = useParams<{ slug: string }>();
     const { translate, t, language } = useLanguage();
+    const { contentVersion } = useVisualEditorSync();
 
     const [article, setArticle] = useState<Article | null>(null);
     const [relatedProducts, setRelatedProducts] = useState<Product[]>([]);
@@ -39,6 +41,8 @@ const ArticlePage: React.FC = () => {
 
     useEffect(() => {
         let isMounted = true;
+
+        setLearnContent(null);
 
         loadLearnPageContent(language)
             .then((result) => {
@@ -57,7 +61,7 @@ const ArticlePage: React.FC = () => {
         return () => {
             isMounted = false;
         };
-    }, [language]);
+    }, [language, contentVersion]);
 
     useEffect(() => {
         let isMounted = true;
@@ -119,7 +123,7 @@ const ArticlePage: React.FC = () => {
         fetchArticleData();
 
         return () => { isMounted = false; };
-    }, [slug]);
+    }, [slug, contentVersion]);
 
     const learnFieldPath = useMemo(() => {
         if (!learnContent) {

@@ -9,6 +9,7 @@ import { useLanguage } from '../contexts/LanguageContext';
 import type { Product, ShopCategory, ShopCategoryLink, ShopContent } from '../types';
 import { fetchVisualEditorJson } from '../utils/fetchVisualEditorJson';
 import { getVisualEditorAttributes } from '../utils/stackbitBindings';
+import { useVisualEditorSync } from '../contexts/VisualEditorSyncContext';
 
 const linkIcons: Record<ShopCategoryLink['type'], LucideIcon> = {
   product: ArrowUpRight,
@@ -27,6 +28,7 @@ const Shop: React.FC = () => {
   const [activeCategoryId, setActiveCategoryId] = useState<string>('all');
   const [loading, setLoading] = useState(true);
   const { t, translate, language } = useLanguage();
+  const { contentVersion } = useVisualEditorSync();
 
   const handleCategoryClick = useCallback((event: React.MouseEvent<HTMLButtonElement>) => {
     const { tabId } = event.currentTarget.dataset;
@@ -43,6 +45,7 @@ const Shop: React.FC = () => {
     let isMounted = true;
 
     const loadShopData = async () => {
+      setLoading(true);
       try {
         const [productData, shopData] = await Promise.all([
           fetchVisualEditorJson<ProductsResponse>('/content/products/index.json'),
@@ -76,7 +79,7 @@ const Shop: React.FC = () => {
     return () => {
       isMounted = false;
     };
-  }, []);
+  }, [contentVersion]);
 
   useEffect(() => {
     if (categories.length === 0) {

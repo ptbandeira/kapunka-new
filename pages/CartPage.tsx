@@ -9,6 +9,7 @@ import { useLanguage } from '../contexts/LanguageContext';
 import type { CartItem, Product } from '../types';
 import { fetchVisualEditorJson } from '../utils/fetchVisualEditorJson';
 import { getVisualEditorAttributes } from '../utils/stackbitBindings';
+import { useVisualEditorSync } from '../contexts/VisualEditorSyncContext';
 
 interface ProductsResponse {
   items?: Product[];
@@ -85,6 +86,7 @@ const CartPage: React.FC = () => {
     const { t, language } = useLanguage();
     const [products, setProducts] = useState<Product[]>([]);
     const [loading, setLoading] = useState(true);
+    const { contentVersion } = useVisualEditorSync();
 
     const cartFieldPath = `translations.${language}.cart`;
     const commonFieldPath = `translations.${language}.common`;
@@ -93,6 +95,7 @@ const CartPage: React.FC = () => {
         let isMounted = true;
 
         const loadProducts = async () => {
+          setLoading(true);
           try {
             const data = await fetchVisualEditorJson<ProductsResponse>('/content/products/index.json');
             if (!isMounted) {
@@ -118,7 +121,7 @@ const CartPage: React.FC = () => {
         return () => {
           isMounted = false;
         };
-      }, []);
+      }, [contentVersion]);
 
     const subtotal = cart.reduce((total, item) => {
         const product = products.find(p => p.id === item.productId);

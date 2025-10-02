@@ -11,6 +11,7 @@ import {
   loadClinicsPageContent,
   type ClinicsPageContentResult,
 } from '../utils/loadClinicsPageContent';
+import { useVisualEditorSync } from '../contexts/VisualEditorSyncContext';
 
 interface ClinicProtocol {
   title: string;
@@ -122,6 +123,7 @@ const ForClinics: React.FC = () => {
   } = useSiteSettings();
   const [doctors, setDoctors] = useState<Doctor[]>([]);
   const [pageContent, setPageContent] = useState<ClinicsPageContentResult | null>(null);
+  const { contentVersion } = useVisualEditorSync();
 
   const clinicsFieldPath = useMemo(() => {
     if (!pageContent) {
@@ -140,6 +142,8 @@ const ForClinics: React.FC = () => {
   useEffect(() => {
     let isMounted = true;
 
+    setPageContent(null);
+
     loadClinicsPageContent(language)
       .then((result) => {
         if (!isMounted) {
@@ -157,7 +161,7 @@ const ForClinics: React.FC = () => {
     return () => {
       isMounted = false;
     };
-  }, [language]);
+  }, [language, contentVersion]);
 
   const translationProtocolSection = t<unknown>('clinics.protocolSection');
   const translationReferencesSection = t<unknown>('clinics.referencesSection');
@@ -270,7 +274,7 @@ const ForClinics: React.FC = () => {
     return () => {
       isMounted = false;
     };
-  }, []);
+  }, [contentVersion]);
 
   return (
     <div>

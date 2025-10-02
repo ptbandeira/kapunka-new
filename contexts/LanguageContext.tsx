@@ -9,6 +9,7 @@ import React, {
 } from 'react';
 import type { Language } from '../types';
 import { fetchVisualEditorJson } from '../utils/fetchVisualEditorJson';
+import { useVisualEditorSync } from './VisualEditorSyncContext';
 
 type TranslationPrimitive = string | number | boolean | null;
 type TranslationNode = TranslationPrimitive | TranslationPrimitive[] | { [key: string]: TranslationNode };
@@ -83,6 +84,7 @@ export const LanguageProvider: React.FC<{ children: React.ReactNode }> = ({ chil
   const [translations, setTranslations] = useState<Translations>(
     initialTranslations,
   );
+  const { contentVersion } = useVisualEditorSync();
 
   useEffect(() => {
     const loadTranslations = async () => {
@@ -105,7 +107,7 @@ export const LanguageProvider: React.FC<{ children: React.ReactNode }> = ({ chil
     loadTranslations().catch((error) => {
       console.error('Unhandled error while loading translations', error);
     });
-  }, []);
+  }, [contentVersion]);
 
   useEffect(() => {
     if (typeof window === 'undefined') {

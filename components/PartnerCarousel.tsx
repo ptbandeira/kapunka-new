@@ -3,6 +3,7 @@ import { motion } from 'framer-motion';
 import { useLanguage } from '../contexts/LanguageContext';
 import type { Partner } from '../types';
 import { fetchVisualEditorJson } from '../utils/fetchVisualEditorJson';
+import { useVisualEditorSync } from '../contexts/VisualEditorSyncContext';
 import { getVisualEditorAttributes } from '../utils/stackbitBindings';
 
 interface PartnerCarouselProps {
@@ -19,6 +20,7 @@ const PartnerCarousel: React.FC<PartnerCarouselProps> = ({ title, fieldPath }) =
     const [partners, setPartners] = useState<Partner[]>([]);
     const resolvedTitle = title ?? t('clinics.partnersTitle');
     const resolvedFieldPath = fieldPath ?? `translations.${language}.clinics.partnersTitle`;
+    const { contentVersion } = useVisualEditorSync();
 
     useEffect(() => {
         let isMounted = true;
@@ -42,7 +44,7 @@ const PartnerCarousel: React.FC<PartnerCarouselProps> = ({ title, fieldPath }) =
         return () => {
             isMounted = false;
         };
-    }, []);
+    }, [contentVersion]);
 
     const containerVariants = {
         hidden: { opacity: 0 },

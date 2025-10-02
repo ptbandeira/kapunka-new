@@ -12,6 +12,7 @@ import type { Product, ProductKnowledge, ProductTabsSectionContent } from '../ty
 import ProductCard from '../components/ProductCard';
 import { fetchVisualEditorJson } from '../utils/fetchVisualEditorJson';
 import { getVisualEditorAttributes } from '../utils/stackbitBindings';
+import { useVisualEditorSync } from '../contexts/VisualEditorSyncContext';
 
 interface ProductsResponse {
     items?: Product[];
@@ -22,6 +23,7 @@ const ProductDetail: React.FC = () => {
     const { t, translate, language } = useLanguage();
     const { addToCart } = useCart();
     const { openCart } = useUI();
+    const { contentVersion } = useVisualEditorSync();
 
     const [product, setProduct] = useState<Product | null>(null);
     const [allProducts, setAllProducts] = useState<Product[]>([]);
@@ -32,6 +34,7 @@ const ProductDetail: React.FC = () => {
         let isMounted = true;
 
         const loadProducts = async () => {
+            setLoading(true);
             try {
                 const data = await fetchVisualEditorJson<ProductsResponse>('/content/products/index.json');
                 if (!isMounted) {
@@ -64,7 +67,7 @@ const ProductDetail: React.FC = () => {
         return () => {
             isMounted = false;
         };
-    }, [id]);
+    }, [id, contentVersion]);
 
     const selectedSize = useMemo(() => {
         if (!product || !selectedSizeId) return null;
