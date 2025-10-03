@@ -153,7 +153,6 @@ collections:
         widget: object
         collapsed: true
         required: false
-        i18n: translate
         fields:
           - label: Left Image
             name: heroImageLeft
@@ -170,7 +169,6 @@ collections:
         widget: object
         collapsed: true
         required: false
-        i18n: translate
         fields:
           - { label: Title, name: title, widget: string, required: false, i18n: translate }
           - { label: Primary Copy, name: text1, widget: text, required: false, i18n: translate }
@@ -180,7 +178,6 @@ collections:
         widget: object
         collapsed: true
         required: false
-        i18n: translate
         fields:
           - { label: Title, name: title, widget: string, required: false, i18n: translate }
           - { label: Subtitle, name: subtitle, widget: text, required: false, i18n: translate }
@@ -205,7 +202,6 @@ collections:
         widget: object
         collapsed: true
         required: false
-        i18n: translate
         fields:
           - { label: Title, name: title, widget: string, required: false, i18n: translate }
           - { label: Studies Title, name: studiesTitle, widget: string, required: false, i18n: translate }
@@ -228,7 +224,6 @@ collections:
         widget: object
         collapsed: true
         required: false
-        i18n: translate
         fields:
           - { label: Title, name: title, widget: string, required: false, i18n: translate }
           - { label: Subtitle, name: subtitle, widget: text, required: false, i18n: translate }
@@ -245,7 +240,6 @@ collections:
         widget: object
         collapsed: true
         required: false
-        i18n: translate
         fields:
           - { label: Title, name: title, widget: string, required: false, i18n: translate }
           - { label: Subtitle, name: subtitle, widget: text, required: false, i18n: translate }
@@ -347,7 +341,6 @@ collections:
         name: sections
         widget: list
         collapsed: true
-        i18n: translate
         types:
           - label: Media + Copy
             name: mediaCopy

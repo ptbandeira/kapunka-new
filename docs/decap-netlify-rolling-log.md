@@ -45,3 +45,8 @@ This log records day-to-day investigations, fixes, and decisions that affect the
 - **What changed**: Reworked the Decap pages collection so section types reuse shared CTA/link anchors, removed unused `imageUrl` mirrors, and migrated showcase and banner CTAs into nested objects across `content/` and `site/content/`.
 - **Impact & follow-up**: Editors now see grouped CTA controls without duplicate URL inputs, Stackbit models stay aligned, and mirrored content stays in sync. Verify new CTA objects save correctly when editors publish multi-locale updates.
 - **References**: Pending PR
+
+## 2025-10-04 — Fixed object i18n flags for Decap validation
+- **What changed**: Removed `i18n: translate` from top-level object and list definitions in `admin/config.yml` after Decap validation flagged the string values for widgets that expect boolean flags.
+- **Impact & follow-up**: Restores CMS load without configuration errors while preserving localized nested fields. No further action required unless additional schema widgets are added.
+- **References**: Pending PR
