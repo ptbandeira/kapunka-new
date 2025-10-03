@@ -50,3 +50,8 @@ This log records day-to-day investigations, fixes, and decisions that affect the
 - **What changed**: Removed `i18n: translate` from top-level object and list definitions in `admin/config.yml` after Decap validation flagged the string values for widgets that expect boolean flags.
 - **Impact & follow-up**: Restores CMS load without configuration errors while preserving localized nested fields. No further action required unless additional schema widgets are added.
 - **References**: Pending PR
+
+## 2025-10-05 — Normalized hero object i18n flags
+- **What changed**: Converted the hero CTA and alignment objects in `admin/config.yml` to use boolean `i18n` flags and updated nested link fields so Decap treats the widgets as valid localized objects.
+- **Impact & follow-up**: Decap CMS rebuild succeeds without schema errors for the hero editor, keeping CTA labels, URLs, and overlay tokens translatable across locales.
+- **References**: Pending PR

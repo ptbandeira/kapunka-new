@@ -63,7 +63,7 @@ collections:
         widget: object
         collapsed: true
         required: false
-        i18n: translate
+        i18n: true
         fields:
           - label: Primary CTA
             name: ctaPrimary
@@ -75,12 +75,12 @@ collections:
                 name: label
                 widget: string
                 required: false
-                i18n: translate
+                i18n: true
               - label: URL
                 name: href
                 widget: string
                 required: false
-                i18n: translate
+                i18n: true
           - label: Secondary CTA
             name: ctaSecondary
             widget: object
@@ -92,7 +92,7 @@ collections:
         widget: object
         collapsed: true
         required: false
-        i18n: translate
+        i18n: true
         fields:
           - label: Horizontal Align
             name: heroAlignX
@@ -147,7 +147,7 @@ collections:
             name: heroOverlay
             widget: string
             required: false
-            i18n: translate
+            i18n: true
       - label: Hero Images
         name: heroImages
         widget: object
