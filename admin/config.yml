@@ -123,3 +123,25 @@ collections:
             name: seo
             widget: object
             fields: *seo_fields
+  - name: pages
+    label: "Standard Pages"
+    folder: content/pages/
+    create: true
+    slug: "{{slug}}"
+    fields:
+      - label: Title
+        name: title
+        widget: string
+        i18n: true
+      - label: Hero Image
+        name: hero_image
+        widget: image
+        required: false
+      - label: Body
+        name: body
+        widget: markdown
+        i18n: true
+      - label: SEO
+        name: seo
+        widget: object
+        fields: *seo_fields
