@@ -427,6 +427,64 @@
           return value;
         }
 
+        function getEntryPathString(entry) {
+          if (!entry) {
+            return '';
+          }
+
+          if (entry.get) {
+            var candidate = entry.get('path');
+            if (candidate) {
+              return String(candidate);
+            }
+          }
+
+          if (entry.path) {
+            return String(entry.path);
+          }
+
+          return '';
+        }
+
+        function getLocaleFromPath(path) {
+          if (!path) {
+            return '';
+          }
+
+          var segments = path.split('/');
+          if (segments.length >= 3 && segments[0] === 'content') {
+            var localeCandidate = segments[2];
+            if (localeCandidate) {
+              return String(localeCandidate).toLowerCase();
+            }
+          }
+
+          return '';
+        }
+
+        function getBaseSlugFromPath(path) {
+          if (!path) {
+            return '';
+          }
+
+          var segments = path.split('/');
+          if (segments.length === 0) {
+            return '';
+          }
+
+          var filename = segments[segments.length - 1];
+          if (!filename) {
+            return '';
+          }
+
+          var dotIndex = filename.lastIndexOf('.');
+          if (dotIndex !== -1) {
+            return filename.slice(0, dotIndex);
+          }
+
+          return filename;
+        }
+
         function getLocaleInfo(entry) {
           var slug = entry && entry.get ? entry.get('slug') : '';
           var locale = '';
@@ -442,6 +500,16 @@
           var explicitLocale = entry && entry.getIn ? entry.getIn(['data', 'locale']) : '';
           if (!locale && explicitLocale) {
             locale = String(explicitLocale).toLowerCase();
+          }
+
+          var entryPath = getEntryPathString(entry);
+          if (entryPath) {
+            if (!baseSlug) {
+              baseSlug = getBaseSlugFromPath(entryPath);
+            }
+            if (!locale) {
+              locale = getLocaleFromPath(entryPath);
+            }
           }
 
           return {
@@ -477,11 +545,9 @@
         }
 
         function getEntryPath(entry) {
-          if (entry && entry.get) {
-            var existingPath = entry.get('path');
-            if (existingPath) {
-              return String(existingPath);
-            }
+          var existingPath = getEntryPathString(entry);
+          if (existingPath) {
+            return existingPath;
           }
 
           var info = getLocaleInfo(entry);
@@ -811,6 +877,55 @@
           return locales;
         }
 
+        function findEntrySlugByPath(collectionName, targetPath) {
+          if (!collectionName || !targetPath) {
+            return '';
+          }
+
+          var CMS = window.CMS;
+          if (!CMS || typeof CMS.getState !== 'function') {
+            return '';
+          }
+
+          var state = CMS.getState();
+          if (!state || typeof state.getIn !== 'function') {
+            return '';
+          }
+
+          var entriesByCollection = state.getIn(['entries', 'entities', collectionName]);
+          if (!entriesByCollection || typeof entriesByCollection.forEach !== 'function') {
+            return '';
+          }
+
+          var resolvedSlug = '';
+          entriesByCollection.forEach(function (entryValue, entrySlug) {
+            if (resolvedSlug) {
+              return;
+            }
+
+            var entryPath = '';
+            if (entryValue && entryValue.get) {
+              entryPath = entryValue.get('path');
+              if (!entryPath && entryValue.getIn) {
+                entryPath = entryValue.getIn(['data', 'path']);
+              }
+            } else if (entryValue && entryValue.path) {
+              entryPath = entryValue.path;
+            }
+
+            if (!entryPath) {
+              return;
+            }
+
+            var normalizedPath = String(entryPath);
+            if (normalizedPath === targetPath) {
+              resolvedSlug = String(entrySlug);
+            }
+          });
+
+          return resolvedSlug;
+        }
+
         function renderLocaleLinks(info, entry, collectionName) {
           if (!collectionName) {
             return [];
@@ -823,7 +938,35 @@
 
           for (var i = 0; i < locales.length; i += 1) {
             var locale = locales[i];
-            var targetSlug = baseSlug ? baseSlug + '_' + locale : slug;
+            var targetSlug = '';
+            var targetPath = '';
+            if (collectionName === 'pages' && baseSlug) {
+              targetPath = 'content/pages/' + locale + '/' + baseSlug + '.json';
+              targetSlug = findEntrySlugByPath(collectionName, targetPath);
+            }
+
+            if (!targetSlug) {
+              var slugCandidates = [];
+              if (baseSlug) {
+                slugCandidates.push(baseSlug + '_' + locale);
+                slugCandidates.push(baseSlug + '-' + locale);
+                slugCandidates.push(locale + '_' + baseSlug);
+                slugCandidates.push(locale + '-' + baseSlug);
+                slugCandidates.push(locale + '/' + baseSlug);
+              }
+              if (slug) {
+                slugCandidates.push(String(slug));
+              }
+
+              for (var candidateIndex = 0; candidateIndex < slugCandidates.length; candidateIndex += 1) {
+                var candidateSlug = slugCandidates[candidateIndex];
+                if (candidateSlug) {
+                  targetSlug = candidateSlug;
+                  break;
+                }
+              }
+            }
+
             if (!targetSlug) {
               continue;
             }
@@ -833,7 +976,7 @@
                 'a',
                 {
                   key: 'locale-' + locale,
-                  href: '#/collections/' + collectionName + '/entries/' + targetSlug,
+                  href: '#/collections/' + collectionName + '/entries/' + encodeURIComponent(targetSlug),
                   style: Object.assign({}, localeChipStyle, isCurrent ? localeChipActiveStyle : localeChipInactiveStyle),
                   'aria-current': isCurrent ? 'true' : undefined,
                   'aria-label': 'Switch to ' + locale.toUpperCase() + ' locale',

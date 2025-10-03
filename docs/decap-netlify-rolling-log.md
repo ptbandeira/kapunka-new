@@ -11,6 +11,12 @@ This log records day-to-day investigations, fixes, and decisions that affect the
 
 ---
 
+## 2025-10-10 — Locale slug detection for multi-folder pages
+- **What changed**: Updated both `admin/index.html` and `site/admin/index.html` to derive locale and slug data from the entry `path`, then locate the matching Decap entry when building locale chips so links work with the new multi-folder `pages` structure.
+- **Impact & follow-up**: Locale chips in the preview header now jump to the appropriate translation instead of 404ing; monitor future schema changes to ensure the helper continues to match `content/pages/{locale}/{slug}.json` paths.
+- **Rollback**: Revert `admin/index.html` and `site/admin/index.html` if locale switching regresses after Decap upgrades.
+- **References**: Pending PR · [`admin/index.html`](../admin/index.html) · [`site/admin/index.html`](../site/admin/index.html)
+
 ## 2025-10-09 — Preview accessibility guardrails
 - **What changed**: Tightened the Decap preview shell with ARIA regions, keyboard focus handoff, and higher-contrast locale chips in both `admin/index.html` and `site/admin/index.html` so editors can tab through metadata, locale navigation, and hero audits with assistive tech feedback.
 - **Impact & follow-up**: Locale switching and CTA/media status reviews now surface audible status updates for screen readers; schedule a paired screen-reader test in the live CMS once Netlify deploys to validate the nav order and focus trap against real entry reloads.
