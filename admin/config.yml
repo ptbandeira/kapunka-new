@@ -195,8 +195,8 @@ shared_sections: &shared_sections
         summary: "{{fields.author}}"
         fields:
           - { label: "Quote", name: "text", widget: "markdown", i18n: true, required: false }
-          - { label: "Author", name: "author", widget: "string", required: false }
-          - { label: "Role", name: "role", widget: "string", required: false }
+          - { label: "Author", name: "author", widget: "string", i18n: true, required: false }
+          - { label: "Role", name: "role", widget: "string", i18n: true, required: false }
   - &section_communityCarousel
     label: "Community Carousel"
     name: "communityCarousel"
@@ -241,6 +241,7 @@ shared_sections: &shared_sections
           - label: "Name"
             name: "name"
             widget: "string"
+            i18n: true
             required: false
           - label: "Role or Context"
             name: "role"
@@ -301,6 +302,7 @@ shared_sections: &shared_sections
       - label: "Background"
         name: "background"
         widget: "select"
+        i18n: true
         required: false
         options:
           - { label: "Light stone", value: "light" }
@@ -309,6 +311,7 @@ shared_sections: &shared_sections
       - label: "Alignment"
         name: "alignment"
         widget: "select"
+        i18n: true
         required: false
         options:
           - { label: "Center", value: "center" }
@@ -364,7 +367,7 @@ shared_sections: &shared_sections
         collapsed: true
         summary: "{{fields.year}}"
         fields:
-          - { label: "Year", name: "year", widget: "string" }
+          - { label: "Year", name: "year", widget: "string", i18n: true }
           - { label: "Title", name: "title", widget: "string", i18n: true }
           - { label: "Description", name: "description", widget: "markdown", i18n: true }
           - { label: "Image", name: "image", widget: "image", choose_url: true, required: false }
