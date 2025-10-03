@@ -2,6 +2,13 @@
 
 # I. Read Me First: Core Mandates
 
+## Rolling Log Update Requirement
+
+* After every significant Decap/Netlify change, append a new entry to `docs/decap-netlify-rolling-log.md` documenting what was updated and why.
+* Use the following command to add entries quickly (the script appends directly to `docs/decap-netlify-rolling-log.md`):
+  * `npx zx scripts/update-rolling-log.mjs docs/decap-netlify-rolling-log.md`
+* When logging work, mirror any modifications made in `content/` within `site/content/` so the record reflects the required synchronization between the two directories.
+
 This document guides autonomous coding agents (Codex/LLMs) operating on the project codebase.
 
 ## The Revised Golden Rule
