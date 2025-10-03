@@ -11,6 +11,11 @@ This log records day-to-day investigations, fixes, and decisions that affect the
 
 ---
 
+## 2025-10-08 — Cloudinary media library & CTA anchors
+- **What changed**: Wired Decap to use the Cloudinary media library, introduced a `Media / Images` collection with required alt text and tagging, added reusable CTA/image anchors, and trimmed Markdown buttons to the essentials. Documented the new editor patterns in the audit guide.
+- **Impact & follow-up**: Editors get consistent CTA controls, lighter rich text toolbars, and a central media inventory, but Netlify needs `CLOUDINARY_CLOUD_NAME`/`CLOUDINARY_API_KEY` set before Cloudinary loads. Seed a few starter assets in the new collection once credentials land.
+- **References**: Pending PR · [Widget guidance](./decap-cms-audit.md)
+
 ## 2025-10-07 — Streamlined page field copy
 - **What changed**: Reworded every `admin/config.yml` field label and helper hint in plain language, added URL and media guidance where editors stalled, and reordered panels so collapsed groups follow the on-page experience.
 - **Impact & follow-up**: Editors see clearer panels in Decap without altering translation requirements. Monitor hero legacy panels to confirm the optional hints reduce confusion before removing them entirely.

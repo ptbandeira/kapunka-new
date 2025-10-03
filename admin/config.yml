@@ -7,6 +7,15 @@ local_backend: true
 media_folder: "content/uploads"
 public_folder: "/content/uploads"
 
+media_library:
+  name: cloudinary
+  config:
+    cloud_name: "${CLOUDINARY_CLOUD_NAME}"
+    api_key: "${CLOUDINARY_API_KEY}"
+    default_transformations:
+      - - fetch_format: auto
+          quality: auto
+
 collections:
   - name: pages
     label: Pages
@@ -77,24 +86,51 @@ collections:
             widget: object
             collapsed: true
             required: false
-            fields: &link_fields
+            summary: "{{fields.label}} → {{fields.href}}"
+            fields: &cta_fields
               - label: Button Label
                 name: label
                 widget: string
                 required: false
+                hint: "Label shown on the button. Keep it action-oriented."
                 i18n: true
               - label: Button URL
                 name: href
                 widget: string
                 required: false
+                pattern:
+                  - "^(\\/|https?://)"
+                  - "Use an https:// link or a site-relative path starting with /."
                 hint: "Use a full URL or a site-relative path such as /contact."
                 i18n: true
+              - label: Open in New Tab
+                name: openInNewTab
+                widget: boolean
+                required: false
+                default: false
+                hint: "Toggle on if the link should open in a new browser tab."
+              - label: Accessible Label Override
+                name: ariaLabel
+                widget: string
+                required: false
+                hint: "Optional: provide additional context for screen readers."
+                i18n: translate
+              - label: Button Style Token
+                name: style
+                widget: select
+                options:
+                  - { label: Primary, value: primary }
+                  - { label: Secondary, value: secondary }
+                  - { label: Link, value: link }
+                required: false
+                hint: "Optional design token to map this CTA to a specific style."
           - label: Secondary Button
             name: ctaSecondary
             widget: object
             collapsed: true
             required: false
-            fields: *link_fields
+            summary: "{{fields.label}} → {{fields.href}}"
+            fields: *cta_fields
       - label: Hero Alignment
         name: heroAlignment
         widget: object
@@ -164,18 +200,14 @@ collections:
         collapsed: true
         required: false
         fields:
-          - label: Left Image
+          - <<: *image_field_defaults
+            label: Left Image
             name: heroImageLeft
-            widget: image
-            required: false
             hint: "Upload a JPG or PNG that is at least 1600 px wide."
-            i18n: duplicate
-          - label: Right Image
+          - <<: *image_field_defaults
+            label: Right Image
             name: heroImageRight
-            widget: image
-            required: false
             hint: "Upload a JPG or PNG that is at least 1600 px wide."
-            i18n: duplicate
       - label: Intro Block
         name: intro
         widget: object
@@ -379,7 +411,22 @@ collections:
             summary: "{{title}}"
             fields:
               - { label: Section Title, name: title, widget: string, required: false, i18n: translate }
-              - { label: Body Copy, name: body, widget: markdown, required: false, i18n: translate }
+              - label: Body Copy
+                name: body
+                widget: markdown
+                required: false
+                i18n: translate
+                buttons: &minimal_markdown_buttons
+                  - heading-two
+                  - bold
+                  - italic
+                  - link
+                  - bulleted-list
+                  - numbered-list
+                  - quote
+                editor_components: &minimal_markdown_components []
+                modes: &minimal_markdown_modes
+                  - rich_text
               - label: Layout Option
                 name: layout
                 widget: select
@@ -389,13 +436,21 @@ collections:
                   - { label: Overlay, value: overlay }
                 required: false
               - { label: Column Count, name: columns, widget: number, required: false, value_type: int }
-              - label: Section Image
+              - &image_field_defaults
+                label: Section Image
                 name: image
                 widget: image
+                choose_url: false
                 required: false
                 hint: "Upload a JPG or PNG that is at least 1200 px wide."
                 i18n: duplicate
-              - { label: Image Alt Text, name: imageAlt, widget: string, required: false, i18n: translate }
+              - &image_alt_field_defaults
+                label: Image Alt Text
+                name: imageAlt
+                widget: string
+                required: false
+                hint: "Describe the image for screen readers."
+                i18n: translate
               - label: Overlay Settings
                 name: overlay
                 widget: object
@@ -461,19 +516,20 @@ collections:
                   - { label: Eyebrow, name: eyebrow, widget: string, required: false, i18n: translate }
                   - { label: Card Title, name: title, widget: string, required: false, i18n: translate }
                   - { label: Body Copy, name: body, widget: text, required: false, i18n: translate }
-                  - label: Card Image
+                  - <<: *image_field_defaults
+                    label: Card Image
                     name: image
-                    widget: image
-                    required: false
                     hint: "Upload a JPG or PNG that is at least 1200 px wide."
-                    i18n: duplicate
-                  - { label: Image Alt Text, name: imageAlt, widget: string, required: false, i18n: translate }
+                  - <<: *image_alt_field_defaults
+                    label: Image Alt Text
+                    name: imageAlt
                   - label: Card Call to Action
                     name: cta
                     widget: object
                     collapsed: true
                     required: false
-                    fields: *link_fields
+                    summary: "{{fields.label}} → {{fields.href}}"
+                    fields: *cta_fields
           - label: Feature Grid
             name: featureGrid
             widget: object
@@ -515,13 +571,13 @@ collections:
                 widget: list
                 collapsed: true
                 fields:
-                  - label: Slide Image
+                  - <<: *image_field_defaults
+                    label: Slide Image
                     name: image
-                    widget: image
-                    required: false
                     hint: "Upload a JPG or PNG that is at least 1200 px wide."
-                    i18n: duplicate
-                  - { label: Image Alt Text, name: alt, widget: string, required: false, i18n: translate }
+                  - <<: *image_alt_field_defaults
+                    label: Image Alt Text
+                    name: alt
                   - { label: Quote, name: quote, widget: text, required: false, i18n: translate }
                   - { label: Name, name: name, widget: string, required: false, i18n: translate }
                   - { label: Role, name: role, widget: string, required: false, i18n: translate }
@@ -580,7 +636,8 @@ collections:
                 widget: object
                 collapsed: true
                 required: false
-                fields: *link_fields
+                summary: "{{fields.label}} → {{fields.href}}"
+                fields: *cta_fields
               - { label: Style Variant, name: style, widget: string, required: false, i18n: translate, hint: "Enter the banner style token, such as primary or outline." }
           - label: Facts
             name: facts
@@ -647,12 +704,10 @@ collections:
                   - { label: Video Title, name: title, widget: string, required: false, i18n: translate }
                   - { label: Description, name: description, widget: text, required: false, i18n: translate }
                   - { label: Video URL, name: videoUrl, widget: string, required: false, i18n: translate, hint: "Paste the full YouTube or Vimeo link, including https://." }
-                  - label: Thumbnail Image
+                  - <<: *image_field_defaults
+                    label: Thumbnail Image
                     name: thumbnail
-                    widget: image
-                    required: false
                     hint: "Upload a JPG or PNG that is at least 800 px wide."
-                    i18n: duplicate
           - label: Training List
             name: trainingList
             widget: object
@@ -695,12 +750,10 @@ collections:
                   - { label: Year, name: year, widget: string, required: false, i18n: translate }
                   - { label: Entry Title, name: title, widget: string, required: false, i18n: translate }
                   - { label: Description, name: description, widget: text, required: false, i18n: translate }
-                  - label: Entry Image
+                  - <<: *image_field_defaults
+                    label: Entry Image
                     name: image
-                    widget: image
-                    required: false
                     hint: "Upload a JPG or PNG that is at least 1200 px wide."
-                    i18n: duplicate
           - label: Image Plus Text Half (Legacy)
             name: imageTextHalf
             widget: object
@@ -708,19 +761,24 @@ collections:
             fields:
               - { label: Section Title, name: title, widget: string, required: false, i18n: translate }
               - { label: Subtitle, name: subtitle, widget: string, required: false, i18n: translate }
-              - { label: Body Copy, name: text, widget: markdown, required: false, i18n: translate }
+              - label: Body Copy
+                name: text
+                widget: markdown
+                required: false
+                i18n: translate
+                buttons: *minimal_markdown_buttons
+                editor_components: *minimal_markdown_components
+                modes: *minimal_markdown_modes
               - label: Button
                 name: button
                 widget: object
                 collapsed: true
                 required: false
-                fields: *link_fields
-              - label: Section Image
+                summary: "{{fields.label}} → {{fields.href}}"
+                fields: *cta_fields
+              - <<: *image_field_defaults
+                label: Section Image
                 name: image
-                widget: image
-                required: false
-                hint: "Upload a JPG or PNG that is at least 1200 px wide."
-                i18n: duplicate
           - label: Image Grid (Legacy)
             name: imageGrid
             widget: object
@@ -733,11 +791,39 @@ collections:
                 widget: list
                 collapsed: true
                 fields:
-                  - label: Gallery Image
+                  - <<: *image_field_defaults
+                    label: Gallery Image
                     name: image
-                    widget: image
-                    required: false
                     hint: "Upload a JPG or PNG that is at least 1200 px wide."
-                    i18n: duplicate
-                  - { label: Image Alt Text, name: alt, widget: string, required: false, i18n: translate }
+                  - <<: *image_alt_field_defaults
+                    label: Image Alt Text
+                    name: alt
                   - { label: Caption, name: caption, widget: text, required: false, i18n: translate }
+
+  - name: mediaImages
+    label: Media / Images
+    folder: content/media/images
+    create: true
+    extension: json
+    format: json
+    identifier_field: title
+    summary: "{{title}} — {{alt}}"
+    fields:
+      - { label: Internal Title, name: title, widget: string, hint: "Name used to search for this asset inside Decap." }
+      - <<: *image_field_defaults
+        label: Image Asset
+        name: image
+        hint: "Pick an upload from Cloudinary or add a new file."
+      - <<: *image_alt_field_defaults
+        label: Alt Text
+        name: alt
+        required: true
+      - label: Tags
+        name: tags
+        widget: list
+        min: 1
+        hint: "Add at least one tag so editors can group related imagery."
+        field:
+          label: Tag
+          name: tag
+          widget: string
