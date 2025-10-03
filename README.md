@@ -36,3 +36,6 @@ When committing changes, keep these safeguards in mind:
 4. Enable **Identity** and **Git Gateway** from the Netlify dashboard so Decap CMS can authenticate editors and commit updates.
 5. Make sure the branch selected in Netlify matches the `branch` value in [`admin/config.yml`](admin/config.yml). The configuration now defaults to `main`; change it if your production site uses a different branch.
 6. After deploying, visit `/admin/` on your Netlify site to log in with Netlify Identity and manage all site content through Decap CMS.
+
+### Further reading for editors
+- Track historical decisions around Decap CMS configuration and Netlify deploys in the [Decap CMS & Netlify rolling log](docs/decap-netlify-rolling-log.md) before making structural changes.

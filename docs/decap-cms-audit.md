@@ -1,5 +1,7 @@
 # Decap CMS Audit & Editor Navigation Guide
 
+> Looking for a change-by-change history? See the [Decap CMS & Netlify rolling log](./decap-netlify-rolling-log.md) for dated context before diving into specific audits.
+
 ## Executive Summary
 - Decap pulls all assets from `content/uploads`, so every image referenced across pages, products, and globals can be updated in one place without touching the codebase.【F:admin/config.yml†L8-L9】
 - Page schemas are repeated for each locale (English, Portuguese, Spanish), creating heavy duplication and longer editorial forms; introducing Decap's built-in i18n support or shared field groups would reduce bloat while keeping content structure intact.【F:admin/config.yml†L116-L639】
