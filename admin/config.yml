@@ -16,7 +16,7 @@ shared_sections: &shared_sections
         required: false
         fields:
           - { label: "Label", name: "label", widget: "string", i18n: true, required: false }
-          - { label: "Link URL", name: "href", widget: "string", required: false }
+          - { label: "Link URL", name: "href", widget: "string", i18n: true, required: false }
       - label: "Secondary CTA"
         name: "ctaSecondary"
         widget: "object"
@@ -24,9 +24,9 @@ shared_sections: &shared_sections
         required: false
         fields:
           - { label: "Label", name: "label", widget: "string", i18n: true, required: false }
-          - { label: "Link URL", name: "href", widget: "string", required: false }
+          - { label: "Link URL", name: "href", widget: "string", i18n: true, required: false }
       - { label: "Image Upload", name: "image", widget: "image", choose_url: true, required: false }
-      - { label: "Image Path (optional)", name: "imageRef", widget: "string", required: false, hint: "Reference an existing asset such as /content/uploads/home-hero.jpg." }
+      - { label: "Image Path (optional)", name: "imageRef", widget: "string", i18n: true, required: false, hint: "Reference an existing asset such as /content/uploads/home-hero.jpg." }
       - { label: "Image Alt Text", name: "imageAlt", widget: "string", i18n: true, required: false }
       - label: "Text Anchor Override"
         name: "position"
@@ -52,11 +52,12 @@ shared_sections: &shared_sections
       - { label: "Title", name: "title", widget: "string", i18n: true, required: false }
       - { label: "Body", name: "body", widget: "markdown", i18n: true, required: false }
       - { label: "Image Upload", name: "image", widget: "image", choose_url: true, required: false }
-      - { label: "Image Path (optional)", name: "imageRef", widget: "string", required: false, hint: "Use when referencing an existing asset path such as /content/uploads/example.jpg." }
+      - { label: "Image Path (optional)", name: "imageRef", widget: "string", i18n: true, required: false, hint: "Use when referencing an existing asset path such as /content/uploads/example.jpg." }
       - { label: "Image Alt Text", name: "imageAlt", widget: "string", i18n: true, required: false }
       - label: "Layout"
         name: "layout"
         widget: "select"
+        i18n: true
         options:
           - { label: "Image right", value: "image-right" }
           - { label: "Image left", value: "image-left" }
@@ -131,10 +132,10 @@ shared_sections: &shared_sections
           - { label: "Title", name: "title", widget: "string", i18n: true, required: false }
           - { label: "Body", name: "body", widget: "text", i18n: true, required: false }
           - { label: "Image Upload", name: "image", widget: "image", choose_url: true, required: false }
-          - { label: "Image Path (optional)", name: "imageRef", widget: "string", required: false }
+          - { label: "Image Path (optional)", name: "imageRef", widget: "string", i18n: true, required: false }
           - { label: "Image Alt Text", name: "imageAlt", widget: "string", i18n: true, required: false }
           - { label: "CTA Label", name: "ctaLabel", widget: "string", i18n: true, required: false }
-          - { label: "CTA Href", name: "ctaHref", widget: "string", required: false, hint: "Supports internal (#/ or /path) and external URLs." }
+          - { label: "CTA Href", name: "ctaHref", widget: "string", i18n: true, required: false, hint: "Supports internal (#/ or /path) and external URLs." }
   - &section_featureGrid
     label: "Feature Grid"
     name: "featureGrid"
@@ -224,6 +225,7 @@ shared_sections: &shared_sections
           - label: "Image Path (optional)"
             name: "imageRef"
             widget: "string"
+            i18n: true
             required: false
             hint: "Reference an existing asset such as /content/uploads/community.jpg."
           - label: "Alt Text"
@@ -282,7 +284,7 @@ shared_sections: &shared_sections
       - { name: "type", widget: "hidden", default: "banner" }
       - { label: "Text", name: "text", widget: "string", i18n: true, required: false }
       - { label: "CTA Label", name: "cta", widget: "string", i18n: true, required: false }
-      - { label: "CTA URL", name: "url", widget: "string", required: false }
+      - { label: "CTA URL", name: "url", widget: "string", i18n: true, required: false }
       - { label: "Style", name: "style", widget: "select", options: ["muted", "inset"], required: false }
   - &section_newsletterSignup
     label: "Newsletter Signup"
@@ -347,7 +349,7 @@ shared_sections: &shared_sections
         fields:
           - { label: "Course Title", name: "courseTitle", widget: "string", i18n: true, required: false }
           - { label: "Summary", name: "courseSummary", widget: "text", i18n: true, required: false }
-          - { label: "Link URL", name: "linkUrl", widget: "string", required: false }
+          - { label: "Link URL", name: "linkUrl", widget: "string", i18n: true, required: false }
   - &section_timeline
     label: "Timeline"
     name: "timeline"
@@ -618,7 +620,7 @@ collections:
                 required: false
                 fields:
                   - { label: "Label", name: "label", widget: "string", i18n: true, required: false }
-                  - { label: "Link URL", name: "href", widget: "string", required: false, hint: "Use internal routes (e.g. /shop) or full URLs." }
+                  - { label: "Link URL", name: "href", widget: "string", i18n: true, required: false, hint: "Use internal routes (e.g. /shop) or full URLs." }
               - label: "Secondary CTA"
                 name: "ctaSecondary"
                 widget: "object"
@@ -626,7 +628,7 @@ collections:
                 required: false
                 fields:
                   - { label: "Label", name: "label", widget: "string", i18n: true, required: false }
-                  - { label: "Link URL", name: "href", widget: "string", required: false }
+                  - { label: "Link URL", name: "href", widget: "string", i18n: true, required: false }
           - label: "Hero Alignment"
             name: "heroAlignment"
             widget: "object"
@@ -637,6 +639,7 @@ collections:
               - label: "Horizontal Alignment"
                 name: "heroAlignX"
                 widget: "select"
+                i18n: true
                 options:
                   - { label: "Left", value: "left" }
                   - { label: "Center", value: "center" }
@@ -645,6 +648,7 @@ collections:
               - label: "Vertical Alignment"
                 name: "heroAlignY"
                 widget: "select"
+                i18n: true
                 options:
                   - { label: "Top", value: "top" }
                   - { label: "Middle", value: "middle" }
@@ -653,6 +657,7 @@ collections:
               - label: "Text Display"
                 name: "heroTextPosition"
                 widget: "select"
+                i18n: true
                 options:
                   - { label: "Overlay (on top of media)", value: "overlay" }
                   - { label: "Below media", value: "below" }
@@ -660,6 +665,7 @@ collections:
               - label: "Overlay Text Anchor"
                 name: "heroTextAnchor"
                 widget: "select"
+                i18n: true
                 required: false
                 options:
                   - { label: "Top left", value: "top-left" }
@@ -675,6 +681,7 @@ collections:
               - label: "Overlay Strength"
                 name: "heroOverlay"
                 widget: "select"
+                i18n: true
                 options:
                   - { label: "None", value: "none" }
                   - { label: "Light", value: "light" }
@@ -684,6 +691,7 @@ collections:
               - label: "Layout Hint"
                 name: "heroLayoutHint"
                 widget: "select"
+                i18n: true
                 options:
                   - { label: "Background image", value: "bg" }
                   - { label: "Background image (static)", value: "bgImage" }
@@ -1960,7 +1968,7 @@ collections:
                     required: false
                     fields:
                       - { label: Label, name: label, widget: string, i18n: true, required: false }
-                      - { label: Link URL, name: href, widget: string, required: false }
+                      - { label: Link URL, name: href, widget: string, i18n: true, required: false }
                   - label: Secondary CTA
                     name: ctaSecondary
                     widget: object
@@ -1968,7 +1976,7 @@ collections:
                     required: false
                     fields:
                       - { label: Label, name: label, widget: string, i18n: true, required: false }
-                      - { label: Link URL, name: href, widget: string, required: false }
+                      - { label: Link URL, name: href, widget: string, i18n: true, required: false }
                   - label: Alignment
                     name: alignment
                     widget: object
@@ -1978,6 +1986,7 @@ collections:
                       - label: Horizontal Alignment
                         name: heroAlignX
                         widget: select
+                        i18n: true
                         options:
                           - { label: Left, value: left }
                           - { label: Center, value: center }
@@ -1986,6 +1995,7 @@ collections:
                       - label: Vertical Alignment
                         name: heroAlignY
                         widget: select
+                        i18n: true
                         options:
                           - { label: Top, value: top }
                           - { label: Middle, value: middle }
@@ -1994,6 +2004,7 @@ collections:
                       - label: Text Display
                         name: heroTextPosition
                         widget: select
+                        i18n: true
                         options:
                           - { label: Overlay, value: overlay }
                           - { label: Below media, value: below }
@@ -2001,6 +2012,7 @@ collections:
                       - label: Text Anchor Override
                         name: heroTextAnchor
                         widget: select
+                        i18n: true
                         required: false
                         options:
                           - { label: Top left, value: top-left }
@@ -2015,6 +2027,7 @@ collections:
                       - label: Overlay Strength
                         name: heroOverlay
                         widget: select
+                        i18n: true
                         options:
                           - { label: None, value: none }
                           - { label: Light, value: light }
@@ -2024,6 +2037,7 @@ collections:
                       - label: Layout Hint
                         name: heroLayoutHint
                         widget: select
+                        i18n: true
                         required: false
                         options:
                           - { label: Background image, value: bg }
