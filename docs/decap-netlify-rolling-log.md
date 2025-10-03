@@ -11,6 +11,11 @@ This log records day-to-day investigations, fixes, and decisions that affect the
 
 ---
 
+## 2025-10-06 — Preview context & testing refresh
+- **What changed**: Enhanced the Decap preview shell to surface hero CTA readiness, section media chips, and breadcrumb-style file context in both `admin/index.html` and its `site/` mirror, then documented a new rapid usability test in the audit guide.
+- **Impact & follow-up**: Editors can now verify call-to-action state, locale, and media coverage directly from the preview. Track follow-up issues for locale toggles, extended CTA cues, and filename surfacing as outlined in `docs/decap-preview-issues.md`.
+- **References**: Pending PR · [Usability notes](./decap-cms-audit.md) · [Issue drafts](./decap-preview-issues.md)
+
 ## 2025-10-03 — Decap CMS factory reset
 - **What changed**: Replaced the previous multi-collection Decap configuration with a minimal single-pages schema and removed the bespoke preview bootstrapping script so the CMS loads without legacy tooling.
 - **Impact & follow-up**: Editors now start from a blank slate and must rebuild collections before publishing; site runtime and existing content remain untouched.

@@ -1,13 +1,678 @@
 <!doctype html>
 <html>
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Content Manager</title>
-    <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
-  </head>
-  <body>
-    <div id="nc-root"></div>
-    <script src="https://unpkg.com/decap-cms@^3.0.0/dist/decap-cms.js"></script>
-  </body>
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Content Manager</title>
+  <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
+</head>
+<body>
+  <div id="nc-root"></div>
+  <script src="https://unpkg.com/decap-cms@^3.0.0/dist/decap-cms.js"></script>
+  <script>
+    (function () {
+      "use strict";
+
+      function initPreview() {
+        var CMS = window.CMS;
+        var createElement = window.h || (window.React && window.React.createElement);
+        if (!CMS || !createElement) {
+          window.setTimeout(initPreview, 50);
+          return;
+        }
+
+        var containerStyle = {
+          fontFamily: 'system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif',
+          padding: '24px',
+          lineHeight: '1.5',
+          color: '#1f2933',
+          backgroundColor: '#f8fafc'
+        };
+
+        var metaBarStyle = {
+          display: 'flex',
+          flexWrap: 'wrap',
+          justifyContent: 'space-between',
+          alignItems: 'center',
+          gap: '12px',
+          marginBottom: '20px',
+          padding: '12px 16px',
+          borderRadius: '10px',
+          border: '1px solid #d9e2ec',
+          backgroundColor: '#ffffff',
+          boxShadow: '0 2px 8px rgba(15, 23, 42, 0.04)'
+        };
+
+        var breadcrumbStyle = {
+          fontSize: '13px',
+          color: '#486581',
+          letterSpacing: '0.01em'
+        };
+
+        var localeBadgeStyle = {
+          display: 'inline-flex',
+          alignItems: 'center',
+          gap: '8px',
+          fontSize: '12px',
+          textTransform: 'uppercase',
+          letterSpacing: '0.08em',
+          color: '#334e68'
+        };
+
+        var localePillStyle = {
+          display: 'inline-flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+          minWidth: '36px',
+          padding: '4px 10px',
+          borderRadius: '999px',
+          backgroundColor: '#e0f2fe',
+          color: '#102a43',
+          fontWeight: '600'
+        };
+
+        var metaPathStyle = {
+          fontSize: '12px',
+          color: '#829ab1'
+        };
+
+        var heroStyle = {
+          backgroundColor: '#ffffff',
+          border: '1px solid #d9e2ec',
+          borderRadius: '12px',
+          padding: '24px',
+          marginBottom: '24px',
+          boxShadow: '0 4px 12px rgba(15, 23, 42, 0.08)'
+        };
+
+        var badgeStyle = {
+          display: 'inline-block',
+          fontSize: '12px',
+          letterSpacing: '0.08em',
+          textTransform: 'uppercase',
+          color: '#486581',
+          backgroundColor: '#e0f2fe',
+          padding: '4px 8px',
+          borderRadius: '999px',
+          marginBottom: '12px'
+        };
+
+        var heroHeadlineStyle = {
+          fontSize: '28px',
+          fontWeight: '600',
+          margin: '0 0 12px',
+          color: '#102a43'
+        };
+
+        var heroSubStyle = {
+          margin: '0 0 20px',
+          fontSize: '18px',
+          color: '#334e68'
+        };
+
+        var heroMetaStyle = {
+          display: 'grid',
+          gridTemplateColumns: 'repeat(auto-fit, minmax(180px, 1fr))',
+          gap: '12px',
+          marginBottom: '12px'
+        };
+
+        var heroMetaCardStyle = {
+          backgroundColor: '#f8fafc',
+          borderRadius: '10px',
+          border: '1px solid #d9e2ec',
+          padding: '12px'
+        };
+
+        var heroMetaHeadingStyle = {
+          margin: '0 0 4px',
+          fontSize: '12px',
+          letterSpacing: '0.08em',
+          textTransform: 'uppercase',
+          color: '#486581'
+        };
+
+        var heroMetaValueStyle = {
+          margin: '0',
+          fontSize: '14px',
+          color: '#243b53'
+        };
+
+        var ctaGroupStyle = {
+          borderTop: '1px solid #d9e2ec',
+          paddingTop: '16px',
+          marginTop: '16px'
+        };
+
+        var ctaHeadingStyle = {
+          margin: '0 0 12px',
+          fontSize: '14px',
+          letterSpacing: '0.08em',
+          textTransform: 'uppercase',
+          color: '#486581'
+        };
+
+        var ctaRowStyle = {
+          display: 'grid',
+          gridTemplateColumns: '120px 1fr 1fr auto',
+          gap: '12px',
+          alignItems: 'center',
+          padding: '10px 12px',
+          borderRadius: '10px',
+          backgroundColor: '#f8fafc',
+          border: '1px solid #d9e2ec',
+          marginBottom: '8px'
+        };
+
+        var ctaBadgeStyle = {
+          display: 'inline-flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+          padding: '4px 8px',
+          borderRadius: '999px',
+          fontSize: '12px',
+          letterSpacing: '0.08em',
+          textTransform: 'uppercase'
+        };
+
+        var ctaPrimaryBadge = {
+          backgroundColor: '#c3ddfd',
+          color: '#102a43'
+        };
+
+        var ctaSecondaryBadge = {
+          backgroundColor: '#f1f5f9',
+          color: '#243b53'
+        };
+
+        var ctaTextStyle = {
+          fontSize: '14px',
+          color: '#243b53',
+          margin: '0'
+        };
+
+        var ctaUrlStyle = {
+          fontSize: '13px',
+          color: '#486581',
+          margin: '0'
+        };
+
+        var ctaStateStyle = {
+          display: 'inline-flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+          padding: '4px 10px',
+          borderRadius: '999px',
+          fontSize: '12px',
+          fontWeight: '600'
+        };
+
+        var ctaStateReadyStyle = {
+          backgroundColor: '#c6f7e2',
+          color: '#0b6e4f'
+        };
+
+        var ctaStateDraftStyle = {
+          backgroundColor: '#ffeeee',
+          color: '#b91c1c'
+        };
+
+        var sectionListStyle = {
+          backgroundColor: '#ffffff',
+          border: '1px solid #d9e2ec',
+          borderRadius: '12px',
+          padding: '24px',
+          boxShadow: '0 4px 12px rgba(15, 23, 42, 0.08)'
+        };
+
+        var sectionListHeadingStyle = {
+          margin: '0 0 16px',
+          fontSize: '20px',
+          fontWeight: '600',
+          color: '#102a43'
+        };
+
+        var sectionGridStyle = {
+          display: 'grid',
+          gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))',
+          gap: '16px'
+        };
+
+        var sectionCardStyle = {
+          border: '1px solid #d9e2ec',
+          borderRadius: '10px',
+          padding: '16px',
+          backgroundColor: '#f8fafc'
+        };
+
+        var sectionMetaStyle = {
+          fontSize: '12px',
+          textTransform: 'uppercase',
+          letterSpacing: '0.08em',
+          color: '#829ab1',
+          marginBottom: '8px'
+        };
+
+        var sectionTitleStyle = {
+          fontSize: '16px',
+          fontWeight: '500',
+          margin: '0 0 10px',
+          color: '#243b53'
+        };
+
+        var sectionDetailRowStyle = {
+          display: 'flex',
+          flexWrap: 'wrap',
+          gap: '8px'
+        };
+
+        var sectionDetailChipStyle = {
+          display: 'inline-flex',
+          alignItems: 'center',
+          padding: '4px 8px',
+          borderRadius: '999px',
+          backgroundColor: '#e0f2fe',
+          color: '#334e68',
+          fontSize: '12px',
+          letterSpacing: '0.04em'
+        };
+
+        var emptyStateStyle = {
+          margin: '0',
+          fontSize: '14px',
+          color: '#829ab1'
+        };
+
+        function toJS(value) {
+          if (value && typeof value.toJS === 'function') {
+            return value.toJS();
+          }
+          return value;
+        }
+
+        function getLocaleInfo(entry) {
+          var slug = entry && entry.get ? entry.get('slug') : '';
+          var locale = '';
+          var baseSlug = slug || '';
+          if (slug) {
+            var localeMatch = slug.match(/_([a-z]{2})$/i);
+            if (localeMatch) {
+              locale = localeMatch[1].toLowerCase();
+              baseSlug = slug.slice(0, -(locale.length + 1));
+            }
+          }
+
+          var explicitLocale = entry && entry.getIn ? entry.getIn(['data', 'locale']) : '';
+          if (!locale && explicitLocale) {
+            locale = String(explicitLocale).toLowerCase();
+          }
+
+          return {
+            locale: locale,
+            baseSlug: baseSlug
+          };
+        }
+
+        function getCollectionLabel(props, entry) {
+          if (props && props.collection) {
+            var collection = props.collection;
+            if (collection.get) {
+              return collection.get('label') || collection.get('name') || '';
+            }
+            if (collection.label || collection.name) {
+              return collection.label || collection.name;
+            }
+          }
+          if (entry && entry.get) {
+            return entry.get('collection') || '';
+          }
+          return '';
+        }
+
+        function getEntryType(entry) {
+          if (entry && entry.getIn) {
+            var typeValue = entry.getIn(['data', 'type']);
+            if (typeValue) {
+              return String(typeValue);
+            }
+          }
+          return '';
+        }
+
+        function getEntryPath(entry) {
+          if (entry && entry.get) {
+            var existingPath = entry.get('path');
+            if (existingPath) {
+              return String(existingPath);
+            }
+          }
+
+          var info = getLocaleInfo(entry);
+          var collectionName = entry && entry.get ? entry.get('collection') : '';
+          if (collectionName === 'pages' && info.baseSlug) {
+            var localeSegment = info.locale || 'en';
+            return 'content/pages/' + localeSegment + '/' + info.baseSlug + '.json';
+          }
+          return '';
+        }
+
+        function getMirrorPath(path) {
+          if (!path) {
+            return '';
+          }
+          if (path.indexOf('content/') === 0) {
+            return path.replace('content/', 'site/content/');
+          }
+          return '';
+        }
+
+        function getSectionTitle(section) {
+          if (!section || typeof section !== 'object') {
+            return 'Untitled section';
+          }
+
+          var candidates = [
+            section.title,
+            section.heading,
+            section.headline,
+            section.label,
+            section.name
+          ];
+
+          for (var i = 0; i < candidates.length; i += 1) {
+            var candidate = candidates[i];
+            if (candidate && String(candidate).trim()) {
+              return String(candidate);
+            }
+          }
+
+          if (Array.isArray(section.items) && section.items.length > 0) {
+            var first = section.items[0];
+            if (first && (first.title || first.heading || first.label)) {
+              return String(first.title || first.heading || first.label);
+            }
+          }
+
+          return section.type ? String(section.type) : 'Untitled section';
+        }
+
+        function countMedia(node) {
+          if (!node) {
+            return 0;
+          }
+          if (Array.isArray(node)) {
+            var mediaTotal = 0;
+            for (var i = 0; i < node.length; i += 1) {
+              mediaTotal += countMedia(node[i]);
+            }
+            return mediaTotal;
+          }
+          if (typeof node === 'string') {
+            return node.trim() ? 1 : 0;
+          }
+          if (typeof node !== 'object') {
+            return 0;
+          }
+
+          var keys = ['image', 'imageUrl', 'media', 'poster', 'backgroundImage', 'src'];
+          var total = 0;
+          for (var j = 0; j < keys.length; j += 1) {
+            if (node[keys[j]]) {
+              total += countMedia(node[keys[j]]);
+            }
+          }
+
+          if (Array.isArray(node.items)) {
+            total += countMedia(node.items);
+          }
+          if (Array.isArray(node.slides)) {
+            total += countMedia(node.slides);
+          }
+          if (Array.isArray(node.media)) {
+            total += countMedia(node.media);
+          }
+
+          return total;
+        }
+
+        function countCtas(node) {
+          if (!node) {
+            return 0;
+          }
+          if (Array.isArray(node)) {
+            var sum = 0;
+            for (var i = 0; i < node.length; i += 1) {
+              sum += countCtas(node[i]);
+            }
+            return sum;
+          }
+          if (typeof node !== 'object') {
+            return 0;
+          }
+
+          var total = 0;
+          var ctaKeys = ['cta', 'ctaPrimary', 'ctaSecondary', 'ctaTertiary', 'button', 'link'];
+          for (var j = 0; j < ctaKeys.length; j += 1) {
+            var value = node[ctaKeys[j]];
+            if (!value) {
+              continue;
+            }
+            if (Array.isArray(value)) {
+              total += countCtas(value);
+            } else if (typeof value === 'object') {
+              var label = value.label || value.text || value.title;
+              var href = value.href || value.url;
+              if ((label && String(label).trim()) || (href && String(href).trim())) {
+                total += 1;
+              }
+            }
+          }
+
+          if (node.ctas) {
+            total += countCtas(node.ctas);
+          }
+          if (node.buttons) {
+            total += countCtas(node.buttons);
+          }
+          if (node.links) {
+            total += countCtas(node.links);
+          }
+          if (Array.isArray(node.items)) {
+            total += countCtas(node.items);
+          }
+          if (Array.isArray(node.slides)) {
+            total += countCtas(node.slides);
+          }
+
+          return total;
+        }
+
+        function buildSectionDetails(section) {
+          var details = [];
+          var mediaCount = countMedia(section);
+          if (mediaCount > 0) {
+            details.push(mediaCount + (mediaCount === 1 ? ' media asset' : ' media assets'));
+          } else {
+            details.push('Media placeholder');
+          }
+
+          var ctaCount = countCtas(section);
+          if (ctaCount > 0) {
+            details.push(ctaCount + (ctaCount === 1 ? ' CTA ready' : ' CTAs ready'));
+          } else {
+            details.push('CTA not set');
+          }
+
+          return details;
+        }
+
+        function renderCtaRow(cta, label) {
+          var data = toJS(cta) || {};
+          var text = data.label || data.text || 'Add label';
+          var url = data.href || data.url || 'Add URL';
+          var isReady = Boolean((data.label && String(data.label).trim()) && (data.href && String(data.href).trim()));
+
+          return createElement(
+            'div',
+            { key: label, style: ctaRowStyle },
+            createElement('span', { style: Object.assign({}, ctaBadgeStyle, label === 'Primary CTA' ? ctaPrimaryBadge : ctaSecondaryBadge) }, label),
+            createElement('p', { style: ctaTextStyle }, text),
+            createElement('p', { style: ctaUrlStyle }, url),
+            createElement('span', { style: Object.assign({}, ctaStateStyle, isReady ? ctaStateReadyStyle : ctaStateDraftStyle) }, isReady ? 'Ready' : 'Draft')
+          );
+        }
+
+        function HomePreview(props) {
+          var entry = props.entry;
+          var heroHeadline = entry.getIn(['data', 'heroHeadline']) || '';
+          var heroSubheadline = entry.getIn(['data', 'heroSubheadline']) || '';
+          var heroAlignment = toJS(entry.getIn(['data', 'heroAlignment'])) || {};
+          var heroCtas = toJS(entry.getIn(['data', 'heroCtas'])) || {};
+          var sectionsData = entry.getIn(['data', 'sections']);
+          var sectionItems = [];
+
+          if (sectionsData) {
+            if (typeof sectionsData.toJS === 'function') {
+              sectionItems = sectionsData.toJS();
+            } else if (Array.isArray(sectionsData)) {
+              sectionItems = sectionsData;
+            }
+          }
+
+          var info = getLocaleInfo(entry);
+          var collectionLabel = getCollectionLabel(props, entry) || 'Pages';
+          var typeLabel = getEntryType(entry);
+          var entryPath = getEntryPath(entry);
+          var mirrorPath = getMirrorPath(entryPath);
+
+          var breadcrumbParts = [];
+          if (collectionLabel) {
+            breadcrumbParts.push(collectionLabel);
+          }
+          if (typeLabel) {
+            breadcrumbParts.push(typeLabel);
+          }
+          if (info.baseSlug) {
+            breadcrumbParts.push(info.baseSlug);
+          }
+
+          var sectionCards = sectionItems.map(function (section, index) {
+            var type = section && section.type ? String(section.type) : 'Section ' + (index + 1);
+            var titleText = getSectionTitle(section);
+            var detailItems = buildSectionDetails(section);
+
+            var detailChips = detailItems.map(function (detail, detailIndex) {
+              return createElement('span', { key: 'detail-' + detailIndex, style: sectionDetailChipStyle }, detail);
+            });
+
+            return createElement(
+              'div',
+              { key: index, style: sectionCardStyle },
+              createElement('div', { style: sectionMetaStyle }, type),
+              createElement('h3', { style: sectionTitleStyle }, titleText || 'Untitled section'),
+              createElement('div', { style: sectionDetailRowStyle }, detailChips)
+            );
+          });
+
+          var heroMetaCards = [
+            createElement(
+              'div',
+              { key: 'align-x', style: heroMetaCardStyle },
+              createElement('p', { style: heroMetaHeadingStyle }, 'Horizontal alignment'),
+              createElement('p', { style: heroMetaValueStyle }, heroAlignment.heroAlignX || 'Not set')
+            ),
+            createElement(
+              'div',
+              { key: 'align-y', style: heroMetaCardStyle },
+              createElement('p', { style: heroMetaHeadingStyle }, 'Vertical alignment'),
+              createElement('p', { style: heroMetaValueStyle }, heroAlignment.heroAlignY || 'Not set')
+            ),
+            createElement(
+              'div',
+              { key: 'overlay', style: heroMetaCardStyle },
+              createElement('p', { style: heroMetaHeadingStyle }, 'Overlay strength'),
+              createElement('p', { style: heroMetaValueStyle }, heroAlignment.heroOverlay || 'Not set')
+            ),
+            createElement(
+              'div',
+              { key: 'layout', style: heroMetaCardStyle },
+              createElement('p', { style: heroMetaHeadingStyle }, 'Layout hint'),
+              createElement('p', { style: heroMetaValueStyle }, heroAlignment.heroLayoutHint || 'Add guidance')
+            )
+          ];
+
+          var ctaRows = [];
+          if (heroCtas && typeof heroCtas === 'object') {
+            if (heroCtas.ctaPrimary) {
+              ctaRows.push(renderCtaRow(heroCtas.ctaPrimary, 'Primary CTA'));
+            }
+            if (heroCtas.ctaSecondary) {
+              ctaRows.push(renderCtaRow(heroCtas.ctaSecondary, 'Secondary CTA'));
+            }
+          }
+          if (ctaRows.length === 0) {
+            ctaRows.push(
+              createElement(
+                'div',
+                { key: 'cta-empty', style: Object.assign({}, ctaRowStyle, { gridTemplateColumns: '1fr' }) },
+                createElement('p', { style: ctaTextStyle }, 'Add hero CTAs to surface actions here.')
+              )
+            );
+          }
+
+          return createElement(
+            'div',
+            { style: containerStyle },
+            createElement(
+              'div',
+              { style: metaBarStyle },
+              createElement('div', { style: breadcrumbStyle }, breadcrumbParts.join(' › ') || 'Current entry'),
+              createElement(
+                'div',
+                { style: localeBadgeStyle },
+                createElement('span', null, 'Locale'),
+                createElement('span', { style: localePillStyle }, (info.locale || 'default').toUpperCase())
+              ),
+              entryPath
+                ? createElement('div', { style: metaPathStyle }, 'File: ' + entryPath)
+                : null,
+              mirrorPath
+                ? createElement('div', { style: metaPathStyle }, 'Mirror: ' + mirrorPath)
+                : null
+            ),
+            createElement(
+              'section',
+              { style: heroStyle },
+              createElement('div', { style: badgeStyle }, 'Home hero'),
+              createElement('h1', { style: heroHeadlineStyle }, heroHeadline || 'Hero headline'),
+              heroSubheadline ? createElement('p', { style: heroSubStyle }, heroSubheadline) : null,
+              createElement('div', { style: heroMetaStyle }, heroMetaCards),
+              createElement(
+                'div',
+                { style: ctaGroupStyle },
+                createElement('p', { style: ctaHeadingStyle }, 'Call-to-actions'),
+                ctaRows
+              )
+            ),
+            createElement(
+              'section',
+              { style: sectionListStyle },
+              createElement('h2', { style: sectionListHeadingStyle }, 'Sections overview'),
+              sectionCards.length
+                ? createElement('div', { style: sectionGridStyle }, sectionCards)
+                : createElement('p', { style: emptyStateStyle }, 'Add sections to preview them here.')
+            )
+          );
+        }
+
+        var homeTemplates = ['home_en', 'home_es', 'home_pt'];
+        homeTemplates.forEach(function (template) {
+          CMS.registerPreviewTemplate(template, HomePreview);
+        });
+      }
+
+      initPreview();
+    })();
+  </script>
+</body>
 </html>
