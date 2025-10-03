@@ -1,3 +1,28 @@
+cta_fields: &cta_fields
+  - label: Label
+    name: label
+    widget: string
+    i18n: true
+  - label: URL
+    name: url
+    widget: string
+  - label: Style
+    name: style
+    widget: select
+    options:
+      - primary
+      - secondary
+
+seo_fields: &seo_fields
+  - label: Meta Title
+    name: meta_title
+    widget: string
+    i18n: true
+  - label: Meta Description
+    name: meta_description
+    widget: text
+    i18n: true
+
 backend:
   name: git-gateway
   branch: main
