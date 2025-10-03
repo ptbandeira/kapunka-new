@@ -1,37 +1,43 @@
 import type { Language } from '../types';
 
-interface UnifiedPageValueMap {
-  [language: string]: string | undefined;
+type LocalizedPrimitive = string | number | boolean;
+
+interface LocalizedValueMap {
+  [language: string]: LocalizedPrimitive | null | undefined;
 }
 
-interface UnifiedPageEntry {
+interface UnifiedPageFieldEntry {
   key?: string;
-  value?: UnifiedPageValueMap;
+  value?: LocalizedValueMap;
 }
 
-interface UnifiedPageSection {
-  key?: string;
-  copy?: UnifiedPageEntry[];
-  options?: UnifiedPageEntry[];
+interface RawUnifiedPageSection {
+  type?: string;
+  [key: string]: unknown;
 }
 
-interface UnifiedPageRecord {
+interface RawUnifiedPageMetadata {
+  title?: LocalizedValueMap;
+  description?: LocalizedValueMap;
+}
+
+interface RawUnifiedPageRecord {
   id?: string;
-  sections?: UnifiedPageSection[];
+  label?: string;
+  slug?: string;
+  metadata?: RawUnifiedPageMetadata;
+  hero?: Record<string, unknown>;
+  sections?: RawUnifiedPageSection[];
+  fields?: UnifiedPageFieldEntry[];
 }
 
 interface UnifiedPageIndex {
-  pages?: UnifiedPageRecord[];
+  pages?: RawUnifiedPageRecord[];
 }
 
 interface UnifiedCandidate {
   url: string;
   source: 'site' | 'content';
-}
-
-interface SectionParseResult {
-  data: Record<string, unknown>;
-  localesUsed: Set<Language>;
 }
 
 const LANGUAGE_FALLBACKS: Record<Language, Language[]> = {
@@ -57,53 +63,67 @@ const getLocalePreference = (language: Language): Language[] => {
   return ['en', 'pt', 'es'];
 };
 
-const getLocalizedValue = (
-  valueMap: UnifiedPageValueMap | undefined,
+const isPlainObject = (value: unknown): value is Record<string, unknown> => (
+  typeof value === 'object' && value !== null && !Array.isArray(value)
+);
+
+const isLocalizedMapValue = (value: unknown): value is LocalizedValueMap => {
+  if (!isPlainObject(value)) {
+    return false;
+  }
+  const entries = Object.entries(value);
+  if (entries.length === 0) {
+    return false;
+  }
+  return entries.every(([locale, candidate]) => (
+    isLanguage(locale)
+    && (
+      candidate == null
+      || typeof candidate === 'string'
+      || typeof candidate === 'number'
+      || typeof candidate === 'boolean'
+    )
+  ));
+};
+
+const getLocalizedPrimitive = (
+  valueMap: LocalizedValueMap | undefined,
   language: Language,
-): { value: string; locale: Language } | null => {
+): { value: LocalizedPrimitive; locale: Language } | null => {
   if (!valueMap) {
     return null;
   }
 
-  const preference = getLocalePreference(language);
-  for (const locale of preference) {
-    const candidate = valueMap[locale];
+  const normalizeCandidate = (candidate: LocalizedPrimitive | null | undefined): LocalizedPrimitive | null => {
+    if (candidate == null) {
+      return null;
+    }
     if (typeof candidate === 'string') {
       const trimmed = candidate.trim();
-      if (trimmed.length > 0) {
-        return { value: trimmed, locale };
-      }
+      return trimmed.length > 0 ? trimmed : null;
+    }
+    return candidate;
+  };
+
+  const preference = getLocalePreference(language);
+  for (const locale of preference) {
+    const normalized = normalizeCandidate(valueMap[locale] ?? null);
+    if (normalized != null) {
+      return { value: normalized, locale };
     }
   }
 
   for (const [locale, candidate] of Object.entries(valueMap)) {
-    if (!isLanguage(locale) || typeof candidate !== 'string') {
+    if (!isLanguage(locale)) {
       continue;
     }
-    const trimmed = candidate.trim();
-    if (trimmed.length > 0) {
-      return { value: trimmed, locale };
+    const normalized = normalizeCandidate(candidate);
+    if (normalized != null) {
+      return { value: normalized, locale };
     }
   }
 
   return null;
-};
-
-const parseOptionValue = (raw: string): string | number | boolean => {
-  const trimmed = raw.trim();
-  if (trimmed === 'true') {
-    return true;
-  }
-  if (trimmed === 'false') {
-    return false;
-  }
-
-  const numeric = Number(trimmed);
-  if (!Number.isNaN(numeric)) {
-    return numeric;
-  }
-
-  return trimmed;
 };
 
 const ensureContainer = (
@@ -173,42 +193,193 @@ const setNestedValue = (
   current[lastSegment] = value;
 };
 
-const buildSectionData = (
-  section: UnifiedPageSection,
+const resolveValue = (
+  value: unknown,
   language: Language,
-): SectionParseResult => {
-  const data: Record<string, unknown> = {};
-  const localesUsed = new Set<Language>();
-
-  if (Array.isArray(section.copy)) {
-    section.copy.forEach((entry) => {
-      if (typeof entry?.key !== 'string') {
-        return;
+  localesUsed: Set<Language>,
+): unknown => {
+  if (Array.isArray(value)) {
+    const resolvedArray: unknown[] = [];
+    value.forEach((item) => {
+      const resolved = resolveValue(item, language, localesUsed);
+      if (resolved !== undefined) {
+        resolvedArray.push(resolved);
       }
-      const localized = getLocalizedValue(entry.value, language);
-      if (!localized) {
-        return;
-      }
-      localesUsed.add(localized.locale);
-      setNestedValue(data, entry.key, localized.value);
     });
+    return resolvedArray;
   }
 
-  if (Array.isArray(section.options)) {
-    section.options.forEach((entry) => {
-      if (typeof entry?.key !== 'string') {
-        return;
-      }
-      const localized = getLocalizedValue(entry.value, language);
-      if (!localized) {
-        return;
-      }
-      localesUsed.add(localized.locale);
-      setNestedValue(data, entry.key, parseOptionValue(localized.value));
-    });
+  if (isLocalizedMapValue(value)) {
+    const localized = getLocalizedPrimitive(value, language);
+    if (!localized) {
+      return undefined;
+    }
+    localesUsed.add(localized.locale);
+    return localized.value;
   }
 
-  return { data, localesUsed };
+  if (isPlainObject(value)) {
+    const result: Record<string, unknown> = {};
+    let hasValue = false;
+    for (const [key, nested] of Object.entries(value)) {
+      const resolved = resolveValue(nested, language, localesUsed);
+      if (resolved !== undefined) {
+        result[key] = resolved;
+        hasValue = true;
+      }
+    }
+    return hasValue ? result : undefined;
+  }
+
+  if (value === null || value === undefined) {
+    return undefined;
+  }
+
+  return value;
+};
+
+const resolveSection = (
+  section: RawUnifiedPageSection,
+  language: Language,
+  localesUsed: Set<Language>,
+): Record<string, unknown> | null => {
+  const resolved: Record<string, unknown> = {};
+
+  for (const [key, value] of Object.entries(section)) {
+    if (key === 'type') {
+      if (typeof value === 'string' && value.length > 0) {
+        resolved.type = value;
+      }
+      continue;
+    }
+
+    const converted = resolveValue(value, language, localesUsed);
+    if (converted !== undefined) {
+      resolved[key] = converted;
+    }
+  }
+
+  if (typeof resolved.type !== 'string' || resolved.type.length === 0) {
+    return null;
+  }
+
+  return resolved;
+};
+
+const applyMetadata = (
+  metadata: RawUnifiedPageMetadata | undefined,
+  data: Record<string, unknown>,
+  language: Language,
+  localesUsed: Set<Language>,
+): void => {
+  if (!metadata) {
+    return;
+  }
+
+  const title = getLocalizedPrimitive(metadata.title, language);
+  if (title) {
+    data.metaTitle = title.value;
+    localesUsed.add(title.locale);
+  }
+
+  const description = getLocalizedPrimitive(metadata.description, language);
+  if (description) {
+    data.metaDescription = description.value;
+    localesUsed.add(description.locale);
+  }
+};
+
+const applyHero = (
+  hero: Record<string, unknown> | undefined,
+  data: Record<string, unknown>,
+  language: Language,
+  localesUsed: Set<Language>,
+): void => {
+  if (!hero) {
+    return;
+  }
+
+  const resolved = resolveValue(hero, language, localesUsed);
+  if (!isPlainObject(resolved)) {
+    if (resolved !== undefined) {
+      data.hero = resolved;
+    }
+    return;
+  }
+
+  data.hero = resolved;
+
+  const assignString = (sourceKey: string, targetPath: string) => {
+    const raw = resolved[sourceKey];
+    if (typeof raw === 'string' && raw.length > 0) {
+      setNestedValue(data, targetPath, raw);
+    }
+  };
+
+  assignString('headline', 'heroHeadline');
+  assignString('subheadline', 'heroSubheadline');
+  assignString('title', 'heroTitle');
+  assignString('subtitle', 'heroSubtitle');
+  assignString('sub1', 'heroSub1');
+  assignString('sub2', 'heroSub2');
+
+  const ctaPrimary = resolved.ctaPrimary;
+  if (isPlainObject(ctaPrimary)) {
+    const { label, href } = ctaPrimary;
+    if (typeof label === 'string' && label.length > 0) {
+      setNestedValue(data, 'heroCtas.ctaPrimary.label', label);
+    }
+    if (typeof href === 'string' && href.length > 0) {
+      setNestedValue(data, 'heroCtas.ctaPrimary.href', href);
+    }
+  }
+
+  const ctaSecondary = resolved.ctaSecondary;
+  if (isPlainObject(ctaSecondary)) {
+    const { label, href } = ctaSecondary;
+    if (typeof label === 'string' && label.length > 0) {
+      setNestedValue(data, 'heroCtas.ctaSecondary.label', label);
+    }
+    if (typeof href === 'string' && href.length > 0) {
+      setNestedValue(data, 'heroCtas.ctaSecondary.href', href);
+    }
+  }
+
+  const alignment = resolved.alignment;
+  if (isPlainObject(alignment)) {
+    Object.entries(alignment).forEach(([key, value]) => {
+      if (
+        typeof value === 'string'
+        || typeof value === 'number'
+        || typeof value === 'boolean'
+      ) {
+        setNestedValue(data, `heroAlignment.${key}`, value);
+      }
+    });
+  }
+};
+
+const applyFields = (
+  fields: UnifiedPageFieldEntry[] | undefined,
+  data: Record<string, unknown>,
+  language: Language,
+  localesUsed: Set<Language>,
+): void => {
+  if (!Array.isArray(fields)) {
+    return;
+  }
+
+  fields.forEach((entry) => {
+    if (typeof entry?.key !== 'string') {
+      return;
+    }
+    const localized = getLocalizedPrimitive(entry.value, language);
+    if (!localized) {
+      return;
+    }
+    localesUsed.add(localized.locale);
+    setNestedValue(data, entry.key, localized.value);
+  });
 };
 
 const determineResolvedLocale = (
@@ -254,15 +425,29 @@ export const loadUnifiedPage = async <TData = Record<string, unknown>>(
         continue;
       }
 
-      const section = Array.isArray(match.sections)
-        ? match.sections.find((entry) => entry?.key === 'page') ?? match.sections[0]
-        : undefined;
+      const localesUsed = new Set<Language>();
+      const data: Record<string, unknown> = {};
 
-      if (!section) {
-        continue;
+      applyMetadata(match.metadata, data, language, localesUsed);
+      applyHero(match.hero, data, language, localesUsed);
+      applyFields(match.fields, data, language, localesUsed);
+
+      const sections = Array.isArray(match.sections)
+        ? match.sections
+          .map((section) => resolveSection(section, language, localesUsed))
+          .filter((section): section is Record<string, unknown> => section !== null)
+        : [];
+      if (sections.length > 0) {
+        data.sections = sections;
       }
 
-      const { data, localesUsed } = buildSectionData(section, language);
+      if (typeof match.label === 'string' && match.label.length > 0) {
+        data.label = match.label;
+      }
+      if (typeof match.slug === 'string' && match.slug.length > 0) {
+        data.slug = match.slug;
+      }
+
       const resolvedLocale = determineResolvedLocale(localesUsed, language);
 
       return {
