@@ -76,44 +76,6 @@
             "Pós-sol"
           ]
         }
-      ],
-      "specialties": [
-        {
-          "title": "Pediatria",
-          "bullets": [
-            "Hidratação a partir dos 3 meses",
-            "Dermatite da fralda",
-            "Dermatite atópica"
-          ]
-        },
-        {
-          "title": "Dermatologia",
-          "bullets": [
-            "Pele seca e descamativa",
-            "Psoríase/dermatite",
-            "Marcas pós-acne ou cirurgia"
-          ]
-        },
-        {
-          "title": "Pós-operatório",
-          "bullets": [
-            "Favorece recuperação epitelial mais rápida com cicatrização leve"
-          ]
-        },
-        {
-          "title": "Fisioterapia",
-          "bullets": [
-            "Massagem reabilitadora",
-            "Recuperação da pele após curativos"
-          ]
-        },
-        {
-          "title": "Estética",
-          "bullets": [
-            "Cuidados pós-tratamento (depilação/peelings/RF)",
-            "Pós-sol"
-          ]
-        }
       ]
     }
   ]

@@ -32,36 +32,44 @@
           "title": "Da gratidão ao método",
           "body": "De um gesto simples nasceu um protocolo terapêutico.",
           "imageAlt": "Mãos aplicando óleo de argan sob luz quente",
-          "ctaLabel": "Nossa história",
-          "ctaHref": "/about",
-          "image": "/content/uploads/roots-olive-tree.jpg"
+          "image": "/content/uploads/roots-olive-tree.jpg",
+          "cta": {
+            "label": "Nossa história",
+            "href": "/about"
+          }
         },
         {
           "eyebrow": "Para clínicas",
           "title": "De confiança profissional",
           "body": "Utilizado há mais de uma década por dermatologistas e clínicas de recuperação.",
           "imageAlt": "Profissional massageando o rosto de uma cliente com cuidado de argan",
-          "ctaLabel": "Parceria conosco",
-          "ctaHref": "/clinics",
-          "image": "/content/uploads/clinic-hands.jpg"
+          "image": "/content/uploads/clinic-hands.jpg",
+          "cta": {
+            "label": "Parceria conosco",
+            "href": "/clinics"
+          }
         },
         {
           "eyebrow": "Cadeia de fornecimento",
           "title": "Origem com herança, padrão clínico",
           "body": "Das cooperativas marroquinas às salas de hospital.",
           "imageAlt": "Frutos de argan recém-colhidos em um cesto de palha",
-          "ctaLabel": "Nossos padrões",
-          "ctaHref": "/method",
-          "image": "/content/uploads/argan-coop.jpg"
+          "image": "/content/uploads/argan-coop.jpg",
+          "cta": {
+            "label": "Nossos padrões",
+            "href": "/method"
+          }
         },
         {
           "eyebrow": "Rituais",
           "title": "Do hammam à recuperação moderna",
           "body": "Sabedoria ancestral com estrutura científica.",
           "imageAlt": "Sala de hammam com vapor e uma pessoa relaxando",
-          "ctaLabel": "Comprar rituais",
-          "ctaHref": "/shop",
-          "image": "/content/uploads/hammam-light.jpg"
+          "image": "/content/uploads/hammam-light.jpg",
+          "cta": {
+            "label": "Comprar rituais",
+            "href": "/shop"
+          }
         }
       ]
     },
