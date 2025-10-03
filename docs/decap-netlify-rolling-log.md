@@ -11,6 +11,11 @@ This log records day-to-day investigations, fixes, and decisions that affect the
 
 ---
 
+## 2025-10-03 — Decap CMS factory reset
+- **What changed**: Replaced the previous multi-collection Decap configuration with a minimal single-pages schema and removed the bespoke preview bootstrapping script so the CMS loads without legacy tooling.
+- **Impact & follow-up**: Editors now start from a blank slate and must rebuild collections before publishing; site runtime and existing content remain untouched.
+- **References**: Pending PR
+
 ## 2025-10-03 — Restored Visual Editor metadata
 - **What changed**: Recovered `metadata.json` from the last valid revision after it was committed as an empty file, restoring the Stackbit model definitions required by the Visual Editor.
 - **Impact & follow-up**: Netlify builds run again and Visual Editor bindings resolve correctly. Keep an eye on future schema migrations to ensure regenerated metadata is committed alongside content changes.
