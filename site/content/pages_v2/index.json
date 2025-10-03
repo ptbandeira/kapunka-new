@@ -1229,9 +1229,7 @@
               "eyebrow": {
                 "en": "From the blog"
               },
-              "image": {
-                "en": "/content/uploads/9bae3f87-12d5-43f4-a2a0-5cfc768e429d.jpg"
-              },
+              "image": "/content/uploads/9bae3f87-12d5-43f4-a2a0-5cfc768e429d.jpg",
               "imageAlt": {
                 "en": "Hands applying argan oil in warm light"
               },
@@ -1263,9 +1261,7 @@
               "eyebrow": {
                 "en": "For clinics"
               },
-              "image": {
-                "en": "/content/uploads/pexels-elly-fairytale-3865548.jpg"
-              },
+              "image": "/content/uploads/pexels-elly-fairytale-3865548.jpg",
               "imageAlt": {
                 "en": "Practitioner massaging a client's face with argan care"
               },
@@ -1297,9 +1293,7 @@
               "eyebrow": {
                 "en": "Supply chain"
               },
-              "image": {
-                "en": "/content/uploads/a-woman-picks-fruit-from-an-argan-tree-1-.jpg"
-              },
+              "image": "/content/uploads/a-woman-picks-fruit-from-an-argan-tree-1-.jpg",
               "imageAlt": {
                 "en": "Harvested argan fruit gathered in a woven basket"
               },
@@ -1331,9 +1325,7 @@
               "eyebrow": {
                 "en": "Rituals"
               },
-              "image": {
-                "en": "/content/uploads/342cecc0-3c00-4094-97d6-5c9d9da02330.jpg"
-              },
+              "image": "/content/uploads/342cecc0-3c00-4094-97d6-5c9d9da02330.jpg",
               "imageAlt": {
                 "en": "Steam-filled hammam room with a person resting"
               },
@@ -1429,9 +1421,7 @@
                 "pt": "Adiciona uma foto de um ritual Kapunka em uso",
                 "es": "Añade una foto de un ritual de Kapunka en uso"
               },
-              "image": {
-                "en": "/content/uploads/img_20200328_165251-copia-3-.jpg"
-              },
+              "image": "/content/uploads/img_20200328_165251-copia-3-.jpg",
               "name": {
                 "en": "Customer name",
                 "pt": "Nome do cliente",
@@ -1454,9 +1444,7 @@
                 "pt": "Carrega outra imagem da comunidade",
                 "es": "Sube otra imagen de la comunidad"
               },
-              "image": {
-                "en": "/content/uploads/img_20200328_165441-copia-2-.jpg"
-              },
+              "image": "/content/uploads/img_20200328_165441-copia-2-.jpg",
               "name": {
                 "en": "Partner or practitioner",
                 "pt": "Parceiro ou profissional",
@@ -1479,9 +1467,7 @@
                 "pt": "Adiciona imagens de lifestyle reais e acolhedoras",
                 "es": "Añade imágenes de estilo de vida cálidas y reales"
               },
-              "image": {
-                "en": "/content/uploads/img_20200328_165521-copia-2-.jpg"
-              },
+              "image": "/content/uploads/img_20200328_165521-copia-2-.jpg",
               "name": {
                 "en": "Add a name",
                 "pt": "Adiciona um nome",
@@ -1499,49 +1485,31 @@
               }
             },
             {
-              "image": {
-                "en": "/content/uploads/img_20200328_162420-copia-3-.jpg"
-              }
+              "image": "/content/uploads/img_20200328_162420-copia-3-.jpg"
             },
             {
-              "image": {
-                "en": "/content/uploads/img_20200328_165740-copia-2-.jpg"
-              }
+              "image": "/content/uploads/img_20200328_165740-copia-2-.jpg"
             },
             {
-              "image": {
-                "en": "/content/uploads/img_20200328_165916-copia-2-.jpg"
-              }
+              "image": "/content/uploads/img_20200328_165916-copia-2-.jpg"
             },
             {
-              "image": {
-                "en": "/content/uploads/img_20200328_165948-copia-2-.jpg"
-              }
+              "image": "/content/uploads/img_20200328_165948-copia-2-.jpg"
             },
             {
-              "image": {
-                "en": "/content/uploads/img_20200328_170735-copia-2-.jpg"
-              }
+              "image": "/content/uploads/img_20200328_170735-copia-2-.jpg"
             },
             {
-              "image": {
-                "en": "/content/uploads/instagrammer-kapunka-maria-capell-.jpg"
-              }
+              "image": "/content/uploads/instagrammer-kapunka-maria-capell-.jpg"
             },
             {
-              "image": {
-                "en": "/content/uploads/instagrammer-kapunka-nieves-bolós.jpg"
-              }
+              "image": "/content/uploads/instagrammer-kapunka-nieves-bolós.jpg"
             },
             {
-              "image": {
-                "en": "/content/uploads/kapunka-in-the-wild.jpg"
-              }
+              "image": "/content/uploads/kapunka-in-the-wild.jpg"
             },
             {
-              "image": {
-                "en": "/content/uploads/kapunka-instagrammer-lidia-simon-canut-.jpg"
-              }
+              "image": "/content/uploads/kapunka-instagrammer-lidia-simon-canut-.jpg"
             }
           ],
           "title": {

@@ -173,13 +173,14 @@ shared_sections: &shared_sections
           widget: "relation"
           collection: "products"
           file: "catalog"
+          path: "items"
           search_fields:
-            - "items.*.name.en"
-            - "items.*.name.pt"
-            - "items.*.name.es"
+            - "name.en"
+            - "id"
           display_fields:
-            - "items.*.name.en"
-          value_field: "items.*.id"
+            - "name.en"
+          value_field: "id"
+          options_length: 20
   - &section_testimonials
     label: "Testimonials"
     name: "testimonials"
@@ -446,6 +447,13 @@ sections_field: &sections_field
 backend:
   name: git-gateway
   branch: main
+  commit_messages:
+    create: "Create {{collection}} \"{{slug}}\" · {{author-name}}"
+    update: "Update {{collection}} \"{{slug}}\" · {{author-name}}"
+    delete: "Delete {{collection}} \"{{slug}}\" · {{author-name}}"
+    uploadMedia: "Upload asset {{path}} · {{author-login}}"
+    deleteMedia: "Delete asset {{path}} · {{author-login}}"
+    openAuthoring: "{{message}} (Open Authoring)"
 
 publish_mode: editorial_workflow
 local_backend: true
@@ -484,13 +492,14 @@ collections:
                 widget: relation
                 collection: products
                 file: catalog
+                path: items
                 search_fields:
-                  - items.*.name.en
-                  - items.*.name.pt
-                  - items.*.name.es
+                  - name.en
+                  - id
                 display_fields:
-                  - items.*.name.en
-                value_field: items.*.id
+                  - name.en
+                value_field: id
+                options_length: 20
                 multiple: true
                 required: false
           - label: Contact
@@ -570,6 +579,17 @@ collections:
     folder: "content/assets/images"
     create: true
     slug: "{{slug}}"
+    view_filters:
+      - label: "Missing alt text"
+        field: "alt"
+        pattern: "^$"
+      - label: "Has credit/source"
+        field: "credit"
+        pattern: ".+"
+    view_groups:
+      - label: "Primary tag"
+        field: "tags.0"
+        pattern: ".+"
     identifier_field: "title"
     fields:
       - { label: "Title", name: "title", widget: "string" }
@@ -597,6 +617,7 @@ collections:
         i18n: true
         editor: { preview: true }
         description: "Hero and storytelling blocks presented in live page order."
+        preview_path: "/"
         fields:
           - *meta_title_field
           - *meta_description_field
@@ -731,6 +752,7 @@ collections:
         i18n: true
         editor: { preview: true }
         description: "Optional storytelling sections surrounding the Learn hub."
+        preview_path: "/learn"
         fields:
           - *meta_title_field
           - *meta_description_field
@@ -760,6 +782,7 @@ collections:
         i18n: true
         editor: { preview: true }
         description: "Clinical method overview plus supporting content blocks."
+        preview_path: "/method"
         fields:
           - *meta_title_field
           - *meta_description_field
@@ -792,6 +815,7 @@ collections:
         i18n: true
         editor: { preview: true }
         description: "Clinic partnership story arranged top-to-bottom."
+        preview_path: "/for-clinics"
         fields:
           - *meta_title_field
           - *meta_description_field
@@ -923,6 +947,7 @@ collections:
         i18n: true
         editor: { preview: true }
         description: "Brand story sections in live page sequence."
+        preview_path: "/about"
         fields:
           - *meta_title_field
           - *meta_description_field
@@ -934,6 +959,7 @@ collections:
         i18n: true
         editor: { preview: true }
         description: "Contact introductions and optional follow-up sections."
+        preview_path: "/contact"
         fields:
           - *meta_title_field
           - *meta_description_field
@@ -944,6 +970,7 @@ collections:
         format: json
         editor: { preview: false }
         description: "Curate shop collections, copy, and cross-links."
+        preview_path: "/shop"
         fields:
           - { name: type, widget: hidden, default: shop }
           - label: Collections
@@ -973,13 +1000,14 @@ collections:
                 multiple: true
                 collection: products
                 file: catalog
+                path: items
                 search_fields:
-                  - "items.*.name.en"
-                  - "items.*.name.pt"
-                  - "items.*.name.es"
+                  - name.en
+                  - id
                 display_fields:
-                  - "items.*.name.en"
-                value_field: "items.*.id"
+                  - name.en
+                value_field: id
+                options_length: 20
                 hint: "Products shown for this collection."
               - label: Related Links
                 name: links
