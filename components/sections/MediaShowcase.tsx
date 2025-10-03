@@ -2,6 +2,14 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { getVisualEditorAttributes } from '../../utils/stackbitBindings';
 
+export interface MediaShowcaseItemCta {
+  label?: string;
+  href?: string;
+  fieldPath?: string;
+  labelFieldPath?: string;
+  hrefFieldPath?: string;
+}
+
 export interface MediaShowcaseItem {
   eyebrow?: string;
   title?: string;
@@ -13,10 +21,7 @@ export interface MediaShowcaseItem {
   eyebrowFieldPath?: string;
   titleFieldPath?: string;
   bodyFieldPath?: string;
-  ctaLabel?: string;
-  ctaHref?: string;
-  ctaLabelFieldPath?: string;
-  ctaHrefFieldPath?: string;
+  cta?: MediaShowcaseItemCta;
 }
 
 interface MediaShowcaseProps {
@@ -59,8 +64,11 @@ const MediaShowcase: React.FC<MediaShowcaseProps> = ({ title, items, fieldPath }
             const eyebrow = item.eyebrow?.trim();
             const itemTitle = item.title?.trim();
             const body = item.body?.trim();
-            const ctaLabel = item.ctaLabel?.trim();
-            const ctaHref = item.ctaHref?.trim();
+            const ctaLabel = item.cta?.label?.trim();
+            const ctaHref = item.cta?.href?.trim();
+            const ctaFieldPath = item.cta?.fieldPath;
+            const ctaLabelFieldPath = item.cta?.labelFieldPath ?? (ctaFieldPath ? `${ctaFieldPath}.label` : undefined);
+            const ctaHrefFieldPath = item.cta?.hrefFieldPath ?? (ctaFieldPath ? `${ctaFieldPath}.href` : undefined);
 
             const layoutClasses = (() => {
               if (index === 0) {
@@ -144,12 +152,12 @@ const MediaShowcase: React.FC<MediaShowcaseProps> = ({ title, items, fieldPath }
                           <Link
                             to={normalizeInternal(ctaHref)}
                             className="inline-flex items-center rounded-full border border-white/60 bg-white/10 px-5 py-2 text-sm font-medium tracking-wide text-white transition hover:bg-white hover:text-stone-900"
-                            {...getVisualEditorAttributes(item.ctaHrefFieldPath)}
-                            data-sb-field-path={item.ctaHrefFieldPath}
+                            {...getVisualEditorAttributes(ctaHrefFieldPath)}
+                            data-sb-field-path={ctaHrefFieldPath}
                           >
                             <span
-                              {...getVisualEditorAttributes(item.ctaLabelFieldPath)}
-                              data-sb-field-path={item.ctaLabelFieldPath}
+                              {...getVisualEditorAttributes(ctaLabelFieldPath)}
+                              data-sb-field-path={ctaLabelFieldPath}
                             >
                               {ctaLabel}
                             </span>
@@ -158,14 +166,14 @@ const MediaShowcase: React.FC<MediaShowcaseProps> = ({ title, items, fieldPath }
                           <a
                             href={ctaHref}
                             className="inline-flex items-center rounded-full border border-white/60 bg-white/10 px-5 py-2 text-sm font-medium tracking-wide text-white transition hover:bg-white hover:text-stone-900"
-                            {...getVisualEditorAttributes(item.ctaHrefFieldPath)}
-                            data-sb-field-path={item.ctaHrefFieldPath}
+                            {...getVisualEditorAttributes(ctaHrefFieldPath)}
+                            data-sb-field-path={ctaHrefFieldPath}
                             target="_blank"
                             rel="noreferrer"
                           >
                             <span
-                              {...getVisualEditorAttributes(item.ctaLabelFieldPath)}
-                              data-sb-field-path={item.ctaLabelFieldPath}
+                              {...getVisualEditorAttributes(ctaLabelFieldPath)}
+                              data-sb-field-path={ctaLabelFieldPath}
                             >
                               {ctaLabel}
                             </span>

@@ -32,8 +32,10 @@
     {
       "type": "banner",
       "text": "Explore wholesale and training",
-      "cta": "Contact our team",
-      "url": "/contact"
+      "cta": {
+        "label": "Contact our team",
+        "href": "/contact"
+      }
     }
   ],
   "headerTitle": "Professional Clinic Partnership Program",

@@ -8,15 +8,677 @@ media_folder: "content/uploads"
 public_folder: "/content/uploads"
 
 collections:
-  - name: "pages"
-    label: "Pages"
-    folder: "content/cms/pages"
-    create: true
+  - name: pages
+    label: Pages
+    folder: content/pages
+    create: false
     slug: "{{slug}}"
-    extension: "json"
-    format: "json"
+    extension: json
+    format: json
+    preview_path: "{{slug}}"
+    i18n:
+      structure: multiple_folders
+      locales:
+        - en
+        - pt
+        - es
+      default_locale: en
     fields:
-      - { label: "Title", name: "title", widget: "string", required: false }
-      - { label: "Slug", name: "slug", widget: "string" }
-      - { label: "Description", name: "description", widget: "text", required: false }
-      - { label: "Body", name: "body", widget: "markdown", required: false }
+      - label: Page Type
+        name: type
+        widget: string
+        i18n: duplicate
+      - label: Meta Title
+        name: metaTitle
+        widget: string
+        required: false
+        i18n: translate
+      - label: Meta Description
+        name: metaDescription
+        widget: text
+        required: false
+        i18n: translate
+      - label: Hero Headline
+        name: heroHeadline
+        widget: string
+        required: false
+        i18n: translate
+      - label: Hero Subheadline
+        name: heroSubheadline
+        widget: text
+        required: false
+        i18n: translate
+      - label: Hero Title
+        name: heroTitle
+        widget: string
+        required: false
+        i18n: translate
+      - label: Hero Subtitle
+        name: heroSubtitle
+        widget: text
+        required: false
+        i18n: translate
+      - label: Hero CTAs
+        name: heroCtas
+        widget: object
+        collapsed: true
+        required: false
+        i18n: translate
+        fields:
+          - label: Primary CTA
+            name: ctaPrimary
+            widget: object
+            collapsed: true
+            required: false
+            fields: &link_fields
+              - label: Label
+                name: label
+                widget: string
+                required: false
+                i18n: translate
+              - label: URL
+                name: href
+                widget: string
+                required: false
+                i18n: translate
+          - label: Secondary CTA
+            name: ctaSecondary
+            widget: object
+            collapsed: true
+            required: false
+            fields: *link_fields
+      - label: Hero Alignment
+        name: heroAlignment
+        widget: object
+        collapsed: true
+        required: false
+        i18n: translate
+        fields:
+          - label: Horizontal Align
+            name: heroAlignX
+            widget: select
+            options:
+              - { label: Left, value: left }
+              - { label: Center, value: center }
+              - { label: Right, value: right }
+            required: false
+          - label: Vertical Align
+            name: heroAlignY
+            widget: select
+            options:
+              - { label: Top, value: top }
+              - { label: Middle, value: middle }
+              - { label: Bottom, value: bottom }
+            required: false
+          - label: Text Position
+            name: heroTextPosition
+            widget: select
+            options:
+              - { label: Overlay, value: overlay }
+              - { label: Below, value: below }
+            required: false
+          - label: Text Anchor
+            name: heroTextAnchor
+            widget: select
+            options:
+              - { label: Top Left, value: top-left }
+              - { label: Top Center, value: top-center }
+              - { label: Top Right, value: top-right }
+              - { label: Middle Left, value: middle-left }
+              - { label: Middle Center, value: middle-center }
+              - { label: Middle Right, value: middle-right }
+              - { label: Bottom Left, value: bottom-left }
+              - { label: Bottom Center, value: bottom-center }
+              - { label: Bottom Right, value: bottom-right }
+            required: false
+          - label: Layout Hint
+            name: heroLayoutHint
+            widget: select
+            options:
+              - { label: Image Left, value: image-left }
+              - { label: Image Right, value: image-right }
+              - { label: Full Background, value: image-full }
+              - { label: Overlay Legacy, value: text-over-media }
+              - { label: Split Legacy, value: side-by-side }
+              - { label: Background Legacy, value: bg }
+              - { label: Background Image Legacy, value: bgImage }
+            required: false
+          - label: Overlay Token
+            name: heroOverlay
+            widget: string
+            required: false
+            i18n: translate
+      - label: Hero Images
+        name: heroImages
+        widget: object
+        collapsed: true
+        required: false
+        i18n: translate
+        fields:
+          - label: Left Image
+            name: heroImageLeft
+            widget: image
+            required: false
+            i18n: duplicate
+          - label: Right Image
+            name: heroImageRight
+            widget: image
+            required: false
+            i18n: duplicate
+      - label: Intro Block
+        name: intro
+        widget: object
+        collapsed: true
+        required: false
+        i18n: translate
+        fields:
+          - { label: Title, name: title, widget: string, required: false, i18n: translate }
+          - { label: Primary Copy, name: text1, widget: text, required: false, i18n: translate }
+          - { label: Secondary Copy, name: text2, widget: text, required: false, i18n: translate }
+      - label: Protocol Section
+        name: protocolSection
+        widget: object
+        collapsed: true
+        required: false
+        i18n: translate
+        fields:
+          - { label: Title, name: title, widget: string, required: false, i18n: translate }
+          - { label: Subtitle, name: subtitle, widget: text, required: false, i18n: translate }
+          - label: Cards
+            name: cards
+            widget: list
+            collapsed: true
+            fields:
+              - { label: Title, name: title, widget: string, required: false, i18n: translate }
+              - { label: Focus, name: focus, widget: text, required: false, i18n: translate }
+              - label: Steps
+                name: steps
+                widget: list
+                field:
+                  label: Step
+                  name: value
+                  widget: text
+                  i18n: translate
+              - { label: Evidence, name: evidence, widget: text, required: false, i18n: translate }
+      - label: References Section
+        name: referencesSection
+        widget: object
+        collapsed: true
+        required: false
+        i18n: translate
+        fields:
+          - { label: Title, name: title, widget: string, required: false, i18n: translate }
+          - { label: Studies Title, name: studiesTitle, widget: string, required: false, i18n: translate }
+          - label: Studies
+            name: studies
+            widget: list
+            fields:
+              - { label: Title, name: title, widget: string, required: false, i18n: translate }
+              - { label: Details, name: details, widget: text, required: false, i18n: translate }
+          - { label: Testimonials Title, name: testimonialsTitle, widget: string, required: false, i18n: translate }
+          - label: Testimonials
+            name: testimonials
+            widget: list
+            fields:
+              - { label: Quote, name: quote, widget: text, required: false, i18n: translate }
+              - { label: Name, name: name, widget: string, required: false, i18n: translate }
+              - { label: Credentials, name: credentials, widget: string, required: false, i18n: translate }
+      - label: Keyword Section
+        name: keywordSection
+        widget: object
+        collapsed: true
+        required: false
+        i18n: translate
+        fields:
+          - { label: Title, name: title, widget: string, required: false, i18n: translate }
+          - { label: Subtitle, name: subtitle, widget: text, required: false, i18n: translate }
+          - label: Keywords
+            name: keywords
+            widget: list
+            field:
+              label: Keyword
+              name: value
+              widget: string
+              i18n: translate
+      - label: FAQ Section
+        name: faqSection
+        widget: object
+        collapsed: true
+        required: false
+        i18n: translate
+        fields:
+          - { label: Title, name: title, widget: string, required: false, i18n: translate }
+          - { label: Subtitle, name: subtitle, widget: text, required: false, i18n: translate }
+          - label: Questions
+            name: items
+            widget: list
+            fields:
+              - { label: Question, name: question, widget: string, required: false, i18n: translate }
+              - { label: Answer, name: answer, widget: text, required: false, i18n: translate }
+      - label: Learn Categories
+        name: categories
+        widget: list
+        collapsed: true
+        required: false
+        fields:
+          - { label: ID, name: id, widget: string, i18n: duplicate }
+          - { label: Label, name: label, widget: string, i18n: translate }
+      - label: Clinical Notes
+        name: clinicalNotes
+        widget: list
+        collapsed: true
+        required: false
+        fields:
+          - { label: Title, name: title, widget: string, required: false, i18n: translate }
+          - label: Bullets
+            name: bullets
+            widget: list
+            field:
+              label: Bullet
+              name: value
+              widget: string
+              i18n: translate
+      - label: Story Narrative
+        name: story
+        widget: text
+        required: false
+        i18n: translate
+      - label: Story Tagline
+        name: tagline
+        widget: string
+        required: false
+        i18n: translate
+      - label: Clinics Header Title
+        name: headerTitle
+        widget: string
+        required: false
+        i18n: translate
+      - label: Clinics Header Subtitle
+        name: headerSubtitle
+        widget: text
+        required: false
+        i18n: translate
+      - label: Clinics Section Title
+        name: section1Title
+        widget: string
+        required: false
+        i18n: translate
+      - label: Clinics Section Copy A
+        name: section1Text1
+        widget: text
+        required: false
+        i18n: translate
+      - label: Clinics Section Copy B
+        name: section1Text2
+        widget: text
+        required: false
+        i18n: translate
+      - label: Doctors Title
+        name: doctorsTitle
+        widget: string
+        required: false
+        i18n: translate
+      - label: Partners Title
+        name: partnersTitle
+        widget: string
+        required: false
+        i18n: translate
+      - label: CTA Title
+        name: ctaTitle
+        widget: string
+        required: false
+        i18n: translate
+      - label: CTA Subtitle
+        name: ctaSubtitle
+        widget: text
+        required: false
+        i18n: translate
+      - label: CTA Button Label
+        name: ctaButton
+        widget: string
+        required: false
+        i18n: translate
+      - label: Page Title (Test Page)
+        name: title
+        widget: string
+        required: false
+        i18n: translate
+      - label: Sections
+        name: sections
+        widget: list
+        collapsed: true
+        i18n: translate
+        types:
+          - label: Media + Copy
+            name: mediaCopy
+            widget: object
+            summary: "{{title}}"
+            fields:
+              - { label: Title, name: title, widget: string, required: false, i18n: translate }
+              - { label: Body, name: body, widget: markdown, required: false, i18n: translate }
+              - label: Layout
+                name: layout
+                widget: select
+                options:
+                  - { label: Image Right, value: image-right }
+                  - { label: Image Left, value: image-left }
+                  - { label: Overlay, value: overlay }
+                required: false
+              - { label: Columns, name: columns, widget: number, required: false, value_type: int }
+              - label: Image
+                name: image
+                widget: image
+                required: false
+                i18n: duplicate
+              - { label: Alt Text, name: imageAlt, widget: string, required: false, i18n: translate }
+              - label: Overlay Settings
+                name: overlay
+                widget: object
+                collapsed: true
+                required: false
+                fields:
+                  - { label: Column Start, name: columnStart, widget: number, required: false, value_type: int }
+                  - { label: Column Span, name: columnSpan, widget: number, required: false, value_type: int }
+                  - { label: Row Start, name: rowStart, widget: number, required: false, value_type: int }
+                  - { label: Row Span, name: rowSpan, widget: number, required: false, value_type: int }
+                  - label: Text Align
+                    name: textAlign
+                    widget: select
+                    options:
+                      - { label: Left, value: left }
+                      - { label: Center, value: center }
+                      - { label: Right, value: right }
+                    required: false
+                  - label: Vertical Align
+                    name: verticalAlign
+                    widget: select
+                    options:
+                      - { label: Start, value: start }
+                      - { label: Center, value: center }
+                      - { label: End, value: end }
+                    required: false
+                  - label: Theme
+                    name: theme
+                    widget: select
+                    options:
+                      - { label: Light, value: light }
+                      - { label: Dark, value: dark }
+                    required: false
+                  - label: Background
+                    name: background
+                    widget: select
+                    options:
+                      - { label: None, value: none }
+                      - { label: Light Scrim, value: scrim-light }
+                      - { label: Dark Scrim, value: scrim-dark }
+                      - { label: Panel, value: panel }
+                    required: false
+                  - label: Card Width
+                    name: cardWidth
+                    widget: select
+                    options:
+                      - { label: Compact, value: sm }
+                      - { label: Balanced, value: md }
+                      - { label: Wide, value: lg }
+                    required: false
+          - label: Media Showcase
+            name: mediaShowcase
+            widget: object
+            summary: "{{title}}"
+            fields:
+              - { label: Title, name: title, widget: string, required: false, i18n: translate }
+              - label: Highlights
+                name: items
+                widget: list
+                collapsed: true
+                fields:
+                  - { label: Eyebrow, name: eyebrow, widget: string, required: false, i18n: translate }
+                  - { label: Title, name: title, widget: string, required: false, i18n: translate }
+                  - { label: Body, name: body, widget: text, required: false, i18n: translate }
+                  - label: Image
+                    name: image
+                    widget: image
+                    required: false
+                    i18n: duplicate
+                  - { label: Alt Text, name: imageAlt, widget: string, required: false, i18n: translate }
+                  - label: CTA
+                    name: cta
+                    widget: object
+                    collapsed: true
+                    required: false
+                    fields: *link_fields
+          - label: Feature Grid
+            name: featureGrid
+            widget: object
+            summary: "{{title}}"
+            fields:
+              - { label: Title, name: title, widget: string, required: false, i18n: translate }
+              - { label: Columns, name: columns, widget: number, required: false, value_type: int }
+              - label: Items
+                name: items
+                widget: list
+                fields:
+                  - { label: Label, name: label, widget: string, required: false, i18n: translate }
+                  - { label: Description, name: description, widget: text, required: false, i18n: translate }
+          - label: Product Grid
+            name: productGrid
+            widget: object
+            summary: "{{title}}"
+            fields:
+              - { label: Title, name: title, widget: string, required: false, i18n: translate }
+              - { label: Columns, name: columns, widget: number, required: false, value_type: int }
+              - label: Products
+                name: products
+                widget: list
+                fields:
+                  - { label: Product ID, name: id, widget: string, i18n: duplicate }
+          - label: Community Carousel
+            name: communityCarousel
+            widget: object
+            summary: "{{title}}"
+            fields:
+              - { label: Title, name: title, widget: string, required: false, i18n: translate }
+              - label: Slides
+                name: slides
+                widget: list
+                collapsed: true
+                fields:
+                  - label: Image
+                    name: image
+                    widget: image
+                    required: false
+                    i18n: duplicate
+                  - { label: Alt Text, name: alt, widget: string, required: false, i18n: translate }
+                  - { label: Quote, name: quote, widget: text, required: false, i18n: translate }
+                  - { label: Name, name: name, widget: string, required: false, i18n: translate }
+                  - { label: Role, name: role, widget: string, required: false, i18n: translate }
+              - { label: Slide Duration (ms), name: slideDuration, widget: number, required: false, value_type: int }
+              - { label: Quote Duration (ms), name: quoteDuration, widget: number, required: false, value_type: int }
+          - label: Newsletter Signup
+            name: newsletterSignup
+            widget: object
+            summary: "{{title}}"
+            fields:
+              - { label: Title, name: title, widget: string, required: false, i18n: translate }
+              - { label: Subtitle, name: subtitle, widget: text, required: false, i18n: translate }
+              - { label: Email Placeholder, name: placeholder, widget: string, required: false, i18n: translate }
+              - { label: Button Label, name: ctaLabel, widget: string, required: false, i18n: translate }
+              - { label: Confirmation Message, name: confirmation, widget: text, required: false, i18n: translate }
+              - label: Background
+                name: background
+                widget: select
+                options:
+                  - { label: Light, value: light }
+                  - { label: Beige, value: beige }
+                  - { label: Dark, value: dark }
+                required: false
+              - label: Alignment
+                name: alignment
+                widget: select
+                options:
+                  - { label: Left, value: left }
+                  - { label: Center, value: center }
+                required: false
+          - label: Testimonials
+            name: testimonials
+            widget: object
+            fields:
+              - { label: Title, name: title, widget: string, required: false, i18n: translate }
+              - label: Quotes
+                name: quotes
+                widget: list
+                fields:
+                  - { label: Quote, name: text, widget: text, required: false, i18n: translate }
+                  - { label: Author, name: author, widget: string, required: false, i18n: translate }
+                  - { label: Role, name: role, widget: string, required: false, i18n: translate }
+          - label: Banner
+            name: banner
+            widget: object
+            fields:
+              - { label: Text, name: text, widget: text, required: false, i18n: translate }
+              - label: CTA
+                name: cta
+                widget: object
+                collapsed: true
+                required: false
+                fields: *link_fields
+              - { label: Style Variant, name: style, widget: string, required: false, i18n: translate }
+          - label: Facts
+            name: facts
+            widget: object
+            fields:
+              - { label: Title, name: title, widget: string, required: false, i18n: translate }
+              - { label: Body, name: text, widget: text, required: false, i18n: translate }
+          - label: Bullet List
+            name: bullets
+            widget: object
+            fields:
+              - { label: Title, name: title, widget: string, required: false, i18n: translate }
+              - label: Items
+                name: items
+                widget: list
+                field:
+                  label: Bullet
+                  name: value
+                  widget: string
+                  i18n: translate
+          - label: Specialties
+            name: specialties
+            widget: object
+            fields:
+              - { label: Title, name: title, widget: string, required: false, i18n: translate }
+              - label: Specialties
+                name: items
+                widget: list
+                collapsed: true
+                fields:
+                  - { label: Title, name: title, widget: string, required: false, i18n: translate }
+                  - label: Bullets
+                    name: bullets
+                    widget: list
+                    field:
+                      label: Bullet
+                      name: value
+                      widget: string
+                      i18n: translate
+          - label: Video Embed
+            name: video
+            widget: object
+            fields:
+              - { label: Title, name: title, widget: string, required: false, i18n: translate }
+              - { label: Video URL, name: url, widget: string, required: false, i18n: translate }
+          - label: Video Gallery
+            name: videoGallery
+            widget: object
+            fields:
+              - { label: Title, name: title, widget: string, required: false, i18n: translate }
+              - { label: Description, name: description, widget: text, required: false, i18n: translate }
+              - label: Entries
+                name: entries
+                widget: list
+                collapsed: true
+                fields:
+                  - { label: Title, name: title, widget: string, required: false, i18n: translate }
+                  - { label: Description, name: description, widget: text, required: false, i18n: translate }
+                  - { label: Video URL, name: videoUrl, widget: string, required: false, i18n: translate }
+                  - label: Thumbnail
+                    name: thumbnail
+                    widget: image
+                    required: false
+                    i18n: duplicate
+          - label: Training List
+            name: trainingList
+            widget: object
+            fields:
+              - { label: Title, name: title, widget: string, required: false, i18n: translate }
+              - { label: Description, name: description, widget: text, required: false, i18n: translate }
+              - label: Entries
+                name: entries
+                widget: list
+                fields:
+                  - { label: Course Title, name: courseTitle, widget: string, required: false, i18n: translate }
+                  - { label: Summary, name: courseSummary, widget: text, required: false, i18n: translate }
+                  - { label: Link URL, name: linkUrl, widget: string, required: false, i18n: translate }
+          - label: FAQ Section (Legacy)
+            name: faq
+            widget: object
+            fields:
+              - { label: Title, name: title, widget: string, required: false, i18n: translate }
+              - label: Items
+                name: items
+                widget: list
+                fields:
+                  - { label: Question, name: q, widget: string, required: false, i18n: translate }
+                  - { label: Answer, name: a, widget: text, required: false, i18n: translate }
+          - label: Timeline (Legacy)
+            name: timeline
+            widget: object
+            fields:
+              - { label: Title, name: title, widget: string, required: false, i18n: translate }
+              - label: Entries
+                name: entries
+                widget: list
+                fields:
+                  - { label: Year, name: year, widget: string, required: false, i18n: translate }
+                  - { label: Title, name: title, widget: string, required: false, i18n: translate }
+                  - { label: Description, name: description, widget: text, required: false, i18n: translate }
+                  - label: Image
+                    name: image
+                    widget: image
+                    required: false
+                    i18n: duplicate
+          - label: Image + Text Half (Legacy)
+            name: imageTextHalf
+            widget: object
+            fields:
+              - { label: Title, name: title, widget: string, required: false, i18n: translate }
+              - { label: Subtitle, name: subtitle, widget: string, required: false, i18n: translate }
+              - { label: Body, name: text, widget: markdown, required: false, i18n: translate }
+              - label: Button
+                name: button
+                widget: object
+                collapsed: true
+                required: false
+                fields: *link_fields
+              - label: Image
+                name: image
+                widget: image
+                required: false
+                i18n: duplicate
+          - label: Image Grid (Legacy)
+            name: imageGrid
+            widget: object
+            fields:
+              - { label: Title, name: title, widget: string, required: false, i18n: translate }
+              - { label: Description, name: description, widget: text, required: false, i18n: translate }
+              - label: Items
+                name: items
+                widget: list
+                fields:
+                  - label: Image
+                    name: image
+                    widget: image
+                    required: false
+                    i18n: duplicate
+                  - { label: Alt Text, name: alt, widget: string, required: false, i18n: translate }
+                  - { label: Caption, name: caption, widget: text, required: false, i18n: translate }
