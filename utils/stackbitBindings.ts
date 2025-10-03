@@ -361,12 +361,28 @@ const resolvePageBinding = (value: string): StackbitBinding | null => {
 
   const remainder = value.slice('pages.'.length);
   const [slugLocale, ...restParts] = remainder.split('.');
-  const slugLocaleMatch = slugLocale.match(/^([a-z0-9-]+)_([a-z]{2})$/);
+  const slugLocaleMatch = slugLocale.match(/^([a-z0-9-]+)(?:_([a-z]{2}))?$/);
   if (!slugLocaleMatch) {
     return null;
   }
 
   const [, slug, locale] = slugLocaleMatch;
+
+  if (!locale) {
+    if (slug !== 'home') {
+      return null;
+    }
+
+    const model = getPageModelName(slug, 'en') ?? 'HomePage';
+    const filePath = 'content/pages/home.json';
+    const joined = restParts.join('.');
+    const fieldPath = normalizeStackbitFieldPath(joined);
+    return {
+      objectId: getObjectIdForModel(model) ?? `${model}:${filePath}`,
+      fieldPath,
+    };
+  }
+
   if (!SUPPORTED_LANGUAGES.includes(locale as Language)) {
     return null;
   }

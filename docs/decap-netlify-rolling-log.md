@@ -122,3 +122,8 @@ This log records day-to-day investigations, fixes, and decisions that affect the
 - **What changed**: Replaced the `image_field_defaults` anchor and aliases in `admin/config.yml` with explicit field definitions so Decap stops throwing `YAMLReferenceError` when loading the schema.
 - **Impact & follow-up**: Restores CMS load and keeps editors unblocked while we evaluate a future schema helper or script-based deduplication to avoid manual repetition.
 - **References**: Pending PR
+
+## 2025-10-03 — Hooked homepage builder JSON into React
+- **What changed**: Updated `pages/Home.tsx` to load the new single-file `content/pages/home.json` builder, translate localized strings, and render hero, showcase, and contact banner sections dynamically. Extended Stackbit bindings in `utils/stackbitBindings.ts` so `pages.home` resolves to `content/pages/home.json` for inline editing.
+- **Impact & follow-up**: Enables editors to reorder homepage sections and edit multilingual copy from one JSON source while preserving Visual Editor annotations. Monitor future section additions to keep the renderer and bindings in sync.
+- **References**: Pending PR · [`pages/Home.tsx`](../pages/Home.tsx) · [`utils/stackbitBindings.ts`](../utils/stackbitBindings.ts)
