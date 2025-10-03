@@ -444,11 +444,7 @@ collections:
               - { label: Column Count, name: columns, widget: number, required: false, value_type: int }
               - label: Section Image
                 name: image
-                widget: image
-                choose_url: false
-                required: false
                 hint: "Upload a JPG or PNG that is at least 1200 px wide."
-                i18n: duplicate
               - &image_alt_field_defaults
                 label: Image Alt Text
                 name: imageAlt
