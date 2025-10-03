@@ -7,6 +7,7 @@ const __dirname = path.dirname(__filename);
 const rootDir = path.resolve(__dirname, '..');
 
 const LANGUAGES = ['en', 'pt', 'es'];
+const DEFAULT_LOCALE = 'en';
 
 const contentFile = path.join(rootDir, 'content', 'pages_v2', 'index.json');
 const siteFile = path.join(rootDir, 'site', 'content', 'pages_v2', 'index.json');
@@ -62,11 +63,70 @@ const toLocalizedMap = (value, { parseOptions = false } = {}) => {
   return parsed !== undefined ? { en: parsed } : null;
 };
 
+const selectDefaultLocaleValue = (value) => {
+  if (typeof value === 'string') {
+    return value;
+  }
+  if (!isPlainObject(value)) {
+    return undefined;
+  }
+  const keys = Object.keys(value);
+  if (keys.length === 0 || !keys.every((key) => LANGUAGES.includes(key))) {
+    return undefined;
+  }
+  for (const locale of [DEFAULT_LOCALE, ...LANGUAGES.filter((locale) => locale !== DEFAULT_LOCALE)]) {
+    const candidate = value[locale];
+    if (typeof candidate === 'string' && candidate.length > 0) {
+      return candidate;
+    }
+  }
+  for (const locale of [DEFAULT_LOCALE, ...LANGUAGES.filter((locale) => locale !== DEFAULT_LOCALE)]) {
+    const candidate = value[locale];
+    if (candidate != null) {
+      return String(candidate);
+    }
+  }
+  return undefined;
+};
+
+const shouldFlattenAssetField = (fieldPath) => {
+  if (!fieldPath) {
+    return false;
+  }
+  const segments = fieldPath.split('.');
+  if (segments.length === 0) {
+    return false;
+  }
+  const last = segments[segments.length - 1];
+  return last === 'image';
+};
+
 const ensureSection = (sectionsMap, index) => {
   if (!sectionsMap.has(index)) {
     sectionsMap.set(index, {});
   }
   return sectionsMap.get(index);
+};
+
+const flattenAssetNodes = (value) => {
+  if (Array.isArray(value)) {
+    return value.map((item) => flattenAssetNodes(item));
+  }
+  if (!isPlainObject(value)) {
+    return value;
+  }
+  const result = {};
+  for (const [key, nested] of Object.entries(value)) {
+    if (key === 'image') {
+      const flattened = selectDefaultLocaleValue(nested);
+      if (flattened !== undefined) {
+        result[key] = flattened;
+      }
+      continue;
+    }
+    result[key] = flattenAssetNodes(nested);
+  }
+  return result;
 };
 
 const ensureContainer = (parent, segment, nextIsIndex) => {
@@ -249,6 +309,13 @@ const buildPageEntry = (page) => {
       if (!fieldPath) {
         return;
       }
+      if (shouldFlattenAssetField(fieldPath)) {
+        const assetValue = selectDefaultLocaleValue(localized);
+        if (assetValue !== undefined) {
+          section[fieldPath] = assetValue;
+        }
+        return;
+      }
       const existing = section[fieldPath];
       section[fieldPath] = mergeLocalized(existing, localized) ?? localized;
       return;
@@ -296,7 +363,7 @@ const buildPageEntry = (page) => {
         }
         setNestedValue(section, key, value);
       }
-      return convertValue(section);
+      return flattenAssetNodes(convertValue(section));
     })
     .filter((section) => typeof section.type === 'string' && section.type.length > 0);
 
@@ -314,7 +381,7 @@ const buildPageEntry = (page) => {
     result.metadata = metadata;
   }
   if (Object.keys(hero).length > 0) {
-    result.hero = convertValue(hero);
+    result.hero = flattenAssetNodes(convertValue(hero));
   }
   if (sections.length > 0) {
     result.sections = sections;
@@ -330,7 +397,16 @@ const upgradeIndex = async (filePath) => {
   const raw = await readFile(filePath, 'utf8');
   const json = JSON.parse(raw);
   const pages = Array.isArray(json?.pages) ? json.pages : [];
-  const upgraded = pages.map(buildPageEntry);
+  const upgraded = pages.map((page) => {
+    const hasLegacySections = Array.isArray(page?.sections)
+      && page.sections.some((section) => Array.isArray(section?.copy) || Array.isArray(section?.assets) || Array.isArray(section?.options));
+
+    if (hasLegacySections) {
+      return buildPageEntry(page);
+    }
+
+    return flattenAssetNodes(page);
+  });
   const payload = { pages: upgraded };
   await writeFile(filePath, `${JSON.stringify(payload, null, 2)}\n`, 'utf8');
 };
