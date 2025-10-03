@@ -53,4 +53,73 @@ commit_messages:
   deleteMedia: "Delete asset {{path}} · {{author-login}}"
   openAuthoring: "{{message}} (Open Authoring)"
 
-collections: []
+collections:
+  - name: home
+    label: "Homepage Builder"
+    files:
+      - file: content/pages/home.json
+        name: home
+        label: "Homepage"
+        fields:
+          - label: "Page Sections"
+            name: sections
+            widget: list
+            types:
+              - label: Hero
+                name: hero
+                widget: object
+                fields:
+                  - label: Headline
+                    name: headline
+                    widget: string
+                    i18n: true
+                  - label: Subtext
+                    name: subtext
+                    widget: text
+                    i18n: true
+                  - label: Background Image
+                    name: background_image
+                    widget: image
+                  - label: CTA
+                    name: cta
+                    widget: object
+                    fields: *cta_fields
+              - label: Showcase
+                name: showcase
+                widget: object
+                fields:
+                  - label: Eyebrow
+                    name: eyebrow
+                    widget: string
+                    i18n: true
+                  - label: Headline
+                    name: headline
+                    widget: string
+                    i18n: true
+                  - label: Text Content
+                    name: text_content
+                    widget: markdown
+                    i18n: true
+                  - label: Media Gallery
+                    name: media_gallery
+                    widget: list
+                    field:
+                      label: Image
+                      name: image
+                      widget: image
+              - label: Contact Banner
+                name: contact_banner
+                widget: object
+                fields:
+                  - label: Headline
+                    name: headline
+                    widget: string
+                    i18n: true
+                  - label: CTA
+                    name: cta
+                    widget: object
+                    fields: *cta_fields
+          - label: SEO
+            name: seo
+            widget: object
+            fields: *seo_fields

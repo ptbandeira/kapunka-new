@@ -11,6 +11,11 @@ This log records day-to-day investigations, fixes, and decisions that affect the
 
 ---
 
+## 2025-10-13 — Created homepage builder schema
+- **What changed**: Added a new single-file `home` collection in `admin/config.yml` using variable section types and seeded the matching `content/pages/home.json` entry (mirrored in `site/content/`) to support hero, showcase, and contact banner sections plus SEO metadata.
+- **Impact & follow-up**: Editors can now assemble the homepage from reusable sections; add additional section types as the design system grows and keep `site/content/` synced when updating the JSON source.
+- **References**: Pending PR · [`admin/config.yml`](../admin/config.yml) · [`content/pages/home.json`](../content/pages/home.json) · [`site/content/pages/home.json`](../site/content/pages/home.json)
+
 ## 2025-10-12 — Added reusable CTA and SEO anchors
 - **What changed**: Defined `cta_fields` and `seo_fields` YAML anchors in `admin/config.yml` so future object widgets can reuse consistent CTA and SEO field groups.
 - **Impact & follow-up**: Streamlines upcoming schema work by centralising shared field definitions; incorporate the anchors when rebuilding collections.
