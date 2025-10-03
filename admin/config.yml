@@ -1986,63 +1986,90 @@ collections:
                 widget: object
                 collapsed: true
                 required: false
+                summary: "{{fields.content.headline}}"
                 fields:
-                  - { label: Headline, name: headline, widget: string, i18n: true, required: false }
-                  - { label: Subheadline, name: subheadline, widget: text, i18n: true, required: false }
-                  - { label: Alternate Title, name: title, widget: string, i18n: true, required: false }
-                  - { label: Alternate Subtitle, name: subtitle, widget: text, i18n: true, required: false }
-                  - { label: Supporting Headline 1, name: sub1, widget: string, i18n: true, required: false }
-                  - { label: Supporting Headline 2, name: sub2, widget: string, i18n: true, required: false }
-                  - label: Primary CTA
-                    name: ctaPrimary
+                  - label: Content
+                    name: content
                     widget: object
-                    collapsed: true
-                    required: false
+                    collapsed: false
+                    hint: "Core text shown in the hero."
                     fields:
-                      - { label: Label, name: label, widget: string, i18n: true, required: false }
-                      - { label: Link URL, name: href, widget: string, i18n: true, required: false }
-                  - label: Secondary CTA
-                    name: ctaSecondary
+                      - { label: Eyebrow, name: eyebrow, widget: string, i18n: true, required: false, hint: "Short label above the headline (optional)." }
+                      - { label: Headline, name: headline, widget: string, i18n: true, required: false }
+                      - { label: Supporting Line, name: subheadline, widget: text, i18n: true, required: false, hint: "One-sentence promise below the headline." }
+                      - { label: Body Copy, name: body, widget: text, i18n: true, required: false, hint: "Optional paragraph for extra context." }
+                      - label: Highlights
+                        name: highlights
+                        widget: list
+                        collapsed: true
+                        required: false
+                        label_singular: Highlight
+                        summary: "{{fields.text}}"
+                        fields:
+                          - { label: Highlight Text, name: text, widget: text, i18n: true, required: false }
+                  - label: Calls to Action
+                    name: ctas
                     widget: object
                     collapsed: true
-                    required: false
+                    hint: "Primary actions surfaced in the hero."
                     fields:
-                      - { label: Label, name: label, widget: string, i18n: true, required: false }
-                      - { label: Link URL, name: href, widget: string, i18n: true, required: false }
-                  - label: Alignment
-                    name: alignment
+                      - label: Primary Action
+                        name: primary
+                        widget: object
+                        collapsed: true
+                        fields:
+                          - { label: Label, name: label, widget: string, i18n: true, required: false }
+                          - { label: Link URL, name: href, widget: string, i18n: true, required: false, hint: "Accepts /internal or https:// links." }
+                      - label: Secondary Action
+                        name: secondary
+                        widget: object
+                        collapsed: true
+                        fields:
+                          - { label: Label, name: label, widget: string, i18n: true, required: false }
+                          - { label: Link URL, name: href, widget: string, i18n: true, required: false, hint: "Accepts /internal or https:// links." }
+                  - label: Media
+                    name: media
                     widget: object
                     collapsed: true
-                    required: false
+                    hint: "Control the hero imagery."
+                    fields:
+                      - { label: Upload Image, name: image, widget: image, choose_url: true, required: false }
+                      - { label: Use Existing Asset Path, name: imageRef, widget: string, i18n: true, required: false, hint: "Reference an existing asset such as /content/uploads/home-hero.jpg." }
+                      - { label: Alt Text, name: imageAlt, widget: string, i18n: true, required: false }
+                  - label: Layout
+                    name: layout
+                    widget: object
+                    collapsed: true
+                    hint: "Adjust how text and media align."
                     fields:
                       - label: Horizontal Alignment
-                        name: heroAlignX
+                        name: alignX
                         widget: select
                         i18n: true
+                        required: false
                         options:
                           - { label: Left, value: left }
                           - { label: Center, value: center }
                           - { label: Right, value: right }
-                        required: false
                       - label: Vertical Alignment
-                        name: heroAlignY
+                        name: alignY
                         widget: select
                         i18n: true
+                        required: false
                         options:
                           - { label: Top, value: top }
                           - { label: Middle, value: middle }
                           - { label: Bottom, value: bottom }
-                        required: false
-                      - label: Text Display
-                        name: heroTextPosition
+                      - label: Text Position
+                        name: textPosition
                         widget: select
                         i18n: true
+                        required: false
                         options:
                           - { label: Overlay, value: overlay }
                           - { label: Below media, value: below }
-                        required: false
-                      - label: Text Anchor Override
-                        name: heroTextAnchor
+                      - label: Text Anchor
+                        name: textAnchor
                         widget: select
                         i18n: true
                         required: false
@@ -2057,17 +2084,17 @@ collections:
                           - { label: Bottom center, value: bottom-center }
                           - { label: Bottom right, value: bottom-right }
                       - label: Overlay Strength
-                        name: heroOverlay
+                        name: overlay
                         widget: select
                         i18n: true
+                        required: false
                         options:
                           - { label: None, value: none }
                           - { label: Light, value: light }
                           - { label: Medium, value: medium }
                           - { label: Strong, value: strong }
-                        required: false
                       - label: Layout Hint
-                        name: heroLayoutHint
+                        name: layoutHint
                         widget: select
                         i18n: true
                         required: false

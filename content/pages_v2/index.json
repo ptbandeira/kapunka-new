@@ -972,91 +972,96 @@
         }
       },
       "hero": {
-        "headline": {
-          "en": "Be thankful to your skin.",
-          "pt": "Gratidão para a sua pele.",
-          "es": "Da las gracias a tu piel."
+        "content": {
+          "headline": {
+            "en": "Be thankful to your skin.",
+            "pt": "Gratidão para a sua pele.",
+            "es": "Da las gracias a tu piel."
+          },
+          "subheadline": {
+            "en": "Born in clinics, refined by touch. Kapunka brings therapeutic rituals with pure Moroccan argan oil — care that reconnects body and mind.",
+            "pt": "Nascida em clínicas, aperfeiçoada pelo toque. A Kapunka une rituais terapêuticos e óleo de argão puro de Marrocos — cuidado que reconecta corpo e mente.",
+            "es": "Nacida en clínicas, perfeccionada con el tacto. Kapunka une rituales terapéuticos y aceite de argán puro de Marruecos — un cuidado que reconecta cuerpo y mente."
+          },
+          "body": {
+            "en": "Born in clinics, refined by touch. Kapunka brings therapeutic rituals with pure Moroccan argan oil — care that reconnects body and mind.",
+            "pt": "Nascida em clínicas, aperfeiçoada pelo toque. A Kapunka une rituais terapêuticos e óleo de argão puro de Marrocos — cuidado que reconecta corpo e mente.",
+            "es": "Nacida en clínicas, perfeccionada con el tacto. Kapunka une rituales terapéuticos y aceite de argán puro de Marruecos — un cuidado que reconecta cuerpo y mente."
+          },
+          "highlights": [
+            {
+              "text": {
+                "en": "Born in clinics, refined by touch.",
+                "pt": "Nascida em clínicas, aperfeiçoada pelo toque.",
+                "es": "Nacida en clínicas, perfeccionada con el tacto."
+              }
+            },
+            {
+              "text": {
+                "en": "Kapunka brings therapeutic rituals with pure Moroccan argan oil — care that reconnects body and mind.",
+                "pt": "A Kapunka une rituais terapêuticos e óleo de argão puro de Marrocos — cuidado que reconecta corpo e mente.",
+                "es": "Kapunka une rituales terapéuticos y aceite de argán puro de Marruecos — un cuidado que reconecta cuerpo y mente."
+              }
+            }
+          ]
         },
-        "sub1": {
-          "en": "Born in clinics, refined by touch.",
-          "pt": "Nascida em clínicas, aperfeiçoada pelo toque.",
-          "es": "Nacida en clínicas, perfeccionada con el tacto."
+        "ctas": {
+          "primary": {
+            "href": {
+              "en": "/shop",
+              "pt": "/shop",
+              "es": "/shop"
+            },
+            "label": {
+              "en": "Shop argan rituals",
+              "pt": "Comprar rituais de argão",
+              "es": "Comprar rituales de argán"
+            }
+          },
+          "secondary": {
+            "href": {
+              "en": "/clinics",
+              "pt": "/clinics",
+              "es": "/clinics"
+            },
+            "label": {
+              "en": "For clinics & professionals",
+              "pt": "Para clínicas e profissionais",
+              "es": "Para clínicas y profesionales"
+            }
+          }
         },
-        "sub2": {
-          "en": "Kapunka brings therapeutic rituals with pure Moroccan argan oil — care that reconnects body and mind.",
-          "pt": "A Kapunka une rituais terapêuticos e óleo de argão puro de Marrocos — cuidado que reconecta corpo e mente.",
-          "es": "Kapunka une rituales terapéuticos y aceite de argán puro de Marruecos — un cuidado que reconecta cuerpo y mente."
-        },
-        "subtitle": {
-          "en": "Born in clinics, refined by touch. Kapunka brings therapeutic rituals with pure Moroccan argan oil — care that reconnects body and mind.",
-          "pt": "Nascida em clínicas, aperfeiçoada pelo toque. A Kapunka une rituais terapêuticos e óleo de argão puro de Marrocos — cuidado que reconecta corpo e mente.",
-          "es": "Nacida en clínicas, perfeccionada con el tacto. Kapunka une rituales terapéuticos y aceite de argán puro de Marruecos — un cuidado que reconecta cuerpo y mente."
-        },
-        "title": {
-          "en": "Be thankful to your skin.",
-          "pt": "Gratidão para a sua pele.",
-          "es": "Da las gracias a tu piel."
-        },
-        "alignment": {
-          "heroAlignX": {
+        "layout": {
+          "alignX": {
             "en": "left",
             "pt": "center",
             "es": "center"
           },
-          "heroAlignY": {
+          "alignY": {
             "en": "middle",
             "pt": "middle",
             "es": "middle"
           },
-          "heroLayoutHint": {
-            "en": "bg",
-            "pt": "bg",
-            "es": "bg"
+          "textPosition": {
+            "en": "overlay",
+            "pt": "overlay",
+            "es": "overlay"
           },
-          "heroOverlay": {
-            "en": "medium",
-            "pt": "medium",
-            "es": "medium"
-          },
-          "heroTextAnchor": {
+          "textAnchor": {
             "en": "bottom-left",
             "pt": "middle-center",
             "es": "middle-center"
           },
-          "heroTextPosition": {
-            "en": "overlay",
-            "pt": "overlay",
-            "es": "overlay"
-          }
-        },
-        "ctaPrimary": {
-          "href": {
-            "en": "/shop",
-            "pt": "/shop",
-            "es": "/shop"
+          "overlay": {
+            "en": "medium",
+            "pt": "medium",
+            "es": "medium"
           },
-          "label": {
-            "en": "Shop argan rituals",
-            "pt": "Comprar rituais de argão",
-            "es": "Comprar rituales de argán"
+          "layoutHint": {
+            "en": "bg",
+            "pt": "bg",
+            "es": "bg"
           }
-        },
-        "ctaSecondary": {
-          "href": {
-            "en": "/clinics",
-            "pt": "/clinics",
-            "es": "/clinics"
-          },
-          "label": {
-            "en": "For clinics & professionals",
-            "pt": "Para clínicas e profissionais",
-            "es": "Para clínicas y profesionales"
-          }
-        },
-        "subheadline": {
-          "en": "Born in clinics, refined by touch. Kapunka brings therapeutic rituals with pure Moroccan argan oil — care that reconnects body and mind.",
-          "pt": "Nascida em clínicas, aperfeiçoada pelo toque. A Kapunka une rituais terapêuticos e óleo de argão puro de Marrocos — cuidado que reconecta corpo e mente.",
-          "es": "Nacida en clínicas, perfeccionada con el tacto. Kapunka une rituales terapéuticos y aceite de argán puro de Marruecos — un cuidado que reconecta cuerpo y mente."
         }
       },
       "sections": [
@@ -2102,15 +2107,17 @@
         }
       },
       "hero": {
-        "subheadline": {
-          "en": "Guides and insights to help you understand your skin better.",
-          "pt": "Guias e insights para ajudar você a entender melhor a sua pele.",
-          "es": "Guías e ideas para ayudarte a entender mejor tu piel."
-        },
-        "headline": {
-          "en": "Skincare Library",
-          "pt": "Biblioteca de Skincare",
-          "es": "Biblioteca de Skincare"
+        "content": {
+          "headline": {
+            "en": "Skincare Library",
+            "pt": "Biblioteca de Skincare",
+            "es": "Biblioteca de Skincare"
+          },
+          "subheadline": {
+            "en": "Guides and insights to help you understand your skin better.",
+            "pt": "Guias e insights para ajudar você a entender melhor a sua pele.",
+            "es": "Guías e ideas para ayudarte a entender mejor tu piel."
+          }
         }
       },
       "fields": [
@@ -2317,15 +2324,17 @@
         }
       },
       "hero": {
-        "subheadline": {
-          "en": "Sensitive care rooted in Berber tradition and validated with modern dermal science.",
-          "pt": "Cuidado sensível enraizado na tradição berbere e validado pela ciência dérmica moderna.",
-          "es": "Cuidado sensible arraigado en la tradición bereber y validado por la ciencia dérmica moderna."
-        },
-        "headline": {
-          "en": "Method Kapunka",
-          "pt": "Método Kapunka",
-          "es": "Método Kapunka"
+        "content": {
+          "headline": {
+            "en": "Method Kapunka",
+            "pt": "Método Kapunka",
+            "es": "Método Kapunka"
+          },
+          "subheadline": {
+            "en": "Sensitive care rooted in Berber tradition and validated with modern dermal science.",
+            "pt": "Cuidado sensível enraizado na tradição berbere e validado pela ciência dérmica moderna.",
+            "es": "Cuidado sensible arraigado en la tradición bereber y validado por la ciencia dérmica moderna."
+          }
         }
       },
       "sections": [
