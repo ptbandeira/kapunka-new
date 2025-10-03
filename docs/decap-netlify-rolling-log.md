@@ -11,6 +11,11 @@ This log records day-to-day investigations, fixes, and decisions that affect the
 
 ---
 
+## 2025-10-07 — Streamlined page field copy
+- **What changed**: Reworded every `admin/config.yml` field label and helper hint in plain language, added URL and media guidance where editors stalled, and reordered panels so collapsed groups follow the on-page experience.
+- **Impact & follow-up**: Editors see clearer panels in Decap without altering translation requirements. Monitor hero legacy panels to confirm the optional hints reduce confusion before removing them entirely.
+- **References**: Pending PR
+
 ## 2025-10-06 — Preview context & testing refresh
 - **What changed**: Enhanced the Decap preview shell to surface hero CTA readiness, section media chips, and breadcrumb-style file context in both `admin/index.html` and its `site/` mirror, then documented a new rapid usability test in the audit guide.
 - **Impact & follow-up**: Editors can now verify call-to-action state, locale, and media coverage directly from the preview. Track follow-up issues for locale toggles, extended CTA cues, and filename surfacing as outlined in `docs/decap-preview-issues.md`.
