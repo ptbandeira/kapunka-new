@@ -7,8 +7,8 @@
       "type": "mediaCopy",
       "title": "We're ready to listen",
       "body": "Clinics, partners, and individuals—tell us what you need and we’ll guide you to the right routine, training, or wholesale option.",
-      "imageRef": "/content/uploads/argan-fields.jpg",
-      "layout": "image-right"
+      "layout": "image-right",
+      "image": "/content/uploads/argan-fields.jpg"
     }
   ]
 }

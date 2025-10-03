@@ -59,7 +59,6 @@ const baseSectionFields = [
   { name: 'theme', label: 'Theme', type: 'string', required: false },
   { name: 'layout', label: 'Layout', type: 'string', required: false },
   { name: 'image', label: 'Image Upload', type: 'image', required: false },
-  { name: 'imageRef', label: 'Image Path', type: 'string', required: false },
   { name: 'imageAlt', label: 'Image Alt Text', type: 'string', required: false },
   { name: 'videoUrl', label: 'Video URL', type: 'string', required: false },
   { name: 'thumbnail', label: 'Thumbnail Image', type: 'image', required: false },
@@ -207,7 +206,6 @@ const buildPageFields = () => [
   { name: 'heroTitle', label: 'Hero Title', type: 'string', required: false },
   { name: 'heroSubtitle', label: 'Hero Subtitle', type: 'text', required: false },
   { name: 'heroImage', label: 'Hero Image', type: 'image', required: false },
-  { name: 'heroImageRef', label: 'Hero Image Path', type: 'string', required: false },
   {
     name: 'heroCtas',
     label: 'Hero CTAs',

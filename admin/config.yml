@@ -25,8 +25,7 @@ shared_sections: &shared_sections
         fields:
           - { label: "Label", name: "label", widget: "string", i18n: true, required: false }
           - { label: "Link URL", name: "href", widget: "string", i18n: true, required: false }
-      - { label: "Image Upload", name: "image", widget: "image", choose_url: true, required: false }
-      - { label: "Image Path (optional)", name: "imageRef", widget: "string", i18n: true, required: false, hint: "Reference an existing asset such as /content/uploads/home-hero.jpg." }
+      - { label: "Image Upload", name: "image", widget: "image", choose_url: true, required: false, hint: "Upload or choose from existing assets." }
       - { label: "Image Alt Text", name: "imageAlt", widget: "string", i18n: true, required: false }
       - label: "Text Anchor Override"
         name: "position"
@@ -51,8 +50,7 @@ shared_sections: &shared_sections
       - { name: "type", widget: "hidden", default: "mediaCopy" }
       - { label: "Title", name: "title", widget: "string", i18n: true, required: false }
       - { label: "Body", name: "body", widget: "markdown", i18n: true, required: false }
-      - { label: "Image Upload", name: "image", widget: "image", choose_url: true, required: false }
-      - { label: "Image Path (optional)", name: "imageRef", widget: "string", i18n: true, required: false, hint: "Use when referencing an existing asset path such as /content/uploads/example.jpg." }
+      - { label: "Image Upload", name: "image", widget: "image", choose_url: true, required: false, hint: "Upload or choose from existing assets." }
       - { label: "Image Alt Text", name: "imageAlt", widget: "string", i18n: true, required: false }
       - label: "Layout"
         name: "layout"
@@ -131,8 +129,7 @@ shared_sections: &shared_sections
           - { label: "Eyebrow", name: "eyebrow", widget: "string", i18n: true, required: false }
           - { label: "Title", name: "title", widget: "string", i18n: true, required: false }
           - { label: "Body", name: "body", widget: "text", i18n: true, required: false }
-          - { label: "Image Upload", name: "image", widget: "image", choose_url: true, i18n: true, required: false }
-          - { label: "Image Path (optional)", name: "imageRef", widget: "string", i18n: true, required: false }
+          - { label: "Image Upload", name: "image", widget: "image", choose_url: true, i18n: true, required: false, hint: "Upload or choose from existing assets." }
           - { label: "Image Alt Text", name: "imageAlt", widget: "string", i18n: true, required: false }
           - { label: "CTA Label", name: "ctaLabel", widget: "string", i18n: true, required: false }
           - { label: "CTA Href", name: "ctaHref", widget: "string", i18n: true, required: false, hint: "Supports internal (#/ or /path) and external URLs." }
@@ -224,12 +221,7 @@ shared_sections: &shared_sections
             choose_url: true
             i18n: true
             required: false
-          - label: "Image Path (optional)"
-            name: "imageRef"
-            widget: "string"
-            i18n: true
-            required: false
-            hint: "Reference an existing asset such as /content/uploads/community.jpg."
+            hint: "Upload or choose from existing assets."
           - label: "Alt Text"
             name: "alt"
             widget: "string"
@@ -733,10 +725,8 @@ collections:
             required: false
             hint: "Either upload imagery or reference an existing asset path. Left/right map to split layouts."
             fields:
-              - { label: "Hero Image Left", name: "heroImageLeft", widget: "image", choose_url: true, required: false }
-              - { label: "Hero Image Left Path", name: "heroImageLeftRef", widget: "string", required: false, hint: "Optional reference such as /content/uploads/home-hero.jpg" }
-              - { label: "Hero Image Right", name: "heroImageRight", widget: "image", choose_url: true, required: false }
-              - { label: "Hero Image Right Path", name: "heroImageRightRef", widget: "string", required: false }
+              - { label: "Hero Image Left", name: "heroImageLeft", widget: "image", choose_url: true, required: false, hint: "Upload or choose from existing assets." }
+              - { label: "Hero Image Right", name: "heroImageRight", widget: "image", choose_url: true, required: false, hint: "Upload or choose from existing assets." }
           - label: "Sections"
             name: "sections"
             widget: "list"
@@ -2033,8 +2023,7 @@ collections:
                     collapsed: true
                     hint: "Control the hero imagery."
                     fields:
-                      - { label: Upload Image, name: image, widget: image, choose_url: true, required: false }
-                      - { label: Use Existing Asset Path, name: imageRef, widget: string, i18n: true, required: false, hint: "Reference an existing asset such as /content/uploads/home-hero.jpg." }
+                      - { label: Upload Image, name: image, widget: image, choose_url: true, required: false, hint: "Upload or choose from existing assets." }
                       - { label: Alt Text, name: imageAlt, widget: string, i18n: true, required: false }
                   - label: Layout
                     name: layout

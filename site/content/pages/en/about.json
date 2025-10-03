@@ -7,15 +7,15 @@
       "type": "mediaCopy",
       "title": "Where Kapunka comes from",
       "body": "Kapunka began with a simple idea: the way we touch changes how we heal. Years beside clinicians shaped a method that is careful, precise, and kind.",
-      "imageRef": "/content/uploads/founder-portrait.jpg",
-      "layout": "image-right"
+      "layout": "image-right",
+      "image": "/content/uploads/founder-portrait.jpg"
     },
     {
       "type": "mediaCopy",
       "title": "The name",
       "body": "‘Kapunka’ was first heard by our founder in a school in Ubud. The word—thank you—became a promise: make care that gives back. Be thankful to your skin.",
-      "imageRef": "/content/uploads/ubud-moment.jpg",
-      "layout": "image-right"
+      "layout": "image-right",
+      "image": "/content/uploads/ubud-moment.jpg"
     }
   ]
 }

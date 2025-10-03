@@ -19,7 +19,6 @@ const SUPPORTED_SECTION_TYPES = new Set<PageSection['type']>([
 interface StoryBlock {
   heading?: string | null;
   body?: string | null;
-  imageRef?: string | null;
   imageUrl?: string | null;
   imageAlt?: string | null;
 }
@@ -42,7 +41,6 @@ const isStoryBlock = (value: unknown): value is StoryBlock => {
   return (
     (block.heading === undefined || block.heading === null || typeof block.heading === 'string')
     && (block.body === undefined || block.body === null || typeof block.body === 'string')
-    && (block.imageRef === undefined || block.imageRef === null || typeof block.imageRef === 'string')
     && (block.imageUrl === undefined || block.imageUrl === null || typeof block.imageUrl === 'string')
     && (block.imageAlt === undefined || block.imageAlt === null || typeof block.imageAlt === 'string')
   );
@@ -181,7 +179,7 @@ const Story: React.FC = () => {
         }
 
         const hasText = Boolean(block.heading?.trim()) || Boolean(block.body?.trim());
-        const hasImage = Boolean(block.imageUrl?.trim()) || Boolean(block.imageRef?.trim());
+        const hasImage = Boolean(block.imageUrl?.trim());
         return hasText || hasImage;
       });
   }, [pageContent?.story]);
@@ -242,7 +240,7 @@ const Story: React.FC = () => {
               data-sb-field-path={`${storyFieldPath}.story`}
             >
               {storyBlocks.map(({ block, index }) => {
-                const imageUrl = block.imageUrl ?? block.imageRef ?? undefined;
+                const imageUrl = block.imageUrl ?? undefined;
                 const hasImage = Boolean(imageUrl);
                 const imageFirst = hasImage && index % 2 === 0;
                 const storyBlockFieldPath = `${storyFieldPath}.story.${index}`;
@@ -286,9 +284,7 @@ const Story: React.FC = () => {
                     viewport={{ once: true }}
                     transition={{ duration: 0.6 }}
                     className={imageFirst ? 'md:order-1' : 'md:order-2'}
-                    {...getVisualEditorAttributes(
-                      block.imageRef ? `${storyBlockFieldPath}.imageRef` : `${storyBlockFieldPath}.imageUrl`,
-                    )}
+                    {...getVisualEditorAttributes(`${storyBlockFieldPath}.imageUrl`)}
                   >
                     <img
                       src={imageUrl}

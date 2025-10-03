@@ -23,11 +23,6 @@
             "pt": "A Kapunka começou com uma ideia simples: a forma como tocamos muda a maneira como curamos. Anos ao lado de equipes clínicas moldaram um método cuidadoso, preciso e gentil.",
             "es": "Kapunka nació de una idea sencilla: la forma en que tocamos transforma cómo sanamos. Años junto a profesionales clínicos dieron forma a un método atento, preciso y amable."
           },
-          "imageRef": {
-            "en": "/content/uploads/founder-portrait.jpg",
-            "pt": "/content/uploads/founder-portrait.jpg",
-            "es": "/content/uploads/founder-portrait.jpg"
-          },
           "layout": {
             "en": "image-right",
             "pt": "image-right",
@@ -45,11 +40,6 @@
             "en": "‘Kapunka’ was first heard by our founder in a school in Ubud. The word—thank you—became a promise: make care that gives back. Be thankful to your skin.",
             "pt": "Nossa fundadora ouviu ‘Kapunka’ pela primeira vez em uma escola em Ubud. A palavra — obrigado — tornou-se uma promessa: criar um cuidado que retribua. Seja grato à sua pele.",
             "es": "Nuestra fundadora escuchó por primera vez ‘Kapunka’ en una escuela de Ubud. La palabra —gracias— se convirtió en una promesa: crear un cuidado que devuelva. Agradece a tu piel."
-          },
-          "imageRef": {
-            "en": "/content/uploads/ubud-moment.jpg",
-            "pt": "/content/uploads/ubud-moment.jpg",
-            "es": "/content/uploads/ubud-moment.jpg"
           },
           "layout": {
             "en": "image-right",
@@ -169,11 +159,6 @@
             "en": "Trusted by dermatology and aesthetic teams for scar care and recovery. Low-residue, fragrance-considerate options and printable protocols.",
             "pt": "Equipes de dermatologia e estética confiam em nós para cuidados com cicatrizes e recuperação. Opções de baixo resíduo, atentas à fragrância e protocolos imprimíveis.",
             "es": "Equipos de dermatología y estética confían en nosotros para el cuidado de cicatrices y la recuperación. Opciones de bajo residuo, consideradas con la fragancia y protocolos imprimibles."
-          },
-          "imageRef": {
-            "en": "/content/uploads/clinic-tray.jpg",
-            "pt": "/content/uploads/clinic-tray.jpg",
-            "es": "/content/uploads/clinic-tray.jpg"
           },
           "layout": {
             "en": "image-right",
@@ -806,11 +791,6 @@
             "pt": "Clínicas, parceiros e pessoas queridas—conte o que você precisa e guiamos você até a rotina, o treinamento ou a opção de atacado ideal.",
             "es": "Clínicas, aliados y personas—cuéntanos qué necesitas y te guiamos hacia la rutina, la formación u opción mayorista adecuada."
           },
-          "imageRef": {
-            "en": "/content/uploads/argan-fields.jpg",
-            "pt": "/content/uploads/argan-fields.jpg",
-            "es": "/content/uploads/argan-fields.jpg"
-          },
           "layout": {
             "en": "image-right",
             "pt": "image-right",
@@ -1088,10 +1068,6 @@
                 "pt": "Mãos aplicando óleo de argan sob luz quente",
                 "es": "Manos aplicando aceite de argán con luz cálida"
               },
-              "imageRef": {
-                "pt": "/content/uploads/roots-olive-tree.jpg",
-                "es": "/content/uploads/roots-olive-tree.jpg"
-              },
               "title": {
                 "pt": "Da gratidão ao método",
                 "es": "De la gratitud al método"
@@ -1117,10 +1093,6 @@
               "imageAlt": {
                 "pt": "Profissional massageando o rosto de uma cliente com cuidado de argan",
                 "es": "Profesional masajeando el rostro de una clienta con cuidado de argán"
-              },
-              "imageRef": {
-                "pt": "/content/uploads/clinic-hands.jpg",
-                "es": "/content/uploads/clinic-hands.jpg"
               },
               "title": {
                 "pt": "De confiança profissional",
@@ -1148,10 +1120,6 @@
                 "pt": "Frutos de argan recém-colhidos em um cesto de palha",
                 "es": "Frutos de argán recién cosechados en una cesta tejida"
               },
-              "imageRef": {
-                "pt": "/content/uploads/argan-coop.jpg",
-                "es": "/content/uploads/argan-coop.jpg"
-              },
               "title": {
                 "pt": "Origem com herança, padrão clínico",
                 "es": "Origen con herencia, estándar clínico"
@@ -1177,10 +1145,6 @@
               "imageAlt": {
                 "pt": "Sala de hammam com vapor e uma pessoa relaxando",
                 "es": "Sala de hammam llena de vapor con una persona descansando"
-              },
-              "imageRef": {
-                "pt": "/content/uploads/hammam-light.jpg",
-                "es": "/content/uploads/hammam-light.jpg"
               },
               "title": {
                 "pt": "Do hammam à recuperação moderna",
@@ -1238,9 +1202,6 @@
               "imageAlt": {
                 "en": "Hands applying argan oil in warm light"
               },
-              "imageRef": {
-                "en": "/content/uploads/roots-olive-tree.jpg"
-              },
               "label": {
                 "pt": "Lotes prontos para clínica",
                 "es": "Lotes listos para clínica"
@@ -1269,9 +1230,6 @@
               "image": "/content/uploads/pexels-elly-fairytale-3865548.jpg",
               "imageAlt": {
                 "en": "Practitioner massaging a client's face with argan care"
-              },
-              "imageRef": {
-                "en": "/content/uploads/clinic-hands.jpg"
               },
               "label": {
                 "pt": "Cuidado sensorial holístico",
@@ -1302,9 +1260,6 @@
               "imageAlt": {
                 "en": "Harvested argan fruit gathered in a woven basket"
               },
-              "imageRef": {
-                "en": "/content/uploads/argan-coop.jpg"
-              },
               "label": {
                 "pt": "Histórias de retalho flexíveis",
                 "es": "Historias minoristas flexibles"
@@ -1333,9 +1288,6 @@
               "image": "/content/uploads/342cecc0-3c00-4094-97d6-5c9d9da02330.jpg",
               "imageAlt": {
                 "en": "Steam-filled hammam room with a person resting"
-              },
-              "imageRef": {
-                "en": "/content/uploads/hammam-light.jpg"
               },
               "label": {
                 "pt": "Parcerias sustentáveis",
