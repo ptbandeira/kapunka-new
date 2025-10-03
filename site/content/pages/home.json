@@ -1,0 +1,79 @@
+{
+  "sections": [
+    {
+      "type": "hero",
+      "headline": {
+        "en": "Glow with confidence",
+        "pt": "Brilhe com confiança",
+        "es": "Brilla con confianza"
+      },
+      "subtext": {
+        "en": "Crafting radiant skin rituals with science-backed care.",
+        "pt": "Criamos rituais de pele radiantes com cuidado baseado em ciência.",
+        "es": "Creamos rituales de piel radiantes con cuidado respaldado por la ciencia."
+      },
+      "background_image": "/content/uploads/home-hero-placeholder.jpg",
+      "cta": {
+        "label": {
+          "en": "Explore the method",
+          "pt": "Explore o método",
+          "es": "Explora el método"
+        },
+        "url": "/method",
+        "style": "primary"
+      }
+    },
+    {
+      "type": "showcase",
+      "eyebrow": {
+        "en": "Our signature approach",
+        "pt": "Nossa abordagem exclusiva",
+        "es": "Nuestro enfoque exclusivo"
+      },
+      "headline": {
+        "en": "Designed for every complexion",
+        "pt": "Pensado para cada tipo de pele",
+        "es": "Diseñado para cada tipo de piel"
+      },
+      "text_content": {
+        "en": "Experience layered treatments that respect the skin barrier while restoring balance and glow.",
+        "pt": "Vivencie tratamentos em camadas que respeitam a barreira cutânea enquanto restauram o equilíbrio e o brilho.",
+        "es": "Experimenta tratamientos en capas que respetan la barrera cutánea mientras restauran el equilibrio y el brillo."
+      },
+      "media_gallery": [
+        "/content/uploads/showcase-1.jpg",
+        "/content/uploads/showcase-2.jpg",
+        "/content/uploads/showcase-3.jpg"
+      ]
+    },
+    {
+      "type": "contact_banner",
+      "headline": {
+        "en": "Ready to book your ritual?",
+        "pt": "Pronto para agendar o seu ritual?",
+        "es": "¿Listo para agendar tu ritual?"
+      },
+      "cta": {
+        "label": {
+          "en": "Contact us",
+          "pt": "Fale conosco",
+          "es": "Contáctanos"
+        },
+        "url": "/contact",
+        "style": "secondary"
+      }
+    }
+  ],
+  "seo": {
+    "meta_title": {
+      "en": "Kapunka Home",
+      "pt": "Kapunka Início",
+      "es": "Kapunka Inicio"
+    },
+    "meta_description": {
+      "en": "Discover spa-inspired rituals, curated skincare, and training designed to brighten every complexion.",
+      "pt": "Descubra rituais inspirados em spa, skincare curado e formações pensadas para iluminar cada pele.",
+      "es": "Descubre rituales inspirados en spa, cuidado de la piel curado y formaciones diseñadas para iluminar cada piel."
+    }
+  }
+}
