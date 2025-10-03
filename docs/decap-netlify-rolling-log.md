@@ -11,6 +11,11 @@ This log records day-to-day investigations, fixes, and decisions that affect the
 
 ---
 
+## 2025-10-11 — Decap CMS baseline reset
+- **What changed**: Replaced the previous schema-heavy `admin/config.yml` with a minimal setup that keeps the git-gateway backend on `main`, preserves Cloudinary via environment variables, and restores the custom commit templates while clearing all collections.
+- **Impact & follow-up**: CMS now boots with a clean slate and no editor-facing collections; define new collections before inviting editors back in.
+- **References**: Pending PR
+
 ## 2025-10-10 — Locale slug detection for multi-folder pages
 - **What changed**: Updated both `admin/index.html` and `site/admin/index.html` to derive locale and slug data from the entry `path`, then locate the matching Decap entry when building locale chips so links work with the new multi-folder `pages` structure.
 - **Impact & follow-up**: Locale chips in the preview header now jump to the appropriate translation instead of 404ing; monitor future schema changes to ensure the helper continues to match `content/pages/{locale}/{slug}.json` paths.
