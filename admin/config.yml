@@ -131,7 +131,7 @@ shared_sections: &shared_sections
           - { label: "Eyebrow", name: "eyebrow", widget: "string", i18n: true, required: false }
           - { label: "Title", name: "title", widget: "string", i18n: true, required: false }
           - { label: "Body", name: "body", widget: "text", i18n: true, required: false }
-          - { label: "Image Upload", name: "image", widget: "image", choose_url: true, required: false }
+          - { label: "Image Upload", name: "image", widget: "image", choose_url: true, i18n: true, required: false }
           - { label: "Image Path (optional)", name: "imageRef", widget: "string", i18n: true, required: false }
           - { label: "Image Alt Text", name: "imageAlt", widget: "string", i18n: true, required: false }
           - { label: "CTA Label", name: "ctaLabel", widget: "string", i18n: true, required: false }
@@ -221,6 +221,7 @@ shared_sections: &shared_sections
             name: "image"
             widget: "image"
             choose_url: true
+            i18n: true
             required: false
           - label: "Image Path (optional)"
             name: "imageRef"
