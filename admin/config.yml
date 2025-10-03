@@ -200,10 +200,14 @@ collections:
         collapsed: true
         required: false
         fields:
-          - <<: *image_field_defaults
+          - &image_field_defaults
             label: Left Image
             name: heroImageLeft
+            widget: image
+            choose_url: false
+            required: false
             hint: "Upload a JPG or PNG that is at least 1600 px wide."
+            i18n: duplicate
           - <<: *image_field_defaults
             label: Right Image
             name: heroImageRight
@@ -436,14 +440,10 @@ collections:
                   - { label: Overlay, value: overlay }
                 required: false
               - { label: Column Count, name: columns, widget: number, required: false, value_type: int }
-              - &image_field_defaults
+              - <<: *image_field_defaults
                 label: Section Image
                 name: image
-                widget: image
-                choose_url: false
-                required: false
                 hint: "Upload a JPG or PNG that is at least 1200 px wide."
-                i18n: duplicate
               - &image_alt_field_defaults
                 label: Image Alt Text
                 name: imageAlt
