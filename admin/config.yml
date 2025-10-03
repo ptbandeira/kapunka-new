@@ -423,6 +423,9 @@ section_library: &section_library
   - *section_videoGallery
   - *section_trainingList
   - *section_timeline
+  - *section_facts
+  - *section_bullets
+  - *section_specialties
 sections_field: &sections_field
   label: "Sections"
   name: "sections"
@@ -1930,60 +1933,128 @@ collections:
               - { label: Page Label, name: label, widget: string }
               - { label: Page Identifier, name: id, widget: string }
               - { label: Route (e.g. /about), name: slug, widget: string }
+              - label: Metadata
+                name: metadata
+                widget: object
+                collapsed: true
+                required: false
+                fields:
+                  - { label: Meta Title, name: title, widget: string, i18n: true, required: false }
+                  - { label: Meta Description, name: description, widget: text, i18n: true, required: false }
+              - label: Hero
+                name: hero
+                widget: object
+                collapsed: true
+                required: false
+                fields:
+                  - { label: Headline, name: headline, widget: string, i18n: true, required: false }
+                  - { label: Subheadline, name: subheadline, widget: text, i18n: true, required: false }
+                  - { label: Alternate Title, name: title, widget: string, i18n: true, required: false }
+                  - { label: Alternate Subtitle, name: subtitle, widget: text, i18n: true, required: false }
+                  - { label: Supporting Headline 1, name: sub1, widget: string, i18n: true, required: false }
+                  - { label: Supporting Headline 2, name: sub2, widget: string, i18n: true, required: false }
+                  - label: Primary CTA
+                    name: ctaPrimary
+                    widget: object
+                    collapsed: true
+                    required: false
+                    fields:
+                      - { label: Label, name: label, widget: string, i18n: true, required: false }
+                      - { label: Link URL, name: href, widget: string, required: false }
+                  - label: Secondary CTA
+                    name: ctaSecondary
+                    widget: object
+                    collapsed: true
+                    required: false
+                    fields:
+                      - { label: Label, name: label, widget: string, i18n: true, required: false }
+                      - { label: Link URL, name: href, widget: string, required: false }
+                  - label: Alignment
+                    name: alignment
+                    widget: object
+                    collapsed: true
+                    required: false
+                    fields:
+                      - label: Horizontal Alignment
+                        name: heroAlignX
+                        widget: select
+                        options:
+                          - { label: Left, value: left }
+                          - { label: Center, value: center }
+                          - { label: Right, value: right }
+                        required: false
+                      - label: Vertical Alignment
+                        name: heroAlignY
+                        widget: select
+                        options:
+                          - { label: Top, value: top }
+                          - { label: Middle, value: middle }
+                          - { label: Bottom, value: bottom }
+                        required: false
+                      - label: Text Display
+                        name: heroTextPosition
+                        widget: select
+                        options:
+                          - { label: Overlay, value: overlay }
+                          - { label: Below media, value: below }
+                        required: false
+                      - label: Text Anchor Override
+                        name: heroTextAnchor
+                        widget: select
+                        required: false
+                        options:
+                          - { label: Top left, value: top-left }
+                          - { label: Top center, value: top-center }
+                          - { label: Top right, value: top-right }
+                          - { label: Middle left, value: middle-left }
+                          - { label: Middle center, value: middle-center }
+                          - { label: Middle right, value: middle-right }
+                          - { label: Bottom left, value: bottom-left }
+                          - { label: Bottom center, value: bottom-center }
+                          - { label: Bottom right, value: bottom-right }
+                      - label: Overlay Strength
+                        name: heroOverlay
+                        widget: select
+                        options:
+                          - { label: None, value: none }
+                          - { label: Light, value: light }
+                          - { label: Medium, value: medium }
+                          - { label: Strong, value: strong }
+                        required: false
+                      - label: Layout Hint
+                        name: heroLayoutHint
+                        widget: select
+                        required: false
+                        options:
+                          - { label: Background image, value: bg }
+                          - { label: Background image (static), value: bgImage }
+                          - { label: Split · image left, value: image-left }
+                          - { label: Split · image right, value: image-right }
+                          - { label: Full-bleed image, value: image-full }
+                          - { label: Text over media, value: text-over-media }
+                          - { label: Side-by-side, value: side-by-side }
+              - label: Additional Fields
+                name: fields
+                widget: list
+                collapsed: true
+                required: false
+                label_singular: Field
+                summary: "{{fields.key}}"
+                fields:
+                  - { label: Field Key, name: key, widget: string }
+                  - label: Value
+                    name: value
+                    widget: object
+                    fields:
+                      - { label: English, name: en, widget: text, required: false }
+                      - { label: Portuguese, name: pt, widget: text, required: false }
+                      - { label: Spanish, name: es, widget: text, required: false }
               - label: Sections
                 name: sections
                 widget: list
                 collapsed: true
-                label_singular: Section
-                summary: "{{fields.name}} · {{fields.key}}"
-                fields:
-                  - { label: Section Key, name: key, widget: string }
-                  - { label: Section Name, name: name, widget: string }
-                  - label: Content Blocks
-                    name: copy
-                    widget: list
-                    collapsed: true
-                    label_singular: Content block
-                    summary: "{% if fields.label %}{{fields.label}} · {% endif %}{{fields.key}}"
-                    fields:
-                      - { label: Admin Label (e.g. Headline), name: label, widget: string, required: false, hint: "Optional helper name used only inside the editor." }
-                      - { label: Field Key, name: key, widget: string }
-                      - label: Text
-                        name: value
-                        widget: object
-                        fields:
-                          - { label: English, name: en, widget: text, required: false }
-                          - { label: Portuguese, name: pt, widget: text, required: false }
-                          - { label: Spanish, name: es, widget: text, required: false }
-                  - label: Media & Assets
-                    name: assets
-                    widget: list
-                    required: false
-                    collapsed: true
-                    label_singular: Asset
-                    summary: "{% if fields.label %}{{fields.label}} · {% endif %}{{fields.key}}"
-                    fields:
-                      - { label: Admin Label (e.g. Hero Image), name: label, widget: string, required: false, hint: "Optional helper name used only inside the editor." }
-                      - { label: Field Key, name: key, widget: string }
-                      - { label: "URL or Path", name: value, widget: string, required: false }
-                  - label: Layout & Settings
-                    name: options
-                    widget: list
-                    required: false
-                    collapsed: true
-                    label_singular: Setting
-                    summary: "{% if fields.label %}{{fields.label}} · {% endif %}{{fields.key}}"
-                    fields:
-                      - { label: Admin Label (e.g. Columns), name: label, widget: string, required: false, hint: "Optional helper name used only inside the editor." }
-                      - { label: Setting Key, name: key, widget: string }
-                      - label: Value
-                        name: value
-                        widget: object
-                        required: false
-                        fields:
-                          - { label: English, name: en, widget: string, required: false, hint: "Stored as raw text. Numbers or booleans will be auto-detected at runtime." }
-                          - { label: Portuguese, name: pt, widget: string, required: false }
-                          - { label: Spanish, name: es, widget: string, required: false }
+                summary: "{{fields.type}} · {{fields.title}}"
+                types: *section_library
   - name: courses
     label: Courses
     group: "9. Legacy / Catalog"
