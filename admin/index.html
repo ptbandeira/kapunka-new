@@ -76,6 +76,49 @@
           color: '#829ab1'
         };
 
+        var metaStackStyle = {
+          display: 'flex',
+          flexDirection: 'column',
+          gap: '6px',
+          minWidth: '220px'
+        };
+
+        var metaSideStackStyle = Object.assign({}, metaStackStyle, {
+          alignItems: 'flex-end',
+          textAlign: 'right'
+        });
+
+        var localeSwitcherStyle = {
+          display: 'flex',
+          flexWrap: 'wrap',
+          gap: '6px',
+          justifyContent: 'flex-end'
+        };
+
+        var localeChipStyle = {
+          display: 'inline-flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+          padding: '4px 10px',
+          borderRadius: '999px',
+          fontSize: '11px',
+          letterSpacing: '0.08em',
+          textTransform: 'uppercase',
+          textDecoration: 'none',
+          transition: 'all 0.2s ease-in-out'
+        };
+
+        var localeChipActiveStyle = {
+          backgroundColor: '#c3ddfd',
+          color: '#102a43',
+          boxShadow: '0 0 0 1px #829ab1 inset'
+        };
+
+        var localeChipInactiveStyle = {
+          backgroundColor: '#f1f5f9',
+          color: '#486581'
+        };
+
         var heroStyle = {
           backgroundColor: '#ffffff',
           border: '1px solid #d9e2ec',
@@ -277,6 +320,67 @@
           letterSpacing: '0.04em'
         };
 
+        var heroMediaWrapperStyle = {
+          marginTop: '20px'
+        };
+
+        var heroMediaHeadingStyle = {
+          margin: '0 0 8px',
+          fontSize: '13px',
+          letterSpacing: '0.08em',
+          textTransform: 'uppercase',
+          color: '#486581'
+        };
+
+        var heroMediaGridStyle = {
+          display: 'grid',
+          gridTemplateColumns: 'repeat(auto-fit, minmax(160px, 1fr))',
+          gap: '12px'
+        };
+
+        var heroMediaCardStyle = {
+          borderRadius: '10px',
+          border: '1px dashed #cbd2d9',
+          padding: '12px',
+          backgroundColor: '#f1f5f9'
+        };
+
+        var heroMediaLabelStyle = {
+          margin: '0 0 6px',
+          fontSize: '12px',
+          letterSpacing: '0.08em',
+          textTransform: 'uppercase',
+          color: '#486581'
+        };
+
+        var heroMediaFilenameStyle = {
+          margin: '0 0 8px',
+          fontSize: '13px',
+          color: '#243b53',
+          wordBreak: 'break-all'
+        };
+
+        var heroMediaStatusStyle = {
+          display: 'inline-flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+          padding: '4px 8px',
+          borderRadius: '999px',
+          fontSize: '11px',
+          letterSpacing: '0.08em',
+          textTransform: 'uppercase'
+        };
+
+        var heroMediaStatusReadyStyle = {
+          backgroundColor: '#c6f7e2',
+          color: '#0b6e4f'
+        };
+
+        var heroMediaStatusMissingStyle = {
+          backgroundColor: '#ffeeee',
+          color: '#b91c1c'
+        };
+
         var emptyStateStyle = {
           margin: '0',
           fontSize: '14px',
@@ -451,7 +555,7 @@
           }
 
           var total = 0;
-          var ctaKeys = ['cta', 'ctaPrimary', 'ctaSecondary', 'ctaTertiary', 'button', 'link'];
+          var ctaKeys = ['cta', 'ctaPrimary', 'ctaSecondary', 'ctaTertiary', 'button', 'link', 'ctaLabel', 'ctaText'];
           for (var j = 0; j < ctaKeys.length; j += 1) {
             var value = node[ctaKeys[j]];
             if (!value) {
@@ -459,6 +563,10 @@
             }
             if (Array.isArray(value)) {
               total += countCtas(value);
+            } else if (typeof value === 'string') {
+              if (value.trim()) {
+                total += 1;
+              }
             } else if (typeof value === 'object') {
               var label = value.label || value.text || value.title;
               var href = value.href || value.url;
@@ -503,7 +611,204 @@
             details.push('CTA not set');
           }
 
+          var listKeys = [
+            { key: 'items', label: 'item' },
+            { key: 'slides', label: 'slide' },
+            { key: 'quotes', label: 'quote' },
+            { key: 'cards', label: 'card' },
+            { key: 'products', label: 'product' }
+          ];
+
+          for (var i = 0; i < listKeys.length; i += 1) {
+            var listKey = listKeys[i];
+            var listValue = section && section[listKey.key];
+            if (Array.isArray(listValue) && listValue.length > 0) {
+              details.push(listValue.length + ' ' + (listValue.length === 1 ? listKey.label : listKey.label + 's'));
+            }
+          }
+
           return details;
+        }
+
+        function describeCtaState(data) {
+          if (!data || typeof data !== 'object') {
+            return 'CTA not configured';
+          }
+
+          var hasLabel = Boolean(data.label && String(data.label).trim());
+          var hasUrl = Boolean((data.href && String(data.href).trim()) || (data.url && String(data.url).trim()));
+          var missing = [];
+
+          if (!hasLabel) {
+            missing.push('label');
+          }
+          if (!hasUrl) {
+            missing.push('URL');
+          }
+
+          if (missing.length === 0) {
+            return 'Ready';
+          }
+
+          return 'Missing ' + missing.join(' & ');
+        }
+
+        function formatMediaLabel(media) {
+          if (!media) {
+            return '';
+          }
+          if (typeof media === 'string') {
+            var trimmed = media.trim();
+            if (!trimmed) {
+              return '';
+            }
+            var segments = trimmed.split('/');
+            return segments[segments.length - 1] || trimmed;
+          }
+          if (Array.isArray(media) && media.length > 0) {
+            return formatMediaLabel(media[0]);
+          }
+          if (typeof media === 'object') {
+            if (media.path) {
+              return formatMediaLabel(media.path);
+            }
+            if (media.url) {
+              return formatMediaLabel(media.url);
+            }
+            if (media.src) {
+              return formatMediaLabel(media.src);
+            }
+            if (media.name) {
+              return String(media.name);
+            }
+          }
+          return '';
+        }
+
+        function buildHeroMediaDetails(entryData) {
+          var data = entryData || {};
+          var heroImages = data.heroImages || {};
+          var candidates = [
+            { key: 'heroImageLeft', label: 'Left image', value: heroImages.heroImageLeft },
+            { key: 'heroImageRight', label: 'Right image', value: heroImages.heroImageRight }
+          ];
+
+          if (data.heroImage) {
+            candidates.push({ key: 'heroImage', label: 'Hero image', value: data.heroImage });
+          }
+          if (data.backgroundImage) {
+            candidates.push({ key: 'backgroundImage', label: 'Background image', value: data.backgroundImage });
+          }
+          if (data.poster) {
+            candidates.push({ key: 'poster', label: 'Video poster', value: data.poster });
+          }
+
+          var details = [];
+
+          for (var i = 0; i < candidates.length; i += 1) {
+            var candidate = candidates[i];
+            if (!candidate) {
+              continue;
+            }
+            var value = candidate.value;
+            var hasValue = Boolean(formatMediaLabel(value));
+            var label = candidate.label || 'Hero imagery';
+            var filename = hasValue ? formatMediaLabel(value) : 'Upload image';
+            details.push({
+              key: candidate.key || label,
+              label: label,
+              filename: filename,
+              isReady: hasValue
+            });
+          }
+
+          if (details.length === 0) {
+            details.push({
+              key: 'hero-placeholder',
+              label: 'Hero imagery',
+              filename: 'Upload hero imagery',
+              isReady: false
+            });
+          }
+
+          return details;
+        }
+
+        function getEntryData(entry) {
+          if (entry && entry.get) {
+            var data = entry.get('data');
+            return toJS(data) || {};
+          }
+          if (entry && entry.data) {
+            return entry.data;
+          }
+          return {};
+        }
+
+        function getCollectionNameValue(props, entry) {
+          if (props && props.collection) {
+            var collection = props.collection;
+            if (collection.get) {
+              return collection.get('name') || collection.get('label') || '';
+            }
+            if (collection.name) {
+              return collection.name;
+            }
+          }
+          if (entry && entry.get) {
+            return entry.get('collection') || '';
+          }
+          return '';
+        }
+
+        function getSupportedLocales(entry, info) {
+          var locales = [];
+          var knownLocales = ['en', 'es', 'pt'];
+          if (info && info.locale && knownLocales.indexOf(info.locale) === -1) {
+            knownLocales.push(info.locale);
+          }
+
+          for (var i = 0; i < knownLocales.length; i += 1) {
+            var locale = knownLocales[i];
+            if (locales.indexOf(locale) === -1) {
+              locales.push(locale);
+            }
+          }
+
+          return locales;
+        }
+
+        function renderLocaleLinks(info, entry, collectionName) {
+          if (!collectionName) {
+            return [];
+          }
+
+          var slug = entry && entry.get ? entry.get('slug') : '';
+          var baseSlug = info.baseSlug || '';
+          var locales = getSupportedLocales(entry, info);
+          var links = [];
+
+          for (var i = 0; i < locales.length; i += 1) {
+            var locale = locales[i];
+            var targetSlug = baseSlug ? baseSlug + '_' + locale : slug;
+            if (!targetSlug) {
+              continue;
+            }
+            var isCurrent = (info.locale && info.locale === locale) || (!info.locale && locale === 'en');
+            links.push(
+              createElement(
+                'a',
+                {
+                  key: 'locale-' + locale,
+                  href: '#/collections/' + collectionName + '/entries/' + targetSlug,
+                  style: Object.assign({}, localeChipStyle, isCurrent ? localeChipActiveStyle : localeChipInactiveStyle)
+                },
+                locale.toUpperCase()
+              )
+            );
+          }
+
+          return links;
         }
 
         function renderCtaRow(cta, label) {
@@ -511,6 +816,7 @@
           var text = data.label || data.text || 'Add label';
           var url = data.href || data.url || 'Add URL';
           var isReady = Boolean((data.label && String(data.label).trim()) && (data.href && String(data.href).trim()));
+          var stateText = describeCtaState(data);
 
           return createElement(
             'div',
@@ -518,12 +824,13 @@
             createElement('span', { style: Object.assign({}, ctaBadgeStyle, label === 'Primary CTA' ? ctaPrimaryBadge : ctaSecondaryBadge) }, label),
             createElement('p', { style: ctaTextStyle }, text),
             createElement('p', { style: ctaUrlStyle }, url),
-            createElement('span', { style: Object.assign({}, ctaStateStyle, isReady ? ctaStateReadyStyle : ctaStateDraftStyle) }, isReady ? 'Ready' : 'Draft')
+            createElement('span', { style: Object.assign({}, ctaStateStyle, isReady ? ctaStateReadyStyle : ctaStateDraftStyle) }, stateText)
           );
         }
 
         function HomePreview(props) {
           var entry = props.entry;
+          var entryData = getEntryData(entry);
           var heroHeadline = entry.getIn(['data', 'heroHeadline']) || '';
           var heroSubheadline = entry.getIn(['data', 'heroSubheadline']) || '';
           var heroAlignment = toJS(entry.getIn(['data', 'heroAlignment'])) || {};
@@ -541,9 +848,12 @@
 
           var info = getLocaleInfo(entry);
           var collectionLabel = getCollectionLabel(props, entry) || 'Pages';
+          var collectionName = getCollectionNameValue(props, entry);
           var typeLabel = getEntryType(entry);
           var entryPath = getEntryPath(entry);
           var mirrorPath = getMirrorPath(entryPath);
+          var localeLinkElements = renderLocaleLinks(info, entry, collectionName);
+          var heroMediaDetails = buildHeroMediaDetails(entryData);
 
           var breadcrumbParts = [];
           if (collectionLabel) {
@@ -601,6 +911,26 @@
             )
           ];
 
+          var heroMediaCards = heroMediaDetails.map(function (detail) {
+            return createElement(
+              'div',
+              { key: detail.key, style: heroMediaCardStyle },
+              createElement('p', { style: heroMediaLabelStyle }, detail.label),
+              createElement('p', { style: heroMediaFilenameStyle }, detail.filename),
+              createElement(
+                'span',
+                {
+                  style: Object.assign(
+                    {},
+                    heroMediaStatusStyle,
+                    detail.isReady ? heroMediaStatusReadyStyle : heroMediaStatusMissingStyle
+                  )
+                },
+                detail.isReady ? 'Ready' : 'Add media'
+              )
+            );
+          });
+
           var ctaRows = [];
           if (heroCtas && typeof heroCtas === 'object') {
             if (heroCtas.ctaPrimary) {
@@ -626,19 +956,28 @@
             createElement(
               'div',
               { style: metaBarStyle },
-              createElement('div', { style: breadcrumbStyle }, breadcrumbParts.join(' › ') || 'Current entry'),
               createElement(
                 'div',
-                { style: localeBadgeStyle },
-                createElement('span', null, 'Locale'),
-                createElement('span', { style: localePillStyle }, (info.locale || 'default').toUpperCase())
+                { style: metaStackStyle },
+                createElement('div', { style: breadcrumbStyle }, breadcrumbParts.join(' › ') || 'Current entry'),
+                entryPath ? createElement('div', { style: metaPathStyle }, 'Content: ' + entryPath) : null,
+                mirrorPath ? createElement('div', { style: metaPathStyle }, 'Mirror: ' + mirrorPath) : null,
+                createElement('div', { style: metaPathStyle }, 'Collection: ' + collectionLabel),
+                createElement('div', { style: metaPathStyle }, 'Template: ' + (typeLabel || 'Not set'))
               ),
-              entryPath
-                ? createElement('div', { style: metaPathStyle }, 'File: ' + entryPath)
-                : null,
-              mirrorPath
-                ? createElement('div', { style: metaPathStyle }, 'Mirror: ' + mirrorPath)
-                : null
+              createElement(
+                'div',
+                { style: metaSideStackStyle },
+                createElement(
+                  'div',
+                  { style: localeBadgeStyle },
+                  createElement('span', null, 'Locale'),
+                  createElement('span', { style: localePillStyle }, (info.locale || 'default').toUpperCase())
+                ),
+                localeLinkElements.length
+                  ? createElement('div', { style: localeSwitcherStyle }, localeLinkElements)
+                  : null
+              )
             ),
             createElement(
               'section',
@@ -647,6 +986,14 @@
               createElement('h1', { style: heroHeadlineStyle }, heroHeadline || 'Hero headline'),
               heroSubheadline ? createElement('p', { style: heroSubStyle }, heroSubheadline) : null,
               createElement('div', { style: heroMetaStyle }, heroMetaCards),
+              heroMediaCards.length
+                ? createElement(
+                    'div',
+                    { style: heroMediaWrapperStyle },
+                    createElement('p', { style: heroMediaHeadingStyle }, 'Hero media status'),
+                    createElement('div', { style: heroMediaGridStyle }, heroMediaCards)
+                  )
+                : null,
               createElement(
                 'div',
                 { style: ctaGroupStyle },
