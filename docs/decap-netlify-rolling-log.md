@@ -55,3 +55,8 @@ This log records day-to-day investigations, fixes, and decisions that affect the
 - **What changed**: Converted the hero CTA and alignment objects in `admin/config.yml` to use boolean `i18n` flags and updated nested link fields so Decap treats the widgets as valid localized objects.
 - **Impact & follow-up**: Decap CMS rebuild succeeds without schema errors for the hero editor, keeping CTA labels, URLs, and overlay tokens translatable across locales.
 - **References**: Pending PR
+
+## 2025-10-05 — Simplified pages field copy and panels
+- **What changed**: Rewrote `admin/config.yml` field labels and helper copy in sentence case, added URL/image guidance, and collapsed each section object so editors scan panels in the order they appear on the live page.
+- **Impact & follow-up**: Editors now see clearer language and grouped controls without affecting translation settings; monitor feedback to confirm the collapsed defaults match editorial expectations.
+- **References**: Pending PR
