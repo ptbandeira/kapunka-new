@@ -11,6 +11,12 @@ This log records day-to-day investigations, fixes, and decisions that affect the
 
 ---
 
+## 2025-10-09 — Preview accessibility guardrails
+- **What changed**: Tightened the Decap preview shell with ARIA regions, keyboard focus handoff, and higher-contrast locale chips in both `admin/index.html` and `site/admin/index.html` so editors can tab through metadata, locale navigation, and hero audits with assistive tech feedback.
+- **Impact & follow-up**: Locale switching and CTA/media status reviews now surface audible status updates for screen readers; schedule a paired screen-reader test in the live CMS once Netlify deploys to validate the nav order and focus trap against real entry reloads.
+- **Rollback**: Revert `admin/index.html` and `site/admin/index.html` to the previous revision (e.g., `git checkout HEAD~1 -- admin/index.html site/admin/index.html`) if the preview shell regresses or the added ARIA roles clash with future Decap updates.
+- **References**: Pending PR · [`admin/index.html`](../admin/index.html) · [`site/admin/index.html`](../site/admin/index.html)
+
 ## 2025-10-08 — Cloudinary media library & CTA anchors
 - **What changed**: Wired Decap to use the Cloudinary media library, introduced a `Media / Images` collection with required alt text and tagging, added reusable CTA/image anchors, and trimmed Markdown buttons to the essentials. Documented the new editor patterns in the audit guide.
 - **Impact & follow-up**: Editors get consistent CTA controls, lighter rich text toolbars, and a central media inventory, but Netlify needs `CLOUDINARY_CLOUD_NAME`/`CLOUDINARY_API_KEY` set before Cloudinary loads. Seed a few starter assets in the new collection once credentials land.

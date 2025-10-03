@@ -99,25 +99,42 @@
           display: 'inline-flex',
           alignItems: 'center',
           justifyContent: 'center',
-          padding: '4px 10px',
+          padding: '6px 12px',
           borderRadius: '999px',
           fontSize: '11px',
           letterSpacing: '0.08em',
           textTransform: 'uppercase',
           textDecoration: 'none',
-          transition: 'all 0.2s ease-in-out'
+          transition: 'all 0.2s ease-in-out',
+          border: '2px solid transparent',
+          outline: 'none',
+          fontWeight: '600',
+          minHeight: '32px'
         };
 
         var localeChipActiveStyle = {
-          backgroundColor: '#c3ddfd',
-          color: '#102a43',
-          boxShadow: '0 0 0 1px #829ab1 inset'
+          backgroundColor: '#1e3a8a',
+          color: '#f8fafc',
+          borderColor: '#1e3a8a'
         };
 
         var localeChipInactiveStyle = {
-          backgroundColor: '#f1f5f9',
-          color: '#486581'
+          backgroundColor: '#334155',
+          color: '#f8fafc'
         };
+
+        var previewFocusTimeout = null;
+        var lastPreviewSlug = null;
+        var metaRegionLabelId = 'preview-meta-bar-label';
+
+        CMS.registerPreviewStyle(
+          [
+            'a[data-locale-chip]{box-shadow:none; text-decoration:none;}',
+            'a[data-locale-chip][aria-current="true"]{box-shadow:0 0 0 2px #1e3a8a;}',
+            'a[data-locale-chip]:focus-visible{outline:3px solid #0f766e; outline-offset:2px; box-shadow:none;}'
+          ].join('\n'),
+          { raw: true }
+        );
 
         var heroStyle = {
           backgroundColor: '#ffffff',
@@ -386,6 +403,22 @@
           fontSize: '14px',
           color: '#829ab1'
         };
+
+        function focusPreviewNode(node) {
+          if (!node) {
+            return;
+          }
+
+          if (previewFocusTimeout) {
+            window.clearTimeout(previewFocusTimeout);
+          }
+
+          previewFocusTimeout = window.setTimeout(function () {
+            if (node && typeof node.focus === 'function') {
+              node.focus();
+            }
+          }, 0);
+        }
 
         function toJS(value) {
           if (value && typeof value.toJS === 'function') {
@@ -801,7 +834,10 @@
                 {
                   key: 'locale-' + locale,
                   href: '#/collections/' + collectionName + '/entries/' + targetSlug,
-                  style: Object.assign({}, localeChipStyle, isCurrent ? localeChipActiveStyle : localeChipInactiveStyle)
+                  style: Object.assign({}, localeChipStyle, isCurrent ? localeChipActiveStyle : localeChipInactiveStyle),
+                  'aria-current': isCurrent ? 'true' : undefined,
+                  'aria-label': 'Switch to ' + locale.toUpperCase() + ' locale',
+                  'data-locale-chip': 'true'
                 },
                 locale.toUpperCase()
               )
@@ -824,7 +860,15 @@
             createElement('span', { style: Object.assign({}, ctaBadgeStyle, label === 'Primary CTA' ? ctaPrimaryBadge : ctaSecondaryBadge) }, label),
             createElement('p', { style: ctaTextStyle }, text),
             createElement('p', { style: ctaUrlStyle }, url),
-            createElement('span', { style: Object.assign({}, ctaStateStyle, isReady ? ctaStateReadyStyle : ctaStateDraftStyle) }, stateText)
+            createElement(
+              'span',
+              {
+                style: Object.assign({}, ctaStateStyle, isReady ? ctaStateReadyStyle : ctaStateDraftStyle),
+                role: 'status',
+                'aria-live': 'polite'
+              },
+              stateText
+            )
           );
         }
 
@@ -877,7 +921,7 @@
 
             return createElement(
               'div',
-              { key: index, style: sectionCardStyle },
+              { key: index, style: sectionCardStyle, role: 'listitem' },
               createElement('div', { style: sectionMetaStyle }, type),
               createElement('h3', { style: sectionTitleStyle }, titleText || 'Untitled section'),
               createElement('div', { style: sectionDetailRowStyle }, detailChips)
@@ -887,25 +931,25 @@
           var heroMetaCards = [
             createElement(
               'div',
-              { key: 'align-x', style: heroMetaCardStyle },
+              { key: 'align-x', style: heroMetaCardStyle, role: 'listitem' },
               createElement('p', { style: heroMetaHeadingStyle }, 'Horizontal alignment'),
               createElement('p', { style: heroMetaValueStyle }, heroAlignment.heroAlignX || 'Not set')
             ),
             createElement(
               'div',
-              { key: 'align-y', style: heroMetaCardStyle },
+              { key: 'align-y', style: heroMetaCardStyle, role: 'listitem' },
               createElement('p', { style: heroMetaHeadingStyle }, 'Vertical alignment'),
               createElement('p', { style: heroMetaValueStyle }, heroAlignment.heroAlignY || 'Not set')
             ),
             createElement(
               'div',
-              { key: 'overlay', style: heroMetaCardStyle },
+              { key: 'overlay', style: heroMetaCardStyle, role: 'listitem' },
               createElement('p', { style: heroMetaHeadingStyle }, 'Overlay strength'),
               createElement('p', { style: heroMetaValueStyle }, heroAlignment.heroOverlay || 'Not set')
             ),
             createElement(
               'div',
-              { key: 'layout', style: heroMetaCardStyle },
+              { key: 'layout', style: heroMetaCardStyle, role: 'listitem' },
               createElement('p', { style: heroMetaHeadingStyle }, 'Layout hint'),
               createElement('p', { style: heroMetaValueStyle }, heroAlignment.heroLayoutHint || 'Add guidance')
             )
@@ -914,7 +958,7 @@
           var heroMediaCards = heroMediaDetails.map(function (detail) {
             return createElement(
               'div',
-              { key: detail.key, style: heroMediaCardStyle },
+              { key: detail.key, style: heroMediaCardStyle, role: 'listitem' },
               createElement('p', { style: heroMediaLabelStyle }, detail.label),
               createElement('p', { style: heroMediaFilenameStyle }, detail.filename),
               createElement(
@@ -924,7 +968,9 @@
                     {},
                     heroMediaStatusStyle,
                     detail.isReady ? heroMediaStatusReadyStyle : heroMediaStatusMissingStyle
-                  )
+                  ),
+                  role: 'status',
+                  'aria-live': 'polite'
                 },
                 detail.isReady ? 'Ready' : 'Add media'
               )
@@ -950,16 +996,43 @@
             );
           }
 
+          var slugValue = entry && entry.get ? entry.get('slug') : '';
+          var previewIdentifier = slugValue || collectionName || 'home-preview';
+          var shouldFocusContainer = false;
+          if (previewIdentifier && previewIdentifier !== lastPreviewSlug) {
+            shouldFocusContainer = true;
+            lastPreviewSlug = previewIdentifier;
+          }
+
+          var heroHeadingId = 'preview-hero-heading';
+          var sectionOverviewHeadingId = 'preview-sections-heading';
+          var heroMediaHeadingId = 'preview-hero-media-heading';
+          var ctaHeadingId = 'preview-cta-heading';
+          var localeLabel = (info.locale || 'default').toUpperCase();
+          var headlineLabel = (heroHeadline && String(heroHeadline).trim()) || (info.baseSlug ? info.baseSlug : 'current entry');
+          var previewAriaLabel = 'Preview for ' + headlineLabel + ' (' + localeLabel + ' locale)';
+
           return createElement(
             'div',
-            { style: containerStyle },
+            {
+              style: containerStyle,
+              role: 'region',
+              tabIndex: -1,
+              'aria-label': previewAriaLabel,
+              'aria-live': 'polite',
+              ref: function (node) {
+                if (shouldFocusContainer) {
+                  focusPreviewNode(node);
+                }
+              }
+            },
             createElement(
               'div',
-              { style: metaBarStyle },
+              { style: metaBarStyle, role: 'region', 'aria-labelledby': metaRegionLabelId, 'aria-live': 'polite' },
               createElement(
                 'div',
                 { style: metaStackStyle },
-                createElement('div', { style: breadcrumbStyle }, breadcrumbParts.join(' › ') || 'Current entry'),
+                createElement('div', { id: metaRegionLabelId, style: breadcrumbStyle }, breadcrumbParts.join(' › ') || 'Current entry'),
                 entryPath ? createElement('div', { style: metaPathStyle }, 'Content: ' + entryPath) : null,
                 mirrorPath ? createElement('div', { style: metaPathStyle }, 'Mirror: ' + mirrorPath) : null,
                 createElement('div', { style: metaPathStyle }, 'Collection: ' + collectionLabel),
@@ -972,41 +1045,50 @@
                   'div',
                   { style: localeBadgeStyle },
                   createElement('span', null, 'Locale'),
-                  createElement('span', { style: localePillStyle }, (info.locale || 'default').toUpperCase())
+                  createElement('span', { style: localePillStyle, role: 'status', 'aria-live': 'polite' }, (info.locale || 'default').toUpperCase())
                 ),
                 localeLinkElements.length
-                  ? createElement('div', { style: localeSwitcherStyle }, localeLinkElements)
+                  ? createElement(
+                      'nav',
+                      {
+                        style: localeSwitcherStyle,
+                        role: 'navigation',
+                        'aria-label': 'Available locales',
+                        'data-locale-switcher': 'true'
+                      },
+                      localeLinkElements
+                    )
                   : null
               )
             ),
             createElement(
               'section',
-              { style: heroStyle },
+              { style: heroStyle, role: 'region', 'aria-labelledby': heroHeadingId },
               createElement('div', { style: badgeStyle }, 'Home hero'),
-              createElement('h1', { style: heroHeadlineStyle }, heroHeadline || 'Hero headline'),
+              createElement('h1', { id: heroHeadingId, style: heroHeadlineStyle }, heroHeadline || 'Hero headline'),
               heroSubheadline ? createElement('p', { style: heroSubStyle }, heroSubheadline) : null,
-              createElement('div', { style: heroMetaStyle }, heroMetaCards),
+              createElement('div', { style: heroMetaStyle, role: 'list' }, heroMetaCards),
               heroMediaCards.length
                 ? createElement(
                     'div',
-                    { style: heroMediaWrapperStyle },
-                    createElement('p', { style: heroMediaHeadingStyle }, 'Hero media status'),
-                    createElement('div', { style: heroMediaGridStyle }, heroMediaCards)
+                    { style: heroMediaWrapperStyle, role: 'group', 'aria-labelledby': heroMediaHeadingId },
+                    createElement('h2', { id: heroMediaHeadingId, style: heroMediaHeadingStyle }, 'Hero media status'),
+                    createElement('div', { style: heroMediaGridStyle, role: 'list' }, heroMediaCards)
                   )
                 : null,
               createElement(
                 'div',
-                { style: ctaGroupStyle },
-                createElement('p', { style: ctaHeadingStyle }, 'Call-to-actions'),
+                { style: ctaGroupStyle, role: 'group', 'aria-labelledby': ctaHeadingId },
+                createElement('h2', { id: ctaHeadingId, style: ctaHeadingStyle }, 'Call-to-actions'),
                 ctaRows
               )
             ),
             createElement(
               'section',
-              { style: sectionListStyle },
-              createElement('h2', { style: sectionListHeadingStyle }, 'Sections overview'),
+              { style: sectionListStyle, role: 'region', 'aria-labelledby': sectionOverviewHeadingId },
+              createElement('h2', { id: sectionOverviewHeadingId, style: sectionListHeadingStyle }, 'Sections overview'),
               sectionCards.length
-                ? createElement('div', { style: sectionGridStyle }, sectionCards)
+                ? createElement('div', { style: sectionGridStyle, role: 'list' }, sectionCards)
                 : createElement('p', { style: emptyStateStyle }, 'Add sections to preview them here.')
             )
           );
