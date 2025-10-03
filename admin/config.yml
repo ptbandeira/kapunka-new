@@ -63,6 +63,7 @@ collections:
         widget: object
         collapsed: true
         required: false
+        i18n: translate
         fields:
           - label: Primary CTA
             name: ctaPrimary
@@ -91,6 +92,7 @@ collections:
         widget: object
         collapsed: true
         required: false
+        i18n: translate
         fields:
           - label: Horizontal Align
             name: heroAlignX
