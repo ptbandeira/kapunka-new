@@ -31,37 +31,37 @@
           "eyebrow": "Do blog",
           "title": "Da gratidão ao método",
           "body": "De um gesto simples nasceu um protocolo terapêutico.",
-          "imageRef": "/content/uploads/roots-olive-tree.jpg",
           "imageAlt": "Mãos aplicando óleo de argan sob luz quente",
           "ctaLabel": "Nossa história",
-          "ctaHref": "/about"
+          "ctaHref": "/about",
+          "image": "/content/uploads/roots-olive-tree.jpg"
         },
         {
           "eyebrow": "Para clínicas",
           "title": "De confiança profissional",
           "body": "Utilizado há mais de uma década por dermatologistas e clínicas de recuperação.",
-          "imageRef": "/content/uploads/clinic-hands.jpg",
           "imageAlt": "Profissional massageando o rosto de uma cliente com cuidado de argan",
           "ctaLabel": "Parceria conosco",
-          "ctaHref": "/clinics"
+          "ctaHref": "/clinics",
+          "image": "/content/uploads/clinic-hands.jpg"
         },
         {
           "eyebrow": "Cadeia de fornecimento",
           "title": "Origem com herança, padrão clínico",
           "body": "Das cooperativas marroquinas às salas de hospital.",
-          "imageRef": "/content/uploads/argan-coop.jpg",
           "imageAlt": "Frutos de argan recém-colhidos em um cesto de palha",
           "ctaLabel": "Nossos padrões",
-          "ctaHref": "/method"
+          "ctaHref": "/method",
+          "image": "/content/uploads/argan-coop.jpg"
         },
         {
           "eyebrow": "Rituais",
           "title": "Do hammam à recuperação moderna",
           "body": "Sabedoria ancestral com estrutura científica.",
-          "imageRef": "/content/uploads/hammam-light.jpg",
           "imageAlt": "Sala de hammam com vapor e uma pessoa relaxando",
           "ctaLabel": "Comprar rituais",
-          "ctaHref": "/shop"
+          "ctaHref": "/shop",
+          "image": "/content/uploads/hammam-light.jpg"
         }
       ]
     },

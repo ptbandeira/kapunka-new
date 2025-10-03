@@ -7,8 +7,8 @@
       "type": "mediaCopy",
       "title": "From operating room to everyday routine",
       "body": "Trusted by dermatology and aesthetic teams for scar care and recovery. Low-residue, fragrance-considerate options and printable protocols.",
-      "imageRef": "/content/uploads/clinic-tray.jpg",
-      "layout": "image-right"
+      "layout": "image-right",
+      "image": "/content/uploads/clinic-tray.jpg"
     },
     {
       "type": "featureGrid",

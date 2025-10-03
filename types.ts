@@ -225,7 +225,6 @@ export interface ImageGridSectionContent {
 
 export interface CommunityCarouselSlide {
   image?: string;
-  imageRef?: string;
   alt?: string;
   quote?: string;
   name?: string;

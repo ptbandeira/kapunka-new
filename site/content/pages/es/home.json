@@ -31,37 +31,37 @@
           "eyebrow": "Desde el blog",
           "title": "De la gratitud al método",
           "body": "De un gesto sencillo nació un protocolo terapéutico.",
-          "imageRef": "/content/uploads/roots-olive-tree.jpg",
           "imageAlt": "Manos aplicando aceite de argán con luz cálida",
           "ctaLabel": "Nuestra historia",
-          "ctaHref": "/about"
+          "ctaHref": "/about",
+          "image": "/content/uploads/roots-olive-tree.jpg"
         },
         {
           "eyebrow": "Para clínicas",
           "title": "De confianza profesional",
           "body": "Utilizado desde hace más de una década por dermatólogos y clínicas de recuperación.",
-          "imageRef": "/content/uploads/clinic-hands.jpg",
           "imageAlt": "Profesional masajeando el rostro de una clienta con cuidado de argán",
           "ctaLabel": "Aliarte con nosotros",
-          "ctaHref": "/clinics"
+          "ctaHref": "/clinics",
+          "image": "/content/uploads/clinic-hands.jpg"
         },
         {
           "eyebrow": "Cadena de suministro",
           "title": "Origen con herencia, estándar clínico",
           "body": "De las cooperativas marroquíes a las salas hospitalarias.",
-          "imageRef": "/content/uploads/argan-coop.jpg",
           "imageAlt": "Frutos de argán recién cosechados en una cesta tejida",
           "ctaLabel": "Nuestros estándares",
-          "ctaHref": "/method"
+          "ctaHref": "/method",
+          "image": "/content/uploads/argan-coop.jpg"
         },
         {
           "eyebrow": "Rituales",
           "title": "Del hammam a la recuperación moderna",
           "body": "Sabiduría ancestral, estructura científica.",
-          "imageRef": "/content/uploads/hammam-light.jpg",
           "imageAlt": "Sala de hammam llena de vapor con una persona descansando",
           "ctaLabel": "Comprar rituales",
-          "ctaHref": "/shop"
+          "ctaHref": "/shop",
+          "image": "/content/uploads/hammam-light.jpg"
         }
       ]
     },

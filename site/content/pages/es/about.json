@@ -7,15 +7,15 @@
       "type": "mediaCopy",
       "title": "De dónde viene Kapunka",
       "body": "Kapunka nació de una idea sencilla: la forma en que tocamos transforma cómo sanamos. Años junto a profesionales clínicos dieron forma a un método atento, preciso y amable.",
-      "imageRef": "/content/uploads/founder-portrait.jpg",
-      "layout": "image-right"
+      "layout": "image-right",
+      "image": "/content/uploads/founder-portrait.jpg"
     },
     {
       "type": "mediaCopy",
       "title": "El nombre",
       "body": "Nuestra fundadora escuchó por primera vez ‘Kapunka’ en una escuela de Ubud. La palabra —gracias— se convirtió en una promesa: crear un cuidado que devuelva. Agradece a tu piel.",
-      "imageRef": "/content/uploads/ubud-moment.jpg",
-      "layout": "image-right"
+      "layout": "image-right",
+      "image": "/content/uploads/ubud-moment.jpg"
     }
   ]
 }

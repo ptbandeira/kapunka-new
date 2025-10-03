@@ -7,8 +7,8 @@
       "type": "mediaCopy",
       "title": "Estamos aquí para escucharte",
       "body": "Clínicas, aliados y personas—cuéntanos qué necesitas y te guiamos hacia la rutina, la formación u opción mayorista adecuada.",
-      "imageRef": "/content/uploads/argan-fields.jpg",
-      "layout": "image-right"
+      "layout": "image-right",
+      "image": "/content/uploads/argan-fields.jpg"
     }
   ]
 }

@@ -113,7 +113,6 @@ const isPageContent = (value: unknown): value is PageContent => {
 interface AboutStoryBlock {
   heading?: string;
   body?: string;
-  imageRef?: string | null;
   imageUrl?: string | null;
   imageAlt?: string | null;
 }
@@ -137,7 +136,6 @@ const isAboutStoryBlock = (value: unknown): value is AboutStoryBlock => {
   return (
     (block.heading === undefined || typeof block.heading === 'string')
     && (block.body === undefined || typeof block.body === 'string')
-    && (block.imageRef === undefined || block.imageRef === null || typeof block.imageRef === 'string')
     && (block.imageUrl === undefined || block.imageUrl === null || typeof block.imageUrl === 'string')
     && (block.imageAlt === undefined || block.imageAlt === null || typeof block.imageAlt === 'string')
   );
@@ -273,7 +271,7 @@ const About: React.FC = () => {
         }
 
         const hasText = Boolean(block.heading?.trim()) || Boolean(block.body?.trim());
-        const hasImage = Boolean(block.imageUrl?.trim()) || Boolean(block.imageRef?.trim());
+        const hasImage = Boolean(block.imageUrl?.trim());
         return hasText || hasImage;
     }) ?? [];
 
@@ -328,7 +326,7 @@ const About: React.FC = () => {
             <>
               <div className="space-y-16">
                 {aboutStoryBlocks.map((block, index) => {
-                    const imageUrl = block.imageUrl ?? block.imageRef ?? undefined;
+                    const imageUrl = block.imageUrl ?? undefined;
                     const hasImage = Boolean(imageUrl);
                     const imageFirst = hasImage && index % 2 === 0;
                     const storyBlockFieldPath = `${aboutFieldPath}.story.${index}`;
@@ -337,7 +335,7 @@ const About: React.FC = () => {
                     const bodyParagraphs = block.body
                         ? block.body.split(/\n\s*\n/).filter(Boolean)
                         : [];
-                    const imageFieldPath = block.imageRef ? `${storyBlockFieldPath}.imageRef` : `${storyBlockFieldPath}.imageUrl`;
+                    const imageFieldPath = `${storyBlockFieldPath}.imageUrl`;
 
                     const textContent = (
                         <motion.div
@@ -389,7 +387,7 @@ const About: React.FC = () => {
 
                     return (
                         <div
-                            key={[block.heading, block.body, block.imageRef, block.imageUrl]
+                            key={[block.heading, block.body, block.imageUrl]
                                 .map((value) => (value ?? '').toString().trim())
                                 .filter((value) => value.length > 0)
                                 .join('|') || 'story-block'}

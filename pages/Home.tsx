@@ -61,7 +61,6 @@ type HomeSection =
       ctaPrimary?: string | CmsCtaShape;
       ctaSecondary?: string | CmsCtaShape;
       image?: string;
-      imageRef?: string;
       overlay?: boolean;
       position?:
         | 'top-left'
@@ -91,7 +90,6 @@ type HomeSection =
       title?: string;
       body?: string;
       image?: string;
-      imageRef?: string;
       imageAlt?: string;
       layout?: 'image-left' | 'image-right' | 'overlay';
       columns?: number;
@@ -117,7 +115,6 @@ type HomeSection =
       title?: string;
       slides?: {
         image?: string;
-        imageRef?: string;
         alt?: string;
         quote?: string;
         name?: string;
@@ -149,7 +146,6 @@ type HomeSection =
         title?: string;
         body?: string;
         image?: string;
-        imageRef?: string;
         imageAlt?: string;
         ctaLabel?: string;
         ctaHref?: string;
@@ -185,8 +181,6 @@ const heroImagesSchema = z
   .object({
     heroImageLeft: z.string().nullable().optional(),
     heroImageRight: z.string().nullable().optional(),
-    heroImageLeftRef: z.string().nullable().optional(),
-    heroImageRightRef: z.string().nullable().optional(),
   })
   .passthrough();
 
@@ -250,7 +244,6 @@ const imageGridSectionSchema = z
 const communityCarouselSlideSchema = z
   .object({
     image: z.string().optional(),
-    imageRef: z.string().optional(),
     alt: z.string().optional(),
     quote: z.string().optional(),
     name: z.string().optional(),
@@ -341,7 +334,6 @@ const mediaCopySectionSchema = z
     title: z.string().optional(),
     body: z.string().optional(),
     image: z.string().optional(),
-    imageRef: z.string().optional(),
     imageAlt: z.string().optional(),
     layout: z.enum(['image-left', 'image-right', 'overlay']).optional(),
     columns: z.number().int().optional(),
@@ -382,7 +374,6 @@ const mediaShowcaseItemSchema = z
     title: z.string().optional(),
     body: z.string().optional(),
     image: z.string().optional(),
-    imageRef: z.string().optional(),
     imageAlt: z.string().optional(),
     ctaLabel: z.string().optional(),
     ctaHref: z.string().optional(),
@@ -457,8 +448,6 @@ const homeContentSchema = z
     heroTextPosition: z.string().optional(),
     heroImageLeft: z.string().nullable().optional(),
     heroImageRight: z.string().nullable().optional(),
-    heroImageLeftRef: z.string().nullable().optional(),
-    heroImageRightRef: z.string().nullable().optional(),
     brandIntro: z
       .object({
         title: z.string().optional(),
@@ -511,8 +500,6 @@ type HeroVerticalAlignment = 'top' | 'middle' | 'bottom';
 type HeroTextAnchor = NonNullable<PageContent['heroTextPosition']>;
 
 type HomePageContent = PageContent & {
-  heroImageLeftRef?: string | null;
-  heroImageRightRef?: string | null;
   heroImageLeftUrl?: string | null;
   heroImageRightUrl?: string | null;
   heroAlignment?: HeroAlignmentGroup;
@@ -1005,8 +992,6 @@ interface HeroValidationArgs {
   heroImages?: HeroImagesGroup | null;
   heroImageLeft?: string | null;
   heroImageRight?: string | null;
-  heroImageLeftRef?: string | null;
-  heroImageRightRef?: string | null;
   heroFallback?: string;
 }
 
@@ -1015,8 +1000,6 @@ const validateHeroContent = ({
   heroImages,
   heroImageLeft,
   heroImageRight,
-  heroImageLeftRef,
-  heroImageRightRef,
   heroFallback,
 }: HeroValidationArgs): { heroImages?: HeroImagesGroup } => {
   const sanitizedHeadline = sanitizeCmsString(heroHeadline);
@@ -1032,15 +1015,11 @@ const validateHeroContent = ({
 
   const heroImageLeftSanitized =
     sanitizeCmsString(normalizedHeroImages?.heroImageLeft) ?? sanitizeCmsString(heroImageLeft);
-  const heroImageLeftRefSanitized =
-    sanitizeCmsString(normalizedHeroImages?.heroImageLeftRef) ?? sanitizeCmsString(heroImageLeftRef);
   const heroImageRightSanitized =
     sanitizeCmsString(normalizedHeroImages?.heroImageRight) ?? sanitizeCmsString(heroImageRight);
-  const heroImageRightRefSanitized =
-    sanitizeCmsString(normalizedHeroImages?.heroImageRightRef) ?? sanitizeCmsString(heroImageRightRef);
 
   const hasHeroImage = Boolean(
-    heroImageLeftSanitized || heroImageLeftRefSanitized || heroImageRightSanitized || heroImageRightRefSanitized,
+    heroImageLeftSanitized || heroImageRightSanitized,
   );
 
   if (import.meta.env.DEV) {
@@ -1714,8 +1693,6 @@ const Home: React.FC = () => {
             heroImages: heroImagesData,
             heroImageLeft: parsedData?.heroImageLeft ?? null,
             heroImageRight: parsedData?.heroImageRight ?? null,
-            heroImageLeftRef: parsedData?.heroImageLeftRef ?? null,
-            heroImageRightRef: parsedData?.heroImageRightRef ?? null,
             heroFallback: heroFallbackRaw,
           });
           heroImagesData = heroValidation.heroImages ?? heroImagesData;
@@ -1753,15 +1730,11 @@ const Home: React.FC = () => {
           }, []);
 
           const heroImageLeftCandidate = firstDefined([
-            heroImagesData?.heroImageLeftRef,
-            parsedData?.heroImageLeftRef,
             heroImagesData?.heroImageLeft,
             parsedData?.heroImageLeft,
             heroFallbackRaw,
           ]);
           const heroImageRightCandidate = firstDefined([
-            heroImagesData?.heroImageRightRef,
-            parsedData?.heroImageRightRef,
             heroImagesData?.heroImageRight,
             parsedData?.heroImageRight,
             heroFallbackRaw,
@@ -1787,8 +1760,6 @@ const Home: React.FC = () => {
             heroAlignment: heroAlignmentData,
             heroImages: heroImagesData,
             heroCtas: heroCtasData,
-            heroImageLeftRef: parsedData?.heroImageLeftRef ?? undefined,
-            heroImageRightRef: parsedData?.heroImageRightRef ?? undefined,
             heroImageLeftUrl,
             heroImageRightUrl,
             rawSections,
@@ -1827,7 +1798,7 @@ const Home: React.FC = () => {
 
   const sanitizeString = sanitizeCmsString;
 
-  const pickImage = (local?: string, ref?: string) => local || ref || null;
+  const pickImage = (local?: string) => local ?? null;
   const contentLocale = pageContent?.resolvedLocale ?? language;
 
   const homeFieldPath = pageContent
@@ -1875,8 +1846,6 @@ const Home: React.FC = () => {
     pageContent?.heroAlignment?.heroLayoutHint ?? pageContent?.heroLayoutHint ?? (pageContent?.heroAlignment ? undefined : 'bgImage'),
   );
   const heroSrcCandidate = firstDefined([
-    pageContent?.heroImages?.heroImageLeftRef,
-    pageContent?.heroImageLeftRef,
     pageContent?.heroImages?.heroImageLeft,
     pageContent?.heroImageLeft,
     heroFallbackRaw,
@@ -1884,16 +1853,12 @@ const Home: React.FC = () => {
   const heroSrc = sanitizeString(normalizeImagePath(heroSrcCandidate, contentLocale));
   const heroImageLeftUrl = firstDefined([
     pageContent?.heroImageLeftUrl ?? undefined,
-    normalizeImagePath(pageContent?.heroImages?.heroImageLeftRef, contentLocale),
-    normalizeImagePath(pageContent?.heroImageLeftRef, contentLocale),
     normalizeImagePath(pageContent?.heroImages?.heroImageLeft, contentLocale),
     normalizeImagePath(pageContent?.heroImageLeft, contentLocale),
     heroSrc,
   ]);
   const heroImageRightUrl = firstDefined([
     pageContent?.heroImageRightUrl ?? undefined,
-    normalizeImagePath(pageContent?.heroImages?.heroImageRightRef, contentLocale),
-    normalizeImagePath(pageContent?.heroImageRightRef, contentLocale),
     normalizeImagePath(pageContent?.heroImages?.heroImageRight, contentLocale),
     normalizeImagePath(pageContent?.heroImageRight, contentLocale),
     heroSrc,
@@ -2193,7 +2158,7 @@ const Home: React.FC = () => {
         const sectionSecondaryCtaHrefFieldPath = sectionSecondaryCtaIsObject
           ? `${sectionFieldPath}.ctaSecondary.href`
           : undefined;
-        const heroImageOverride = sanitizeString(pickImage(heroSection.image, heroSection.imageRef));
+        const heroImageOverride = sanitizeString(pickImage(heroSection.image));
         const inlineImageCandidate = (() => {
           if (heroLayoutHint === 'image-left') {
             return heroImageOverride ?? heroImageLeft ?? heroImageRight;
@@ -2233,7 +2198,7 @@ const Home: React.FC = () => {
         const sectionImageWrapperClasses = sectionShouldRenderInlineImage
           ? `${heroLayoutHint === 'image-left' ? 'order-2 lg:order-1' : 'order-2'} w-full`
           : '';
-        const heroImageFieldKey = heroSection.image ? 'image' : heroSection.imageRef ? 'imageRef' : 'image';
+        const heroImageFieldKey = 'image';
         const heroImageFieldPathForSection = `${sectionFieldPath}.${heroImageFieldKey}`;
 
         const sectionInlineImageNode = sectionShouldRenderInlineImage && inlineImageCandidate
@@ -2504,7 +2469,7 @@ const Home: React.FC = () => {
       case 'mediaCopy': {
         const title = sanitizeString(section.title ?? null);
         const body = sanitizeString(section.body ?? null);
-        const mediaImage = sanitizeString(pickImage(section.image, section.imageRef));
+        const mediaImage = sanitizeString(pickImage(section.image));
         const imageAlt = sanitizeString(section.imageAlt ?? null) ?? title ?? 'Media highlight';
         if (!title && !body && !mediaImage) {
           return null;
@@ -2520,7 +2485,7 @@ const Home: React.FC = () => {
             : undefined;
         const hasImage = Boolean(mediaImage);
         const effectiveColumns = requestedColumns ?? (hasImage ? 2 : 1);
-        const imageFieldKey = section.image ? 'image' : section.imageRef ? 'imageRef' : 'image';
+        const imageFieldKey = 'image';
 
         if (layout === 'overlay' && hasImage) {
           const overlaySettings = normalizeOverlaySettings(section.overlay);
@@ -2718,16 +2683,12 @@ const Home: React.FC = () => {
         const sectionTitle = sanitizeString(section.title ?? null);
         const slides = (section.slides ?? []).map((slide, slideIndex) => {
           const basePath = `${sectionFieldPath}.slides[${slideIndex}]`;
-          const image = sanitizeString(pickImage(slide.image, slide.imageRef));
+          const image = sanitizeString(pickImage(slide.image));
           const alt = sanitizeString(slide.alt ?? null);
           const quote = sanitizeString(slide.quote ?? null);
           const name = sanitizeString(slide.name ?? null);
           const role = sanitizeString(slide.role ?? null);
-          const imageFieldPath = slide.image
-            ? `${basePath}.image`
-            : slide.imageRef
-              ? `${basePath}.imageRef`
-              : `${basePath}.image`;
+          const imageFieldPath = `${basePath}.image`;
 
           return {
             image,
@@ -2824,16 +2785,12 @@ const Home: React.FC = () => {
         const sectionTitle = sanitizeString(section.title ?? null);
         const slides = (section.slides ?? []).map((slide, slideIndex) => {
           const basePath = `${sectionFieldPath}.slides.${slideIndex}`;
-          const image = sanitizeString(pickImage(slide.image, slide.imageRef));
+          const image = sanitizeString(pickImage(slide.image));
           const alt = sanitizeString(slide.alt ?? null);
           const quote = sanitizeString(slide.quote ?? null);
           const name = sanitizeString(slide.name ?? null);
           const role = sanitizeString(slide.role ?? null);
-          const imageFieldPath = slide.image
-            ? `${basePath}.image`
-            : slide.imageRef
-              ? `${basePath}.imageRef`
-              : `${basePath}.image`;
+          const imageFieldPath = `${basePath}.image`;
 
           return {
             image,
@@ -2998,7 +2955,7 @@ const Home: React.FC = () => {
       case 'mediaCopy': {
         const title = sanitizeString(section.title ?? null);
         const body = sanitizeString(section.body ?? null);
-        const mediaImage = sanitizeString(pickImage(section.image, section.imageRef));
+        const mediaImage = sanitizeString(pickImage(section.image));
         const imageAlt = sanitizeString(section.imageAlt ?? null) ?? title ?? 'Media highlight';
         if (!title && !body && !mediaImage) {
           return null;
@@ -3014,11 +2971,7 @@ const Home: React.FC = () => {
             : undefined;
         const hasImage = Boolean(mediaImage);
         const effectiveColumns = requestedColumns ?? (hasImage ? 2 : 1);
-        const imageFieldPath = section.image
-          ? `${sectionFieldPath}.image`
-          : section.imageRef
-            ? `${sectionFieldPath}.imageRef`
-            : `${sectionFieldPath}.image`;
+        const imageFieldPath = `${sectionFieldPath}.image`;
 
         if (layout === 'overlay' && hasImage) {
           const overlaySettings = normalizeOverlaySettings(section.overlay);
@@ -3463,14 +3416,10 @@ const Home: React.FC = () => {
             eyebrow: sanitizeString(item.eyebrow ?? null) ?? undefined,
             title: sanitizeString(item.title ?? null) ?? undefined,
             body: sanitizeString(item.body ?? null) ?? undefined,
-            image: sanitizeString(pickImage(item.image, item.imageRef)) ?? undefined,
+            image: sanitizeString(pickImage(item.image)) ?? undefined,
             alt: sanitizeString(item.imageAlt ?? null) ?? undefined,
             fieldPath: fieldScope,
-            imageFieldPath: item.image
-              ? `${fieldScope}.image`
-              : item.imageRef
-                ? `${fieldScope}.imageRef`
-                : `${fieldScope}.image`,
+            imageFieldPath: `${fieldScope}.image`,
             eyebrowFieldPath: `${fieldScope}.eyebrow`,
             titleFieldPath: `${fieldScope}.title`,
             bodyFieldPath: `${fieldScope}.body`,

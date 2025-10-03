@@ -7,8 +7,8 @@
       "type": "mediaCopy",
       "title": "Del quirófano a la rutina diaria",
       "body": "Equipos de dermatología y estética confían en nosotros para el cuidado de cicatrices y la recuperación. Opciones de bajo residuo, consideradas con la fragancia y protocolos imprimibles.",
-      "imageRef": "/content/uploads/clinic-tray.jpg",
-      "layout": "image-right"
+      "layout": "image-right",
+      "image": "/content/uploads/clinic-tray.jpg"
     },
     {
       "type": "featureGrid",
