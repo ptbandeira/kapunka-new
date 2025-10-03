@@ -200,14 +200,20 @@ collections:
         collapsed: true
         required: false
         fields:
-          - <<: *image_field_defaults
-            label: Left Image
+          - label: Left Image
             name: heroImageLeft
+            widget: image
+            choose_url: false
+            required: false
             hint: "Upload a JPG or PNG that is at least 1600 px wide."
-          - <<: *image_field_defaults
-            label: Right Image
+            i18n: duplicate
+          - label: Right Image
             name: heroImageRight
+            widget: image
+            choose_url: false
+            required: false
             hint: "Upload a JPG or PNG that is at least 1600 px wide."
+            i18n: duplicate
       - label: Intro Block
         name: intro
         widget: object
@@ -436,8 +442,7 @@ collections:
                   - { label: Overlay, value: overlay }
                 required: false
               - { label: Column Count, name: columns, widget: number, required: false, value_type: int }
-              - &image_field_defaults
-                label: Section Image
+              - label: Section Image
                 name: image
                 widget: image
                 choose_url: false
@@ -516,10 +521,13 @@ collections:
                   - { label: Eyebrow, name: eyebrow, widget: string, required: false, i18n: translate }
                   - { label: Card Title, name: title, widget: string, required: false, i18n: translate }
                   - { label: Body Copy, name: body, widget: text, required: false, i18n: translate }
-                  - <<: *image_field_defaults
-                    label: Card Image
+                  - label: Card Image
                     name: image
+                    widget: image
+                    choose_url: false
+                    required: false
                     hint: "Upload a JPG or PNG that is at least 1200 px wide."
+                    i18n: duplicate
                   - <<: *image_alt_field_defaults
                     label: Image Alt Text
                     name: imageAlt
@@ -571,10 +579,13 @@ collections:
                 widget: list
                 collapsed: true
                 fields:
-                  - <<: *image_field_defaults
-                    label: Slide Image
+                  - label: Slide Image
                     name: image
+                    widget: image
+                    choose_url: false
+                    required: false
                     hint: "Upload a JPG or PNG that is at least 1200 px wide."
+                    i18n: duplicate
                   - <<: *image_alt_field_defaults
                     label: Image Alt Text
                     name: alt
@@ -704,10 +715,13 @@ collections:
                   - { label: Video Title, name: title, widget: string, required: false, i18n: translate }
                   - { label: Description, name: description, widget: text, required: false, i18n: translate }
                   - { label: Video URL, name: videoUrl, widget: string, required: false, i18n: translate, hint: "Paste the full YouTube or Vimeo link, including https://." }
-                  - <<: *image_field_defaults
-                    label: Thumbnail Image
+                  - label: Thumbnail Image
                     name: thumbnail
+                    widget: image
+                    choose_url: false
+                    required: false
                     hint: "Upload a JPG or PNG that is at least 800 px wide."
+                    i18n: duplicate
           - label: Training List
             name: trainingList
             widget: object
@@ -750,10 +764,13 @@ collections:
                   - { label: Year, name: year, widget: string, required: false, i18n: translate }
                   - { label: Entry Title, name: title, widget: string, required: false, i18n: translate }
                   - { label: Description, name: description, widget: text, required: false, i18n: translate }
-                  - <<: *image_field_defaults
-                    label: Entry Image
+                  - label: Entry Image
                     name: image
+                    widget: image
+                    choose_url: false
+                    required: false
                     hint: "Upload a JPG or PNG that is at least 1200 px wide."
+                    i18n: duplicate
           - label: Image Plus Text Half (Legacy)
             name: imageTextHalf
             widget: object
@@ -776,9 +793,13 @@ collections:
                 required: false
                 summary: "{{fields.label}} → {{fields.href}}"
                 fields: *cta_fields
-              - <<: *image_field_defaults
-                label: Section Image
+              - label: Section Image
                 name: image
+                widget: image
+                choose_url: false
+                required: false
+                hint: "Upload a JPG or PNG that is at least 1200 px wide."
+                i18n: duplicate
           - label: Image Grid (Legacy)
             name: imageGrid
             widget: object
@@ -791,10 +812,13 @@ collections:
                 widget: list
                 collapsed: true
                 fields:
-                  - <<: *image_field_defaults
-                    label: Gallery Image
+                  - label: Gallery Image
                     name: image
+                    widget: image
+                    choose_url: false
+                    required: false
                     hint: "Upload a JPG or PNG that is at least 1200 px wide."
+                    i18n: duplicate
                   - <<: *image_alt_field_defaults
                     label: Image Alt Text
                     name: alt
@@ -810,10 +834,13 @@ collections:
     summary: "{{title}} — {{alt}}"
     fields:
       - { label: Internal Title, name: title, widget: string, hint: "Name used to search for this asset inside Decap." }
-      - <<: *image_field_defaults
-        label: Image Asset
+      - label: Image Asset
         name: image
+        widget: image
+        choose_url: false
+        required: false
         hint: "Pick an upload from Cloudinary or add a new file."
+        i18n: duplicate
       - <<: *image_alt_field_defaults
         label: Alt Text
         name: alt

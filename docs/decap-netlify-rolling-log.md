@@ -32,6 +32,11 @@ This log records day-to-day investigations, fixes, and decisions that affect the
 - **Impact & follow-up**: Editors can now verify call-to-action state, locale, and media coverage directly from the preview. Track follow-up issues for locale toggles, extended CTA cues, and filename surfacing as outlined in `docs/decap-preview-issues.md`.
 - **References**: Pending PR · [Usability notes](./decap-cms-audit.md) · [Issue drafts](./decap-preview-issues.md)
 
+## 2025-10-03 — Restored image anchor ordering for Decap
+- **What changed**: Defined the shared `image_field_defaults` anchor within the hero image group so it exists before any alias references and updated the media/copy section to reuse the alias.
+- **Impact & follow-up**: Fixes the `YAMLReferenceError` blocking the CMS from loading and keeps editors on the intended image upload workflow. Confirm Cloudinary still enforces the expected transformation defaults once the CMS rebuilds.
+- **References**: Pending PR · [`admin/config.yml`](../admin/config.yml)
+
 ## 2025-10-03 — Decap CMS factory reset
 - **What changed**: Replaced the previous multi-collection Decap configuration with a minimal single-pages schema and removed the bespoke preview bootstrapping script so the CMS loads without legacy tooling.
 - **Impact & follow-up**: Editors now start from a blank slate and must rebuild collections before publishing; site runtime and existing content remain untouched.
@@ -86,3 +91,8 @@ This log records day-to-day investigations, fixes, and decisions that affect the
 - **What changed**: Updated the Decap preview templates to surface CTA readiness text, hero media status cards (with filename fallbacks), and locale breadcrumb chips so editors can trace JSON sources without leaving the preview.
 - **Impact & follow-up**: Editors can QA hero CTAs, confirm media placeholders, and hop between locales faster; follow up on extending readiness checks to tertiary CTA widgets and smarter locale mapping.
 - **References**: Pending PR · [`admin/index.html`](../admin/index.html) · [`site/admin/index.html`](../site/admin/index.html) · [Preview audit](./decap-cms-audit.md)
+
+## 2025-10-06 — Removed YAML anchors for shared image fields
+- **What changed**: Replaced the `image_field_defaults` anchor and aliases in `admin/config.yml` with explicit field definitions so Decap stops throwing `YAMLReferenceError` when loading the schema.
+- **Impact & follow-up**: Restores CMS load and keeps editors unblocked while we evaluate a future schema helper or script-based deduplication to avoid manual repetition.
+- **References**: Pending PR
