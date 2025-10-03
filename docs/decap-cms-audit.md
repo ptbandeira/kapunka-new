@@ -6,6 +6,7 @@
 - Decap pulls all assets from `content/uploads`, so every image referenced across pages, products, and globals can be updated in one place without touching the codebase.【F:admin/config.yml†L8-L9】
 - Page schemas are repeated for each locale (English, Portuguese, Spanish), creating heavy duplication and longer editorial forms; introducing Decap's built-in i18n support or shared field groups would reduce bloat while keeping content structure intact.【F:admin/config.yml†L116-L639】
 - Hero controls now include inline guidance that explains how to swap images and reposition overlay copy without coding knowledge, addressing the main usability complaint.【F:admin/config.yml†L139-L185】【F:admin/config.yml†L325-L371】【F:admin/config.yml†L504-L550】
+- CMS roadmap items must now align with the [Decap CMS UX Principles](../GUIDELINES.md#decap-cms-ux-principles), reinforcing simplicity, consistency, user focus, feature leverage, and accessibility in every editor-facing change.【F:GUIDELINES.md†L88-L99】
 
 ## How the CMS Is Organised
 - **Site-wide settings** live in `Site Settings → Site Configuration`, covering header/footer data and key imagery for About and the homepage hero card.【F:admin/config.yml†L12-L112】 The backing JSON is `content/site.json`, which shows exactly which image paths and copy the widgets edit.【F:content/site.json†L1-L60】
@@ -40,6 +41,7 @@ _All image fields pull from `/content/uploads`, so uploading a replacement file 
 - **Layout hint and image slots** describe when to populate the left/right image fields so non-technical users know which upload drives each layout.【F:admin/config.yml†L164-L185】【F:admin/config.yml†L350-L371】【F:admin/config.yml†L529-L550】
 
 ## Next Steps for a Leaner CMS
-1. Pilot the i18n form on a lower-risk page (e.g., Videos) to validate that Decap merges locale tabs cleanly before rolling it out to core pages.【F:admin/config.yml†L12-L639】
-2. Document a naming convention for uploads and enforce alt text entry during content reviews to keep the library manageable and accessible.【F:admin/config.yml†L55-L72】【F:content/pages/en/home.json†L25-L53】
-3. Add quickstart notes (like this guide) to the team wiki or the CMS sidebar so editors can find field explanations without leaving Decap.
+1. Pilot the i18n form on a lower-risk page (e.g., Videos) and confirm the outcome supports the Decap CMS UX Principles before rolling it out to core pages.【F:admin/config.yml†L12-L639】【F:GUIDELINES.md†L88-L99】
+2. Document a naming convention for uploads and enforce alt text entry during content reviews to keep the library manageable and accessible, echoing the accessibility principle.【F:admin/config.yml†L55-L72】【F:content/pages/en/home.json†L25-L53】【F:GUIDELINES.md†L88-L99】
+3. Add quickstart notes (like this guide) to the team wiki or the CMS sidebar so editors can find field explanations without leaving Decap, reinforcing the user focus and simplicity tenets.【F:GUIDELINES.md†L88-L99】
+4. Schedule recurring user feedback sessions with editors (at least quarterly) to test upcoming changes against the principles and feed updates back into the guidelines and audit notes.【F:GUIDELINES.md†L88-L99】

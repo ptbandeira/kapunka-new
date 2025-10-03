@@ -93,6 +93,16 @@ Follow these patterns whenever you add or refactor components so new code remain
 - Content is stored in `.json` files within the `/content` directory.
 - Image uploads via the CMS will be stored in `/content/uploads`. All image paths in content files should point here.
 
+### Decap CMS UX Principles
+
+To keep the editor experience predictable and efficient, every CMS enhancement must uphold these principles:
+
+- **Simplicity:** Streamline field groups and copy to minimise friction during frequent updates.
+- **Consistency:** Reuse patterns, naming, and layout conventions so similar content blocks behave the same way across locales and collections.
+- **User focus:** Document editor-facing guidance that answers “what does this control change?” before shipping a schema change.
+- **Feature leverage:** Prefer built-in Decap capabilities (collections, widgets, i18n, previews) over bespoke workarounds that fragment the experience.
+- **Accessibility:** Ensure the authoring surface supports inclusive practices (alt text prompts, clear instructions, keyboard-friendly forms).
+
 ### Netlify Visual Editor Workflow
 
 - The project is wired for the **Netlify Visual Editor**. The integration relies on `netlify.toml` (see the `[visual_editor]` section), the page model map in `stackbit.config.js`, the editing schema in `metadata.json`, and the starter content in `site/content/`.
