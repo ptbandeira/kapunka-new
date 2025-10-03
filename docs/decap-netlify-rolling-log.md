@@ -40,3 +40,8 @@ This log records day-to-day investigations, fixes, and decisions that affect the
 - **What changed**: Flattened locale-specific image objects in the unified pages schema and corrected i18n keys so Netlify builds and Stackbit sync use the same field structure.
 - **Impact & follow-up**: Resolved asset hydration errors during previews and ensures editors only manage one image per locale. Continue monitoring Stackbit sync logs for regressions when adding new unified sections.
 - **References**: [PR #199](https://github.com/ptbandeira/kapunka-new/pull/199) · [Commit 8873572](https://github.com/ptbandeira/kapunka-new/commit/8873572b02dd9db01df958524dc77f9c3e0b3905) · [Visual editor audit](./visual-editor-audit.md)
+
+## 2025-10-04 — Rebuilt pages CMS schema for CTA and banner cleanup
+- **What changed**: Reworked the Decap pages collection so section types reuse shared CTA/link anchors, removed unused `imageUrl` mirrors, and migrated showcase and banner CTAs into nested objects across `content/` and `site/content/`.
+- **Impact & follow-up**: Editors now see grouped CTA controls without duplicate URL inputs, Stackbit models stay aligned, and mirrored content stays in sync. Verify new CTA objects save correctly when editors publish multi-locale updates.
+- **References**: Pending PR

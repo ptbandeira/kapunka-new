@@ -107,8 +107,7 @@ type HomeSection =
   | {
       type: 'banner';
       text?: string;
-      cta?: string;
-      url?: string;
+      cta?: CmsCtaShape;
     }
   | {
       type: 'communityCarousel';
@@ -147,8 +146,7 @@ type HomeSection =
         body?: string;
         image?: string;
         imageAlt?: string;
-        ctaLabel?: string;
-        ctaHref?: string;
+        cta?: CmsCtaShape;
       }>;
     };
 
@@ -280,8 +278,7 @@ const bannerSectionSchema = z
   .object({
     type: z.literal('banner'),
     text: z.string().optional(),
-    cta: z.string().optional(),
-    url: z.string().optional(),
+    cta: ctaLinkSchema.optional(),
   })
   .passthrough();
 
@@ -375,8 +372,7 @@ const mediaShowcaseItemSchema = z
     body: z.string().optional(),
     image: z.string().optional(),
     imageAlt: z.string().optional(),
-    ctaLabel: z.string().optional(),
-    ctaHref: z.string().optional(),
+    cta: ctaLinkSchema.optional(),
   })
   .passthrough();
 
@@ -3316,18 +3312,21 @@ const Home: React.FC = () => {
       
       case 'banner': {
         const text = sanitizeString(section.text ?? null);
-        const cta = sanitizeString(section.cta ?? null);
-        const url = sanitizeString(section.url ?? null);
+        const ctaLabel = sanitizeString(section.cta?.label ?? null);
+        const ctaHref = sanitizeString(section.cta?.href ?? null);
 
         if (!text) {
           return null;
         }
 
-        const isInternalLink = Boolean(url && (url.startsWith('#/') || url.startsWith('/')));
-        const internalPath = url?.startsWith('#/') ? url.slice(1) : url;
+        const isInternalLink = Boolean(ctaHref && (ctaHref.startsWith('#/') || ctaHref.startsWith('/')));
+        const internalPath = ctaHref?.startsWith('#/') ? ctaHref.slice(1) : ctaHref;
         const buttonClasses =
           'inline-flex items-center px-6 py-3 bg-white text-stone-900 font-semibold rounded-md hover:bg-white/90 transition-colors';
-        const bannerKey = createKeyFromParts('section-banner', [text, cta, url]);
+        const bannerKey = createKeyFromParts('section-banner', [text, ctaLabel, ctaHref]);
+        const ctaFieldPath = `${sectionFieldPath}.cta`;
+        const ctaLabelFieldPath = `${ctaFieldPath}.label`;
+        const ctaHrefFieldPath = `${ctaFieldPath}.href`;
 
         return (
           <section
@@ -3339,25 +3338,37 @@ const Home: React.FC = () => {
               <p className="text-xl sm:text-2xl font-semibold" {...getVisualEditorAttributes(`${sectionFieldPath}.text`)}>
                 {text}
               </p>
-              {cta && url && (
+              {ctaLabel && ctaHref && (
                 <div className="mt-6">
                   {isInternalLink ? (
                     <Link
                       to={internalPath?.startsWith('/') ? internalPath : `/${internalPath ?? ''}`}
                       className={buttonClasses}
-                      {...getVisualEditorAttributes(`${sectionFieldPath}.url`)}
+                      {...getVisualEditorAttributes(ctaHrefFieldPath)}
+                      data-sb-field-path={ctaHrefFieldPath}
                     >
-                      <span {...getVisualEditorAttributes(`${sectionFieldPath}.cta`)}>{cta}</span>
+                      <span
+                        {...getVisualEditorAttributes(ctaLabelFieldPath)}
+                        data-sb-field-path={ctaLabelFieldPath}
+                      >
+                        {ctaLabel}
+                      </span>
                     </Link>
                   ) : (
                     <a
-                      href={url}
+                      href={ctaHref}
                       className={buttonClasses}
                       target="_blank"
                       rel="noreferrer"
-                      {...getVisualEditorAttributes(`${sectionFieldPath}.url`)}
+                      {...getVisualEditorAttributes(ctaHrefFieldPath)}
+                      data-sb-field-path={ctaHrefFieldPath}
                     >
-                      <span {...getVisualEditorAttributes(`${sectionFieldPath}.cta`)}>{cta}</span>
+                      <span
+                        {...getVisualEditorAttributes(ctaLabelFieldPath)}
+                        data-sb-field-path={ctaLabelFieldPath}
+                      >
+                        {ctaLabel}
+                      </span>
                     </a>
                   )}
                 </div>
@@ -3412,6 +3423,18 @@ const Home: React.FC = () => {
         const showcaseTitle = sanitizeString(section.title ?? null);
         const items = (section.items ?? []).map((item, itemIndex) => {
           const fieldScope = `${sectionFieldPath}.items.${itemIndex}`;
+          const ctaLabel = sanitizeString(item.cta?.label ?? null) ?? undefined;
+          const ctaHref = sanitizeString(item.cta?.href ?? null) ?? undefined;
+          const ctaFieldPath = `${fieldScope}.cta`;
+          const cta = ctaLabel || ctaHref
+            ? {
+                label: ctaLabel,
+                href: ctaHref,
+                fieldPath: ctaFieldPath,
+                labelFieldPath: `${ctaFieldPath}.label`,
+                hrefFieldPath: `${ctaFieldPath}.href`,
+              }
+            : undefined;
           return {
             eyebrow: sanitizeString(item.eyebrow ?? null) ?? undefined,
             title: sanitizeString(item.title ?? null) ?? undefined,
@@ -3423,10 +3446,7 @@ const Home: React.FC = () => {
             eyebrowFieldPath: `${fieldScope}.eyebrow`,
             titleFieldPath: `${fieldScope}.title`,
             bodyFieldPath: `${fieldScope}.body`,
-            ctaLabel: sanitizeString(item.ctaLabel ?? null) ?? undefined,
-            ctaHref: sanitizeString(item.ctaHref ?? null) ?? undefined,
-            ctaLabelFieldPath: `${fieldScope}.ctaLabel`,
-            ctaHrefFieldPath: `${fieldScope}.ctaHref`,
+            cta,
           };
         }).filter((item) => item.image || item.title || item.body);
 

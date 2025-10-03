@@ -33,40 +33,44 @@
           "title": "From gratitude to method",
           "body": "How a simple gesture of care became a therapeutic protocol.",
           "imageAlt": "Hands applying argan oil in warm light",
-          "ctaLabel": "Our Story",
-          "ctaHref": "/about",
           "image": "/content/uploads/9bae3f87-12d5-43f4-a2a0-5cfc768e429d.jpg",
-          "imageUrl": "/content/uploads/roots-olive-tree.jpg"
+          "cta": {
+            "label": "Our Story",
+            "href": "/about"
+          }
         },
         {
           "eyebrow": "For clinics",
           "title": "Trusted by professionals",
           "body": "Used by dermatologists, medspas, and recovery clinics for over a decade.",
           "imageAlt": "Practitioner massaging a client's face with argan care",
-          "ctaLabel": "Partner With Us",
-          "ctaHref": "/clinics",
           "image": "/content/uploads/pexels-elly-fairytale-3865548.jpg",
-          "imageUrl": "/content/uploads/clinic-hands.jpg"
+          "cta": {
+            "label": "Partner With Us",
+            "href": "/clinics"
+          }
         },
         {
           "eyebrow": "Supply chain",
           "title": "Heritage sourcing, clinical standards",
           "body": "From Moroccan cooperatives to hospital rooms.",
           "imageAlt": "Harvested argan fruit gathered in a woven basket",
-          "ctaLabel": "Our Standards",
-          "ctaHref": "/method",
           "image": "/content/uploads/a-woman-picks-fruit-from-an-argan-tree-1-.jpg",
-          "imageUrl": "/content/uploads/argan-coop.jpg"
+          "cta": {
+            "label": "Our Standards",
+            "href": "/method"
+          }
         },
         {
           "eyebrow": "Rituals",
           "title": "From hammam rituals to modern recovery",
           "body": "Ancient wisdom, scientifically structured.",
           "imageAlt": "Steam-filled hammam room with a person resting",
-          "ctaLabel": "Shop Rituals",
-          "ctaHref": "/shop",
           "image": "/content/uploads/342cecc0-3c00-4094-97d6-5c9d9da02330.jpg",
-          "imageUrl": "/content/uploads/hammam-light.jpg"
+          "cta": {
+            "label": "Shop Rituals",
+            "href": "/shop"
+          }
         }
       ]
     },
