@@ -309,54 +309,117 @@ const applyHero = (
 
   data.hero = resolved;
 
-  const assignString = (sourceKey: string, targetPath: string) => {
-    const raw = resolved[sourceKey];
-    if (typeof raw === 'string' && raw.length > 0) {
-      setNestedValue(data, targetPath, raw);
+  const content = isPlainObject(resolved.content) ? resolved.content : null;
+  const alignment = isPlainObject(resolved.alignment) ? resolved.alignment : null;
+  const layout = isPlainObject(resolved.layout) ? resolved.layout : null;
+  const ctas = isPlainObject(resolved.ctas) ? resolved.ctas : null;
+
+  const getString = (
+    source: Record<string, unknown> | null,
+    key: string,
+  ): string | undefined => {
+    if (!source) {
+      return undefined;
+    }
+    const raw = source[key];
+    return typeof raw === 'string' && raw.length > 0 ? raw : undefined;
+  };
+
+  const assignFromSources = (
+    keys: string[],
+    sources: (Record<string, unknown> | null)[],
+    targetPath: string,
+  ) => {
+    for (const source of sources) {
+      if (!source) {
+        continue;
+      }
+      for (const key of keys) {
+        const value = getString(source, key);
+        if (value) {
+          setNestedValue(data, targetPath, value);
+          return;
+        }
+      }
     }
   };
 
-  assignString('headline', 'heroHeadline');
-  assignString('subheadline', 'heroSubheadline');
-  assignString('title', 'heroTitle');
-  assignString('subtitle', 'heroSubtitle');
-  assignString('sub1', 'heroSub1');
-  assignString('sub2', 'heroSub2');
+  assignFromSources(['headline'], [content, resolved], 'heroHeadline');
+  assignFromSources(['headline', 'title'], [content, resolved], 'heroTitle');
+  assignFromSources(['subheadline'], [content, resolved], 'heroSubheadline');
+  assignFromSources(['body', 'subtitle'], [content, resolved], 'heroSubtitle');
+  assignFromSources(['eyebrow'], [content], 'heroEyebrow');
 
-  const ctaPrimary = resolved.ctaPrimary;
-  if (isPlainObject(ctaPrimary)) {
-    const { label, href } = ctaPrimary;
-    if (typeof label === 'string' && label.length > 0) {
-      setNestedValue(data, 'heroCtas.ctaPrimary.label', label);
-    }
-    if (typeof href === 'string' && href.length > 0) {
-      setNestedValue(data, 'heroCtas.ctaPrimary.href', href);
-    }
-  }
-
-  const ctaSecondary = resolved.ctaSecondary;
-  if (isPlainObject(ctaSecondary)) {
-    const { label, href } = ctaSecondary;
-    if (typeof label === 'string' && label.length > 0) {
-      setNestedValue(data, 'heroCtas.ctaSecondary.label', label);
-    }
-    if (typeof href === 'string' && href.length > 0) {
-      setNestedValue(data, 'heroCtas.ctaSecondary.href', href);
-    }
-  }
-
-  const alignment = resolved.alignment;
-  if (isPlainObject(alignment)) {
-    Object.entries(alignment).forEach(([key, value]) => {
-      if (
-        typeof value === 'string'
-        || typeof value === 'number'
-        || typeof value === 'boolean'
-      ) {
-        setNestedValue(data, `heroAlignment.${key}`, value);
+  const assignCta = (
+    sources: (Record<string, unknown> | null)[],
+    targetBase: string,
+  ) => {
+    for (const source of sources) {
+      if (!isPlainObject(source)) {
+        continue;
       }
-    });
-  }
+      const { label, href } = source as Record<string, unknown>;
+      if (typeof label === 'string' && label.length > 0) {
+        setNestedValue(data, `${targetBase}.label`, label);
+      }
+      if (typeof href === 'string' && href.length > 0) {
+        setNestedValue(data, `${targetBase}.href`, href);
+      }
+      if (
+        (typeof label === 'string' && label.length > 0)
+        || (typeof href === 'string' && href.length > 0)
+      ) {
+        return;
+      }
+    }
+  };
+
+  const extractCta = (value: unknown): Record<string, unknown> | null => (
+    isPlainObject(value) ? value : null
+  );
+
+  assignCta([
+    extractCta(ctas?.['primary']),
+    extractCta(resolved.ctaPrimary),
+  ], 'heroCtas.ctaPrimary');
+
+  assignCta([
+    extractCta(ctas?.['secondary']),
+    extractCta(resolved.ctaSecondary),
+  ], 'heroCtas.ctaSecondary');
+
+  const assignPrimitive = (
+    keys: string[],
+    sources: (Record<string, unknown> | null)[],
+    targetPath: string,
+  ) => {
+    for (const source of sources) {
+      if (!source) {
+        continue;
+      }
+      for (const key of keys) {
+        const value = source[key];
+        if (
+          typeof value === 'string'
+          || typeof value === 'number'
+          || typeof value === 'boolean'
+        ) {
+          setNestedValue(data, targetPath, value);
+          return;
+        }
+      }
+    }
+  };
+
+  assignPrimitive(['alignX', 'heroAlignX'], [layout, alignment], 'heroAlignment.heroAlignX');
+  assignPrimitive(['alignY', 'heroAlignY'], [layout, alignment], 'heroAlignment.heroAlignY');
+  assignPrimitive(['textPosition', 'heroTextPosition'], [layout, alignment], 'heroAlignment.heroTextPosition');
+  assignPrimitive(['textAnchor', 'heroTextAnchor'], [layout, alignment], 'heroAlignment.heroTextAnchor');
+  assignPrimitive(['overlay', 'heroOverlay'], [layout, alignment], 'heroAlignment.heroOverlay');
+  assignPrimitive(['layoutHint', 'heroLayoutHint'], [layout, alignment], 'heroAlignment.heroLayoutHint');
+
+  assignPrimitive(['sub1'], [resolved], 'heroSub1');
+  assignPrimitive(['sub2'], [resolved], 'heroSub2');
 };
 
 const applyFields = (
