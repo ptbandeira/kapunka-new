@@ -11,6 +11,11 @@ This log records day-to-day investigations, fixes, and decisions that affect the
 
 ---
 
+## 2025-10-03 — Added standard pages folder collection
+- **What changed**: Introduced a repeatable `pages` folder collection in `admin/config.yml` for localized standard pages with title, hero image, body, and shared SEO metadata fields.
+- **Impact & follow-up**: Editors can now create new marketing and utility pages without schema work; ensure future content syncing keeps `content/pages/` mirrored into `site/content/pages/`.
+- **References**: Pending PR · [`admin/config.yml`](../admin/config.yml)
+
 ## 2025-10-13 — Created homepage builder schema
 - **What changed**: Added a new single-file `home` collection in `admin/config.yml` using variable section types and seeded the matching `content/pages/home.json` entry (mirrored in `site/content/`) to support hero, showcase, and contact banner sections plus SEO metadata.
 - **Impact & follow-up**: Editors can now assemble the homepage from reusable sections; add additional section types as the design system grows and keep `site/content/` synced when updating the JSON source.
