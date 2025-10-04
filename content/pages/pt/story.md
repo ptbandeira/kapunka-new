@@ -1,0 +1,57 @@
+---
+type: StoryPage
+metaTitle: História Kapunka – Dos hammams às clínicas dermatológicas
+metaDescription: >-
+  Acompanhe como os rituais de argan Kapunka passaram das cooperativas
+  marroquinas para parceiros de dermatologia moderna.
+tagline: 'Menos, mas melhor.'
+story:
+  - heading: Nossa História
+    body: >-
+      A Kapunka nasceu do desejo por cuidados com a pele transparentes e
+      eficazes. Começamos por obter o mais puro óleo de Argan certificado pela
+      ECOCERT de cooperativas de mulheres em Marrocos.
+  - heading: Fornecimento Ético
+    body: >-
+      Estamos comprometidos com práticas éticas e sustentáveis. Nossos
+      ingredientes são provenientes de fornecedores que compartilham nossos
+      valores de responsabilidade ambiental e comércio justo. Nosso óleo de
+      Argan é um excelente exemplo, proporcionando empoderamento econômico para
+      as mulheres berberes que aperfeiçoaram seu método tradicional de extração
+      por séculos.
+sections:
+  - type: timeline
+    title: Kapunka ao longo dos anos
+    entries:
+      - year: '2014'
+        title: Origens no Vale do Souss
+        description: >-
+          A Kapunka nasce quando nossas fundadoras regressam às cooperativas de
+          argan em Tazghlilt.
+
+
+          Começamos a envasar os primeiros lotes prensados a frio trabalhando
+          diretamente com as artesãs que nos transmitem seus rituais de
+          extração.
+        image: ''
+      - year: '2017'
+        title: Parcerias que ampliam o impacto
+        description: >-
+          O Método Kapunka conquista a confiança de equipes de dermatologia em
+          Lisboa, Barcelona e Casablanca.
+
+
+          As cooperativas ampliam o número de integrantes e formalizamos acordos
+          de compra que garantem preços justos e previsíveis.
+        image: ''
+      - year: '2021'
+        title: Lançamento da versão 2.0
+        description: >-
+          Apresentamos a segunda geração das fórmulas Kapunka, unindo validação
+          clínica e abastecimento regenerativo.
+
+
+          Nosso ritual híbrido de cuidados em casa e recuperação em clínicas
+          chega agora a pacientes em três continentes.
+        image: ''
+---

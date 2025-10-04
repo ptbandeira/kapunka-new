@@ -7,7 +7,7 @@
 * After every significant Decap/Netlify change, append a new entry to `docs/decap-netlify-rolling-log.md` documenting what was updated and why.
 * Use the following command to add entries quickly (the script appends directly to `docs/decap-netlify-rolling-log.md`):
   * `npx zx scripts/update-rolling-log.mjs docs/decap-netlify-rolling-log.md`
-* When logging work, mirror any modifications made in `content/` within `site/content/` so the record reflects the required synchronization between the two directories.
+* When logging work, note that the build copies `content/` into `.netlify/visual-editor/content/`; no manual mirroring into `site/content/` is required.
 
 This document guides autonomous coding agents (Codex/LLMs) operating on the project codebase.
 

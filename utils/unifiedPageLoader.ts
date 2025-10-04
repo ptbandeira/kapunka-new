@@ -37,7 +37,7 @@ interface UnifiedPageIndex {
 
 interface UnifiedCandidate {
   url: string;
-  source: 'site' | 'content';
+  source: 'visual-editor' | 'content';
 }
 
 const LANGUAGE_FALLBACKS: Record<Language, Language[]> = {
@@ -47,7 +47,8 @@ const LANGUAGE_FALLBACKS: Record<Language, Language[]> = {
 };
 
 const UNIFIED_CANDIDATES: UnifiedCandidate[] = [
-  { url: '/site/content/pages_v2/index.json', source: 'site' },
+  { url: '/.netlify/visual-editor/content/pages_v2/index.json', source: 'visual-editor' },
+  { url: '/site/content/pages_v2/index.json', source: 'visual-editor' },
   { url: '/content/pages_v2/index.json', source: 'content' },
 ];
 
@@ -467,7 +468,7 @@ const determineResolvedLocale = (
 export interface UnifiedPageContent<TData> {
   data: TData;
   locale: Language;
-  source: 'site' | 'content';
+  source: 'visual-editor' | 'content';
 }
 
 export const loadUnifiedPage = async <TData = Record<string, unknown>>(

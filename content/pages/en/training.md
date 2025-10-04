@@ -1,0 +1,12 @@
+---
+type: TrainingPage
+metaTitle: Kapunka Training – Workshops for clinics and partners
+metaDescription: >-
+  Schedule advanced argan protocol training, video refreshers, and onboarding
+  support tailored to your practice.
+sections:
+  - type: trainingList
+    title: ''
+    description: ''
+    entries: []
+---

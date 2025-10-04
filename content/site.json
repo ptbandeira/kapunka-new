@@ -11,8 +11,8 @@
     "ctaLink": "https://kapunka.com/#/contact"
   },
   "about": {
-    "storyImage": "/content/uploads/monica-argan-.jpg",
-    "sourcingImage": "/content/uploads/argan-production.jpg",
+    "storyImage": "/content/uploads/site/monica-argan-.jpg",
+    "sourcingImage": "/content/uploads/site/argan-production.jpg",
     "storyAlt": "Brand story",
     "sourcingAlt": "Sourcing argan oil"
   },
@@ -47,7 +47,7 @@
     }
   },
   "home": {
-    "heroImage": "/content/uploads/pexels-reyna-2825461.jpg",
+    "heroImage": "https://images.pexels.com/photos/2825461/pexels-photo-2825461.jpeg?auto=compress&cs=tinysrgb&w=1920",
     "featuredProductIds": [
       "pure-argan-oil",
       "kapunka-cicatrices",

@@ -6,6 +6,7 @@ import { useSiteSettings } from '../contexts/SiteSettingsContext';
 import SectionRenderer from '../components/_legacy/SectionRenderer';
 import type { PageContent, PageSection, TimelineEntry, TimelineSectionContent } from '../types';
 import { fetchVisualEditorJson } from '../utils/fetchVisualEditorJson';
+import { fetchVisualEditorMarkdown } from '../utils/fetchVisualEditorMarkdown';
 import { getVisualEditorAttributes } from '../utils/stackbitBindings';
 import { useVisualEditorSync } from '../contexts/VisualEditorSyncContext';
 
@@ -192,8 +193,9 @@ const About: React.FC = () => {
 
             for (const locale of localesToTry) {
                 try {
-                    const data = await fetchVisualEditorJson<unknown>(
-                        `/content/pages/${locale}/about.json`,
+                    const { data } = await fetchVisualEditorMarkdown<unknown>(
+                        `/content/pages/${locale}/about.md`,
+                        { cache: 'no-store' },
                     );
                     if (!isMounted) {
                         return;
@@ -233,8 +235,9 @@ const About: React.FC = () => {
 
             for (const locale of localesToTry) {
                 try {
-                    const data = await fetchVisualEditorJson<unknown>(
-                        `/content/pages/${locale}/story.json`,
+                    const { data } = await fetchVisualEditorMarkdown<unknown>(
+                        `/content/pages/${locale}/story.md`,
+                        { cache: 'no-store' },
                     );
                     if (!isMounted) {
                         return;

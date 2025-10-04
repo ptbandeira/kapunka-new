@@ -109,7 +109,7 @@ const Learn: React.FC = () => {
     if (!pageContent) {
       return `pages.learn_${language}`;
     }
-    return pageContent.source === 'site'
+    return pageContent.source === 'visual-editor'
       ? `site.content.${pageContent.locale}.pages.learn`
       : `pages.learn_${pageContent.locale}`;
   }, [language, pageContent]);

@@ -1,8 +1,11 @@
 const CONTENT_PREFIX = '/content/';
-const SITE_PREFIX = '/site/content/';
+const VISUAL_EDITOR_PREFIXES = [
+  '/.netlify/visual-editor/content/',
+  '/site/content/',
+];
 const INDEX_SUFFIX = '/index.json';
 
-const buildSiteCandidates = (contentUrl: string): string[] => {
+const buildMirrorCandidates = (contentUrl: string): string[] => {
   if (!contentUrl.startsWith(CONTENT_PREFIX)) {
     return [];
   }
@@ -11,12 +14,15 @@ const buildSiteCandidates = (contentUrl: string): string[] => {
   const normalizedPath = rawPath.replace(/^\/+/, '');
   const candidates = new Set<string>();
 
-  const directSitePath = `${SITE_PREFIX}${normalizedPath}`;
-  candidates.add(directSitePath);
+  for (const prefix of VISUAL_EDITOR_PREFIXES) {
+    candidates.add(`${prefix}${normalizedPath}`);
+  }
 
   if (normalizedPath.endsWith(INDEX_SUFFIX)) {
     const withoutIndex = normalizedPath.slice(0, -INDEX_SUFFIX.length);
-    candidates.add(`${SITE_PREFIX}${withoutIndex}.json`);
+    for (const prefix of VISUAL_EDITOR_PREFIXES) {
+      candidates.add(`${prefix}${withoutIndex}.json`);
+    }
   }
 
   const segments = normalizedPath.split('/');
@@ -25,10 +31,14 @@ const buildSiteCandidates = (contentUrl: string): string[] => {
     if (locale) {
       const restPath = restSegments.join('/');
       if (restPath) {
-        candidates.add(`${SITE_PREFIX}${locale}/pages/${restPath}`);
+        for (const prefix of VISUAL_EDITOR_PREFIXES) {
+          candidates.add(`${prefix}${locale}/pages/${restPath}`);
+        }
         if (restPath.endsWith(INDEX_SUFFIX)) {
           const withoutIndex = restPath.slice(0, -INDEX_SUFFIX.length);
-          candidates.add(`${SITE_PREFIX}${locale}/pages/${withoutIndex}.json`);
+          for (const prefix of VISUAL_EDITOR_PREFIXES) {
+            candidates.add(`${prefix}${locale}/pages/${withoutIndex}.json`);
+          }
         }
       }
     }
@@ -39,7 +49,7 @@ const buildSiteCandidates = (contentUrl: string): string[] => {
 
 export const fetchVisualEditorJson = async <T>(url: string, init?: RequestInit): Promise<T> => {
   const candidateUrls: string[] = [];
-  candidateUrls.push(...buildSiteCandidates(url));
+  candidateUrls.push(...buildMirrorCandidates(url));
   candidateUrls.push(url);
 
   let lastError: unknown;

@@ -516,6 +516,8 @@ collections:
         label: Site Configuration
         file: content/site.json
         format: json
+        media_folder: "content/uploads/site"
+        public_folder: "/content/uploads/site"
         fields:
           - label: Brand
             name: brand
@@ -646,8 +648,10 @@ collections:
     files:
       - name: home
         label: Home Page
-        file: content/pages/en/home.json
-        format: json
+        file: content/pages/en/home.md
+        format: frontmatter
+        media_folder: "content/uploads/home"
+        public_folder: "/content/uploads/home"
         i18n: true
         editor: { preview: true }
         description: "Hero and storytelling blocks presented in live page order."
@@ -779,8 +783,10 @@ collections:
             types: *section_library
       - name: learn
         label: Learn Page
-        file: content/pages/en/learn.json
-        format: json
+        file: content/pages/en/learn.md
+        format: frontmatter
+        media_folder: "content/uploads/learn"
+        public_folder: "/content/uploads/learn"
         i18n: true
         editor: { preview: true }
         description: "Optional storytelling sections surrounding the Learn hub."
@@ -809,8 +815,10 @@ collections:
           - *sections_field
       - name: method
         label: Method Page
-        file: content/pages/en/method.json
-        format: json
+        file: content/pages/en/method.md
+        format: frontmatter
+        media_folder: "content/uploads/method"
+        public_folder: "/content/uploads/method"
         i18n: true
         editor: { preview: true }
         description: "Clinical method overview plus supporting content blocks."
@@ -842,8 +850,10 @@ collections:
               - *section_specialties
       - name: clinics
         label: For Clinics Page
-        file: content/pages/en/clinics.json
-        format: json
+        file: content/pages/en/clinics.md
+        format: frontmatter
+        media_folder: "content/uploads/clinics"
+        public_folder: "/content/uploads/clinics"
         i18n: true
         editor: { preview: true }
         description: "Clinic partnership story arranged top-to-bottom."
@@ -974,8 +984,10 @@ collections:
           - *sections_field
       - name: about
         label: About Page
-        file: content/pages/en/about.json
-        format: json
+        file: content/pages/en/about.md
+        format: frontmatter
+        media_folder: "content/uploads/about"
+        public_folder: "/content/uploads/about"
         i18n: true
         editor: { preview: true }
         description: "Brand story sections in live page sequence."
@@ -986,8 +998,10 @@ collections:
           - *sections_field
       - name: contact
         label: Contact Page
-        file: content/pages/en/contact.json
-        format: json
+        file: content/pages/en/contact.md
+        format: frontmatter
+        media_folder: "content/uploads/contact"
+        public_folder: "/content/uploads/contact"
         i18n: true
         editor: { preview: true }
         description: "Contact introductions and optional follow-up sections."
@@ -1682,6 +1696,8 @@ collections:
         label: Product Catalog
         file: content/products/index.json
         format: json
+        media_folder: "content/uploads/products"
+        public_folder: "/content/uploads/products"
         fields:
           - label: Products
             name: items
@@ -1890,6 +1906,8 @@ collections:
         label: Skincare Library
         file: content/articles/index.json
         format: json
+        media_folder: "content/uploads/articles"
+        public_folder: "/content/uploads/articles"
         fields:
           - label: Articles
             name: items
@@ -2059,6 +2077,8 @@ collections:
         label: Professional Network
         file: content/doctors.json
         format: json
+        media_folder: "content/uploads/doctors-json"
+        public_folder: "/content/uploads/doctors-json"
         fields:
           - label: Doctors
             name: doctors
