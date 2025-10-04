@@ -2243,6 +2243,425 @@ const customModels = [
     ],
   },
   {
+    name: 'FoundersStoryPage',
+    type: 'page',
+    label: "Founder's Story Page",
+    filePath: 'content/pages/about/index.md',
+    urlPath: '/founder-story',
+    fields: [
+      {
+        name: 'headline',
+        type: 'string',
+        label: 'Headline',
+      },
+      {
+        name: 'subheadline',
+        type: 'text',
+        label: 'Subheadline',
+      },
+      {
+        name: 'body',
+        type: 'markdown',
+        label: 'Body',
+      },
+      {
+        name: 'microStories',
+        type: 'list',
+        label: 'Micro Stories',
+        items: {
+          type: 'object',
+          label: 'Micro Story',
+          fields: [
+            {
+              name: 'quote',
+              type: 'text',
+              label: 'Quote',
+            },
+            {
+              name: 'attribution',
+              type: 'string',
+              label: 'Attribution',
+            },
+            {
+              name: 'context',
+              type: 'string',
+              label: 'Context',
+            },
+          ],
+        },
+      },
+      {
+        name: 'keyMilestones',
+        type: 'list',
+        label: 'Key Milestones',
+        items: {
+          type: 'object',
+          label: 'Milestone',
+          fields: [
+            {
+              name: 'year',
+              type: 'string',
+              label: 'Year',
+            },
+            {
+              name: 'title',
+              type: 'string',
+              label: 'Title',
+            },
+            {
+              name: 'description',
+              type: 'text',
+              label: 'Description',
+            },
+            {
+              name: 'image',
+              type: 'object',
+              label: 'Image',
+              fields: [
+                {
+                  name: 'src',
+                  type: 'image',
+                  label: 'Image',
+                },
+                {
+                  name: 'alt',
+                  type: 'string',
+                  label: 'Alt Text',
+                },
+              ],
+            },
+          ],
+        },
+      },
+      {
+        name: 'images',
+        type: 'object',
+        label: 'Images',
+        fields: [
+          {
+            name: 'hero',
+            type: 'object',
+            label: 'Hero Image',
+            fields: [
+              {
+                name: 'src',
+                type: 'image',
+                label: 'Image',
+              },
+              {
+                name: 'alt',
+                type: 'string',
+                label: 'Alt Text',
+              },
+            ],
+          },
+          {
+            name: 'gallery',
+            type: 'list',
+            label: 'Gallery',
+            items: {
+              type: 'object',
+              label: 'Gallery Image',
+              fields: [
+                {
+                  name: 'src',
+                  type: 'image',
+                  label: 'Image',
+                },
+                {
+                  name: 'alt',
+                  type: 'string',
+                  label: 'Alt Text',
+                },
+              ],
+            },
+          },
+        ],
+      },
+    ],
+  },
+  {
+    name: 'MethodKapunkaPage',
+    type: 'page',
+    label: 'Method Kapunka Page',
+    filePath: 'content/pages/method/index.md',
+    urlPath: '/method-kapunka',
+    fields: [
+      {
+        name: 'headline',
+        type: 'string',
+        label: 'Headline',
+      },
+      {
+        name: 'subheadline',
+        type: 'text',
+        label: 'Subheadline',
+      },
+      {
+        name: 'philosophy',
+        type: 'markdown',
+        label: 'Philosophy',
+      },
+      {
+        name: 'pillars',
+        type: 'object',
+        label: 'Pillars',
+        fields: [
+          {
+            name: 'prevention',
+            type: 'object',
+            label: 'Prevention',
+            fields: [
+              { name: 'title', type: 'string', label: 'Title' },
+              { name: 'description', type: 'text', label: 'Description' },
+            ],
+          },
+          {
+            name: 'cicatrisation',
+            type: 'object',
+            label: 'Cicatrisation',
+            fields: [
+              { name: 'title', type: 'string', label: 'Title' },
+              { name: 'description', type: 'text', label: 'Description' },
+            ],
+          },
+          {
+            name: 'deInflammation',
+            type: 'object',
+            label: 'De-inflammation',
+            fields: [
+              { name: 'title', type: 'string', label: 'Title' },
+              { name: 'description', type: 'text', label: 'Description' },
+            ],
+          },
+          {
+            name: 'recovery',
+            type: 'object',
+            label: 'Recovery',
+            fields: [
+              { name: 'title', type: 'string', label: 'Title' },
+              { name: 'description', type: 'text', label: 'Description' },
+            ],
+          },
+          {
+            name: 'emotionalSupport',
+            type: 'object',
+            label: 'Emotional Support',
+            fields: [
+              { name: 'title', type: 'string', label: 'Title' },
+              { name: 'description', type: 'text', label: 'Description' },
+            ],
+          },
+        ],
+      },
+      {
+        name: 'arganMechanism',
+        type: 'object',
+        label: "Argan's Mechanism",
+        fields: [
+          {
+            name: 'overview',
+            type: 'text',
+            label: 'Overview',
+          },
+          {
+            name: 'steps',
+            type: 'list',
+            label: 'Steps',
+            items: {
+              type: 'object',
+              label: 'Step',
+              fields: [
+                { name: 'title', type: 'string', label: 'Title' },
+                { name: 'description', type: 'text', label: 'Description' },
+              ],
+            },
+          },
+        ],
+      },
+      {
+        name: 'media',
+        type: 'object',
+        label: 'Media',
+        fields: [
+          {
+            name: 'embedUrl',
+            type: 'string',
+            label: 'Embed URL',
+          },
+          {
+            name: 'video',
+            type: 'object',
+            label: 'Video',
+            fields: [
+              { name: 'url', type: 'string', label: 'Video URL' },
+              { name: 'caption', type: 'string', label: 'Caption' },
+            ],
+          },
+        ],
+      },
+    ],
+  },
+  {
+    name: 'TrainingProgramPage',
+    type: 'page',
+    label: 'Training Program Page',
+    filePath: 'content/pages/training/index.md',
+    urlPath: '/training-program',
+    fields: [
+      {
+        name: 'headline',
+        type: 'string',
+        label: 'Headline',
+      },
+      {
+        name: 'subheadline',
+        type: 'text',
+        label: 'Subheadline',
+      },
+      {
+        name: 'objectives',
+        type: 'list',
+        label: 'Objectives',
+        items: {
+          type: 'string',
+        },
+      },
+      {
+        name: 'modules',
+        type: 'list',
+        label: 'Modules',
+        items: {
+          type: 'object',
+          label: 'Module',
+          fields: [
+            { name: 'title', type: 'string', label: 'Title' },
+            { name: 'duration', type: 'string', label: 'Duration' },
+            { name: 'description', type: 'text', label: 'Description' },
+            {
+              name: 'learningOutcomes',
+              type: 'list',
+              label: 'Learning Outcomes',
+              items: {
+                type: 'string',
+              },
+            },
+          ],
+        },
+      },
+      {
+        name: 'modalities',
+        type: 'object',
+        label: 'Modalities',
+        fields: [
+          { name: 'onlineHours', type: 'string', label: 'Online Hours' },
+          { name: 'practicalSessions', type: 'string', label: 'Practical Sessions' },
+        ],
+      },
+      {
+        name: 'pricing',
+        type: 'object',
+        label: 'Pricing',
+        fields: [
+          { name: 'tuition', type: 'string', label: 'Tuition' },
+          {
+            name: 'paymentOptions',
+            type: 'list',
+            label: 'Payment Options',
+            items: {
+              type: 'string',
+            },
+          },
+        ],
+      },
+      {
+        name: 'callToActions',
+        type: 'list',
+        label: 'Calls to Action',
+        items: {
+          type: 'object',
+          label: 'Call to Action',
+          fields: [
+            { name: 'label', type: 'string', label: 'Label' },
+            { name: 'url', type: 'string', label: 'URL' },
+          ],
+        },
+      },
+    ],
+  },
+  {
+    name: 'ProductEducationPage',
+    type: 'page',
+    label: 'Product Education Page',
+    filePath: 'content/pages/product/index.md',
+    urlPath: '/product-education',
+    fields: [
+      {
+        name: 'headline',
+        type: 'string',
+        label: 'Headline',
+      },
+      {
+        name: 'subheadline',
+        type: 'text',
+        label: 'Subheadline',
+      },
+      {
+        name: 'composition',
+        type: 'markdown',
+        label: 'Composition',
+      },
+      {
+        name: 'certifications',
+        type: 'list',
+        label: 'Certifications',
+        items: {
+          type: 'string',
+        },
+      },
+      {
+        name: 'benefits',
+        type: 'list',
+        label: 'Benefits',
+        items: {
+          type: 'object',
+          label: 'Benefit',
+          fields: [
+            { name: 'title', type: 'string', label: 'Title' },
+            { name: 'description', type: 'text', label: 'Description' },
+          ],
+        },
+      },
+      {
+        name: 'usageInstructions',
+        type: 'list',
+        label: 'Usage Instructions',
+        items: {
+          type: 'object',
+          label: 'Step',
+          fields: [
+            { name: 'step', type: 'number', label: 'Step Number' },
+            { name: 'title', type: 'string', label: 'Title' },
+            { name: 'guidance', type: 'text', label: 'Guidance' },
+          ],
+        },
+      },
+      {
+        name: 'faqs',
+        type: 'list',
+        label: 'FAQs',
+        items: {
+          type: 'object',
+          label: 'FAQ',
+          fields: [
+            { name: 'question', type: 'string', label: 'Question' },
+            { name: 'answer', type: 'text', label: 'Answer' },
+          ],
+        },
+      },
+    ],
+  },
+  {
     name: 'ShopPage',
     type: 'page',
     label: 'Shop Page',

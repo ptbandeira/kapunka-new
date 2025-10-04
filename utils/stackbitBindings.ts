@@ -130,6 +130,10 @@ const LEGACY_PAGE_MODEL_BY_SLUG: Record<string, string> = {
   videos: 'VideosPage',
   training: 'TrainingPage',
   test: 'TestPage',
+  'founder-story': 'FoundersStoryPage',
+  'method-kapunka': 'MethodKapunkaPage',
+  'training-program': 'TrainingProgramPage',
+  'product-education': 'ProductEducationPage',
 };
 
 const missingPageModelWarnings = new Set<string>();

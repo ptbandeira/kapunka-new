@@ -55,3 +55,8 @@ This log records day-to-day investigations, fixes, and decisions that affect the
 - **What changed**: Introduced `admin/cms.js` with rich React previews for Home, Learn, and Method pages, loaded the Tailwind CSS bundle via `admin/preview.css`, and registered a dashboard widget with quick links to the most edited entries. Updated `admin/config.yml` to surface the custom dashboard widget in the editorial workflow.
 - **Impact & follow-up**: Editors now see styled previews that mirror the live design and can jump straight to high-priority entries from the workflow screen. Validate the dashboard injection on production Decap; adjust widget placement if the editorial UI changes upstream.
 - **References**: Pending PR
+
+## 2025-10-06 — Added structured pages for founder, method, training, and product education
+- **What changed**: Introduced dedicated Markdown sources under `content/pages/*/index.md` for the founder story, Method Kapunka, training program, and product education. Registered new Stackbit models so each page is editable in the CMS and wired new React routes/components plus header navigation entries.
+- **Impact & follow-up**: Editors can now manage rich narratives, pillar descriptions, curriculum modules, and product guidance as standalone entries. Verify upcoming CMS sessions surface the new collections and that navigation labels remain accurate across locales.
+- **References**: Pending PR
