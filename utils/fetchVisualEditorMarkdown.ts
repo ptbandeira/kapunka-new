@@ -1,4 +1,14 @@
-import matter from 'gray-matter';
+type GrayMatterModule = typeof import('gray-matter');
+
+let matterModulePromise: Promise<GrayMatterModule['default']> | null = null;
+
+const loadMatter = async (): Promise<GrayMatterModule['default']> => {
+  if (!matterModulePromise) {
+    matterModulePromise = import('gray-matter').then((module) => module.default ?? module);
+  }
+
+  return matterModulePromise;
+};
 
 const CONTENT_PREFIX = '/content/';
 const VISUAL_EDITOR_PREFIXES = [
@@ -37,6 +47,7 @@ export const fetchVisualEditorMarkdown = async <T>(
 ): Promise<VisualEditorMarkdownDocument<T>> => {
   const candidates = buildCandidateUrls(url);
   let lastError: unknown;
+  const matter = await loadMatter();
 
   for (const candidate of candidates) {
     try {

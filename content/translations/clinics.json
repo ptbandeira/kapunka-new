@@ -73,6 +73,10 @@
           "name": "Dr. Elena Ruiz",
           "credentials": "Dermatologic Surgeon, Madrid"
         }
+      ],
+      "testimonialRefs": [
+        "content/testimonials/dr-sofia-mendes-en.json",
+        "content/testimonials/dr-elena-ruiz-en.json"
       ]
     },
     "keywordSection": {
@@ -112,7 +116,8 @@
     "ctaTitle": "Become a Partner",
     "ctaSubtitle": "Schedule a call to review wholesale pricing, sampling, and clinic launch support.",
     "ctaButton": "Contact Us",
-    "partnersTitle": "As Seen In"
+    "partnersTitle": "Trusted by clinicians",
+    "testimonialAvatarAlt": "Testimonial avatar"
   },
   "pt": {
     "title": "Parcerias Profissionais para Clínicas",
@@ -187,6 +192,10 @@
           "name": "Dra. Elena Ruiz",
           "credentials": "Cirurgiã dermatológica, Madri"
         }
+      ],
+      "testimonialRefs": [
+        "content/testimonials/dra-sofia-mendes-pt.json",
+        "content/testimonials/dra-elena-ruiz-pt.json"
       ]
     },
     "keywordSection": {
@@ -226,7 +235,8 @@
     "ctaTitle": "Torne-se um parceiro",
     "ctaSubtitle": "Agende uma chamada para conhecer preços de atacado, amostras e suporte de lançamento na clínica.",
     "ctaButton": "Fale conosco",
-    "partnersTitle": "Como visto em"
+    "partnersTitle": "Confiado por clínicas",
+    "testimonialAvatarAlt": "Avatar do depoimento"
   },
   "es": {
     "title": "Alianzas Profesionales para Clínicas",
@@ -301,6 +311,10 @@
           "name": "Dra. Elena Ruiz",
           "credentials": "Cirujana dermatológica, Madrid"
         }
+      ],
+      "testimonialRefs": [
+        "content/testimonials/dra-sofia-mendes-es.json",
+        "content/testimonials/dra-elena-ruiz-es.json"
       ]
     },
     "keywordSection": {
@@ -340,6 +354,7 @@
     "ctaTitle": "Conviértete en socio",
     "ctaSubtitle": "Agenda una llamada para revisar precios mayoristas, sampling y soporte de lanzamiento en clínica.",
     "ctaButton": "Contáctanos",
-    "partnersTitle": "Como visto en"
+    "partnersTitle": "Avalado por clínicas",
+    "testimonialAvatarAlt": "Avatar del testimonio"
   }
 }

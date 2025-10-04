@@ -119,18 +119,9 @@ referencesSection:
     - title: 'Lephart E.D. Skin aging and menopause: Implications for treatment.'
       details: 'Biomedicine & Pharmacotherapy, 2016.'
   testimonialsTitle: Dermatologist testimonials
-  testimonials:
-    - quote: >-
-        "Kapunka’s dermatologist-approved argan oil delivers the lipid profile I
-        want for post-treatment skin care, and patients appreciate the
-        sustainable sourcing."
-      name: Dr. Sofia Mendes
-      credentials: 'Board-Certified Dermatologist, Lisbon'
-    - quote: >-
-        "The minimalist INCI keeps our sensitized patients comfortable after
-        peels, while the brand’s training modules shorten staff onboarding."
-      name: Dr. Elena Ruiz
-      credentials: 'Dermatologic Surgeon, Madrid'
+  testimonialRefs:
+    - content/testimonials/dr-sofia-mendes-en.json
+    - content/testimonials/dr-elena-ruiz-en.json
 keywordSection:
   title: Optimized B2B Skincare Supply
   subtitle: >-
@@ -172,7 +163,7 @@ ctaSubtitle: >-
   Schedule a call to review wholesale pricing, sampling, and clinic launch
   support.
 ctaButton: Contact Us
-partnersTitle: As Seen In
+partnersTitle: Trusted by clinicians
 intro:
   title: Evidence-Led Support for Every Treatment Room
   text1: >-

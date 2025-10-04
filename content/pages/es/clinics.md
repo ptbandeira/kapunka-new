@@ -127,19 +127,9 @@ referencesSection:
     - title: 'Lephart E.D. Skin aging and menopause: Implications for treatment.'
       details: 'Biomedicine & Pharmacotherapy, 2016.'
   testimonialsTitle: Testimonios de dermatólogos
-  testimonials:
-    - quote: >-
-        "El aceite de argán aprobado por dermatólogos de Kapunka aporta el
-        perfil lipídico que necesito para el post-treatment skin care, y las
-        pacientes valoran su origen sostenible."
-      name: Dra. Sofia Mendes
-      credentials: 'Dermatóloga certificada, Lisboa'
-    - quote: >-
-        "El INCI minimalista mantiene cómodos a nuestros pacientes
-        sensibilizados tras los peelings, y los módulos formativos de la marca
-        acortan la capacitación del personal."
-      name: Dra. Elena Ruiz
-      credentials: 'Cirujana dermatológica, Madrid'
+  testimonialRefs:
+    - content/testimonials/dra-sofia-mendes-es.json
+    - content/testimonials/dra-elena-ruiz-es.json
 keywordSection:
   title: Suministro B2B de skincare optimizado
   subtitle: >-
@@ -192,7 +182,7 @@ ctaSubtitle: >-
   Agenda una llamada para revisar precios mayoristas, sampling y soporte de
   lanzamiento en clínica.
 ctaButton: Contáctanos
-partnersTitle: Como visto en
+partnersTitle: Avalado por clínicas
 intro:
   title: Soporte basado en evidencia para cada sala de tratamiento
   text1: >-

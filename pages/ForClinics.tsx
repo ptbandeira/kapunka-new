@@ -4,7 +4,7 @@ import { motion } from 'framer-motion';
 import { useLanguage } from '../contexts/LanguageContext';
 import { useSiteSettings } from '../contexts/SiteSettingsContext';
 import PartnerCarousel from '../components/PartnerCarousel';
-import type { Doctor } from '../types';
+import type { Doctor, TestimonialEntry } from '../types';
 import { fetchVisualEditorJson } from '../utils/fetchVisualEditorJson';
 import { getVisualEditorAttributes } from '../utils/stackbitBindings';
 import {
@@ -12,6 +12,7 @@ import {
   type ClinicsPageContentResult,
 } from '../utils/loadClinicsPageContent';
 import { useVisualEditorSync } from '../contexts/VisualEditorSyncContext';
+import { fetchTestimonialsByRefs } from '../utils/fetchTestimonialsByRefs';
 
 interface ClinicProtocol {
   title: string;
@@ -33,8 +34,10 @@ interface ClinicStudy {
 
 interface ClinicTestimonial {
   quote: string;
-  name: string;
-  credentials: string;
+  name?: string;
+  credentials?: string;
+  avatar?: string;
+  testimonialRef?: string;
 }
 
 interface ClinicReferencesSection {
@@ -42,7 +45,8 @@ interface ClinicReferencesSection {
   studiesTitle: string;
   studies: ClinicStudy[];
   testimonialsTitle: string;
-  testimonials: ClinicTestimonial[];
+  testimonials?: ClinicTestimonial[];
+  testimonialRefs?: string[];
 }
 
 interface DoctorsResponse {
@@ -83,12 +87,23 @@ const isReferencesSection = (value: unknown): value is ClinicReferencesSection =
     return false;
   }
   const section = value as Record<string, unknown>;
+  const testimonialsValue = section.testimonials;
+  const testimonialRefsValue = section.testimonialRefs;
+  const testimonialsValid =
+    testimonialsValue === undefined
+    || testimonialsValue === null
+    || Array.isArray(testimonialsValue);
+  const testimonialRefsValid =
+    testimonialRefsValue === undefined
+    || testimonialRefsValue === null
+    || Array.isArray(testimonialRefsValue);
   return (
     typeof section.title === 'string' &&
     typeof section.studiesTitle === 'string' &&
     Array.isArray(section.studies) &&
     typeof section.testimonialsTitle === 'string' &&
-    Array.isArray(section.testimonials)
+    testimonialsValid &&
+    testimonialRefsValid
   );
 };
 
@@ -124,6 +139,7 @@ const ForClinics: React.FC = () => {
   const [doctors, setDoctors] = useState<Doctor[]>([]);
   const [pageContent, setPageContent] = useState<ClinicsPageContentResult | null>(null);
   const { contentVersion } = useVisualEditorSync();
+  const [testimonialLibrary, setTestimonialLibrary] = useState<Record<string, TestimonialEntry>>({});
 
   const clinicsFieldPath = useMemo(() => {
     if (!pageContent) {
@@ -205,6 +221,7 @@ const ForClinics: React.FC = () => {
           studies: [],
           testimonialsTitle: '',
           testimonials: [],
+          testimonialRefs: [],
         };
   const pageFaqSection = pageContent?.data.faqSection;
   const faqSectionData: ClinicFAQSection = isFaqSection(pageFaqSection)
@@ -229,7 +246,46 @@ const ForClinics: React.FC = () => {
 
   const protocolCards = protocolSectionData.cards;
   const studies = referencesSectionData.studies;
-  const testimonials = referencesSectionData.testimonials;
+  const inlineTestimonials = Array.isArray(referencesSectionData.testimonials)
+    ? referencesSectionData.testimonials
+    : [];
+  const pageTestimonialRefs = Array.isArray(pageReferencesSection?.testimonialRefs)
+    ? (pageReferencesSection?.testimonialRefs as unknown[])
+        .map((ref) => (typeof ref === 'string' ? ref.trim() : ''))
+        .filter((ref): ref is string => ref.length > 0)
+    : [];
+  const translationTestimonialRefs = Array.isArray(
+    (translationReferencesSection as Record<string, unknown>)?.testimonialRefs,
+  )
+    ? ((translationReferencesSection as Record<string, unknown>).testimonialRefs as unknown[])
+        .map((ref) => (typeof ref === 'string' ? ref.trim() : ''))
+        .filter((ref): ref is string => ref.length > 0)
+    : [];
+  const testimonialRefs = pageTestimonialRefs.length > 0 ? pageTestimonialRefs : translationTestimonialRefs;
+  const testimonials = useMemo(() => {
+    if (testimonialRefs.length > 0) {
+      return testimonialRefs
+        .map((ref) => {
+          const entry = testimonialLibrary[ref];
+          if (!entry?.quote) {
+            return null;
+          }
+
+          return {
+            quote: entry.quote,
+            name: entry.name ?? undefined,
+            credentials: entry.title ?? undefined,
+            avatar: entry.avatar ?? undefined,
+            testimonialRef: ref,
+          } satisfies ClinicTestimonial;
+        })
+        .filter((testimonial): testimonial is ClinicTestimonial => testimonial !== null);
+    }
+
+    return inlineTestimonials.filter(
+      (testimonial): testimonial is ClinicTestimonial => typeof testimonial?.quote === 'string' && testimonial.quote.length > 0,
+    );
+  }, [inlineTestimonials, testimonialLibrary, testimonialRefs]);
   const faqItems = faqSectionData.items;
   const keywordPhrases = keywordSectionData.keywords;
 
@@ -275,6 +331,35 @@ const ForClinics: React.FC = () => {
       isMounted = false;
     };
   }, [contentVersion]);
+
+  useEffect(() => {
+    let isMounted = true;
+
+    if (testimonialRefs.length === 0) {
+      setTestimonialLibrary({});
+      return () => {
+        isMounted = false;
+      };
+    }
+
+    fetchTestimonialsByRefs(testimonialRefs)
+      .then((library) => {
+        if (!isMounted) {
+          return;
+        }
+        setTestimonialLibrary(library);
+      })
+      .catch((error) => {
+        console.warn('Failed to resolve testimonial references', error);
+        if (isMounted) {
+          setTestimonialLibrary({});
+        }
+      });
+
+    return () => {
+      isMounted = false;
+    };
+  }, [testimonialRefs, contentVersion]);
 
   return (
     <div>
@@ -447,34 +532,52 @@ const ForClinics: React.FC = () => {
                     {referencesSectionData.testimonialsTitle}
                   </h3>
                   <div className="mt-4 space-y-6">
-                    {testimonials.map((testimonial, index) => (
-                      <blockquote
-                        key={testimonial.quote}
-                        className="bg-white rounded-2xl border border-stone-200 p-6 shadow-sm"
-                        {...getVisualEditorAttributes(`${clinicsFieldPath}.referencesSection.testimonials.${index}`)}
-                      >
-                        <p
-                          className="text-stone-700 leading-relaxed"
-                          {...getVisualEditorAttributes(`${clinicsFieldPath}.referencesSection.testimonials.${index}.quote`)}
+                    {testimonials.map((testimonial, index) => {
+                      const testimonialFieldPath = `${clinicsFieldPath}.referencesSection.testimonials.${index}`;
+                      const testimonialKey = testimonial.testimonialRef
+                        ?? `${testimonial.quote}-${testimonial.name ?? index}`;
+
+                      return (
+                        <blockquote
+                          key={testimonialKey}
+                          className="bg-white rounded-2xl border border-stone-200 p-6 shadow-sm"
+                          {...getVisualEditorAttributes(testimonialFieldPath)}
                         >
-                          {testimonial.quote}
-                        </p>
-                        <footer className="mt-4 text-sm text-stone-500">
-                          <span
-                            className="font-semibold text-stone-700"
-                            {...getVisualEditorAttributes(`${clinicsFieldPath}.referencesSection.testimonials.${index}.name`)}
+                          {testimonial.avatar && (
+                            <img
+                              src={testimonial.avatar}
+                              alt={testimonial.name ?? t('clinics.testimonialAvatarAlt')}
+                              className="h-12 w-12 rounded-full object-cover mb-4"
+                              {...getVisualEditorAttributes(`${testimonialFieldPath}.avatar`)}
+                            />
+                          )}
+                          <p
+                            className="text-stone-700 leading-relaxed"
+                            {...getVisualEditorAttributes(`${testimonialFieldPath}.quote`)}
                           >
-                            {testimonial.name}
-                          </span>
-                          <span
-                            className="block"
-                            {...getVisualEditorAttributes(`${clinicsFieldPath}.referencesSection.testimonials.${index}.credentials`)}
-                          >
-                            {testimonial.credentials}
-                          </span>
-                        </footer>
-                      </blockquote>
-                    ))}
+                            {testimonial.quote}
+                          </p>
+                          <footer className="mt-4 text-sm text-stone-500">
+                            {testimonial.name && (
+                              <span
+                                className="font-semibold text-stone-700"
+                                {...getVisualEditorAttributes(`${testimonialFieldPath}.name`)}
+                              >
+                                {testimonial.name}
+                              </span>
+                            )}
+                            {testimonial.credentials && (
+                              <span
+                                className="block"
+                                {...getVisualEditorAttributes(`${testimonialFieldPath}.credentials`)}
+                              >
+                                {testimonial.credentials}
+                              </span>
+                            )}
+                          </footer>
+                        </blockquote>
+                      );
+                    })}
                   </div>
                 </div>
               )}

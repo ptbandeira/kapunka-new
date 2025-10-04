@@ -60,3 +60,8 @@ This log records day-to-day investigations, fixes, and decisions that affect the
 - **What changed**: Introduced dedicated Markdown sources under `content/pages/*/index.md` for the founder story, Method Kapunka, training program, and product education. Registered new Stackbit models so each page is editable in the CMS and wired new React routes/components plus header navigation entries.
 - **Impact & follow-up**: Editors can now manage rich narratives, pillar descriptions, curriculum modules, and product guidance as standalone entries. Verify upcoming CMS sessions surface the new collections and that navigation labels remain accurate across locales.
 - **References**: Pending PR
+
+## 2025-10-04 — Centralised testimonials and partner logos
+- **What changed**: Added dedicated `testimonials` and updated `partners` collections in Decap, introduced reusable testimonial entries with language metadata, and rewired the Clinics/Home pages plus Stackbit bindings to consume relation-selected testimonials and richer partner descriptions.
+- **Impact & follow-up**: Editors can now reuse quotes across locales without copy/paste while enriching the “Trusted by clinicians” carousel. Monitor new testimonial entries to confirm relation widgets save the expected `fileRelativePath` values.
+- **References**: Pending PR

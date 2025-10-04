@@ -104,17 +104,9 @@ sections:
     alignment: center
   - type: testimonials
     title: What Professionals Say
-    quotes:
-      - text: >-
-          After laser treatments, I recommend Kapunka pure argan for faster
-          barrier repair. My patients notice less tightness and redness.
-        author: Dr. Isabella Rossi
-        role: Dermatologist
-      - text: >-
-          Finally, a cleanser that respects sensitive skin while effectively
-          removing makeup.
-        author: Chloe Davis
-        role: Esthetician
+    testimonials:
+      - testimonialRef: content/testimonials/dr-isabella-rossi-en.json
+      - testimonialRef: content/testimonials/chloe-davis-en.json
 heroHeadline: Be thankful to your skin.
 metaTitle: Kapunka — Argan rituals for sensitive and post-procedure skin
 metaDescription: >-

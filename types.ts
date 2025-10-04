@@ -116,6 +116,16 @@ export interface Partner {
     id: string;
     name: string;
     logoUrl: string;
+    description?: string;
+}
+
+export interface TestimonialEntry {
+    id?: string;
+    name?: string;
+    title?: string;
+    quote?: string;
+    avatar?: string;
+    language?: Language;
 }
 
 export interface PolicySection {
@@ -264,6 +274,8 @@ export interface TestimonialContent {
   quote?: string;
   author?: string;
   role?: string;
+  avatar?: string;
+  testimonialRef?: string;
 }
 
 export interface MiniHighlightContent {
