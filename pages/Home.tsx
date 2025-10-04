@@ -53,25 +53,57 @@ type MediaCopyOverlaySettings = {
   cardWidth?: 'sm' | 'md' | 'lg';
 };
 
+type HeroSectionPosition =
+  | 'top-left'
+  | 'top-center'
+  | 'top-right'
+  | 'middle-left'
+  | 'middle-center'
+  | 'middle-right'
+  | 'bottom-left'
+  | 'bottom-center'
+  | 'bottom-right';
+
+type HeroSectionContentFields = {
+  headline?: string;
+  subheading?: string;
+  primaryCta?: CmsCtaShape | null;
+  secondaryCta?: CmsCtaShape | null;
+  image?: {
+    src?: string | null;
+    alt?: string | null;
+  } | null;
+  position?: HeroSectionPosition;
+};
+
+type MediaCopyContentFields = {
+  heading?: string;
+  body?: string;
+  cta?: CmsCtaShape | null;
+  image?: {
+    src?: string | null;
+    alt?: string | null;
+  } | null;
+};
+
+type TestimonialEntryFields = {
+  quote?: string | null;
+  author?: string | null;
+  role?: string | null;
+};
+
 type HomeSection =
   | {
       type: 'hero';
+      content?: HeroSectionContentFields | null;
       headline?: string;
       subheadline?: string;
       ctaPrimary?: string | CmsCtaShape;
       ctaSecondary?: string | CmsCtaShape;
-      image?: string;
+      image?: string | { src?: string | null } | null;
+      imageAlt?: string;
       overlay?: boolean;
-      position?:
-        | 'top-left'
-        | 'top-center'
-        | 'top-right'
-        | 'middle-left'
-        | 'middle-center'
-        | 'middle-right'
-        | 'bottom-left'
-        | 'bottom-center'
-        | 'bottom-right';
+      position?: HeroSectionPosition;
     }
   | {
       type: 'featureGrid';
@@ -87,9 +119,10 @@ type HomeSection =
     }
   | {
       type: 'mediaCopy';
+      content?: MediaCopyContentFields | null;
       title?: string;
       body?: string;
-      image?: string;
+      image?: string | { src?: string | null } | null;
       imageAlt?: string;
       layout?: 'image-left' | 'image-right' | 'overlay';
       columns?: number;
@@ -97,6 +130,8 @@ type HomeSection =
     }
   | {
       type: 'testimonials';
+      title?: string;
+      testimonials?: TestimonialEntryFields[];
       quotes?: { text?: string; author?: string; role?: string }[];
     }
   | {
@@ -1798,7 +1833,20 @@ const Home: React.FC = () => {
 
   const sanitizeString = sanitizeCmsString;
 
-  const pickImage = (local?: string) => local ?? null;
+  const pickImage = (local?: string | { src?: string | null } | null) => {
+    if (typeof local === 'string') {
+      return local;
+    }
+
+    if (local && typeof local === 'object') {
+      const candidate = 'src' in local ? local.src : undefined;
+      if (typeof candidate === 'string') {
+        return candidate;
+      }
+    }
+
+    return null;
+  };
   const contentLocale = pageContent?.resolvedLocale ?? language;
 
   const homeFieldPath = pageContent
@@ -2104,8 +2152,9 @@ const Home: React.FC = () => {
     switch (section.type) {
       case 'hero': {
         const heroSection = section as Extract<HomeSection, { type: 'hero' }>;
+        const heroContentFields = heroSection.content ?? null;
         const mapPos = (
-          pos?: Extract<HomeSection, { type: 'hero' }>['position'],
+          pos?: HeroSectionPosition | null,
         ): { x: HeroHorizontalAlignment; y: HeroVerticalAlignment } => {
           switch (pos) {
             case 'top-left':
@@ -2131,34 +2180,49 @@ const Home: React.FC = () => {
           }
         };
 
-        const { x: sectionAlignX, y: sectionAlignY } = mapPos(heroSection.position);
+        const heroSectionPosition = heroContentFields?.position ?? heroSection.position;
+        const { x: sectionAlignX, y: sectionAlignY } = mapPos(heroSectionPosition ?? null);
         const sectionOverlayCellClasses = getHeroGridCellClasses(sectionAlignX, sectionAlignY);
         const sectionMiddleNudge = heroLayoutHint === 'image-full' && sectionAlignY === 'middle' ? 'pb-24 md:pb-28' : '';
         const sectionTextAlignmentClass = HERO_HORIZONTAL_TEXT_ALIGNMENT_CLASSES[sectionAlignX];
         const sectionCtaAlignmentClass = HERO_CTA_ALIGNMENT_CLASSES[sectionAlignX];
-        const headline = sanitizeString(heroSection.headline ?? null) ?? heroHeadline;
-        const subheadline = sanitizeString(heroSection.subheadline ?? null) ?? heroSubheadline;
-        const sectionPrimaryCta = extractCmsCta(heroSection.ctaPrimary);
-        const sectionSecondaryCta = extractCmsCta(heroSection.ctaSecondary);
+        const headline = sanitizeString((heroContentFields?.headline ?? heroSection.headline) ?? null) ?? heroHeadline;
+        const subheadline = sanitizeString((heroContentFields?.subheading ?? heroSection.subheadline) ?? null) ?? heroSubheadline;
+
+        const primaryCtaSource = heroContentFields?.primaryCta ?? heroSection.ctaPrimary;
+        const secondaryCtaSource = heroContentFields?.secondaryCta ?? heroSection.ctaSecondary;
+        const sectionPrimaryCta = extractCmsCta(primaryCtaSource);
+        const sectionSecondaryCta = extractCmsCta(secondaryCtaSource);
         const primaryCta = sectionPrimaryCta.label ?? heroPrimaryCta;
         const primaryCtaHref = sectionPrimaryCta.href ?? heroPrimaryCtaHref;
         const secondaryCta = sectionSecondaryCta.label ?? heroSecondaryCta;
         const secondaryCtaHref = sectionSecondaryCta.href ?? heroSecondaryCtaHref;
-        const sectionPrimaryCtaIsObject = isCmsCtaObject(heroSection.ctaPrimary);
-        const sectionSecondaryCtaIsObject = isCmsCtaObject(heroSection.ctaSecondary);
-        const sectionPrimaryCtaLabelFieldPath = sectionPrimaryCtaIsObject
-          ? `${sectionFieldPath}.ctaPrimary.label`
+        const sectionPrimaryCtaIsObject = isCmsCtaObject(primaryCtaSource);
+        const sectionSecondaryCtaIsObject = isCmsCtaObject(secondaryCtaSource);
+        const sectionPrimaryCtaFieldBase = heroSection.content
+          ? `${sectionFieldPath}.content.primaryCta`
           : `${sectionFieldPath}.ctaPrimary`;
-        const sectionSecondaryCtaLabelFieldPath = sectionSecondaryCtaIsObject
-          ? `${sectionFieldPath}.ctaSecondary.label`
+        const sectionSecondaryCtaFieldBase = heroSection.content
+          ? `${sectionFieldPath}.content.secondaryCta`
           : `${sectionFieldPath}.ctaSecondary`;
+        const sectionPrimaryCtaLabelFieldPath = sectionPrimaryCtaIsObject
+          ? `${sectionPrimaryCtaFieldBase}.label`
+          : sectionPrimaryCtaFieldBase;
+        const sectionSecondaryCtaLabelFieldPath = sectionSecondaryCtaIsObject
+          ? `${sectionSecondaryCtaFieldBase}.label`
+          : sectionSecondaryCtaFieldBase;
         const sectionPrimaryCtaHrefFieldPath = sectionPrimaryCtaIsObject
-          ? `${sectionFieldPath}.ctaPrimary.href`
+          ? `${sectionPrimaryCtaFieldBase}.href`
           : undefined;
         const sectionSecondaryCtaHrefFieldPath = sectionSecondaryCtaIsObject
-          ? `${sectionFieldPath}.ctaSecondary.href`
+          ? `${sectionSecondaryCtaFieldBase}.href`
           : undefined;
-        const heroImageOverride = sanitizeString(pickImage(heroSection.image));
+
+        const heroImageSource = heroContentFields?.image ?? heroSection.image ?? null;
+        const heroImageOverride = sanitizeString(pickImage(heroImageSource));
+        const inlineImageAlt = sanitizeString(
+          (heroContentFields?.image?.alt ?? heroSection.imageAlt) ?? null,
+        ) ?? headline;
         const inlineImageCandidate = (() => {
           if (heroLayoutHint === 'image-left') {
             return heroImageOverride ?? heroImageLeft ?? heroImageRight;
@@ -2198,8 +2262,18 @@ const Home: React.FC = () => {
         const sectionImageWrapperClasses = sectionShouldRenderInlineImage
           ? `${heroLayoutHint === 'image-left' ? 'order-2 lg:order-1' : 'order-2'} w-full`
           : '';
-        const heroImageFieldKey = 'image';
-        const heroImageFieldPathForSection = `${sectionFieldPath}.${heroImageFieldKey}`;
+        const heroHeadlineFieldPath = heroSection.content
+          ? `${sectionFieldPath}.content.headline`
+          : `${sectionFieldPath}.headline`;
+        const heroSubheadlineFieldPath = heroSection.content
+          ? `${sectionFieldPath}.content.subheading`
+          : `${sectionFieldPath}.subheadline`;
+        const heroImageFieldBase = heroSection.content
+          ? `${sectionFieldPath}.content.image`
+          : `${sectionFieldPath}.image`;
+        const heroImageFieldPathForSection = heroSection.content
+          ? `${heroImageFieldBase}.src`
+          : heroImageFieldBase;
 
         const sectionInlineImageNode = sectionShouldRenderInlineImage && inlineImageCandidate
           ? (
@@ -2213,7 +2287,7 @@ const Home: React.FC = () => {
             >
               <img
                 src={inlineImageCandidate}
-                alt={headline}
+                alt={inlineImageAlt}
                 className="w-full max-h-[540px] rounded-lg shadow-lg object-cover"
               />
             </motion.div>
@@ -2225,12 +2299,12 @@ const Home: React.FC = () => {
             <div className={sectionTextWrapperClasses}>
               <h1
                 className="text-4xl md:text-6xl font-semibold tracking-tight"
-                {...getVisualEditorAttributes(`${sectionFieldPath}.headline`)}
+                {...getVisualEditorAttributes(heroHeadlineFieldPath)}
               >
                 {headline}
               </h1>
               {subheadline && (
-                <div {...getVisualEditorAttributes(`${sectionFieldPath}.subheadline`)}>
+                <div {...getVisualEditorAttributes(heroSubheadlineFieldPath)}>
                   <ReactMarkdown components={heroMarkdownComponents}>
                     {subheadline}
                   </ReactMarkdown>
@@ -2300,7 +2374,7 @@ const Home: React.FC = () => {
           subheadline,
           sectionBackgroundImage ?? undefined,
           heroTextPlacement,
-          heroSection.position,
+          heroSectionPosition ?? undefined,
         ]);
 
         return (
@@ -2467,10 +2541,13 @@ const Home: React.FC = () => {
         );
       }
       case 'mediaCopy': {
-        const title = sanitizeString(section.title ?? null);
-        const body = sanitizeString(section.body ?? null);
-        const mediaImage = sanitizeString(pickImage(section.image));
-        const imageAlt = sanitizeString(section.imageAlt ?? null) ?? title ?? 'Media highlight';
+        const mediaContent = section.content ?? null;
+        const title = sanitizeString((mediaContent?.heading ?? section.title) ?? null);
+        const body = sanitizeString((mediaContent?.body ?? section.body) ?? null);
+        const mediaImage = sanitizeString(pickImage(mediaContent?.image ?? section.image));
+        const imageAlt = sanitizeString(
+          (mediaContent?.image?.alt ?? section.imageAlt ?? title) ?? null,
+        ) ?? 'Media highlight';
         if (!title && !body && !mediaImage) {
           return null;
         }
@@ -2485,7 +2562,18 @@ const Home: React.FC = () => {
             : undefined;
         const hasImage = Boolean(mediaImage);
         const effectiveColumns = requestedColumns ?? (hasImage ? 2 : 1);
-        const imageFieldKey = 'image';
+        const mediaTitleFieldPath = mediaContent
+          ? `${sectionFieldPath}.content.heading`
+          : `${sectionFieldPath}.title`;
+        const mediaBodyFieldPath = mediaContent
+          ? `${sectionFieldPath}.content.body`
+          : `${sectionFieldPath}.body`;
+        const mediaImageFieldBase = mediaContent
+          ? `${sectionFieldPath}.content.image`
+          : `${sectionFieldPath}.image`;
+        const mediaImageFieldPath = mediaContent
+          ? `${mediaImageFieldBase}.src`
+          : mediaImageFieldBase;
 
         if (layout === 'overlay' && hasImage) {
           const overlaySettings = normalizeOverlaySettings(section.overlay);
@@ -2541,7 +2629,7 @@ const Home: React.FC = () => {
                     src={mediaImage}
                     alt={imageAlt}
                     className="h-full w-full object-cover"
-                    {...getVisualEditorAttributes(`${sectionFieldPath}.${imageFieldKey}`)}
+                    {...getVisualEditorAttributes(mediaImageFieldPath)}
                   />
                   <div
                     className="pointer-events-none absolute inset-0 grid"
@@ -2557,7 +2645,7 @@ const Home: React.FC = () => {
                       {title && (
                         <h2
                           className="text-3xl sm:text-4xl font-semibold"
-                          {...getVisualEditorAttributes(`${sectionFieldPath}.title`)}
+                          {...getVisualEditorAttributes(mediaTitleFieldPath)}
                         >
                           {title}
                         </h2>
@@ -2565,7 +2653,7 @@ const Home: React.FC = () => {
                       {body && (
                         <div
                           className="text-lg leading-relaxed lg:text-xl"
-                          {...getVisualEditorAttributes(`${sectionFieldPath}.body`)}
+                          {...getVisualEditorAttributes(mediaBodyFieldPath)}
                         >
                           <ReactMarkdown>{body}</ReactMarkdown>
                         </div>
@@ -2603,7 +2691,7 @@ const Home: React.FC = () => {
                   {title && (
                     <h2
                       className={`text-3xl sm:text-4xl font-semibold ${singleColumnAlignment.text}`}
-                      {...getVisualEditorAttributes(`${sectionFieldPath}.title`)}
+                      {...getVisualEditorAttributes(mediaTitleFieldPath)}
                     >
                       {title}
                     </h2>
@@ -2611,13 +2699,13 @@ const Home: React.FC = () => {
                   {body && (
                     <div
                       className={`${singleColumnAlignment.text} text-lg text-stone-600 space-y-4`}
-                      {...getVisualEditorAttributes(`${sectionFieldPath}.body`)}
+                      {...getVisualEditorAttributes(mediaBodyFieldPath)}
                     >
                       <ReactMarkdown>{body}</ReactMarkdown>
                     </div>
                   )}
                   {hasImage && (
-                    <div className="w-full" {...getVisualEditorAttributes(`${sectionFieldPath}.${imageFieldKey}`)}>
+                    <div className="w-full" {...getVisualEditorAttributes(mediaImageFieldPath)}>
                       <img
                         src={mediaImage}
                         alt={imageAlt}
@@ -2650,7 +2738,7 @@ const Home: React.FC = () => {
                   {title && (
                     <h2
                       className="text-3xl sm:text-4xl font-semibold"
-                      {...getVisualEditorAttributes(`${sectionFieldPath}.title`)}
+                      {...getVisualEditorAttributes(mediaTitleFieldPath)}
                     >
                       {title}
                     </h2>
@@ -2658,7 +2746,7 @@ const Home: React.FC = () => {
                   {body && (
                     <div
                       className="text-lg text-stone-600 space-y-4"
-                      {...getVisualEditorAttributes(`${sectionFieldPath}.body`)}
+                      {...getVisualEditorAttributes(mediaBodyFieldPath)}
                     >
                       <ReactMarkdown>{body}</ReactMarkdown>
                     </div>
@@ -2670,7 +2758,7 @@ const Home: React.FC = () => {
                       src={mediaImage}
                       alt={imageAlt}
                       className="w-full h-full object-cover rounded-lg shadow-sm"
-                      {...getVisualEditorAttributes(`${sectionFieldPath}.${imageFieldKey}`)}
+                      {...getVisualEditorAttributes(mediaImageFieldPath)}
                     />
                   </div>
                 )}
@@ -2971,7 +3059,6 @@ const Home: React.FC = () => {
             : undefined;
         const hasImage = Boolean(mediaImage);
         const effectiveColumns = requestedColumns ?? (hasImage ? 2 : 1);
-        const imageFieldPath = `${sectionFieldPath}.image`;
 
         if (layout === 'overlay' && hasImage) {
           const overlaySettings = normalizeOverlaySettings(section.overlay);
@@ -3043,7 +3130,7 @@ const Home: React.FC = () => {
                       {title && (
                         <h2
                           className="text-3xl sm:text-4xl font-semibold"
-                          {...getVisualEditorAttributes(`${sectionFieldPath}.title`)}
+                          {...getVisualEditorAttributes(mediaTitleFieldPath)}
                         >
                           {title}
                         </h2>
@@ -3051,7 +3138,7 @@ const Home: React.FC = () => {
                       {body && (
                         <div
                           className="text-lg leading-relaxed lg:text-xl"
-                          {...getVisualEditorAttributes(`${sectionFieldPath}.body`)}
+                          {...getVisualEditorAttributes(mediaBodyFieldPath)}
                         >
                           <ReactMarkdown>{body}</ReactMarkdown>
                         </div>
@@ -3095,7 +3182,7 @@ const Home: React.FC = () => {
                   {title && (
                     <h2
                       className={`text-3xl sm:text-4xl font-semibold ${singleColumnAlignment.text}`}
-                      {...getVisualEditorAttributes(`${sectionFieldPath}.title`)}
+                      {...getVisualEditorAttributes(mediaTitleFieldPath)}
                     >
                       {title}
                     </h2>
@@ -3103,13 +3190,13 @@ const Home: React.FC = () => {
                   {body && (
                     <div
                       className={`${singleColumnAlignment.text} text-lg text-stone-600 space-y-4`}
-                      {...getVisualEditorAttributes(`${sectionFieldPath}.body`)}
+                      {...getVisualEditorAttributes(mediaBodyFieldPath)}
                     >
                       <ReactMarkdown>{body}</ReactMarkdown>
                     </div>
                   )}
                   {hasImage && (
-                    <div className="w-full" {...getVisualEditorAttributes(imageFieldPath)}>
+                    <div className="w-full" {...getVisualEditorAttributes(mediaImageFieldPath)}>
                       <img
                         src={mediaImage}
                         alt={imageAlt}
@@ -3145,7 +3232,7 @@ const Home: React.FC = () => {
                   {title && (
                     <h2
                       className="text-3xl font-semibold text-stone-900"
-                      {...getVisualEditorAttributes(`${sectionFieldPath}.title`)}
+                      {...getVisualEditorAttributes(mediaTitleFieldPath)}
                     >
                       {title}
                     </h2>
@@ -3153,7 +3240,7 @@ const Home: React.FC = () => {
                   {body && (
                     <div
                       className="prose prose-stone max-w-none text-stone-700"
-                      {...getVisualEditorAttributes(`${sectionFieldPath}.body`)}
+                      {...getVisualEditorAttributes(mediaBodyFieldPath)}
                     >
                       <ReactMarkdown>{body}</ReactMarkdown>
                     </div>
@@ -3165,12 +3252,12 @@ const Home: React.FC = () => {
                       src={mediaImage}
                       alt={imageAlt}
                       className="w-full h-full object-cover rounded-lg shadow-sm"
-                      {...getVisualEditorAttributes(imageFieldPath)}
+                      {...getVisualEditorAttributes(mediaImageFieldPath)}
                     />
                   ) : (
                     <div
                       className="w-full aspect-[4/3] rounded-lg border border-dashed border-stone-300 bg-stone-100 flex items-center justify-center text-sm text-stone-400"
-                      {...getVisualEditorAttributes(imageFieldPath)}
+                      {...getVisualEditorAttributes(mediaImageFieldPath)}
                     >
                       Image coming soon
                     </div>
@@ -3182,22 +3269,33 @@ const Home: React.FC = () => {
         );
       }
       case 'testimonials': {
-        const testimonialSection = section as {
-          title?: string | null;
-          quotes?: Array<{ text?: string | null; author?: string | null; role?: string | null }>;
-        };
+        const testimonialSection = section as Extract<HomeSection, { type: 'testimonials' }>;
         const sectionTitle = sanitizeString(testimonialSection.title ?? null);
-        const quotes = (testimonialSection.quotes ?? [])
+        const testimonialsList = (testimonialSection.testimonials ?? [])
+          .map((entry) => ({
+            text: sanitizeString(entry?.quote ?? null),
+            author: sanitizeString(entry?.author ?? null),
+            role: sanitizeString(entry?.role ?? null),
+          }))
+          .filter((entry) => typeof entry.text === 'string' && entry.text.length > 0);
+
+        const legacyQuotes = (testimonialSection.quotes ?? [])
           .map((quote) => ({
             text: sanitizeString(quote.text ?? null),
             author: sanitizeString(quote.author ?? null),
             role: sanitizeString(quote.role ?? null),
           }))
-          .filter((quote): quote is { text: string; author: string | undefined; role: string | undefined } => typeof quote.text === 'string' && quote.text.length > 0);
+          .filter((quote) => typeof quote.text === 'string' && quote.text.length > 0);
+
+        const quotes = testimonialsList.length > 0 ? testimonialsList : legacyQuotes;
 
         if (quotes.length === 0) {
           return null;
         }
+
+        const testimonialsFieldBase = testimonialsList.length > 0
+          ? `${sectionFieldPath}.testimonials`
+          : `${sectionFieldPath}.quotes`;
 
         const testimonialsKeyParts: Array<string | null | undefined> = [
           sectionTitle,
@@ -3216,12 +3314,13 @@ const Home: React.FC = () => {
                 {quotes.map((quote, quoteIndex) => {
                   const quoteKeyParts: Array<string | null | undefined> = [quote.text, quote.author, quote.role];
                   const quoteKey = createKeyFromParts('testimonial', quoteKeyParts);
+                  const quoteFieldPath = `${testimonialsFieldBase}.${quoteIndex}`;
 
                   return (
                     <blockquote
                       key={quoteKey}
                       className="bg-white rounded-2xl border border-stone-200 p-6 shadow-sm h-full flex flex-col"
-                      {...getVisualEditorAttributes(`${sectionFieldPath}.quotes.${quoteIndex}`)}
+                      {...getVisualEditorAttributes(quoteFieldPath)}
                     >
                       <p className="text-stone-700 leading-relaxed flex-1">
                         <span className="text-3xl leading-none text-stone-300" aria-hidden="true">“</span>
@@ -3231,7 +3330,7 @@ const Home: React.FC = () => {
                         {quote.author && (
                           <span
                             className="font-semibold text-stone-700"
-                            {...getVisualEditorAttributes(`${sectionFieldPath}.quotes.${quoteIndex}.author`)}
+                            {...getVisualEditorAttributes(`${quoteFieldPath}.author`)}
                           >
                             {quote.author}
                           </span>
@@ -3239,7 +3338,7 @@ const Home: React.FC = () => {
                         {quote.role && (
                           <span
                             className="block"
-                            {...getVisualEditorAttributes(`${sectionFieldPath}.quotes.${quoteIndex}.role`)}
+                            {...getVisualEditorAttributes(`${quoteFieldPath}.role`)}
                           >
                             {quote.role}
                           </span>
