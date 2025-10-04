@@ -170,8 +170,8 @@ collections:
             widget: object
             fields: *seo_fields
   - name: pages
-    label: "Standard Pages"
-    folder: content/pages/
+    label: "Website Pages (About, Contact, etc.)"
+    folder: content/pages
     create: true
     slug: "{{slug}}"
     fields:
@@ -179,14 +179,36 @@ collections:
         name: title
         widget: string
         i18n: true
-      - label: Hero Image
-        name: hero_image
-        widget: image
-        required: false
-      - label: Body
-        name: body
-        widget: markdown
-        i18n: true
+      - label: Page Sections
+        name: page_sections
+        widget: list
+        types:
+          - label: Text Block
+            name: text_block
+            widget: object
+            fields:
+              - label: Content
+                name: content
+                widget: markdown
+                i18n: true
+          - label: Image with Text
+            name: image_with_text
+            widget: object
+            fields:
+              - label: Image
+                name: image
+                widget: image
+              - label: Content
+                name: content
+                widget: markdown
+                i18n: true
+          - label: Full Width Image
+            name: full_width_image
+            widget: object
+            fields:
+              - label: Image
+                name: image
+                widget: image
       - label: SEO
         name: seo
         widget: object

@@ -108,6 +108,11 @@ This log records day-to-day investigations, fixes, and decisions that affect the
 - **Impact & follow-up**: Resolved asset hydration errors during previews and ensures editors only manage one image per locale. Continue monitoring Stackbit sync logs for regressions when adding new unified sections.
 - **References**: [PR #199](https://github.com/ptbandeira/kapunka-new/pull/199) · [Commit 8873572](https://github.com/ptbandeira/kapunka-new/commit/8873572b02dd9db01df958524dc77f9c3e0b3905) · [Visual editor audit](./visual-editor-audit.md)
 
+## 2025-10-04 — Added flexible sections to standard pages
+- **What changed**: Replaced the legacy Standard Pages schema in `admin/config.yml` with a renamed “Website Pages” collection that now supports localized titles, reusable SEO fields, and a modular `page_sections` builder with text and image-driven blocks.
+- **Impact & follow-up**: Editors can compose About/Contact-style pages from repeatable sections without front-end changes; migrate existing JSON entries to the new structure before exposing the builder in production.
+- **References**: Pending PR · [`admin/config.yml`](../admin/config.yml)
+
 ## 2025-10-04 — Rebuilt pages CMS schema for CTA and banner cleanup
 - **What changed**: Reworked the Decap pages collection so section types reuse shared CTA/link anchors, removed unused `imageUrl` mirrors, and migrated showcase and banner CTAs into nested objects across `content/` and `site/content/`.
 - **Impact & follow-up**: Editors now see grouped CTA controls without duplicate URL inputs, Stackbit models stay aligned, and mirrored content stays in sync. Verify new CTA objects save correctly when editors publish multi-locale updates.
