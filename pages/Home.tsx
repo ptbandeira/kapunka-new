@@ -5,16 +5,12 @@ import ReactMarkdown from 'react-markdown';
 import type { Components as MarkdownComponents } from 'react-markdown';
 import { Helmet } from 'react-helmet-async';
 import { z } from 'zod';
-import homeContentJson from '../content/pages/home.json';
 import ProductCard from '../components/ProductCard';
 import TimelineSection from '../components/TimelineSection';
 import ImageTextHalf from '../components/sections/ImageTextHalf';
 import ImageGrid from '../components/sections/ImageGrid';
 import CommunityCarousel from '../components/sections/CommunityCarousel';
 import MediaShowcase from '../components/sections/MediaShowcase';
-import Hero from '../components/homepage/Hero';
-import Showcase from '../components/homepage/Showcase';
-import ContactBanner from '../components/homepage/ContactBanner';
 import { useLanguage } from '../contexts/LanguageContext';
 import { useSiteSettings } from '../contexts/SiteSettingsContext';
 import { useVisualEditorSync } from '../contexts/VisualEditorSyncContext';
@@ -29,7 +25,6 @@ import type {
   PageContent,
   Language,
 } from '../types';
-import type { HomeBuilderSection, HomeSectionType, SectionWithMeta } from '../homePageBuilderTypes';
 import { fetchVisualEditorJson } from '../utils/fetchVisualEditorJson';
 import { getVisualEditorAttributes } from '../utils/stackbitBindings';
 
@@ -112,7 +107,8 @@ type HomeSection =
   | {
       type: 'banner';
       text?: string;
-      cta?: CmsCtaShape;
+      cta?: string;
+      url?: string;
     }
   | {
       type: 'communityCarousel';
@@ -151,7 +147,8 @@ type HomeSection =
         body?: string;
         image?: string;
         imageAlt?: string;
-        cta?: CmsCtaShape;
+        ctaLabel?: string;
+        ctaHref?: string;
       }>;
     };
 
@@ -283,7 +280,8 @@ const bannerSectionSchema = z
   .object({
     type: z.literal('banner'),
     text: z.string().optional(),
-    cta: ctaLinkSchema.optional(),
+    cta: z.string().optional(),
+    url: z.string().optional(),
   })
   .passthrough();
 
@@ -377,7 +375,8 @@ const mediaShowcaseItemSchema = z
     body: z.string().optional(),
     image: z.string().optional(),
     imageAlt: z.string().optional(),
-    cta: ctaLinkSchema.optional(),
+    ctaLabel: z.string().optional(),
+    ctaHref: z.string().optional(),
   })
   .passthrough();
 
@@ -482,39 +481,6 @@ type SectionEntry = z.infer<typeof sectionSchema>;
 type HomeContentData = z.infer<typeof homeContentSchema>;
 type StructuredSectionEntry = { index: number; section: StructuredSection };
 type LegacySectionEntry = { index: number; section: LegacySection };
-
-type SectionComponentProps<K extends HomeSectionType> = SectionWithMeta<
-  Extract<HomeBuilderSection, { type: K }>
->;
-
-type SectionComponentMap = {
-  [K in HomeSectionType]: React.ComponentType<SectionComponentProps<K>>;
-};
-
-const sectionComponents: SectionComponentMap = {
-  hero: Hero,
-  showcase: Showcase,
-  contact_banner: ContactBanner,
-};
-
-const HOMEPAGE_SECTION_TYPES: readonly HomeSectionType[] = ['hero', 'showcase', 'contact_banner'];
-
-const isRecord = (value: unknown): value is Record<string, unknown> =>
-  typeof value === 'object' && value !== null;
-
-const isHomeBuilderSection = (value: unknown): value is HomeBuilderSection => {
-  if (!isRecord(value)) {
-    return false;
-  }
-
-  const { type } = value as { type?: unknown };
-
-  if (typeof type !== 'string') {
-    return false;
-  }
-
-  return HOMEPAGE_SECTION_TYPES.includes(type as HomeSectionType);
-};
 
 const heroMarkdownComponents: MarkdownComponents = {
     p: ({ children, ...props }) => (
@@ -1654,15 +1620,6 @@ const Home: React.FC = () => {
   })();
   const [pageContent, setPageContent] = useState<HomePageContent | null>(null);
   const [products, setProducts] = useState<Product[]>([]);
-  const [homeJsonSections, setHomeJsonSections] = useState<HomeBuilderSection[]>([]);
-
-  useEffect(() => {
-    const sections = Array.isArray(homeContentJson?.sections)
-      ? homeContentJson.sections.filter(isHomeBuilderSection)
-      : [];
-
-    setHomeJsonSections(sections);
-  }, []);
 
   useEffect(() => {
     let isMounted = true;
@@ -3359,21 +3316,18 @@ const Home: React.FC = () => {
       
       case 'banner': {
         const text = sanitizeString(section.text ?? null);
-        const ctaLabel = sanitizeString(section.cta?.label ?? null);
-        const ctaHref = sanitizeString(section.cta?.href ?? null);
+        const cta = sanitizeString(section.cta ?? null);
+        const url = sanitizeString(section.url ?? null);
 
         if (!text) {
           return null;
         }
 
-        const isInternalLink = Boolean(ctaHref && (ctaHref.startsWith('#/') || ctaHref.startsWith('/')));
-        const internalPath = ctaHref?.startsWith('#/') ? ctaHref.slice(1) : ctaHref;
+        const isInternalLink = Boolean(url && (url.startsWith('#/') || url.startsWith('/')));
+        const internalPath = url?.startsWith('#/') ? url.slice(1) : url;
         const buttonClasses =
           'inline-flex items-center px-6 py-3 bg-white text-stone-900 font-semibold rounded-md hover:bg-white/90 transition-colors';
-        const bannerKey = createKeyFromParts('section-banner', [text, ctaLabel, ctaHref]);
-        const ctaFieldPath = `${sectionFieldPath}.cta`;
-        const ctaLabelFieldPath = `${ctaFieldPath}.label`;
-        const ctaHrefFieldPath = `${ctaFieldPath}.href`;
+        const bannerKey = createKeyFromParts('section-banner', [text, cta, url]);
 
         return (
           <section
@@ -3385,37 +3339,25 @@ const Home: React.FC = () => {
               <p className="text-xl sm:text-2xl font-semibold" {...getVisualEditorAttributes(`${sectionFieldPath}.text`)}>
                 {text}
               </p>
-              {ctaLabel && ctaHref && (
+              {cta && url && (
                 <div className="mt-6">
                   {isInternalLink ? (
                     <Link
                       to={internalPath?.startsWith('/') ? internalPath : `/${internalPath ?? ''}`}
                       className={buttonClasses}
-                      {...getVisualEditorAttributes(ctaHrefFieldPath)}
-                      data-sb-field-path={ctaHrefFieldPath}
+                      {...getVisualEditorAttributes(`${sectionFieldPath}.url`)}
                     >
-                      <span
-                        {...getVisualEditorAttributes(ctaLabelFieldPath)}
-                        data-sb-field-path={ctaLabelFieldPath}
-                      >
-                        {ctaLabel}
-                      </span>
+                      <span {...getVisualEditorAttributes(`${sectionFieldPath}.cta`)}>{cta}</span>
                     </Link>
                   ) : (
                     <a
-                      href={ctaHref}
+                      href={url}
                       className={buttonClasses}
                       target="_blank"
                       rel="noreferrer"
-                      {...getVisualEditorAttributes(ctaHrefFieldPath)}
-                      data-sb-field-path={ctaHrefFieldPath}
+                      {...getVisualEditorAttributes(`${sectionFieldPath}.url`)}
                     >
-                      <span
-                        {...getVisualEditorAttributes(ctaLabelFieldPath)}
-                        data-sb-field-path={ctaLabelFieldPath}
-                      >
-                        {ctaLabel}
-                      </span>
+                      <span {...getVisualEditorAttributes(`${sectionFieldPath}.cta`)}>{cta}</span>
                     </a>
                   )}
                 </div>
@@ -3470,18 +3412,6 @@ const Home: React.FC = () => {
         const showcaseTitle = sanitizeString(section.title ?? null);
         const items = (section.items ?? []).map((item, itemIndex) => {
           const fieldScope = `${sectionFieldPath}.items.${itemIndex}`;
-          const ctaLabel = sanitizeString(item.cta?.label ?? null) ?? undefined;
-          const ctaHref = sanitizeString(item.cta?.href ?? null) ?? undefined;
-          const ctaFieldPath = `${fieldScope}.cta`;
-          const cta = ctaLabel || ctaHref
-            ? {
-                label: ctaLabel,
-                href: ctaHref,
-                fieldPath: ctaFieldPath,
-                labelFieldPath: `${ctaFieldPath}.label`,
-                hrefFieldPath: `${ctaFieldPath}.href`,
-              }
-            : undefined;
           return {
             eyebrow: sanitizeString(item.eyebrow ?? null) ?? undefined,
             title: sanitizeString(item.title ?? null) ?? undefined,
@@ -3493,7 +3423,10 @@ const Home: React.FC = () => {
             eyebrowFieldPath: `${fieldScope}.eyebrow`,
             titleFieldPath: `${fieldScope}.title`,
             bodyFieldPath: `${fieldScope}.body`,
-            cta,
+            ctaLabel: sanitizeString(item.ctaLabel ?? null) ?? undefined,
+            ctaHref: sanitizeString(item.ctaHref ?? null) ?? undefined,
+            ctaLabelFieldPath: `${fieldScope}.ctaLabel`,
+            ctaHrefFieldPath: `${fieldScope}.ctaHref`,
           };
         }).filter((item) => item.image || item.title || item.body);
 
@@ -3537,33 +3470,6 @@ const Home: React.FC = () => {
     .map((section, index) => renderSection(section, index))
     .filter(Boolean) as React.ReactNode[];
 
-  const homeBuilderFieldPath = 'pages.home.sections';
-
-  const renderedHomeBuilderSections = useMemo(() => {
-    return homeJsonSections
-      .map((section, index) => {
-        const Component = sectionComponents[section.type];
-        if (!Component) {
-          return null;
-        }
-
-        const componentProps = {
-          ...section,
-          language,
-          fieldPath: `${homeBuilderFieldPath}.${index}`,
-          index,
-        } as SectionComponentProps<typeof section.type>;
-
-        return (
-          <Component
-            key={createKeyFromParts('home-builder-section', [section.type, String(index)])}
-            {...componentProps}
-          />
-        );
-      })
-      .filter(Boolean) as React.ReactNode[];
-  }, [homeJsonSections, language]);
-
   return (
     <div>
       <Helmet>
@@ -3572,8 +3478,6 @@ const Home: React.FC = () => {
       </Helmet>
       {shouldRenderLocalSections ? (
         renderedLocalSections
-      ) : renderedHomeBuilderSections.length > 0 ? (
-        renderedHomeBuilderSections
       ) : (
         <>
           {heroBackgroundImage ? (

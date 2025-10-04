@@ -506,10 +506,15 @@ const customModels = [
         required: false,
       },
       {
-        name: 'cta',
-        type: 'model',
-        label: 'CTA',
-        models: ['Link'],
+        name: 'ctaLabel',
+        type: 'string',
+        label: 'CTA Label',
+        required: false,
+      },
+      {
+        name: 'ctaHref',
+        type: 'string',
+        label: 'CTA URL',
         required: false,
       },
     ],
@@ -754,9 +759,14 @@ const customModels = [
       },
       {
         name: 'cta',
-        type: 'model',
-        label: 'CTA',
-        models: ['Link'],
+        type: 'string',
+        label: 'CTA Label',
+        required: false,
+      },
+      {
+        name: 'url',
+        type: 'string',
+        label: 'CTA URL',
         required: false,
       },
       {

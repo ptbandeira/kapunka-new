@@ -32,6 +32,7 @@ type MethodSection =
       type: 'specialties';
       title?: string;
       items?: SpecialtyItem[];
+      specialties?: SpecialtyItem[];
     };
 
 interface MethodPageContent {
@@ -94,7 +95,7 @@ const isMethodSection = (value: unknown): value is MethodSection => {
   }
 
   if (type === 'specialties') {
-    const items = section.items;
+    const items = section.items ?? section.specialties;
     return (
       (section.title === undefined || typeof section.title === 'string') &&
       Array.isArray(items) &&
@@ -262,7 +263,7 @@ const createMethodKey = (prefix: string, parts: Array<string | null | undefined>
       );
     }
 
-    const specialtyItems = section.items ?? [];
+    const specialtyItems = section.specialties ?? section.items ?? [];
     const specialtyKeyParts = specialtyItems.map((item) =>
       [item.title, ...(item.bullets ?? [])]
         .filter((value): value is string => typeof value === 'string' && value.length > 0)
