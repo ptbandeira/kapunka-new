@@ -32,10 +32,8 @@
     {
       "type": "banner",
       "text": "Explore atacado e treinamentos",
-      "cta": {
-        "label": "Fale com nossa equipe",
-        "href": "/contact"
-      }
+      "cta": "Fale com nossa equipe",
+      "url": "/contact"
     }
   ],
   "headerTitle": "Programa Profissional Kapunka",

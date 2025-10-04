@@ -76,6 +76,44 @@
             "Post-solar"
           ]
         }
+      ],
+      "specialties": [
+        {
+          "title": "Pediatría",
+          "bullets": [
+            "Hidratación desde los 3 meses",
+            "Dermatitis del pañal",
+            "Dermatitis atópica"
+          ]
+        },
+        {
+          "title": "Dermatología",
+          "bullets": [
+            "Piel seca y descamada",
+            "Psoriasis/dermatitis",
+            "Marcas postacné o cirugía"
+          ]
+        },
+        {
+          "title": "Postoperatorio",
+          "bullets": [
+            "Favorece una recuperación epitelial más rápida con cicatrices ligeras"
+          ]
+        },
+        {
+          "title": "Fisioterapia",
+          "bullets": [
+            "Masaje rehabilitador",
+            "Recuperación cutánea tras vendajes"
+          ]
+        },
+        {
+          "title": "Estética",
+          "bullets": [
+            "Cuidado posterior a tratamientos (depilación/peelings/RF)",
+            "Post-solar"
+          ]
+        }
       ]
     }
   ]

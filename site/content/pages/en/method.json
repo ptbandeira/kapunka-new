@@ -76,6 +76,44 @@
             "After Sun"
           ]
         }
+      ],
+      "specialties": [
+        {
+          "title": "Pediatrics",
+          "bullets": [
+            "Hydration from 3 months",
+            "Diaper dermatitis",
+            "Atopic dermatitis"
+          ]
+        },
+        {
+          "title": "Dermatology",
+          "bullets": [
+            "Dry, scaly skin",
+            "Psoriasis/dermatitis",
+            "Post-acne or surgery marks"
+          ]
+        },
+        {
+          "title": "Post-op",
+          "bullets": [
+            "Supports faster epithelial recovery with lighter scarring"
+          ]
+        },
+        {
+          "title": "Physio",
+          "bullets": [
+            "Rehabilitative massage",
+            "Skin recovery after dressings"
+          ]
+        },
+        {
+          "title": "Aesthetics",
+          "bullets": [
+            "Post-treatment care (waxing/peels/RF)",
+            "After Sun"
+          ]
+        }
       ]
     }
   ]

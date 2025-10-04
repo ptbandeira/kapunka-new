@@ -32,10 +32,8 @@
     {
       "type": "banner",
       "text": "Explora mayoristas y capacitación",
-      "cta": {
-        "label": "Contacta a nuestro equipo",
-        "href": "/contact"
-      }
+      "cta": "Contacta a nuestro equipo",
+      "url": "/contact"
     }
   ],
   "headerTitle": "Programa Profesional Kapunka",
