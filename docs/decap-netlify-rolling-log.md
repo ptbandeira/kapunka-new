@@ -11,6 +11,13 @@ This log records day-to-day investigations, fixes, and decisions that affect the
 
 ---
 
+## 2025-10-04 — Hooked homepage builder sections into React
+- **What changed**: Added a typed component map in `pages/Home.tsx` that renders the hero, showcase, and contact banner sections from `content/pages/home.json` using the existing homepage components and Stackbit bindings.
+- **Impact & follow-up**: Editors can preview homepage builder updates instantly; extend the map when new section types land in the builder schema.
+- **References**: [`pages/Home.tsx`](../pages/Home.tsx)
+
+---
+
 ## 2025-10-15 — Rendered homepage builder sections in React
 - **What changed**: Introduced a section component map in `pages/Home.tsx` that renders the hero, showcase, and contact banner blocks from `content/pages/home.json` through dedicated React components. Added lightweight presentation components for each section and shared localization helpers to keep Stackbit bindings intact.
 - **Impact & follow-up**: Homepage edits made in Decap now appear in the live preview without manual code updates; extend the component map as new section types are added to the builder schema.

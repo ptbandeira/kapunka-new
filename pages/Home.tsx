@@ -12,6 +12,9 @@ import ImageTextHalf from '../components/sections/ImageTextHalf';
 import ImageGrid from '../components/sections/ImageGrid';
 import CommunityCarousel from '../components/sections/CommunityCarousel';
 import MediaShowcase from '../components/sections/MediaShowcase';
+import Hero from '../components/homepage/Hero';
+import Showcase from '../components/homepage/Showcase';
+import ContactBanner from '../components/homepage/ContactBanner';
 import { useLanguage } from '../contexts/LanguageContext';
 import { useSiteSettings } from '../contexts/SiteSettingsContext';
 import { useVisualEditorSync } from '../contexts/VisualEditorSyncContext';
@@ -26,6 +29,7 @@ import type {
   PageContent,
   Language,
 } from '../types';
+import type { HomeBuilderSection, HomeSectionType, SectionWithMeta } from '../homePageBuilderTypes';
 import { fetchVisualEditorJson } from '../utils/fetchVisualEditorJson';
 import { getVisualEditorAttributes } from '../utils/stackbitBindings';
 
@@ -478,6 +482,39 @@ type SectionEntry = z.infer<typeof sectionSchema>;
 type HomeContentData = z.infer<typeof homeContentSchema>;
 type StructuredSectionEntry = { index: number; section: StructuredSection };
 type LegacySectionEntry = { index: number; section: LegacySection };
+
+type SectionComponentProps<K extends HomeSectionType> = SectionWithMeta<
+  Extract<HomeBuilderSection, { type: K }>
+>;
+
+type SectionComponentMap = {
+  [K in HomeSectionType]: React.ComponentType<SectionComponentProps<K>>;
+};
+
+const sectionComponents: SectionComponentMap = {
+  hero: Hero,
+  showcase: Showcase,
+  contact_banner: ContactBanner,
+};
+
+const HOMEPAGE_SECTION_TYPES: readonly HomeSectionType[] = ['hero', 'showcase', 'contact_banner'];
+
+const isRecord = (value: unknown): value is Record<string, unknown> =>
+  typeof value === 'object' && value !== null;
+
+const isHomeBuilderSection = (value: unknown): value is HomeBuilderSection => {
+  if (!isRecord(value)) {
+    return false;
+  }
+
+  const { type } = value as { type?: unknown };
+
+  if (typeof type !== 'string') {
+    return false;
+  }
+
+  return HOMEPAGE_SECTION_TYPES.includes(type as HomeSectionType);
+};
 
 const heroMarkdownComponents: MarkdownComponents = {
     p: ({ children, ...props }) => (
@@ -1617,19 +1654,15 @@ const Home: React.FC = () => {
   })();
   const [pageContent, setPageContent] = useState<HomePageContent | null>(null);
   const [products, setProducts] = useState<Product[]>([]);
-  const [homeJsonSections, setHomeJsonSections] = useState<unknown[]>([]);
+  const [homeJsonSections, setHomeJsonSections] = useState<HomeBuilderSection[]>([]);
 
   useEffect(() => {
     const sections = Array.isArray(homeContentJson?.sections)
-      ? (homeContentJson.sections as unknown[])
+      ? homeContentJson.sections.filter(isHomeBuilderSection)
       : [];
 
     setHomeJsonSections(sections);
   }, []);
-
-  useEffect(() => {
-    console.log('Home JSON sections', homeJsonSections);
-  }, [homeJsonSections]);
 
   useEffect(() => {
     let isMounted = true;
@@ -3504,6 +3537,33 @@ const Home: React.FC = () => {
     .map((section, index) => renderSection(section, index))
     .filter(Boolean) as React.ReactNode[];
 
+  const homeBuilderFieldPath = 'pages.home.sections';
+
+  const renderedHomeBuilderSections = useMemo(() => {
+    return homeJsonSections
+      .map((section, index) => {
+        const Component = sectionComponents[section.type];
+        if (!Component) {
+          return null;
+        }
+
+        const componentProps = {
+          ...section,
+          language,
+          fieldPath: `${homeBuilderFieldPath}.${index}`,
+          index,
+        } as SectionComponentProps<typeof section.type>;
+
+        return (
+          <Component
+            key={createKeyFromParts('home-builder-section', [section.type, String(index)])}
+            {...componentProps}
+          />
+        );
+      })
+      .filter(Boolean) as React.ReactNode[];
+  }, [homeJsonSections, language]);
+
   return (
     <div>
       <Helmet>
@@ -3512,6 +3572,8 @@ const Home: React.FC = () => {
       </Helmet>
       {shouldRenderLocalSections ? (
         renderedLocalSections
+      ) : renderedHomeBuilderSections.length > 0 ? (
+        renderedHomeBuilderSections
       ) : (
         <>
           {heroBackgroundImage ? (
