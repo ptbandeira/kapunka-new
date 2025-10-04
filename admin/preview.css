@@ -1,0 +1,106 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+@import url('https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css');
+
+:root {
+  font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  color: #1c1917;
+  background-color: #fafaf9;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  background-color: #fafaf9;
+}
+
+.cms-preview-root {
+  font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  background-color: #fafaf9;
+  color: #1c1917;
+}
+
+.cms-preview-root h1,
+.cms-preview-root h2,
+.cms-preview-root h3,
+.cms-preview-root h4 {
+  font-weight: 600;
+  color: #1c1917;
+}
+
+.cms-preview-card {
+  background: #ffffff;
+  border-radius: 1rem;
+  box-shadow: 0 25px 50px -12px rgba(30, 41, 59, 0.15);
+}
+
+.cms-preview-grid {
+  display: grid;
+  gap: 1.5rem;
+}
+
+.cms-preview-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.375rem;
+  font-size: 0.65rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  font-weight: 600;
+  padding: 0.35rem 0.75rem;
+  border-radius: 9999px;
+  background-color: rgba(68, 64, 60, 0.1);
+  color: #44403c;
+}
+
+.cms-preview-section-title {
+  font-size: 1.25rem;
+  font-weight: 600;
+  margin-bottom: 0.25rem;
+}
+
+.cms-preview-muted {
+  color: rgba(68, 64, 60, 0.72);
+}
+
+.cms-preview-pill {
+  display: inline-flex;
+  align-items: center;
+  font-size: 0.75rem;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+  padding: 0.25rem 0.65rem;
+  border-radius: 9999px;
+  background-color: rgba(120, 113, 108, 0.12);
+  color: #44403c;
+}
+
+.cms-preview-list {
+  display: grid;
+  gap: 0.5rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.cms-preview-divider {
+  height: 1px;
+  background: linear-gradient(90deg, rgba(120, 113, 108, 0.08), rgba(120, 113, 108, 0.4), rgba(120, 113, 108, 0.08));
+  margin: 2rem 0;
+}
+
+.cms-preview-quicklink {
+  background: #f5f5f4;
+  border-radius: 1rem;
+  padding: 1.25rem 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  transition: all 0.2s ease;
+  border: 1px solid rgba(120, 113, 108, 0.16);
+}
+
+.cms-preview-quicklink:hover {
+  background: #ffffff;
+  transform: translateY(-2px);
+  box-shadow: 0 15px 30px -12px rgba(68, 64, 60, 0.35);
+}

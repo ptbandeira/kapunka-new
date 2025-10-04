@@ -50,3 +50,8 @@ This log records day-to-day investigations, fixes, and decisions that affect the
 - **What changed**: Converted all localized page entries from JSON to Markdown front matter, reorganized uploads by collection, and updated CMS + Stackbit metadata to reference the new paths. Added `scripts/prepare-visual-editor-content.js` to copy the canonical `content/` tree (excluding uploads) into `.netlify/visual-editor/content/` during builds.
 - **Impact & follow-up**: Editors now work with cleaner front matter files and scoped media directories while the Visual Editor loads content from the generated mirror instead of the deprecated `site/content` tree. Monitor future migrations to ensure the prep script continues to exclude large assets.
 - **References**: Pending PR
+
+## 2025-10-05 — Added tailored Decap previews & editorial dashboard shortcuts
+- **What changed**: Introduced `admin/cms.js` with rich React previews for Home, Learn, and Method pages, loaded the Tailwind CSS bundle via `admin/preview.css`, and registered a dashboard widget with quick links to the most edited entries. Updated `admin/config.yml` to surface the custom dashboard widget in the editorial workflow.
+- **Impact & follow-up**: Editors now see styled previews that mirror the live design and can jump straight to high-priority entries from the workflow screen. Validate the dashboard injection on production Decap; adjust widget placement if the editorial UI changes upstream.
+- **References**: Pending PR
