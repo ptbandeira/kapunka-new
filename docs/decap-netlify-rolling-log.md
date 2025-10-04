@@ -11,6 +11,11 @@ This log records day-to-day investigations, fixes, and decisions that affect the
 
 ---
 
+## 2025-10-15 — Added product and testimonial collections
+- **What changed**: Registered new `products` and `testimonials` folder collections in `admin/config.yml`, and created mirrored directories in both `content/` and `site/content/` to seed future entries.
+- **Impact & follow-up**: Enables editors to manage localized product details and testimonials through Decap; populate starter documents once merchandising and marketing copy are ready.
+- **References**: Pending PR · [`admin/config.yml`](../admin/config.yml) · [`content/testimonials/.gitkeep`](../content/testimonials/.gitkeep) · [`site/content/testimonials/.gitkeep`](../site/content/testimonials/.gitkeep)
+
 ## 2025-10-14 — Disabled homepage builder preview pane
 - **What changed**: Set `editor.preview` to `false` for the `home` collection in `admin/config.yml` so Decap opens the Homepage Builder without the live preview sidebar.
 - **Impact & follow-up**: Editors get a distraction-free, full-width form when editing the homepage; monitor feedback before applying the same treatment to other collections.

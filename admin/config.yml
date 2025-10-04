@@ -147,3 +147,56 @@ collections:
         name: seo
         widget: object
         fields: *seo_fields
+  - name: products
+    label: "Shop - Products"
+    folder: content/products
+    create: true
+    slug: "{{slug}}"
+    fields:
+      - label: Product Name
+        name: product_name
+        widget: string
+        i18n: true
+      - label: Category
+        name: category
+        widget: string
+        i18n: true
+      - label: Price
+        name: price
+        widget: number
+      - label: Image Gallery
+        name: image_gallery
+        widget: list
+        field:
+          label: Image
+          name: image
+          widget: image
+      - label: Details
+        name: details
+        widget: object
+        fields:
+          - label: Description
+            name: description
+            widget: markdown
+            i18n: true
+          - label: How to Use
+            name: how_to_use
+            widget: markdown
+            i18n: true
+          - label: Ingredients
+            name: ingredients
+            widget: markdown
+            i18n: true
+  - name: testimonials
+    label: "Content - Testimonials"
+    folder: content/testimonials
+    create: true
+    slug: "{{slug}}"
+    fields:
+      - label: Author Name
+        name: author_name
+        widget: string
+      - label: Quote
+        name: quote
+        widget: text
+        i18n: true
