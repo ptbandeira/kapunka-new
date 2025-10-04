@@ -12,9 +12,6 @@ import ImageTextHalf from '../components/sections/ImageTextHalf';
 import ImageGrid from '../components/sections/ImageGrid';
 import CommunityCarousel from '../components/sections/CommunityCarousel';
 import MediaShowcase from '../components/sections/MediaShowcase';
-import Hero from '../components/homepage/Hero';
-import Showcase from '../components/homepage/Showcase';
-import ContactBanner from '../components/homepage/ContactBanner';
 import { useLanguage } from '../contexts/LanguageContext';
 import { useSiteSettings } from '../contexts/SiteSettingsContext';
 import { useVisualEditorSync } from '../contexts/VisualEditorSyncContext';
@@ -31,14 +28,6 @@ import type {
 } from '../types';
 import { fetchVisualEditorJson } from '../utils/fetchVisualEditorJson';
 import { getVisualEditorAttributes } from '../utils/stackbitBindings';
-import type {
-  HomeBuilderSection,
-  HomeContactBannerSection,
-  HomeHeroSection,
-  HomeSectionType,
-  HomeShowcaseSection,
-  SectionWithMeta,
-} from '../homePageBuilderTypes';
 
 interface ProductsResponse {
   items?: Product[];
@@ -161,20 +150,6 @@ type HomeSection =
         cta?: CmsCtaShape;
       }>;
     };
-
-type SectionComponentPropsMap = {
-  hero: SectionWithMeta<HomeHeroSection>;
-  showcase: SectionWithMeta<HomeShowcaseSection>;
-  contact_banner: SectionWithMeta<HomeContactBannerSection>;
-};
-
-const sectionComponents: {
-  [Key in keyof SectionComponentPropsMap]: React.ComponentType<SectionComponentPropsMap[Key]>;
-} = {
-  hero: Hero,
-  showcase: Showcase,
-  contact_banner: ContactBanner,
-};
 
 const heroAlignmentSchema = z
   .object({
@@ -1642,16 +1617,19 @@ const Home: React.FC = () => {
   })();
   const [pageContent, setPageContent] = useState<HomePageContent | null>(null);
   const [products, setProducts] = useState<Product[]>([]);
-  const [homeBuilderSections, setHomeBuilderSections] = useState<HomeBuilderSection[]>([]);
+  const [homeJsonSections, setHomeJsonSections] = useState<unknown[]>([]);
 
   useEffect(() => {
     if (Array.isArray(homeContentJson?.sections)) {
-      setHomeBuilderSections(homeContentJson.sections as HomeBuilderSection[]);
+      setHomeJsonSections(homeContentJson.sections as unknown[]);
     } else {
-      setHomeBuilderSections([]);
+      setHomeJsonSections([]);
     }
   }, []);
 
+  useEffect(() => {
+    console.log('Home JSON sections', homeJsonSections);
+  }, [homeJsonSections]);
 
   useEffect(() => {
     let isMounted = true;
@@ -3526,37 +3504,6 @@ const Home: React.FC = () => {
     .map((section, index) => renderSection(section, index))
     .filter(Boolean) as React.ReactNode[];
 
-  const builderFieldPathBase = 'pages.home.sections';
-  const builderSections = homeBuilderSections.filter(
-    (section): section is HomeBuilderSection => {
-      if (!section || typeof section !== 'object') {
-        return false;
-      }
-
-      return Boolean(sectionComponents[section.type as HomeSectionType]);
-    },
-  );
-
-  const renderedBuilderSections = builderSections
-    .map((section, index) => {
-      const type = section.type as HomeSectionType;
-      const Component = sectionComponents[type];
-
-      if (!Component) {
-        return null;
-      }
-
-      const componentProps = {
-        ...section,
-        language,
-        fieldPath: `${builderFieldPathBase}.${index}`,
-        index,
-      } as SectionComponentPropsMap[typeof type];
-
-      return <Component key={`${type}-${index}`} {...componentProps} />;
-    })
-    .filter(Boolean) as React.ReactNode[];
-
   return (
     <div>
       <Helmet>
@@ -3565,8 +3512,6 @@ const Home: React.FC = () => {
       </Helmet>
       {shouldRenderLocalSections ? (
         renderedLocalSections
-      ) : renderedBuilderSections.length > 0 ? (
-        renderedBuilderSections
       ) : (
         <>
           {heroBackgroundImage ? (
