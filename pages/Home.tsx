@@ -72,13 +72,6 @@ type HomeSection =
         | 'bottom-left'
         | 'bottom-center'
         | 'bottom-right';
-      headlineFieldPath?: string;
-      subheadlineFieldPath?: string;
-      primaryCtaLabelFieldPath?: string;
-      primaryCtaHrefFieldPath?: string;
-      secondaryCtaLabelFieldPath?: string;
-      secondaryCtaHrefFieldPath?: string;
-      imageFieldPath?: string;
     }
   | {
       type: 'featureGrid';
@@ -155,108 +148,7 @@ type HomeSection =
         imageAlt?: string;
         cta?: CmsCtaShape;
       }>;
-    }
-  | {
-      type: 'showcase';
-      eyebrow?: string;
-      headline?: string;
-      body?: string;
-      mediaGallery?: Array<{ src: string; fieldPath?: string }>;
-      eyebrowFieldPath?: string;
-      headlineFieldPath?: string;
-      bodyFieldPath?: string;
-      mediaGalleryFieldBase?: string;
-    }
-  | {
-      type: 'contact_banner';
-      headline?: string;
-      cta?: CmsCtaShape;
-      headlineFieldPath?: string;
-      ctaLabelFieldPath?: string;
-      ctaHrefFieldPath?: string;
     };
-
-const localizedStringSchema = z.union([
-  z.string(),
-  z
-    .object({
-      en: z.string().optional(),
-      pt: z.string().optional(),
-      es: z.string().optional(),
-    })
-    .passthrough(),
-]);
-
-const homeBuilderCtaSchema = z
-  .object({
-    label: localizedStringSchema.optional(),
-    url: z.string().optional(),
-    style: z.string().optional(),
-  })
-  .passthrough();
-
-const homeBuilderHeroSectionSchema = z
-  .object({
-    type: z.literal('hero'),
-    headline: localizedStringSchema.optional(),
-    subtext: localizedStringSchema.optional(),
-    background_image: z.string().optional(),
-    cta: homeBuilderCtaSchema.optional(),
-  })
-  .passthrough();
-
-const homeBuilderShowcaseSectionSchema = z
-  .object({
-    type: z.literal('showcase'),
-    eyebrow: localizedStringSchema.optional(),
-    headline: localizedStringSchema.optional(),
-    text_content: localizedStringSchema.optional(),
-    media_gallery: z
-      .array(
-        z.union([
-          z.string(),
-          z
-            .object({
-              image: z.string().optional(),
-            })
-            .passthrough(),
-        ]),
-      )
-      .optional(),
-  })
-  .passthrough();
-
-const homeBuilderContactBannerSectionSchema = z
-  .object({
-    type: z.literal('contact_banner'),
-    headline: localizedStringSchema.optional(),
-    cta: homeBuilderCtaSchema.optional(),
-  })
-  .passthrough();
-
-const homeBuilderSectionSchema = z.discriminatedUnion('type', [
-  homeBuilderHeroSectionSchema,
-  homeBuilderShowcaseSectionSchema,
-  homeBuilderContactBannerSectionSchema,
-]);
-
-const homeBuilderSeoSchema = z
-  .object({
-    meta_title: localizedStringSchema.optional(),
-    meta_description: localizedStringSchema.optional(),
-  })
-  .passthrough();
-
-const homeBuilderContentSchema = z
-  .object({
-    sections: z.array(homeBuilderSectionSchema).default([]),
-    seo: homeBuilderSeoSchema.optional(),
-  })
-  .passthrough();
-
-type LocalizedStringValue = z.infer<typeof localizedStringSchema>;
-type HomeBuilderSection = z.infer<typeof homeBuilderSectionSchema>;
-type HomeBuilderContent = z.infer<typeof homeBuilderContentSchema>;
 
 const heroAlignmentSchema = z
   .object({
@@ -617,7 +509,6 @@ type HomePageContent = PageContent & {
   shouldRenderLocalSections: boolean;
   resolvedLocale: Language;
   contentSource: ContentSource;
-  contentDocumentPath?: string;
 };
 
 const HERO_HORIZONTAL_ALIGNMENT_CONTAINER_CLASSES: Record<HeroHorizontalAlignment, string> = {
@@ -1709,7 +1600,7 @@ const NewsletterSignup: React.FC<NewsletterSignupProps> = ({
 };
 
 const Home: React.FC = () => {
-  const { t, language, translate } = useLanguage();
+  const { t, language } = useLanguage();
   const { settings: siteSettings } = useSiteSettings();
   const { contentVersion } = useVisualEditorSync();
   const heroFallbackRaw = (() => {
@@ -1759,201 +1650,6 @@ const Home: React.FC = () => {
     setPageContent(null);
 
     const loadSections = async () => {
-      const resolveLocalizedString = (value?: LocalizedStringValue | null): string | undefined => {
-        if (value === undefined || value === null) {
-          return undefined;
-        }
-
-        const translated = translate(value as Partial<Record<Language, string>> | string);
-        if (typeof translated !== 'string') {
-          return undefined;
-        }
-
-        const trimmed = translated.trim();
-        return trimmed.length > 0 ? trimmed : undefined;
-      };
-
-      const sanitizeUrl = (value?: string | null): string | undefined => {
-        if (typeof value !== 'string') {
-          return undefined;
-        }
-
-        const trimmed = value.trim();
-        return trimmed.length > 0 ? trimmed : undefined;
-      };
-
-      const mapBuilderSection = (section: HomeBuilderSection): HomeSection | null => {
-        switch (section.type) {
-          case 'hero': {
-            const headline = resolveLocalizedString(section.headline) ?? t('home.heroTitle');
-            const subheadline = resolveLocalizedString(section.subtext) ?? t('home.heroSubtitle');
-            const ctaLabel = resolveLocalizedString(section.cta?.label) ?? t('home.ctaShop');
-            const ctaHref = sanitizeUrl(section.cta?.url);
-            const backgroundImage = sanitizeUrl(section.background_image) ?? heroFallbackRaw;
-
-            return {
-              type: 'hero',
-              headline,
-              subheadline,
-              ctaPrimary: ctaLabel || ctaHref ? { label: ctaLabel, href: ctaHref } : undefined,
-              image: backgroundImage ?? undefined,
-              overlay: true,
-              position: 'middle-left',
-              headlineFieldPath: 'headline',
-              subheadlineFieldPath: 'subtext',
-              primaryCtaLabelFieldPath: section.cta ? 'cta.label' : undefined,
-              primaryCtaHrefFieldPath: section.cta ? 'cta.url' : undefined,
-              imageFieldPath: 'background_image',
-            };
-          }
-          case 'showcase': {
-            const eyebrow = resolveLocalizedString(section.eyebrow);
-            const headline = resolveLocalizedString(section.headline);
-            const body = resolveLocalizedString(section.text_content);
-            const mediaGallery = (section.media_gallery ?? [])
-              .map((entry, index) => {
-                if (typeof entry === 'string') {
-                  const trimmed = entry.trim();
-                  return trimmed.length > 0
-                    ? { src: trimmed, fieldPath: `media_gallery.${index}` }
-                    : null;
-                }
-
-                if (entry && typeof entry === 'object' && typeof entry.image === 'string') {
-                  const trimmed = entry.image.trim();
-                  return trimmed.length > 0
-                    ? { src: trimmed, fieldPath: `media_gallery.${index}.image` }
-                    : null;
-                }
-
-                return null;
-              })
-              .filter((item): item is { src: string; fieldPath?: string } => Boolean(item));
-
-            if (!eyebrow && !headline && !body && mediaGallery.length === 0) {
-              return null;
-            }
-
-            return {
-              type: 'showcase',
-              eyebrow,
-              headline,
-              body,
-              mediaGallery,
-              eyebrowFieldPath: 'eyebrow',
-              headlineFieldPath: 'headline',
-              bodyFieldPath: 'text_content',
-              mediaGalleryFieldBase: 'media_gallery',
-            };
-          }
-          case 'contact_banner': {
-            const headline = resolveLocalizedString(section.headline);
-            const ctaLabel = resolveLocalizedString(section.cta?.label);
-            const ctaHref = sanitizeUrl(section.cta?.url);
-
-            if (!headline && !ctaLabel && !ctaHref) {
-              return null;
-            }
-
-            return {
-              type: 'contact_banner',
-              headline,
-              cta: ctaLabel || ctaHref ? { label: ctaLabel ?? undefined, href: ctaHref ?? undefined } : undefined,
-              headlineFieldPath: 'headline',
-              ctaLabelFieldPath: section.cta ? 'cta.label' : undefined,
-              ctaHrefFieldPath: section.cta ? 'cta.url' : undefined,
-            };
-          }
-          default:
-            return null;
-        }
-      };
-
-      const attemptBuilderContent = async (): Promise<boolean> => {
-        try {
-          const builderRaw = await fetchVisualEditorJson<unknown>('/content/pages/home.json');
-          if (!isMounted) {
-            return true;
-          }
-
-          const parsed = homeBuilderContentSchema.safeParse(builderRaw);
-          if (!parsed.success) {
-            if (import.meta.env.DEV) {
-              console.warn('Invalid home builder schema', parsed.error);
-            }
-            return false;
-          }
-
-          const builderContent = parsed.data;
-          const mappedSections = builderContent.sections
-            .map((section) => mapBuilderSection(section))
-            .filter((section): section is HomeSection => Boolean(section));
-
-          const heroSection = mappedSections.find((section): section is Extract<HomeSection, { type: 'hero' }> => section?.type === 'hero');
-          const heroHeadline = heroSection?.headline ?? t('home.heroTitle');
-          const heroSubheadline = heroSection?.subheadline ?? t('home.heroSubtitle');
-          const heroImage = heroSection?.image ?? heroFallbackRaw;
-          const heroPrimaryCtaLabel = (() => {
-            const value = heroSection?.ctaPrimary;
-            if (!value) {
-              return undefined;
-            }
-
-            if (typeof value === 'string') {
-              return value;
-            }
-
-            return value.label ?? undefined;
-          })();
-          const metaTitle = resolveLocalizedString(builderContent.seo?.meta_title);
-          const metaDescription = resolveLocalizedString(builderContent.seo?.meta_description);
-
-          if (!isMounted) {
-            return true;
-          }
-
-          setPageContent({
-            sections: [],
-            heroHeadline,
-            heroSubheadline,
-            heroImages: heroImage ? { heroImageLeft: heroImage, heroImageRight: heroImage } : undefined,
-            heroImageLeft: heroImage ?? undefined,
-            heroImageRight: heroImage ?? undefined,
-            heroCtas: heroSection?.ctaPrimary ? { ctaPrimary: heroSection.ctaPrimary } : undefined,
-            heroPrimaryCta: heroPrimaryCtaLabel,
-            metaTitle: metaTitle ?? undefined,
-            metaDescription: metaDescription ?? undefined,
-            heroAlignment: {
-              heroTextPosition: 'overlay',
-              heroAlignX: 'left',
-              heroAlignY: 'middle',
-            },
-            heroLayoutHint: 'image-full',
-            rawSections: [],
-            structuredSectionEntries: [],
-            legacySectionEntries: [],
-            localSections: mappedSections,
-            hasSectionsArray: true,
-            shouldRenderLocalSections: true,
-            resolvedLocale: language,
-            contentSource: 'content',
-            contentDocumentPath: 'pages.home',
-          });
-
-          return true;
-        } catch (error) {
-          if (import.meta.env.DEV) {
-            console.warn('Failed to load home builder content', error);
-          }
-
-          return false;
-        }
-      };
-
-      if (await attemptBuilderContent()) {
-        return;
-      }
-
       const localesToTry = [language, 'en'].filter(
         (candidate, index, arr): candidate is Language => arr.indexOf(candidate) === index,
       );
@@ -2094,7 +1790,7 @@ const Home: React.FC = () => {
     return () => {
       isMounted = false;
     };
-  }, [language, heroFallbackRaw, contentVersion, t, translate]);
+  }, [language, heroFallbackRaw, contentVersion]);
 
   const sanitizeString = sanitizeCmsString;
 
@@ -2102,10 +1798,9 @@ const Home: React.FC = () => {
   const contentLocale = pageContent?.resolvedLocale ?? language;
 
   const homeFieldPath = pageContent
-    ? pageContent.contentDocumentPath
-      ?? (pageContent.contentSource === 'site'
-        ? `site.content.${pageContent.resolvedLocale}.pages.home`
-        : `pages.home_${pageContent.resolvedLocale}`)
+    ? pageContent.contentSource === 'site'
+      ? `site.content.${pageContent.resolvedLocale}.pages.home`
+      : `pages.home_${pageContent.resolvedLocale}`
     : `pages.home_${language}`;
   const heroHeadline = sanitizeString(pageContent?.heroHeadline) ?? t('home.heroTitle');
   const heroSubheadline = sanitizeString(pageContent?.heroSubheadline) ?? t('home.heroSubtitle');
@@ -2437,8 +2132,6 @@ const Home: React.FC = () => {
         const sectionMiddleNudge = heroLayoutHint === 'image-full' && sectionAlignY === 'middle' ? 'pb-24 md:pb-28' : '';
         const sectionTextAlignmentClass = HERO_HORIZONTAL_TEXT_ALIGNMENT_CLASSES[sectionAlignX];
         const sectionCtaAlignmentClass = HERO_CTA_ALIGNMENT_CLASSES[sectionAlignX];
-        const sectionHeadlineField = heroSection.headlineFieldPath ?? 'headline';
-        const sectionSubheadlineField = heroSection.subheadlineFieldPath ?? 'subheadline';
         const headline = sanitizeString(heroSection.headline ?? null) ?? heroHeadline;
         const subheadline = sanitizeString(heroSection.subheadline ?? null) ?? heroSubheadline;
         const sectionPrimaryCta = extractCmsCta(heroSection.ctaPrimary);
@@ -2449,26 +2142,18 @@ const Home: React.FC = () => {
         const secondaryCtaHref = sectionSecondaryCta.href ?? heroSecondaryCtaHref;
         const sectionPrimaryCtaIsObject = isCmsCtaObject(heroSection.ctaPrimary);
         const sectionSecondaryCtaIsObject = isCmsCtaObject(heroSection.ctaSecondary);
-        const sectionPrimaryCtaLabelFieldPath = heroSection.primaryCtaLabelFieldPath
-          ? `${sectionFieldPath}.${heroSection.primaryCtaLabelFieldPath}`
-          : sectionPrimaryCtaIsObject
-            ? `${sectionFieldPath}.ctaPrimary.label`
-            : `${sectionFieldPath}.ctaPrimary`;
-        const sectionSecondaryCtaLabelFieldPath = heroSection.secondaryCtaLabelFieldPath
-          ? `${sectionFieldPath}.${heroSection.secondaryCtaLabelFieldPath}`
-          : sectionSecondaryCtaIsObject
-            ? `${sectionFieldPath}.ctaSecondary.label`
-            : `${sectionFieldPath}.ctaSecondary`;
-        const sectionPrimaryCtaHrefFieldPath = heroSection.primaryCtaHrefFieldPath
-          ? `${sectionFieldPath}.${heroSection.primaryCtaHrefFieldPath}`
-          : sectionPrimaryCtaIsObject
-            ? `${sectionFieldPath}.ctaPrimary.href`
-            : undefined;
-        const sectionSecondaryCtaHrefFieldPath = heroSection.secondaryCtaHrefFieldPath
-          ? `${sectionFieldPath}.${heroSection.secondaryCtaHrefFieldPath}`
-          : sectionSecondaryCtaIsObject
-            ? `${sectionFieldPath}.ctaSecondary.href`
-            : undefined;
+        const sectionPrimaryCtaLabelFieldPath = sectionPrimaryCtaIsObject
+          ? `${sectionFieldPath}.ctaPrimary.label`
+          : `${sectionFieldPath}.ctaPrimary`;
+        const sectionSecondaryCtaLabelFieldPath = sectionSecondaryCtaIsObject
+          ? `${sectionFieldPath}.ctaSecondary.label`
+          : `${sectionFieldPath}.ctaSecondary`;
+        const sectionPrimaryCtaHrefFieldPath = sectionPrimaryCtaIsObject
+          ? `${sectionFieldPath}.ctaPrimary.href`
+          : undefined;
+        const sectionSecondaryCtaHrefFieldPath = sectionSecondaryCtaIsObject
+          ? `${sectionFieldPath}.ctaSecondary.href`
+          : undefined;
         const heroImageOverride = sanitizeString(pickImage(heroSection.image));
         const inlineImageCandidate = (() => {
           if (heroLayoutHint === 'image-left') {
@@ -2509,9 +2194,8 @@ const Home: React.FC = () => {
         const sectionImageWrapperClasses = sectionShouldRenderInlineImage
           ? `${heroLayoutHint === 'image-left' ? 'order-2 lg:order-1' : 'order-2'} w-full`
           : '';
-        const heroImageFieldPathForSection = heroSection.imageFieldPath
-          ? `${sectionFieldPath}.${heroSection.imageFieldPath}`
-          : `${sectionFieldPath}.image`;
+        const heroImageFieldKey = 'image';
+        const heroImageFieldPathForSection = `${sectionFieldPath}.${heroImageFieldKey}`;
 
         const sectionInlineImageNode = sectionShouldRenderInlineImage && inlineImageCandidate
           ? (
@@ -2537,12 +2221,12 @@ const Home: React.FC = () => {
             <div className={sectionTextWrapperClasses}>
               <h1
                 className="text-4xl md:text-6xl font-semibold tracking-tight"
-                {...getVisualEditorAttributes(`${sectionFieldPath}.${sectionHeadlineField}`)}
+                {...getVisualEditorAttributes(`${sectionFieldPath}.headline`)}
               >
                 {headline}
               </h1>
               {subheadline && (
-                <div {...getVisualEditorAttributes(`${sectionFieldPath}.${sectionSubheadlineField}`)}>
+                <div {...getVisualEditorAttributes(`${sectionFieldPath}.subheadline`)}>
                   <ReactMarkdown components={heroMarkdownComponents}>
                     {subheadline}
                   </ReactMarkdown>
@@ -2984,95 +2668,6 @@ const Home: React.FC = () => {
                       className="w-full h-full object-cover rounded-lg shadow-sm"
                       {...getVisualEditorAttributes(`${sectionFieldPath}.${imageFieldKey}`)}
                     />
-                  </div>
-                )}
-              </div>
-            </div>
-          </section>
-        );
-      }
-      case 'showcase': {
-        const eyebrowField = section.eyebrowFieldPath ?? 'eyebrow';
-        const headlineField = section.headlineFieldPath ?? 'headline';
-        const bodyField = section.bodyFieldPath ?? 'body';
-        const eyebrow = sanitizeString(section.eyebrow ?? null);
-        const headline = sanitizeString(section.headline ?? null);
-        const body = sanitizeString(section.body ?? null);
-        const galleryItems = (section.mediaGallery ?? [])
-          .map((entry, itemIndex) => {
-            const src = sanitizeString(pickImage(entry?.src));
-            if (!src) {
-              return null;
-            }
-
-            const itemFieldPath = entry?.fieldPath
-              ? `${sectionFieldPath}.${entry.fieldPath}`
-              : `${sectionFieldPath}.mediaGallery[${itemIndex}]`;
-
-            return { src, fieldPath: itemFieldPath, index: itemIndex };
-          })
-          .filter((item): item is { src: string; fieldPath: string; index: number } => Boolean(item));
-
-        if (!eyebrow && !headline && !body && galleryItems.length === 0) {
-          return null;
-        }
-
-        const showcaseKey = createKeyFromParts('section-showcase', [
-          eyebrow,
-          headline,
-          body,
-          galleryItems.map((item) => item.src).join('|'),
-        ]);
-
-        return (
-          <section
-            key={showcaseKey}
-            className="py-16 sm:py-24 bg-white"
-            {...getVisualEditorAttributes(sectionFieldPath)}
-          >
-            <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-              <div className="grid gap-12 lg:grid-cols-2 items-center">
-                <div className="space-y-6">
-                  {eyebrow && (
-                    <p
-                      className="text-sm font-semibold uppercase tracking-[0.3em] text-stone-500"
-                      {...getVisualEditorAttributes(`${sectionFieldPath}.${eyebrowField}`)}
-                    >
-                      {eyebrow}
-                    </p>
-                  )}
-                  {headline && (
-                    <h2
-                      className="text-3xl sm:text-4xl font-semibold text-stone-900"
-                      {...getVisualEditorAttributes(`${sectionFieldPath}.${headlineField}`)}
-                    >
-                      {headline}
-                    </h2>
-                  )}
-                  {body && (
-                    <div
-                      className="prose prose-stone max-w-none text-stone-700"
-                      {...getVisualEditorAttributes(`${sectionFieldPath}.${bodyField}`)}
-                    >
-                      <ReactMarkdown>{body}</ReactMarkdown>
-                    </div>
-                  )}
-                </div>
-                {galleryItems.length > 0 && (
-                  <div className={`grid gap-4 ${galleryItems.length > 1 ? 'sm:grid-cols-2' : ''}`}>
-                    {galleryItems.map((item) => (
-                      <div
-                        key={createKeyFromParts('showcase-media-item', [item.src, item.index.toString()])}
-                        className="overflow-hidden rounded-lg shadow-sm"
-                        {...getVisualEditorAttributes(item.fieldPath)}
-                      >
-                        <img
-                          src={item.src}
-                          alt={headline ?? eyebrow ?? 'Showcase media'}
-                          className="h-full w-full object-cover"
-                        />
-                      </div>
-                    ))}
                   </div>
                 )}
               </div>
@@ -3774,70 +3369,6 @@ const Home: React.FC = () => {
                       >
                         {ctaLabel}
                       </span>
-                    </a>
-                  )}
-                </div>
-              )}
-            </div>
-          </section>
-        );
-      }
-      case 'contact_banner': {
-        const headlineField = section.headlineFieldPath ?? 'headline';
-        const ctaLabelField = section.ctaLabelFieldPath
-          ? `${sectionFieldPath}.${section.ctaLabelFieldPath}`
-          : `${sectionFieldPath}.cta.label`;
-        const ctaHrefField = section.ctaHrefFieldPath
-          ? `${sectionFieldPath}.${section.ctaHrefFieldPath}`
-          : `${sectionFieldPath}.cta.href`;
-        const headline = sanitizeString(section.headline ?? null);
-        const cta = extractCmsCta(section.cta);
-        const ctaLabel = sanitizeString(cta.label ?? null);
-        const ctaHref = sanitizeString(cta.href ?? null);
-
-        if (!headline && !ctaLabel) {
-          return null;
-        }
-
-        const isInternalLink = Boolean(ctaHref && isInternalNavigationHref(ctaHref));
-        const contactBannerKey = createKeyFromParts('section-contact-banner', [headline, ctaLabel, ctaHref]);
-        const buttonClasses =
-          'inline-flex items-center px-6 py-3 bg-white text-stone-900 font-semibold rounded-md hover:bg-white/90 transition-colors';
-
-        return (
-          <section
-            key={contactBannerKey}
-            className="py-16 sm:py-20 bg-stone-900 text-white"
-            {...getVisualEditorAttributes(sectionFieldPath)}
-          >
-            <div className="container mx-auto px-4 sm:px-6 lg:px-8 text-center max-w-3xl space-y-8">
-              {headline && (
-                <h2
-                  className="text-3xl sm:text-4xl font-semibold"
-                  {...getVisualEditorAttributes(`${sectionFieldPath}.${headlineField}`)}
-                >
-                  {headline}
-                </h2>
-              )}
-              {ctaLabel && ctaHref && (
-                <div>
-                  {isInternalLink ? (
-                    <Link
-                      to={normalizeInternalHref(ctaHref)}
-                      className={buttonClasses}
-                      {...getVisualEditorAttributes(ctaHrefField)}
-                    >
-                      <span {...getVisualEditorAttributes(ctaLabelField)}>{ctaLabel}</span>
-                    </Link>
-                  ) : (
-                    <a
-                      href={ctaHref}
-                      className={buttonClasses}
-                      target={isExternalHttpUrl(ctaHref) ? '_blank' : undefined}
-                      rel={isExternalHttpUrl(ctaHref) ? 'noreferrer' : undefined}
-                      {...getVisualEditorAttributes(ctaHrefField)}
-                    >
-                      <span {...getVisualEditorAttributes(ctaLabelField)}>{ctaLabel}</span>
                     </a>
                   )}
                 </div>
