@@ -26,6 +26,7 @@ import type {
   Language,
 } from '../types';
 import { fetchVisualEditorJson } from '../utils/fetchVisualEditorJson';
+import { fetchVisualEditorMarkdown } from '../utils/fetchVisualEditorMarkdown';
 import { getVisualEditorAttributes } from '../utils/stackbitBindings';
 
 interface ProductsResponse {
@@ -699,12 +700,7 @@ const isCmsCtaObject = (value: unknown): value is CmsCtaShape => {
 
 type CmsCtaLike = string | CmsCtaShape | null | undefined;
 
-type ContentSource = 'content' | 'site';
-
-type FetchCandidate = {
-  source: ContentSource;
-  url: string;
-};
+type ContentSource = 'content' | 'visual-editor';
 
 const extractCmsCtaLabel = (value: CmsCtaLike): string | undefined => {
   if (typeof value === 'string') {
@@ -751,65 +747,22 @@ const toCmsCtaLike = (value: unknown): CmsCtaLike => {
   return undefined;
 };
 
-const HOME_CONTENT_LOCATIONS: ReadonlyArray<{
-  source: ContentSource;
-  buildPath: (locale: Language) => string;
-}> = [
-  {
-    source: 'site',
-    buildPath: (locale) => `/site/content/${locale}/pages/home.json`,
-  },
-  {
-    source: 'content',
-    buildPath: (locale) => `/content/pages/${locale}/home.json`,
-  },
-];
-
-const fetchJsonFromCandidates = async <T,>(
-  candidates: ReadonlyArray<FetchCandidate>,
-): Promise<{ data: T; source: ContentSource } | null> => {
-  const fetchOptions: RequestInit = { cache: 'no-store' };
-  const errors: Array<{ candidate: FetchCandidate; error: unknown }> = [];
-
-  for (const candidate of candidates) {
-    try {
-      const response = await fetch(candidate.url, fetchOptions);
-      if (!response.ok) {
-        errors.push({
-          candidate,
-          error: new Error(`HTTP ${response.status}`),
-        });
-        continue;
-      }
-
-      const data = (await response.json()) as T;
-      return { data, source: candidate.source };
-    } catch (error) {
-      errors.push({ candidate, error });
-    }
-  }
-
-  if (import.meta.env.DEV && errors.length > 0) {
-    const context = errors.map(({ candidate, error }) => ({
-      url: candidate.url,
-      source: candidate.source,
-      error,
-    }));
-    console.warn('Home content fetch failed for all candidates', context);
-  }
-
-  return null;
-};
-
 const loadHomeContentForLocale = async (
   locale: Language,
 ): Promise<{ data: unknown; source: ContentSource } | null> => {
-  const candidates = HOME_CONTENT_LOCATIONS.map<FetchCandidate>(({ source, buildPath }) => ({
-    source,
-    url: buildPath(locale),
-  }));
+  try {
+    const { data, source } = await fetchVisualEditorMarkdown<unknown>(
+      `/content/pages/${locale}/home.md`,
+      { cache: 'no-store' },
+    );
+    return { data, source };
+  } catch (error) {
+    if (import.meta.env.DEV) {
+      console.warn('Home content fetch failed for locale', locale, error);
+    }
+  }
 
-  return fetchJsonFromCandidates<unknown>(candidates);
+  return null;
 };
 
 const createKeyFromParts = (prefix: string, parts: Array<string | null | undefined>) => {
@@ -1850,7 +1803,7 @@ const Home: React.FC = () => {
   const contentLocale = pageContent?.resolvedLocale ?? language;
 
   const homeFieldPath = pageContent
-    ? pageContent.contentSource === 'site'
+    ? pageContent.contentSource === 'visual-editor'
       ? `site.content.${pageContent.resolvedLocale}.pages.home`
       : `pages.home_${pageContent.resolvedLocale}`
     : `pages.home_${language}`;

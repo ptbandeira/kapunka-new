@@ -2028,7 +2028,7 @@ const customModels = [
     name: 'TestPage',
     type: 'page',
     label: 'Test Page',
-    filePath: 'content/pages/{lang}/test.json',
+    filePath: 'content/pages/{lang}/test.md',
     urlPath: '/test',
     fields: [
       {
@@ -2042,9 +2042,9 @@ const customModels = [
     name: 'HomePage',
     type: 'page',
     label: 'Home Page',
-    filePath: 'content/pages/{lang}/home.json',
+    filePath: 'content/pages/{lang}/home.md',
     urlPath: '/',
-    match: 'content/pages/**/home.json',
+    match: 'content/pages/**/home.md',
     fields: [
       {
         name: 'heroHeadline',
@@ -2094,9 +2094,9 @@ const customModels = [
     name: 'AboutPage',
     type: 'page',
     label: 'About Page',
-    filePath: 'content/pages/{lang}/about.json',
+    filePath: 'content/pages/{lang}/about.md',
     urlPath: '/about',
-    match: 'content/pages/**/about.json',
+    match: 'content/pages/**/about.md',
     fields: [
       {
         name: 'sections',
@@ -2113,9 +2113,9 @@ const customModels = [
     name: 'ClinicsPage',
     type: 'page',
     label: 'Clinics Page',
-    filePath: 'content/pages/{lang}/clinics.json',
+    filePath: 'content/pages/{lang}/clinics.md',
     urlPath: '/for-clinics',
-    match: 'content/pages/**/clinics.json',
+    match: 'content/pages/**/clinics.md',
     fields: [
       {
         name: 'sections',
@@ -2132,9 +2132,9 @@ const customModels = [
     name: 'ContactPage',
     type: 'page',
     label: 'Contact Page',
-    filePath: 'content/pages/{lang}/contact.json',
+    filePath: 'content/pages/{lang}/contact.md',
     urlPath: '/contact',
-    match: 'content/pages/**/contact.json',
+    match: 'content/pages/**/contact.md',
     fields: [
       {
         name: 'sections',
@@ -2151,9 +2151,9 @@ const customModels = [
     name: 'LearnPage',
     type: 'page',
     label: 'Learn Page',
-    filePath: 'content/pages/{lang}/learn.json',
+    filePath: 'content/pages/{lang}/learn.md',
     urlPath: '/learn',
-    match: 'content/pages/**/learn.json',
+    match: 'content/pages/**/learn.md',
     fields: [
       {
         name: 'sections',
@@ -2170,9 +2170,9 @@ const customModels = [
     name: 'MethodPage',
     type: 'page',
     label: 'Method Page',
-    filePath: 'content/pages/{lang}/method.json',
+    filePath: 'content/pages/{lang}/method.md',
     urlPath: '/method',
-    match: 'content/pages/**/method.json',
+    match: 'content/pages/**/method.md',
     fields: [
       {
         name: 'sections',
@@ -2189,9 +2189,9 @@ const customModels = [
     name: 'StoryPage',
     type: 'page',
     label: 'Story Page',
-    filePath: 'content/pages/{lang}/story.json',
+    filePath: 'content/pages/{lang}/story.md',
     urlPath: '/story',
-    match: 'content/pages/**/story.json',
+    match: 'content/pages/**/story.md',
     fields: [
       {
         name: 'sections',
@@ -2208,9 +2208,9 @@ const customModels = [
     name: 'TrainingPage',
     type: 'page',
     label: 'Training Page',
-    filePath: 'content/pages/{lang}/training.json',
+    filePath: 'content/pages/{lang}/training.md',
     urlPath: '/training',
-    match: 'content/pages/**/training.json',
+    match: 'content/pages/**/training.md',
     fields: [
       {
         name: 'sections',
@@ -2227,9 +2227,9 @@ const customModels = [
     name: 'VideosPage',
     type: 'page',
     label: 'Videos Page',
-    filePath: 'content/pages/{lang}/videos.json',
+    filePath: 'content/pages/{lang}/videos.md',
     urlPath: '/videos',
-    match: 'content/pages/**/videos.json',
+    match: 'content/pages/**/videos.md',
     fields: [
       {
         name: 'sections',

@@ -1,0 +1,12 @@
+---
+type: VideosPage
+metaTitle: Kapunka Video Library – Ritual demonstrations
+metaDescription: >-
+  Stream guided protocols, pro tips, and client explainers filmed inside the
+  Kapunka studio.
+sections:
+  - type: videoGallery
+    title: ''
+    description: ''
+    entries: []
+---

@@ -130,7 +130,7 @@ const ForClinics: React.FC = () => {
       return `pages.clinics_${language}`;
     }
 
-    return pageContent.source === 'site'
+    return pageContent.source === 'visual-editor'
       ? `site.content.${pageContent.locale}.pages.clinics`
       : `pages.clinics_${pageContent.locale}`;
   }, [language, pageContent]);

@@ -4,7 +4,7 @@ import { motion } from 'framer-motion';
 import SectionRenderer from '../components/_legacy/SectionRenderer';
 import { useLanguage } from '../contexts/LanguageContext';
 import type { PageContent, PageSection } from '../types';
-import { fetchVisualEditorJson } from '../utils/fetchVisualEditorJson';
+import { fetchVisualEditorMarkdown } from '../utils/fetchVisualEditorMarkdown';
 import { getVisualEditorAttributes } from '../utils/stackbitBindings';
 import { useVisualEditorSync } from '../contexts/VisualEditorSyncContext';
 
@@ -78,8 +78,9 @@ const Videos: React.FC = () => {
 
       for (const locale of localesToTry) {
         try {
-          const data = await fetchVisualEditorJson<unknown>(
-            `/content/pages/${locale}/videos.json`,
+          const { data } = await fetchVisualEditorMarkdown<unknown>(
+            `/content/pages/${locale}/videos.md`,
+            { cache: 'no-store' },
           );
           if (!isMounted) {
             return;

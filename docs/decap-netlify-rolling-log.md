@@ -45,3 +45,8 @@ This log records day-to-day investigations, fixes, and decisions that affect the
 - **What changed**: Deleted the redundant `i18n` declaration at the bottom of `admin/config.yml` to keep the global locale settings defined only once.
 - **Impact & follow-up**: Prevents conflicting locale settings when Decap parses the schema. No further action required unless additional top-level options are added.
 - **References**: Pending PR
+
+## 2025-10-05 — Migrated page content to Markdown & rebuilt Visual Editor mirror
+- **What changed**: Converted all localized page entries from JSON to Markdown front matter, reorganized uploads by collection, and updated CMS + Stackbit metadata to reference the new paths. Added `scripts/prepare-visual-editor-content.js` to copy the canonical `content/` tree (excluding uploads) into `.netlify/visual-editor/content/` during builds.
+- **Impact & follow-up**: Editors now work with cleaner front matter files and scoped media directories while the Visual Editor loads content from the generated mirror instead of the deprecated `site/content` tree. Monitor future migrations to ensure the prep script continues to exclude large assets.
+- **References**: Pending PR

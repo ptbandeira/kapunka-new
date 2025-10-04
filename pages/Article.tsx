@@ -129,7 +129,7 @@ const ArticlePage: React.FC = () => {
         if (!learnContent) {
             return `pages.learn_${language}`;
         }
-        return learnContent.source === 'site'
+        return learnContent.source === 'visual-editor'
             ? `site.content.${learnContent.locale}.pages.learn`
             : `pages.learn_${learnContent.locale}`;
     }, [language, learnContent]);

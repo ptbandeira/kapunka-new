@@ -1,0 +1,12 @@
+---
+type: VideosPage
+metaTitle: Videoteca Kapunka – Demonstrações de rituais
+metaDescription: >-
+  Assista a protocolos guiados, dicas profissionais e explicações para clientes
+  gravadas no estúdio Kapunka.
+sections:
+  - type: videoGallery
+    title: ''
+    description: ''
+    entries: []
+---

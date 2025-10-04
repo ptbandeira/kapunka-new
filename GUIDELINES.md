@@ -105,12 +105,12 @@ To keep the editor experience predictable and efficient, every CMS enhancement m
 
 ### Netlify Visual Editor Workflow
 
-- The project is wired for the **Netlify Visual Editor**. The integration relies on `netlify.toml` (see the `[visual_editor]` section), the page model map in `stackbit.config.js`, the editing schema in `metadata.json`, and the starter content in `site/content/`.
+- The project is wired for the **Netlify Visual Editor**. The integration relies on `netlify.toml` (see the `[visual_editor]` section), the page model map in `stackbit.config.js`, the editing schema in `metadata.json`, and the generated content mirror under `.netlify/visual-editor/content/`.
 - **Keep Decap CMS and the Visual Editor in sync.** Whenever you add, rename, or remove fields in `admin/config.yml`, mirror the same structure in the JSON documents under `/content` and regenerate/update `metadata.json` so on-page editing exposes the new fields.
 - Register every new route or page component in `stackbit.config.js`. If a page is missing from the config, the Visual Editor cannot open it for live editing.
-- Preserve the JSON shapes that components expect. If you must change a schema, migrate the existing entries in `/content` and `site/content/` so that Visual Editor previews do not break.
+- Preserve the JSON shapes that components expect. If you must change a schema, migrate the existing entries in `/content` and ensure the Visual Editor mirror generated in `.netlify/visual-editor/content/` stays in sync.
 - Do not change the Visual Editor dev command or ports in `netlify.toml` unless you also update the Netlify dashboard configuration. Local Visual Editor sessions depend on `npm run dev` running on port `5173`.
-- Commit any Visual Editor metadata updates (`metadata.json`, additions under `site/content/`, etc.) together with the related feature so the deployed site and editor stay aligned.
+- Commit any Visual Editor metadata updates (`metadata.json`, additions under `.netlify/visual-editor/content/`, etc.) together with the related feature so the deployed site and editor stay aligned.
 
 ---
 

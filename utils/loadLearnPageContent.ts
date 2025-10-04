@@ -1,4 +1,5 @@
 import type { Language } from '../types';
+import { fetchVisualEditorMarkdown, type VisualEditorContentSource } from './fetchVisualEditorMarkdown';
 import { loadUnifiedPage } from './unifiedPageLoader';
 
 export interface LearnPageCategory {
@@ -18,32 +19,8 @@ export interface LearnPageData {
 export interface LearnPageContentResult {
   data: LearnPageData;
   locale: Language;
-  source: 'site' | 'content';
+  source: VisualEditorContentSource;
 }
-
-const buildLegacyCandidates = (language: Language): Array<{
-  url: string;
-  locale: Language;
-  source: 'site' | 'content';
-}> => {
-  const locales: Language[] = language === 'en' ? ['en'] : [language, 'en'];
-  const candidates: Array<{ url: string; locale: Language; source: 'site' | 'content' }> = [];
-
-  for (const locale of locales) {
-    candidates.push({
-      url: `/site/content/${locale}/pages/learn.json`,
-      locale,
-      source: 'site',
-    });
-    candidates.push({
-      url: `/content/pages/${locale}/learn.json`,
-      locale,
-      source: 'content',
-    });
-  }
-
-  return candidates;
-};
 
 export const loadLearnPageContent = async (
   language: Language,
@@ -53,23 +30,21 @@ export const loadLearnPageContent = async (
     return unified;
   }
 
-  const candidates = buildLegacyCandidates(language);
+  const locales: Language[] = language === 'en' ? ['en'] : [language, 'en'];
 
-  for (const candidate of candidates) {
+  for (const locale of locales) {
     try {
-      const response = await fetch(candidate.url);
-      if (!response.ok) {
-        continue;
-      }
-
-      const data = (await response.json()) as LearnPageData;
+      const { data, source } = await fetchVisualEditorMarkdown<LearnPageData>(
+        `/content/pages/${locale}/learn.md`,
+        { cache: 'no-store' },
+      );
       return {
         data,
-        locale: candidate.locale,
-        source: candidate.source,
+        locale,
+        source,
       };
     } catch (error) {
-      console.warn('Learn page content fetch failed', candidate.url, error);
+      console.warn('Learn page content fetch failed', locale, error);
     }
   }
 

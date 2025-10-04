@@ -1,0 +1,55 @@
+---
+type: StoryPage
+metaTitle: Kapunka Story – From hammams to derm clinics
+metaDescription: >-
+  Follow how Kapunka's argan rituals moved from Moroccan cooperatives to modern
+  dermatology partners.
+tagline: 'Less, but better.'
+story:
+  - heading: Our Story
+    body: >-
+      Kapunka was born from a desire for transparent, effective skincare. We
+      started by sourcing the purest, ECOCERT-certified Argan oil from women's
+      cooperatives in Morocco.
+  - heading: Ethical Sourcing
+    body: >-
+      We are committed to ethical and sustainable practices. Our ingredients are
+      sourced from suppliers who share our values of environmental
+      responsibility and fair trade. Our Argan oil is a prime example, providing
+      economic empowerment to the Berber women who have perfected its
+      traditional extraction method for centuries.
+sections:
+  - type: timeline
+    title: Kapunka through the years
+    entries:
+      - year: '2014'
+        title: Origins in the Souss Valley
+        description: >-
+          Kapunka emerges from our founders' return to the argan cooperatives of
+          Tazghlilt.
+
+
+          We begin bottling the first cold-pressed batches by working directly
+          with women artisans who teach us their extraction rituals.
+        image: ''
+      - year: '2017'
+        title: Partnerships that scale impact
+        description: >-
+          Method Kapunka earns the trust of dermatology teams across Lisbon,
+          Barcelona, and Casablanca.
+
+
+          Cooperatives expand membership, and we formalize long-term purchasing
+          agreements that guarantee equitable pricing.
+        image: ''
+      - year: '2021'
+        title: Version 2.0 launches globally
+        description: >-
+          We introduce the second generation of Kapunka formulas, pairing
+          clinical validation with regenerative sourcing.
+
+
+          Our hybrid ritual of home care and in-clinic recovery now reaches
+          patients in three continents.
+        image: ''
+---

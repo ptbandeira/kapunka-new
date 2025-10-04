@@ -1,0 +1,13 @@
+---
+type: ContactPage
+metaTitle: Contacta a Kapunka — Estamos aquí para ti
+metaDescription: 'Escríbenos para recibir rutinas, formación u opciones mayoristas a tu medida.'
+sections:
+  - type: mediaCopy
+    title: Estamos aquí para escucharte
+    body: >-
+      Clínicas, aliados y personas—cuéntanos qué necesitas y te guiamos hacia la
+      rutina, la formación u opción mayorista adecuada.
+    layout: image-right
+    image: /content/uploads/contact/argan-fields.jpg
+---

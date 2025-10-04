@@ -3,7 +3,7 @@ import { Helmet } from 'react-helmet-async';
 import { motion } from 'framer-motion';
 import { useLanguage } from '../contexts/LanguageContext';
 import type { Language } from '../types';
-import { fetchVisualEditorJson } from '../utils/fetchVisualEditorJson';
+import { fetchVisualEditorMarkdown } from '../utils/fetchVisualEditorMarkdown';
 import { getVisualEditorAttributes } from '../utils/stackbitBindings';
 import { useVisualEditorSync } from '../contexts/VisualEditorSyncContext';
 
@@ -144,8 +144,9 @@ const Method: React.FC = () => {
 
       for (const locale of localesToTry) {
         try {
-          const data = await fetchVisualEditorJson<unknown>(
-            `/content/pages/${locale}/method.json`,
+          const { data } = await fetchVisualEditorMarkdown<unknown>(
+            `/content/pages/${locale}/method.md`,
+            { cache: 'no-store' },
           );
           if (!isMounted) {
             return;
@@ -191,16 +192,16 @@ const Method: React.FC = () => {
 
   const baseFieldPath = `pages.method_${language}`;
   const sectionsFieldPath = `${baseFieldPath}.sections`;
-const clinicalNotesFieldPath = `${baseFieldPath}.clinicalNotes`;
+  const clinicalNotesFieldPath = `${baseFieldPath}.clinicalNotes`;
 
-const createMethodKey = (prefix: string, parts: Array<string | null | undefined>): string => {
-  const key = parts
-    .map((part) => (typeof part === 'string' ? part.trim() : ''))
-    .filter((part) => part.length > 0)
-    .join('|');
+  const createMethodKey = (prefix: string, parts: Array<string | null | undefined>): string => {
+    const key = parts
+      .map((part) => (typeof part === 'string' ? part.trim() : ''))
+      .filter((part) => part.length > 0)
+      .join('|');
 
-  return key.length > 0 ? `${prefix}-${key}` : prefix;
-};
+    return key.length > 0 ? `${prefix}-${key}` : prefix;
+  };
 
   const renderSection = (section: MethodSection, index: number): React.ReactNode => {
     const sectionFieldPath = `${sectionsFieldPath}.${index}`;

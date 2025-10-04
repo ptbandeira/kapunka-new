@@ -5,7 +5,7 @@ import SectionRenderer from '../components/_legacy/SectionRenderer';
 import { useLanguage } from '../contexts/LanguageContext';
 import { useVisualEditorSync } from '../contexts/VisualEditorSyncContext';
 import type { PageSection } from '../types';
-import { fetchVisualEditorJson } from '../utils/fetchVisualEditorJson';
+import { fetchVisualEditorMarkdown } from '../utils/fetchVisualEditorMarkdown';
 import { getVisualEditorAttributes } from '../utils/stackbitBindings';
 
 const SUPPORTED_SECTION_TYPES = new Set<PageSection['type']>([
@@ -132,8 +132,9 @@ const Story: React.FC = () => {
 
       for (const locale of localesToTry) {
         try {
-          const data = await fetchVisualEditorJson<unknown>(
-            `/content/pages/${locale}/story.json`,
+          const { data } = await fetchVisualEditorMarkdown<unknown>(
+            `/content/pages/${locale}/story.md`,
+            { cache: 'no-store' },
           );
 
           if (!isMounted) {
