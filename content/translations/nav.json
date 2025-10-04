@@ -5,32 +5,38 @@
     "learn": "Learn",
     "videos": "Videos",
     "training": "Training",
-    "method": "Method",
+    "method": "Method Kapunka",
     "forClinics": "For Clinics",
     "story": "Story",
     "about": "About",
-    "contact": "Contact"
+    "contact": "Contact",
+    "productEducation": "Product Education",
+    "founderStory": "Founder's Story"
   },
   "pt": {
     "shop": "Loja",
     "learn": "Aprender",
     "videos": "Vídeos",
     "training": "Treinamento",
-    "method": "Método",
+    "method": "Método Kapunka",
     "forClinics": "Para Clínicas",
     "story": "História",
     "about": "Sobre",
-    "contact": "Contato"
+    "contact": "Contato",
+    "productEducation": "Educação de Produto",
+    "founderStory": "História da Fundadora"
   },
   "es": {
     "shop": "Tienda",
     "learn": "Aprender",
     "videos": "Videos",
     "training": "Formación",
-    "method": "Método",
+    "method": "Método Kapunka",
     "forClinics": "Para Clínicas",
     "story": "Historia",
     "about": "Nosotros",
-    "contact": "Contacto"
+    "contact": "Contacto",
+    "productEducation": "Educación de Producto",
+    "founderStory": "Historia de la Fundadora"
   }
 }

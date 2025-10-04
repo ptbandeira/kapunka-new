@@ -28,6 +28,10 @@ const Academy = lazy(() => import('./pages/Academy'));
 const Method = lazy(() => import('./pages/Method'));
 const Videos = lazy(() => import('./pages/Videos'));
 const Training = lazy(() => import('./pages/Training'));
+const FounderStoryPage = lazy(() => import('./pages/FounderStory'));
+const MethodKapunkaPage = lazy(() => import('./pages/MethodKapunka'));
+const TrainingProgramPage = lazy(() => import('./pages/TrainingProgram'));
+const ProductEducationPage = lazy(() => import('./pages/ProductEducation'));
 
 const pageVariants = {
   initial: {
@@ -110,10 +114,14 @@ const AnimatedRoutes: React.FC = () => {
         <Route path="/learn/:slug" element={<PageWrapper pageKey="article"><ArticlePage /></PageWrapper>} />
         <Route path="/videos" element={<PageWrapper pageKey="videos"><Videos /></PageWrapper>} />
         <Route path="/training" element={<PageWrapper pageKey="training"><Training /></PageWrapper>} />
+        <Route path="/training-program" element={<PageWrapper pageKey="training-program"><TrainingProgramPage /></PageWrapper>} />
         <Route path="/method" element={<PageWrapper pageKey="method"><Method /></PageWrapper>} />
+        <Route path="/method-kapunka" element={<PageWrapper pageKey="method-kapunka"><MethodKapunkaPage /></PageWrapper>} />
         <Route path="/for-clinics" element={<PageWrapper pageKey="clinics"><ForClinics /></PageWrapper>} />
         <Route path="/academy" element={<PageWrapper pageKey="academy"><Academy /></PageWrapper>} />
         <Route path="/story" element={<PageWrapper pageKey="story"><Story /></PageWrapper>} />
+        <Route path="/founder-story" element={<PageWrapper pageKey="founder-story"><FounderStoryPage /></PageWrapper>} />
+        <Route path="/product-education" element={<PageWrapper pageKey="product-education"><ProductEducationPage /></PageWrapper>} />
         <Route path="/about" element={<PageWrapper pageKey="about"><About /></PageWrapper>} />
         <Route path="/contact" element={<PageWrapper pageKey="contact"><Contact /></PageWrapper>} />
         <Route path="/cart" element={<PageWrapper pageKey="cart"><CartPage /></PageWrapper>} />
