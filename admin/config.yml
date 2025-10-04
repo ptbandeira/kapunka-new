@@ -75,52 +75,96 @@ collections:
                     name: headline
                     widget: string
                     i18n: true
+                  - label: Subheadline
+                    name: subheadline
+                    widget: text
+                    i18n: true
+                  - label: Background Video
+                    name: background_video
+                    widget: file
+                    required: false
+                  - label: CTA
+                    name: cta
+                    widget: object
+                    fields: *cta_fields
+              - label: Commitment
+                name: commitment
+                widget: object
+                fields:
+                  - label: Headline
+                    name: headline
+                    widget: string
+                    i18n: true
+                  - label: Text
+                    name: text
+                    widget: text
+                    i18n: true
+                  - label: Features
+                    name: features
+                    widget: list
+                    fields:
+                      - label: Icon
+                        name: icon
+                        widget: image
+                      - label: Text
+                        name: text
+                        widget: text
+                        i18n: true
+              - label: Product Carousel
+                name: product_carousel
+                widget: object
+                fields:
+                  - label: Headline
+                    name: headline
+                    widget: string
+                    i18n: true
+                  - label: Featured Products
+                    name: featured_products
+                    widget: list
+                    field:
+                      label: Product
+                      name: product
+                      widget: relation
+                      collection: products
+                      search_fields:
+                        - product_name
+                      display_fields:
+                        - product_name
+                      value_field: "{{slug}}"
+              - label: Testimonial Carousel
+                name: testimonial_carousel
+                widget: object
+                fields:
+                  - label: Headline
+                    name: headline
+                    widget: string
+                    i18n: true
+                  - label: Featured Testimonials
+                    name: featured_testimonials
+                    widget: list
+                    field:
+                      label: Testimonial
+                      name: testimonial
+                      widget: relation
+                      collection: testimonials
+                      search_fields:
+                        - author_name
+                        - quote
+                      display_fields:
+                        - author_name
+                      value_field: "{{slug}}"
+              - label: Newsletter CTA
+                name: newsletter_cta
+                widget: object
+                fields:
+                  - label: Headline
+                    name: headline
+                    widget: string
+                    i18n: true
                   - label: Subtext
                     name: subtext
                     widget: text
                     i18n: true
-                  - label: Background Image
-                    name: background_image
-                    widget: image
-                  - label: CTA
-                    name: cta
-                    widget: object
-                    fields: *cta_fields
-              - label: Showcase
-                name: showcase
-                widget: object
-                fields:
-                  - label: Eyebrow
-                    name: eyebrow
-                    widget: string
-                    i18n: true
-                  - label: Headline
-                    name: headline
-                    widget: string
-                    i18n: true
-                  - label: Text Content
-                    name: text_content
-                    widget: markdown
-                    i18n: true
-                  - label: Media Gallery
-                    name: media_gallery
-                    widget: list
-                    field:
-                      label: Image
-                      name: image
-                      widget: image
-              - label: Contact Banner
-                name: contact_banner
-                widget: object
-                fields:
-                  - label: Headline
-                    name: headline
-                    widget: string
-                    i18n: true
-                  - label: CTA
-                    name: cta
-                    widget: object
-                    fields: *cta_fields
           - label: SEO
             name: seo
             widget: object
