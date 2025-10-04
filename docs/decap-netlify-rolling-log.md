@@ -11,6 +11,11 @@ This log records day-to-day investigations, fixes, and decisions that affect the
 
 ---
 
+## 2025-10-15 — Rebuilt homepage sections to match live layout
+- **What changed**: Replaced the Homepage Builder section types in `admin/config.yml` with hero, commitment, product carousel, testimonial carousel, and newsletter CTA groups, including relation-powered pickers for featured products and testimonials.
+- **Impact & follow-up**: Editors now manage the live homepage structure directly in Decap without affecting the front-end rendering; verify initial entries save correctly before wiring additional section types.
+- **References**: Pending PR · [`admin/config.yml`](../admin/config.yml)
+
 ## 2025-10-15 — Added product and testimonial collections
 - **What changed**: Registered new `products` and `testimonials` folder collections in `admin/config.yml`, and created mirrored directories in both `content/` and `site/content/` to seed future entries.
 - **Impact & follow-up**: Enables editors to manage localized product details and testimonials through Decap; populate starter documents once merchandising and marketing copy are ready.
