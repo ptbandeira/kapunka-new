@@ -200,3 +200,59 @@ collections:
         name: quote
         widget: text
         i18n: true
+  - name: settings
+    label: "Site Settings"
+    editor:
+      preview: false
+    files:
+      - file: content/settings.json
+        name: global_settings
+        label: "Global Settings"
+        fields:
+          - label: Footer
+            name: footer
+            widget: object
+            fields:
+              - label: Columns
+                name: columns
+                widget: list
+                summary: "{{fields.heading}}"
+                fields:
+                  - label: Column Heading
+                    name: heading
+                    widget: string
+                  - label: Column Text
+                    name: text
+                    widget: text
+                    required: false
+                  - label: Links
+                    name: links
+                    widget: list
+                    fields:
+                      - label: Link Label
+                        name: label
+                        widget: string
+                      - label: Link URL
+                        name: url
+                        widget: string
+          - label: Social Media Links
+            name: social_media_links
+            widget: list
+            summary: "{{fields.platform}}"
+            fields:
+              - label: Platform
+                name: platform
+                widget: select
+                options:
+                  - Instagram
+                  - Facebook
+                  - LinkedIn
+                  - YouTube
+                  - TikTok
+                  - Twitter
+                  - Pinterest
+                  - WhatsApp
+                  - Other
+              - label: URL
+                name: url
+                widget: string

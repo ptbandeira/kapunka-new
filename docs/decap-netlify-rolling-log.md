@@ -113,6 +113,11 @@ This log records day-to-day investigations, fixes, and decisions that affect the
 - **Impact & follow-up**: Restores CMS load without configuration errors while preserving localized nested fields. No further action required unless additional schema widgets are added.
 - **References**: Pending PR
 
+## 2025-10-04 — Added global site settings file collection
+- **What changed**: Registered a `settings` file collection in `admin/config.yml` pointed at `content/settings.json`, seeded mirrored JSON stubs under `content/` and `site/content/`, and defined footer column/link and social media link widgets.
+- **Impact & follow-up**: Creates a dedicated global settings surface so editors can manage footer copy and outbound profiles without touching component code. Populate initial column/link content before handing off to editors.
+- **References**: Pending PR · [`admin/config.yml`](../admin/config.yml) · [`content/settings.json`](../content/settings.json) · [`site/content/settings.json`](../site/content/settings.json)
+
 ## 2025-10-05 — Normalized hero object i18n flags
 - **What changed**: Converted the hero CTA and alignment objects in `admin/config.yml` to use boolean `i18n` flags and updated nested link fields so Decap treats the widgets as valid localized objects.
 - **Impact & follow-up**: Decap CMS rebuild succeeds without schema errors for the hero editor, keeping CTA labels, URLs, and overlay tokens translatable across locales.
