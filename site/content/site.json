@@ -16,10 +16,6 @@
     "storyAlt": "Brand story",
     "sourcingAlt": "Sourcing argan oil"
   },
-  "featureFlags": {
-    "videos": true,
-    "training": true
-  },
   "type": "SiteConfig",
   "footer": {
     "legalName": "Kapunka Skincare",

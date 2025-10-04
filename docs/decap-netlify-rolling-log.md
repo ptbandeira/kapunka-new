@@ -35,3 +35,13 @@ This log records day-to-day investigations, fixes, and decisions that affect the
 - **What changed**: Flattened locale-specific image objects in the unified pages schema and corrected i18n keys so Netlify builds and Stackbit sync use the same field structure.
 - **Impact & follow-up**: Resolved asset hydration errors during previews and ensures editors only manage one image per locale. Continue monitoring Stackbit sync logs for regressions when adding new unified sections.
 - **References**: [PR #199](https://github.com/ptbandeira/kapunka-new/pull/199) · [Commit 8873572](https://github.com/ptbandeira/kapunka-new/commit/8873572b02dd9db01df958524dc77f9c3e0b3905) · [Visual editor audit](./visual-editor-audit.md)
+
+## 2025-10-03 — Refactored Decap sections & i18n config
+- **What changed**: Added top-level locale settings, introduced reusable hero/media/testimonial objects in `admin/config.yml`, and removed unused feature flag + unified pages scaffolding. Updated the React Home page to consume the new nested section data while supporting existing content.
+- **Impact & follow-up**: Editors now work with cleaner section objects and consistent localization defaults. Monitor upcoming CMS edits to ensure nested hero/media/testimonial data saves as expected across locales.
+- **References**: Pending PR
+
+## 2025-10-04 — Removed duplicate i18n block from CMS config
+- **What changed**: Deleted the redundant `i18n` declaration at the bottom of `admin/config.yml` to keep the global locale settings defined only once.
+- **Impact & follow-up**: Prevents conflicting locale settings when Decap parses the schema. No further action required unless additional top-level options are added.
+- **References**: Pending PR

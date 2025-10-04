@@ -1,66 +1,122 @@
+# ===== Internationalization =====
+i18n:
+  structure: multiple_folders
+  locales:
+    - en
+    - pt
+    - es
+  default_locale: en
+
 # ===== Shared Section Templates (anchors) =====
+hero_content_fields: &hero_content_fields
+  - { label: "Headline", name: "headline", widget: "string", i18n: true, required: false, hint: "Main hero message displayed in large type." }
+  - { label: "Subheading", name: "subheading", widget: "text", i18n: true, required: false, hint: "Optional supporting sentence shown under the headline." }
+  - label: "Primary Call-to-Action"
+    name: "primaryCta"
+    widget: "object"
+    collapsed: true
+    required: false
+    fields:
+      - { label: "Button Label", name: "label", widget: "string", i18n: true, required: false }
+      - { label: "Link URL", name: "href", widget: "string", required: false, pattern: ["^(\\/|https?:\\/\\/).*$", "Enter an internal (/path) or absolute https:// URL."], hint: "Use internal routes (e.g. /shop) or full https:// links." }
+  - label: "Secondary Call-to-Action"
+    name: "secondaryCta"
+    widget: "object"
+    collapsed: true
+    required: false
+    fields:
+      - { label: "Button Label", name: "label", widget: "string", i18n: true, required: false }
+      - { label: "Link URL", name: "href", widget: "string", required: false, pattern: ["^(\\/|https?:\\/\\/).*$", "Enter an internal (/path) or absolute https:// URL."], hint: "Optional supporting action." }
+  - label: "Hero Image"
+    name: "image"
+    widget: "object"
+    collapsed: true
+    required: false
+    fields:
+      - { label: "Image", name: "src", widget: "image", choose_url: true, required: false, hint: "Upload or pick an image from the media library." }
+      - { label: "Alt Text", name: "alt", widget: "string", i18n: true, required: false, hint: "Describe the visual for accessibility and SEO." }
+  - label: "Text Anchor Override"
+    name: "position"
+    widget: "select"
+    required: false
+    options:
+      - { label: "Top left", value: "top-left" }
+      - { label: "Top center", value: "top-center" }
+      - { label: "Top right", value: "top-right" }
+      - { label: "Middle left", value: "middle-left" }
+      - { label: "Middle center", value: "middle-center" }
+      - { label: "Middle right", value: "middle-right" }
+      - { label: "Bottom left", value: "bottom-left" }
+      - { label: "Bottom center", value: "bottom-center" }
+      - { label: "Bottom right", value: "bottom-right" }
+    hint: "Fine-tune where the hero copy sits when overlaying imagery."
+
+media_copy_fields: &media_copy_fields
+  - { label: "Heading", name: "heading", widget: "string", i18n: true, required: false, hint: "Title displayed above the paragraph copy." }
+  - { label: "Body", name: "body", widget: "markdown", i18n: true, required: false, hint: "Supports Markdown for emphasis, links, and line breaks." }
+  - label: "Call-to-Action"
+    name: "cta"
+    widget: "object"
+    collapsed: true
+    required: false
+    fields:
+      - { label: "Button Label", name: "label", widget: "string", i18n: true, required: false }
+      - { label: "Link URL", name: "href", widget: "string", required: false, pattern: ["^(\\/|https?:\\/\\/).*$", "Enter an internal (/path) or absolute https:// URL."], hint: "Link readers to relevant resources." }
+  - label: "Image"
+    name: "image"
+    widget: "object"
+    collapsed: true
+    required: false
+    fields:
+      - { label: "Image", name: "src", widget: "image", choose_url: true, required: false, hint: "Upload or pick an image from the media library." }
+      - { label: "Alt Text", name: "alt", widget: "string", i18n: true, required: false, hint: "Describe the image for screen readers." }
+
+testimonial_fields: &testimonial_fields
+  - { label: "Quote", name: "quote", widget: "markdown", i18n: true, required: true, hint: "Testimonial text displayed inside quotation marks." }
+  - { label: "Author", name: "author", widget: "string", i18n: true, required: false, hint: "Name of the customer, partner, or practitioner." }
+  - { label: "Role or Context", name: "role", widget: "string", i18n: true, required: false, hint: "Clinic, title, or context shown under the author." }
+
+hero_object: &hero_object
+  label: "Hero Content"
+  name: "content"
+  widget: "object"
+  summary: "{{fields.headline}}"
+  fields: *hero_content_fields
+
+media_copy_object: &media_copy_object
+  label: "Media & Copy"
+  name: "content"
+  widget: "object"
+  summary: "{{fields.heading}}"
+  fields: *media_copy_fields
+
 shared_sections: &shared_sections
   - &section_hero
     label: "Hero Section"
     name: "hero"
     widget: "object"
-    summary: "Hero · {{fields.headline}}"
+    summary: "Hero · {{fields.content.headline}}"
     fields:
       - { name: "type", widget: "hidden", default: "hero" }
-      - { label: "Headline", name: "headline", widget: "string", i18n: true, required: false }
-      - { label: "Subheadline", name: "subheadline", widget: "text", i18n: true, required: false }
-      - label: "Primary CTA"
-        name: "ctaPrimary"
-        widget: "object"
-        collapsed: true
-        required: false
-        fields:
-          - { label: "Label", name: "label", widget: "string", i18n: true, required: false }
-          - { label: "Link URL", name: "href", widget: "string", i18n: true, required: false }
-      - label: "Secondary CTA"
-        name: "ctaSecondary"
-        widget: "object"
-        collapsed: true
-        required: false
-        fields:
-          - { label: "Label", name: "label", widget: "string", i18n: true, required: false }
-          - { label: "Link URL", name: "href", widget: "string", i18n: true, required: false }
-      - { label: "Image Upload", name: "image", widget: "image", choose_url: true, required: false, hint: "Upload or choose from existing assets." }
-      - { label: "Image Alt Text", name: "imageAlt", widget: "string", i18n: true, required: false }
-      - label: "Text Anchor Override"
-        name: "position"
-        widget: "select"
-        required: false
-        options:
-          - { label: "Top left", value: "top-left" }
-          - { label: "Top center", value: "top-center" }
-          - { label: "Top right", value: "top-right" }
-          - { label: "Middle left", value: "middle-left" }
-          - { label: "Middle center", value: "middle-center" }
-          - { label: "Middle right", value: "middle-right" }
-          - { label: "Bottom left", value: "bottom-left" }
-          - { label: "Bottom center", value: "bottom-center" }
-          - { label: "Bottom right", value: "bottom-right" }
+      - *hero_object
   - &section_mediaCopy
     label: "Media + Copy"
     name: "mediaCopy"
     widget: "object"
-    summary: "Media + Copy · {{fields.title}}"
+    summary: "Media + Copy · {{fields.content.heading}}"
     fields:
       - { name: "type", widget: "hidden", default: "mediaCopy" }
-      - { label: "Title", name: "title", widget: "string", i18n: true, required: false }
-      - { label: "Body", name: "body", widget: "markdown", i18n: true, required: false }
-      - { label: "Image Upload", name: "image", widget: "image", choose_url: true, required: false, hint: "Upload or choose from existing assets." }
-      - { label: "Image Alt Text", name: "imageAlt", widget: "string", i18n: true, required: false }
+      - *media_copy_object
       - label: "Layout"
         name: "layout"
         widget: "select"
-        i18n: true
         options:
           - { label: "Image right", value: "image-right" }
           - { label: "Image left", value: "image-left" }
           - { label: "Overlay", value: "overlay" }
         default: "image-right"
+        required: false
+        hint: "Choose where the image sits relative to the copy."
       - { label: "Columns", name: "columns", widget: "number", value_type: "int", min: 1, max: 3, required: false, hint: "Leave blank for the default two-column layout." }
       - label: "Overlay Settings"
         name: "overlay"
@@ -182,19 +238,16 @@ shared_sections: &shared_sections
     label: "Testimonials"
     name: "testimonials"
     widget: "object"
-    summary: "Testimonials · {{fields.title}}"
+    summary: "Testimonials · {{fields.testimonials.0.author | default(fields.title)}}"
     fields:
       - { name: "type", widget: "hidden", default: "testimonials" }
-      - { label: "Title", name: "title", widget: "string", i18n: true, required: false }
-      - label: "Quotes"
-        name: "quotes"
+      - { label: "Section Title", name: "title", widget: "string", i18n: true, required: false, hint: "Optional heading displayed above the testimonial list." }
+      - label: "Testimonials"
+        name: "testimonials"
         widget: "list"
         collapsed: true
         summary: "{{fields.author}}"
-        fields:
-          - { label: "Quote", name: "text", widget: "markdown", i18n: true, required: false }
-          - { label: "Author", name: "author", widget: "string", i18n: true, required: false }
-          - { label: "Role", name: "role", widget: "string", i18n: true, required: false }
+        fields: *testimonial_fields
   - &section_communityCarousel
     label: "Community Carousel"
     name: "communityCarousel"
@@ -455,11 +508,6 @@ public_folder: "/content/uploads"
 site_url: https://kapunka-new.netlify.app
 display_url: https://kapunka-new.netlify.app
 
-i18n:
-  structure: multiple_folders
-  default_locale: en
-  locales: [en, pt, es]
-
 collections:
   - name: site
     label: Site Settings
@@ -535,12 +583,6 @@ collections:
                   - '^https://'
                   - "Please enter a secure HTTPS link."
                 required: false
-          - label: Feature Flags
-            name: featureFlags
-            widget: object
-            fields:
-              - { label: Enable Videos Page, name: videos, widget: boolean, default: false, required: false }
-              - { label: Enable Training Page, name: training, widget: boolean, default: false, required: false }
           - label: Footer
             name: footer
             widget: object
@@ -1941,182 +1983,6 @@ collections:
                   - { label: English, name: en, widget: string }
                   - { label: Portuguese, name: pt, widget: string }
                   - { label: Spanish, name: es, widget: string }
-  - name: unified_pages
-    label: Unified Pages (Beta)
-    label_singular: Unified Page
-    group: "1. Pages"
-    description: "Experimental unified workflow with multilingual copy and section hierarchy."
-    editor: { preview: false }
-    files:
-      - name: unified_pages_index
-        label: Unified Pages (Beta)
-        file: content/pages_v2/index.json
-        format: json
-        fields:
-          - label: Pages
-            name: pages
-            widget: list
-            collapsed: true
-            label_singular: Page
-            summary: "{{fields.label}} · {{fields.slug}}"
-            fields:
-              - { label: Page Label, name: label, widget: string }
-              - { label: Page Identifier, name: id, widget: string }
-              - { label: Route (e.g. /about), name: slug, widget: string }
-              - label: Metadata
-                name: metadata
-                widget: object
-                collapsed: true
-                required: false
-                fields:
-                  - { label: Meta Title, name: title, widget: string, i18n: true, required: false }
-                  - { label: Meta Description, name: description, widget: text, i18n: true, required: false }
-              - label: Hero
-                name: hero
-                widget: object
-                collapsed: true
-                required: false
-                summary: "{{fields.content.headline}}"
-                fields:
-                  - label: Content
-                    name: content
-                    widget: object
-                    collapsed: false
-                    hint: "Core text shown in the hero."
-                    fields:
-                      - { label: Eyebrow, name: eyebrow, widget: string, i18n: true, required: false, hint: "Short label above the headline (optional)." }
-                      - { label: Headline, name: headline, widget: string, i18n: true, required: false }
-                      - { label: Supporting Line, name: subheadline, widget: text, i18n: true, required: false, hint: "One-sentence promise below the headline." }
-                      - { label: Body Copy, name: body, widget: text, i18n: true, required: false, hint: "Optional paragraph for extra context." }
-                      - label: Highlights
-                        name: highlights
-                        widget: list
-                        collapsed: true
-                        required: false
-                        label_singular: Highlight
-                        summary: "{{fields.text}}"
-                        fields:
-                          - { label: Highlight Text, name: text, widget: text, i18n: true, required: false }
-                  - label: Calls to Action
-                    name: ctas
-                    widget: object
-                    collapsed: true
-                    hint: "Primary actions surfaced in the hero."
-                    fields:
-                      - label: Primary Action
-                        name: primary
-                        widget: object
-                        collapsed: true
-                        fields:
-                          - { label: Label, name: label, widget: string, i18n: true, required: false }
-                          - { label: Link URL, name: href, widget: string, i18n: true, required: false, hint: "Accepts /internal or https:// links." }
-                      - label: Secondary Action
-                        name: secondary
-                        widget: object
-                        collapsed: true
-                        fields:
-                          - { label: Label, name: label, widget: string, i18n: true, required: false }
-                          - { label: Link URL, name: href, widget: string, i18n: true, required: false, hint: "Accepts /internal or https:// links." }
-                  - label: Media
-                    name: media
-                    widget: object
-                    collapsed: true
-                    hint: "Control the hero imagery."
-                    fields:
-                      - { label: Upload Image, name: image, widget: image, choose_url: true, required: false, hint: "Upload or choose from existing assets." }
-                      - { label: Alt Text, name: imageAlt, widget: string, i18n: true, required: false }
-                  - label: Layout
-                    name: layout
-                    widget: object
-                    collapsed: true
-                    hint: "Adjust how text and media align."
-                    fields:
-                      - label: Horizontal Alignment
-                        name: alignX
-                        widget: select
-                        i18n: true
-                        required: false
-                        options:
-                          - { label: Left, value: left }
-                          - { label: Center, value: center }
-                          - { label: Right, value: right }
-                      - label: Vertical Alignment
-                        name: alignY
-                        widget: select
-                        i18n: true
-                        required: false
-                        options:
-                          - { label: Top, value: top }
-                          - { label: Middle, value: middle }
-                          - { label: Bottom, value: bottom }
-                      - label: Text Position
-                        name: textPosition
-                        widget: select
-                        i18n: true
-                        required: false
-                        options:
-                          - { label: Overlay, value: overlay }
-                          - { label: Below media, value: below }
-                      - label: Text Anchor
-                        name: textAnchor
-                        widget: select
-                        i18n: true
-                        required: false
-                        options:
-                          - { label: Top left, value: top-left }
-                          - { label: Top center, value: top-center }
-                          - { label: Top right, value: top-right }
-                          - { label: Middle left, value: middle-left }
-                          - { label: Middle center, value: middle-center }
-                          - { label: Middle right, value: middle-right }
-                          - { label: Bottom left, value: bottom-left }
-                          - { label: Bottom center, value: bottom-center }
-                          - { label: Bottom right, value: bottom-right }
-                      - label: Overlay Strength
-                        name: overlay
-                        widget: select
-                        i18n: true
-                        required: false
-                        options:
-                          - { label: None, value: none }
-                          - { label: Light, value: light }
-                          - { label: Medium, value: medium }
-                          - { label: Strong, value: strong }
-                      - label: Layout Hint
-                        name: layoutHint
-                        widget: select
-                        i18n: true
-                        required: false
-                        options:
-                          - { label: Background image, value: bg }
-                          - { label: Background image (static), value: bgImage }
-                          - { label: Split · image left, value: image-left }
-                          - { label: Split · image right, value: image-right }
-                          - { label: Full-bleed image, value: image-full }
-                          - { label: Text over media, value: text-over-media }
-                          - { label: Side-by-side, value: side-by-side }
-              - label: Additional Fields
-                name: fields
-                widget: list
-                collapsed: true
-                required: false
-                label_singular: Field
-                summary: "{{fields.key}}"
-                fields:
-                  - { label: Field Key, name: key, widget: string }
-                  - label: Value
-                    name: value
-                    widget: object
-                    fields:
-                      - { label: English, name: en, widget: text, required: false }
-                      - { label: Portuguese, name: pt, widget: text, required: false }
-                      - { label: Spanish, name: es, widget: text, required: false }
-              - label: Sections
-                name: sections
-                widget: list
-                collapsed: true
-                summary: "{{fields.type}} · {{fields.title}}"
-                types: *section_library
   - name: courses
     label: Courses
     group: "9. Legacy / Catalog"

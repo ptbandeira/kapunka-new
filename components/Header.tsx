@@ -120,13 +120,11 @@ const Header: React.FC = () => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  const featureFlags = settings.featureFlags ?? {};
-
-  const NAV_LINK_CONFIG: Array<{ to: string; key: string; requires?: keyof typeof featureFlags }> = [
+  const NAV_LINK_CONFIG: Array<{ to: string; key: string }> = [
     { to: '/shop', key: 'shop' },
     { to: '/learn', key: 'learn' },
-    { to: '/videos', key: 'videos', requires: 'videos' },
-    { to: '/training', key: 'training', requires: 'training' },
+    { to: '/videos', key: 'videos' },
+    { to: '/training', key: 'training' },
     { to: '/method', key: 'method' },
     { to: '/for-clinics', key: 'forClinics' },
     { to: '/story', key: 'story' },
@@ -134,9 +132,7 @@ const Header: React.FC = () => {
     { to: '/contact', key: 'contact' },
   ];
 
-  const navLinks = NAV_LINK_CONFIG
-    .filter((link) => (link.requires ? !!featureFlags[link.requires] : true))
-    .map((link) => ({
+  const navLinks = NAV_LINK_CONFIG.map((link) => ({
       to: link.to,
       label: t(`nav.${link.key}`),
       fieldPath: `translations.${language}.nav.${link.key}`,

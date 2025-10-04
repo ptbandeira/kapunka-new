@@ -186,10 +186,6 @@ export interface SiteSettings {
         socialLinks?: SocialLink[];
     };
     seo?: SeoSettings;
-    featureFlags?: {
-        videos?: boolean;
-        training?: boolean;
-    };
 }
 
 export interface TimelineEntry {
