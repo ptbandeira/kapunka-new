@@ -501,6 +501,10 @@ backend:
     openAuthoring: "{{message}} (Open Authoring)"
 
 publish_mode: editorial_workflow
+editorial:
+  dashboard:
+    widgets:
+      - { widget: dashboard }
 local_backend: true
 
 media_folder: "content/uploads"
