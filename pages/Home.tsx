@@ -1620,11 +1620,11 @@ const Home: React.FC = () => {
   const [homeJsonSections, setHomeJsonSections] = useState<unknown[]>([]);
 
   useEffect(() => {
-    if (Array.isArray(homeContentJson?.sections)) {
-      setHomeJsonSections(homeContentJson.sections as unknown[]);
-    } else {
-      setHomeJsonSections([]);
-    }
+    const sections = Array.isArray(homeContentJson?.sections)
+      ? (homeContentJson.sections as unknown[])
+      : [];
+
+    setHomeJsonSections(sections);
   }, []);
 
   useEffect(() => {
