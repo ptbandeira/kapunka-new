@@ -4,12 +4,14 @@
     {
       "id": "1",
       "name": "Canons Clinic",
-      "logoUrl": "https://logo.clearbit.com/canons.es"
+      "logoUrl": "https://logo.clearbit.com/canons.es",
+      "description": "Madrid-based aesthetics clinic offering regenerative dermatology."
     },
     {
       "id": "2",
       "name": "HM Nens",
-      "logoUrl": "https://logo.clearbit.com/hmnens.es"
+      "logoUrl": "https://logo.clearbit.com/hmnens.es",
+      "description": "Pediatric hospital network collaborating on sensitive skin recovery."
     },
     {
       "id": "3",

@@ -109,7 +109,8 @@
     "footerTagline": "Science-backed skincare for a calmer, healthier body.",
     "footer": {
       "complianceNote": "Cosmetic use only. Not intended to diagnose, treat, cure, or prevent disease."
-    }
+    },
+    "testimonialAvatarAlt": "Testimonial avatar"
   },
   "pt": {
     "metaTitle": "Kapunka Skincare | Rituais de argan marroquino para clínicas e pele sensível",
@@ -220,7 +221,8 @@
     "footerTagline": "Cuidado da pele com base científica para um corpo mais calmo e saudável.",
     "footer": {
       "complianceNote": "Uso cosmético. Não destinado a diagnosticar, tratar, curar ou prevenir doenças."
-    }
+    },
+    "testimonialAvatarAlt": "Avatar do depoimento"
   },
   "es": {
     "metaTitle": "Kapunka Skincare | Rituales de argán marroquí para clínicas y piel sensible",
@@ -331,6 +333,7 @@
     "footerTagline": "Cuidado de la piel con base científica para un cuerpo más tranquilo y saludable.",
     "footer": {
       "complianceNote": "Uso cosmético. No destinado a diagnosticar, tratar, curar ni prevenir enfermedades."
-    }
+    },
+    "testimonialAvatarAlt": "Avatar del testimonio"
   }
 }

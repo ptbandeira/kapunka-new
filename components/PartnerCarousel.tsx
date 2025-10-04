@@ -75,7 +75,7 @@ const PartnerCarousel: React.FC<PartnerCarouselProps> = ({ title, fieldPath }) =
                     {resolvedTitle}
                 </h2>
                 <motion.div
-                    className="flex justify-center items-center flex-wrap gap-x-12 gap-y-8"
+                    className="flex justify-center items-center flex-wrap gap-x-12 gap-y-10"
                     variants={containerVariants}
                     initial="hidden"
                     whileInView="visible"
@@ -86,15 +86,24 @@ const PartnerCarousel: React.FC<PartnerCarouselProps> = ({ title, fieldPath }) =
                         <motion.div
                             key={partner.id}
                             variants={itemVariants}
-                            className="flex-shrink-0"
+                            className="flex-shrink-0 flex flex-col items-center text-center max-w-[12rem]"
                             {...getVisualEditorAttributes(`partners.partners.${index}`)}
                         >
                             <img
                                 src={partner.logoUrl}
                                 alt={partner.name}
+                                title={partner.description ?? partner.name}
                                 className="h-8 object-contain grayscale opacity-60 hover:opacity-100 hover:grayscale-0 transition-all duration-300"
                                 {...getVisualEditorAttributes(`partners.partners.${index}.logoUrl`)}
                             />
+                            {partner.description && (
+                                <p
+                                    className="mt-3 text-xs text-stone-500"
+                                    {...getVisualEditorAttributes(`partners.partners.${index}.description`)}
+                                >
+                                    {partner.description}
+                                </p>
+                            )}
                         </motion.div>
                     ))}
                 </motion.div>

@@ -1591,6 +1591,12 @@ const customModels = [
         label: 'Logo',
       },
       {
+        name: 'description',
+        type: 'text',
+        label: 'Description',
+        required: false,
+      },
+      {
         name: 'url',
         type: 'string',
         label: 'URL',
@@ -1858,6 +1864,46 @@ const customModels = [
         type: 'string',
         label: 'Type',
         required: false,
+      },
+    ],
+  },
+  {
+    name: 'TestimonialEntry',
+    type: 'data',
+    label: 'Testimonial Entry',
+    match: 'content/testimonials/*.json',
+    fields: [
+      {
+        name: 'name',
+        type: 'string',
+        label: 'Name',
+      },
+      {
+        name: 'title',
+        type: 'string',
+        label: 'Title or Credentials',
+        required: false,
+      },
+      {
+        name: 'quote',
+        type: 'text',
+        label: 'Quote',
+      },
+      {
+        name: 'avatar',
+        type: 'image',
+        label: 'Avatar',
+        required: false,
+      },
+      {
+        name: 'language',
+        type: 'enum',
+        label: 'Language',
+        options: [
+          { label: 'English', value: 'en' },
+          { label: 'Portuguese', value: 'pt' },
+          { label: 'Spanish', value: 'es' },
+        ],
       },
     ],
   },

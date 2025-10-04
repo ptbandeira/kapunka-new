@@ -110,16 +110,7 @@ sections:
     alignment: center
   - type: testimonials
     title: O que dizem os Profissionais
-    quotes:
-      - text: >-
-          Após tratamentos a laser, recomendo o argão puro da Kapunka para uma
-          reparação mais rápida da barreira. As minhas pacientes notam menos
-          repuxamento e vermelhidão.
-        author: Dra. Isabella Rossi
-        role: Dermatologista
-      - text: >-
-          Finalmente, um cleanser que respeita a pele sensível enquanto remove a
-          maquilhagem de forma eficaz.
-        author: Chloe Davis
-        role: Esteticista
+    testimonials:
+      - testimonialRef: content/testimonials/dra-isabella-rossi-pt.json
+      - testimonialRef: content/testimonials/chloe-davis-pt.json
 ---

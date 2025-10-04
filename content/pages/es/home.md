@@ -112,16 +112,7 @@ sections:
     alignment: center
   - type: testimonials
     title: Lo que dicen los Profesionales
-    quotes:
-      - text: >-
-          Después de los tratamientos con láser, recomiendo el argán puro de
-          Kapunka para acelerar la reparación de la barrera. Mis pacientes notan
-          menos tirantez y enrojecimiento.
-        author: Dra. Isabella Rossi
-        role: Dermatóloga
-      - text: >-
-          Por fin, un limpiador que respeta la piel sensible y aun así elimina
-          el maquillaje de forma eficaz.
-        author: Chloe Davis
-        role: Esteticista
+    testimonials:
+      - testimonialRef: content/testimonials/dra-isabella-rossi-es.json
+      - testimonialRef: content/testimonials/chloe-davis-es.json
 ---

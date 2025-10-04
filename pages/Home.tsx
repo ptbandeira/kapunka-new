@@ -24,10 +24,12 @@ import type {
   PageSection,
   PageContent,
   Language,
+  TestimonialEntry,
 } from '../types';
 import { fetchVisualEditorJson } from '../utils/fetchVisualEditorJson';
 import { fetchVisualEditorMarkdown } from '../utils/fetchVisualEditorMarkdown';
 import { getVisualEditorAttributes } from '../utils/stackbitBindings';
+import { fetchTestimonialsByRefs } from '../utils/fetchTestimonialsByRefs';
 
 interface ProductsResponse {
   items?: Product[];
@@ -91,6 +93,8 @@ type TestimonialEntryFields = {
   quote?: string | null;
   author?: string | null;
   role?: string | null;
+  avatar?: string | null;
+  testimonialRef?: string | null;
 };
 
 type HomeSection =
@@ -1608,6 +1612,7 @@ const Home: React.FC = () => {
   })();
   const [pageContent, setPageContent] = useState<HomePageContent | null>(null);
   const [products, setProducts] = useState<Product[]>([]);
+  const [testimonialLibrary, setTestimonialLibrary] = useState<Record<string, TestimonialEntry>>({});
 
   useEffect(() => {
     let isMounted = true;
@@ -1783,6 +1788,35 @@ const Home: React.FC = () => {
       isMounted = false;
     };
   }, [language, heroFallbackRaw, contentVersion]);
+
+  useEffect(() => {
+    let isMounted = true;
+
+    if (referencedTestimonialRefs.length === 0) {
+      setTestimonialLibrary({});
+      return () => {
+        isMounted = false;
+      };
+    }
+
+    fetchTestimonialsByRefs(referencedTestimonialRefs)
+      .then((library) => {
+        if (!isMounted) {
+          return;
+        }
+        setTestimonialLibrary(library);
+      })
+      .catch((error) => {
+        console.warn('Failed to resolve home testimonial references', error);
+        if (isMounted) {
+          setTestimonialLibrary({});
+        }
+      });
+
+    return () => {
+      isMounted = false;
+    };
+  }, [referencedTestimonialRefs, contentVersion]);
 
   const sanitizeString = sanitizeCmsString;
 
@@ -2098,6 +2132,25 @@ const Home: React.FC = () => {
     });
     return map;
   }, [products]);
+  const referencedTestimonialRefs = useMemo(() => {
+    const refs = new Set<string>();
+
+    sections.forEach((section) => {
+      if (section?.type !== 'testimonials') {
+        return;
+      }
+
+      const entries = Array.isArray(section.testimonials) ? section.testimonials : [];
+      entries.forEach((entry) => {
+        const refCandidate = typeof entry?.testimonialRef === 'string' ? entry.testimonialRef.trim() : '';
+        if (refCandidate.length > 0) {
+          refs.add(refCandidate);
+        }
+      });
+    });
+
+    return Array.from(refs);
+  }, [sections]);
 
   const renderSection = (section: HomeSection, index: number): React.ReactNode => {
     const sectionFieldPath = `${homeFieldPath}.sections[${index}]`;
@@ -3225,11 +3278,23 @@ const Home: React.FC = () => {
         const testimonialSection = section as Extract<HomeSection, { type: 'testimonials' }>;
         const sectionTitle = sanitizeString(testimonialSection.title ?? null);
         const testimonialsList = (testimonialSection.testimonials ?? [])
-          .map((entry) => ({
-            text: sanitizeString(entry?.quote ?? null),
-            author: sanitizeString(entry?.author ?? null),
-            role: sanitizeString(entry?.role ?? null),
-          }))
+          .map((entry) => {
+            const relationRef = sanitizeString(entry?.testimonialRef ?? null);
+            const resolved = relationRef ? testimonialLibrary[relationRef] : undefined;
+
+            const text = sanitizeString(entry?.quote ?? resolved?.quote ?? null);
+            const author = sanitizeString(entry?.author ?? resolved?.name ?? null);
+            const role = sanitizeString(entry?.role ?? resolved?.title ?? null);
+            const avatar = sanitizeString(entry?.avatar ?? resolved?.avatar ?? null);
+
+            return {
+              text,
+              author,
+              role,
+              avatar,
+              relationRef,
+            };
+          })
           .filter((entry) => typeof entry.text === 'string' && entry.text.length > 0);
 
         const legacyQuotes = (testimonialSection.quotes ?? [])
@@ -3265,7 +3330,13 @@ const Home: React.FC = () => {
             <div className="container mx-auto px-4 sm:px-6 lg:px-8">
               <div className="grid gap-8 md:grid-cols-2">
                 {quotes.map((quote, quoteIndex) => {
-                  const quoteKeyParts: Array<string | null | undefined> = [quote.text, quote.author, quote.role];
+                  const quoteKeyParts: Array<string | null | undefined> = [
+                    quote.text,
+                    quote.author,
+                    quote.role,
+                    'avatar' in quote ? quote.avatar : undefined,
+                    'relationRef' in quote ? quote.relationRef : undefined,
+                  ];
                   const quoteKey = createKeyFromParts('testimonial', quoteKeyParts);
                   const quoteFieldPath = `${testimonialsFieldBase}.${quoteIndex}`;
 
@@ -3279,23 +3350,33 @@ const Home: React.FC = () => {
                         <span className="text-3xl leading-none text-stone-300" aria-hidden="true">“</span>
                         <span className="ml-2 align-middle">{quote.text}</span>
                       </p>
-                      <footer className="mt-4 text-sm text-stone-500">
-                        {quote.author && (
-                          <span
-                            className="font-semibold text-stone-700"
-                            {...getVisualEditorAttributes(`${quoteFieldPath}.author`)}
-                          >
-                            {quote.author}
-                          </span>
-                        )}
-                        {quote.role && (
-                          <span
-                            className="block"
-                            {...getVisualEditorAttributes(`${quoteFieldPath}.role`)}
-                          >
-                            {quote.role}
-                          </span>
-                        )}
+                      <footer className="mt-4 text-sm text-stone-500 flex items-center gap-3">
+                        {'avatar' in quote && quote.avatar ? (
+                          <img
+                            src={quote.avatar}
+                            alt={quote.author ?? t('home.testimonialAvatarAlt')}
+                            className="h-10 w-10 rounded-full object-cover"
+                            {...getVisualEditorAttributes(`${quoteFieldPath}.avatar`)}
+                          />
+                        ) : null}
+                        <span className="flex-1">
+                          {quote.author && (
+                            <span
+                              className="block font-semibold text-stone-700"
+                              {...getVisualEditorAttributes(`${quoteFieldPath}.author`)}
+                            >
+                              {quote.author}
+                            </span>
+                          )}
+                          {quote.role && (
+                            <span
+                              className="block"
+                              {...getVisualEditorAttributes(`${quoteFieldPath}.role`)}
+                            >
+                              {quote.role}
+                            </span>
+                          )}
+                        </span>
                       </footer>
                     </blockquote>
                   );

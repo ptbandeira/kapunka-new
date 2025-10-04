@@ -75,6 +75,26 @@ testimonial_fields: &testimonial_fields
   - { label: "Quote", name: "quote", widget: "markdown", i18n: true, required: true, hint: "Testimonial text displayed inside quotation marks." }
   - { label: "Author", name: "author", widget: "string", i18n: true, required: false, hint: "Name of the customer, partner, or practitioner." }
   - { label: "Role or Context", name: "role", widget: "string", i18n: true, required: false, hint: "Clinic, title, or context shown under the author." }
+  - label: "Avatar"
+    name: "avatar"
+    widget: "image"
+    choose_url: true
+    required: false
+    hint: "Optional headshot displayed with the testimonial."
+  - label: "Linked Testimonial"
+    name: "testimonialRef"
+    widget: "relation"
+    collection: "testimonials"
+    value_field: "fileRelativePath"
+    display_fields:
+      - name
+      - title
+    search_fields:
+      - name
+      - title
+      - quote
+    required: false
+    hint: "Reuse a saved testimonial entry. Leave empty to author custom copy in this section."
 
 hero_object: &hero_object
   label: "Hero Content"
@@ -922,15 +942,32 @@ collections:
                   - { label: "Study Title", name: "title", widget: "string", i18n: true }
                   - { label: "Study Details", name: "details", widget: "text", i18n: true, required: false }
               - { label: "Testimonials Title", name: "testimonialsTitle", widget: "string", i18n: true, required: false }
+              - label: "Selected Testimonials"
+                name: "testimonialRefs"
+                widget: "list"
+                required: false
+                collapsed: false
+                i18n: true
+                field:
+                  label: "Testimonial"
+                  name: "testimonial"
+                  widget: "relation"
+                  collection: "testimonials"
+                  value_field: "fileRelativePath"
+                  display_fields:
+                    - name
+                    - title
+                  search_fields:
+                    - name
+                    - title
+                    - quote
+                  hint: "Choose which saved testimonials appear on this page."
               - label: "Testimonials"
                 name: "testimonials"
                 widget: "list"
                 collapsed: true
-                summary: "{{fields.name}}"
-                fields:
-                  - { label: "Quote", name: "quote", widget: "text", i18n: true }
-                  - { label: "Name", name: "name", widget: "string", i18n: false, required: false }
-                  - { label: "Credentials", name: "credentials", widget: "string", i18n: true, required: false }
+                summary: "{{fields.author.en}}"
+                fields: *testimonial_fields
           - label: "Keyword Section"
             name: "keywordSection"
             widget: "object"
@@ -1998,13 +2035,30 @@ collections:
                   - { label: English, name: en, widget: string }
                   - { label: Portuguese, name: pt, widget: string }
                   - { label: Spanish, name: es, widget: string }
-              - label: Role
-                name: role
-                widget: object
-                fields:
-                  - { label: English, name: en, widget: string }
-                  - { label: Portuguese, name: pt, widget: string }
-                  - { label: Spanish, name: es, widget: string }
+  - name: testimonials
+    label: Clinical Testimonials
+    group: "3. Testimonials"
+    editor: { preview: false }
+    folder: content/testimonials
+    format: json
+    create: true
+    slug: "{{slug}}"
+    identifier_field: name
+    media_folder: "content/uploads/testimonials"
+    public_folder: "/content/uploads/testimonials"
+    fields:
+      - { label: "Name", name: "name", widget: "string" }
+      - { label: "Title or Credentials", name: "title", widget: "string", required: false }
+      - { label: "Quote", name: "quote", widget: "text" }
+      - { label: "Avatar", name: "avatar", widget: "image", choose_url: true, required: false }
+      - label: "Language"
+        name: "language"
+        widget: "select"
+        options:
+          - { label: "English", value: "en" }
+          - { label: "Portuguese", value: "pt" }
+          - { label: "Spanish", value: "es" }
+        default: "en"
   - name: courses
     label: Courses
     group: "9. Legacy / Catalog"
@@ -2110,7 +2164,8 @@ collections:
             fields:
               - { label: ID, name: id, widget: string }
               - { label: Name, name: name, widget: string }
-              - { label: Logo URL, name: logoUrl, widget: string }
+              - { label: Logo, name: logoUrl, widget: image, choose_url: true }
+              - { label: Description, name: description, widget: text, required: false }
   - name: policies
     label: Policies
     group: "9. Legacy / Catalog"
