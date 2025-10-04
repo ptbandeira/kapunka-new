@@ -5,6 +5,7 @@ import ReactMarkdown from 'react-markdown';
 import type { Components as MarkdownComponents } from 'react-markdown';
 import { Helmet } from 'react-helmet-async';
 import { z } from 'zod';
+import homeContentJson from '../content/pages/home.json';
 import ProductCard from '../components/ProductCard';
 import TimelineSection from '../components/TimelineSection';
 import ImageTextHalf from '../components/sections/ImageTextHalf';
@@ -1616,6 +1617,19 @@ const Home: React.FC = () => {
   })();
   const [pageContent, setPageContent] = useState<HomePageContent | null>(null);
   const [products, setProducts] = useState<Product[]>([]);
+  const [homeJsonSections, setHomeJsonSections] = useState<unknown[]>([]);
+
+  useEffect(() => {
+    if (Array.isArray(homeContentJson?.sections)) {
+      setHomeJsonSections(homeContentJson.sections as unknown[]);
+    } else {
+      setHomeJsonSections([]);
+    }
+  }, []);
+
+  useEffect(() => {
+    console.log('Home JSON sections', homeJsonSections);
+  }, [homeJsonSections]);
 
   useEffect(() => {
     let isMounted = true;
