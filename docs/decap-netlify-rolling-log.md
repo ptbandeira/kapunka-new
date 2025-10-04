@@ -11,6 +11,11 @@ This log records day-to-day investigations, fixes, and decisions that affect the
 
 ---
 
+## 2025-10-14 — Disabled homepage builder preview pane
+- **What changed**: Set `editor.preview` to `false` for the `home` collection in `admin/config.yml` so Decap opens the Homepage Builder without the live preview sidebar.
+- **Impact & follow-up**: Editors get a distraction-free, full-width form when editing the homepage; monitor feedback before applying the same treatment to other collections.
+- **References**: Pending PR · [`admin/config.yml`](../admin/config.yml)
+
 ## 2025-10-03 — Added standard pages folder collection
 - **What changed**: Introduced a repeatable `pages` folder collection in `admin/config.yml` for localized standard pages with title, hero image, body, and shared SEO metadata fields.
 - **Impact & follow-up**: Editors can now create new marketing and utility pages without schema work; ensure future content syncing keeps `content/pages/` mirrored into `site/content/pages/`.
