@@ -10,6 +10,7 @@ import ImageTextHalf from '../components/sections/ImageTextHalf';
 import ImageGrid from '../components/sections/ImageGrid';
 import CommunityCarousel from '../components/sections/CommunityCarousel';
 import MediaShowcase from '../components/sections/MediaShowcase';
+import { usePrefersReducedMotion } from '../src/hooks/useReducedMotion';
 import { useLanguage } from '../contexts/LanguageContext';
 import { useSiteSettings } from '../contexts/SiteSettingsContext';
 import { useVisualEditorSync } from '../contexts/VisualEditorSyncContext';
@@ -1610,6 +1611,7 @@ const Home: React.FC = () => {
   const { t, language } = useLanguage();
   const { settings: siteSettings } = useSiteSettings();
   const { contentVersion } = useVisualEditorSync();
+  const prefersReducedMotion = usePrefersReducedMotion();
   const heroFallbackRaw = (() => {
     const extendedSettings = siteSettings as typeof siteSettings & { heroFallback?: string | null };
     const fallbackCandidate = extendedSettings.heroFallback ?? siteSettings.home?.heroImage;
@@ -2269,12 +2271,14 @@ const Home: React.FC = () => {
           : { background: overlayColor };
         const sectionPrefersLightText = !sectionShouldRenderInlineImage && heroTextPlacement === 'overlay';
         const sectionTextColorClass = sectionPrefersLightText ? 'text-white' : 'text-stone-900';
+        const buttonMotionClasses =
+          'transform-gpu transition-transform duration-200 hover:-translate-y-0.5 focus-visible:-translate-y-0.5 motion-reduce:transform-none motion-reduce:hover:transform-none motion-reduce:focus-visible:transform-none';
         const sectionPrimaryButtonClasses = sectionPrefersLightText
-          ? 'px-8 py-3 bg-white text-stone-900 font-semibold rounded-md hover:bg-white/90 transition-colors'
-          : 'px-8 py-3 bg-stone-900 text-white font-semibold rounded-md hover:bg-stone-700 transition-colors';
+          ? `px-8 py-3 bg-white text-stone-900 font-semibold rounded-md hover:bg-white/90 transition-colors ${buttonMotionClasses}`
+          : `px-8 py-3 bg-stone-900 text-white font-semibold rounded-md hover:bg-stone-700 transition-colors ${buttonMotionClasses}`;
         const sectionSecondaryButtonClasses = sectionPrefersLightText
-          ? 'px-8 py-3 border border-white/50 text-white font-semibold rounded-md hover:bg-white/10 transition-colors'
-          : 'px-8 py-3 bg-white/70 backdrop-blur-sm text-stone-900 font-semibold rounded-md hover:bg-white transition-colors';
+          ? `px-8 py-3 border border-white/50 text-white font-semibold rounded-md hover:bg-white/10 transition-colors ${buttonMotionClasses}`
+          : `px-8 py-3 bg-white/70 backdrop-blur-sm text-stone-900 font-semibold rounded-md hover:bg-white transition-colors ${buttonMotionClasses}`;
         const sectionGridClasses = sectionShouldRenderInlineImage
           ? 'grid grid-cols-1 lg:grid-cols-2 gap-12 items-center'
           : heroTextPlacement === 'overlay'
@@ -2300,23 +2304,39 @@ const Home: React.FC = () => {
           ? `${heroImageFieldBase}.src`
           : heroImageFieldBase;
 
+        const heroRevealProps = {
+          initial: { opacity: 0, y: 20 },
+          whileInView: { opacity: 1, y: 0 },
+          viewport: { once: true, amount: 0.2 },
+          transition: { duration: 0.6, delay: 0.1 },
+        } as const;
         const sectionInlineImageNode = sectionShouldRenderInlineImage && inlineImageCandidate
-          ? (
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6, delay: 0.1 }}
-              className={sectionImageWrapperClasses}
-              {...getVisualEditorAttributes(heroImageFieldPathForSection)}
-            >
-              <img
-                src={inlineImageCandidate}
-                alt={inlineImageAlt}
-                className="w-full max-h-[540px] rounded-lg shadow-lg object-cover"
-              />
-            </motion.div>
-          )
+          ? prefersReducedMotion
+            ? (
+              <div
+                className={sectionImageWrapperClasses}
+                {...getVisualEditorAttributes(heroImageFieldPathForSection)}
+              >
+                <img
+                  src={inlineImageCandidate}
+                  alt={inlineImageAlt}
+                  className="w-full max-h-[540px] rounded-lg shadow-lg object-cover"
+                />
+              </div>
+            )
+            : (
+              <motion.div
+                {...heroRevealProps}
+                className={sectionImageWrapperClasses}
+                {...getVisualEditorAttributes(heroImageFieldPathForSection)}
+              >
+                <img
+                  src={inlineImageCandidate}
+                  alt={inlineImageAlt}
+                  className="w-full max-h-[540px] rounded-lg shadow-lg object-cover"
+                />
+              </motion.div>
+            )
           : null;
         const sectionContainerMarginClass = heroTextPlacement === 'overlay' ? 'mx-0' : 'mx-auto';
         const sectionTextContent = (
@@ -2383,16 +2403,20 @@ const Home: React.FC = () => {
             {sectionInlineImageNode}
           </div>
         );
-        const sectionTextMotion = (
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, ease: 'easeOut' }}
-            className={`w-full ${sectionTextColorClass}`}
-          >
-            {sectionTextContent}
-          </motion.div>
-        );
+        const sectionTextMotion = prefersReducedMotion
+          ? (
+            <div className={`w-full ${sectionTextColorClass}`}>
+              {sectionTextContent}
+            </div>
+          )
+          : (
+            <motion.div
+              {...heroRevealProps}
+              className={`w-full ${sectionTextColorClass}`}
+            >
+              {sectionTextContent}
+            </motion.div>
+          );
 
         const heroKey = createKeyFromParts('section-hero', [
           headline,
@@ -2540,21 +2564,52 @@ const Home: React.FC = () => {
           >
             <div className="container mx-auto px-4 sm:px-6 lg:px-8">
               {sectionTitle && (
-                <h2 className="text-3xl sm:text-4xl font-semibold text-center mb-12">
-                  <span {...getVisualEditorAttributes(`${sectionFieldPath}.title`)}>{sectionTitle}</span>
-                </h2>
+                prefersReducedMotion ? (
+                  <h2 className="text-3xl sm:text-4xl font-semibold text-center mb-12">
+                    <span {...getVisualEditorAttributes(`${sectionFieldPath}.title`)}>{sectionTitle}</span>
+                  </h2>
+                ) : (
+                  <motion.h2
+                    className="text-3xl sm:text-4xl font-semibold text-center mb-12"
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true, amount: 0.2 }}
+                    transition={{ duration: 0.6, delay: 0.1 }}
+                  >
+                    <span {...getVisualEditorAttributes(`${sectionFieldPath}.title`)}>{sectionTitle}</span>
+                  </motion.h2>
+                )
               )}
               {resolvedProducts.length > 0 ? (
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                   {resolvedProducts.map((product, index) => {
                     const productIndex = products.findIndex((item) => item.id === product.id);
                     const productFieldPath = productIndex >= 0 ? `products.items.${productIndex}` : undefined;
-                    return (
+                    const productCard = (
                       <ProductCard
-                        key={product.id}
                         product={product}
                         fieldPath={productFieldPath}
                       />
+                    );
+                    if (prefersReducedMotion) {
+                      return (
+                        <div key={product.id} className="h-full">
+                          {productCard}
+                        </div>
+                      );
+                    }
+
+                    return (
+                      <motion.div
+                        key={product.id}
+                        className="h-full"
+                        initial={{ opacity: 0, y: 20 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: true, amount: 0.2 }}
+                        transition={{ duration: 0.6, delay: 0.1 + index * 0.05 }}
+                      >
+                        {productCard}
+                      </motion.div>
                     );
                   })}
                 </div>
