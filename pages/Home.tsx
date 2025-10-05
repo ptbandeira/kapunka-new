@@ -1790,35 +1790,6 @@ const Home: React.FC = () => {
     };
   }, [language, heroFallbackRaw, contentVersion]);
 
-  useEffect(() => {
-    let isMounted = true;
-
-    if (referencedTestimonialRefs.length === 0) {
-      setTestimonialLibrary({});
-      return () => {
-        isMounted = false;
-      };
-    }
-
-    fetchTestimonialsByRefs(referencedTestimonialRefs)
-      .then((library) => {
-        if (!isMounted) {
-          return;
-        }
-        setTestimonialLibrary(library);
-      })
-      .catch((error) => {
-        console.warn('Failed to resolve home testimonial references', error);
-        if (isMounted) {
-          setTestimonialLibrary({});
-        }
-      });
-
-    return () => {
-      isMounted = false;
-    };
-  }, [referencedTestimonialRefs, contentVersion]);
-
   const sanitizeString = sanitizeCmsString;
 
   const pickImage = (local?: string | { src?: string | null } | null) => {
@@ -2152,6 +2123,35 @@ const Home: React.FC = () => {
 
     return Array.from(refs);
   }, [sections]);
+
+  useEffect(() => {
+    let isMounted = true;
+
+    if (referencedTestimonialRefs.length === 0) {
+      setTestimonialLibrary({});
+      return () => {
+        isMounted = false;
+      };
+    }
+
+    fetchTestimonialsByRefs(referencedTestimonialRefs)
+      .then((library) => {
+        if (!isMounted) {
+          return;
+        }
+        setTestimonialLibrary(library);
+      })
+      .catch((error) => {
+        console.warn('Failed to resolve home testimonial references', error);
+        if (isMounted) {
+          setTestimonialLibrary({});
+        }
+      });
+
+    return () => {
+      isMounted = false;
+    };
+  }, [referencedTestimonialRefs, contentVersion]);
 
   const renderSection = (section: HomeSection, index: number): React.ReactNode => {
     const sectionFieldPath = `${homeFieldPath}.sections[${index}]`;
