@@ -546,10 +546,16 @@ editorial:
       - { widget: dashboard }
 local_backend: true
 
-media_folder: "content/uploads"
-public_folder: "/content/uploads"
+media_folder: "/uploads"
+public_folder: "/uploads"
 site_url: https://kapunka-new.netlify.app
 display_url: https://kapunka-new.netlify.app
+
+media_library:
+  name: cloudinary
+  config:
+    cloud_name: "du6xl727e"
+    api_key: "_LAI3fKbumFxgclHTtbAuC-0_co"
 
 collections:
   - name: site

@@ -11,6 +11,11 @@ This log records day-to-day investigations, fixes, and decisions that affect the
 
 ---
 
+## 2025-10-07 — Switched Decap media library to Cloudinary
+- **What changed**: Pointed `admin/config.yml` at Cloudinary via the `media_library` block, updated the global media/public folders to `/uploads`, and documented that the API secret must be supplied through the `CLOUDINARY_API_SECRET` environment variable.
+- **Impact & follow-up**: Editors now browse Cloudinary assets from the media picker while existing uploads keep their URLs. Confirm the secret is added to Netlify before enabling production edits.
+- **References**: Pending PR
+
 ## 2025-10-06 — Clarified CMS field guidance & reusable sections
 - **What changed**: Expanded `admin/config.yml` with reusable hero/section anchors, converted relation and list fields to include descriptive hints with character limits, and ensured multilingual inputs are surfaced per locale across site, page, and translation collections.
 - **Impact & follow-up**: Editors now see consistent instructions when updating content, reducing guesswork around limits and localization. Monitor Decap UI to confirm the new hints render cleanly in nested objects and adjust copy if any fields remain ambiguous.
