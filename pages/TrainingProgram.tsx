@@ -1,5 +1,5 @@
 import React, { useEffect, useMemo, useState } from 'react';
-import { Helmet } from 'react-helmet-async';
+import Head from 'next/head';
 import { motion } from 'framer-motion';
 import { useLanguage } from '../contexts/LanguageContext';
 import { useSiteSettings } from '../contexts/SiteSettingsContext';
@@ -30,6 +30,8 @@ interface CallToAction {
 }
 
 interface TrainingContent {
+  metaTitle?: string;
+  metaDescription?: string;
   headline?: string;
   subheadline?: string;
   objectives?: string[];

@@ -1,12 +1,18 @@
 {
   "type": "translations_story",
   "en": {
+    "metaTitle": "Manifesto & Story",
+    "metaDescription": "Discover Kapunka's manifesto, values, and the story behind our regenerative skincare approach.",
     "valuesHeading": "Our values"
   },
   "pt": {
+    "metaTitle": "Manifesto e História",
+    "metaDescription": "Descubra o manifesto da Kapunka, seus valores e a história por trás da nossa abordagem regenerativa de skincare.",
     "valuesHeading": "Nossos valores"
   },
   "es": {
+    "metaTitle": "Manifiesto e Historia",
+    "metaDescription": "Descubre el manifiesto de Kapunka, sus valores y la historia detrás de nuestra propuesta de cuidado regenerativo.",
     "valuesHeading": "Nuestros valores"
   }
 }

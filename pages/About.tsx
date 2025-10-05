@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Helmet } from 'react-helmet-async';
+import Head from 'next/head';
 import { motion } from 'framer-motion';
 import { useLanguage } from '../contexts/LanguageContext';
 import { useSiteSettings } from '../contexts/SiteSettingsContext';
@@ -291,11 +291,19 @@ const About: React.FC = () => {
         ? `${aboutFieldPath}.sections`
         : `pages.story_${language}.sections`;
 
-    const metaTitleBase = aboutContent?.metaTitle
-        ?? storyContent?.metaTitle
-        ?? t('about.title');
-    const computedDescription = aboutContent?.metaDescription
-        ?? storyContent?.metaDescription
+    const sanitize = (value?: string | null): string | undefined => {
+        if (typeof value !== 'string') {
+            return undefined;
+        }
+        const trimmed = value.trim();
+        return trimmed.length > 0 ? trimmed : undefined;
+    };
+
+    const metaTitleBase = sanitize(aboutContent?.metaTitle)
+        ?? sanitize(storyContent?.metaTitle)
+        ?? t('about.metaTitle');
+    const computedDescription = sanitize(aboutContent?.metaDescription)
+        ?? sanitize(storyContent?.metaDescription)
         ?? t('about.metaDescription');
     const computedTitle = metaTitleBase.includes('Kapunka') ? metaTitleBase : `${metaTitleBase} | Kapunka Skincare`;
     const fallbackSocialImage = settings.home?.heroImage?.trim() ?? '';
@@ -306,7 +314,7 @@ const About: React.FC = () => {
 
   return (
     <div>
-        <Helmet>
+        <Head>
             <title>{computedTitle}</title>
             <meta name="description" content={computedDescription} />
             <meta property="og:title" content={computedTitle} />

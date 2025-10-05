@@ -36,6 +36,8 @@ interface HeroImage {
 }
 
 interface FounderStoryContent {
+  metaTitle?: string;
+  metaDescription?: string;
   headline?: string;
   subheadline?: string;
   metaTitle?: string;

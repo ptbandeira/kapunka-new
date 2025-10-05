@@ -1,6 +1,5 @@
-
-import React, { useState } from 'react';
-import { Helmet } from 'react-helmet-async';
+import React, { useEffect, useState } from 'react';
+import Head from 'next/head';
 import { motion } from 'framer-motion';
 import { Mail, Phone, MessageSquare } from 'lucide-react';
 import { useLanguage } from '../contexts/LanguageContext';
@@ -84,6 +83,7 @@ const ContactForm: React.FC = () => {
 const Contact: React.FC = () => {
     const { t, language } = useLanguage();
     const { settings } = useSiteSettings();
+    const { contentVersion } = useVisualEditorSync();
     const contactSettings = settings.contact ?? { email: 'hello@kapunka.com', phone: '+1 (234) 567-890', whatsapp: 'https://wa.me/1234567890' };
     const emailLink = contactSettings.email ? `mailto:${contactSettings.email}` : '#';
     const phoneLink = contactSettings.phone ? `tel:${contactSettings.phone.replace(/[^+\d]/g, '')}` : '#';

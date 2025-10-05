@@ -1,5 +1,5 @@
 import React, { useEffect, useMemo, useState } from 'react';
-import { Helmet } from 'react-helmet-async';
+import Head from 'next/head';
 import { motion } from 'framer-motion';
 import SectionRenderer from '../components/_legacy/SectionRenderer';
 import { useLanguage } from '../contexts/LanguageContext';
@@ -122,6 +122,7 @@ const splitIntoParagraphs = (value?: string | null): string[] => {
 
 const Story: React.FC = () => {
   const { t, language } = useLanguage();
+  const { settings } = useSiteSettings();
   const { contentVersion } = useVisualEditorSync();
   const { settings } = useSiteSettings();
   const [pageContent, setPageContent] = useState<StoryPageContent | null>(null);

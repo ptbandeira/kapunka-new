@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Helmet } from 'react-helmet-async';
+import Head from 'next/head';
 import { motion } from 'framer-motion';
 import SectionRenderer from '../components/_legacy/SectionRenderer';
 import { useLanguage } from '../contexts/LanguageContext';
@@ -68,6 +68,7 @@ const isPageContent = (value: unknown): value is PageContent => {
 
 const Videos: React.FC = () => {
   const { t, language } = useLanguage();
+  const { settings } = useSiteSettings();
   const [pageContent, setPageContent] = useState<PageContent | null>(null);
   const { contentVersion } = useVisualEditorSync();
   const { settings } = useSiteSettings();

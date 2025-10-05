@@ -24,6 +24,8 @@ interface FaqItem {
 }
 
 interface ProductEducationContent {
+  metaTitle?: string;
+  metaDescription?: string;
   headline?: string;
   subheadline?: string;
   metaTitle?: string;
@@ -133,6 +135,7 @@ const ProductEducation: React.FC = () => {
   const { t } = useLanguage();
   const { contentVersion } = useVisualEditorSync();
   const { settings: siteSettings } = useSiteSettings();
+  const { t } = useLanguage();
 
   useEffect(() => {
     let isMounted = true;
