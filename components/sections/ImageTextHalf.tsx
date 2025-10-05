@@ -3,7 +3,7 @@ import { motion } from 'framer-motion';
 import ReactMarkdown from 'react-markdown';
 import { getVisualEditorAttributes } from '../../utils/stackbitBindings';
 import { getCloudinaryUrl } from '../../utils/imageUrl';
-import { usePrefersReducedMotion } from '../../src/hooks/useReducedMotion';
+import { usePrefersReducedMotion } from '../../src/hooks/usePrefersReducedMotion';
 
 interface ImageTextHalfProps {
   image?: string;
