@@ -1,23 +1,55 @@
 # ===== Internationalization =====
 i18n:
-  structure: multiple_folders
-  locales:
-    - en
-    - pt
-    - es
+  structure: single_file
+  locales: [en, pt, es]
   default_locale: en
+
+localized_string_field: &localized_string_field
+  widget: object
+  i18n: true
+  required: false
+  fields:
+    - { label: English, name: en, widget: string }
+    - { label: Portuguese, name: pt, widget: string }
+    - { label: Spanish, name: es, widget: string }
+
+localized_text_field: &localized_text_field
+  widget: object
+  i18n: true
+  required: false
+  fields:
+    - { label: English, name: en, widget: text }
+    - { label: Portuguese, name: pt, widget: text }
+    - { label: Spanish, name: es, widget: text }
+
+localized_markdown_field: &localized_markdown_field
+  widget: object
+  i18n: true
+  required: false
+  fields:
+    - { label: English, name: en, widget: markdown }
+    - { label: Portuguese, name: pt, widget: markdown }
+    - { label: Spanish, name: es, widget: markdown }
 
 # ===== Shared Section Templates (anchors) =====
 hero_content_fields: &hero_content_fields
-  - { label: "Headline", name: "headline", widget: "string", i18n: true, required: false, hint: "Main hero message displayed in large type." }
-  - { label: "Subheading", name: "subheading", widget: "text", i18n: true, required: false, hint: "Optional supporting sentence shown under the headline." }
+  - <<: *localized_string_field
+    label: "Headline"
+    name: "headline"
+    hint: "Main hero message displayed in large type."
+  - <<: *localized_text_field
+    label: "Subheading"
+    name: "subheading"
+    hint: "Optional supporting sentence shown under the headline."
   - label: "Primary Call-to-Action"
     name: "primaryCta"
     widget: "object"
     collapsed: true
     required: false
     fields:
-      - { label: "Button Label", name: "label", widget: "string", i18n: true, required: false }
+      - <<: *localized_string_field
+        label: "Button Label"
+        name: "label"
       - { label: "Link URL", name: "href", widget: "string", required: false, pattern: ["^(\\/|https?:\\/\\/).*$", "Enter an internal (/path) or absolute https:// URL."], hint: "Use internal routes (e.g. /shop) or full https:// links." }
   - label: "Secondary Call-to-Action"
     name: "secondaryCta"
@@ -25,7 +57,9 @@ hero_content_fields: &hero_content_fields
     collapsed: true
     required: false
     fields:
-      - { label: "Button Label", name: "label", widget: "string", i18n: true, required: false }
+      - <<: *localized_string_field
+        label: "Button Label"
+        name: "label"
       - { label: "Link URL", name: "href", widget: "string", required: false, pattern: ["^(\\/|https?:\\/\\/).*$", "Enter an internal (/path) or absolute https:// URL."], hint: "Optional supporting action." }
   - label: "Hero Image"
     name: "image"
@@ -34,7 +68,10 @@ hero_content_fields: &hero_content_fields
     required: false
     fields:
       - { label: "Image", name: "src", widget: "image", choose_url: true, required: false, hint: "Upload or pick an image from the media library." }
-      - { label: "Alt Text", name: "alt", widget: "string", i18n: true, required: false, hint: "Describe the visual for accessibility and SEO." }
+      - <<: *localized_string_field
+        label: "Alt Text"
+        name: "alt"
+        hint: "Describe the visual for accessibility and SEO."
   - label: "Text Anchor Override"
     name: "position"
     widget: "select"
@@ -52,15 +89,23 @@ hero_content_fields: &hero_content_fields
     hint: "Fine-tune where the hero copy sits when overlaying imagery."
 
 media_copy_fields: &media_copy_fields
-  - { label: "Heading", name: "heading", widget: "string", i18n: true, required: false, hint: "Title displayed above the paragraph copy." }
-  - { label: "Body", name: "body", widget: "markdown", i18n: true, required: false, hint: "Supports Markdown for emphasis, links, and line breaks." }
+  - <<: *localized_string_field
+    label: "Heading"
+    name: "heading"
+    hint: "Title displayed above the paragraph copy."
+  - <<: *localized_markdown_field
+    label: "Body"
+    name: "body"
+    hint: "Supports Markdown for emphasis, links, and line breaks."
   - label: "Call-to-Action"
     name: "cta"
     widget: "object"
     collapsed: true
     required: false
     fields:
-      - { label: "Button Label", name: "label", widget: "string", i18n: true, required: false }
+      - <<: *localized_string_field
+        label: "Button Label"
+        name: "label"
       - { label: "Link URL", name: "href", widget: "string", required: false, pattern: ["^(\\/|https?:\\/\\/).*$", "Enter an internal (/path) or absolute https:// URL."], hint: "Link readers to relevant resources." }
   - label: "Image"
     name: "image"
@@ -69,12 +114,25 @@ media_copy_fields: &media_copy_fields
     required: false
     fields:
       - { label: "Image", name: "src", widget: "image", choose_url: true, required: false, hint: "Upload or pick an image from the media library." }
-      - { label: "Alt Text", name: "alt", widget: "string", i18n: true, required: false, hint: "Describe the image for screen readers." }
+      - <<: *localized_string_field
+        label: "Alt Text"
+        name: "alt"
+        hint: "Describe the image for screen readers."
 
 testimonial_fields: &testimonial_fields
-  - { label: "Quote", name: "quote", widget: "markdown", i18n: true, required: true, hint: "Testimonial text displayed inside quotation marks." }
-  - { label: "Author", name: "author", widget: "string", i18n: true, required: false, hint: "Name of the customer, partner, or practitioner." }
-  - { label: "Role or Context", name: "role", widget: "string", i18n: true, required: false, hint: "Clinic, title, or context shown under the author." }
+  - <<: *localized_markdown_field
+    label: "Quote"
+    name: "quote"
+    required: true
+    hint: "Testimonial text displayed inside quotation marks."
+  - <<: *localized_string_field
+    label: "Author"
+    name: "author"
+    hint: "Name of the customer, partner, or practitioner."
+  - <<: *localized_string_field
+    label: "Role or Context"
+    name: "role"
+    hint: "Clinic, title, or context shown under the author."
   - label: "Avatar"
     name: "avatar"
     widget: "image"
@@ -497,8 +555,26 @@ shared_sections: &shared_sections
             widget: "list"
             hint: "List supporting points for the specialty."
             field: { label: "Bullet", name: "bullet", widget: "string", i18n: true, hint: "Individual specialty detail (≤120 characters)." }
-meta_title_field: &meta_title_field { label: "Meta Title", name: "metaTitle", widget: "string", i18n: true, required: false, hint: "SEO page title for search results and browser tabs (≤60 characters)." }
-meta_description_field: &meta_description_field { label: "Meta Description", name: "metaDescription", widget: "text", i18n: true, required: false, hint: "Summary shown in search previews (recommended 120–160 characters)." }
+meta_title_field: &meta_title_field
+  <<: *localized_string_field
+  label: "Meta Title"
+  name: "metaTitle"
+  required: false
+  hint: "SEO title for search results and browser tabs (≤60 characters)."
+  fields:
+    - { label: English, name: en, widget: string, hint: "English title (≤60 characters)." }
+    - { label: Portuguese, name: pt, widget: string, hint: "Portuguese title (≤60 characters)." }
+    - { label: Spanish, name: es, widget: string, hint: "Spanish title (≤60 characters)." }
+meta_description_field: &meta_description_field
+  <<: *localized_text_field
+  label: "Meta Description"
+  name: "metaDescription"
+  required: false
+  hint: "Search preview summary (120–160 characters)."
+  fields:
+    - { label: English, name: en, widget: text, hint: "English description (≤160 characters)." }
+    - { label: Portuguese, name: pt, widget: text, hint: "Portuguese description (≤160 characters)." }
+    - { label: Spanish, name: es, widget: text, hint: "Spanish description (≤160 characters)." }
 section_library: &section_library
   - *section_hero
   - *section_mediaCopy
@@ -782,133 +858,139 @@ collections:
         description: "Hero and storytelling blocks presented in live page order."
         preview_path: "/"
         fields:
-          - *meta_title_field
-          - *meta_description_field
-          - label: "Hero Headline"
-            name: "heroHeadline"
-            widget: "string"
-            i18n: true
-            required: false
-            hint: "Primary hero statement shown on the homepage (≤80 characters)."
-          - label: "Hero Subheadline"
-            name: "heroSubheadline"
-            widget: "text"
-            i18n: true
-            required: false
-            hint: "Supporting message beneath the hero headline (≤200 characters)."
-          - label: "Hero CTAs"
-            name: "heroCtas"
+          - { label: "Page Type", name: "type", widget: "hidden", default: "HomePage" }
+          - label: "Page Metadata"
+            name: "metadata"
             widget: "object"
             collapsed: true
-            required: false
+            hint: "SEO title and description for the homepage."
             fields:
+              - *meta_title_field
+              - *meta_description_field
+          - label: "Hero"
+            name: "hero"
+            widget: "object"
+            collapsed: true
+            hint: "Homepage hero copy, CTAs, and layout."
+            fields:
+              - <<: *localized_string_field
+                label: "Headline"
+                name: "headline"
+                required: false
+                hint: "Primary hero statement (≤80 characters)."
+              - <<: *localized_text_field
+                label: "Subheadline"
+                name: "subheadline"
+                required: false
+                hint: "Supporting message beneath the headline (≤200 characters)."
               - label: "Primary CTA"
-                name: "ctaPrimary"
+                name: "primaryCta"
                 widget: "object"
                 collapsed: true
                 required: false
+                hint: "Main hero call-to-action button."
                 fields:
-                  - { label: "Label", name: "label", widget: "string", i18n: true, required: false, hint: "Button text for the primary CTA (≤24 characters)." }
-                  - { label: "Link URL", name: "href", widget: "string", i18n: true, required: false, hint: "Destination for the primary CTA. Use internal routes (e.g. /shop) or full https:// URLs." }
+                  - <<: *localized_string_field
+                    label: "Button Label"
+                    name: "label"
+                    hint: "Primary CTA button text (≤24 characters)."
+                  - { label: "Link URL", name: "href", widget: "string", required: false, hint: "Destination URL for the primary CTA." }
               - label: "Secondary CTA"
-                name: "ctaSecondary"
+                name: "secondaryCta"
                 widget: "object"
                 collapsed: true
                 required: false
+                hint: "Optional secondary call-to-action."
                 fields:
-                  - { label: "Label", name: "label", widget: "string", i18n: true, required: false, hint: "Button text for the secondary CTA (≤24 characters)." }
-                  - { label: "Link URL", name: "href", widget: "string", i18n: true, required: false, hint: "Optional supporting CTA URL. Use internal routes or full https:// links." }
-          - label: "Hero Alignment"
-            name: "heroAlignment"
-            widget: "object"
-            collapsed: true
-            required: false
-            hint: "Control where hero text sits relative to imagery."
-            fields:
-              - label: "Horizontal Alignment"
-                name: "heroAlignX"
-                widget: "select"
-                i18n: true
-                options:
-                  - { label: "Left", value: "left" }
-                  - { label: "Center", value: "center" }
-                  - { label: "Right", value: "right" }
-                default: "left"
-                hint: "Positions hero copy horizontally when using split layouts."
-              - label: "Vertical Alignment"
-                name: "heroAlignY"
-                widget: "select"
-                i18n: true
-                options:
-                  - { label: "Top", value: "top" }
-                  - { label: "Middle", value: "middle" }
-                  - { label: "Bottom", value: "bottom" }
-                default: "middle"
-                hint: "Controls vertical placement of the hero text."
-              - label: "Text Display"
-                name: "heroTextPosition"
-                widget: "select"
-                i18n: true
-                options:
-                  - { label: "Overlay (on top of media)", value: "overlay" }
-                  - { label: "Below media", value: "below" }
-                default: "overlay"
-                hint: "Choose whether hero copy sits over the media or below it."
-              - label: "Overlay Text Anchor"
-                name: "heroTextAnchor"
-                widget: "select"
-                i18n: true
+                  - <<: *localized_string_field
+                    label: "Button Label"
+                    name: "label"
+                    hint: "Secondary CTA button text (≤24 characters)."
+                  - { label: "Link URL", name: "href", widget: "string", required: false, hint: "Destination URL for the secondary CTA." }
+              - label: "Layout"
+                name: "layout"
+                widget: "object"
+                collapsed: true
                 required: false
-                options:
-                  - { label: "Top left", value: "top-left" }
-                  - { label: "Top center", value: "top-center" }
-                  - { label: "Top right", value: "top-right" }
-                  - { label: "Middle left", value: "middle-left" }
-                  - { label: "Middle center", value: "middle-center" }
-                  - { label: "Middle right", value: "middle-right" }
-                  - { label: "Bottom left", value: "bottom-left" }
-                  - { label: "Bottom center", value: "bottom-center" }
-                  - { label: "Bottom right", value: "bottom-right" }
-                default: "middle-left"
-                hint: "Fine-tune the overlay anchor when hero text sits on top of imagery."
-              - label: "Overlay Strength"
-                name: "heroOverlay"
-                widget: "select"
-                i18n: true
-                options:
-                  - { label: "None", value: "none" }
-                  - { label: "Light", value: "light" }
-                  - { label: "Medium", value: "medium" }
-                  - { label: "Strong", value: "strong" }
-                default: "medium"
-                hint: "Adjusts the opacity of the overlay scrim for readability."
-              - label: "Layout Hint"
-                name: "heroLayoutHint"
-                widget: "select"
-                i18n: true
-                options:
-                  - { label: "Background image", value: "bg" }
-                  - { label: "Background image (static)", value: "bgImage" }
-                  - { label: "Split · image left", value: "image-left" }
-                  - { label: "Split · image right", value: "image-right" }
-                  - { label: "Full-bleed image", value: "image-full" }
-                  - { label: "Text over media", value: "text-over-media" }
-                  - { label: "Side-by-side", value: "side-by-side" }
-                default: "bg"
-                hint: "Provides a layout suggestion for designers and developers."
-          - label: "Hero Images"
-            name: "heroImages"
-            widget: "object"
-            collapsed: true
-            required: false
-            hint: "Either upload imagery or reference an existing asset path. Left/right map to split layouts."
-            fields:
-              - { label: "Hero Image Left", name: "heroImageLeft", widget: "image", choose_url: true, required: false, hint: "Upload or choose from existing assets." }
-              - { label: "Hero Image Right", name: "heroImageRight", widget: "image", choose_url: true, required: false, hint: "Upload or choose from existing assets." }
+                hint: "Control hero alignment and overlay styling."
+                fields:
+                  - label: "Horizontal Alignment"
+                    name: "alignX"
+                    widget: "select"
+                    options:
+                      - { label: "Left", value: "left" }
+                      - { label: "Center", value: "center" }
+                      - { label: "Right", value: "right" }
+                    default: "left"
+                    hint: "Positions hero copy horizontally."
+                  - label: "Vertical Alignment"
+                    name: "alignY"
+                    widget: "select"
+                    options:
+                      - { label: "Top", value: "top" }
+                      - { label: "Middle", value: "middle" }
+                      - { label: "Bottom", value: "bottom" }
+                    default: "middle"
+                    hint: "Controls vertical placement of hero text."
+                  - label: "Text Display"
+                    name: "textPosition"
+                    widget: "select"
+                    options:
+                      - { label: "Overlay (on top of media)", value: "overlay" }
+                      - { label: "Below media", value: "below" }
+                    default: "overlay"
+                    hint: "Choose whether hero copy overlays imagery."
+                  - label: "Overlay Anchor"
+                    name: "textAnchor"
+                    widget: "select"
+                    required: false
+                    options:
+                      - { label: "Top left", value: "top-left" }
+                      - { label: "Top center", value: "top-center" }
+                      - { label: "Top right", value: "top-right" }
+                      - { label: "Middle left", value: "middle-left" }
+                      - { label: "Middle center", value: "middle-center" }
+                      - { label: "Middle right", value: "middle-right" }
+                      - { label: "Bottom left", value: "bottom-left" }
+                      - { label: "Bottom center", value: "bottom-center" }
+                      - { label: "Bottom right", value: "bottom-right" }
+                    default: "middle-left"
+                    hint: "Fine-tune overlay anchor when text sits on media."
+                  - label: "Overlay Strength"
+                    name: "overlay"
+                    widget: "select"
+                    options:
+                      - { label: "None", value: "none" }
+                      - { label: "Light", value: "light" }
+                      - { label: "Medium", value: "medium" }
+                      - { label: "Strong", value: "strong" }
+                    default: "medium"
+                    hint: "Adjust overlay opacity for readability."
+                  - label: "Layout Hint"
+                    name: "layoutHint"
+                    widget: "select"
+                    options:
+                      - { label: "Background image", value: "bg" }
+                      - { label: "Background image (static)", value: "bgImage" }
+                      - { label: "Split · image left", value: "image-left" }
+                      - { label: "Split · image right", value: "image-right" }
+                      - { label: "Full-bleed image", value: "image-full" }
+                      - { label: "Text over media", value: "text-over-media" }
+                      - { label: "Side-by-side", value: "side-by-side" }
+                    default: "bg"
+                    hint: "Provides a layout suggestion to designers."
+              - label: "Imagery"
+                name: "imagery"
+                widget: "object"
+                collapsed: true
+                required: false
+                hint: "Upload hero imagery for split layouts."
+                fields:
+                  - { label: "Left Image", name: "left", widget: "image", choose_url: true, required: false, hint: "Upload or select the left-side hero image." }
+                  - { label: "Right Image", name: "right", widget: "image", choose_url: true, required: false, hint: "Upload or select the right-side hero image." }
           - label: "Sections"
             name: "sections"
             widget: "list"
-            i18n: true
             collapsed: true
             summary: "{{fields.type}} · {{fields.title}}"
             hint: "Scroll, reorder, duplicate, or add sections in page order."
@@ -924,29 +1006,49 @@ collections:
         description: "Optional storytelling sections surrounding the Learn hub."
         preview_path: "/learn"
         fields:
-          - *meta_title_field
-          - *meta_description_field
-          - label: "Hero Title"
-            name: "heroTitle"
-            widget: "string"
-            i18n: true
-            required: false
-            hint: "Main Learn hero heading (≤80 characters)."
-          - label: "Hero Subtitle"
-            name: "heroSubtitle"
-            widget: "text"
-            i18n: true
-            required: false
-            hint: "Supporting sentence under the Learn hero title (≤200 characters)."
-          - label: "Categories"
-            name: "categories"
-            widget: "list"
+          - { label: "Page Type", name: "type", widget: "hidden", default: "LearnPage" }
+          - label: "Page Metadata"
+            name: "metadata"
+            widget: "object"
             collapsed: true
-            summary: "{{fields.label}}"
-            hint: "Define Learn hub navigation categories shown on the page."
+            hint: "SEO title and description for the Learn page."
             fields:
-              - { label: "ID", name: "id", widget: "string", hint: "Slug-friendly ID used to group articles. Use lowercase and dashes." }
-              - { label: "Label", name: "label", widget: "string", i18n: true, hint: "Localized category label (≤30 characters)." }
+              - *meta_title_field
+              - *meta_description_field
+          - label: "Hero"
+            name: "hero"
+            widget: "object"
+            collapsed: true
+            hint: "Learn hub hero headline and supporting copy."
+            fields:
+              - <<: *localized_string_field
+                label: "Title"
+                name: "title"
+                required: false
+                hint: "Main Learn hero heading (≤80 characters)."
+              - <<: *localized_text_field
+                label: "Subtitle"
+                name: "subtitle"
+                required: false
+                hint: "Supporting sentence under the hero title (≤200 characters)."
+          - label: "Navigation"
+            name: "navigation"
+            widget: "object"
+            collapsed: true
+            hint: "Configure Learn categories displayed in the sidebar."
+            fields:
+              - label: "Categories"
+                name: "categories"
+                widget: "list"
+                collapsed: true
+                summary: "{{fields.id}} · {{fields.label.en}}"
+                hint: "Define Learn hub navigation categories."
+                fields:
+                  - { label: "Category ID", name: "id", widget: "string", hint: "Slug-friendly category ID using lowercase and dashes." }
+                  - <<: *localized_string_field
+                    label: "Label"
+                    name: "label"
+                    hint: "Localized category label (≤30 characters)."
           - *sections_field
       - name: method
         label: Method Page
@@ -959,23 +1061,52 @@ collections:
         description: "Clinical method overview plus supporting content blocks."
         preview_path: "/method"
         fields:
-          - *meta_title_field
-          - *meta_description_field
-          - { label: "Hero Title", name: "heroTitle", widget: "string", i18n: true, required: false, hint: "Method hero heading focused on clinical story (≤80 characters)." }
-          - { label: "Hero Subtitle", name: "heroSubtitle", widget: "text", i18n: true, required: false, hint: "Hero supporting copy summarizing the method (≤200 characters)." }
+          - { label: "Page Type", name: "type", widget: "hidden", default: "MethodPage" }
+          - label: "Page Metadata"
+            name: "metadata"
+            widget: "object"
+            collapsed: true
+            hint: "SEO title and description for the Method page."
+            fields:
+              - *meta_title_field
+              - *meta_description_field
+          - label: "Hero"
+            name: "hero"
+            widget: "object"
+            collapsed: true
+            hint: "Clinical method hero headline and summary."
+            fields:
+              - <<: *localized_string_field
+                label: "Title"
+                name: "title"
+                required: false
+                hint: "Method hero heading (≤80 characters)."
+              - <<: *localized_text_field
+                label: "Subtitle"
+                name: "subtitle"
+                required: false
+                hint: "Supporting copy summarizing the method (≤200 characters)."
           - label: "Clinical Notes"
             name: "clinicalNotes"
             widget: "list"
             collapsed: true
-            summary: "{{fields.title}}"
-            hint: "List of structured protocol notes displayed in the Method overview."
+            summary: "{{fields.title.en}}"
+            hint: "Structured protocol notes displayed in the Method overview."
             fields:
-              - { label: "Title", name: "title", widget: "string", i18n: true, hint: "Note headline (≤60 characters)." }
+              - <<: *localized_string_field
+                label: "Title"
+                name: "title"
+                hint: "Note headline (≤60 characters)."
               - label: "Bullets"
                 name: "bullets"
                 widget: "list"
-                field: { label: "Bullet", name: "bullet", widget: "string", i18n: true, hint: "Key takeaway supporting the clinical note (≤120 characters)." }
-          - label: "Sections"
+                hint: "Key takeaways supporting each note."
+                field:
+                  <<: *localized_string_field
+                  label: "Bullet"
+                  name: "bullet"
+                  hint: "Single takeaway (≤120 characters)."
+          - label: "Content Sections"
             name: "sections"
             widget: "list"
             collapsed: true
@@ -995,84 +1126,130 @@ collections:
         description: "Clinic partnership story arranged top-to-bottom."
         preview_path: "/for-clinics"
         fields:
-          - *meta_title_field
-          - *meta_description_field
-          - label: "Hero Title"
-            name: "heroTitle"
-            widget: "string"
-            i18n: true
-            required: false
-            hint: "Primary hero heading introducing the Clinics page (≤80 characters)."
-          - label: "Hero Subtitle"
-            name: "heroSubtitle"
-            widget: "text"
-            i18n: true
-            required: false
-            hint: "Supporting hero paragraph for clinics (≤200 characters)."
-          - label: "Header Title"
-            name: "headerTitle"
-            widget: "string"
-            i18n: true
-            required: false
-            hint: "Top hero heading introducing the Clinics page (≤80 characters)."
-          - label: "Header Subtitle"
-            name: "headerSubtitle"
-            widget: "text"
-            i18n: true
-            required: false
-            hint: "Supporting hero sentence for clinics (≤200 characters)."
-          - label: "Intro Section"
+          - { label: "Page Type", name: "type", widget: "hidden", default: "ClinicsPage" }
+          - label: "Page Metadata"
+            name: "metadata"
+            widget: "object"
+            collapsed: true
+            hint: "SEO title and description for the clinics page."
+            fields:
+              - *meta_title_field
+              - *meta_description_field
+          - label: "Hero"
+            name: "hero"
+            widget: "object"
+            collapsed: true
+            hint: "Clinic hero messaging and supporting header copy."
+            fields:
+              - <<: *localized_string_field
+                label: "Hero Title"
+                name: "heroTitle"
+                hint: "Primary hero heading (≤80 characters)."
+              - <<: *localized_text_field
+                label: "Hero Subtitle"
+                name: "heroSubtitle"
+                hint: "Supporting hero paragraph (≤200 characters)."
+              - <<: *localized_string_field
+                label: "Header Title"
+                name: "headerTitle"
+                hint: "Secondary heading reinforcing the program (≤80 characters)."
+              - <<: *localized_text_field
+                label: "Header Subtitle"
+                name: "headerSubtitle"
+                hint: "Optional secondary paragraph (≤200 characters)."
+          - label: "Intro"
             name: "intro"
             widget: "object"
             collapsed: true
-            required: false
             hint: "Opening paragraphs that describe the clinics program."
             fields:
-              - { label: "Title", name: "title", widget: "string", i18n: true, required: false, hint: "Intro heading (≤60 characters)." }
-              - { label: "Paragraph 1", name: "text1", widget: "text", i18n: true, required: false, hint: "First paragraph describing the clinic experience (≤400 characters)." }
-              - { label: "Paragraph 2", name: "text2", widget: "text", i18n: true, required: false, hint: "Optional second paragraph (≤400 characters)." }
+              - <<: *localized_string_field
+                label: "Section Title"
+                name: "title"
+                hint: "Intro heading (≤60 characters)."
+              - <<: *localized_text_field
+                label: "Paragraph 1"
+                name: "text1"
+                hint: "First paragraph describing the clinic experience (≤400 characters)."
+              - <<: *localized_text_field
+                label: "Paragraph 2"
+                name: "text2"
+                hint: "Optional second paragraph (≤400 characters)."
           - label: "Protocol Section"
             name: "protocolSection"
             widget: "object"
             collapsed: true
-            required: false
             hint: "Details outlining the clinic protocol steps."
             fields:
-              - { label: "Title", name: "title", widget: "string", i18n: true, required: false, hint: "Protocol heading (≤60 characters)." }
-              - { label: "Subtitle", name: "subtitle", widget: "text", i18n: true, required: false, hint: "Short description introducing the protocol (≤240 characters)." }
+              - <<: *localized_string_field
+                label: "Title"
+                name: "title"
+                hint: "Protocol heading (≤60 characters)."
+              - <<: *localized_text_field
+                label: "Subtitle"
+                name: "subtitle"
+                hint: "Short description introducing the protocol (≤240 characters)."
               - label: "Cards"
                 name: "cards"
                 widget: "list"
                 collapsed: true
-                summary: "{{fields.title}}"
+                summary: "{{fields.title.en}}"
                 hint: "Break down protocol steps or focus areas."
                 fields:
-                  - { label: "Card Title", name: "title", widget: "string", i18n: true, hint: "Card heading (≤60 characters)." }
-                  - { label: "Focus", name: "focus", widget: "text", i18n: true, required: false, hint: "Key focus statement for the card (≤200 characters)." }
+                  - <<: *localized_string_field
+                    label: "Card Title"
+                    name: "title"
+                    hint: "Card heading (≤60 characters)."
+                  - <<: *localized_text_field
+                    label: "Focus"
+                    name: "focus"
+                    hint: "Key focus statement for the card (≤200 characters)."
                   - label: "Steps"
                     name: "steps"
                     widget: "list"
-                    field: { label: "Step", name: "step", widget: "text", i18n: true, hint: "Individual protocol step (≤160 characters)." }
-                  - { label: "Evidence", name: "evidence", widget: "text", i18n: true, required: false, hint: "Optional supporting evidence or proof points (≤200 characters)." }
+                    hint: "Individual protocol steps (≤160 characters)."
+                    field:
+                      <<: *localized_text_field
+                      label: "Step"
+                      name: "step"
+                      hint: "Single protocol instruction."
+                  - <<: *localized_text_field
+                    label: "Evidence"
+                    name: "evidence"
+                    hint: "Optional supporting evidence or proof points (≤200 characters)."
           - label: "References Section"
             name: "referencesSection"
             widget: "object"
             collapsed: true
-            required: false
             hint: "Published research and testimonial references for clinics."
             fields:
-              - { label: "Title", name: "title", widget: "string", i18n: true, required: false, hint: "Section heading for references (≤60 characters)." }
-              - { label: "Studies Title", name: "studiesTitle", widget: "string", i18n: true, required: false, hint: "Subheading above the study list (≤60 characters)." }
+              - <<: *localized_string_field
+                label: "Title"
+                name: "title"
+                hint: "Section heading for references (≤60 characters)."
+              - <<: *localized_string_field
+                label: "Studies Title"
+                name: "studiesTitle"
+                hint: "Subheading above the study list (≤60 characters)."
               - label: "Studies"
                 name: "studies"
                 widget: "list"
                 collapsed: true
-                summary: "{{fields.title}}"
+                summary: "{{fields.title.en}}"
                 hint: "Add cited studies that support the clinics program."
                 fields:
-                  - { label: "Study Title", name: "title", widget: "string", i18n: true, hint: "Name of the study (≤80 characters)." }
-                  - { label: "Study Details", name: "details", widget: "text", i18n: true, required: false, hint: "Brief description or citation details (≤240 characters)." }
-              - { label: "Testimonials Title", name: "testimonialsTitle", widget: "string", i18n: true, required: false, hint: "Heading above the testimonials list (≤60 characters)." }
+                  - <<: *localized_string_field
+                    label: "Study Title"
+                    name: "title"
+                    hint: "Name of the study (≤80 characters)."
+                  - <<: *localized_text_field
+                    label: "Study Details"
+                    name: "details"
+                    hint: "Citation details or key takeaways (≤240 characters)."
+              - <<: *localized_string_field
+                label: "Testimonials Title"
+                name: "testimonialsTitle"
+                hint: "Heading above the testimonials list (≤60 characters)."
               - label: "Selected Testimonials"
                 name: "testimonialRefs"
                 widget: "list"
@@ -1093,7 +1270,7 @@ collections:
                     - title
                     - quote
                   hint: "Choose which saved testimonials appear on this page."
-              - label: "Testimonials"
+              - label: "Custom Testimonials"
                 name: "testimonials"
                 widget: "list"
                 collapsed: true
@@ -1104,64 +1281,74 @@ collections:
             name: "keywordSection"
             widget: "object"
             collapsed: true
-            required: false
             hint: "Optional list of focus keywords for clinics."
             fields:
-              - { label: "Title", name: "title", widget: "string", i18n: true, required: false, hint: "Keywords heading (≤60 characters)." }
-              - { label: "Subtitle", name: "subtitle", widget: "text", i18n: true, required: false, hint: "Optional descriptive copy above keywords (≤200 characters)." }
+              - <<: *localized_string_field
+                label: "Title"
+                name: "title"
+                hint: "Keywords heading (≤60 characters)."
+              - <<: *localized_text_field
+                label: "Subtitle"
+                name: "subtitle"
+                hint: "Optional descriptive copy above keywords (≤200 characters)."
               - label: "Keywords"
                 name: "keywords"
                 widget: "list"
                 collapsed: true
                 hint: "List up to 8 focus keywords for clinics."
-                field: { label: "Keyword", name: "keyword", widget: "string", i18n: true, hint: "Individual keyword or short phrase (≤40 characters)." }
+                field:
+                  <<: *localized_string_field
+                  label: "Keyword"
+                  name: "keyword"
+                  hint: "Individual keyword or short phrase (≤40 characters)."
           - label: "FAQ Section"
             name: "faqSection"
             widget: "object"
             collapsed: true
-            required: false
             hint: "Frequently asked questions specific to clinics."
             fields:
-              - { label: "Title", name: "title", widget: "string", i18n: true, required: false, hint: "FAQ heading (≤60 characters)." }
-              - { label: "Subtitle", name: "subtitle", widget: "text", i18n: true, required: false, hint: "Optional intro text for the FAQ (≤200 characters)." }
+              - <<: *localized_string_field
+                label: "Title"
+                name: "title"
+                hint: "FAQ heading (≤60 characters)."
+              - <<: *localized_text_field
+                label: "Subtitle"
+                name: "subtitle"
+                hint: "Optional intro text for the FAQ (≤200 characters)."
               - label: "Items"
                 name: "items"
                 widget: "list"
                 collapsed: true
-                summary: "{{fields.question}}"
+                summary: "{{fields.question.en}}"
                 hint: "Add the most common clinic questions and answers."
                 fields:
-                  - { label: "Question", name: "question", widget: "string", i18n: true, hint: "FAQ question phrased succinctly (≤100 characters)." }
-                  - { label: "Answer", name: "answer", widget: "text", i18n: true, hint: "Concise answer that supports clinics (≤400 characters)." }
-          - label: "Doctors Title"
+                  - <<: *localized_string_field
+                    label: "Question"
+                    name: "question"
+                    hint: "FAQ question phrased succinctly (≤100 characters)."
+                  - <<: *localized_text_field
+                    label: "Answer"
+                    name: "answer"
+                    hint: "Concise answer that supports clinics (≤400 characters)."
+          - <<: *localized_string_field
+            label: "Doctors Title"
             name: "doctorsTitle"
-            widget: "string"
-            i18n: true
-            required: false
             hint: "Heading for the clinicians carousel (≤60 characters)."
-          - label: "CTA Title"
+          - <<: *localized_string_field
+            label: "CTA Title"
             name: "ctaTitle"
-            widget: "string"
-            i18n: true
-            required: false
             hint: "Headline encouraging clinics to engage (≤60 characters)."
-          - label: "CTA Subtitle"
+          - <<: *localized_text_field
+            label: "CTA Subtitle"
             name: "ctaSubtitle"
-            widget: "text"
-            i18n: true
-            required: false
             hint: "Supporting CTA copy (≤200 characters)."
-          - label: "CTA Button Label"
+          - <<: *localized_string_field
+            label: "CTA Button Label"
             name: "ctaButton"
-            widget: "string"
-            i18n: true
-            required: false
             hint: "Call-to-action button text (≤24 characters)."
-          - label: "Partners Title"
+          - <<: *localized_string_field
+            label: "Partners Title"
             name: "partnersTitle"
-            widget: "string"
-            i18n: true
-            required: false
             hint: "Heading displayed above clinic partners (≤60 characters)."
           - *sections_field
       - name: about
@@ -1175,8 +1362,15 @@ collections:
         description: "Brand story sections in live page sequence."
         preview_path: "/about"
         fields:
-          - *meta_title_field
-          - *meta_description_field
+          - { label: "Page Type", name: "type", widget: "hidden", default: "AboutPage" }
+          - label: "Page Metadata"
+            name: "metadata"
+            widget: "object"
+            collapsed: true
+            hint: "SEO title and description for the About page."
+            fields:
+              - *meta_title_field
+              - *meta_description_field
           - *sections_field
       - name: story
         label: Story & Manifesto Page
@@ -1189,56 +1383,88 @@ collections:
         description: "Brand manifesto narrative, value pillars, and optional supporting sections."
         preview_path: "/story"
         fields:
-          - *meta_title_field
-          - *meta_description_field
-          - label: "Hero Title"
-            name: heroTitle
-            widget: string
-            i18n: true
-            required: false
-            hint: "Headline introducing the manifesto (≤80 characters)."
-          - label: "Hero Subtitle"
-            name: heroSubtitle
-            widget: text
-            i18n: true
-            required: false
-            hint: "Supporting line shown below the hero title (≤200 characters)."
-          - label: "Manifesto Introduction"
-            name: manifestoIntro
-            widget: markdown
-            i18n: true
-            required: false
-            hint: "Opening narrative that frames the manifesto pillars."
-          - label: "Manifesto Statements"
-            name: manifestoStatements
-            widget: list
-            i18n: true
+          - { label: "Page Type", name: "type", widget: "hidden", default: "StoryPage" }
+          - label: "Page Metadata"
+            name: "metadata"
+            widget: "object"
             collapsed: true
-            summary: "{{fields.heading}}"
-            hint: "Key manifesto pillars, each with optional highlight and descriptive copy."
+            hint: "SEO title and description for the manifesto page."
             fields:
-              - { label: Heading, name: heading, widget: string, i18n: true, required: false, hint: "Title for this manifesto pillar (≤80 characters)." }
-              - { label: Highlight, name: highlight, widget: string, i18n: true, required: false, hint: "Optional uppercase accent line (≤90 characters)." }
-              - { label: Body, name: body, widget: markdown, i18n: true, required: false, hint: "Use Markdown for rich storytelling across multiple paragraphs." }
-          - label: "Values Grid"
-            name: values
-            widget: list
-            i18n: true
+              - *meta_title_field
+              - *meta_description_field
+          - label: "Hero"
+            name: "hero"
+            widget: "object"
             collapsed: true
-            summary: "{{fields.title}}"
-            hint: "Value pillars displayed in the dark grid."
+            hint: "Manifesto hero headline and supporting line."
             fields:
-              - { label: Title, name: title, widget: string, i18n: true, required: false, hint: "Name of the value pillar (≤60 characters)." }
-              - { label: Description, name: description, widget: text, i18n: true, required: false, hint: "One to two sentences describing how this value shows up (≤200 characters)." }
-          - label: "Closing Section"
-            name: closing
-            widget: object
-            i18n: true
+              - <<: *localized_string_field
+                label: "Title"
+                name: "title"
+                hint: "Headline introducing the manifesto (≤80 characters)."
+              - <<: *localized_text_field
+                label: "Subtitle"
+                name: "subtitle"
+                hint: "Supporting line below the hero title (≤200 characters)."
+          - label: "Manifesto"
+            name: "manifesto"
+            widget: "object"
             collapsed: true
-            required: false
+            hint: "Core narrative, pillars, and value statements."
             fields:
-              - { label: Heading, name: heading, widget: string, i18n: true, required: false, hint: "Optional closing promise headline (≤80 characters)." }
-              - { label: Body, name: body, widget: markdown, i18n: true, required: false, hint: "Closing paragraphs inviting readers to act or reflect." }
+              - <<: *localized_markdown_field
+                label: "Introduction"
+                name: "intro"
+                hint: "Opening narrative that frames the manifesto pillars."
+              - label: "Statements"
+                name: "statements"
+                widget: "list"
+                collapsed: true
+                summary: "{{fields.heading.en}}"
+                hint: "Key manifesto pillars with optional highlight and descriptive copy."
+                fields:
+                  - <<: *localized_string_field
+                    label: "Heading"
+                    name: "heading"
+                    hint: "Title for this manifesto pillar (≤80 characters)."
+                  - <<: *localized_string_field
+                    label: "Highlight"
+                    name: "highlight"
+                    hint: "Optional uppercase accent line (≤90 characters)."
+                  - <<: *localized_markdown_field
+                    label: "Body"
+                    name: "body"
+                    hint: "Use Markdown for rich storytelling across multiple paragraphs."
+              - label: "Values Grid"
+                name: "values"
+                widget: "list"
+                collapsed: true
+                summary: "{{fields.title.en}}"
+                hint: "Value pillars displayed in the dark grid."
+                fields:
+                  - <<: *localized_string_field
+                    label: "Title"
+                    name: "title"
+                    hint: "Name of the value pillar (≤60 characters)."
+                  - <<: *localized_text_field
+                    label: "Description"
+                    name: "description"
+                    hint: "One to two sentences describing how this value shows up (≤200 characters)."
+              - label: "Closing"
+                name: "closing"
+                widget: "object"
+                collapsed: true
+                required: false
+                hint: "Optional closing promise inviting readers to act."
+                fields:
+                  - <<: *localized_string_field
+                    label: "Heading"
+                    name: "heading"
+                    hint: "Optional closing promise headline (≤80 characters)."
+                  - <<: *localized_markdown_field
+                    label: "Body"
+                    name: "body"
+                    hint: "Closing paragraphs inviting readers to reflect or engage."
           - *sections_field
       - name: contact
         label: Contact Page
@@ -1251,8 +1477,15 @@ collections:
         description: "Contact introductions and optional follow-up sections."
         preview_path: "/contact"
         fields:
-          - *meta_title_field
-          - *meta_description_field
+          - { label: "Page Type", name: "type", widget: "hidden", default: "ContactPage" }
+          - label: "Page Metadata"
+            name: "metadata"
+            widget: "object"
+            collapsed: true
+            hint: "SEO title and description for the Contact page."
+            fields:
+              - *meta_title_field
+              - *meta_description_field
           - *sections_field
       - name: shop
         label: Shop Page
