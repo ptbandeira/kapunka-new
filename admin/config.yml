@@ -196,18 +196,19 @@ shared_sections: &shared_sections
     summary: "Media Showcase · {{fields.title}}"
     fields:
       - { name: "type", widget: "hidden", default: "mediaShowcase" }
-      - { label: "Title", name: "title", widget: "string", i18n: true, required: false }
+      - { label: "Title", name: "title", widget: "string", i18n: true, required: false, hint: "Optional section heading (≤60 characters)." }
       - label: "Items"
         name: "items"
         widget: "list"
         collapsed: false
+        hint: "Add up to four feature cards with imagery and copy."
         fields:
-          - { label: "Eyebrow", name: "eyebrow", widget: "string", i18n: true, required: false }
-          - { label: "Title", name: "title", widget: "string", i18n: true, required: false }
-          - { label: "Body", name: "body", widget: "text", i18n: true, required: false }
+          - { label: "Eyebrow", name: "eyebrow", widget: "string", i18n: true, required: false, hint: "Optional category label above the card title (≤40 characters)." }
+          - { label: "Title", name: "title", widget: "string", i18n: true, required: false, hint: "Card headline (≤60 characters)." }
+          - { label: "Body", name: "body", widget: "text", i18n: true, required: false, hint: "Supporting description for the card (≤240 characters)." }
           - { label: "Image Upload", name: "image", widget: "image", choose_url: true, i18n: true, required: false, hint: "Upload or choose from existing assets." }
-          - { label: "Image Alt Text", name: "imageAlt", widget: "string", i18n: true, required: false }
-          - { label: "CTA Label", name: "ctaLabel", widget: "string", i18n: true, required: false }
+          - { label: "Image Alt Text", name: "imageAlt", widget: "string", i18n: true, required: false, hint: "Describe the image for accessibility (≤120 characters)." }
+          - { label: "CTA Label", name: "ctaLabel", widget: "string", i18n: true, required: false, hint: "Button label for the card (≤24 characters)." }
           - { label: "CTA Href", name: "ctaHref", widget: "string", i18n: true, required: false, hint: "Supports internal (#/ or /path) and external URLs." }
   - &section_featureGrid
     label: "Feature Grid"
@@ -216,16 +217,17 @@ shared_sections: &shared_sections
     summary: "Feature Grid · {{fields.title}}"
     fields:
       - { name: "type", widget: "hidden", default: "featureGrid" }
-      - { label: "Title", name: "title", widget: "string", i18n: true, required: false }
-      - { label: "Columns", name: "columns", widget: "number", value_type: "int", min: 1, max: 4, required: false }
+      - { label: "Title", name: "title", widget: "string", i18n: true, required: false, hint: "Optional heading displayed above the features (≤60 characters)." }
+      - { label: "Columns", name: "columns", widget: "number", value_type: "int", min: 1, max: 4, required: false, hint: "Override the number of columns shown (1–4)." }
       - label: "Items"
         name: "items"
         widget: "list"
         collapsed: true
         summary: "{{fields.label}}"
+        hint: "Add the individual product or service features to highlight."
         fields:
-          - { label: "Label", name: "label", widget: "string", i18n: true, required: false }
-          - { label: "Description", name: "description", widget: "markdown", i18n: true, required: false }
+          - { label: "Label", name: "label", widget: "string", i18n: true, required: false, hint: "Feature title (≤60 characters)." }
+          - { label: "Description", name: "description", widget: "markdown", i18n: true, required: false, hint: "Use Markdown for supporting detail (≤300 characters)." }
   - &section_productGrid
     label: "Product Grid"
     name: "productGrid"
@@ -233,13 +235,14 @@ shared_sections: &shared_sections
     summary: "Product Grid · {{fields.title}}"
     fields:
       - { name: "type", widget: "hidden", default: "productGrid" }
-      - { label: "Title", name: "title", widget: "string", i18n: true, required: false }
-      - { label: "Columns", name: "columns", widget: "number", value_type: "int", min: 1, max: 4, required: false }
+      - { label: "Title", name: "title", widget: "string", i18n: true, required: false, hint: "Heading for the product grid (≤60 characters)." }
+      - { label: "Columns", name: "columns", widget: "number", value_type: "int", min: 1, max: 4, required: false, hint: "Override how many products show per row (1–4)." }
       - label: "Products"
         name: "products"
         widget: "list"
         collapsed: true
         summary: "{{fields.id}}"
+        hint: "Select the individual products to feature in this grid."
         field:
           label: "Product"
           name: "id"
@@ -282,11 +285,13 @@ shared_sections: &shared_sections
         widget: "string"
         i18n: true
         required: false
+        hint: "Headline shown above the carousel (≤60 characters)."
       - label: "Slides"
         name: "slides"
         widget: "list"
         collapsed: true
         summary: "{{fields.name}}"
+        hint: "Add community stories or testimonials to rotate."
         fields:
           - label: "Image Upload"
             name: "image"
@@ -300,21 +305,25 @@ shared_sections: &shared_sections
             widget: "string"
             i18n: true
             required: false
+            hint: "Describe the slide imagery (≤120 characters)."
           - label: "Quote"
             name: "quote"
             widget: "markdown"
             i18n: true
             required: false
+            hint: "Optional quote or caption for the slide (≤320 characters)."
           - label: "Name"
             name: "name"
             widget: "string"
             i18n: true
             required: false
+            hint: "Name of the person or partner featured (≤60 characters)."
           - label: "Role or Context"
             name: "role"
             widget: "string"
             i18n: true
             required: false
+            hint: "Role, clinic, or location shown under the name (≤60 characters)."
           - label: "Slide Duration (ms)"
             name: "slideDuration"
             widget: "number"
@@ -334,15 +343,16 @@ shared_sections: &shared_sections
     summary: "FAQ · {{fields.title}}"
     fields:
       - { name: "type", widget: "hidden", default: "faq" }
-      - { label: "Title", name: "title", widget: "string", i18n: true, required: false }
+      - { label: "Title", name: "title", widget: "string", i18n: true, required: false, hint: "Heading displayed above the FAQ (≤60 characters)." }
       - label: "Items"
         name: "items"
         widget: "list"
         collapsed: true
         summary: "{{fields.q}}"
+        hint: "Add visitor questions and helpful answers."
         fields:
-          - { label: "Question", name: "q", widget: "string", i18n: true }
-          - { label: "Answer", name: "a", widget: "markdown", i18n: true }
+          - { label: "Question", name: "q", widget: "string", i18n: true, hint: "FAQ question phrased clearly (≤100 characters)." }
+          - { label: "Answer", name: "a", widget: "markdown", i18n: true, hint: "Use Markdown for concise answers (≤400 characters)." }
   - &section_banner
     label: "Banner"
     name: "banner"
@@ -350,10 +360,10 @@ shared_sections: &shared_sections
     summary: "Banner · {{fields.text}}"
     fields:
       - { name: "type", widget: "hidden", default: "banner" }
-      - { label: "Text", name: "text", widget: "string", i18n: true, required: false }
-      - { label: "CTA Label", name: "cta", widget: "string", i18n: true, required: false }
-      - { label: "CTA URL", name: "url", widget: "string", i18n: true, required: false }
-      - { label: "Style", name: "style", widget: "select", options: ["muted", "inset"], required: false }
+      - { label: "Text", name: "text", widget: "string", i18n: true, required: false, hint: "Banner announcement copy (≤140 characters)." }
+      - { label: "CTA Label", name: "cta", widget: "string", i18n: true, required: false, hint: "Optional button label (≤24 characters)." }
+      - { label: "CTA URL", name: "url", widget: "string", i18n: true, required: false, hint: "Destination for the banner CTA (https:// or /path)." }
+      - { label: "Style", name: "style", widget: "select", options: ["muted", "inset"], required: false, hint: "Choose between muted or inset banner styling." }
   - &section_newsletterSignup
     label: "Newsletter Signup"
     name: "newsletterSignup"
@@ -361,11 +371,11 @@ shared_sections: &shared_sections
     summary: "Newsletter · {{fields.title}}"
     fields:
       - { name: "type", widget: "hidden", default: "newsletterSignup" }
-      - { label: "Title", name: "title", widget: "string", i18n: true, required: false }
-      - { label: "Subtitle", name: "subtitle", widget: "text", i18n: true, required: false }
-      - { label: "Email Placeholder", name: "placeholder", widget: "string", i18n: true, required: false }
-      - { label: "CTA Label", name: "ctaLabel", widget: "string", i18n: true, required: false }
-      - { label: "Confirmation Message", name: "confirmation", widget: "text", i18n: true, required: false }
+      - { label: "Title", name: "title", widget: "string", i18n: true, required: false, hint: "Headline encouraging newsletter signups (≤60 characters)." }
+      - { label: "Subtitle", name: "subtitle", widget: "text", i18n: true, required: false, hint: "Supportive message explaining the value (≤200 characters)." }
+      - { label: "Email Placeholder", name: "placeholder", widget: "string", i18n: true, required: false, hint: "Input placeholder text for the email field (≤40 characters)." }
+      - { label: "CTA Label", name: "ctaLabel", widget: "string", i18n: true, required: false, hint: "Submit button label (≤20 characters)." }
+      - { label: "Confirmation Message", name: "confirmation", widget: "text", i18n: true, required: false, hint: "Success message after form submission (≤200 characters)." }
       - label: "Background"
         name: "background"
         widget: "select"
@@ -375,6 +385,7 @@ shared_sections: &shared_sections
           - { label: "Light stone", value: "light" }
           - { label: "Warm beige", value: "beige" }
           - { label: "Dark", value: "dark" }
+        hint: "Select the background style for the signup block."
       - label: "Alignment"
         name: "alignment"
         widget: "select"
@@ -383,6 +394,7 @@ shared_sections: &shared_sections
         options:
           - { label: "Center", value: "center" }
           - { label: "Left", value: "left" }
+        hint: "Choose how the form aligns within the section."
   - &section_videoGallery
     label: "Video Gallery"
     name: "videoGallery"
@@ -390,18 +402,19 @@ shared_sections: &shared_sections
     summary: "Video Gallery · {{fields.title}}"
     fields:
       - { name: "type", widget: "hidden", default: "videoGallery" }
-      - { label: "Title", name: "title", widget: "string", i18n: true, required: false }
-      - { label: "Description", name: "description", widget: "text", i18n: true, required: false }
+      - { label: "Title", name: "title", widget: "string", i18n: true, required: false, hint: "Section heading for the video gallery (≤60 characters)." }
+      - { label: "Description", name: "description", widget: "text", i18n: true, required: false, hint: "Introductory copy describing the gallery (≤200 characters)." }
       - label: "Entries"
         name: "entries"
         widget: "list"
         collapsed: true
         summary: "{{fields.title}}"
+        hint: "Add each video with a title, description, and URL."
         fields:
-          - { label: "Title", name: "title", widget: "string", i18n: true, required: false }
-          - { label: "Description", name: "description", widget: "text", i18n: true, required: false }
-          - { label: "Video URL", name: "videoUrl", widget: "string", required: false }
-          - { label: "Thumbnail", name: "thumbnail", widget: "image", choose_url: true, required: false }
+          - { label: "Title", name: "title", widget: "string", i18n: true, required: false, hint: "Video title (≤80 characters)." }
+          - { label: "Description", name: "description", widget: "text", i18n: true, required: false, hint: "Brief description of the video content (≤240 characters)." }
+          - { label: "Video URL", name: "videoUrl", widget: "string", required: false, hint: "Link to the hosted video (YouTube, Vimeo, etc.)." }
+          - { label: "Thumbnail", name: "thumbnail", widget: "image", choose_url: true, required: false, hint: "Upload a preview image for the video." }
   - &section_trainingList
     label: "Training List"
     name: "trainingList"
@@ -409,17 +422,18 @@ shared_sections: &shared_sections
     summary: "Training List · {{fields.title}}"
     fields:
       - { name: "type", widget: "hidden", default: "trainingList" }
-      - { label: "Title", name: "title", widget: "string", i18n: true, required: false }
-      - { label: "Description", name: "description", widget: "text", i18n: true, required: false }
+      - { label: "Title", name: "title", widget: "string", i18n: true, required: false, hint: "Headline for the training opportunities (≤60 characters)." }
+      - { label: "Description", name: "description", widget: "text", i18n: true, required: false, hint: "Overview of the training offerings (≤200 characters)." }
       - label: "Entries"
         name: "entries"
         widget: "list"
         collapsed: true
         summary: "{{fields.courseTitle}}"
+        hint: "List each training course that is available."
         fields:
-          - { label: "Course Title", name: "courseTitle", widget: "string", i18n: true, required: false }
-          - { label: "Summary", name: "courseSummary", widget: "text", i18n: true, required: false }
-          - { label: "Link URL", name: "linkUrl", widget: "string", i18n: true, required: false }
+          - { label: "Course Title", name: "courseTitle", widget: "string", i18n: true, required: false, hint: "Name of the course (≤80 characters)." }
+          - { label: "Summary", name: "courseSummary", widget: "text", i18n: true, required: false, hint: "Brief description of what the course covers (≤240 characters)." }
+          - { label: "Link URL", name: "linkUrl", widget: "string", i18n: true, required: false, hint: "URL to learn more or register for the course." }
   - &section_timeline
     label: "Timeline"
     name: "timeline"
@@ -427,17 +441,18 @@ shared_sections: &shared_sections
     summary: "Timeline · {{fields.title}}"
     fields:
       - { name: "type", widget: "hidden", default: "timeline" }
-      - { label: "Title", name: "title", widget: "string", i18n: true, required: false }
+      - { label: "Title", name: "title", widget: "string", i18n: true, required: false, hint: "Timeline section heading (≤60 characters)." }
       - label: "Entries"
         name: "entries"
         widget: "list"
         collapsed: true
         summary: "{{fields.year}}"
+        hint: "Add chronological milestones to tell the story."
         fields:
-          - { label: "Year", name: "year", widget: "string", i18n: true }
-          - { label: "Title", name: "title", widget: "string", i18n: true }
-          - { label: "Description", name: "description", widget: "markdown", i18n: true }
-          - { label: "Image", name: "image", widget: "image", choose_url: true, required: false }
+          - { label: "Year", name: "year", widget: "string", i18n: true, hint: "Year or short date marker (≤12 characters)." }
+          - { label: "Title", name: "title", widget: "string", i18n: true, hint: "Headline for the milestone (≤80 characters)." }
+          - { label: "Description", name: "description", widget: "markdown", i18n: true, hint: "Expanded detail about the milestone (≤400 characters)." }
+          - { label: "Image", name: "image", widget: "image", choose_url: true, required: false, hint: "Optional supporting image for the milestone." }
   - &section_facts
     label: "Facts"
     name: "facts"
@@ -445,8 +460,8 @@ shared_sections: &shared_sections
     summary: "Facts · {{fields.title}}"
     fields:
       - { name: "type", widget: "hidden", default: "facts" }
-      - { label: "Title", name: "title", widget: "string", i18n: true }
-      - { label: "Body", name: "text", widget: "text", i18n: true }
+      - { label: "Title", name: "title", widget: "string", i18n: true, hint: "Short headline introducing the fact (≤60 characters)." }
+      - { label: "Body", name: "text", widget: "text", i18n: true, hint: "Supporting statement or statistic (≤240 characters)." }
   - &section_bullets
     label: "Bulleted List"
     name: "bullets"
@@ -454,12 +469,13 @@ shared_sections: &shared_sections
     summary: "Bullets · {{fields.title}}"
     fields:
       - { name: "type", widget: "hidden", default: "bullets" }
-      - { label: "Title", name: "title", widget: "string", i18n: true }
+      - { label: "Title", name: "title", widget: "string", i18n: true, hint: "Bulleted section heading (≤60 characters)." }
       - label: "Items"
         name: "items"
         widget: "list"
         collapsed: true
-        field: { label: "Item", name: "item", widget: "string", i18n: true }
+        hint: "Add each bullet point to share quick highlights."
+        field: { label: "Item", name: "item", widget: "string", i18n: true, hint: "Single bullet point (≤120 characters)." }
   - &section_specialties
     label: "Specialties"
     name: "specialties"
@@ -467,20 +483,22 @@ shared_sections: &shared_sections
     summary: "Specialties · {{fields.title}}"
     fields:
       - { name: "type", widget: "hidden", default: "specialties" }
-      - { label: "Title", name: "title", widget: "string", i18n: true, required: false }
+      - { label: "Title", name: "title", widget: "string", i18n: true, required: false, hint: "Overall heading for the specialties section (≤60 characters)." }
       - label: "Specialties"
         name: "items"
         widget: "list"
         collapsed: true
         summary: "{{fields.title}}"
+        hint: "Add each specialty block with bullets."
         fields:
-          - { label: "Specialty Title", name: "title", widget: "string", i18n: true }
+          - { label: "Specialty Title", name: "title", widget: "string", i18n: true, hint: "Name of the specialty focus (≤60 characters)." }
           - label: "Bullets"
             name: "bullets"
             widget: "list"
-            field: { label: "Bullet", name: "bullet", widget: "string", i18n: true }
-meta_title_field: &meta_title_field { label: "Meta Title", name: "metaTitle", widget: "string", i18n: true, required: false }
-meta_description_field: &meta_description_field { label: "Meta Description", name: "metaDescription", widget: "text", i18n: true, required: false }
+            hint: "List supporting points for the specialty."
+            field: { label: "Bullet", name: "bullet", widget: "string", i18n: true, hint: "Individual specialty detail (≤120 characters)." }
+meta_title_field: &meta_title_field { label: "Meta Title", name: "metaTitle", widget: "string", i18n: true, required: false, hint: "SEO page title for search results and browser tabs (≤60 characters)." }
+meta_description_field: &meta_description_field { label: "Meta Description", name: "metaDescription", widget: "text", i18n: true, required: false, hint: "Summary shown in search previews (recommended 120–160 characters)." }
 section_library: &section_library
   - *section_hero
   - *section_mediaCopy
@@ -505,6 +523,7 @@ sections_field: &sections_field
   i18n: true
   collapsed: true
   summary: "{{fields.type}} · {{fields.title}}"
+  hint: "Reorder or edit the content sections that compose this page."
   types: *section_library
 
 
@@ -547,12 +566,12 @@ collections:
             name: brand
             widget: object
             fields:
-              - { label: Name, name: name, widget: string, i18n: true }
+              - { label: Name, name: name, widget: string, i18n: true, hint: "Brand name displayed in navigation and metadata. Keep under 40 characters." }
           - label: Home
             name: home
             widget: object
             fields:
-              - { label: Hero Image, name: heroImage, widget: image, choose_url: true }
+              - { label: Hero Image, name: heroImage, widget: image, choose_url: true, hint: "Homepage hero background image. Upload high-quality assets at least 2000px wide." }
               - label: Featured Bestsellers
                 name: featuredProductIds
                 widget: relation
@@ -568,13 +587,14 @@ collections:
                 options_length: 20
                 multiple: true
                 required: false
+                hint: "Optional featured product IDs shown on the homepage carousel. Select up to 6 items."
           - label: Contact
             name: contact
             widget: object
             fields:
-              - { label: Email Address, name: email, widget: string }
-              - { label: Phone Number, name: phone, widget: string }
-              - { label: WhatsApp Link, name: whatsapp, widget: string }
+              - { label: Email Address, name: email, widget: string, hint: "Primary contact email shown on the Contact page. Use a monitored inbox." }
+              - { label: Phone Number, name: phone, widget: string, hint: "Customer service phone number with country code (max 25 characters)." }
+              - { label: WhatsApp Link, name: whatsapp, widget: string, hint: "Full WhatsApp URL (https://wa.me/...). Provides quick chat access." }
           - label: About Page Imagery
             name: about
             widget: object
@@ -588,7 +608,7 @@ collections:
                 name: storyAlt
                 widget: string
                 i18n: true
-                hint: "Provide localized alt copy describing the hero image."
+                hint: "Localized image description (≤120 characters) for accessibility and SEO."
               - label: Argan Sourcing Image
                 name: sourcingImage
                 widget: image
@@ -598,7 +618,7 @@ collections:
                 name: sourcingAlt
                 widget: string
                 i18n: true
-                hint: "Provide localized alt copy describing the sourcing photograph."
+                hint: "Localized description of sourcing image (≤120 characters)."
           - label: For Clinics
             name: clinics
             widget: object
@@ -606,7 +626,7 @@ collections:
               - label: CTA Link
                 name: ctaLink
                 widget: string
-                hint: "Paste the full URL for the For Clinics button (HTTPS only)."
+                hint: "HTTPS link used for the For Clinics CTA button (max 200 characters)."
                 pattern:
                   - '^https://'
                   - "Please enter a secure HTTPS link."
@@ -615,15 +635,15 @@ collections:
             name: footer
             widget: object
             fields:
-              - { label: Legal Name, name: legalName, widget: string, i18n: true }
+              - { label: Legal Name, name: legalName, widget: string, i18n: true, hint: "Registered business name for footer legal line (≤80 characters)." }
               - label: Social Links
                 name: socialLinks
                 widget: list
                 summary: "{{fields.label}}"
                 fields:
-                  - { label: ID, name: id, widget: string }
-                  - { label: Label, name: label, widget: string, i18n: true }
-                  - { label: URL, name: url, widget: string }
+                  - { label: ID, name: id, widget: string, hint: "Stable identifier used by the site for this social link (no spaces)." }
+                  - { label: Label, name: label, widget: string, i18n: true, hint: "Localized social label shown to visitors (≤24 characters)." }
+                  - { label: URL, name: url, widget: string, hint: "Full URL to the social destination (https://...)." }
                   - label: Icon
                     name: icon
                     widget: select
@@ -633,6 +653,7 @@ collections:
                       - { label: LinkedIn, value: linkedin }
                       - { label: YouTube, value: youtube }
                       - { label: Globe, value: globe }
+                    hint: "Choose which icon to display with the social link."
   - name: "assets_images"
     label: "Media / Images"
     label_singular: "Image"
@@ -654,18 +675,18 @@ collections:
         pattern: ".+"
     identifier_field: "title"
     fields:
-      - { label: "Title", name: "title", widget: "string" }
-      - { label: "Image", name: "image", widget: "image", choose_url: false }
-      - { label: "Alt text", name: "alt", widget: "string", required: false, hint: "Descriptive text for accessibility/SEO" }
-      - { label: "Credit / Source", name: "credit", widget: "string", required: false }
-      - { label: "Tags", name: "tags", widget: "list", required: false }
+      - { label: "Title", name: "title", widget: "string", hint: "Internal name for the asset (≤60 characters)." }
+      - { label: "Image", name: "image", widget: "image", choose_url: false, hint: "Upload the source file for this asset." }
+      - { label: "Alt text", name: "alt", widget: "string", required: false, hint: "Descriptive copy for accessibility and SEO (≤120 characters)." }
+      - { label: "Credit / Source", name: "credit", widget: "string", required: false, hint: "Optional attribution or photographer credit (≤80 characters)." }
+      - { label: "Tags", name: "tags", widget: "list", required: false, hint: "Add descriptors to group related images." }
       - label: "Focal point"
         name: "focal"
         widget: "object"
         required: false
         fields:
-          - { label: "x (0..1)", name: "x", widget: "number", value_type: "float", min: 0, max: 1, required: false }
-          - { label: "y (0..1)", name: "y", widget: "number", value_type: "float", min: 0, max: 1, required: false }
+          - { label: "x (0..1)", name: "x", widget: "number", value_type: "float", min: 0, max: 1, required: false, hint: "Horizontal focal point as a decimal between 0 and 1." }
+          - { label: "y (0..1)", name: "y", widget: "number", value_type: "float", min: 0, max: 1, required: false, hint: "Vertical focal point as a decimal between 0 and 1." }
   - name: pages
     label: Page Builder
     label_singular: Page
@@ -690,12 +711,13 @@ collections:
             widget: "string"
             i18n: true
             required: false
-            hint: "Primary hero statement shown on the homepage."
+            hint: "Primary hero statement shown on the homepage (≤80 characters)."
           - label: "Hero Subheadline"
             name: "heroSubheadline"
             widget: "text"
             i18n: true
             required: false
+            hint: "Supporting message beneath the hero headline (≤200 characters)."
           - label: "Hero CTAs"
             name: "heroCtas"
             widget: "object"
@@ -708,16 +730,16 @@ collections:
                 collapsed: true
                 required: false
                 fields:
-                  - { label: "Label", name: "label", widget: "string", i18n: true, required: false }
-                  - { label: "Link URL", name: "href", widget: "string", i18n: true, required: false, hint: "Use internal routes (e.g. /shop) or full URLs." }
+                  - { label: "Label", name: "label", widget: "string", i18n: true, required: false, hint: "Button text for the primary CTA (≤24 characters)." }
+                  - { label: "Link URL", name: "href", widget: "string", i18n: true, required: false, hint: "Destination for the primary CTA. Use internal routes (e.g. /shop) or full https:// URLs." }
               - label: "Secondary CTA"
                 name: "ctaSecondary"
                 widget: "object"
                 collapsed: true
                 required: false
                 fields:
-                  - { label: "Label", name: "label", widget: "string", i18n: true, required: false }
-                  - { label: "Link URL", name: "href", widget: "string", i18n: true, required: false }
+                  - { label: "Label", name: "label", widget: "string", i18n: true, required: false, hint: "Button text for the secondary CTA (≤24 characters)." }
+                  - { label: "Link URL", name: "href", widget: "string", i18n: true, required: false, hint: "Optional supporting CTA URL. Use internal routes or full https:// links." }
           - label: "Hero Alignment"
             name: "heroAlignment"
             widget: "object"
@@ -734,6 +756,7 @@ collections:
                   - { label: "Center", value: "center" }
                   - { label: "Right", value: "right" }
                 default: "left"
+                hint: "Positions hero copy horizontally when using split layouts."
               - label: "Vertical Alignment"
                 name: "heroAlignY"
                 widget: "select"
@@ -743,6 +766,7 @@ collections:
                   - { label: "Middle", value: "middle" }
                   - { label: "Bottom", value: "bottom" }
                 default: "middle"
+                hint: "Controls vertical placement of the hero text."
               - label: "Text Display"
                 name: "heroTextPosition"
                 widget: "select"
@@ -751,6 +775,7 @@ collections:
                   - { label: "Overlay (on top of media)", value: "overlay" }
                   - { label: "Below media", value: "below" }
                 default: "overlay"
+                hint: "Choose whether hero copy sits over the media or below it."
               - label: "Overlay Text Anchor"
                 name: "heroTextAnchor"
                 widget: "select"
@@ -767,6 +792,7 @@ collections:
                   - { label: "Bottom center", value: "bottom-center" }
                   - { label: "Bottom right", value: "bottom-right" }
                 default: "middle-left"
+                hint: "Fine-tune the overlay anchor when hero text sits on top of imagery."
               - label: "Overlay Strength"
                 name: "heroOverlay"
                 widget: "select"
@@ -777,6 +803,7 @@ collections:
                   - { label: "Medium", value: "medium" }
                   - { label: "Strong", value: "strong" }
                 default: "medium"
+                hint: "Adjusts the opacity of the overlay scrim for readability."
               - label: "Layout Hint"
                 name: "heroLayoutHint"
                 widget: "select"
@@ -790,6 +817,7 @@ collections:
                   - { label: "Text over media", value: "text-over-media" }
                   - { label: "Side-by-side", value: "side-by-side" }
                 default: "bg"
+                hint: "Provides a layout suggestion for designers and developers."
           - label: "Hero Images"
             name: "heroImages"
             widget: "object"
@@ -825,19 +853,22 @@ collections:
             widget: "string"
             i18n: true
             required: false
+            hint: "Main Learn hero heading (≤80 characters)."
           - label: "Hero Subtitle"
             name: "heroSubtitle"
             widget: "text"
             i18n: true
             required: false
+            hint: "Supporting sentence under the Learn hero title (≤200 characters)."
           - label: "Categories"
             name: "categories"
             widget: "list"
             collapsed: true
             summary: "{{fields.label}}"
+            hint: "Define Learn hub navigation categories shown on the page."
             fields:
-              - { label: "ID", name: "id", widget: "string" }
-              - { label: "Label", name: "label", widget: "string", i18n: true }
+              - { label: "ID", name: "id", widget: "string", hint: "Slug-friendly ID used to group articles. Use lowercase and dashes." }
+              - { label: "Label", name: "label", widget: "string", i18n: true, hint: "Localized category label (≤30 characters)." }
           - *sections_field
       - name: method
         label: Method Page
@@ -852,19 +883,20 @@ collections:
         fields:
           - *meta_title_field
           - *meta_description_field
-          - { label: "Hero Title", name: "heroTitle", widget: "string", i18n: true, required: false }
-          - { label: "Hero Subtitle", name: "heroSubtitle", widget: "text", i18n: true, required: false }
+          - { label: "Hero Title", name: "heroTitle", widget: "string", i18n: true, required: false, hint: "Method hero heading focused on clinical story (≤80 characters)." }
+          - { label: "Hero Subtitle", name: "heroSubtitle", widget: "text", i18n: true, required: false, hint: "Hero supporting copy summarizing the method (≤200 characters)." }
           - label: "Clinical Notes"
             name: "clinicalNotes"
             widget: "list"
             collapsed: true
             summary: "{{fields.title}}"
+            hint: "List of structured protocol notes displayed in the Method overview."
             fields:
-              - { label: "Title", name: "title", widget: "string", i18n: true }
+              - { label: "Title", name: "title", widget: "string", i18n: true, hint: "Note headline (≤60 characters)." }
               - label: "Bullets"
                 name: "bullets"
                 widget: "list"
-                field: { label: "Bullet", name: "bullet", widget: "string", i18n: true }
+                field: { label: "Bullet", name: "bullet", widget: "string", i18n: true, hint: "Key takeaway supporting the clinical note (≤120 characters)." }
           - label: "Sections"
             name: "sections"
             widget: "list"
@@ -892,58 +924,65 @@ collections:
             widget: "string"
             i18n: true
             required: false
+            hint: "Top hero heading introducing the Clinics page (≤80 characters)."
           - label: "Header Subtitle"
             name: "headerSubtitle"
             widget: "text"
             i18n: true
             required: false
+            hint: "Supporting hero sentence for clinics (≤200 characters)."
           - label: "Intro Section"
             name: "intro"
             widget: "object"
             collapsed: true
             required: false
+            hint: "Opening paragraphs that describe the clinics program."
             fields:
-              - { label: "Title", name: "title", widget: "string", i18n: true, required: false }
-              - { label: "Paragraph 1", name: "text1", widget: "text", i18n: true, required: false }
-              - { label: "Paragraph 2", name: "text2", widget: "text", i18n: true, required: false }
+              - { label: "Title", name: "title", widget: "string", i18n: true, required: false, hint: "Intro heading (≤60 characters)." }
+              - { label: "Paragraph 1", name: "text1", widget: "text", i18n: true, required: false, hint: "First paragraph describing the clinic experience (≤400 characters)." }
+              - { label: "Paragraph 2", name: "text2", widget: "text", i18n: true, required: false, hint: "Optional second paragraph (≤400 characters)." }
           - label: "Protocol Section"
             name: "protocolSection"
             widget: "object"
             collapsed: true
             required: false
+            hint: "Details outlining the clinic protocol steps."
             fields:
-              - { label: "Title", name: "title", widget: "string", i18n: true, required: false }
-              - { label: "Subtitle", name: "subtitle", widget: "text", i18n: true, required: false }
+              - { label: "Title", name: "title", widget: "string", i18n: true, required: false, hint: "Protocol heading (≤60 characters)." }
+              - { label: "Subtitle", name: "subtitle", widget: "text", i18n: true, required: false, hint: "Short description introducing the protocol (≤240 characters)." }
               - label: "Cards"
                 name: "cards"
                 widget: "list"
                 collapsed: true
                 summary: "{{fields.title}}"
+                hint: "Break down protocol steps or focus areas."
                 fields:
-                  - { label: "Card Title", name: "title", widget: "string", i18n: true }
-                  - { label: "Focus", name: "focus", widget: "text", i18n: true, required: false }
+                  - { label: "Card Title", name: "title", widget: "string", i18n: true, hint: "Card heading (≤60 characters)." }
+                  - { label: "Focus", name: "focus", widget: "text", i18n: true, required: false, hint: "Key focus statement for the card (≤200 characters)." }
                   - label: "Steps"
                     name: "steps"
                     widget: "list"
-                    field: { label: "Step", name: "step", widget: "text", i18n: true }
-                  - { label: "Evidence", name: "evidence", widget: "text", i18n: true, required: false }
+                    field: { label: "Step", name: "step", widget: "text", i18n: true, hint: "Individual protocol step (≤160 characters)." }
+                  - { label: "Evidence", name: "evidence", widget: "text", i18n: true, required: false, hint: "Optional supporting evidence or proof points (≤200 characters)." }
           - label: "References Section"
             name: "referencesSection"
             widget: "object"
             collapsed: true
             required: false
+            hint: "Published research and testimonial references for clinics."
             fields:
-              - { label: "Title", name: "title", widget: "string", i18n: true, required: false }
-              - { label: "Studies Title", name: "studiesTitle", widget: "string", i18n: true, required: false }
+              - { label: "Title", name: "title", widget: "string", i18n: true, required: false, hint: "Section heading for references (≤60 characters)." }
+              - { label: "Studies Title", name: "studiesTitle", widget: "string", i18n: true, required: false, hint: "Subheading above the study list (≤60 characters)." }
               - label: "Studies"
                 name: "studies"
                 widget: "list"
                 collapsed: true
                 summary: "{{fields.title}}"
+                hint: "Add cited studies that support the clinics program."
                 fields:
-                  - { label: "Study Title", name: "title", widget: "string", i18n: true }
-                  - { label: "Study Details", name: "details", widget: "text", i18n: true, required: false }
-              - { label: "Testimonials Title", name: "testimonialsTitle", widget: "string", i18n: true, required: false }
+                  - { label: "Study Title", name: "title", widget: "string", i18n: true, hint: "Name of the study (≤80 characters)." }
+                  - { label: "Study Details", name: "details", widget: "text", i18n: true, required: false, hint: "Brief description or citation details (≤240 characters)." }
+              - { label: "Testimonials Title", name: "testimonialsTitle", widget: "string", i18n: true, required: false, hint: "Heading above the testimonials list (≤60 characters)." }
               - label: "Selected Testimonials"
                 name: "testimonialRefs"
                 widget: "list"
@@ -969,61 +1008,71 @@ collections:
                 widget: "list"
                 collapsed: true
                 summary: "{{fields.author.en}}"
+                hint: "Author new testimonials specific to clinics when needed."
                 fields: *testimonial_fields
           - label: "Keyword Section"
             name: "keywordSection"
             widget: "object"
             collapsed: true
             required: false
+            hint: "Optional list of focus keywords for clinics."
             fields:
-              - { label: "Title", name: "title", widget: "string", i18n: true, required: false }
-              - { label: "Subtitle", name: "subtitle", widget: "text", i18n: true, required: false }
+              - { label: "Title", name: "title", widget: "string", i18n: true, required: false, hint: "Keywords heading (≤60 characters)." }
+              - { label: "Subtitle", name: "subtitle", widget: "text", i18n: true, required: false, hint: "Optional descriptive copy above keywords (≤200 characters)." }
               - label: "Keywords"
                 name: "keywords"
                 widget: "list"
                 collapsed: true
-                field: { label: "Keyword", name: "keyword", widget: "string", i18n: true }
+                hint: "List up to 8 focus keywords for clinics."
+                field: { label: "Keyword", name: "keyword", widget: "string", i18n: true, hint: "Individual keyword or short phrase (≤40 characters)." }
           - label: "FAQ Section"
             name: "faqSection"
             widget: "object"
             collapsed: true
             required: false
+            hint: "Frequently asked questions specific to clinics."
             fields:
-              - { label: "Title", name: "title", widget: "string", i18n: true, required: false }
-              - { label: "Subtitle", name: "subtitle", widget: "text", i18n: true, required: false }
+              - { label: "Title", name: "title", widget: "string", i18n: true, required: false, hint: "FAQ heading (≤60 characters)." }
+              - { label: "Subtitle", name: "subtitle", widget: "text", i18n: true, required: false, hint: "Optional intro text for the FAQ (≤200 characters)." }
               - label: "Items"
                 name: "items"
                 widget: "list"
                 collapsed: true
                 summary: "{{fields.question}}"
+                hint: "Add the most common clinic questions and answers."
                 fields:
-                  - { label: "Question", name: "question", widget: "string", i18n: true }
-                  - { label: "Answer", name: "answer", widget: "text", i18n: true }
+                  - { label: "Question", name: "question", widget: "string", i18n: true, hint: "FAQ question phrased succinctly (≤100 characters)." }
+                  - { label: "Answer", name: "answer", widget: "text", i18n: true, hint: "Concise answer that supports clinics (≤400 characters)." }
           - label: "Doctors Title"
             name: "doctorsTitle"
             widget: "string"
             i18n: true
             required: false
+            hint: "Heading for the clinicians carousel (≤60 characters)."
           - label: "CTA Title"
             name: "ctaTitle"
             widget: "string"
             i18n: true
             required: false
+            hint: "Headline encouraging clinics to engage (≤60 characters)."
           - label: "CTA Subtitle"
             name: "ctaSubtitle"
             widget: "text"
             i18n: true
             required: false
+            hint: "Supporting CTA copy (≤200 characters)."
           - label: "CTA Button Label"
             name: "ctaButton"
             widget: "string"
             i18n: true
             required: false
+            hint: "Call-to-action button text (≤24 characters)."
           - label: "Partners Title"
             name: "partnersTitle"
             widget: "string"
             i18n: true
             required: false
+            hint: "Heading displayed above clinic partners (≤60 characters)."
           - *sections_field
       - name: about
         label: About Page
@@ -1067,22 +1116,23 @@ collections:
             widget: list
             collapsed: true
             summary: "{{fields.title.en}}"
+            hint: "Configure each shop collection shown on the Shop page."
             fields:
-              - { label: ID, name: id, widget: string }
+              - { label: ID, name: id, widget: string, hint: "Unique identifier used in the shop layout. Use lowercase and dashes." }
               - label: Title
                 name: title
                 widget: object
                 fields:
-                  - { label: English, name: en, widget: string }
-                  - { label: Portuguese, name: pt, widget: string }
-                  - { label: Spanish, name: es, widget: string }
+                  - { label: English, name: en, widget: string, hint: "English collection title (≤60 characters)." }
+                  - { label: Portuguese, name: pt, widget: string, hint: "Portuguese collection title (≤60 characters)." }
+                  - { label: Spanish, name: es, widget: string, hint: "Spanish collection title (≤60 characters)." }
               - label: Introductory Copy
                 name: intro
                 widget: object
                 fields:
-                  - { label: English, name: en, widget: text }
-                  - { label: Portuguese, name: pt, widget: text }
-                  - { label: Spanish, name: es, widget: text }
+                  - { label: English, name: en, widget: text, hint: "English intro paragraph for the collection (≤400 characters)." }
+                  - { label: Portuguese, name: pt, widget: text, hint: "Portuguese intro paragraph for the collection (≤400 characters)." }
+                  - { label: Spanish, name: es, widget: text, hint: "Spanish intro paragraph for the collection (≤400 characters)." }
               - label: Product IDs
                 name: productIds
                 widget: relation
@@ -1097,14 +1147,15 @@ collections:
                   - name.en
                 value_field: id
                 options_length: 20
-                hint: "Products shown for this collection."
+                hint: "Select the products that appear in this collection. Choose up to 12 items."
               - label: Related Links
                 name: links
                 widget: list
                 collapsed: true
                 summary: "{{fields.label.en}}"
+                hint: "Optional links to highlight related products or content."
                 fields:
-                  - { label: ID, name: id, widget: string }
+                  - { label: ID, name: id, widget: string, hint: "Unique identifier for the related link." }
                   - label: Type
                     name: type
                     widget: select
@@ -1112,14 +1163,15 @@ collections:
                       - { label: "Product", value: "product" }
                       - { label: "Learn Article", value: "article" }
                       - { label: "Clinic Use-Case", value: "clinics" }
-                  - { label: URL, name: url, widget: string }
+                    hint: "Determine how the link should be treated in the UI."
+                  - { label: URL, name: url, widget: string, hint: "Destination URL for the related link (https:// or /path)." }
                   - label: Link Label
                     name: label
                     widget: object
                     fields:
-                      - { label: English, name: en, widget: string }
-                      - { label: Portuguese, name: pt, widget: string }
-                      - { label: Spanish, name: es, widget: string }
+                      - { label: English, name: en, widget: string, hint: "English link label (≤40 characters)." }
+                      - { label: Portuguese, name: pt, widget: string, hint: "Portuguese link label (≤40 characters)." }
+                      - { label: Spanish, name: es, widget: string, hint: "Spanish link label (≤40 characters)." }
 
   - name: "mediaSets"
     label: "Media Sets"
@@ -1128,14 +1180,15 @@ collections:
     slug: "{{slug}}"
     i18n: false
     fields:
-      - { label: "Title", name: "title", widget: "string" }
+      - { label: "Title", name: "title", widget: "string", hint: "Internal media set name (≤80 characters)." }
       - label: "Images"
         name: "images"
         widget: "list"
         summary: "{{fields.caption | default('Image')}}"
+        hint: "Add one or more images included in this set."
         fields:
-          - { label: "Image", name: "src", widget: "image" }
-          - { label: "Caption (optional)", name: "caption", widget: "string", required: false }
+          - { label: "Image", name: "src", widget: "image", hint: "Upload the image file for this media set item." }
+          - { label: "Caption (optional)", name: "caption", widget: "string", required: false, hint: "Short caption describing the image (≤120 characters)." }
   - name: translations
     label: Translations
     files:
@@ -1149,14 +1202,14 @@ collections:
             name: en
             widget: object
             fields:
-              - { label: Shop Link, name: shop, widget: string }
-              - { label: Learn Link, name: learn, widget: string }
-              - { label: Videos Link, name: videos, widget: string }
-              - { label: Training Link, name: training, widget: string }
-              - { label: Method Link, name: method, widget: string }
-              - { label: Clinics Link, name: forClinics, widget: string }
-              - { label: About Link, name: about, widget: string }
-              - { label: Contact Link, name: contact, widget: string }
+              - { label: Shop Link, name: shop, widget: string, hint: "Header navigation label for the Shop link (≤16 characters)." }
+              - { label: Learn Link, name: learn, widget: string, hint: "Header navigation label for the Learn link (≤16 characters)." }
+              - { label: Videos Link, name: videos, widget: string, hint: "Header navigation label for Videos (≤16 characters)." }
+              - { label: Training Link, name: training, widget: string, hint: "Header navigation label for Training (≤16 characters)." }
+              - { label: Method Link, name: method, widget: string, hint: "Header navigation label for Method (≤16 characters)." }
+              - { label: Clinics Link, name: forClinics, widget: string, hint: "Header navigation label for For Clinics (≤20 characters)." }
+              - { label: About Link, name: about, widget: string, hint: "Header navigation label for About (≤16 characters)." }
+              - { label: Contact Link, name: contact, widget: string, hint: "Header navigation label for Contact (≤16 characters)." }
           - <<: *nav_fields
             label: Portuguese
             name: pt
@@ -1173,16 +1226,16 @@ collections:
             name: en
             widget: object
             fields:
-              - { label: Loading, name: loading, widget: string }
-              - { label: Loading Products, name: loadingProducts, widget: string }
-              - { label: Loading Bestsellers, name: loadingBestsellers, widget: string }
-              - { label: Loading Reviews, name: loadingReviews, widget: string }
-              - { label: Loading Courses, name: loadingCourses, widget: string }
-              - { label: Loading Professionals, name: loadingProfessionals, widget: string }
-              - { label: Loading Article, name: loadingArticle, widget: string }
-              - { label: Loading Policies, name: loadingPolicies, widget: string }
-              - { label: Loading Cart, name: loadingCart, widget: string }
-              - { label: Loading Product, name: loadingProduct, widget: string }
+              - { label: Loading, name: loading, widget: string, hint: "Generic loading state copy (≤40 characters)." }
+              - { label: Loading Products, name: loadingProducts, widget: string, hint: "Loading message for product lists (≤40 characters)." }
+              - { label: Loading Bestsellers, name: loadingBestsellers, widget: string, hint: "Loading message for bestsellers (≤40 characters)." }
+              - { label: Loading Reviews, name: loadingReviews, widget: string, hint: "Loading message for reviews (≤40 characters)." }
+              - { label: Loading Courses, name: loadingCourses, widget: string, hint: "Loading message for courses (≤40 characters)." }
+              - { label: Loading Professionals, name: loadingProfessionals, widget: string, hint: "Loading message for professionals list (≤40 characters)." }
+              - { label: Loading Article, name: loadingArticle, widget: string, hint: "Loading message for article pages (≤40 characters)." }
+              - { label: Loading Policies, name: loadingPolicies, widget: string, hint: "Loading message for policies list (≤40 characters)." }
+              - { label: Loading Cart, name: loadingCart, widget: string, hint: "Loading message for the cart (≤40 characters)." }
+              - { label: Loading Product, name: loadingProduct, widget: string, hint: "Loading message for a single product (≤40 characters)." }
           - <<: *common_fields
             label: Portuguese
             name: pt
@@ -1199,19 +1252,19 @@ collections:
             name: en
             widget: object
             fields:
-              - { label: Tagline, name: tagline, widget: string }
-              - { label: Follow Us, name: followUs, widget: string }
-              - { label: Shop, name: shop, widget: string }
-              - { label: All Products, name: allProducts, widget: string }
-              - { label: Guides, name: guides, widget: string }
-              - { label: About, name: about, widget: string }
-              - { label: Our Story, name: ourStory, widget: string }
-              - { label: Contact, name: contact, widget: string }
-              - { label: Policies, name: policies, widget: string }
-              - { label: Shipping Policy, name: shipping, widget: string }
-              - { label: Return Policy, name: returns, widget: string }
-              - { label: Privacy Policy, name: privacy, widget: string }
-              - { label: Terms of Service, name: terms, widget: string }
+              - { label: Tagline, name: tagline, widget: string, hint: "Footer brand statement (≤80 characters)." }
+              - { label: Follow Us, name: followUs, widget: string, hint: "Label above social links (≤30 characters)." }
+              - { label: Shop, name: shop, widget: string, hint: "Shop navigation label in footer (≤20 characters)." }
+              - { label: All Products, name: allProducts, widget: string, hint: "Footer link label for all products (≤20 characters)." }
+              - { label: Guides, name: guides, widget: string, hint: "Footer link label for guides (≤20 characters)." }
+              - { label: About, name: about, widget: string, hint: "Footer link label for About (≤20 characters)." }
+              - { label: Our Story, name: ourStory, widget: string, hint: "Footer link label for the story page (≤24 characters)." }
+              - { label: Contact, name: contact, widget: string, hint: "Footer link label for contact (≤20 characters)." }
+              - { label: Policies, name: policies, widget: string, hint: "Footer heading for policies links (≤20 characters)." }
+              - { label: Shipping Policy, name: shipping, widget: string, hint: "Footer link label for shipping policy (≤24 characters)." }
+              - { label: Return Policy, name: returns, widget: string, hint: "Footer link label for return policy (≤24 characters)." }
+              - { label: Privacy Policy, name: privacy, widget: string, hint: "Footer link label for privacy policy (≤24 characters)." }
+              - { label: Terms of Service, name: terms, widget: string, hint: "Footer link label for terms of service (≤24 characters)." }
           - <<: *footer_fields
             label: Portuguese
             name: pt
@@ -1228,10 +1281,10 @@ collections:
             name: en
             widget: object
             fields:
-              - { label: Message, name: message, widget: text }
-              - { label: Learn More Label, name: learnMore, widget: string }
-              - { label: Decline Label, name: decline, widget: string }
-              - { label: Accept Label, name: accept, widget: string }
+              - { label: Message, name: message, widget: text, hint: "Cookies banner body copy (≤240 characters)." }
+              - { label: Learn More Label, name: learnMore, widget: string, hint: "Link text directing users to learn more (≤24 characters)." }
+              - { label: Decline Label, name: decline, widget: string, hint: "Button label to decline cookies (≤16 characters)." }
+              - { label: Accept Label, name: accept, widget: string, hint: "Button label to accept cookies (≤16 characters)." }
           - <<: *cookies_fields
             label: Portuguese
             name: pt
@@ -1248,9 +1301,9 @@ collections:
             name: en
             widget: object
             fields:
-              - { label: Loading Copy, name: loading, widget: string }
-              - { label: Not Found Copy, name: notFound, widget: string }
-              - { label: Contact Prompt, name: contactPrompt, widget: text }
+              - { label: Loading Copy, name: loading, widget: string, hint: "Loading message shown while policies load (≤60 characters)." }
+              - { label: Not Found Copy, name: notFound, widget: string, hint: "Fallback message when a policy is missing (≤120 characters)." }
+              - { label: Contact Prompt, name: contactPrompt, widget: text, hint: "Follow-up guidance shown on missing policy pages (≤240 characters)." }
           - <<: *policy_fields
             label: Portuguese
             name: pt
@@ -1267,11 +1320,11 @@ collections:
             name: en
             widget: object
             fields:
-              - { label: Featured Product Label, name: featuredProduct, widget: string }
-              - { label: FAQ Title, name: faqTitle, widget: string }
-              - { label: Back to Library Label, name: backToLibrary, widget: string }
-              - { label: Not Found Copy, name: notFound, widget: string }
-              - { label: Loading Copy, name: loading, widget: string }
+              - { label: Featured Product Label, name: featuredProduct, widget: string, hint: "Label shown above the featured product module (≤40 characters)." }
+              - { label: FAQ Title, name: faqTitle, widget: string, hint: "Headline above the article FAQ section (≤60 characters)." }
+              - { label: Back to Library Label, name: backToLibrary, widget: string, hint: "Button text that returns to the article library (≤32 characters)." }
+              - { label: Not Found Copy, name: notFound, widget: string, hint: "Message shown when the article is missing (≤120 characters)." }
+              - { label: Loading Copy, name: loading, widget: string, hint: "Loading text displayed while the article loads (≤60 characters)." }
           - <<: *article_fields
             label: Portuguese
             name: pt

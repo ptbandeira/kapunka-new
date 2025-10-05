@@ -11,6 +11,11 @@ This log records day-to-day investigations, fixes, and decisions that affect the
 
 ---
 
+## 2025-10-06 — Clarified CMS field guidance & reusable sections
+- **What changed**: Expanded `admin/config.yml` with reusable hero/section anchors, converted relation and list fields to include descriptive hints with character limits, and ensured multilingual inputs are surfaced per locale across site, page, and translation collections.
+- **Impact & follow-up**: Editors now see consistent instructions when updating content, reducing guesswork around limits and localization. Monitor Decap UI to confirm the new hints render cleanly in nested objects and adjust copy if any fields remain ambiguous.
+- **References**: Pending PR
+
 ## 2025-10-05 — Enabled localized site settings & routing
 - **What changed**: Marked brand name, footer legal text, social link labels, and about alt fields as `i18n: true` in `admin/config.yml` and migrated `content/site.json` to store Portuguese and Spanish values alongside English. Updated React routing and language utilities so internal links and CTAs build locale-prefixed URLs and fall back to English copy when translations are missing.
 - **Impact & follow-up**: Editors can now manage the shared site chrome in all three locales from a single form, and visitors see `/pt/...` or `/es/...` URLs when switching languages. Monitor Stackbit annotations around the updated links to confirm the Visual Editor still maps to the correct fields.
