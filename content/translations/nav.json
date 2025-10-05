@@ -5,6 +5,7 @@
     "learn": "Learn",
     "forProfessionals": "For Professionals",
     "manifesto": "Manifesto & Story",
+    "founderStory": "Founder Story",
     "videos": "Videos",
     "productEducation": "Product Education",
     "method": "Method Kapunka",
@@ -15,6 +16,7 @@
     "navDescriptions": {
       "learn": {
         "manifesto": "Discover the origins of Kapunka and the values that guide our craft.",
+        "founderStory": "Learn how Monica bridged Moroccan cooperatives with today’s clinical rituals.",
         "videos": "Watch tutorials and stories to see our rituals in motion.",
         "productEducation": "Learn how to choose and use argan-based products for every routine.",
         "method": "Explore the Kapunka method with step-by-step techniques."
@@ -30,6 +32,7 @@
     "learn": "Aprender",
     "forProfessionals": "Para Profissionais",
     "manifesto": "Manifesto & História",
+    "founderStory": "História da Fundadora",
     "videos": "Vídeos",
     "productEducation": "Educação sobre Produtos",
     "method": "Método Kapunka",
@@ -40,6 +43,7 @@
     "navDescriptions": {
       "learn": {
         "manifesto": "Descubra as origens da Kapunka e os valores que orientam o nosso ofício.",
+        "founderStory": "Conheça como Monica conectou cooperativas marroquinas às rotinas clínicas atuais.",
         "videos": "Assista a tutoriais e histórias para ver os nossos rituais em ação.",
         "productEducation": "Aprenda a escolher e usar produtos à base de argan em cada rotina.",
         "method": "Explore o método Kapunka com técnicas passo a passo."
@@ -55,6 +59,7 @@
     "learn": "Aprender",
     "forProfessionals": "Para Profesionales",
     "manifesto": "Manifiesto e Historia",
+    "founderStory": "Historia de la Fundadora",
     "videos": "Videos",
     "productEducation": "Educación sobre Productos",
     "method": "Método Kapunka",
@@ -65,6 +70,7 @@
     "navDescriptions": {
       "learn": {
         "manifesto": "Descubre los orígenes de Kapunka y los valores que guían nuestro oficio.",
+        "founderStory": "Conoce cómo Monica unió cooperativas marroquíes con los rituales clínicos actuales.",
         "videos": "Mira tutoriales e historias para ver nuestros rituales en acción.",
         "productEducation": "Aprende a elegir y usar productos a base de argán en cada rutina.",
         "method": "Explora el método Kapunka con técnicas paso a paso."

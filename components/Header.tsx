@@ -72,6 +72,7 @@ const NAVIGATION_CONFIG: NavConfigItem[] = [
     fallback: 'Learn',
     items: [
       { key: 'manifesto', path: '/story', fallback: 'Manifesto & Story' },
+      { key: 'founderStory', path: '/founder-story', fallback: 'Founder Story' },
       { key: 'videos', path: '/videos', fallback: 'Videos' },
       { key: 'productEducation', path: '/product-education', fallback: 'Product Education' },
       { key: 'method', path: '/method', fallback: 'Method' },
@@ -97,6 +98,10 @@ const MEGA_MENU_METADATA = {
     manifesto: {
       icon: 'content/uploads/shared/kapunka-origem.jpg',
       descriptionFallback: 'Discover the origins of Kapunka and the values that guide our craft.',
+    },
+    founderStory: {
+      icon: 'content/uploads/site/monica-argan-.jpg',
+      descriptionFallback: 'Meet the founder bringing Moroccan argan rituals into modern clinical care.',
     },
     videos: {
       icon: 'content/uploads/shared/kapunka-instagrammer.jpg',
