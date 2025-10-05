@@ -8,6 +8,7 @@ import { fetchVisualEditorMarkdown } from '../utils/fetchVisualEditorMarkdown';
 import { getVisualEditorAttributes } from '../utils/stackbitBindings';
 import { useVisualEditorSync } from '../contexts/VisualEditorSyncContext';
 import { useSiteSettings } from '../contexts/SiteSettingsContext';
+import { getCloudinaryUrl } from '../utils/imageUrl';
 
 const SUPPORTED_SECTION_TYPES = new Set<PageSection['type']>([
   'timeline',
@@ -70,6 +71,7 @@ const Videos: React.FC = () => {
   const { settings } = useSiteSettings();
   const [pageContent, setPageContent] = useState<PageContent | null>(null);
   const { contentVersion } = useVisualEditorSync();
+  const { settings } = useSiteSettings();
 
   useEffect(() => {
     let isMounted = true;
@@ -115,34 +117,25 @@ const Videos: React.FC = () => {
 
   const sections = pageContent?.sections ?? [];
   const sectionsFieldPath = `pages.videos_${language}.sections`;
-  const sanitize = (value?: string | null): string | undefined => {
-    if (typeof value !== 'string') {
-      return undefined;
-    }
-    const trimmed = value.trim();
-    return trimmed.length > 0 ? trimmed : undefined;
-  };
-
-  const baseMetaTitle = sanitize(pageContent?.metaTitle) ?? t('videos.metaTitle');
-  const computedDescription = sanitize(pageContent?.metaDescription) ?? t('videos.metaDescription');
-  const computedTitle = baseMetaTitle.includes('Kapunka')
-    ? baseMetaTitle
-    : `${baseMetaTitle} | Kapunka Skincare`;
-  const socialImage = sanitize(settings.home?.heroImage);
+  const metaTitle = (pageContent?.metaTitle ?? t('videos.metaTitle'))?.trim();
+  const metaDescription = (pageContent?.metaDescription ?? t('videos.metaDescription'))?.trim();
+  const pageTitle = `${metaTitle} | Kapunka Skincare`;
+  const rawSocialImage = settings.home?.heroImage?.trim() ?? '';
+  const socialImage = rawSocialImage ? getCloudinaryUrl(rawSocialImage) ?? rawSocialImage : undefined;
 
   return (
     <div>
-      <Head>
-        <title>{computedTitle}</title>
-        <meta name="description" content={computedDescription} />
-        <meta property="og:title" content={computedTitle} />
-        <meta property="og:description" content={computedDescription} />
+      <Helmet>
+        <title>{pageTitle}</title>
+        <meta name="description" content={metaDescription} />
+        <meta property="og:title" content={pageTitle} />
+        <meta property="og:description" content={metaDescription} />
         {socialImage ? <meta property="og:image" content={socialImage} /> : null}
         <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:title" content={computedTitle} />
-        <meta name="twitter:description" content={computedDescription} />
+        <meta name="twitter:title" content={pageTitle} />
+        <meta name="twitter:description" content={metaDescription} />
         {socialImage ? <meta name="twitter:image" content={socialImage} /> : null}
-      </Head>
+      </Helmet>
 
       <header className="py-20 sm:py-28 bg-stone-100">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 text-center">

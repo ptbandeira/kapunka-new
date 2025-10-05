@@ -1,10 +1,11 @@
 import React, { useEffect, useMemo, useState } from 'react';
 import Head from 'next/head';
 import { motion } from 'framer-motion';
-import { fetchVisualEditorMarkdown } from '../utils/fetchVisualEditorMarkdown';
-import { useVisualEditorSync } from '../contexts/VisualEditorSyncContext';
 import { useLanguage } from '../contexts/LanguageContext';
 import { useSiteSettings } from '../contexts/SiteSettingsContext';
+import { fetchVisualEditorMarkdown } from '../utils/fetchVisualEditorMarkdown';
+import { useVisualEditorSync } from '../contexts/VisualEditorSyncContext';
+import { getCloudinaryUrl } from '../utils/imageUrl';
 
 interface PillarContent {
   title?: string;
@@ -29,6 +30,8 @@ interface MethodContent {
   metaDescription?: string;
   headline?: string;
   subheadline?: string;
+  metaTitle?: string;
+  metaDescription?: string;
   philosophy?: string;
   pillars?: {
     prevention?: PillarContent;
@@ -105,7 +108,7 @@ const isMethodContent = (value: unknown): value is MethodContent => {
     return false;
   }
 
-  const { philosophy, pillars, arganMechanism, media } = value;
+  const { philosophy, pillars, arganMechanism, media, metaTitle, metaDescription } = value;
 
   if (philosophy !== undefined && typeof philosophy !== 'string') {
     return false;
@@ -149,6 +152,8 @@ const isMethodContent = (value: unknown): value is MethodContent => {
   return (
     (headline === undefined || typeof headline === 'string')
     && (subheadline === undefined || typeof subheadline === 'string')
+    && (metaTitle === undefined || typeof metaTitle === 'string')
+    && (metaDescription === undefined || typeof metaDescription === 'string')
   );
 };
 
@@ -211,28 +216,24 @@ const MethodKapunka: React.FC = () => {
 
   const mechanismSteps = content?.arganMechanism?.steps?.filter((step) => step && (step.title?.trim() || step.description?.trim())) ?? [];
 
-  const sanitize = (value?: string | null): string | undefined => {
-    if (typeof value !== 'string') {
-      return undefined;
-    }
-    const trimmed = value.trim();
-    return trimmed.length > 0 ? trimmed : undefined;
-  };
-
-  const baseMetaTitle = sanitize(content?.metaTitle)
-    ?? sanitize(content?.headline)
-    ?? t('method.metaTitle');
-  const metaDescription = sanitize(content?.metaDescription)
-    ?? sanitize(content?.subheadline)
-    ?? t('method.metaDescription');
-  const pageTitle = baseMetaTitle.includes('Kapunka')
-    ? baseMetaTitle
-    : `${baseMetaTitle} | Kapunka Skincare`;
-  const socialImage = sanitize(settings.home?.heroImage);
+  const metaTitle = (content?.metaTitle ?? content?.headline ?? t('methodKapunka.metaTitle'))?.trim();
+  const metaDescription = (
+    content?.metaDescription
+    ?? content?.subheadline
+    ?? t('methodKapunka.metaDescription')
+  )?.trim();
+  const pageTitle = `${metaTitle} | Kapunka Skincare`;
+  const fallbackSocialImage = settings.home?.heroImage?.trim() ?? '';
+  const socialImageSource = content?.media?.video?.url?.trim()
+    || content?.media?.embedUrl?.trim()
+    || fallbackSocialImage;
+  const socialImage = socialImageSource
+    ? getCloudinaryUrl(socialImageSource) ?? socialImageSource
+    : undefined;
 
   return (
     <div className="bg-white text-stone-800" data-sb-object-id={METHOD_OBJECT_ID}>
-      <Head>
+      <Helmet>
         <title>{pageTitle}</title>
         <meta name="description" content={metaDescription} />
         <meta property="og:title" content={pageTitle} />
@@ -242,7 +243,7 @@ const MethodKapunka: React.FC = () => {
         <meta name="twitter:title" content={pageTitle} />
         <meta name="twitter:description" content={metaDescription} />
         {socialImage ? <meta name="twitter:image" content={socialImage} /> : null}
-      </Head>
+      </Helmet>
 
       <section className="bg-stone-100 py-20 sm:py-28">
         <div className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8 text-center">

@@ -5,6 +5,7 @@ import { fetchVisualEditorMarkdown } from '../utils/fetchVisualEditorMarkdown';
 import { useVisualEditorSync } from '../contexts/VisualEditorSyncContext';
 import { useSiteSettings } from '../contexts/SiteSettingsContext';
 import { useLanguage } from '../contexts/LanguageContext';
+import { getCloudinaryUrl } from '../utils/imageUrl';
 
 interface BenefitItem {
   title?: string;
@@ -27,6 +28,8 @@ interface ProductEducationContent {
   metaDescription?: string;
   headline?: string;
   subheadline?: string;
+  metaTitle?: string;
+  metaDescription?: string;
   composition?: string;
   certifications?: string[];
   benefits?: BenefitItem[];
@@ -95,14 +98,6 @@ const isProductEducationContent = (value: unknown): value is ProductEducationCon
     metaDescription,
   } = value;
 
-  if (metaTitle !== undefined && typeof metaTitle !== 'string') {
-    return false;
-  }
-
-  if (metaDescription !== undefined && typeof metaDescription !== 'string') {
-    return false;
-  }
-
   if (certifications !== undefined && !isStringArray(certifications)) {
     return false;
   }
@@ -129,12 +124,15 @@ const isProductEducationContent = (value: unknown): value is ProductEducationCon
     (headline === undefined || typeof headline === 'string')
     && (subheadline === undefined || typeof subheadline === 'string')
     && (composition === undefined || typeof composition === 'string')
+    && (metaTitle === undefined || typeof metaTitle === 'string')
+    && (metaDescription === undefined || typeof metaDescription === 'string')
   );
 };
 
 const ProductEducation: React.FC = () => {
   const [content, setContent] = useState<ProductEducationContent | null>(null);
   const [error, setError] = useState<string | null>(null);
+  const { t } = useLanguage();
   const { contentVersion } = useVisualEditorSync();
   const { settings: siteSettings } = useSiteSettings();
   const { t } = useLanguage();
@@ -181,24 +179,15 @@ const ProductEducation: React.FC = () => {
   const faqs = content?.faqs?.filter((faq) => faq && (faq.question?.trim() || faq.answer?.trim())) ?? [];
   const certifications = content?.certifications?.filter((cert) => cert.trim().length > 0) ?? [];
 
-  const sanitize = (value?: string | null): string | undefined => {
-    if (typeof value !== 'string') {
-      return undefined;
-    }
-    const trimmed = value.trim();
-    return trimmed.length > 0 ? trimmed : undefined;
-  };
-
-  const baseMetaTitle = sanitize(content?.metaTitle)
-    ?? sanitize(content?.headline)
-    ?? t('productEducation.metaTitle');
-  const metaDescription = sanitize(content?.metaDescription)
-    ?? sanitize(content?.subheadline)
-    ?? t('productEducation.metaDescription');
-  const pageTitle = baseMetaTitle.includes('Kapunka')
-    ? baseMetaTitle
-    : `${baseMetaTitle} | Kapunka Skincare`;
-  const socialImage = siteSettings.home?.heroImage;
+  const metaTitle = (content?.metaTitle ?? content?.headline ?? t('productEducation.metaTitle'))?.trim();
+  const metaDescription = (
+    content?.metaDescription
+    ?? content?.subheadline
+    ?? t('productEducation.metaDescription')
+  )?.trim();
+  const pageTitle = `${metaTitle} | Kapunka Skincare`;
+  const rawSocialImage = siteSettings.home?.heroImage?.trim() ?? '';
+  const socialImage = rawSocialImage ? getCloudinaryUrl(rawSocialImage) ?? rawSocialImage : undefined;
 
   const compositionParagraphs = useMemo(() => {
     if (!content?.composition) {

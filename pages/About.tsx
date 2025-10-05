@@ -306,7 +306,11 @@ const About: React.FC = () => {
         ?? sanitize(storyContent?.metaDescription)
         ?? t('about.metaDescription');
     const computedTitle = metaTitleBase.includes('Kapunka') ? metaTitleBase : `${metaTitleBase} | Kapunka Skincare`;
-    const socialImage = sanitize(storyImage) ?? sanitize(sourcingImage) ?? sanitize(settings.home?.heroImage);
+    const fallbackSocialImage = settings.home?.heroImage?.trim() ?? '';
+    const socialImageCandidate = storyImage || sourcingImage || fallbackSocialImage;
+    const socialImage = socialImageCandidate
+        ? getCloudinaryUrl(socialImageCandidate) ?? socialImageCandidate
+        : undefined;
 
   return (
     <div>
@@ -320,7 +324,7 @@ const About: React.FC = () => {
             <meta name="twitter:title" content={computedTitle} />
             <meta name="twitter:description" content={computedDescription} />
             {socialImage ? <meta name="twitter:image" content={socialImage} /> : null}
-        </Head>
+        </Helmet>
       <header className="py-20 sm:py-32 bg-stone-100 text-center">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <motion.h1
@@ -402,9 +406,9 @@ const About: React.FC = () => {
                             className={imageOrderClass}
                             {...getVisualEditorAttributes(imageFieldPath)}
                         >
-                            <img
-                                src={imageUrl}
-                                alt={block.imageAlt ?? block.heading ?? 'Story visual'}
+                    <img
+                        src={imageUrl}
+                        alt={block.imageAlt ?? block.heading ?? t('about.headerTitle')}
                                 className="rounded-lg shadow-lg"
                             />
                         </motion.div>

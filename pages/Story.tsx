@@ -124,6 +124,7 @@ const Story: React.FC = () => {
   const { t, language } = useLanguage();
   const { settings } = useSiteSettings();
   const { contentVersion } = useVisualEditorSync();
+  const { settings } = useSiteSettings();
   const [pageContent, setPageContent] = useState<StoryPageContent | null>(null);
 
   useEffect(() => {
@@ -196,45 +197,28 @@ const Story: React.FC = () => {
     return pageContent.sections.filter(isPageSection);
   }, [pageContent?.sections]);
 
-  const sanitize = (value?: string | null): string | undefined => {
-    if (typeof value !== 'string') {
-      return undefined;
-    }
-    const trimmed = value.trim();
-    return trimmed.length > 0 ? trimmed : undefined;
-  };
-
-  const baseMetaTitle = useMemo(() => {
-    const fromContent = sanitize(pageContent?.metaTitle);
-    if (fromContent) {
-      return fromContent;
-    }
-    const translation = t('story.metaTitle');
-    return typeof translation === 'string' ? translation : t('nav.manifesto');
-  }, [pageContent?.metaTitle, t]);
-
-  const computedTitle = baseMetaTitle.includes('Kapunka')
-    ? baseMetaTitle
-    : `${baseMetaTitle} | Kapunka Skincare`;
-
-  const computedDescription = sanitize(pageContent?.metaDescription)
-    ?? sanitize(pageContent?.tagline)
-    ?? t('story.metaDescription');
-  const socialImage = sanitize(settings.home?.heroImage);
+  const baseMetaTitle = (pageContent?.metaTitle ?? t('nav.manifesto'))?.trim();
+  const includesBrand = baseMetaTitle.toLowerCase().includes('kapunka');
+  const pageTitle = includesBrand ? baseMetaTitle : `${baseMetaTitle} | Kapunka Skincare`;
+  const metaDescription = (pageContent?.metaDescription ?? pageContent?.tagline ?? t('about.metaDescription'))?.trim();
+  const firstStoryImageSource = storyBlocks.find(({ block }) => block.imageUrl?.trim())?.block.imageUrl?.trim() ?? '';
+  const siteSocialImage = settings.home?.heroImage?.trim() ?? '';
+  const rawSocialImage = firstStoryImageSource || siteSocialImage;
+  const socialImage = rawSocialImage ? getCloudinaryUrl(rawSocialImage) ?? rawSocialImage : undefined;
 
   return (
     <div>
-      <Head>
-        <title>{computedTitle}</title>
-        <meta name="description" content={computedDescription} />
-        <meta property="og:title" content={computedTitle} />
-        <meta property="og:description" content={computedDescription} />
+      <Helmet>
+        <title>{pageTitle}</title>
+        {metaDescription ? <meta name="description" content={metaDescription} /> : null}
+        <meta property="og:title" content={pageTitle} />
+        {metaDescription ? <meta property="og:description" content={metaDescription} /> : null}
         {socialImage ? <meta property="og:image" content={socialImage} /> : null}
         <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:title" content={computedTitle} />
-        <meta name="twitter:description" content={computedDescription} />
+        <meta name="twitter:title" content={pageTitle} />
+        {metaDescription ? <meta name="twitter:description" content={metaDescription} /> : null}
         {socialImage ? <meta name="twitter:image" content={socialImage} /> : null}
-      </Head>
+      </Helmet>
 
       <header className="py-20 sm:py-32 bg-stone-100">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 text-center">
@@ -319,7 +303,7 @@ const Story: React.FC = () => {
                   >
                     <img
                       src={imageUrl}
-                      alt={block.imageAlt ?? block.heading ?? 'Story visual'}
+                      alt={block.imageAlt ?? block.heading ?? pageContent?.tagline ?? baseMetaTitle}
                       className="rounded-lg shadow-lg"
                     />
                   </motion.div>
