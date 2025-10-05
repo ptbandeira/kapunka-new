@@ -11,6 +11,11 @@ This log records day-to-day investigations, fixes, and decisions that affect the
 
 ---
 
+## 2025-10-05 — Retired legacy test page from CMS
+- **What changed**: Removed the unused `TestPage` model from `stackbit.config.ts`, dropped the `/test` entry from the unified pages index, and deleted the lone English markdown file so every published page now has matching `en`, `es`, and `pt` sources.
+- **Impact & follow-up**: Editors no longer see the orphaned test entry in Decap/Stackbit, eliminating a source of partial translations. Confirm Netlify previews rebuild without referencing the retired slug and watch for any lingering `/test` links in future content audits.
+- **References**: Pending PR
+
 ## 2025-10-09 — Added manifesto content model for Story page
 - **What changed**: Extended `admin/config.yml` with dedicated fields for the Story/Manifesto page (hero text, manifesto statements, values grid, and closing copy), translated the new UI strings, and rewrote the localized `content/pages/*/story.md` entries to match the schema.
 - **Impact & follow-up**: Editors can now manage the manifesto narrative and value pillars directly from Decap and the Visual Editor. Monitor upcoming edits to ensure the new list and markdown fields save correctly across locales.

@@ -2723,19 +2723,6 @@
       ]
     },
     {
-      "id": "test",
-      "label": "Test",
-      "slug": "/test",
-      "fields": [
-        {
-          "key": "title",
-          "value": {
-            "en": "This is a test page"
-          }
-        }
-      ]
-    },
-    {
       "id": "training",
       "label": "Training Hub",
       "slug": "/training",

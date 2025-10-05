@@ -129,7 +129,6 @@ const LEGACY_PAGE_MODEL_BY_SLUG: Record<string, string> = {
   learn: 'LearnPage',
   videos: 'VideosPage',
   training: 'TrainingPage',
-  test: 'TestPage',
   'founder-story': 'FoundersStoryPage',
   'method-kapunka': 'MethodKapunkaPage',
   'training-program': 'TrainingProgramPage',
