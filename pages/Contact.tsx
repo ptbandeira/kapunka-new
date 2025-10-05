@@ -6,6 +6,7 @@ import { Mail, Phone, MessageSquare } from 'lucide-react';
 import { useLanguage } from '../contexts/LanguageContext';
 import { useSiteSettings } from '../contexts/SiteSettingsContext';
 import { getVisualEditorAttributes } from '../utils/stackbitBindings';
+import { getCloudinaryUrl } from '../utils/imageUrl';
 
 const ContactForm: React.FC = () => {
     const { t, language } = useLanguage();
@@ -88,12 +89,21 @@ const Contact: React.FC = () => {
     const phoneLink = contactSettings.phone ? `tel:${contactSettings.phone.replace(/[^+\d]/g, '')}` : '#';
     const whatsappLink = contactSettings.whatsapp || '#';
     const contactFieldPath = `translations.${language}.contact`;
+    const rawSocialImage = settings.home?.heroImage?.trim() ?? '';
+    const socialImage = rawSocialImage ? getCloudinaryUrl(rawSocialImage) ?? rawSocialImage : undefined;
 
     return (
         <div className="py-16 sm:py-24">
             <Helmet>
                 <title>{t('contact.title')} | Kapunka Skincare</title>
                 <meta name="description" content={t('contact.metaDescription')} />
+                <meta property="og:title" content={`${t('contact.title')} | Kapunka Skincare`} />
+                <meta property="og:description" content={t('contact.metaDescription')} />
+                {socialImage ? <meta property="og:image" content={socialImage} /> : null}
+                <meta name="twitter:card" content="summary_large_image" />
+                <meta name="twitter:title" content={`${t('contact.title')} | Kapunka Skincare`} />
+                <meta name="twitter:description" content={t('contact.metaDescription')} />
+                {socialImage ? <meta name="twitter:image" content={socialImage} /> : null}
             </Helmet>
             <div className="container mx-auto px-4 sm:px-6 lg:px-8">
                 <header className="text-center mb-16">

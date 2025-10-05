@@ -1,8 +1,11 @@
 import React, { useEffect, useMemo, useState } from 'react';
 import { Helmet } from 'react-helmet-async';
 import { motion } from 'framer-motion';
+import { useLanguage } from '../contexts/LanguageContext';
+import { useSiteSettings } from '../contexts/SiteSettingsContext';
 import { fetchVisualEditorMarkdown } from '../utils/fetchVisualEditorMarkdown';
 import { useVisualEditorSync } from '../contexts/VisualEditorSyncContext';
+import { getCloudinaryUrl } from '../utils/imageUrl';
 
 interface ModuleContent {
   title?: string;
@@ -34,6 +37,8 @@ interface TrainingContent {
   modalities?: ModalitiesContent;
   pricing?: PricingContent;
   callToActions?: CallToAction[];
+  metaTitle?: string;
+  metaDescription?: string;
 }
 
 const TRAINING_FILE_PATH = '/content/pages/training/index.md';
@@ -98,7 +103,17 @@ const isTrainingContent = (value: unknown): value is TrainingContent => {
     return false;
   }
 
-  const { objectives, modules, modalities, pricing, callToActions, headline, subheadline } = value;
+  const {
+    objectives,
+    modules,
+    modalities,
+    pricing,
+    callToActions,
+    headline,
+    subheadline,
+    metaTitle,
+    metaDescription,
+  } = value;
 
   if (objectives !== undefined && !isStringArray(objectives)) {
     return false;
@@ -127,13 +142,17 @@ const isTrainingContent = (value: unknown): value is TrainingContent => {
   return (
     (headline === undefined || typeof headline === 'string')
     && (subheadline === undefined || typeof subheadline === 'string')
+    && (metaTitle === undefined || typeof metaTitle === 'string')
+    && (metaDescription === undefined || typeof metaDescription === 'string')
   );
 };
 
 const TrainingProgram: React.FC = () => {
   const [content, setContent] = useState<TrainingContent | null>(null);
   const [error, setError] = useState<string | null>(null);
+  const { t } = useLanguage();
   const { contentVersion } = useVisualEditorSync();
+  const { settings } = useSiteSettings();
 
   useEffect(() => {
     let isMounted = true;
@@ -177,16 +196,30 @@ const TrainingProgram: React.FC = () => {
   const paymentOptions = content?.pricing?.paymentOptions?.filter((option) => option.trim().length > 0) ?? [];
   const ctas = content?.callToActions?.filter((cta) => cta && (cta.label?.trim() || cta.url?.trim())) ?? [];
 
-  const metaTitle = content?.headline ?? 'Kapunka Clinical Training';
-  const metaDescription = content?.subheadline ?? 'Learn Method Kapunka protocols and training details.';
+  const metaTitle = (content?.metaTitle ?? content?.headline ?? t('training.metaTitle'))?.trim();
+  const metaDescription = (
+    content?.metaDescription
+    ?? content?.subheadline
+    ?? t('training.metaDescription')
+  )?.trim();
+  const pageTitle = `${metaTitle} | Kapunka Skincare`;
+  const rawSocialImage = settings.home?.heroImage?.trim() ?? '';
+  const socialImage = rawSocialImage ? getCloudinaryUrl(rawSocialImage) ?? rawSocialImage : undefined;
 
   const formattedObjectives = useMemo(() => objectives, [objectives]);
 
   return (
     <div className="bg-stone-50 text-stone-900" data-sb-object-id={TRAINING_OBJECT_ID}>
       <Helmet>
-        <title>{metaTitle} | Kapunka Skincare</title>
+        <title>{pageTitle}</title>
         <meta name="description" content={metaDescription} />
+        <meta property="og:title" content={pageTitle} />
+        <meta property="og:description" content={metaDescription} />
+        {socialImage ? <meta property="og:image" content={socialImage} /> : null}
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content={pageTitle} />
+        <meta name="twitter:description" content={metaDescription} />
+        {socialImage ? <meta name="twitter:image" content={socialImage} /> : null}
       </Helmet>
 
       <section className="bg-stone-900 py-20 text-stone-100 sm:py-28">

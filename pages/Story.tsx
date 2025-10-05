@@ -8,6 +8,7 @@ import type { PageSection } from '../types';
 import { fetchVisualEditorMarkdown } from '../utils/fetchVisualEditorMarkdown';
 import { getVisualEditorAttributes } from '../utils/stackbitBindings';
 import { getCloudinaryUrl } from '../utils/imageUrl';
+import { useSiteSettings } from '../contexts/SiteSettingsContext';
 
 const SUPPORTED_SECTION_TYPES = new Set<PageSection['type']>([
   'timeline',
@@ -122,6 +123,7 @@ const splitIntoParagraphs = (value?: string | null): string[] => {
 const Story: React.FC = () => {
   const { t, language } = useLanguage();
   const { contentVersion } = useVisualEditorSync();
+  const { settings } = useSiteSettings();
   const [pageContent, setPageContent] = useState<StoryPageContent | null>(null);
 
   useEffect(() => {
@@ -194,18 +196,27 @@ const Story: React.FC = () => {
     return pageContent.sections.filter(isPageSection);
   }, [pageContent?.sections]);
 
-  const computedTitle = useMemo(() => {
-    const baseTitle = pageContent?.metaTitle ?? t('nav.manifesto');
-    return baseTitle.includes('Kapunka') ? baseTitle : `${baseTitle} | Kapunka Skincare`;
-  }, [pageContent?.metaTitle, t]);
-
-  const computedDescription = pageContent?.metaDescription ?? pageContent?.tagline ?? t('about.metaDescription');
+  const baseMetaTitle = (pageContent?.metaTitle ?? t('nav.manifesto'))?.trim();
+  const includesBrand = baseMetaTitle.toLowerCase().includes('kapunka');
+  const pageTitle = includesBrand ? baseMetaTitle : `${baseMetaTitle} | Kapunka Skincare`;
+  const metaDescription = (pageContent?.metaDescription ?? pageContent?.tagline ?? t('about.metaDescription'))?.trim();
+  const firstStoryImageSource = storyBlocks.find(({ block }) => block.imageUrl?.trim())?.block.imageUrl?.trim() ?? '';
+  const siteSocialImage = settings.home?.heroImage?.trim() ?? '';
+  const rawSocialImage = firstStoryImageSource || siteSocialImage;
+  const socialImage = rawSocialImage ? getCloudinaryUrl(rawSocialImage) ?? rawSocialImage : undefined;
 
   return (
     <div>
       <Helmet>
-        <title>{computedTitle}</title>
-        {computedDescription && <meta name="description" content={computedDescription} />}
+        <title>{pageTitle}</title>
+        {metaDescription ? <meta name="description" content={metaDescription} /> : null}
+        <meta property="og:title" content={pageTitle} />
+        {metaDescription ? <meta property="og:description" content={metaDescription} /> : null}
+        {socialImage ? <meta property="og:image" content={socialImage} /> : null}
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content={pageTitle} />
+        {metaDescription ? <meta name="twitter:description" content={metaDescription} /> : null}
+        {socialImage ? <meta name="twitter:image" content={socialImage} /> : null}
       </Helmet>
 
       <header className="py-20 sm:py-32 bg-stone-100">
@@ -291,7 +302,7 @@ const Story: React.FC = () => {
                   >
                     <img
                       src={imageUrl}
-                      alt={block.imageAlt ?? block.heading ?? 'Story visual'}
+                      alt={block.imageAlt ?? block.heading ?? pageContent?.tagline ?? baseMetaTitle}
                       className="rounded-lg shadow-lg"
                     />
                   </motion.div>

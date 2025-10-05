@@ -8,6 +8,7 @@ import { Helmet } from 'react-helmet-async';
 import { motion } from 'framer-motion';
 import ArticleCard from '../components/ArticleCard';
 import { useLanguage } from '../contexts/LanguageContext';
+import { useSiteSettings } from '../contexts/SiteSettingsContext';
 import type { Article } from '../types';
 import {
   loadLearnPageContent,
@@ -17,6 +18,7 @@ import {
 import { fetchVisualEditorJson } from '../utils/fetchVisualEditorJson';
 import { getVisualEditorAttributes } from '../utils/stackbitBindings';
 import { useVisualEditorSync } from '../contexts/VisualEditorSyncContext';
+import { getCloudinaryUrl } from '../utils/imageUrl';
 
 interface ArticlesResponse {
   items?: Article[];
@@ -32,6 +34,7 @@ const Learn: React.FC = () => {
   const [loading, setLoading] = useState(true);
   const [pageContent, setPageContent] = useState<LearnPageContentResult | null>(null);
   const { t, language } = useLanguage();
+  const { settings } = useSiteSettings();
   const { contentVersion } = useVisualEditorSync();
 
   useEffect(() => {
@@ -190,18 +193,28 @@ const Learn: React.FC = () => {
     return articles.filter(article => article.category === activeCategory);
   }, [activeCategory, articles]);
 
-  const metaTitle = pageContent?.data.metaTitle ?? t('learn.metaTitle');
-  const metaDescription = pageContent?.data.metaDescription ?? t('learn.metaDescription');
+  const metaTitle = (pageContent?.data.metaTitle ?? t('learn.metaTitle'))?.trim();
+  const metaDescription = (pageContent?.data.metaDescription ?? t('learn.metaDescription'))?.trim();
   const heroTitle = pageContent?.data.heroTitle ?? t('learn.title');
   const heroSubtitle = pageContent?.data.heroSubtitle ?? t('learn.subtitle');
   const heroTitleFieldPath = `${learnFieldPath}.heroTitle`;
   const heroSubtitleFieldPath = `${learnFieldPath}.heroSubtitle`;
+  const rawSocialImage = settings.home?.heroImage?.trim() ?? '';
+  const socialImage = rawSocialImage ? getCloudinaryUrl(rawSocialImage) ?? rawSocialImage : undefined;
+  const pageTitle = `${metaTitle} | Kapunka Skincare`;
 
   return (
     <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-16">
       <Helmet>
-        <title>{metaTitle} | Kapunka Skincare</title>
+        <title>{pageTitle}</title>
         <meta name="description" content={metaDescription} />
+        <meta property="og:title" content={pageTitle} />
+        <meta property="og:description" content={metaDescription} />
+        {socialImage ? <meta property="og:image" content={socialImage} /> : null}
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content={pageTitle} />
+        <meta name="twitter:description" content={metaDescription} />
+        {socialImage ? <meta name="twitter:image" content={socialImage} /> : null}
       </Helmet>
 
       <motion.header

@@ -5,6 +5,7 @@ import { fetchVisualEditorMarkdown } from '../utils/fetchVisualEditorMarkdown';
 import { useVisualEditorSync } from '../contexts/VisualEditorSyncContext';
 import { useSiteSettings } from '../contexts/SiteSettingsContext';
 import { getCloudinaryUrl } from '../utils/imageUrl';
+import { useLanguage } from '../contexts/LanguageContext';
 
 interface MicroStory {
   quote?: string;
@@ -37,6 +38,8 @@ interface HeroImage {
 interface FounderStoryContent {
   headline?: string;
   subheadline?: string;
+  metaTitle?: string;
+  metaDescription?: string;
   body?: string;
   microStories?: MicroStory[];
   keyMilestones?: Milestone[];
@@ -136,11 +139,13 @@ const isFounderStoryContent = (value: unknown): value is FounderStoryContent => 
     }
   }
 
-  const { headline, subheadline, body } = value;
+  const { headline, subheadline, body, metaTitle, metaDescription } = value;
   return (
     (headline === undefined || typeof headline === 'string')
     && (subheadline === undefined || typeof subheadline === 'string')
     && (body === undefined || typeof body === 'string')
+    && (metaTitle === undefined || typeof metaTitle === 'string')
+    && (metaDescription === undefined || typeof metaDescription === 'string')
   );
 };
 
@@ -152,6 +157,7 @@ const FounderStory: React.FC = () => {
   const [error, setError] = useState<string | null>(null);
   const { contentVersion } = useVisualEditorSync();
   const { settings: siteSettings } = useSiteSettings();
+  const { t } = useLanguage();
 
   useEffect(() => {
     let isMounted = true;
@@ -242,10 +248,13 @@ const FounderStory: React.FC = () => {
       .filter((paragraph) => paragraph.length > 0);
   }, [content?.body]);
 
-  const pageTitle = content?.headline ?? 'Founder Story';
-  const pageDescription =
-    content?.subheadline
-    ?? 'Discover the Kapunka founder story rooted in Berber argan traditions and clinical skincare innovation.';
+  const metaTitle = (content?.metaTitle ?? content?.headline ?? t('nav.about'))?.trim();
+  const pageDescription = (
+    content?.metaDescription
+    ?? content?.subheadline
+    ?? t('about.metaDescription')
+  )?.trim();
+  const pageTitle = `${metaTitle} | Kapunka Skincare`;
   const fallbackHeroImage = siteSettings.home?.heroImage?.trim() ?? '';
   const socialImageSource = heroImageSrc || fallbackHeroImage;
   const socialImage = socialImageSource ? getCloudinaryUrl(socialImageSource) ?? socialImageSource : undefined;
@@ -253,13 +262,13 @@ const FounderStory: React.FC = () => {
   return (
     <div className="bg-stone-50 text-stone-800" data-sb-object-id={FOUNDER_STORY_OBJECT_ID}>
       <Head>
-        <title>{pageTitle} | Kapunka Skincare</title>
+        <title>{pageTitle}</title>
         <meta name="description" content={pageDescription} />
-        <meta property="og:title" content={`${pageTitle} | Kapunka Skincare`} />
+        <meta property="og:title" content={pageTitle} />
         <meta property="og:description" content={pageDescription} />
         {socialImage ? <meta property="og:image" content={socialImage} /> : null}
         <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:title" content={`${pageTitle} | Kapunka Skincare`} />
+        <meta name="twitter:title" content={pageTitle} />
         <meta name="twitter:description" content={pageDescription} />
         {socialImage ? <meta name="twitter:image" content={socialImage} /> : null}
       </Head>
@@ -269,7 +278,7 @@ const FounderStory: React.FC = () => {
           <div className="absolute inset-0">
             <img
               src={heroImageUrl}
-              alt={heroImage.alt ?? pageTitle}
+              alt={heroImage.alt ?? metaTitle}
               className="h-full w-full object-cover opacity-40"
               data-sb-field-path="images.hero.src#@src images.hero.alt#@alt"
             />
@@ -372,7 +381,7 @@ const FounderStory: React.FC = () => {
                     <div className="overflow-hidden rounded-xl border border-stone-100 shadow-sm">
                       <img
                         src={milestone.image.src}
-                        alt={milestone.image.alt ?? milestone.title ?? 'Milestone'}
+                        alt={milestone.image.alt ?? milestone.title ?? milestone.year ?? metaTitle}
                         className="h-full w-full object-cover"
                         data-sb-field-path={`image.src#@src image.alt#@alt`}
                       />
@@ -403,7 +412,7 @@ const FounderStory: React.FC = () => {
                   {image.src ? (
                     <img
                       src={image.src}
-                      alt={image.alt ?? pageTitle}
+                      alt={image.alt ?? metaTitle}
                       className="h-56 w-full object-cover"
                       data-sb-field-path="src#@src alt#@alt"
                     />

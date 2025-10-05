@@ -5,6 +5,7 @@ import { useLanguage } from '../contexts/LanguageContext';
 import { useSiteSettings } from '../contexts/SiteSettingsContext';
 import { useVisualEditorSync } from '../contexts/VisualEditorSyncContext';
 import { getVisualEditorAttributes } from '../utils/stackbitBindings';
+import { getCloudinaryUrl } from '../utils/imageUrl';
 import {
   loadClinicsPageContent,
   type ClinicsPageContentResult,
@@ -312,7 +313,8 @@ const ForClinics: React.FC = () => {
       };
 
   const ctaLink = settings.clinics?.ctaLink ?? '#/contact';
-  const socialImage = settings.home?.heroImage;
+  const rawSocialImage = settings.home?.heroImage?.trim() ?? '';
+  const socialImage = rawSocialImage ? getCloudinaryUrl(rawSocialImage) ?? rawSocialImage : undefined;
   const rootObjectId = getVisualEditorAttributes(clinicsFieldPath)['data-sb-object-id'];
 
   return (

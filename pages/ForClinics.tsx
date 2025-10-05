@@ -134,9 +134,8 @@ const isKeywordSection = (value: unknown): value is ClinicKeywordSection => {
 
 const ForClinics: React.FC = () => {
   const { t, language } = useLanguage();
-  const {
-    settings: { clinics },
-  } = useSiteSettings();
+  const { settings } = useSiteSettings();
+  const clinics = settings.clinics;
   const [doctors, setDoctors] = useState<Doctor[]>([]);
   const [pageContent, setPageContent] = useState<ClinicsPageContentResult | null>(null);
   const { contentVersion } = useVisualEditorSync();
@@ -185,8 +184,8 @@ const ForClinics: React.FC = () => {
   const translationFaqSection = t<unknown>('clinics.faqSection');
   const translationKeywordSection = t<unknown>('clinics.keywordSection');
 
-  const metaTitle = pageContent?.data.metaTitle ?? t('clinics.title');
-  const metaDescription = pageContent?.data.metaDescription ?? t('clinics.metaDescription');
+  const metaTitle = (pageContent?.data.metaTitle ?? t('clinics.metaTitle'))?.trim();
+  const metaDescription = (pageContent?.data.metaDescription ?? t('clinics.metaDescription'))?.trim();
   const firstSectionImage = useMemo(() => {
     const sections = pageContent?.data.sections;
     if (!Array.isArray(sections)) {
@@ -216,7 +215,11 @@ const ForClinics: React.FC = () => {
 
     return undefined;
   }, [pageContent?.data.sections]);
-  const socialImage = firstSectionImage ?? siteSettings.home?.heroImage;
+  const fallbackSocialImage = settings.home?.heroImage?.trim() ?? '';
+  const socialImageSource = firstSectionImage ?? fallbackSocialImage;
+  const socialImage = socialImageSource
+    ? getCloudinaryUrl(socialImageSource) ?? socialImageSource
+    : undefined;
 
   const headerTitle = pageContent?.data.headerTitle ?? t('clinics.headerTitle');
   const headerSubtitle = pageContent?.data.headerSubtitle ?? t('clinics.headerSubtitle');

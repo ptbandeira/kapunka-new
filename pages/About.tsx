@@ -298,12 +298,24 @@ const About: React.FC = () => {
         ?? storyContent?.metaDescription
         ?? t('about.metaDescription');
     const computedTitle = metaTitleBase.includes('Kapunka') ? metaTitleBase : `${metaTitleBase} | Kapunka Skincare`;
+    const fallbackSocialImage = settings.home?.heroImage?.trim() ?? '';
+    const socialImageCandidate = storyImage || sourcingImage || fallbackSocialImage;
+    const socialImage = socialImageCandidate
+        ? getCloudinaryUrl(socialImageCandidate) ?? socialImageCandidate
+        : undefined;
 
   return (
     <div>
         <Helmet>
             <title>{computedTitle}</title>
             <meta name="description" content={computedDescription} />
+            <meta property="og:title" content={computedTitle} />
+            <meta property="og:description" content={computedDescription} />
+            {socialImage ? <meta property="og:image" content={socialImage} /> : null}
+            <meta name="twitter:card" content="summary_large_image" />
+            <meta name="twitter:title" content={computedTitle} />
+            <meta name="twitter:description" content={computedDescription} />
+            {socialImage ? <meta name="twitter:image" content={socialImage} /> : null}
         </Helmet>
       <header className="py-20 sm:py-32 bg-stone-100 text-center">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
@@ -386,9 +398,9 @@ const About: React.FC = () => {
                             className={imageOrderClass}
                             {...getVisualEditorAttributes(imageFieldPath)}
                         >
-                            <img
-                                src={imageUrl}
-                                alt={block.imageAlt ?? block.heading ?? 'Story visual'}
+                    <img
+                        src={imageUrl}
+                        alt={block.imageAlt ?? block.heading ?? t('about.headerTitle')}
                                 className="rounded-lg shadow-lg"
                             />
                         </motion.div>

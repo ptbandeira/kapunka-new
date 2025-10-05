@@ -7,6 +7,8 @@ import type { PageContent, PageSection } from '../types';
 import { fetchVisualEditorMarkdown } from '../utils/fetchVisualEditorMarkdown';
 import { getVisualEditorAttributes } from '../utils/stackbitBindings';
 import { useVisualEditorSync } from '../contexts/VisualEditorSyncContext';
+import { useSiteSettings } from '../contexts/SiteSettingsContext';
+import { getCloudinaryUrl } from '../utils/imageUrl';
 
 const SUPPORTED_SECTION_TYPES = new Set<PageSection['type']>([
   'timeline',
@@ -68,6 +70,7 @@ const Videos: React.FC = () => {
   const { t, language } = useLanguage();
   const [pageContent, setPageContent] = useState<PageContent | null>(null);
   const { contentVersion } = useVisualEditorSync();
+  const { settings } = useSiteSettings();
 
   useEffect(() => {
     let isMounted = true;
@@ -113,14 +116,24 @@ const Videos: React.FC = () => {
 
   const sections = pageContent?.sections ?? [];
   const sectionsFieldPath = `pages.videos_${language}.sections`;
-  const computedTitle = pageContent?.metaTitle ?? `${t('videos.metaTitle')} | Kapunka Skincare`;
-  const computedDescription = pageContent?.metaDescription ?? t('videos.metaDescription');
+  const metaTitle = (pageContent?.metaTitle ?? t('videos.metaTitle'))?.trim();
+  const metaDescription = (pageContent?.metaDescription ?? t('videos.metaDescription'))?.trim();
+  const pageTitle = `${metaTitle} | Kapunka Skincare`;
+  const rawSocialImage = settings.home?.heroImage?.trim() ?? '';
+  const socialImage = rawSocialImage ? getCloudinaryUrl(rawSocialImage) ?? rawSocialImage : undefined;
 
   return (
     <div>
       <Helmet>
-        <title>{computedTitle}</title>
-        <meta name="description" content={computedDescription} />
+        <title>{pageTitle}</title>
+        <meta name="description" content={metaDescription} />
+        <meta property="og:title" content={pageTitle} />
+        <meta property="og:description" content={metaDescription} />
+        {socialImage ? <meta property="og:image" content={socialImage} /> : null}
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content={pageTitle} />
+        <meta name="twitter:description" content={metaDescription} />
+        {socialImage ? <meta name="twitter:image" content={socialImage} /> : null}
       </Helmet>
 
       <header className="py-20 sm:py-28 bg-stone-100">
