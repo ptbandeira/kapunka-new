@@ -11,6 +11,7 @@ import { fetchVisualEditorJson } from '../utils/fetchVisualEditorJson';
 import { useVisualEditorSync } from '../contexts/VisualEditorSyncContext';
 import { formatCurrency } from '../utils/currency';
 import { buildLocalizedPath } from '../utils/localePaths';
+import { getCloudinaryUrl } from '../utils/imageUrl';
 
 interface ProductIndexResponse {
   items?: Product[];
@@ -28,6 +29,9 @@ const MiniCartItem: React.FC<{ item: CartItem; products: Product[]; ['data-sb-fi
   const size = product.sizes.find(s => s.id === item.sizeId);
   if (!size) return null;
 
+  const imageSrc = (product.imageUrl ?? '').trim();
+  const cloudinaryUrl = imageSrc ? getCloudinaryUrl(imageSrc) ?? imageSrc : '';
+
   const handleDecreaseQuantity = useCallback(() => {
     updateQuantity(item.productId, item.sizeId, item.quantity - 1);
   }, [updateQuantity, item.productId, item.sizeId, item.quantity]);
@@ -42,7 +46,7 @@ const MiniCartItem: React.FC<{ item: CartItem; products: Product[]; ['data-sb-fi
 
   return (
     <div className="flex items-center space-x-4 py-4" data-sb-field-path={dataSbFieldPath}>
-      <img src={product.imageUrl} alt={translate(product.name)} className="w-16 h-16 object-cover rounded" />
+      <img src={cloudinaryUrl} alt={translate(product.name)} className="w-16 h-16 object-cover rounded" />
       <div className="flex-grow">
         <h4 className="font-semibold text-sm">{translate(product.name)}</h4>
         <p className="text-xs text-stone-500">{size.size}ml</p>

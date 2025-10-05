@@ -14,6 +14,7 @@ import { fetchVisualEditorJson } from '../utils/fetchVisualEditorJson';
 import { getVisualEditorAttributes } from '../utils/stackbitBindings';
 import { formatCurrency } from '../utils/currency';
 import { useVisualEditorSync } from '../contexts/VisualEditorSyncContext';
+import { getCloudinaryUrl } from '../utils/imageUrl';
 
 interface ProductsResponse {
     items?: Product[];
@@ -74,6 +75,9 @@ const ProductDetail: React.FC = () => {
         if (!product || !selectedSizeId) return null;
         return product.sizes.find(s => s.id === selectedSizeId);
     }, [product, selectedSizeId]);
+
+    const productImageSrc = (product?.imageUrl ?? '').trim();
+    const productImageUrl = productImageSrc ? getCloudinaryUrl(productImageSrc) ?? productImageSrc : '';
 
     const handleAddToCart = () => {
         if (product && selectedSizeId) {
@@ -326,7 +330,7 @@ const ProductDetail: React.FC = () => {
                 <div className="grid md:grid-cols-2 gap-12 items-start">
                     <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.6 }}>
                         <img
-                            src={product.imageUrl}
+                            src={productImageUrl}
                             alt={translate(product.name)}
                             className="w-full rounded-lg shadow-lg aspect-[3/4] object-cover"
                             {...getVisualEditorAttributes(productFieldPath ? `${productFieldPath}.imageUrl` : undefined)}

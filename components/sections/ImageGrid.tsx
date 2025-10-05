@@ -1,5 +1,6 @@
 import React from 'react';
 import { getVisualEditorAttributes } from '../../utils/stackbitBindings';
+import { getCloudinaryUrl } from '../../utils/imageUrl';
 
 interface ImageGridItemProps {
   image?: string;
@@ -30,6 +31,8 @@ const ImageGrid: React.FC<ImageGridProps> = ({ items, fieldPath }) => {
               ?? item.title
               ?? item.subtitle
               ?? JSON.stringify(item ?? {});
+            const imageSrc = item.image?.trim();
+            const cloudinaryUrl = imageSrc ? getCloudinaryUrl(imageSrc) ?? imageSrc : '';
 
             return (
               <div
@@ -41,8 +44,8 @@ const ImageGrid: React.FC<ImageGridProps> = ({ items, fieldPath }) => {
                   className="w-full aspect-[4/3] bg-stone-100 flex items-center justify-center"
                   {...(itemFieldPath ? getVisualEditorAttributes(`${itemFieldPath}.image`) : {})}
                 >
-                  {item.image ? (
-                    <img src={item.image} alt={item.title ?? ''} className="w-full h-full object-cover" />
+                  {imageSrc ? (
+                    <img src={cloudinaryUrl} alt={item.title ?? ''} className="w-full h-full object-cover" />
                   ) : (
                     <span className="text-sm text-stone-400">Image coming soon</span>
                   )}

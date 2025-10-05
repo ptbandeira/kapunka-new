@@ -1,6 +1,7 @@
 import React, { useEffect, useMemo, useState, useCallback } from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
 import { getVisualEditorAttributes } from '../../utils/stackbitBindings';
+import { getCloudinaryUrl } from '../../utils/imageUrl';
 
 export interface CommunityCarouselSlideProps {
   image?: string;
@@ -145,7 +146,11 @@ const CommunityCarousel: React.FC<CommunityCarouselProps> = ({
                   className="flex items-center gap-6 animate-carousel-scroll"
                   style={{ animationDuration: `${loopDuration}ms` }}
                 >
-                  {marqueeSlides.map((slide, index) => (
+                  {marqueeSlides.map((slide, index) => {
+                    const slideImageSrc = slide.image?.trim() ?? '';
+                    const cloudinaryUrl = slideImageSrc ? getCloudinaryUrl(slideImageSrc) ?? slideImageSrc : '';
+
+                    return (
                     <figure
                       key={buildSlideKey(slide, `marquee-slide-${index}`)}
                       className="group relative flex-shrink-0 w-40 h-40 sm:w-48 sm:h-48 lg:w-56 lg:h-56 overflow-hidden bg-stone-100"
@@ -154,7 +159,7 @@ const CommunityCarousel: React.FC<CommunityCarouselProps> = ({
                     >
                       {slide.image ? (
                         <img
-                          src={slide.image}
+                          src={cloudinaryUrl}
                           alt={slide.alt ?? 'Kapunka ritual in our community'}
                           className="h-full w-full object-cover"
                           {...getVisualEditorAttributes(slide.imageFieldPath)}
@@ -178,7 +183,8 @@ const CommunityCarousel: React.FC<CommunityCarouselProps> = ({
                         {slide.alt ?? 'Community carousel image'}
                       </span>
                     </figure>
-                  ))}
+                  );
+                  })}
                 </div>
               ) : (
                 <div className="flex h-48 items-center justify-center text-sm text-stone-400">

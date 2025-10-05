@@ -31,6 +31,7 @@ import { fetchVisualEditorMarkdown } from '../utils/fetchVisualEditorMarkdown';
 import { getVisualEditorAttributes } from '../utils/stackbitBindings';
 import { fetchTestimonialsByRefs } from '../utils/fetchTestimonialsByRefs';
 import { buildLocalizedPath } from '../utils/localePaths';
+import { getCloudinaryUrl, isAbsoluteUrl } from '../utils/imageUrl';
 
 interface ProductsResponse {
   items?: Product[];
@@ -621,8 +622,6 @@ const HERO_TEXT_POSITION_MAP: Record<
   'bottom-right': ['right', 'bottom'],
 };
 
-const isAbsoluteUrl = (value: string) => /^([a-z]+:)?\/\//i.test(value);
-
 const normalizeImagePath = (value: string | null | undefined, locale: string): string | undefined => {
   if (!value) {
     return undefined;
@@ -634,26 +633,34 @@ const normalizeImagePath = (value: string | null | undefined, locale: string): s
   }
 
   if (trimmed.startsWith('/content/')) {
-    return trimmed.startsWith('//') ? `/${trimmed.slice(2)}` : trimmed.startsWith('/') ? trimmed : `/${trimmed}`;
+    const normalizedContentPath = trimmed.startsWith('//') ? `/${trimmed.slice(2)}` : trimmed.startsWith('/') ? trimmed : `/${trimmed}`;
+    const cloudinaryUrl = getCloudinaryUrl(normalizedContentPath);
+    return cloudinaryUrl ?? normalizedContentPath;
   }
 
   if (trimmed.startsWith('/')) {
-    return trimmed;
+    const cloudinaryUrl = getCloudinaryUrl(trimmed);
+    return cloudinaryUrl ?? trimmed;
   }
 
   if (isAbsoluteUrl(trimmed)) {
-    return trimmed;
+    const cloudinaryUrl = getCloudinaryUrl(trimmed);
+    return cloudinaryUrl ?? trimmed;
   }
 
   const normalized = trimmed.replace(/^\.\/?/, '');
 
   if (normalized.startsWith('content/')) {
-    return `/${normalized}`;
+    const normalizedContentPath = `/${normalized}`;
+    const cloudinaryUrl = getCloudinaryUrl(normalizedContentPath);
+    return cloudinaryUrl ?? normalizedContentPath;
   }
 
   const uploadsPath = normalized.startsWith('uploads/') ? normalized.slice('uploads/'.length) : normalized;
+  const defaultPath = `/content/${locale}/uploads/${uploadsPath}`;
+  const cloudinaryUrl = getCloudinaryUrl(defaultPath);
 
-  return `/content/${locale}/uploads/${uploadsPath}`;
+  return cloudinaryUrl ?? defaultPath;
 };
 
 const firstDefined = <T,>(values: ReadonlyArray<T | null | undefined>): T | undefined => {
@@ -1179,18 +1186,20 @@ const ClinicsBlock: React.FC<ClinicsBlockProps> = ({ data, fieldPath, fallbackCt
     }
 
     const { clinicsTitle, clinicsBody, clinicsCtaHref, clinicsCtaLabel, clinicsImage } = data;
+    const trimmedClinicsImage = clinicsImage?.trim() ?? '';
+    const clinicsImageUrl = trimmedClinicsImage ? getCloudinaryUrl(trimmedClinicsImage) ?? trimmedClinicsImage : '';
     const hasPrimaryContent = Boolean(
         (clinicsTitle && clinicsTitle.trim().length > 0)
             || (clinicsBody && clinicsBody.trim().length > 0)
             || (clinicsCtaLabel && clinicsCtaLabel.trim().length > 0)
-            || (clinicsImage && clinicsImage.trim().length > 0),
+            || (trimmedClinicsImage.length > 0),
     );
 
     if (!hasPrimaryContent) {
         return null;
     }
 
-    const hasImage = Boolean(clinicsImage && clinicsImage.trim().length > 0);
+    const hasImage = Boolean(clinicsImageUrl);
     const effectiveHref = clinicsCtaHref && clinicsCtaHref.trim().length > 0 ? clinicsCtaHref : fallbackCtaHref;
     const isInternalLink = effectiveHref.startsWith('#/') || effectiveHref.startsWith('/');
     const internalPath = effectiveHref.startsWith('#/') ? effectiveHref.slice(1) : effectiveHref;
@@ -1270,7 +1279,7 @@ const ClinicsBlock: React.FC<ClinicsBlockProps> = ({ data, fieldPath, fallbackCt
                             className="w-full"
                         >
                             <img
-                                src={clinicsImage}
+                                src={clinicsImageUrl}
                                 alt={clinicsTitle ?? clinicsBody ?? fallbackCtaLabel}
                                 className="w-full rounded-lg shadow-lg object-cover"
                                 {...getVisualEditorAttributes(fieldPath ? `${fieldPath}.clinicsImage` : undefined)}
@@ -1340,7 +1349,8 @@ const GalleryRows: React.FC<GalleryRowsProps> = ({ rows, fieldPath }) => {
                                     return null;
                                 }
 
-                                const imageSrc = item.image?.trim();
+                                const rawImageSrc = item.image?.trim() ?? '';
+                                const imageSrc = rawImageSrc ? getCloudinaryUrl(rawImageSrc) ?? rawImageSrc : '';
                                 const caption = item.caption?.trim();
                                 const altText = item.alt?.trim() ?? caption ?? computedTitle;
                                 const hasContent = Boolean(imageSrc);
@@ -1791,22 +1801,30 @@ const Home: React.FC = () => {
   }, [language, heroFallbackRaw, contentVersion]);
 
   const sanitizeString = sanitizeCmsString;
+  const contentLocale = pageContent?.resolvedLocale ?? language;
 
   const pickImage = (local?: string | { src?: string | null } | null) => {
+    let candidate: string | null = null;
+
     if (typeof local === 'string') {
-      return local;
+      candidate = local;
+    } else if (local && typeof local === 'object') {
+      const source = 'src' in local ? local.src : undefined;
+      candidate = typeof source === 'string' ? source : null;
     }
 
-    if (local && typeof local === 'object') {
-      const candidate = 'src' in local ? local.src : undefined;
-      if (typeof candidate === 'string') {
-        return candidate;
-      }
+    if (!candidate) {
+      return null;
     }
 
-    return null;
+    const normalized = normalizeImagePath(candidate, contentLocale);
+    if (normalized) {
+      return normalized;
+    }
+
+    const trimmed = candidate.trim();
+    return trimmed.length > 0 ? trimmed : null;
   };
-  const contentLocale = pageContent?.resolvedLocale ?? language;
 
   const homeFieldPath = pageContent
     ? pageContent.contentSource === 'visual-editor'
@@ -2415,11 +2433,16 @@ const Home: React.FC = () => {
       case 'featureGrid': {
         const sectionTitle = sanitizeString(section.title ?? null);
         const items = (section.items ?? [])
-          .map((item) => ({
-            label: sanitizeString(item.label ?? null),
-            description: sanitizeString(item.description ?? null),
-            icon: sanitizeString(item.icon ?? null),
-          }))
+          .map((item) => {
+            const icon = sanitizeString(item.icon ?? null);
+            const iconUrl = icon ? getCloudinaryUrl(icon) ?? icon : undefined;
+
+            return {
+              label: sanitizeString(item.label ?? null),
+              description: sanitizeString(item.description ?? null),
+              icon: iconUrl,
+            };
+          })
           .filter((item) => item.label || item.description || item.icon);
         const columnClassMap: Record<number, string> = {
           2: 'lg:grid-cols-2',
@@ -2979,11 +3002,16 @@ const Home: React.FC = () => {
       case 'pillars': {
         const sectionTitle = sanitizeString(section.title ?? null);
         const items = (section.items ?? [])
-          .map((item) => ({
-            label: sanitizeString(item.label ?? null),
-            description: sanitizeString(item.description ?? null),
-            icon: sanitizeString(item.icon ?? null),
-          }))
+          .map((item) => {
+            const icon = sanitizeString(item.icon ?? null);
+            const iconUrl = icon ? getCloudinaryUrl(icon) ?? icon : undefined;
+
+            return {
+              label: sanitizeString(item.label ?? null),
+              description: sanitizeString(item.description ?? null),
+              icon: iconUrl,
+            };
+          })
           .filter((item) => item.label || item.description || item.icon);
 
         if (!sectionTitle && items.length === 0) {
@@ -3287,12 +3315,13 @@ const Home: React.FC = () => {
             const author = sanitizeString(entry?.author ?? resolved?.name ?? null);
             const role = sanitizeString(entry?.role ?? resolved?.title ?? null);
             const avatar = sanitizeString(entry?.avatar ?? resolved?.avatar ?? null);
+            const avatarUrl = avatar ? getCloudinaryUrl(avatar) ?? avatar : undefined;
 
             return {
               text,
               author,
               role,
-              avatar,
+              avatar: avatarUrl,
               relationRef,
             };
           })

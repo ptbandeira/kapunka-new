@@ -13,6 +13,7 @@ import {
 } from '../utils/loadClinicsPageContent';
 import { useVisualEditorSync } from '../contexts/VisualEditorSyncContext';
 import { fetchTestimonialsByRefs } from '../utils/fetchTestimonialsByRefs';
+import { getCloudinaryUrl } from '../utils/imageUrl';
 
 interface ClinicProtocol {
   title: string;
@@ -573,6 +574,8 @@ const ForClinics: React.FC = () => {
                       const testimonialFieldPath = `${clinicsFieldPath}.referencesSection.testimonials.${index}`;
                       const testimonialKey = testimonial.testimonialRef
                         ?? `${testimonial.quote}-${testimonial.name ?? index}`;
+                      const avatarSrc = (testimonial.avatar ?? '').trim();
+                      const cloudinaryAvatar = avatarSrc ? getCloudinaryUrl(avatarSrc) ?? avatarSrc : '';
 
                       return (
                         <blockquote
@@ -582,7 +585,7 @@ const ForClinics: React.FC = () => {
                         >
                           {testimonial.avatar && (
                             <img
-                              src={testimonial.avatar}
+                              src={cloudinaryAvatar}
                               alt={testimonial.name ?? t('clinics.testimonialAvatarAlt')}
                               className="h-12 w-12 rounded-full object-cover mb-4"
                               {...getVisualEditorAttributes(`${testimonialFieldPath}.avatar`)}
@@ -633,7 +636,11 @@ const ForClinics: React.FC = () => {
           </h2>
           {doctors.length > 0 ? (
             <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-8 text-center">
-              {doctors.map((doctor, index) => (
+              {doctors.map((doctor, index) => {
+                const doctorImageSrc = (doctor.imageUrl ?? '').trim();
+                const doctorImageUrl = doctorImageSrc ? getCloudinaryUrl(doctorImageSrc) ?? doctorImageSrc : '';
+
+                return (
                 <motion.div
                   key={doctor.id}
                   initial={{ opacity: 0, y: 20 }}
@@ -643,7 +650,7 @@ const ForClinics: React.FC = () => {
                   {...getVisualEditorAttributes(`doctors.doctors.${index}`)}
                 >
                   <img
-                    src={doctor.imageUrl}
+                    src={doctorImageUrl}
                     alt={doctor.name}
                     className="w-24 h-24 rounded-full mx-auto object-cover shadow-md"
                     {...getVisualEditorAttributes(`doctors.doctors.${index}.imageUrl`)}
@@ -655,7 +662,8 @@ const ForClinics: React.FC = () => {
                     {doctor.name}
                   </p>
                 </motion.div>
-              ))}
+              );
+              })}
             </div>
           ) : (
             <p className="text-center" {...getVisualEditorAttributes(`${commonFieldPath}.loadingProfessionals`)}>
