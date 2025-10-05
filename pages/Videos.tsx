@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Helmet } from 'react-helmet-async';
+import Head from 'next/head';
 import { motion } from 'framer-motion';
 import SectionRenderer from '../components/_legacy/SectionRenderer';
 import { useLanguage } from '../contexts/LanguageContext';
@@ -7,6 +7,7 @@ import type { PageContent, PageSection } from '../types';
 import { fetchVisualEditorMarkdown } from '../utils/fetchVisualEditorMarkdown';
 import { getVisualEditorAttributes } from '../utils/stackbitBindings';
 import { useVisualEditorSync } from '../contexts/VisualEditorSyncContext';
+import { useSiteSettings } from '../contexts/SiteSettingsContext';
 
 const SUPPORTED_SECTION_TYPES = new Set<PageSection['type']>([
   'timeline',
@@ -66,6 +67,7 @@ const isPageContent = (value: unknown): value is PageContent => {
 
 const Videos: React.FC = () => {
   const { t, language } = useLanguage();
+  const { settings } = useSiteSettings();
   const [pageContent, setPageContent] = useState<PageContent | null>(null);
   const { contentVersion } = useVisualEditorSync();
 
@@ -113,15 +115,34 @@ const Videos: React.FC = () => {
 
   const sections = pageContent?.sections ?? [];
   const sectionsFieldPath = `pages.videos_${language}.sections`;
-  const computedTitle = pageContent?.metaTitle ?? `${t('videos.metaTitle')} | Kapunka Skincare`;
-  const computedDescription = pageContent?.metaDescription ?? t('videos.metaDescription');
+  const sanitize = (value?: string | null): string | undefined => {
+    if (typeof value !== 'string') {
+      return undefined;
+    }
+    const trimmed = value.trim();
+    return trimmed.length > 0 ? trimmed : undefined;
+  };
+
+  const baseMetaTitle = sanitize(pageContent?.metaTitle) ?? t('videos.metaTitle');
+  const computedDescription = sanitize(pageContent?.metaDescription) ?? t('videos.metaDescription');
+  const computedTitle = baseMetaTitle.includes('Kapunka')
+    ? baseMetaTitle
+    : `${baseMetaTitle} | Kapunka Skincare`;
+  const socialImage = sanitize(settings.home?.heroImage);
 
   return (
     <div>
-      <Helmet>
+      <Head>
         <title>{computedTitle}</title>
         <meta name="description" content={computedDescription} />
-      </Helmet>
+        <meta property="og:title" content={computedTitle} />
+        <meta property="og:description" content={computedDescription} />
+        {socialImage ? <meta property="og:image" content={socialImage} /> : null}
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content={computedTitle} />
+        <meta name="twitter:description" content={computedDescription} />
+        {socialImage ? <meta name="twitter:image" content={socialImage} /> : null}
+      </Head>
 
       <header className="py-20 sm:py-28 bg-stone-100">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 text-center">

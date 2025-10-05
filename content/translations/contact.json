@@ -1,6 +1,7 @@
 {
   "type": "translations_contact",
   "en": {
+    "metaTitle": "Contact Kapunka",
     "title": "Contact Us",
     "metaDescription": "Get in touch with the Kapunka Skincare team for questions, partnership inquiries, or customer support.",
     "headerTitle": "Get in Touch",
@@ -22,6 +23,7 @@
     "whatsappAction": "Chat with us"
   },
   "pt": {
+    "metaTitle": "Contato Kapunka",
     "title": "Fale Conosco",
     "metaDescription": "Entre em contato com a equipe da Kapunka Skincare para perguntas, parcerias ou suporte ao cliente.",
     "headerTitle": "Entre em Contato",
@@ -43,6 +45,7 @@
     "whatsappAction": "Converse conosco"
   },
   "es": {
+    "metaTitle": "Contacto Kapunka",
     "title": "Contáctanos",
     "metaDescription": "Ponte en contacto con el equipo de Kapunka Skincare para preguntas, consultas sobre asociaciones o soporte al cliente.",
     "headerTitle": "Ponte en Contacto",
