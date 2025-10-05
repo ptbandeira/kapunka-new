@@ -1,0 +1,10 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+@import url('https://cdn.jsdelivr.net/npm/tailwindcss@3.3.5/dist/tailwind.min.css');
+
+body {
+  font-family: 'Inter', sans-serif;
+}
+
+.prose ul > li::before {
+  background-color: #57534e;
+}
