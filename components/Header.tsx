@@ -85,12 +85,10 @@ const Header: React.FC = () => {
   const NAV_LINK_CONFIG: Array<{ path: string; key: string }> = [
     { path: '/shop', key: 'shop' },
     { path: '/learn', key: 'learn' },
-    { path: '/story', key: 'story' },
+    { path: '/story', key: 'manifesto' },
     { path: '/videos', key: 'videos' },
     { path: '/training-program', key: 'training' },
     { path: '/method-kapunka', key: 'method' },
-    { path: '/product-education', key: 'productEducation' },
-    { path: '/founder-story', key: 'founderStory' },
     { path: '/for-clinics', key: 'forClinics' },
     { path: '/about', key: 'about' },
     { path: '/contact', key: 'contact' },

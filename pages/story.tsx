@@ -270,7 +270,7 @@ const StoryManifestoPage: React.FC = () => {
   }, [pageContent?.closing]);
 
   const computedTitle = useMemo(() => {
-    const baseTitle = pageContent?.metaTitle ?? t('nav.story');
+    const baseTitle = pageContent?.metaTitle ?? t('nav.manifesto');
     return baseTitle.includes('Kapunka') ? baseTitle : `${baseTitle} | Kapunka Skincare`;
   }, [pageContent?.metaTitle, t]);
 
@@ -294,7 +294,7 @@ const StoryManifestoPage: React.FC = () => {
             className="text-4xl sm:text-5xl font-semibold tracking-tight"
             {...getVisualEditorAttributes(`${storyFieldPath}.heroTitle`)}
           >
-            {pageContent?.heroTitle ?? t('nav.story')}
+            {pageContent?.heroTitle ?? t('nav.manifesto')}
           </motion.h1>
           {isNonEmptyString(pageContent?.heroSubtitle) ? (
             <motion.p

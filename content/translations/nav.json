@@ -7,11 +7,9 @@
     "training": "Training",
     "method": "Method Kapunka",
     "forClinics": "For Clinics",
-    "story": "Manifesto",
+    "manifesto": "Manifesto & Story",
     "about": "About",
-    "contact": "Contact",
-    "productEducation": "Product Education",
-    "founderStory": "Founder's Story"
+    "contact": "Contact"
   },
   "pt": {
     "shop": "Loja",
@@ -20,11 +18,9 @@
     "training": "Treinamento",
     "method": "Método Kapunka",
     "forClinics": "Para Clínicas",
-    "story": "Manifesto",
+    "manifesto": "Manifesto & História",
     "about": "Sobre",
-    "contact": "Contato",
-    "productEducation": "Educação de Produto",
-    "founderStory": "História da Fundadora"
+    "contact": "Contato"
   },
   "es": {
     "shop": "Tienda",
@@ -33,10 +29,8 @@
     "training": "Formación",
     "method": "Método Kapunka",
     "forClinics": "Para Clínicas",
-    "story": "Manifiesto",
+    "manifesto": "Manifiesto e Historia",
     "about": "Nosotros",
-    "contact": "Contacto",
-    "productEducation": "Educación de Producto",
-    "founderStory": "Historia de la Fundadora"
+    "contact": "Contacto"
   }
 }

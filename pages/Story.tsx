@@ -194,7 +194,7 @@ const Story: React.FC = () => {
   }, [pageContent?.sections]);
 
   const computedTitle = useMemo(() => {
-    const baseTitle = pageContent?.metaTitle ?? t('nav.story');
+    const baseTitle = pageContent?.metaTitle ?? t('nav.manifesto');
     return baseTitle.includes('Kapunka') ? baseTitle : `${baseTitle} | Kapunka Skincare`;
   }, [pageContent?.metaTitle, t]);
 
@@ -214,9 +214,9 @@ const Story: React.FC = () => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
             className="text-4xl sm:text-5xl font-semibold tracking-tight"
-            {...getVisualEditorAttributes(`translations.${language}.nav.story`)}
+            {...getVisualEditorAttributes(`translations.${language}.nav.manifesto`)}
           >
-            {t('nav.story')}
+            {t('nav.manifesto')}
           </motion.h1>
           {pageContent?.tagline ? (
             <motion.p
