@@ -10,7 +10,7 @@ import {
   Navigate,
 } from 'react-router-dom';
 import { AnimatePresence, motion } from 'framer-motion';
-import { Helmet, HelmetProvider } from 'react-helmet-async';
+import { HelmetProvider } from 'react-helmet-async';
 
 import Header from './components/Header';
 import Footer from './components/Footer';
@@ -22,6 +22,7 @@ import type { Language, LocalizedText } from './types';
 import { ensureVisualEditorAnnotations } from './utils/visualEditorAnnotations';
 import { isVisualEditorRuntime } from './utils/visualEditorRuntime';
 import { buildLocalizedPath, isSupportedLanguage, removeLocaleFromPath } from './utils/localePaths';
+import Seo from './components/Seo';
 
 const Home = lazy(() => import('./pages/Home'));
 const Shop = lazy(() => import('./pages/Shop'));
@@ -248,10 +249,7 @@ const App: React.FC = () => {
     <HelmetProvider>
       <BrowserRouter>
         <div className="bg-stone-50 text-stone-800 min-h-screen flex flex-col">
-          <Helmet>
-            <title>{defaultTitle}</title>
-            <meta name="description" content={defaultDescription} />
-          </Helmet>
+          <Seo title={defaultTitle} description={defaultDescription} locale={language} />
           <Header />
           <main className="flex-grow pt-[72px]">
             <Suspense fallback={<RouteFallback />}>

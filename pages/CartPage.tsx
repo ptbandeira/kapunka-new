@@ -1,6 +1,5 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import { Link } from 'react-router-dom';
-import { Helmet } from 'react-helmet-async';
 import { motion } from 'framer-motion';
 import { Minus, Plus, Trash2 } from 'lucide-react';
 
@@ -13,6 +12,7 @@ import { useVisualEditorSync } from '../contexts/VisualEditorSyncContext';
 import { formatCurrency } from '../utils/currency';
 import { buildLocalizedPath } from '../utils/localePaths';
 import { getCloudinaryUrl } from '../utils/imageUrl';
+import Seo from '../components/Seo';
 
 interface ProductsResponse {
   items?: Product[];
@@ -142,11 +142,12 @@ const CartPage: React.FC = () => {
         );
     }
 
+    const pageTitle = `${t('cart.pageTitle')} | Kapunka Skincare`;
+    const description = t('cart.shippingNote');
+
     return (
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-16">
-            <Helmet>
-                <title>{t('cart.pageTitle')} | Kapunka Skincare</title>
-            </Helmet>
+            <Seo title={pageTitle} description={description} locale={language} />
             <header className="text-center mb-12">
                 <h1
                     className="text-4xl sm:text-5xl font-semibold tracking-tight"

@@ -6,6 +6,7 @@ interface ImageGridItemProps {
   image?: string;
   title?: string;
   subtitle?: string;
+  alt?: string;
 }
 
 interface ImageGridProps {
@@ -33,6 +34,10 @@ const ImageGrid: React.FC<ImageGridProps> = ({ items, fieldPath }) => {
               ?? JSON.stringify(item ?? {});
             const imageSrc = item.image?.trim();
             const cloudinaryUrl = imageSrc ? getCloudinaryUrl(imageSrc) ?? imageSrc : '';
+            const altText = [item.alt, item.title, item.subtitle]
+              .map((value) => value?.trim())
+              .find((value): value is string => Boolean(value))
+              ?? 'Gallery image';
 
             return (
               <div
@@ -45,7 +50,7 @@ const ImageGrid: React.FC<ImageGridProps> = ({ items, fieldPath }) => {
                   {...(itemFieldPath ? getVisualEditorAttributes(`${itemFieldPath}.image`) : {})}
                 >
                   {imageSrc ? (
-                    <img src={cloudinaryUrl} alt={item.title ?? ''} className="w-full h-full object-cover" />
+                    <img src={cloudinaryUrl} alt={altText} className="w-full h-full object-cover" />
                   ) : (
                     <span className="text-sm text-stone-400">Image coming soon</span>
                   )}

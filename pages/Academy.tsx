@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import { Helmet } from 'react-helmet-async';
 import { motion } from 'framer-motion';
 import { useLanguage } from '../contexts/LanguageContext';
 import CourseCard from '../components/CourseCard';
@@ -7,6 +6,7 @@ import type { Course } from '../types';
 import { fetchVisualEditorJson } from '../utils/fetchVisualEditorJson';
 import { useVisualEditorSync } from '../contexts/VisualEditorSyncContext';
 import { getVisualEditorAttributes } from '../utils/stackbitBindings';
+import Seo from '../components/Seo';
 
 interface CoursesResponse {
     courses?: Course[];
@@ -50,12 +50,12 @@ const Academy: React.FC = () => {
         };
     }, [contentVersion]);
 
+  const pageTitle = `${t('academy.headerTitle')} | Kapunka Skincare`;
+  const description = t('academy.headerSubtitle');
+
   return (
     <div>
-        <Helmet>
-            <title>{t('academy.headerTitle')} | Kapunka Skincare</title>
-            <meta name="description" content={t('academy.headerSubtitle')} />
-        </Helmet>
+      <Seo title={pageTitle} description={description} locale={language} />
       <header className="py-20 sm:py-32 bg-stone-100 text-center">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <motion.h1

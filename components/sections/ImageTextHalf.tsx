@@ -7,10 +7,11 @@ interface ImageTextHalfProps {
   image?: string;
   title?: string;
   text?: string;
+  imageAlt?: string;
   fieldPath?: string;
 }
 
-const ImageTextHalf: React.FC<ImageTextHalfProps> = ({ image, title, text, fieldPath }) => {
+const ImageTextHalf: React.FC<ImageTextHalfProps> = ({ image, title, text, imageAlt, fieldPath }) => {
   if (!title && !text && !image) {
     return null;
   }
@@ -18,6 +19,10 @@ const ImageTextHalf: React.FC<ImageTextHalfProps> = ({ image, title, text, field
   const markdownSource = text?.trim();
   const trimmedImage = image?.trim();
   const cloudinaryUrl = trimmedImage ? getCloudinaryUrl(trimmedImage) ?? trimmedImage : '';
+  const altText = [imageAlt, title]
+    .map((value) => value?.trim())
+    .find((value): value is string => Boolean(value))
+    ?? 'Featured illustration';
 
   return (
     <section
@@ -48,7 +53,7 @@ const ImageTextHalf: React.FC<ImageTextHalfProps> = ({ image, title, text, field
             {trimmedImage ? (
               <img
                 src={cloudinaryUrl}
-                alt={title ?? ''}
+                alt={altText}
                 className="w-full h-full object-cover rounded-lg shadow-sm"
                 {...(fieldPath ? getVisualEditorAttributes(`${fieldPath}.image`) : {})}
               />

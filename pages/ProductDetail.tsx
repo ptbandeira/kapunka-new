@@ -1,6 +1,5 @@
 import React, { useState, useEffect, useMemo, useCallback } from 'react';
 import { useParams, Link } from 'react-router-dom';
-import { Helmet } from 'react-helmet-async';
 import { motion } from 'framer-motion';
 import { Plus } from 'lucide-react';
 
@@ -10,6 +9,7 @@ import { useUI } from '../contexts/UIContext';
 import SectionRenderer from '../components/SectionRenderer';
 import type { Product, ProductKnowledge, ProductTabsSectionContent } from '../types';
 import ProductCard from '../components/ProductCard';
+import Seo from '../components/Seo';
 import { fetchVisualEditorJson } from '../utils/fetchVisualEditorJson';
 import { getVisualEditorAttributes } from '../utils/stackbitBindings';
 import { formatCurrency } from '../utils/currency';
@@ -110,6 +110,9 @@ const ProductDetail: React.FC = () => {
         ? (translate(product.titleAddition) as string)
         : null;
     const translatedTagline = translate(product.tagline) as string;
+    const pageTitle = `${translate(product.name)} | Kapunka Skincare`;
+    const description = translatedTagline;
+    const socialImage = productImageUrl || undefined;
 
     const productIndex = allProducts.findIndex((p) => p.id === product.id);
     const productFieldPath = productIndex >= 0 ? `products.items.${productIndex}` : undefined;
@@ -321,10 +324,13 @@ const ProductDetail: React.FC = () => {
 
     return (
         <div>
-            <Helmet>
-                <title>{translate(product.name)} | Kapunka Skincare</title>
-                <meta name="description" content={translate(product.tagline)} />
-            </Helmet>
+            <Seo
+                title={pageTitle}
+                description={description}
+                image={socialImage}
+                locale={language}
+                type="product"
+            />
 
             <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-16" {...getVisualEditorAttributes(productFieldPath)}>
                 <div className="grid md:grid-cols-2 gap-12 items-start">

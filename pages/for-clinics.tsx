@@ -1,5 +1,4 @@
 import React, { useEffect, useMemo, useState } from 'react';
-import Head from 'next/head';
 import { motion } from 'framer-motion';
 import { useLanguage } from '../contexts/LanguageContext';
 import { useSiteSettings } from '../contexts/SiteSettingsContext';
@@ -10,6 +9,7 @@ import {
   loadClinicsPageContent,
   type ClinicsPageContentResult,
 } from '../utils/loadClinicsPageContent';
+import Seo from '../components/Seo';
 
 interface ProtocolCard {
   title?: string;
@@ -319,17 +319,12 @@ const ForClinics: React.FC = () => {
 
   return (
     <div className="bg-white text-stone-900" data-sb-object-id={rootObjectId}>
-      <Head>
-        <title>{pageTitle}</title>
-        <meta name="description" content={metaDescription} />
-        <meta property="og:title" content={pageTitle} />
-        <meta property="og:description" content={metaDescription} />
-        {socialImage ? <meta property="og:image" content={socialImage} /> : null}
-        <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:title" content={pageTitle} />
-        <meta name="twitter:description" content={metaDescription} />
-        {socialImage ? <meta name="twitter:image" content={socialImage} /> : null}
-      </Head>
+      <Seo
+        title={pageTitle}
+        description={metaDescription}
+        image={socialImage}
+        locale={language}
+      />
 
       <main>
         <section className="bg-stone-100 py-20 sm:py-28">

@@ -1,5 +1,4 @@
 import React, { useEffect, useMemo, useState } from 'react';
-import { Helmet } from 'react-helmet-async';
 import { motion } from 'framer-motion';
 import SectionRenderer from '../components/SectionRenderer';
 import { useLanguage } from '../contexts/LanguageContext';
@@ -7,6 +6,7 @@ import { useVisualEditorSync } from '../contexts/VisualEditorSyncContext';
 import type { PageSection } from '../types';
 import { fetchVisualEditorMarkdown } from '../utils/fetchVisualEditorMarkdown';
 import { getVisualEditorAttributes } from '../utils/stackbitBindings';
+import Seo from '../components/Seo';
 
 const SUPPORTED_SECTION_TYPES = new Set<PageSection['type']>([
   'timeline',
@@ -280,10 +280,12 @@ const StoryManifestoPage: React.FC = () => {
 
   return (
     <div className="bg-stone-50 text-stone-900">
-      <Helmet>
-        <title>{computedTitle}</title>
-        {computedDescription && <meta name="description" content={computedDescription} />}
-      </Helmet>
+      <Seo
+        title={computedTitle}
+        description={computedDescription}
+        locale={language}
+        type="article"
+      />
 
       <header className="py-24 sm:py-32 bg-stone-100">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 text-center">

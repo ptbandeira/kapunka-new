@@ -1,5 +1,4 @@
 import React, { useEffect, useMemo, useState } from 'react';
-import Head from 'next/head';
 import { motion } from 'framer-motion';
 import SectionRenderer from '../components/SectionRenderer';
 import { useLanguage } from '../contexts/LanguageContext';
@@ -9,6 +8,7 @@ import { fetchVisualEditorMarkdown } from '../utils/fetchVisualEditorMarkdown';
 import { getVisualEditorAttributes } from '../utils/stackbitBindings';
 import { getCloudinaryUrl } from '../utils/imageUrl';
 import { useSiteSettings } from '../contexts/SiteSettingsContext';
+import Seo from '../components/Seo';
 
 const SUPPORTED_SECTION_TYPES = new Set<PageSection['type']>([
   'timeline',
@@ -207,17 +207,13 @@ const Story: React.FC = () => {
 
   return (
     <div>
-      <Helmet>
-        <title>{pageTitle}</title>
-        {metaDescription ? <meta name="description" content={metaDescription} /> : null}
-        <meta property="og:title" content={pageTitle} />
-        {metaDescription ? <meta property="og:description" content={metaDescription} /> : null}
-        {socialImage ? <meta property="og:image" content={socialImage} /> : null}
-        <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:title" content={pageTitle} />
-        {metaDescription ? <meta name="twitter:description" content={metaDescription} /> : null}
-        {socialImage ? <meta name="twitter:image" content={socialImage} /> : null}
-      </Helmet>
+      <Seo
+        title={pageTitle}
+        description={metaDescription}
+        image={socialImage}
+        locale={language}
+        type="article"
+      />
 
       <header className="py-20 sm:py-32 bg-stone-100">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 text-center">

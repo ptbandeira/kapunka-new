@@ -1,5 +1,4 @@
 import React, { useState, useMemo, useEffect, useCallback } from 'react';
-import { Helmet } from 'react-helmet-async';
 import { Link } from 'react-router-dom';
 import { ArrowUpRight, BookOpen, Stethoscope } from 'lucide-react';
 import type { LucideIcon } from 'lucide-react';
@@ -11,6 +10,7 @@ import { fetchVisualEditorJson } from '../utils/fetchVisualEditorJson';
 import { getVisualEditorAttributes } from '../utils/stackbitBindings';
 import { useVisualEditorSync } from '../contexts/VisualEditorSyncContext';
 import { buildLocalizedPath } from '../utils/localePaths';
+import Seo from '../components/Seo';
 
 const linkIcons: Record<ShopCategoryLink['type'], LucideIcon> = {
   product: ArrowUpRight,
@@ -165,12 +165,12 @@ const Shop: React.FC = () => {
     ];
   }, [categories, t, translate, language]);
 
+  const pageTitle = `${t('shop.title')} | Kapunka Skincare`;
+  const description = t('shop.metaDescription');
+
   return (
     <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-16">
-      <Helmet>
-        <title>{t('shop.title')} | Kapunka Skincare</title>
-        <meta name="description" content={t('shop.metaDescription')} />
-      </Helmet>
+      <Seo title={pageTitle} description={description} locale={language} />
       <header className="text-center mb-12">
         <h1
           className="text-4xl sm:text-5xl font-semibold tracking-tight"
