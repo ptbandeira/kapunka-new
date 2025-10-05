@@ -15,7 +15,6 @@ const localizedPageRoutes = [
   { slug: 'story', urlPath: '/story' },
   { slug: 'training', urlPath: '/training' },
   { slug: 'videos', urlPath: '/videos' },
-  { slug: 'test', urlPath: '/test' },
   { slug: 'method', urlPath: '/method' },
 ];
 
@@ -2067,20 +2066,6 @@ const customModels = [
           type: 'model',
           models: ['Policy'],
         },
-      },
-    ],
-  },
-  {
-    name: 'TestPage',
-    type: 'page',
-    label: 'Test Page',
-    filePath: 'content/pages/{lang}/test.md',
-    urlPath: '/test',
-    fields: [
-      {
-        type: 'string',
-        name: 'title',
-        label: 'Title',
       },
     ],
   },
