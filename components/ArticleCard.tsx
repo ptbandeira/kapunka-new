@@ -5,7 +5,7 @@ import { useLanguage } from '../contexts/LanguageContext';
 import type { Article } from '../types';
 import { getVisualEditorAttributes } from '../utils/stackbitBindings';
 import { buildLocalizedPath } from '../utils/localePaths';
-import { getCloudinaryUrl } from '../utils/imageUrl';
+import { toCld } from '@/src/lib/images';
 
 interface ArticleCardProps {
   article: Article;
@@ -32,7 +32,7 @@ const ArticleCard: React.FC<ArticleCardProps> = (props) => {
   const { translate, t, language } = useLanguage();
 
   const imageSrc = (article.imageUrl ?? '').trim();
-  const cloudinaryUrl = imageSrc ? getCloudinaryUrl(imageSrc) ?? imageSrc : '';
+  const cloudinaryUrl = toCld(imageSrc);
 
   const translationCategoryKey = `learn.categories.${article.category}`;
   const translatedCategory = t(translationCategoryKey);

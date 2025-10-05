@@ -11,6 +11,11 @@ This log records day-to-day investigations, fixes, and decisions that affect the
 
 ---
 
+## 2025-10-11 — Swapped Decap media library to Cloudinary env placeholders
+- **What changed**: Updated `admin/config.yml` to point the Decap media library at Cloudinary with placeholder env references so builds read credentials from Netlify. No runtime keys remain hardcoded in the repo.
+- **Impact & follow-up**: Keeps editorial uploads routed through Cloudinary without exposing secrets. Ensure Netlify env vars `CLOUDINARY_BASE_URL` and `NETLIFY_ENV_CLOUDINARY_API_KEY` stay configured across deploy contexts.
+- **References**: Pending PR
+
 ## 2025-10-10 — Localized site settings refinements
 - **What changed**: Updated `admin/config.yml` so brand name, alt text, footer legal copy, social labels, and SEO defaults use explicit locale fields instead of raw maps, added validation patterns for contact links, and introduced descriptive hints to guide editors.
 - **Impact & follow-up**: Editors now see one input per language for shared site settings and get immediate validation for contact URLs, reducing content errors in Decap. Monitor upcoming edits to ensure the new patterns do not block legitimate international phone formats.
