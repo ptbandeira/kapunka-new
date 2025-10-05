@@ -8,6 +8,7 @@ import { useUI } from '../contexts/UIContext';
 import { useLanguage } from '../contexts/LanguageContext';
 import { getVisualEditorAttributes } from '../utils/stackbitBindings';
 import { formatCurrency } from '../utils/currency';
+import { getCloudinaryUrl } from '../utils/imageUrl';
 import type { Product } from '../types';
 import { buildLocalizedPath } from '../utils/localePaths';
 
@@ -53,6 +54,9 @@ const ProductCard: React.FC<ProductCardProps> = (props) => {
     }
   }, [setSelectedSizeId]);
 
+  const productImageSrc = (product.imageUrl ?? '').trim();
+  const cloudinaryUrl = productImageSrc ? getCloudinaryUrl(productImageSrc) ?? productImageSrc : '';
+
   return (
     <motion.div
       initial={{ opacity: 0, y: 20 }}
@@ -65,7 +69,7 @@ const ProductCard: React.FC<ProductCardProps> = (props) => {
       <Link to={buildLocalizedPath(`/product/${product.id}`, language)} className="block">
         <div className="relative overflow-hidden rounded-lg">
           <img
-            src={product.imageUrl}
+            src={cloudinaryUrl}
             alt={translate(product.name)}
             className="w-full h-auto aspect-[3/4] object-cover transition-transform duration-500 group-hover:scale-105"
             {...getVisualEditorAttributes(fieldPath ? `${fieldPath}.imageUrl` : undefined)}

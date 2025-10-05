@@ -12,6 +12,7 @@ import { getVisualEditorAttributes } from '../utils/stackbitBindings';
 import { useVisualEditorSync } from '../contexts/VisualEditorSyncContext';
 import { formatCurrency } from '../utils/currency';
 import { buildLocalizedPath } from '../utils/localePaths';
+import { getCloudinaryUrl } from '../utils/imageUrl';
 
 interface ProductsResponse {
   items?: Product[];
@@ -23,6 +24,8 @@ const CartItemRow: React.FC<{ item: CartItem; product?: Product; productFieldPat
 
   const size = product?.sizes.find(s => s.id === item.sizeId);
   const sizeIndex = product?.sizes.findIndex(s => s.id === item.sizeId) ?? -1;
+  const imageSrc = (product?.imageUrl ?? '').trim();
+  const cloudinaryUrl = imageSrc ? getCloudinaryUrl(imageSrc) ?? imageSrc : '';
 
   const handleDecreaseQuantity = useCallback(() => {
     updateQuantity(item.productId, item.sizeId, item.quantity - 1);
@@ -42,7 +45,7 @@ const CartItemRow: React.FC<{ item: CartItem; product?: Product; productFieldPat
     <div className="grid grid-cols-12 gap-4 items-center py-4 border-b border-stone-200" {...getVisualEditorAttributes(productFieldPath)}>
       <div className="col-span-2">
         <img
-          src={product.imageUrl}
+          src={cloudinaryUrl}
           alt={translate(product.name)}
           className="w-20 h-20 object-cover rounded-md"
           {...getVisualEditorAttributes(productFieldPath ? `${productFieldPath}.imageUrl` : undefined)}

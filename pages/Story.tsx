@@ -7,6 +7,7 @@ import { useVisualEditorSync } from '../contexts/VisualEditorSyncContext';
 import type { PageSection } from '../types';
 import { fetchVisualEditorMarkdown } from '../utils/fetchVisualEditorMarkdown';
 import { getVisualEditorAttributes } from '../utils/stackbitBindings';
+import { getCloudinaryUrl } from '../utils/imageUrl';
 
 const SUPPORTED_SECTION_TYPES = new Set<PageSection['type']>([
   'timeline',
@@ -241,7 +242,8 @@ const Story: React.FC = () => {
               data-sb-field-path={`${storyFieldPath}.story`}
             >
               {storyBlocks.map(({ block, index }) => {
-                const imageUrl = block.imageUrl ?? undefined;
+                const rawImageUrl = block.imageUrl?.trim() ?? '';
+                const imageUrl = rawImageUrl ? getCloudinaryUrl(rawImageUrl) ?? rawImageUrl : undefined;
                 const hasImage = Boolean(imageUrl);
                 const imageFirst = hasImage && index % 2 === 0;
                 const storyBlockFieldPath = `${storyFieldPath}.story.${index}`;

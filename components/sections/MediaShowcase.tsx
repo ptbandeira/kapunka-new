@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { getVisualEditorAttributes } from '../../utils/stackbitBindings';
 import { useLanguage } from '../../contexts/LanguageContext';
 import { buildLocalizedPath } from '../../utils/localePaths';
+import { getCloudinaryUrl } from '../../utils/imageUrl';
 
 export interface MediaShowcaseItem {
   eyebrow?: string;
@@ -59,7 +60,8 @@ const MediaShowcase: React.FC<MediaShowcaseProps> = ({ title, items, fieldPath }
         )}
         <div className="grid auto-rows-[minmax(640px,1fr)] gap-y-0 md:grid-cols-4 md:gap-x-0">
           {items.map((item, index) => {
-            const imageSrc = item.image;
+            const imageSrc = item.image?.trim();
+            const cloudinaryUrl = imageSrc ? getCloudinaryUrl(imageSrc) ?? imageSrc : '';
             const eyebrow = item.eyebrow?.trim();
             const itemTitle = item.title?.trim();
             const body = item.body?.trim();
@@ -98,7 +100,7 @@ const MediaShowcase: React.FC<MediaShowcaseProps> = ({ title, items, fieldPath }
               >
                 {imageSrc ? (
                   <img
-                    src={imageSrc}
+                    src={cloudinaryUrl}
                     alt={item.alt ?? itemTitle ?? 'Kapunka highlight'}
                     className="absolute inset-0 h-full w-full object-cover"
                     {...getVisualEditorAttributes(item.imageFieldPath)}

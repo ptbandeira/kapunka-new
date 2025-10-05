@@ -6,6 +6,7 @@ import { useLanguage } from '../contexts/LanguageContext';
 import { fetchVisualEditorJson } from '../utils/fetchVisualEditorJson';
 import { useVisualEditorSync } from '../contexts/VisualEditorSyncContext';
 import { getVisualEditorAttributes } from '../utils/stackbitBindings';
+import { getCloudinaryUrl } from '../utils/imageUrl';
 
 interface VideoGalleryProps {
   title?: string;
@@ -122,6 +123,8 @@ const VideoGallery: React.FC<VideoGalleryProps> = ({ title, description, entries
               const key = `${item.title ?? 'video'}-${index}`;
               const itemFieldPath = fieldPath ? `${fieldPath}.entries.${index}` : undefined;
               const hasThumbnail = typeof item.thumbnail === 'string' && item.thumbnail.trim().length > 0;
+              const thumbnailSrc = item.thumbnail?.trim() ?? '';
+              const cloudinaryUrl = thumbnailSrc ? getCloudinaryUrl(thumbnailSrc) ?? thumbnailSrc : '';
 
               return (
                 <motion.article
@@ -137,7 +140,7 @@ const VideoGallery: React.FC<VideoGalleryProps> = ({ title, description, entries
                 <div className="relative overflow-hidden rounded-xl">
                   {hasThumbnail ? (
                     <img
-                      src={item.thumbnail}
+                      src={cloudinaryUrl}
                       alt={item.title ?? 'Video thumbnail'}
                       className="h-48 w-full object-cover"
                       loading="lazy"

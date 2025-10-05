@@ -5,6 +5,7 @@ import { useLanguage } from '../contexts/LanguageContext';
 import type { Article } from '../types';
 import { getVisualEditorAttributes } from '../utils/stackbitBindings';
 import { buildLocalizedPath } from '../utils/localePaths';
+import { getCloudinaryUrl } from '../utils/imageUrl';
 
 interface ArticleCardProps {
   article: Article;
@@ -30,6 +31,9 @@ const ArticleCard: React.FC<ArticleCardProps> = (props) => {
   const dataSbFieldPath = props['data-sb-field-path'];
   const { translate, t, language } = useLanguage();
 
+  const imageSrc = (article.imageUrl ?? '').trim();
+  const cloudinaryUrl = imageSrc ? getCloudinaryUrl(imageSrc) ?? imageSrc : '';
+
   const translationCategoryKey = `learn.categories.${article.category}`;
   const translatedCategory = t(translationCategoryKey);
   const displayCategory = categoryLabel
@@ -52,7 +56,7 @@ const ArticleCard: React.FC<ArticleCardProps> = (props) => {
       <Link to={buildLocalizedPath(`/learn/${article.slug}`, language)} className="group block">
         <div className="overflow-hidden rounded-lg">
           <img
-            src={article.imageUrl}
+            src={cloudinaryUrl}
             alt={translate(article.title)}
             className="w-full h-56 object-cover transition-transform duration-500 group-hover:scale-105"
             {...getVisualEditorAttributes(fieldPath ? `${fieldPath}.imageUrl` : undefined)}

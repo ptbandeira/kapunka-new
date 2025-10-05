@@ -3,6 +3,7 @@ import { Helmet } from 'react-helmet-async';
 import { motion } from 'framer-motion';
 import { useLanguage } from '../contexts/LanguageContext';
 import { useSiteSettings } from '../contexts/SiteSettingsContext';
+import { getCloudinaryUrl } from '../utils/imageUrl';
 import SectionRenderer from '../components/_legacy/SectionRenderer';
 import type { PageContent, PageSection, TimelineEntry, TimelineSectionContent } from '../types';
 import { fetchVisualEditorJson } from '../utils/fetchVisualEditorJson';
@@ -176,8 +177,12 @@ const About: React.FC = () => {
     const aboutFieldPath = `pages.about_${language}`;
     const defaultStoryImage = 'https://images.unsplash.com/photo-1598555769781-8714b14a293f?q=80&w=1974&auto=format&fit=crop';
     const defaultSourcingImage = 'https://images.unsplash.com/photo-1616893904984-7a57a3b35338?q=80&w=1964&auto=format&fit=crop';
-    const storyImage = settings.about?.storyImage || defaultStoryImage;
-    const sourcingImage = settings.about?.sourcingImage || defaultSourcingImage;
+    const storyImageSourceRaw = settings.about?.storyImage || defaultStoryImage;
+    const sourcingImageSourceRaw = settings.about?.sourcingImage || defaultSourcingImage;
+    const storyImageSource = storyImageSourceRaw ? storyImageSourceRaw.trim() : '';
+    const sourcingImageSource = sourcingImageSourceRaw ? sourcingImageSourceRaw.trim() : '';
+    const storyImage = storyImageSource ? getCloudinaryUrl(storyImageSource) ?? storyImageSource : '';
+    const sourcingImage = sourcingImageSource ? getCloudinaryUrl(sourcingImageSource) ?? sourcingImageSource : '';
     const storyAlt = translate(settings.about?.storyAlt ?? 'Brand story');
     const sourcingAlt = translate(settings.about?.sourcingAlt ?? t('about.sourcingImageAlt'));
     const [aboutContent, setAboutContent] = useState<AboutPageContent | null>(null);
@@ -329,7 +334,8 @@ const About: React.FC = () => {
             <>
               <div className="space-y-16">
                 {aboutStoryBlocks.map((block, index) => {
-                    const imageUrl = block.imageUrl ?? undefined;
+                    const rawImageUrl = block.imageUrl?.trim() ?? '';
+                    const imageUrl = rawImageUrl ? getCloudinaryUrl(rawImageUrl) ?? rawImageUrl : '';
                     const hasImage = Boolean(imageUrl);
                     const imageFirst = hasImage && index % 2 === 0;
                     const storyBlockFieldPath = `${aboutFieldPath}.story.${index}`;

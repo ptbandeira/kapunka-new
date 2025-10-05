@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactMarkdown from 'react-markdown';
 import { getVisualEditorAttributes } from '../../utils/stackbitBindings';
+import { getCloudinaryUrl } from '../../utils/imageUrl';
 
 interface ImageTextHalfProps {
   image?: string;
@@ -15,6 +16,8 @@ const ImageTextHalf: React.FC<ImageTextHalfProps> = ({ image, title, text, field
   }
 
   const markdownSource = text?.trim();
+  const trimmedImage = image?.trim();
+  const cloudinaryUrl = trimmedImage ? getCloudinaryUrl(trimmedImage) ?? trimmedImage : '';
 
   return (
     <section
@@ -42,9 +45,9 @@ const ImageTextHalf: React.FC<ImageTextHalfProps> = ({ image, title, text, field
             )}
           </div>
           <div className="order-1 lg:order-2">
-            {image ? (
+            {trimmedImage ? (
               <img
-                src={image}
+                src={cloudinaryUrl}
                 alt={title ?? ''}
                 className="w-full h-full object-cover rounded-lg shadow-sm"
                 {...(fieldPath ? getVisualEditorAttributes(`${fieldPath}.image`) : {})}

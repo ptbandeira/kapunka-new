@@ -5,6 +5,7 @@ import type { Partner } from '../types';
 import { fetchVisualEditorJson } from '../utils/fetchVisualEditorJson';
 import { useVisualEditorSync } from '../contexts/VisualEditorSyncContext';
 import { getVisualEditorAttributes } from '../utils/stackbitBindings';
+import { getCloudinaryUrl } from '../utils/imageUrl';
 
 interface PartnerCarouselProps {
   title?: string;
@@ -82,7 +83,11 @@ const PartnerCarousel: React.FC<PartnerCarouselProps> = ({ title, fieldPath }) =
                     viewport={{ once: true, amount: 0.5 }}
                     {...getVisualEditorAttributes('partners.partners')}
                 >
-                    {partners.map((partner, index) => (
+                    {partners.map((partner, index) => {
+                        const logoSrc = (partner.logoUrl ?? '').trim();
+                        const cloudinaryUrl = logoSrc ? getCloudinaryUrl(logoSrc) ?? logoSrc : '';
+
+                        return (
                         <motion.div
                             key={partner.id}
                             variants={itemVariants}
@@ -90,7 +95,7 @@ const PartnerCarousel: React.FC<PartnerCarouselProps> = ({ title, fieldPath }) =
                             {...getVisualEditorAttributes(`partners.partners.${index}`)}
                         >
                             <img
-                                src={partner.logoUrl}
+                                src={cloudinaryUrl}
                                 alt={partner.name}
                                 title={partner.description ?? partner.name}
                                 className="h-8 object-contain grayscale opacity-60 hover:opacity-100 hover:grayscale-0 transition-all duration-300"
@@ -105,7 +110,8 @@ const PartnerCarousel: React.FC<PartnerCarouselProps> = ({ title, fieldPath }) =
                                 </p>
                             )}
                         </motion.div>
-                    ))}
+                        );
+                    })}
                 </motion.div>
             </div>
         </div>

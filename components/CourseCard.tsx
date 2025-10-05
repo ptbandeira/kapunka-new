@@ -4,6 +4,7 @@ import { motion } from 'framer-motion';
 import { useLanguage } from '../contexts/LanguageContext';
 import { getVisualEditorAttributes } from '../utils/stackbitBindings';
 import { formatCurrency } from '../utils/currency';
+import { getCloudinaryUrl } from '../utils/imageUrl';
 import type { Course } from '../types';
 
 interface CourseCardProps {
@@ -18,6 +19,8 @@ const CourseCard: React.FC<CourseCardProps> = (props) => {
   const dataSbFieldPath = props['data-sb-field-path'];
   const { translate, t, language } = useLanguage();
   const baseFieldPath = `courses.courses.${index}`;
+  const imageSrc = (course.imageUrl ?? '').trim();
+  const cloudinaryUrl = imageSrc ? getCloudinaryUrl(imageSrc) ?? imageSrc : '';
 
   return (
     <motion.div
@@ -31,7 +34,7 @@ const CourseCard: React.FC<CourseCardProps> = (props) => {
     >
       <div className="overflow-hidden rounded-lg">
         <img
-          src={course.imageUrl}
+          src={cloudinaryUrl}
           alt={translate(course.title)}
           className="w-full h-56 object-cover transition-transform duration-500 group-hover:scale-105"
           {...getVisualEditorAttributes(`${fieldPath ?? baseFieldPath}.imageUrl`)}

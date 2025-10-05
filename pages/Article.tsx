@@ -19,6 +19,7 @@ import { fetchVisualEditorJson } from '../utils/fetchVisualEditorJson';
 import { getVisualEditorAttributes } from '../utils/stackbitBindings';
 import { useVisualEditorSync } from '../contexts/VisualEditorSyncContext';
 import { buildLocalizedPath } from '../utils/localePaths';
+import { getCloudinaryUrl } from '../utils/imageUrl';
 
 interface ArticlesResponse {
     items?: Article[];
@@ -240,6 +241,8 @@ const ArticlePage: React.FC = () => {
         ? learnCategories.get(article.category)?.fieldPath
             ?? `translations.${language}.learn.categories.${article.category}`
         : undefined;
+    const articleImageSrc = (article.imageUrl ?? '').trim();
+    const articleImageUrl = articleImageSrc ? getCloudinaryUrl(articleImageSrc) ?? articleImageSrc : '';
 
     return (
         <div>
@@ -277,14 +280,14 @@ const ArticlePage: React.FC = () => {
                     </h1>
                 </motion.header>
                 
-                <motion.div 
-                    initial={{ opacity: 0 }} 
-                    animate={{ opacity: 1 }} 
+                <motion.div
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
                     transition={{ duration: 0.6, delay: 0.2 }}
                     className="my-8"
                 >
                     <img
-                        src={article.imageUrl}
+                        src={articleImageUrl}
                         alt={translate(article.title)}
                         className="w-full h-auto max-h-[500px] object-cover rounded-lg shadow-lg"
                         {...getVisualEditorAttributes(articleFieldPath ? `${articleFieldPath}.imageUrl` : undefined)}

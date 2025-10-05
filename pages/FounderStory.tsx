@@ -4,6 +4,7 @@ import { motion } from 'framer-motion';
 import { fetchVisualEditorMarkdown } from '../utils/fetchVisualEditorMarkdown';
 import { useVisualEditorSync } from '../contexts/VisualEditorSyncContext';
 import { useSiteSettings } from '../contexts/SiteSettingsContext';
+import { getCloudinaryUrl } from '../utils/imageUrl';
 
 interface MicroStory {
   quote?: string;
@@ -190,11 +191,45 @@ const FounderStory: React.FC = () => {
   }, [contentVersion]);
 
   const heroImage = content?.images?.hero;
-  const galleryImages = content?.images?.gallery?.filter((image) => Boolean(image?.src?.trim())) ?? [];
+  const heroImageSrc = heroImage?.src?.trim() ?? '';
+  const heroImageUrl = heroImageSrc ? getCloudinaryUrl(heroImageSrc) ?? heroImageSrc : '';
+  const galleryImages = (content?.images?.gallery ?? [])
+    .map((image) => {
+      const src = image?.src?.trim() ?? '';
+      const cloudinaryUrl = src ? getCloudinaryUrl(src) ?? src : '';
+
+      if (!cloudinaryUrl) {
+        return null;
+      }
+
+      return {
+        ...image,
+        src: cloudinaryUrl,
+      };
+    })
+    .filter((image): image is GalleryImage => Boolean(image));
   const microStories = content?.microStories?.filter((story) => story && (story.quote?.trim() || story.context?.trim())) ?? [];
-  const milestones = content?.keyMilestones?.filter((milestone) => (
-    Boolean(milestone?.title?.trim()) || Boolean(milestone?.description?.trim()) || Boolean(milestone?.year?.trim())
-  )) ?? [];
+  const milestones = (content?.keyMilestones ?? [])
+    .filter((milestone) => (
+      Boolean(milestone?.title?.trim()) || Boolean(milestone?.description?.trim()) || Boolean(milestone?.year?.trim())
+    ))
+    .map((milestone) => {
+      const src = milestone.image?.src?.trim() ?? '';
+      const cloudinaryUrl = src ? getCloudinaryUrl(src) ?? src : '';
+
+      return {
+        ...milestone,
+        image: cloudinaryUrl
+          ? {
+              ...milestone.image,
+              src: cloudinaryUrl,
+            }
+          : {
+              ...milestone.image,
+              src: undefined,
+            },
+      };
+    });
 
   const bodyParagraphs = useMemo(() => {
     if (!content?.body) {
@@ -211,7 +246,9 @@ const FounderStory: React.FC = () => {
   const pageDescription =
     content?.subheadline
     ?? 'Discover the Kapunka founder story rooted in Berber argan traditions and clinical skincare innovation.';
-  const socialImage = content?.images?.hero?.src ?? siteSettings.home?.heroImage;
+  const fallbackHeroImage = siteSettings.home?.heroImage?.trim() ?? '';
+  const socialImageSource = heroImageSrc || fallbackHeroImage;
+  const socialImage = socialImageSource ? getCloudinaryUrl(socialImageSource) ?? socialImageSource : undefined;
 
   return (
     <div className="bg-stone-50 text-stone-800" data-sb-object-id={FOUNDER_STORY_OBJECT_ID}>
@@ -228,10 +265,10 @@ const FounderStory: React.FC = () => {
       </Head>
 
       <section className="relative overflow-hidden bg-stone-100">
-        {heroImage?.src ? (
+        {heroImageUrl ? (
           <div className="absolute inset-0">
             <img
-              src={heroImage.src}
+              src={heroImageUrl}
               alt={heroImage.alt ?? pageTitle}
               className="h-full w-full object-cover opacity-40"
               data-sb-field-path="images.hero.src#@src images.hero.alt#@alt"
