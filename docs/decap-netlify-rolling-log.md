@@ -11,6 +11,11 @@ This log records day-to-day investigations, fixes, and decisions that affect the
 
 ---
 
+## 2025-10-05 — Enabled tabbed multilingual editing for pages
+- **What changed**: Updated `admin/config.yml` so every page-level field that editors translate now uses locale objects rendered as language tabs. Collapsed the reusable section widgets and rewired section summaries so the English copy previews instead of showing `[object Object]`.
+- **Impact & follow-up**: Editors can toggle English, Portuguese, and Spanish copy side-by-side without scrolling, reducing translation errors. Confirm the updated Decap widgets render correctly in staging and adjust any additional collection summaries if future locales are added.
+- **References**: Pending PR
+
 ## 2025-10-16 — Enabled Netlify contact form submissions
 - **What changed**: Wired the `/contact` form to Netlify Forms with the required hidden inputs, honeypot, and encoded POST handler. Updated contact translations to include the studio address and refreshed the site config phone/WhatsApp numbers.
 - **Impact & follow-up**: Messages now deliver to Netlify instead of the previous in-memory mock. Confirm the Netlify dashboard lists the new "kapunka-contact" form after deployment and set up notifications if needed.
