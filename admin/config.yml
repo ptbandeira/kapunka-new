@@ -925,6 +925,18 @@ collections:
         fields:
           - *meta_title_field
           - *meta_description_field
+          - label: "Hero Title"
+            name: "heroTitle"
+            widget: "string"
+            i18n: true
+            required: false
+            hint: "Primary hero heading introducing the Clinics page (≤80 characters)."
+          - label: "Hero Subtitle"
+            name: "heroSubtitle"
+            widget: "text"
+            i18n: true
+            required: false
+            hint: "Supporting hero paragraph for clinics (≤200 characters)."
           - label: "Header Title"
             name: "headerTitle"
             widget: "string"

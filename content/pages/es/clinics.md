@@ -5,6 +5,11 @@ metaDescription: >-
   Suministro B2B de cuidado de la piel para el post-tratamiento. Accede a aceite
   de argán aprobado por dermatólogos, protocolos clínicos y capacitación para tu
   clínica.
+heroTitle: Programa Profesional Kapunka
+heroSubtitle: >-
+  Ofrece un cuidado post-tratamiento coherente con aceite de argán aprobado por
+  dermatólogos y fórmulas minimalistas probadas en clínica para la recuperación
+  y la hidratación hormonal.
 sections:
   - type: mediaCopy
     title: Del quirófano a la rutina diaria
