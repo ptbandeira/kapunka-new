@@ -5,6 +5,11 @@ metaDescription: >-
   B2B skincare supply for post-treatment skin care. Access
   dermatologist-approved argan oil, clinical protocols, and training for your
   clinic.
+heroTitle: Professional Clinic Partnership Program
+heroSubtitle: >-
+  Deliver consistent post-treatment skin care with dermatologist-approved argan
+  oil and minimalist, clinic-tested formulas tailored for recovery and hormonal
+  hydration.
 sections:
   - type: mediaCopy
     title: From operating room to everyday routine

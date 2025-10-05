@@ -5,6 +5,11 @@ metaDescription: >-
   Fornecimento B2B de skincare para cuidados pós-tratamento. Acesse óleo de
   argan aprovado por dermatologistas, protocolos clínicos e treinamento para a
   sua clínica.
+heroTitle: Programa Profissional Kapunka
+heroSubtitle: >-
+  Ofereça cuidados pós-tratamento consistentes com óleo de argan aprovado por
+  dermatologistas e fórmulas minimalistas testadas em clínica para recuperação e
+  hidratação hormonal.
 sections:
   - type: mediaCopy
     title: Do centro cirúrgico à rotina diária

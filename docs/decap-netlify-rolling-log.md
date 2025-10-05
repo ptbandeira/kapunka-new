@@ -95,3 +95,8 @@ This log records day-to-day investigations, fixes, and decisions that affect the
 - **What changed**: Added dedicated `testimonials` and updated `partners` collections in Decap, introduced reusable testimonial entries with language metadata, and rewired the Clinics/Home pages plus Stackbit bindings to consume relation-selected testimonials and richer partner descriptions.
 - **Impact & follow-up**: Editors can now reuse quotes across locales without copy/paste while enriching the “Trusted by clinicians” carousel. Monitor new testimonial entries to confirm relation widgets save the expected `fileRelativePath` values.
 - **References**: Pending PR
+
+## 2025-10-06 — Added simplified For Clinics hero and section overrides
+- **What changed**: Introduced a new `pages/for-clinics.tsx` layout that pulls meta, hero, and section copy from translations with Markdown overrides. Added `heroTitle`/`heroSubtitle` fields to the clinics Markdown entries plus matching translation keys, and exposed the hero controls in `admin/config.yml` so editors can manage the new page.
+- **Impact & follow-up**: The For Clinics experience now loads faster with a streamlined hero and curated sections while remaining fully editable in the Visual Editor and Decap. Verify Stackbit bindings continue to resolve correctly when switching locales in the Visual Editor.
+- **References**: Pending PR

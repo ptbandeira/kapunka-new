@@ -28,7 +28,7 @@ const Shop = lazy(() => import('./pages/Shop'));
 const ProductDetail = lazy(() => import('./pages/ProductDetail'));
 const Learn = lazy(() => import('./pages/Learn'));
 const ArticlePage = lazy(() => import('./pages/Article'));
-const ForClinics = lazy(() => import('./pages/ForClinics'));
+const ForClinics = lazy(() => import('./pages/for-clinics'));
 const About = lazy(() => import('./pages/About'));
 const StoryManifestoPage = lazy(() => import('./pages/story'));
 const Contact = lazy(() => import('./pages/Contact'));
