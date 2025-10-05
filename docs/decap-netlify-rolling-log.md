@@ -11,6 +11,11 @@ This log records day-to-day investigations, fixes, and decisions that affect the
 
 ---
 
+## 2025-10-05 — Added Decap tabs to page locale editors
+- **What changed**: Enabled the tabbed editor layout for every file in the `pages` collection so translators can switch between English, Portuguese, and Spanish views without scrolling through sequential field groups.
+- **Impact & follow-up**: Simplifies copy editing by aligning all page-level forms with the localized section widgets. Verify Decap renders the tabs correctly once deployed and extend the pattern to any new page entries.
+- **References**: Pending PR
+
 ## 2025-10-05 — Enabled tabbed multilingual editing for pages
 - **What changed**: Updated `admin/config.yml` so every page-level field that editors translate now uses locale objects rendered as language tabs. Collapsed the reusable section widgets and rewired section summaries so the English copy previews instead of showing `[object Object]`.
 - **Impact & follow-up**: Editors can toggle English, Portuguese, and Spanish copy side-by-side without scrolling, reducing translation errors. Confirm the updated Decap widgets render correctly in staging and adjust any additional collection summaries if future locales are added.
