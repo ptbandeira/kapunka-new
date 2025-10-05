@@ -2,6 +2,7 @@
   "type": "translations_common",
   "en": {
     "loading": "Loading...",
+    "unableToLoad": "Unable to load content right now.",
     "loadingProducts": "Loading products...",
     "loadingBestsellers": "Loading bestsellers...",
     "loadingReviews": "Loading reviews...",
@@ -14,6 +15,7 @@
   },
   "pt": {
     "loading": "Carregando...",
+    "unableToLoad": "Não foi possível carregar o conteúdo agora.",
     "loadingProducts": "Carregando produtos...",
     "loadingBestsellers": "Carregando mais vendidos...",
     "loadingReviews": "Carregando avaliações...",
@@ -26,6 +28,7 @@
   },
   "es": {
     "loading": "Cargando...",
+    "unableToLoad": "No se pudo cargar el contenido en este momento.",
     "loadingProducts": "Cargando productos...",
     "loadingBestsellers": "Cargando más vendidos...",
     "loadingReviews": "Cargando reseñas...",

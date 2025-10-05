@@ -11,6 +11,11 @@ This log records day-to-day investigations, fixes, and decisions that affect the
 
 ---
 
+## 2025-10-09 — Added manifesto content model for Story page
+- **What changed**: Extended `admin/config.yml` with dedicated fields for the Story/Manifesto page (hero text, manifesto statements, values grid, and closing copy), translated the new UI strings, and rewrote the localized `content/pages/*/story.md` entries to match the schema.
+- **Impact & follow-up**: Editors can now manage the manifesto narrative and value pillars directly from Decap and the Visual Editor. Monitor upcoming edits to ensure the new list and markdown fields save correctly across locales.
+- **References**: Pending PR
+
 ## 2025-10-08 — Refactored Decap previews to use site components
 - **What changed**: Updated `admin/cms.js` to dynamically import shared preview components, switched page previews to render the same hero and section React elements used on the live site, and registered the global Tailwind CSS bundle so previews mirror production styling.
 - **Impact & follow-up**: Editors now get richer, more accurate previews for localized pages without manually duplicating markup. Monitor Decap for any module loading errors in older browsers and confirm additional page types render correctly via the new generic fallback.

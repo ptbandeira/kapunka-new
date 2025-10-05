@@ -30,7 +30,7 @@ const Learn = lazy(() => import('./pages/Learn'));
 const ArticlePage = lazy(() => import('./pages/Article'));
 const ForClinics = lazy(() => import('./pages/ForClinics'));
 const About = lazy(() => import('./pages/About'));
-const Story = lazy(() => import('./pages/Story'));
+const StoryManifestoPage = lazy(() => import('./pages/story'));
 const Contact = lazy(() => import('./pages/Contact'));
 const CartPage = lazy(() => import('./pages/CartPage'));
 const PolicyPage = lazy(() => import('./pages/PolicyPage'));
@@ -133,7 +133,7 @@ const routeDefinitions: RouteDefinition[] = [
   { key: 'method-kapunka', path: 'method-kapunka', element: <MethodKapunkaPage /> },
   { key: 'clinics', path: 'for-clinics', element: <ForClinics /> },
   { key: 'academy', path: 'academy', element: <Academy /> },
-  { key: 'story', path: 'story', element: <Story /> },
+  { key: 'story', path: 'story', element: <StoryManifestoPage /> },
   { key: 'founder-story', path: 'founder-story', element: <FounderStoryPage /> },
   { key: 'product-education', path: 'product-education', element: <ProductEducationPage /> },
   { key: 'about', path: 'about', element: <About /> },
