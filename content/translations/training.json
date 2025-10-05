@@ -5,6 +5,9 @@
     "subtitle": "Stay ahead with courses and professional content curated for practitioners and partners.",
     "metaTitle": "Training Hub",
     "metaDescription": "Browse Kapunka's training catalog featuring professional development, product education, and partner resources.",
+    "objectivesHeading": "What you'll master",
+    "modulesHeading": "Inside the program",
+    "ctaHeading": "Secure your place",
     "emptyState": "Training resources are coming soon.",
     "learnMore": "Learn More"
   },
@@ -13,6 +16,9 @@
     "subtitle": "Atualize-se com cursos e conteúdos profissionais selecionados para praticantes e parceiros.",
     "metaTitle": "Centro de Treinamento",
     "metaDescription": "Conheça o catálogo de treinamentos Kapunka com desenvolvimento profissional, educação sobre produtos e recursos para parceiros.",
+    "objectivesHeading": "O que você vai dominar",
+    "modulesHeading": "Dentro do programa",
+    "ctaHeading": "Garanta sua vaga",
     "emptyState": "Os recursos de treinamento estarão disponíveis em breve.",
     "learnMore": "Saiba mais"
   },
@@ -21,6 +27,9 @@
     "subtitle": "Mantente al día con cursos y contenidos profesionales creados para practicantes y socios.",
     "metaTitle": "Centro de Formación",
     "metaDescription": "Explora el catálogo de formación de Kapunka con desarrollo profesional, educación sobre productos y recursos para socios.",
+    "objectivesHeading": "Lo que dominarás",
+    "modulesHeading": "Dentro del programa",
+    "ctaHeading": "Reserva tu plaza",
     "emptyState": "Los recursos de formación estarán disponibles pronto.",
     "learnMore": "Más información"
   }

@@ -20,7 +20,13 @@
     "emailTitle": "Email",
     "phoneTitle": "Phone",
     "whatsappTitle": "WhatsApp",
-    "whatsappAction": "Chat with us"
+    "whatsappAction": "Chat with us",
+    "addressTitle": "Visit our atelier",
+    "addressLines": [
+      "Els Alamús (25221) Lleida",
+      "Carrer de la Plaça la Placeta, 2, 2º",
+      "Spain"
+    ]
   },
   "pt": {
     "metaTitle": "Contato Kapunka",
@@ -42,7 +48,13 @@
     "emailTitle": "E-mail",
     "phoneTitle": "Telefone",
     "whatsappTitle": "WhatsApp",
-    "whatsappAction": "Converse conosco"
+    "whatsappAction": "Converse conosco",
+    "addressTitle": "Visite nosso ateliê",
+    "addressLines": [
+      "Els Alamús (25221) Lleida",
+      "Carrer de la Plaça la Placeta, 2, 2º",
+      "Espanha"
+    ]
   },
   "es": {
     "metaTitle": "Contacto Kapunka",
@@ -64,6 +76,12 @@
     "emailTitle": "Correo electrónico",
     "phoneTitle": "Teléfono",
     "whatsappTitle": "WhatsApp",
-    "whatsappAction": "Chatea con nosotros"
+    "whatsappAction": "Chatea con nosotros",
+    "addressTitle": "Visita nuestro atelier",
+    "addressLines": [
+      "Els Alamús (25221) Lleida",
+      "Carrer de la Plaça la Placeta, 2, 2º",
+      "España"
+    ]
   }
 }

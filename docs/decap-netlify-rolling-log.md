@@ -11,6 +11,11 @@ This log records day-to-day investigations, fixes, and decisions that affect the
 
 ---
 
+## 2025-10-16 — Enabled Netlify contact form submissions
+- **What changed**: Wired the `/contact` form to Netlify Forms with the required hidden inputs, honeypot, and encoded POST handler. Updated contact translations to include the studio address and refreshed the site config phone/WhatsApp numbers.
+- **Impact & follow-up**: Messages now deliver to Netlify instead of the previous in-memory mock. Confirm the Netlify dashboard lists the new "kapunka-contact" form after deployment and set up notifications if needed.
+- **References**: Pending PR
+
 ## 2025-10-12 — Realigned nav translations with header IA
 - **What changed**: Added the missing navigation keys (For Professionals, Product Education, Clinics, Story) to `content/translations/nav.json` and exposed the matching fields in `admin/config.yml` so editors can localize every header label.
 - **Impact & follow-up**: Restores full localization coverage for the live six-item navigation across locales, preventing English fallbacks in Portuguese and Spanish. Confirm Decap saves the new fields and that Visual Editor bindings surface the updated labels when switching languages.

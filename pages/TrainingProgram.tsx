@@ -2,155 +2,13 @@ import React, { useEffect, useMemo, useState } from 'react';
 import { motion } from 'framer-motion';
 import { useLanguage } from '../contexts/LanguageContext';
 import { useSiteSettings } from '../contexts/SiteSettingsContext';
-import { fetchVisualEditorMarkdown } from '../utils/fetchVisualEditorMarkdown';
+import { fetchTrainingProgramContent, TRAINING_PROGRAM_OBJECT_ID, type TrainingProgramContent } from '../utils/trainingProgramContent';
 import { useVisualEditorSync } from '../contexts/VisualEditorSyncContext';
 import { getCloudinaryUrl } from '../utils/imageUrl';
 import Seo from '../components/Seo';
 
-interface ModuleContent {
-  title?: string;
-  duration?: string;
-  description?: string;
-  learningOutcomes?: string[];
-}
-
-interface PricingContent {
-  tuition?: string;
-  paymentOptions?: string[];
-}
-
-interface ModalitiesContent {
-  onlineHours?: string;
-  practicalSessions?: string;
-}
-
-interface CallToAction {
-  label?: string;
-  url?: string;
-}
-
-interface TrainingContent {
-  metaTitle?: string;
-  metaDescription?: string;
-  headline?: string;
-  subheadline?: string;
-  objectives?: string[];
-  modules?: ModuleContent[];
-  modalities?: ModalitiesContent;
-  pricing?: PricingContent;
-  callToActions?: CallToAction[];
-  metaTitle?: string;
-  metaDescription?: string;
-}
-
-const TRAINING_FILE_PATH = '/content/pages/training/index.md';
-const TRAINING_OBJECT_ID = 'TrainingProgramPage:content/pages/training/index.md';
-
-const isRecord = (value: unknown): value is Record<string, unknown> => Boolean(value) && typeof value === 'object';
-
-const isStringArray = (value: unknown): value is string[] => Array.isArray(value) && value.every((item) => typeof item === 'string');
-
-const isModuleContent = (value: unknown): value is ModuleContent => {
-  if (!isRecord(value)) {
-    return false;
-  }
-
-  const { title, duration, description, learningOutcomes } = value;
-  return (
-    (title === undefined || typeof title === 'string')
-    && (duration === undefined || typeof duration === 'string')
-    && (description === undefined || typeof description === 'string')
-    && (learningOutcomes === undefined || isStringArray(learningOutcomes))
-  );
-};
-
-const isPricingContent = (value: unknown): value is PricingContent => {
-  if (!isRecord(value)) {
-    return false;
-  }
-
-  const { tuition, paymentOptions } = value;
-  return (
-    (tuition === undefined || typeof tuition === 'string')
-    && (paymentOptions === undefined || isStringArray(paymentOptions))
-  );
-};
-
-const isModalitiesContent = (value: unknown): value is ModalitiesContent => {
-  if (!isRecord(value)) {
-    return false;
-  }
-
-  const { onlineHours, practicalSessions } = value;
-  return (
-    (onlineHours === undefined || typeof onlineHours === 'string')
-    && (practicalSessions === undefined || typeof practicalSessions === 'string')
-  );
-};
-
-const isCallToAction = (value: unknown): value is CallToAction => {
-  if (!isRecord(value)) {
-    return false;
-  }
-
-  const { label, url } = value;
-  return (
-    (label === undefined || typeof label === 'string')
-    && (url === undefined || typeof url === 'string')
-  );
-};
-
-const isTrainingContent = (value: unknown): value is TrainingContent => {
-  if (!isRecord(value)) {
-    return false;
-  }
-
-  const {
-    objectives,
-    modules,
-    modalities,
-    pricing,
-    callToActions,
-    headline,
-    subheadline,
-    metaTitle,
-    metaDescription,
-  } = value;
-
-  if (objectives !== undefined && !isStringArray(objectives)) {
-    return false;
-  }
-
-  if (modules !== undefined) {
-    if (!Array.isArray(modules) || !modules.every(isModuleContent)) {
-      return false;
-    }
-  }
-
-  if (modalities !== undefined && !isModalitiesContent(modalities)) {
-    return false;
-  }
-
-  if (pricing !== undefined && !isPricingContent(pricing)) {
-    return false;
-  }
-
-  if (callToActions !== undefined) {
-    if (!Array.isArray(callToActions) || !callToActions.every(isCallToAction)) {
-      return false;
-    }
-  }
-
-  return (
-    (headline === undefined || typeof headline === 'string')
-    && (subheadline === undefined || typeof subheadline === 'string')
-    && (metaTitle === undefined || typeof metaTitle === 'string')
-    && (metaDescription === undefined || typeof metaDescription === 'string')
-  );
-};
-
 const TrainingProgram: React.FC = () => {
-  const [content, setContent] = useState<TrainingContent | null>(null);
+  const [content, setContent] = useState<TrainingProgramContent | null>(null);
   const [error, setError] = useState<string | null>(null);
   const { t, language } = useLanguage();
   const { contentVersion } = useVisualEditorSync();
@@ -163,13 +21,13 @@ const TrainingProgram: React.FC = () => {
 
     const loadContent = async () => {
       try {
-        const { data } = await fetchVisualEditorMarkdown<unknown>(TRAINING_FILE_PATH, { cache: 'no-store' });
+        const programContent = await fetchTrainingProgramContent();
         if (!isMounted) {
           return;
         }
 
-        if (isTrainingContent(data)) {
-          setContent(data);
+        if (programContent) {
+          setContent(programContent);
         } else {
           setError('Invalid training page content structure.');
         }
@@ -211,7 +69,7 @@ const TrainingProgram: React.FC = () => {
   const formattedObjectives = useMemo(() => objectives, [objectives]);
 
   return (
-    <div className="bg-stone-50 text-stone-900" data-sb-object-id={TRAINING_OBJECT_ID}>
+    <div className="bg-stone-50 text-stone-900" data-sb-object-id={TRAINING_PROGRAM_OBJECT_ID}>
       <Seo
         title={pageTitle}
         description={metaDescription}
