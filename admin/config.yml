@@ -572,7 +572,15 @@ collections:
             name: brand
             widget: object
             fields:
-              - { label: Name, name: name, widget: string, i18n: true, hint: "Brand name displayed in navigation and metadata. Keep under 40 characters." }
+              - label: Name
+                name: name
+                widget: object
+                i18n: true
+                hint: "Provide the localized brand name exactly as it should appear in navigation, footer, and metadata."
+                fields:
+                  - { label: English Name, name: en, widget: string, pattern: ["^.{1,40}$", "Enter 1–40 characters."], hint: "English brand name shown in the site chrome." }
+                  - { label: Portuguese Name, name: pt, widget: string, pattern: ["^.{1,40}$", "Enter 1–40 characters."], hint: "Portuguese brand name used across localized navigation." }
+                  - { label: Spanish Name, name: es, widget: string, pattern: ["^.{1,40}$", "Enter 1–40 characters."], hint: "Spanish brand name displayed in localized UI." }
           - label: Home
             name: home
             widget: object
@@ -598,9 +606,27 @@ collections:
             name: contact
             widget: object
             fields:
-              - { label: Email Address, name: email, widget: string, hint: "Primary contact email shown on the Contact page. Use a monitored inbox." }
-              - { label: Phone Number, name: phone, widget: string, hint: "Customer service phone number with country code (max 25 characters)." }
-              - { label: WhatsApp Link, name: whatsapp, widget: string, hint: "Full WhatsApp URL (https://wa.me/...). Provides quick chat access." }
+              - label: Email Address
+                name: email
+                widget: string
+                pattern:
+                  - '^[^\s@]+@[^\s@]+\.[^\s@]+$'
+                  - "Enter a valid email address (e.g. hello@example.com)."
+                hint: "Primary inbox for contact inquiries."
+              - label: Phone Number
+                name: phone
+                widget: string
+                pattern:
+                  - '^[+\d()\s-]{4,25}$'
+                  - "Use digits, spaces, parentheses, or dashes (4–25 characters)."
+                hint: "Customer service phone number including country/area code."
+              - label: WhatsApp Link
+                name: whatsapp
+                widget: string
+                pattern:
+                  - '^https://wa\.me/\d{6,15}$'
+                  - "Use the WhatsApp short link format (https://wa.me/##########)."
+                hint: "Direct WhatsApp link for quick chat support."
           - label: About Page Imagery
             name: about
             widget: object
@@ -612,9 +638,13 @@ collections:
                 hint: "Recommended minimum 2000×1300 JPG or WEBP to preserve the hero layout."
               - label: Brand Story Alt Text
                 name: storyAlt
-                widget: string
+                widget: object
                 i18n: true
-                hint: "Localized image description (≤120 characters) for accessibility and SEO."
+                hint: "Localized description for the Brand Story hero image (≤120 characters)."
+                fields:
+                  - { label: English Alt Text, name: en, widget: string, required: false, pattern: ["^.{0,120}$", "Keep under 120 characters."], hint: "English description for screen readers." }
+                  - { label: Portuguese Alt Text, name: pt, widget: string, required: false, pattern: ["^.{0,120}$", "Keep under 120 characters."], hint: "Portuguese description for accessibility." }
+                  - { label: Spanish Alt Text, name: es, widget: string, required: false, pattern: ["^.{0,120}$", "Keep under 120 characters."], hint: "Spanish description for accessibility." }
               - label: Argan Sourcing Image
                 name: sourcingImage
                 widget: image
@@ -622,9 +652,13 @@ collections:
                 hint: "Recommended minimum 2000×1300 JPG or WEBP to preserve the secondary layout."
               - label: Argan Sourcing Alt Text
                 name: sourcingAlt
-                widget: string
+                widget: object
                 i18n: true
-                hint: "Localized description of sourcing image (≤120 characters)."
+                hint: "Describe the sourcing image for each locale (≤120 characters)."
+                fields:
+                  - { label: English Alt Text, name: en, widget: string, required: false, pattern: ["^.{0,120}$", "Keep under 120 characters."], hint: "English sourcing image description." }
+                  - { label: Portuguese Alt Text, name: pt, widget: string, required: false, pattern: ["^.{0,120}$", "Keep under 120 characters."], hint: "Portuguese sourcing image description." }
+                  - { label: Spanish Alt Text, name: es, widget: string, required: false, pattern: ["^.{0,120}$", "Keep under 120 characters."], hint: "Spanish sourcing image description." }
           - label: For Clinics
             name: clinics
             widget: object
@@ -641,15 +675,31 @@ collections:
             name: footer
             widget: object
             fields:
-              - { label: Legal Name, name: legalName, widget: string, i18n: true, hint: "Registered business name for footer legal line (≤80 characters)." }
+              - label: Legal Name
+                name: legalName
+                widget: object
+                i18n: true
+                hint: "Localized registered business name shown in the footer (≤80 characters)."
+                fields:
+                  - { label: English Legal Name, name: en, widget: string, pattern: ["^.{1,80}$", "Enter 1–80 characters."], hint: "English legal entity text." }
+                  - { label: Portuguese Legal Name, name: pt, widget: string, pattern: ["^.{1,80}$", "Enter 1–80 characters."], hint: "Portuguese legal entity text." }
+                  - { label: Spanish Legal Name, name: es, widget: string, pattern: ["^.{1,80}$", "Enter 1–80 characters."], hint: "Spanish legal entity text." }
               - label: Social Links
                 name: socialLinks
                 widget: list
-                summary: "{{fields.label}}"
+                summary: "{{fields.label.en}}"
                 fields:
-                  - { label: ID, name: id, widget: string, hint: "Stable identifier used by the site for this social link (no spaces)." }
-                  - { label: Label, name: label, widget: string, i18n: true, hint: "Localized social label shown to visitors (≤24 characters)." }
-                  - { label: URL, name: url, widget: string, hint: "Full URL to the social destination (https://...)." }
+                  - { label: ID, name: id, widget: string, pattern: ['^[a-z0-9_-]+$', "Use lowercase letters, numbers, dashes, or underscores."], hint: "Stable identifier referenced in the code (lowercase, no spaces)." }
+                  - label: Label
+                    name: label
+                    widget: object
+                    i18n: true
+                    hint: "Localized social link label (≤24 characters)."
+                    fields:
+                      - { label: English Label, name: en, widget: string, pattern: ["^.{1,24}$", "Enter 1–24 characters."], hint: "English link label shown to visitors." }
+                      - { label: Portuguese Label, name: pt, widget: string, pattern: ["^.{1,24}$", "Enter 1–24 characters."], hint: "Portuguese link label." }
+                      - { label: Spanish Label, name: es, widget: string, pattern: ["^.{1,24}$", "Enter 1–24 characters."], hint: "Spanish link label." }
+                  - { label: URL, name: url, widget: string, pattern: ['^(https?://|/)\S+$', "Use an absolute https:// URL or internal /path."], hint: "Full URL to the social destination (https:// or internal /path)." }
                   - label: Icon
                     name: icon
                     widget: select
@@ -660,6 +710,28 @@ collections:
                       - { label: YouTube, value: youtube }
                       - { label: Globe, value: globe }
                     hint: "Choose which icon to display with the social link."
+          - label: SEO Defaults
+            name: seo
+            widget: object
+            fields:
+              - label: Default Title
+                name: defaultTitle
+                widget: object
+                i18n: true
+                hint: "Localized fallback page title for SEO (≤60 characters)."
+                fields:
+                  - { label: English Title, name: en, widget: string, pattern: ["^.{1,60}$", "Enter 1–60 characters."], hint: "Default English SEO title." }
+                  - { label: Portuguese Title, name: pt, widget: string, pattern: ["^.{1,60}$", "Enter 1–60 characters."], hint: "Default Portuguese SEO title." }
+                  - { label: Spanish Title, name: es, widget: string, pattern: ["^.{1,60}$", "Enter 1–60 characters."], hint: "Default Spanish SEO title." }
+              - label: Default Description
+                name: defaultDescription
+                widget: object
+                i18n: true
+                hint: "Localized fallback meta description used when a page lacks custom copy (≤160 characters)."
+                fields:
+                  - { label: English Description, name: en, widget: text, pattern: ["^.{1,160}$", "Enter 1–160 characters."], hint: "Default English meta description." }
+                  - { label: Portuguese Description, name: pt, widget: text, pattern: ["^.{1,160}$", "Enter 1–160 characters."], hint: "Default Portuguese meta description." }
+                  - { label: Spanish Description, name: es, widget: text, pattern: ["^.{1,160}$", "Enter 1–160 characters."], hint: "Default Spanish meta description." }
   - name: "assets_images"
     label: "Media / Images"
     label_singular: "Image"
