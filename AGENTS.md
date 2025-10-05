@@ -92,3 +92,27 @@ To ensure high-quality, non-breaking changes, the agent must employ detailed spe
 * **Deliver Minimal Diff and Tests:** The final deliverable must be a minimal diff containing only necessary code additions and corrections.
 * **Risk Mitigation:** Require a rollback strategy for critical changes.
 * **Final Check:** Confirm Visual Editor bindings are intact and running successfully locally after applying changes.
+
+---
+
+# VI. Media Delivery, CMS Editing Model, and Git Hygiene
+
+## A. Cloudinary Image Pipeline
+
+* `CLOUDINARY_BASE_URL` is injected by Vite (`vite.config.ts`) and must remain the single source for the Cloudinary cloud name + upload root.
+* Always wrap CMS-provided image paths with `toCld()` from `src/lib/images.ts` before rendering. The helper strips legacy upload prefixes and safely concatenates the base URL.
+* Skip `toCld()` only when you can prove the source is already an absolute `https://` URL (the helper performs this guard, so it is typically safe to call unconditionally).
+* Never inline hard-coded Cloudinary domains; rely on the environment variable so staging and production share the same transformation pipeline.
+
+## B. CMS Editing Model (Single-File Pages)
+
+* Page content is consolidated inside `content/pages_v2/index.json`. Each entry represents a full page and must stay self-contained.
+* The `sections` arrays inside each page are mirrored by collapsible groups in the Netlify Visual Editor. Preserve these group boundaries when adding, reordering, or deleting blocks so editors retain predictable collapse behaviour.
+* Localised copy and metadata values are stored as objects keyed by locale (`en`, `pt`, `es`). New fields must follow the same shape and include all supported locales.
+* When introducing new schema fields, update `metadata.json` and the Visual Editor mirror in a single commit to prevent drift.
+
+## C. Branch and Commit Conventions
+
+* Stay on the branch provided in the task (no new branches, no rebasing onto `main`).
+* Use focused commits with imperative, conventional messages. Do not bypass pre-existing instructions (e.g., never run `git commit -am`, avoid force-pushing).
+* Run required checks before committing, document the results, and prefer minimal diffs that keep rollbacks trivial.

@@ -103,6 +103,13 @@ To keep the editor experience predictable and efficient, every CMS enhancement m
 - **Feature leverage:** Prefer built-in Decap capabilities (collections, widgets, i18n, previews) over bespoke workarounds that fragment the experience.
 - **Accessibility:** Ensure the authoring surface supports inclusive practices (alt text prompts, clear instructions, keyboard-friendly forms).
 
+### Single-File Page Model
+
+- Unified pages now live in `content/pages_v2/index.json`. Each object in the `pages` array represents one page, consolidating hero copy, metadata, and section blocks in a single location.
+- Keep the `sections` arrays intact. The Visual Editor maps these arrays to collapsible groups, so regrouping or flattening them breaks the editor's collapse/expand affordances.
+- Every textual field is an object keyed by locale (`en`, `pt`, `es`). Populate all locales whenever you add fields, and keep translations synchronised to avoid mixed-language renders.
+- When you introduce or rename fields, mirror the change in `metadata.json` and regenerate the Visual Editor mirror so editors see the new schema immediately.
+
 ### Netlify Visual Editor Workflow
 
 - The project is wired for the **Netlify Visual Editor**. The integration relies on `netlify.toml` (see the `[visual_editor]` section), the page model map in `stackbit.config.js`, the editing schema in `metadata.json`, and the generated content mirror under `.netlify/visual-editor/content/`.
@@ -144,9 +151,21 @@ While a formal testing suite is not yet implemented, the following principles sh
   - The `importmap` in `index.html` has been carefully configured. Do not add or change entries for `react` or `react-dom`.
   - Adding conflicting entries (especially those pointing to React 19) will cause a fatal `"Minified React error #31"` and break the entire application. This is a known, critical issue in this environment.
 
+### Cloudinary Media Pipeline
+
+- The Netlify runtime injects `process.env.CLOUDINARY_BASE_URL`; Vite exposes it to the client bundle. Treat it as the single source of truth for Cloudinary delivery URLs.
+- Always pass CMS-provided image paths through `toCld()` (`src/lib/images.ts`) before rendering images or backgrounds. The helper strips legacy upload prefixes and skips transformation for absolute URLs.
+- Do not hardcode Cloudinary domains or transformations. Keep configuration in environment variables so staging and production share the same media settings.
+
+## 10. Branch & Commit Workflow
+
+- Stay on the branch provided in the task/issue and avoid creating additional branches unless explicitly required.
+- Use focused, conventional commits with imperative subjects. Never rely on `git commit -am`; stage files explicitly so you review the diff before committing.
+- Run required build or lint commands before committing, document the results, and keep diffs minimal to simplify reviews and rollbacks.
+
 ---
 
-## 10. Deployment
+## 11. Deployment
 
 - **Hosting:** The site is configured for deployment on **Netlify**.
 - **CMS Integration:** The Decap CMS relies on **Netlify Identity** for user authentication and **Netlify Git Gateway** to write content back to the GitHub repository. Both must be enabled in the Netlify dashboard for the CMS to function.
