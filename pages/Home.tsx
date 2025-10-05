@@ -30,6 +30,7 @@ import { fetchVisualEditorJson } from '../utils/fetchVisualEditorJson';
 import { fetchVisualEditorMarkdown } from '../utils/fetchVisualEditorMarkdown';
 import { getVisualEditorAttributes } from '../utils/stackbitBindings';
 import { fetchTestimonialsByRefs } from '../utils/fetchTestimonialsByRefs';
+import { buildLocalizedPath } from '../utils/localePaths';
 
 interface ProductsResponse {
   items?: Product[];
@@ -1236,7 +1237,7 @@ const ClinicsBlock: React.FC<ClinicsBlockProps> = ({ data, fieldPath, fallbackCt
                             >
                                 {isInternalLink ? (
                                     <Link
-                                        to={internalPath.startsWith('/') ? internalPath : `/${internalPath}`}
+                                        to={buildLocalizedPath(internalPath.startsWith('/') ? internalPath : `/${internalPath}`, language)}
                                         className="inline-flex items-center px-6 py-3 bg-stone-900 text-white font-semibold rounded-md hover:bg-stone-700 transition-colors"
                                         {...getVisualEditorAttributes(fieldPath ? `${fieldPath}.clinicsCtaHref` : undefined)}
                                     >
@@ -1995,10 +1996,10 @@ const Home: React.FC = () => {
   const heroPrimaryCtaIsInternal = isInternalNavigationHref(heroPrimaryCtaHref);
   const heroSecondaryCtaIsInternal = isInternalNavigationHref(heroSecondaryCtaHref);
   const heroPrimaryLinkTarget = heroPrimaryCtaIsInternal
-    ? normalizeInternalHref(heroPrimaryCtaHref)
+    ? buildLocalizedPath(normalizeInternalHref(heroPrimaryCtaHref), language)
     : heroPrimaryCtaHref;
   const heroSecondaryLinkTarget = heroSecondaryCtaIsInternal
-    ? normalizeInternalHref(heroSecondaryCtaHref)
+    ? buildLocalizedPath(normalizeInternalHref(heroSecondaryCtaHref), language)
     : heroSecondaryCtaHref;
   const heroInlineImageNode = shouldRenderInlineImage && heroInlineImage
     ? (
@@ -2320,7 +2321,7 @@ const Home: React.FC = () => {
                 {primaryCta && (
                   isInternalNavigationHref(primaryCtaHref) ? (
                     <Link
-                      to={normalizeInternalHref(primaryCtaHref)}
+                      to={buildLocalizedPath(normalizeInternalHref(primaryCtaHref), language)}
                       className={sectionPrimaryButtonClasses}
                       {...getVisualEditorAttributes(sectionPrimaryCtaHrefFieldPath)}
                     >
@@ -2341,7 +2342,7 @@ const Home: React.FC = () => {
                 {secondaryCta && (
                   isInternalNavigationHref(secondaryCtaHref) ? (
                     <Link
-                      to={normalizeInternalHref(secondaryCtaHref)}
+                      to={buildLocalizedPath(normalizeInternalHref(secondaryCtaHref), language)}
                       className={sectionSecondaryButtonClasses}
                       {...getVisualEditorAttributes(sectionSecondaryCtaHrefFieldPath)}
                     >
@@ -3476,7 +3477,10 @@ const Home: React.FC = () => {
                 <div className="mt-6">
                   {isInternalLink ? (
                     <Link
-                      to={internalPath?.startsWith('/') ? internalPath : `/${internalPath ?? ''}`}
+                      to={buildLocalizedPath(
+                        internalPath?.startsWith('/') ? internalPath : `/${internalPath ?? ''}`,
+                        language,
+                      )}
                       className={buttonClasses}
                       {...getVisualEditorAttributes(`${sectionFieldPath}.url`)}
                     >

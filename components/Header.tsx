@@ -2,19 +2,14 @@ import React, { useState, useEffect, useCallback } from 'react';
 import { Link, NavLink } from 'react-router-dom';
 // Fix: AnimatePresence was used but not imported.
 import { motion, AnimatePresence } from 'framer-motion';
-import { ShoppingBag, Globe, Menu, X } from 'lucide-react';
+import { ShoppingBag, Menu, X } from 'lucide-react';
 import { useLanguage } from '../contexts/LanguageContext';
 import { useCart } from '../contexts/CartContext';
 import { useUI } from '../contexts/UIContext';
-import type { Language } from '../types';
 import { useSiteSettings } from '../contexts/SiteSettingsContext';
 import { getVisualEditorAttributes } from '../utils/stackbitBindings';
-
-const SUPPORTED_LANGUAGES: Array<{ code: Language; name: string }> = [
-  { code: 'en', name: 'EN' },
-  { code: 'pt', name: 'PT' },
-  { code: 'es', name: 'ES' },
-];
+import LanguageSwitcher from './LanguageSwitcher';
+import { buildLocalizedPath } from '../utils/localePaths';
 
 const NavItem: React.FC<{
   to: string;
@@ -61,48 +56,15 @@ const NavItem: React.FC<{
   );
 };
 
-const LanguageSelector: React.FC<{ onCloseMobileMenu?: () => void }> = ({ onCloseMobileMenu }) => {
-  const { language, setLanguage } = useLanguage();
-
-  const handleLanguageClick = useCallback((event: React.MouseEvent<HTMLButtonElement>) => {
-    const { langCode } = event.currentTarget.dataset;
-    if (langCode) {
-      setLanguage(langCode as Language);
-      if (onCloseMobileMenu) {
-        onCloseMobileMenu();
-      }
-    }
-  }, [onCloseMobileMenu, setLanguage]);
-
-  return (
-    <div className="flex items-center space-x-2">
-      <Globe size={18} className="text-stone-500" />
-      {SUPPORTED_LANGUAGES.map((lang, index) => (
-        <React.Fragment key={lang.code}>
-          <button
-            onClick={handleLanguageClick}
-            className={`text-sm transition-colors duration-300 ${
-              language === lang.code ? 'text-stone-900 font-semibold' : 'text-stone-500 hover:text-stone-900'
-            }`}
-            data-lang-code={lang.code}
-          >
-            {lang.name}
-          </button>
-          {index < SUPPORTED_LANGUAGES.length - 1 && <span className="text-stone-300">|</span>}
-        </React.Fragment>
-      ))}
-    </div>
-  );
-};
-
 const Header: React.FC = () => {
-  const { t, language } = useLanguage();
+  const { t, language, translate } = useLanguage();
   const { cartCount } = useCart();
   const { toggleCart } = useUI();
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const { settings } = useSiteSettings();
-  const brandName = settings.brand?.name ?? 'KAPUNKA';
+  const brandName = translate(settings.brand?.name ?? 'KAPUNKA');
+  const homePath = buildLocalizedPath('/', language);
 
   const handleMenuToggle = useCallback(() => {
     setIsMenuOpen((prev) => !prev);
@@ -120,22 +82,22 @@ const Header: React.FC = () => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  const NAV_LINK_CONFIG: Array<{ to: string; key: string }> = [
-    { to: '/shop', key: 'shop' },
-    { to: '/learn', key: 'learn' },
-    { to: '/videos', key: 'videos' },
-    { to: '/training-program', key: 'training' },
-    { to: '/method-kapunka', key: 'method' },
-    { to: '/product-education', key: 'productEducation' },
-    { to: '/founder-story', key: 'founderStory' },
-    { to: '/for-clinics', key: 'forClinics' },
-    { to: '/story', key: 'story' },
-    { to: '/about', key: 'about' },
-    { to: '/contact', key: 'contact' },
+  const NAV_LINK_CONFIG: Array<{ path: string; key: string }> = [
+    { path: '/shop', key: 'shop' },
+    { path: '/learn', key: 'learn' },
+    { path: '/videos', key: 'videos' },
+    { path: '/training-program', key: 'training' },
+    { path: '/method-kapunka', key: 'method' },
+    { path: '/product-education', key: 'productEducation' },
+    { path: '/founder-story', key: 'founderStory' },
+    { path: '/for-clinics', key: 'forClinics' },
+    { path: '/story', key: 'story' },
+    { path: '/about', key: 'about' },
+    { path: '/contact', key: 'contact' },
   ];
 
   const navLinks = NAV_LINK_CONFIG.map((link) => ({
-      to: link.to,
+      to: buildLocalizedPath(link.path, language),
       label: t(`nav.${link.key}`),
       fieldPath: `translations.${language}.nav.${link.key}`,
       sbFieldPath: `${language}.${link.key}`,
@@ -164,7 +126,7 @@ const Header: React.FC = () => {
             {/* Brand */}
             <div className="flex flex-1 items-center justify-center lg:flex-none lg:justify-start">
               <Link
-                to="/"
+                to={homePath}
                 className="text-2xl font-bold tracking-wider text-stone-900 transition-transform duration-300 hover:scale-105 text-center lg:text-left"
               >
                 <span {...getVisualEditorAttributes('site.brand.name')}>{brandName}</span>
@@ -177,7 +139,7 @@ const Header: React.FC = () => {
               data-sb-object-id={navTranslationsObjectId}
               data-sb-field-path={language}
             >
-              {navLinks.map((link, index) => (
+              {navLinks.map((link) => (
                 <NavItem
                   key={link.to}
                   to={link.to}
@@ -192,7 +154,7 @@ const Header: React.FC = () => {
             {/* Right Side Items */}
             <div className="flex flex-1 items-center justify-end space-x-4 lg:flex-none">
               <div className="hidden lg:block">
-                <LanguageSelector />
+                <LanguageSwitcher />
               </div>
 
               <button onClick={toggleCart} className="relative p-2 transition-transform duration-300 hover:scale-110">
@@ -226,7 +188,7 @@ const Header: React.FC = () => {
           >
             <div className="container mx-auto px-4 sm:px-6 lg:px-8 pt-6 h-full flex flex-col">
               <div className="flex justify-between items-center mb-12">
-                <Link to="/" onClick={handleMenuClose} className="text-2xl font-bold tracking-wider text-stone-900">
+                <Link to={homePath} onClick={handleMenuClose} className="text-2xl font-bold tracking-wider text-stone-900">
                   <span {...getVisualEditorAttributes('site.brand.name')}>{brandName}</span>
                 </Link>
                 <button onClick={handleMenuClose} className="p-2">
@@ -238,7 +200,7 @@ const Header: React.FC = () => {
                 data-sb-object-id={navTranslationsObjectId}
                 data-sb-field-path={language}
               >
-                {navLinks.map((link, index) => (
+                {navLinks.map((link) => (
                   <NavItem
                     key={link.to}
                     to={link.to}
@@ -251,7 +213,7 @@ const Header: React.FC = () => {
                 ))}
               </nav>
               <div className="mt-auto mb-12 flex justify-center">
-                <LanguageSelector onCloseMobileMenu={handleMenuClose} />
+                <LanguageSwitcher onSelect={handleMenuClose} />
               </div>
             </div>
           </motion.div>

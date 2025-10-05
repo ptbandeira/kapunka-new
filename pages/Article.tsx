@@ -18,6 +18,7 @@ import {
 import { fetchVisualEditorJson } from '../utils/fetchVisualEditorJson';
 import { getVisualEditorAttributes } from '../utils/stackbitBindings';
 import { useVisualEditorSync } from '../contexts/VisualEditorSyncContext';
+import { buildLocalizedPath } from '../utils/localePaths';
 
 interface ArticlesResponse {
     items?: Article[];
@@ -373,7 +374,7 @@ const ArticlePage: React.FC = () => {
             )}
             
             <div className="text-center pb-16 sm:pb-24">
-                <Link to="/learn" className="px-8 py-3 bg-stone-200 text-stone-800 font-semibold rounded-md hover:bg-stone-300 transition-colors">
+                <Link to={buildLocalizedPath('/learn', language)} className="px-8 py-3 bg-stone-200 text-stone-800 font-semibold rounded-md hover:bg-stone-300 transition-colors">
                     <span {...getVisualEditorAttributes(`translations.${language}.article.backToLibrary`)}>
                         {t('article.backToLibrary')}
                     </span>

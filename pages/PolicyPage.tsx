@@ -7,6 +7,7 @@ import type { Policy, PolicySection } from '../types';
 import { fetchVisualEditorJson } from '../utils/fetchVisualEditorJson';
 import { getVisualEditorAttributes } from '../utils/stackbitBindings';
 import { useVisualEditorSync } from '../contexts/VisualEditorSyncContext';
+import { buildLocalizedPath } from '../utils/localePaths';
 
 interface PoliciesResponse {
     items?: Policy[];
@@ -140,7 +141,7 @@ const PolicyPage: React.FC = () => {
                     {t('policy.contactPrompt')}
                 </p>
                 <p>
-                    <Link to="/contact" className="text-stone-700 underline hover:text-stone-900">
+                    <Link to={buildLocalizedPath('/contact', language)} className="text-stone-700 underline hover:text-stone-900">
                         <span {...getVisualEditorAttributes(`translations.${language}.footer.contact`)}>
                             {t('footer.contact')}
                         </span>

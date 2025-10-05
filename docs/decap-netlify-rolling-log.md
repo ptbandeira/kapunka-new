@@ -11,6 +11,11 @@ This log records day-to-day investigations, fixes, and decisions that affect the
 
 ---
 
+## 2025-10-05 — Enabled localized site settings & routing
+- **What changed**: Marked brand name, footer legal text, social link labels, and about alt fields as `i18n: true` in `admin/config.yml` and migrated `content/site.json` to store Portuguese and Spanish values alongside English. Updated React routing and language utilities so internal links and CTAs build locale-prefixed URLs and fall back to English copy when translations are missing.
+- **Impact & follow-up**: Editors can now manage the shared site chrome in all three locales from a single form, and visitors see `/pt/...` or `/es/...` URLs when switching languages. Monitor Stackbit annotations around the updated links to confirm the Visual Editor still maps to the correct fields.
+- **References**: Pending PR
+
 ## 2025-10-03 — Restored Visual Editor metadata
 - **What changed**: Recovered `metadata.json` from the last valid revision after it was committed as an empty file, restoring the Stackbit model definitions required by the Visual Editor.
 - **Impact & follow-up**: Netlify builds run again and Visual Editor bindings resolve correctly. Keep an eye on future schema migrations to ensure regenerated metadata is committed alongside content changes.

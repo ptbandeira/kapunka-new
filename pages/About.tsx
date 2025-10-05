@@ -170,7 +170,7 @@ const isAboutPageContent = (value: unknown): value is AboutPageContent => {
 };
 
 const About: React.FC = () => {
-    const { t, language } = useLanguage();
+    const { t, language, translate } = useLanguage();
     const { settings } = useSiteSettings();
     const translationsAboutFieldPath = `translations.${language}.about`;
     const aboutFieldPath = `pages.about_${language}`;
@@ -178,8 +178,8 @@ const About: React.FC = () => {
     const defaultSourcingImage = 'https://images.unsplash.com/photo-1616893904984-7a57a3b35338?q=80&w=1964&auto=format&fit=crop';
     const storyImage = settings.about?.storyImage || defaultStoryImage;
     const sourcingImage = settings.about?.sourcingImage || defaultSourcingImage;
-    const storyAlt = settings.about?.storyAlt || 'Brand story';
-    const sourcingAlt = settings.about?.sourcingAlt || t('about.sourcingImageAlt');
+    const storyAlt = translate(settings.about?.storyAlt ?? 'Brand story');
+    const sourcingAlt = translate(settings.about?.sourcingAlt ?? t('about.sourcingImageAlt'));
     const [aboutContent, setAboutContent] = useState<AboutPageContent | null>(null);
     const [storyContent, setStoryContent] = useState<PageContent | null>(null);
     const { contentVersion } = useVisualEditorSync();

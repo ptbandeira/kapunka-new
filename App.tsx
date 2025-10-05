@@ -1,5 +1,14 @@
 import React, { Suspense, lazy, useEffect } from 'react';
-import { BrowserRouter, Routes, Route, useLocation } from 'react-router-dom';
+import {
+  BrowserRouter,
+  Routes,
+  Route,
+  useLocation,
+  useParams,
+  useNavigate,
+  Outlet,
+  Navigate,
+} from 'react-router-dom';
 import { AnimatePresence, motion } from 'framer-motion';
 import { Helmet, HelmetProvider } from 'react-helmet-async';
 
@@ -12,6 +21,7 @@ import { useLanguage } from './contexts/LanguageContext';
 import type { Language, LocalizedText } from './types';
 import { ensureVisualEditorAnnotations } from './utils/visualEditorAnnotations';
 import { isVisualEditorRuntime } from './utils/visualEditorRuntime';
+import { buildLocalizedPath, isSupportedLanguage, removeLocaleFromPath } from './utils/localePaths';
 
 const Home = lazy(() => import('./pages/Home'));
 const Shop = lazy(() => import('./pages/Shop'));
@@ -59,6 +69,7 @@ const FALLBACK_TITLE = 'Kapunka Skincare';
 const FALLBACK_DESCRIPTION =
   'Premium skincare for a healthy skin barrier. Clean, minimal, and elegant products.';
 
+const DEFAULT_LANGUAGE: Language = 'en';
 const languageFallbackOrder: Language[] = ['en', 'pt', 'es'];
 
 const getLocalizedValue = (
@@ -102,30 +113,111 @@ const PageWrapper: React.FC<{ children: React.ReactNode; pageKey: string; }> = (
   </motion.div>
 );
 
-const AnimatedRoutes: React.FC = () => {
+type RouteDefinition = {
+  key: string;
+  element: React.ReactNode;
+  path?: string;
+  index?: boolean;
+};
+
+const routeDefinitions: RouteDefinition[] = [
+  { key: 'home', element: <Home />, index: true },
+  { key: 'shop', path: 'shop', element: <Shop /> },
+  { key: 'product', path: 'product/:id', element: <ProductDetail /> },
+  { key: 'learn', path: 'learn', element: <Learn /> },
+  { key: 'article', path: 'learn/:slug', element: <ArticlePage /> },
+  { key: 'videos', path: 'videos', element: <Videos /> },
+  { key: 'training', path: 'training', element: <Training /> },
+  { key: 'training-program', path: 'training-program', element: <TrainingProgramPage /> },
+  { key: 'method', path: 'method', element: <Method /> },
+  { key: 'method-kapunka', path: 'method-kapunka', element: <MethodKapunkaPage /> },
+  { key: 'clinics', path: 'for-clinics', element: <ForClinics /> },
+  { key: 'academy', path: 'academy', element: <Academy /> },
+  { key: 'story', path: 'story', element: <Story /> },
+  { key: 'founder-story', path: 'founder-story', element: <FounderStoryPage /> },
+  { key: 'product-education', path: 'product-education', element: <ProductEducationPage /> },
+  { key: 'about', path: 'about', element: <About /> },
+  { key: 'contact', path: 'contact', element: <Contact /> },
+  { key: 'cart', path: 'cart', element: <CartPage /> },
+  { key: 'policy', path: 'policy/:type', element: <PolicyPage /> },
+];
+
+const renderRoutes = (definitions: RouteDefinition[]) => definitions.map((route) => {
+  const element = (
+    <PageWrapper pageKey={route.key}>
+      {route.element}
+    </PageWrapper>
+  );
+
+  if (route.index) {
+    return <Route index element={element} key={route.key} />;
+  }
+
+  return <Route path={route.path} element={element} key={route.key} />;
+});
+
+const LocalizedLayout: React.FC = () => {
+  const params = useParams<{ locale?: string }>();
   const location = useLocation();
+  const navigate = useNavigate();
+  const { language, setLanguage } = useLanguage();
+
+  useEffect(() => {
+    const currentLocale = params.locale;
+
+    if (!currentLocale) {
+      if (language !== DEFAULT_LANGUAGE) {
+        const targetPath = buildLocalizedPath(location.pathname, language);
+        if (targetPath !== location.pathname) {
+          navigate(`${targetPath}${location.search}${location.hash}`, { replace: true });
+          return;
+        }
+
+        setLanguage(DEFAULT_LANGUAGE);
+      }
+      return;
+    }
+
+    if (!isSupportedLanguage(currentLocale)) {
+      const fallbackPath = removeLocaleFromPath(location.pathname);
+      navigate(`${fallbackPath}${location.search}${location.hash}`, { replace: true });
+      return;
+    }
+
+    if (currentLocale === DEFAULT_LANGUAGE) {
+      const normalizedPath = removeLocaleFromPath(location.pathname);
+      if (normalizedPath !== location.pathname) {
+        navigate(`${normalizedPath}${location.search}${location.hash}`, { replace: true });
+        return;
+      }
+
+      if (language !== DEFAULT_LANGUAGE) {
+        setLanguage(DEFAULT_LANGUAGE);
+      }
+      return;
+    }
+
+    if (language !== currentLocale) {
+      setLanguage(currentLocale as Language);
+    }
+  }, [language, location.hash, location.pathname, location.search, navigate, params.locale, setLanguage]);
+
+  return <Outlet />;
+};
+
+const AppRoutes: React.FC = () => {
+  const location = useLocation();
+
   return (
     <AnimatePresence mode="wait">
       <Routes location={location} key={location.pathname}>
-        <Route path="/" element={<PageWrapper pageKey="home"><Home /></PageWrapper>} />
-        <Route path="/shop" element={<PageWrapper pageKey="shop"><Shop /></PageWrapper>} />
-        <Route path="/product/:id" element={<PageWrapper pageKey="product"><ProductDetail /></PageWrapper>} />
-        <Route path="/learn" element={<PageWrapper pageKey="learn"><Learn /></PageWrapper>} />
-        <Route path="/learn/:slug" element={<PageWrapper pageKey="article"><ArticlePage /></PageWrapper>} />
-        <Route path="/videos" element={<PageWrapper pageKey="videos"><Videos /></PageWrapper>} />
-        <Route path="/training" element={<PageWrapper pageKey="training"><Training /></PageWrapper>} />
-        <Route path="/training-program" element={<PageWrapper pageKey="training-program"><TrainingProgramPage /></PageWrapper>} />
-        <Route path="/method" element={<PageWrapper pageKey="method"><Method /></PageWrapper>} />
-        <Route path="/method-kapunka" element={<PageWrapper pageKey="method-kapunka"><MethodKapunkaPage /></PageWrapper>} />
-        <Route path="/for-clinics" element={<PageWrapper pageKey="clinics"><ForClinics /></PageWrapper>} />
-        <Route path="/academy" element={<PageWrapper pageKey="academy"><Academy /></PageWrapper>} />
-        <Route path="/story" element={<PageWrapper pageKey="story"><Story /></PageWrapper>} />
-        <Route path="/founder-story" element={<PageWrapper pageKey="founder-story"><FounderStoryPage /></PageWrapper>} />
-        <Route path="/product-education" element={<PageWrapper pageKey="product-education"><ProductEducationPage /></PageWrapper>} />
-        <Route path="/about" element={<PageWrapper pageKey="about"><About /></PageWrapper>} />
-        <Route path="/contact" element={<PageWrapper pageKey="contact"><Contact /></PageWrapper>} />
-        <Route path="/cart" element={<PageWrapper pageKey="cart"><CartPage /></PageWrapper>} />
-        <Route path="/policy/:type" element={<PageWrapper pageKey="policy"><PolicyPage /></PageWrapper>} />
+        <Route path="/:locale(en|pt|es)" element={<LocalizedLayout />}>
+          {renderRoutes(routeDefinitions)}
+        </Route>
+        <Route path="/" element={<LocalizedLayout />}>
+          {renderRoutes(routeDefinitions)}
+        </Route>
+        <Route path="*" element={<Navigate to="/" replace />} />
       </Routes>
     </AnimatePresence>
   );
@@ -163,7 +255,7 @@ const App: React.FC = () => {
           <Header />
           <main className="flex-grow pt-[72px]">
             <Suspense fallback={<RouteFallback />}>
-              <AnimatedRoutes />
+              <AppRoutes />
             </Suspense>
           </main>
           <Footer />

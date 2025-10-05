@@ -10,6 +10,7 @@ import type { CartItem, Product } from '../types';
 import { fetchVisualEditorJson } from '../utils/fetchVisualEditorJson';
 import { useVisualEditorSync } from '../contexts/VisualEditorSyncContext';
 import { formatCurrency } from '../utils/currency';
+import { buildLocalizedPath } from '../utils/localePaths';
 
 interface ProductIndexResponse {
   items?: Product[];
@@ -137,7 +138,7 @@ const MiniCart: React.FC = () => {
                     <span className="font-semibold text-lg">{formatCurrency(subtotal, language)}</span>
                   </div>
                   <p className="text-xs text-stone-400 text-center mb-4">{t('cart.shippingNote')}</p>
-                  <Link to="/cart" onClick={closeCart} className="block w-full text-center bg-stone-900 text-white py-3 rounded-md hover:bg-stone-700 transition-colors duration-300">
+                  <Link to={buildLocalizedPath('/cart', language)} onClick={closeCart} className="block w-full text-center bg-stone-900 text-white py-3 rounded-md hover:bg-stone-700 transition-colors duration-300">
                     {t('cart.viewCart')}
                   </Link>
                 </div>
@@ -145,7 +146,7 @@ const MiniCart: React.FC = () => {
             ) : (
               <div className="flex-grow flex flex-col items-center justify-center p-6 text-center">
                 <p className="text-stone-500 mb-4">{t('cart.empty')}</p>
-                <Link to="/shop" onClick={closeCart} className="bg-stone-200 text-stone-800 px-6 py-2 rounded-md hover:bg-stone-300 transition-colors duration-300">
+                <Link to={buildLocalizedPath('/shop', language)} onClick={closeCart} className="bg-stone-200 text-stone-800 px-6 py-2 rounded-md hover:bg-stone-300 transition-colors duration-300">
                   {t('cart.continueShopping')}
                 </Link>
               </div>

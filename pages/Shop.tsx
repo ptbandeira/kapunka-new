@@ -10,6 +10,7 @@ import type { Product, ShopCategory, ShopCategoryLink, ShopContent } from '../ty
 import { fetchVisualEditorJson } from '../utils/fetchVisualEditorJson';
 import { getVisualEditorAttributes } from '../utils/stackbitBindings';
 import { useVisualEditorSync } from '../contexts/VisualEditorSyncContext';
+import { buildLocalizedPath } from '../utils/localePaths';
 
 const linkIcons: Record<ShopCategoryLink['type'], LucideIcon> = {
   product: ArrowUpRight,
@@ -271,20 +272,39 @@ const Shop: React.FC = () => {
                 <div className="flex flex-wrap gap-2">
                   {activeCategory.links.map((link, linkIndex) => {
                     const Icon = linkIcons[link.type];
-                    return (
-                      <Link
-                        key={link.id}
-                        to={link.url}
-                        className="inline-flex items-center gap-2 px-3 py-2 bg-stone-100 text-stone-700 rounded-full text-sm font-medium hover:bg-stone-200 transition-colors"
-                        {...getVisualEditorAttributes(
-                          activeCategoryIndex >= 0
-                            ? `shop.categories.${activeCategoryIndex}.links.${linkIndex}.label.${language}`
-                            : undefined
-                        )}
-                      >
+                    const isInternalLink = Boolean(link.url?.startsWith('/') || link.url?.startsWith('#/'));
+                    const normalizedUrl = isInternalLink
+                      ? buildLocalizedPath(link.url?.startsWith('#/') ? link.url.slice(1) : link.url, language)
+                      : link.url;
+                    const commonProps = {
+                      className: 'inline-flex items-center gap-2 px-3 py-2 bg-stone-100 text-stone-700 rounded-full text-sm font-medium hover:bg-stone-200 transition-colors',
+                      ...getVisualEditorAttributes(
+                        activeCategoryIndex >= 0
+                          ? `shop.categories.${activeCategoryIndex}.links.${linkIndex}.label.${language}`
+                          : undefined,
+                      ),
+                    } as const;
+
+                    if (!normalizedUrl) {
+                      return null;
+                    }
+
+                    return isInternalLink ? (
+                      <Link key={link.id} to={normalizedUrl} {...commonProps}>
                         <Icon className="w-4 h-4" />
                         <span>{translate(link.label)}</span>
                       </Link>
+                    ) : (
+                      <a
+                        key={link.id}
+                        href={normalizedUrl}
+                        target="_blank"
+                        rel="noreferrer"
+                        {...commonProps}
+                      >
+                        <Icon className="w-4 h-4" />
+                        <span>{translate(link.label)}</span>
+                      </a>
                     );
                   })}
                 </div>

@@ -164,14 +164,14 @@ export interface ShopContent {
 
 export interface SocialLink {
     id: string;
-    label: string;
+    label: LocalizedText;
     url: string;
     icon: string;
 }
 
 export interface SiteSettings {
     brand?: {
-        name: string;
+        name: LocalizedText;
     };
     home?: {
         heroImage: string;
@@ -185,14 +185,14 @@ export interface SiteSettings {
     about?: {
         storyImage?: string;
         sourcingImage?: string;
-        storyAlt?: string;
-        sourcingAlt?: string;
+        storyAlt?: LocalizedText;
+        sourcingAlt?: LocalizedText;
     };
     clinics?: {
         ctaLink?: string;
     };
     footer?: {
-        legalName?: string;
+        legalName?: LocalizedText;
         socialLinks?: SocialLink[];
     };
     seo?: SeoSettings;

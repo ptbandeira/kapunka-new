@@ -9,6 +9,7 @@ import { useLanguage } from '../contexts/LanguageContext';
 import { getVisualEditorAttributes } from '../utils/stackbitBindings';
 import { formatCurrency } from '../utils/currency';
 import type { Product } from '../types';
+import { buildLocalizedPath } from '../utils/localePaths';
 
 interface ProductCardProps {
   product: Product;
@@ -61,7 +62,7 @@ const ProductCard: React.FC<ProductCardProps> = (props) => {
       className="group"
       {...getVisualEditorAttributes(fieldPath)}
     >
-      <Link to={`/product/${product.id}`} className="block">
+      <Link to={buildLocalizedPath(`/product/${product.id}`, language)} className="block">
         <div className="relative overflow-hidden rounded-lg">
           <img
             src={product.imageUrl}

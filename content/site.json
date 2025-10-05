@@ -5,7 +5,11 @@
     "whatsapp": "https://wa.me/1234567890"
   },
   "brand": {
-    "name": "KAPUNKA"
+    "name": {
+      "en": "KAPUNKA",
+      "pt": "KAPUNKA",
+      "es": "KAPUNKA"
+    }
   },
   "clinics": {
     "ctaLink": "https://kapunka.com/#/contact"
@@ -13,22 +17,42 @@
   "about": {
     "storyImage": "/content/uploads/site/monica-argan-.jpg",
     "sourcingImage": "/content/uploads/site/argan-production.jpg",
-    "storyAlt": "Brand story",
-    "sourcingAlt": "Sourcing argan oil"
+    "storyAlt": {
+      "en": "Brand story",
+      "pt": "História da marca",
+      "es": "Historia de la marca"
+    },
+    "sourcingAlt": {
+      "en": "Sourcing argan oil",
+      "pt": "Extração do óleo de argão",
+      "es": "Obtención del aceite de argán"
+    }
   },
   "type": "SiteConfig",
   "footer": {
-    "legalName": "Kapunka Skincare",
+    "legalName": {
+      "en": "Kapunka Skincare",
+      "pt": "Kapunka Skincare",
+      "es": "Kapunka Skincare"
+    },
     "socialLinks": [
       {
         "id": "facebook",
-        "label": "Facebook",
+        "label": {
+          "en": "Facebook",
+          "pt": "Facebook",
+          "es": "Facebook"
+        },
         "url": "https://www.facebook.com/kapunkargan",
         "icon": "facebook"
       },
       {
         "id": "instagram",
-        "label": "Instagram",
+        "label": {
+          "en": "Instagram",
+          "pt": "Instagram",
+          "es": "Instagram"
+        },
         "url": "https://www.instagram.com/kapunkarganoil/",
         "icon": "instagram"
       }

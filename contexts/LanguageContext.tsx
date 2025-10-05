@@ -9,6 +9,7 @@ import React, {
 } from 'react';
 import type { Language } from '../types';
 import { fetchVisualEditorJson } from '../utils/fetchVisualEditorJson';
+import { SUPPORTED_LANGUAGES } from '../utils/localePaths';
 import { useVisualEditorSync } from './VisualEditorSyncContext';
 
 type TranslationPrimitive = string | number | boolean | null;
@@ -24,8 +25,8 @@ const translationModules = import.meta.glob<TranslationModule>(
   },
 ) as Record<string, TranslationModule>;
 
-const SUPPORTED_LANGUAGES: Language[] = ['en', 'pt', 'es'];
 const LANGUAGE_STORAGE_KEY = 'preferredLanguage';
+const FALLBACK_LANGUAGE: Language = 'en';
 
 const normalizeLanguageCode = (code: string): Language | undefined => {
   const normalized = code.toLowerCase().split('-')[0];
@@ -147,17 +148,34 @@ export const LanguageProvider: React.FC<{ children: React.ReactNode }> = ({ chil
 
   const t = useCallback(<T = string>(key: string): T => {
     const keys = key.split('.');
-    let result: unknown = translations[language];
 
-    for (const k of keys) {
-      if (typeof result !== 'object' || result === null || !(k in result)) {
-        return key as unknown as T;
+    const resolveValue = (lang: Language): unknown => {
+      let result: unknown = translations[lang];
+
+      for (const k of keys) {
+        if (typeof result !== 'object' || result === null || !(k in result)) {
+          return undefined;
+        }
+
+        result = (result as Record<string, unknown>)[k];
       }
 
-      result = (result as Record<string, unknown>)[k];
+      return result;
+    };
+
+    const localizedResult = resolveValue(language);
+    if (localizedResult !== undefined) {
+      return localizedResult as T;
     }
 
-    return (result ?? key) as T;
+    if (language !== FALLBACK_LANGUAGE) {
+      const fallbackResult = resolveValue(FALLBACK_LANGUAGE);
+      if (fallbackResult !== undefined) {
+        return fallbackResult as T;
+      }
+    }
+
+    return key as unknown as T;
   }, [language, translations]);
 
   const translate = useCallback(<T,>(content: Partial<Record<Language, T>> | T): T => {
@@ -165,6 +183,20 @@ export const LanguageProvider: React.FC<{ children: React.ReactNode }> = ({ chil
       const localizedValue = content[language];
       if (localizedValue !== undefined) {
         return localizedValue;
+      }
+
+      if (language !== FALLBACK_LANGUAGE) {
+        const fallbackValue = content[FALLBACK_LANGUAGE];
+        if (fallbackValue !== undefined) {
+          return fallbackValue;
+        }
+      }
+
+      for (const candidate of SUPPORTED_LANGUAGES) {
+        const candidateValue = content[candidate];
+        if (candidateValue !== undefined) {
+          return candidateValue;
+        }
       }
     }
 

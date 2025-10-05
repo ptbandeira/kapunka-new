@@ -1,13 +1,23 @@
-type GrayMatterModule = typeof import('gray-matter');
+import { load as loadYaml } from 'js-yaml';
 
-let matterModulePromise: Promise<GrayMatterModule['default']> | null = null;
+const FRONT_MATTER_PATTERN = /^---\s*[\r\n]+([\s\S]*?)[\r\n]+---\s*[\r\n]*/;
 
-const loadMatter = async (): Promise<GrayMatterModule['default']> => {
-  if (!matterModulePromise) {
-    matterModulePromise = import('gray-matter').then((module) => module.default ?? module);
+const parseFrontMatter = <T>(raw: string): T => {
+  const match = raw.match(FRONT_MATTER_PATTERN);
+  if (!match) {
+    return {} as T;
   }
 
-  return matterModulePromise;
+  try {
+    const parsed = loadYaml(match[1]);
+    if (parsed && typeof parsed === 'object') {
+      return parsed as T;
+    }
+  } catch (error) {
+    console.error('Failed to parse front matter', error);
+  }
+
+  return {} as T;
 };
 
 const CONTENT_PREFIX = '/content/';
@@ -47,7 +57,6 @@ export const fetchVisualEditorMarkdown = async <T>(
 ): Promise<VisualEditorMarkdownDocument<T>> => {
   const candidates = buildCandidateUrls(url);
   let lastError: unknown;
-  const matter = await loadMatter();
 
   for (const candidate of candidates) {
     try {
@@ -57,8 +66,7 @@ export const fetchVisualEditorMarkdown = async <T>(
       }
 
       const raw = await response.text();
-      const parsed = matter(raw);
-      const data = parsed.data as T;
+      const data = parseFrontMatter<T>(raw);
       const source: VisualEditorContentSource = candidate === url ? 'content' : 'visual-editor';
 
       return {

@@ -11,6 +11,7 @@ import { fetchVisualEditorJson } from '../utils/fetchVisualEditorJson';
 import { getVisualEditorAttributes } from '../utils/stackbitBindings';
 import { useVisualEditorSync } from '../contexts/VisualEditorSyncContext';
 import { formatCurrency } from '../utils/currency';
+import { buildLocalizedPath } from '../utils/localePaths';
 
 interface ProductsResponse {
   items?: Product[];
@@ -227,7 +228,7 @@ const CartPage: React.FC = () => {
                         {t('cart.empty')}
                     </p>
                     <Link
-                        to="/shop"
+                        to={buildLocalizedPath('/shop', language)}
                         className="px-8 py-3 bg-stone-900 text-white font-semibold rounded-md hover:bg-stone-700 transition-colors"
                     >
                         <span {...getVisualEditorAttributes(`${cartFieldPath}.continueShopping`)}>
