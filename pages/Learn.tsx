@@ -18,7 +18,7 @@ import { fetchVisualEditorJson } from '../utils/fetchVisualEditorJson';
 import { getVisualEditorAttributes } from '../utils/stackbitBindings';
 import { useVisualEditorSync } from '../contexts/VisualEditorSyncContext';
 import { getCloudinaryUrl } from '../utils/imageUrl';
-import Seo from '../components/Seo';
+import Seo from '../src/components/Seo';
 
 interface ArticlesResponse {
   items?: Article[];

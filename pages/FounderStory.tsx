@@ -5,7 +5,7 @@ import { useVisualEditorSync } from '../contexts/VisualEditorSyncContext';
 import { useSiteSettings } from '../contexts/SiteSettingsContext';
 import { getCloudinaryUrl } from '../utils/imageUrl';
 import { useLanguage } from '../contexts/LanguageContext';
-import Seo from '../components/Seo';
+import Seo from '../src/components/Seo';
 
 interface MicroStory {
   quote?: string;

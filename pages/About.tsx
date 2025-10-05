@@ -9,7 +9,7 @@ import { fetchVisualEditorJson } from '../utils/fetchVisualEditorJson';
 import { fetchVisualEditorMarkdown } from '../utils/fetchVisualEditorMarkdown';
 import { getVisualEditorAttributes } from '../utils/stackbitBindings';
 import { useVisualEditorSync } from '../contexts/VisualEditorSyncContext';
-import Seo from '../components/Seo';
+import Seo from '../src/components/Seo';
 
 const isTimelineEntry = (value: unknown): value is TimelineEntry => {
   if (!value || typeof value !== 'object') {

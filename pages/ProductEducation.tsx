@@ -5,7 +5,7 @@ import { useVisualEditorSync } from '../contexts/VisualEditorSyncContext';
 import { useSiteSettings } from '../contexts/SiteSettingsContext';
 import { useLanguage } from '../contexts/LanguageContext';
 import { getCloudinaryUrl } from '../utils/imageUrl';
-import Seo from '../components/Seo';
+import Seo from '../src/components/Seo';
 
 interface BenefitItem {
   title?: string;

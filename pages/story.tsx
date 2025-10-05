@@ -6,7 +6,7 @@ import { useVisualEditorSync } from '../contexts/VisualEditorSyncContext';
 import type { PageSection } from '../types';
 import { fetchVisualEditorMarkdown } from '../utils/fetchVisualEditorMarkdown';
 import { getVisualEditorAttributes } from '../utils/stackbitBindings';
-import Seo from '../components/Seo';
+import Seo from '../src/components/Seo';
 
 const SUPPORTED_SECTION_TYPES = new Set<PageSection['type']>([
   'timeline',

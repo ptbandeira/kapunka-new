@@ -12,7 +12,7 @@ import { useVisualEditorSync } from '../contexts/VisualEditorSyncContext';
 import { formatCurrency } from '../utils/currency';
 import { buildLocalizedPath } from '../utils/localePaths';
 import { getCloudinaryUrl } from '../utils/imageUrl';
-import Seo from '../components/Seo';
+import Seo from '../src/components/Seo';
 
 interface ProductsResponse {
   items?: Product[];

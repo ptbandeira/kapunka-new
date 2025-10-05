@@ -8,7 +8,7 @@ import { fetchVisualEditorMarkdown } from '../utils/fetchVisualEditorMarkdown';
 import { getVisualEditorAttributes } from '../utils/stackbitBindings';
 import { getCloudinaryUrl } from '../utils/imageUrl';
 import { useSiteSettings } from '../contexts/SiteSettingsContext';
-import Seo from '../components/Seo';
+import Seo from '../src/components/Seo';
 
 const SUPPORTED_SECTION_TYPES = new Set<PageSection['type']>([
   'timeline',

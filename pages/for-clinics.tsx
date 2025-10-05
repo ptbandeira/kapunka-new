@@ -9,7 +9,7 @@ import {
   loadClinicsPageContent,
   type ClinicsPageContentResult,
 } from '../utils/loadClinicsPageContent';
-import Seo from '../components/Seo';
+import Seo from '../src/components/Seo';
 
 interface ProtocolCard {
   title?: string;

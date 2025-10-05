@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
 import SectionRenderer from '../components/SectionRenderer';
-import Seo from '../components/Seo';
+import Seo from '../src/components/Seo';
 import { useLanguage } from '../contexts/LanguageContext';
 import type { PageContent, PageSection } from '../types';
 import { fetchVisualEditorMarkdown } from '../utils/fetchVisualEditorMarkdown';
