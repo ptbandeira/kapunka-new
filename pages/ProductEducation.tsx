@@ -135,7 +135,6 @@ const ProductEducation: React.FC = () => {
   const { t } = useLanguage();
   const { contentVersion } = useVisualEditorSync();
   const { settings: siteSettings } = useSiteSettings();
-  const { t } = useLanguage();
 
   useEffect(() => {
     let isMounted = true;

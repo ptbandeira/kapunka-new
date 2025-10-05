@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import Head from 'next/head';
 import { motion } from 'framer-motion';
-import SectionRenderer from '../components/_legacy/SectionRenderer';
+import SectionRenderer from '../components/SectionRenderer';
 import { useLanguage } from '../contexts/LanguageContext';
 import type { PageContent, PageSection } from '../types';
 import { fetchVisualEditorMarkdown } from '../utils/fetchVisualEditorMarkdown';
@@ -71,7 +71,6 @@ const Videos: React.FC = () => {
   const { settings } = useSiteSettings();
   const [pageContent, setPageContent] = useState<PageContent | null>(null);
   const { contentVersion } = useVisualEditorSync();
-  const { settings } = useSiteSettings();
 
   useEffect(() => {
     let isMounted = true;

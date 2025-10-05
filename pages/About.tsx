@@ -4,7 +4,7 @@ import { motion } from 'framer-motion';
 import { useLanguage } from '../contexts/LanguageContext';
 import { useSiteSettings } from '../contexts/SiteSettingsContext';
 import { getCloudinaryUrl } from '../utils/imageUrl';
-import SectionRenderer from '../components/_legacy/SectionRenderer';
+import SectionRenderer from '../components/SectionRenderer';
 import type { PageContent, PageSection, TimelineEntry, TimelineSectionContent } from '../types';
 import { fetchVisualEditorJson } from '../utils/fetchVisualEditorJson';
 import { fetchVisualEditorMarkdown } from '../utils/fetchVisualEditorMarkdown';
@@ -324,7 +324,7 @@ const About: React.FC = () => {
             <meta name="twitter:title" content={computedTitle} />
             <meta name="twitter:description" content={computedDescription} />
             {socialImage ? <meta name="twitter:image" content={socialImage} /> : null}
-        </Helmet>
+        </Head>
       <header className="py-20 sm:py-32 bg-stone-100 text-center">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <motion.h1

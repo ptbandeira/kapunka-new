@@ -1,7 +1,7 @@
 import React, { useEffect, useMemo, useState } from 'react';
 import { Helmet } from 'react-helmet-async';
 import { motion } from 'framer-motion';
-import SectionRenderer from '../components/_legacy/SectionRenderer';
+import SectionRenderer from '../components/SectionRenderer';
 import { useLanguage } from '../contexts/LanguageContext';
 import { useVisualEditorSync } from '../contexts/VisualEditorSyncContext';
 import type { PageSection } from '../types';

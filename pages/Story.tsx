@@ -1,7 +1,7 @@
 import React, { useEffect, useMemo, useState } from 'react';
 import Head from 'next/head';
 import { motion } from 'framer-motion';
-import SectionRenderer from '../components/_legacy/SectionRenderer';
+import SectionRenderer from '../components/SectionRenderer';
 import { useLanguage } from '../contexts/LanguageContext';
 import { useVisualEditorSync } from '../contexts/VisualEditorSyncContext';
 import type { PageSection } from '../types';
@@ -124,7 +124,6 @@ const Story: React.FC = () => {
   const { t, language } = useLanguage();
   const { settings } = useSiteSettings();
   const { contentVersion } = useVisualEditorSync();
-  const { settings } = useSiteSettings();
   const [pageContent, setPageContent] = useState<StoryPageContent | null>(null);
 
   useEffect(() => {
