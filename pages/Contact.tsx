@@ -1,11 +1,30 @@
-
-import React, { useState } from 'react';
-import { Helmet } from 'react-helmet-async';
+import React, { useEffect, useState } from 'react';
+import Head from 'next/head';
 import { motion } from 'framer-motion';
 import { Mail, Phone, MessageSquare } from 'lucide-react';
 import { useLanguage } from '../contexts/LanguageContext';
 import { useSiteSettings } from '../contexts/SiteSettingsContext';
 import { getVisualEditorAttributes } from '../utils/stackbitBindings';
+import { fetchVisualEditorMarkdown } from '../utils/fetchVisualEditorMarkdown';
+import { useVisualEditorSync } from '../contexts/VisualEditorSyncContext';
+
+interface ContactPageMeta {
+    metaTitle?: string;
+    metaDescription?: string;
+}
+
+const isContactPageMeta = (value: unknown): value is ContactPageMeta => {
+    if (typeof value !== 'object' || value === null) {
+        return false;
+    }
+
+    const { metaTitle, metaDescription } = value as Record<string, unknown>;
+
+    return (
+        (metaTitle === undefined || typeof metaTitle === 'string')
+        && (metaDescription === undefined || typeof metaDescription === 'string')
+    );
+};
 
 const ContactForm: React.FC = () => {
     const { t, language } = useLanguage();
@@ -83,18 +102,82 @@ const ContactForm: React.FC = () => {
 const Contact: React.FC = () => {
     const { t, language } = useLanguage();
     const { settings } = useSiteSettings();
+    const { contentVersion } = useVisualEditorSync();
     const contactSettings = settings.contact ?? { email: 'hello@kapunka.com', phone: '+1 (234) 567-890', whatsapp: 'https://wa.me/1234567890' };
     const emailLink = contactSettings.email ? `mailto:${contactSettings.email}` : '#';
     const phoneLink = contactSettings.phone ? `tel:${contactSettings.phone.replace(/[^+\d]/g, '')}` : '#';
     const whatsappLink = contactSettings.whatsapp || '#';
     const contactFieldPath = `translations.${language}.contact`;
+    const [pageMeta, setPageMeta] = useState<ContactPageMeta | null>(null);
+
+    useEffect(() => {
+        let isMounted = true;
+
+        const loadMeta = async () => {
+            const localesToTry = [language, 'en'].filter((locale, index, arr) => arr.indexOf(locale) === index);
+
+            for (const locale of localesToTry) {
+                try {
+                    const { data } = await fetchVisualEditorMarkdown<unknown>(
+                        `/content/pages/${locale}/contact.md`,
+                        { cache: 'no-store' },
+                    );
+
+                    if (!isMounted) {
+                        return;
+                    }
+
+                    if (isContactPageMeta(data)) {
+                        setPageMeta(data);
+                        return;
+                    }
+                } catch (error) {
+                    if (locale === localesToTry[localesToTry.length - 1]) {
+                        console.error('Failed to load contact page meta', error);
+                    }
+                }
+            }
+
+            if (isMounted) {
+                setPageMeta(null);
+            }
+        };
+
+        loadMeta().catch((error) => {
+            console.error('Unhandled error while loading contact page meta', error);
+        });
+
+        return () => {
+            isMounted = false;
+        };
+    }, [language, contentVersion]);
+
+    const sanitize = (value?: string | null): string | undefined => {
+        if (typeof value !== 'string') {
+            return undefined;
+        }
+        const trimmed = value.trim();
+        return trimmed.length > 0 ? trimmed : undefined;
+    };
+
+    const metaTitleBase = sanitize(pageMeta?.metaTitle) ?? t('contact.metaTitle');
+    const metaDescription = sanitize(pageMeta?.metaDescription) ?? t('contact.metaDescription');
+    const pageTitle = metaTitleBase.includes('Kapunka') ? metaTitleBase : `${metaTitleBase} | Kapunka Skincare`;
+    const socialImage = sanitize(settings.home?.heroImage);
 
     return (
         <div className="py-16 sm:py-24">
-            <Helmet>
-                <title>{t('contact.title')} | Kapunka Skincare</title>
-                <meta name="description" content={t('contact.metaDescription')} />
-            </Helmet>
+            <Head>
+                <title>{pageTitle}</title>
+                <meta name="description" content={metaDescription} />
+                <meta property="og:title" content={pageTitle} />
+                <meta property="og:description" content={metaDescription} />
+                {socialImage ? <meta property="og:image" content={socialImage} /> : null}
+                <meta name="twitter:card" content="summary_large_image" />
+                <meta name="twitter:title" content={pageTitle} />
+                <meta name="twitter:description" content={metaDescription} />
+                {socialImage ? <meta name="twitter:image" content={socialImage} /> : null}
+            </Head>
             <div className="container mx-auto px-4 sm:px-6 lg:px-8">
                 <header className="text-center mb-16">
                 <h1

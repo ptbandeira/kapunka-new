@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Helmet } from 'react-helmet-async';
+import Head from 'next/head';
 import { motion } from 'framer-motion';
 import { useLanguage } from '../contexts/LanguageContext';
 import { useSiteSettings } from '../contexts/SiteSettingsContext';
@@ -291,20 +291,36 @@ const About: React.FC = () => {
         ? `${aboutFieldPath}.sections`
         : `pages.story_${language}.sections`;
 
-    const metaTitleBase = aboutContent?.metaTitle
-        ?? storyContent?.metaTitle
-        ?? t('about.title');
-    const computedDescription = aboutContent?.metaDescription
-        ?? storyContent?.metaDescription
+    const sanitize = (value?: string | null): string | undefined => {
+        if (typeof value !== 'string') {
+            return undefined;
+        }
+        const trimmed = value.trim();
+        return trimmed.length > 0 ? trimmed : undefined;
+    };
+
+    const metaTitleBase = sanitize(aboutContent?.metaTitle)
+        ?? sanitize(storyContent?.metaTitle)
+        ?? t('about.metaTitle');
+    const computedDescription = sanitize(aboutContent?.metaDescription)
+        ?? sanitize(storyContent?.metaDescription)
         ?? t('about.metaDescription');
     const computedTitle = metaTitleBase.includes('Kapunka') ? metaTitleBase : `${metaTitleBase} | Kapunka Skincare`;
+    const socialImage = sanitize(storyImage) ?? sanitize(sourcingImage) ?? sanitize(settings.home?.heroImage);
 
   return (
     <div>
-        <Helmet>
+        <Head>
             <title>{computedTitle}</title>
             <meta name="description" content={computedDescription} />
-        </Helmet>
+            <meta property="og:title" content={computedTitle} />
+            <meta property="og:description" content={computedDescription} />
+            {socialImage ? <meta property="og:image" content={socialImage} /> : null}
+            <meta name="twitter:card" content="summary_large_image" />
+            <meta name="twitter:title" content={computedTitle} />
+            <meta name="twitter:description" content={computedDescription} />
+            {socialImage ? <meta name="twitter:image" content={socialImage} /> : null}
+        </Head>
       <header className="py-20 sm:py-32 bg-stone-100 text-center">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <motion.h1

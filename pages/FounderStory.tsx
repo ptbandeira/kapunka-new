@@ -5,6 +5,7 @@ import { fetchVisualEditorMarkdown } from '../utils/fetchVisualEditorMarkdown';
 import { useVisualEditorSync } from '../contexts/VisualEditorSyncContext';
 import { useSiteSettings } from '../contexts/SiteSettingsContext';
 import { getCloudinaryUrl } from '../utils/imageUrl';
+import { useLanguage } from '../contexts/LanguageContext';
 
 interface MicroStory {
   quote?: string;
@@ -35,6 +36,8 @@ interface HeroImage {
 }
 
 interface FounderStoryContent {
+  metaTitle?: string;
+  metaDescription?: string;
   headline?: string;
   subheadline?: string;
   body?: string;
@@ -152,6 +155,7 @@ const FounderStory: React.FC = () => {
   const [error, setError] = useState<string | null>(null);
   const { contentVersion } = useVisualEditorSync();
   const { settings: siteSettings } = useSiteSettings();
+  const { t } = useLanguage();
 
   useEffect(() => {
     let isMounted = true;
@@ -242,10 +246,24 @@ const FounderStory: React.FC = () => {
       .filter((paragraph) => paragraph.length > 0);
   }, [content?.body]);
 
+  const sanitize = (value?: string | null): string | undefined => {
+    if (typeof value !== 'string') {
+      return undefined;
+    }
+    const trimmed = value.trim();
+    return trimmed.length > 0 ? trimmed : undefined;
+  };
+
+  const baseMetaTitle = sanitize(content?.metaTitle)
+    ?? sanitize(content?.headline)
+    ?? t('founderStory.metaTitle');
+  const pageDescription = sanitize(content?.metaDescription)
+    ?? sanitize(content?.subheadline)
+    ?? t('founderStory.metaDescription');
+  const pageTitleWithBrand = baseMetaTitle.includes('Kapunka')
+    ? baseMetaTitle
+    : `${baseMetaTitle} | Kapunka Skincare`;
   const pageTitle = content?.headline ?? 'Founder Story';
-  const pageDescription =
-    content?.subheadline
-    ?? 'Discover the Kapunka founder story rooted in Berber argan traditions and clinical skincare innovation.';
   const fallbackHeroImage = siteSettings.home?.heroImage?.trim() ?? '';
   const socialImageSource = heroImageSrc || fallbackHeroImage;
   const socialImage = socialImageSource ? getCloudinaryUrl(socialImageSource) ?? socialImageSource : undefined;
@@ -253,13 +271,13 @@ const FounderStory: React.FC = () => {
   return (
     <div className="bg-stone-50 text-stone-800" data-sb-object-id={FOUNDER_STORY_OBJECT_ID}>
       <Head>
-        <title>{pageTitle} | Kapunka Skincare</title>
+        <title>{pageTitleWithBrand}</title>
         <meta name="description" content={pageDescription} />
-        <meta property="og:title" content={`${pageTitle} | Kapunka Skincare`} />
+        <meta property="og:title" content={pageTitleWithBrand} />
         <meta property="og:description" content={pageDescription} />
         {socialImage ? <meta property="og:image" content={socialImage} /> : null}
         <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:title" content={`${pageTitle} | Kapunka Skincare`} />
+        <meta name="twitter:title" content={pageTitleWithBrand} />
         <meta name="twitter:description" content={pageDescription} />
         {socialImage ? <meta name="twitter:image" content={socialImage} /> : null}
       </Head>

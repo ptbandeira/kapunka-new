@@ -1,5 +1,5 @@
 import React, { useEffect, useMemo, useState } from 'react';
-import { Helmet } from 'react-helmet-async';
+import Head from 'next/head';
 import { motion } from 'framer-motion';
 import SectionRenderer from '../components/_legacy/SectionRenderer';
 import { useLanguage } from '../contexts/LanguageContext';
@@ -8,6 +8,7 @@ import type { PageSection } from '../types';
 import { fetchVisualEditorMarkdown } from '../utils/fetchVisualEditorMarkdown';
 import { getVisualEditorAttributes } from '../utils/stackbitBindings';
 import { getCloudinaryUrl } from '../utils/imageUrl';
+import { useSiteSettings } from '../contexts/SiteSettingsContext';
 
 const SUPPORTED_SECTION_TYPES = new Set<PageSection['type']>([
   'timeline',
@@ -121,6 +122,7 @@ const splitIntoParagraphs = (value?: string | null): string[] => {
 
 const Story: React.FC = () => {
   const { t, language } = useLanguage();
+  const { settings } = useSiteSettings();
   const { contentVersion } = useVisualEditorSync();
   const [pageContent, setPageContent] = useState<StoryPageContent | null>(null);
 
@@ -194,19 +196,45 @@ const Story: React.FC = () => {
     return pageContent.sections.filter(isPageSection);
   }, [pageContent?.sections]);
 
-  const computedTitle = useMemo(() => {
-    const baseTitle = pageContent?.metaTitle ?? t('nav.manifesto');
-    return baseTitle.includes('Kapunka') ? baseTitle : `${baseTitle} | Kapunka Skincare`;
+  const sanitize = (value?: string | null): string | undefined => {
+    if (typeof value !== 'string') {
+      return undefined;
+    }
+    const trimmed = value.trim();
+    return trimmed.length > 0 ? trimmed : undefined;
+  };
+
+  const baseMetaTitle = useMemo(() => {
+    const fromContent = sanitize(pageContent?.metaTitle);
+    if (fromContent) {
+      return fromContent;
+    }
+    const translation = t('story.metaTitle');
+    return typeof translation === 'string' ? translation : t('nav.manifesto');
   }, [pageContent?.metaTitle, t]);
 
-  const computedDescription = pageContent?.metaDescription ?? pageContent?.tagline ?? t('about.metaDescription');
+  const computedTitle = baseMetaTitle.includes('Kapunka')
+    ? baseMetaTitle
+    : `${baseMetaTitle} | Kapunka Skincare`;
+
+  const computedDescription = sanitize(pageContent?.metaDescription)
+    ?? sanitize(pageContent?.tagline)
+    ?? t('story.metaDescription');
+  const socialImage = sanitize(settings.home?.heroImage);
 
   return (
     <div>
-      <Helmet>
+      <Head>
         <title>{computedTitle}</title>
-        {computedDescription && <meta name="description" content={computedDescription} />}
-      </Helmet>
+        <meta name="description" content={computedDescription} />
+        <meta property="og:title" content={computedTitle} />
+        <meta property="og:description" content={computedDescription} />
+        {socialImage ? <meta property="og:image" content={socialImage} /> : null}
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content={computedTitle} />
+        <meta name="twitter:description" content={computedDescription} />
+        {socialImage ? <meta name="twitter:image" content={socialImage} /> : null}
+      </Head>
 
       <header className="py-20 sm:py-32 bg-stone-100">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 text-center">

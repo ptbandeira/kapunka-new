@@ -4,6 +4,7 @@ import { motion } from 'framer-motion';
 import { fetchVisualEditorMarkdown } from '../utils/fetchVisualEditorMarkdown';
 import { useVisualEditorSync } from '../contexts/VisualEditorSyncContext';
 import { useSiteSettings } from '../contexts/SiteSettingsContext';
+import { useLanguage } from '../contexts/LanguageContext';
 
 interface BenefitItem {
   title?: string;
@@ -22,6 +23,8 @@ interface FaqItem {
 }
 
 interface ProductEducationContent {
+  metaTitle?: string;
+  metaDescription?: string;
   headline?: string;
   subheadline?: string;
   composition?: string;
@@ -80,7 +83,25 @@ const isProductEducationContent = (value: unknown): value is ProductEducationCon
     return false;
   }
 
-  const { certifications, benefits, usageInstructions, faqs, headline, subheadline, composition } = value;
+  const {
+    certifications,
+    benefits,
+    usageInstructions,
+    faqs,
+    headline,
+    subheadline,
+    composition,
+    metaTitle,
+    metaDescription,
+  } = value;
+
+  if (metaTitle !== undefined && typeof metaTitle !== 'string') {
+    return false;
+  }
+
+  if (metaDescription !== undefined && typeof metaDescription !== 'string') {
+    return false;
+  }
 
   if (certifications !== undefined && !isStringArray(certifications)) {
     return false;
@@ -116,6 +137,7 @@ const ProductEducation: React.FC = () => {
   const [error, setError] = useState<string | null>(null);
   const { contentVersion } = useVisualEditorSync();
   const { settings: siteSettings } = useSiteSettings();
+  const { t } = useLanguage();
 
   useEffect(() => {
     let isMounted = true;
@@ -159,9 +181,23 @@ const ProductEducation: React.FC = () => {
   const faqs = content?.faqs?.filter((faq) => faq && (faq.question?.trim() || faq.answer?.trim())) ?? [];
   const certifications = content?.certifications?.filter((cert) => cert.trim().length > 0) ?? [];
 
-  const metaTitle = content?.headline ?? 'Kapunka Product Education';
-  const metaDescription = content?.subheadline ?? 'Learn how Kapunka argan skincare is composed, certified, and used in clinical rituals.';
-  const pageTitle = `${metaTitle} | Kapunka Skincare`;
+  const sanitize = (value?: string | null): string | undefined => {
+    if (typeof value !== 'string') {
+      return undefined;
+    }
+    const trimmed = value.trim();
+    return trimmed.length > 0 ? trimmed : undefined;
+  };
+
+  const baseMetaTitle = sanitize(content?.metaTitle)
+    ?? sanitize(content?.headline)
+    ?? t('productEducation.metaTitle');
+  const metaDescription = sanitize(content?.metaDescription)
+    ?? sanitize(content?.subheadline)
+    ?? t('productEducation.metaDescription');
+  const pageTitle = baseMetaTitle.includes('Kapunka')
+    ? baseMetaTitle
+    : `${baseMetaTitle} | Kapunka Skincare`;
   const socialImage = siteSettings.home?.heroImage;
 
   const compositionParagraphs = useMemo(() => {

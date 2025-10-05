@@ -4,10 +4,11 @@ import React, {
   useEffect,
   useCallback,
 } from 'react';
-import { Helmet } from 'react-helmet-async';
+import Head from 'next/head';
 import { motion } from 'framer-motion';
 import ArticleCard from '../components/ArticleCard';
 import { useLanguage } from '../contexts/LanguageContext';
+import { useSiteSettings } from '../contexts/SiteSettingsContext';
 import type { Article } from '../types';
 import {
   loadLearnPageContent,
@@ -32,6 +33,7 @@ const Learn: React.FC = () => {
   const [loading, setLoading] = useState(true);
   const [pageContent, setPageContent] = useState<LearnPageContentResult | null>(null);
   const { t, language } = useLanguage();
+  const { settings } = useSiteSettings();
   const { contentVersion } = useVisualEditorSync();
 
   useEffect(() => {
@@ -190,8 +192,20 @@ const Learn: React.FC = () => {
     return articles.filter(article => article.category === activeCategory);
   }, [activeCategory, articles]);
 
-  const metaTitle = pageContent?.data.metaTitle ?? t('learn.metaTitle');
-  const metaDescription = pageContent?.data.metaDescription ?? t('learn.metaDescription');
+  const sanitize = (value?: string | null): string | undefined => {
+    if (typeof value !== 'string') {
+      return undefined;
+    }
+    const trimmed = value.trim();
+    return trimmed.length > 0 ? trimmed : undefined;
+  };
+
+  const metaTitleBase = sanitize(pageContent?.data.metaTitle) ?? t('learn.metaTitle');
+  const metaDescription = sanitize(pageContent?.data.metaDescription) ?? t('learn.metaDescription');
+  const pageTitle = metaTitleBase.includes('Kapunka')
+    ? metaTitleBase
+    : `${metaTitleBase} | Kapunka Skincare`;
+  const socialImage = sanitize(settings.home?.heroImage);
   const heroTitle = pageContent?.data.heroTitle ?? t('learn.title');
   const heroSubtitle = pageContent?.data.heroSubtitle ?? t('learn.subtitle');
   const heroTitleFieldPath = `${learnFieldPath}.heroTitle`;
@@ -199,10 +213,17 @@ const Learn: React.FC = () => {
 
   return (
     <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-16">
-      <Helmet>
-        <title>{metaTitle} | Kapunka Skincare</title>
+      <Head>
+        <title>{pageTitle}</title>
         <meta name="description" content={metaDescription} />
-      </Helmet>
+        <meta property="og:title" content={pageTitle} />
+        <meta property="og:description" content={metaDescription} />
+        {socialImage ? <meta property="og:image" content={socialImage} /> : null}
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content={pageTitle} />
+        <meta name="twitter:description" content={metaDescription} />
+        {socialImage ? <meta name="twitter:image" content={socialImage} /> : null}
+      </Head>
 
       <motion.header
         initial={{ opacity: 0, y: 20 }}

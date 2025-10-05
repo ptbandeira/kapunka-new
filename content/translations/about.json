@@ -1,6 +1,7 @@
 {
   "type": "translations_about",
   "en": {
+    "metaTitle": "About Kapunka",
     "title": "Our Story",
     "metaDescription": "Learn about Kapunka Skincare's mission to create effective, minimalist skincare that respects the skin barrier and the environment.",
     "headerTitle": "Less, but better.",
@@ -14,6 +15,7 @@
     "sourcingImageAlt": "Field of argan trees"
   },
   "pt": {
+    "metaTitle": "Sobre a Kapunka",
     "title": "Nossa História",
     "metaDescription": "Conheça a missão da Kapunka Skincare de criar cuidados com a pele eficazes e minimalistas que respeitam a barreira cutânea e o meio ambiente.",
     "headerTitle": "Menos, mas melhor.",
@@ -27,6 +29,7 @@
     "sourcingImageAlt": "Campo de árvores de argan"
   },
   "es": {
+    "metaTitle": "Sobre Kapunka",
     "title": "Nuestra Historia",
     "metaDescription": "Conoce la misión de Kapunka Skincare de crear un cuidado de la piel eficaz y minimalista que respete la barrera cutánea y el medio ambiente.",
     "headerTitle": "Menos, pero mejor.",

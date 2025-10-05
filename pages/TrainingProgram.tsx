@@ -1,8 +1,10 @@
 import React, { useEffect, useMemo, useState } from 'react';
-import { Helmet } from 'react-helmet-async';
+import Head from 'next/head';
 import { motion } from 'framer-motion';
 import { fetchVisualEditorMarkdown } from '../utils/fetchVisualEditorMarkdown';
 import { useVisualEditorSync } from '../contexts/VisualEditorSyncContext';
+import { useLanguage } from '../contexts/LanguageContext';
+import { useSiteSettings } from '../contexts/SiteSettingsContext';
 
 interface ModuleContent {
   title?: string;
@@ -27,6 +29,8 @@ interface CallToAction {
 }
 
 interface TrainingContent {
+  metaTitle?: string;
+  metaDescription?: string;
   headline?: string;
   subheadline?: string;
   objectives?: string[];
@@ -134,6 +138,8 @@ const TrainingProgram: React.FC = () => {
   const [content, setContent] = useState<TrainingContent | null>(null);
   const [error, setError] = useState<string | null>(null);
   const { contentVersion } = useVisualEditorSync();
+  const { t } = useLanguage();
+  const { settings } = useSiteSettings();
 
   useEffect(() => {
     let isMounted = true;
@@ -177,17 +183,40 @@ const TrainingProgram: React.FC = () => {
   const paymentOptions = content?.pricing?.paymentOptions?.filter((option) => option.trim().length > 0) ?? [];
   const ctas = content?.callToActions?.filter((cta) => cta && (cta.label?.trim() || cta.url?.trim())) ?? [];
 
-  const metaTitle = content?.headline ?? 'Kapunka Clinical Training';
-  const metaDescription = content?.subheadline ?? 'Learn Method Kapunka protocols and training details.';
+  const sanitize = (value?: string | null): string | undefined => {
+    if (typeof value !== 'string') {
+      return undefined;
+    }
+    const trimmed = value.trim();
+    return trimmed.length > 0 ? trimmed : undefined;
+  };
+
+  const baseMetaTitle = sanitize(content?.metaTitle)
+    ?? sanitize(content?.headline)
+    ?? t('training.metaTitle');
+  const metaDescription = sanitize(content?.metaDescription)
+    ?? sanitize(content?.subheadline)
+    ?? t('training.metaDescription');
+  const pageTitle = baseMetaTitle.includes('Kapunka')
+    ? baseMetaTitle
+    : `${baseMetaTitle} | Kapunka Skincare`;
+  const socialImage = sanitize(settings.home?.heroImage);
 
   const formattedObjectives = useMemo(() => objectives, [objectives]);
 
   return (
     <div className="bg-stone-50 text-stone-900" data-sb-object-id={TRAINING_OBJECT_ID}>
-      <Helmet>
-        <title>{metaTitle} | Kapunka Skincare</title>
+      <Head>
+        <title>{pageTitle}</title>
         <meta name="description" content={metaDescription} />
-      </Helmet>
+        <meta property="og:title" content={pageTitle} />
+        <meta property="og:description" content={metaDescription} />
+        {socialImage ? <meta property="og:image" content={socialImage} /> : null}
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content={pageTitle} />
+        <meta name="twitter:description" content={metaDescription} />
+        {socialImage ? <meta name="twitter:image" content={socialImage} /> : null}
+      </Head>
 
       <section className="bg-stone-900 py-20 text-stone-100 sm:py-28">
         <div className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8 text-center">

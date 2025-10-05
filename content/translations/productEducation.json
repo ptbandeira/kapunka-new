@@ -1,0 +1,15 @@
+{
+  "type": "translations_productEducation",
+  "en": {
+    "metaTitle": "Product Education",
+    "metaDescription": "Learn about Kapunka formulations, certifications, and how to apply each ritual."
+  },
+  "pt": {
+    "metaTitle": "Educação sobre Produtos",
+    "metaDescription": "Conheça as formulações, certificações e como aplicar cada ritual Kapunka."
+  },
+  "es": {
+    "metaTitle": "Educación sobre Productos",
+    "metaDescription": "Conoce las formulaciones, certificaciones y cómo aplicar cada ritual de Kapunka."
+  }
+}
