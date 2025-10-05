@@ -11,6 +11,11 @@ This log records day-to-day investigations, fixes, and decisions that affect the
 
 ---
 
+## 2025-10-12 — Realigned nav translations with header IA
+- **What changed**: Added the missing navigation keys (For Professionals, Product Education, Clinics, Story) to `content/translations/nav.json` and exposed the matching fields in `admin/config.yml` so editors can localize every header label.
+- **Impact & follow-up**: Restores full localization coverage for the live six-item navigation across locales, preventing English fallbacks in Portuguese and Spanish. Confirm Decap saves the new fields and that Visual Editor bindings surface the updated labels when switching languages.
+- **References**: Pending PR
+
 ## 2025-10-11 — Swapped Decap media library to Cloudinary env placeholders
 - **What changed**: Updated `admin/config.yml` to point the Decap media library at Cloudinary with placeholder env references so builds read credentials from Netlify. No runtime keys remain hardcoded in the repo.
 - **Impact & follow-up**: Keeps editorial uploads routed through Cloudinary without exposing secrets. Ensure Netlify env vars `CLOUDINARY_BASE_URL` and `NETLIFY_ENV_CLOUDINARY_API_KEY` stay configured across deploy contexts.
