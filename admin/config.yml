@@ -1589,10 +1589,13 @@ collections:
             fields:
               - { label: Shop Link, name: shop, widget: string, hint: "Header navigation label for the Shop link (≤16 characters)." }
               - { label: Learn Link, name: learn, widget: string, hint: "Header navigation label for the Learn link (≤16 characters)." }
-              - { label: Videos Link, name: videos, widget: string, hint: "Header navigation label for Videos (≤16 characters)." }
-              - { label: Training Link, name: training, widget: string, hint: "Header navigation label for Training (≤16 characters)." }
-              - { label: Method Link, name: method, widget: string, hint: "Header navigation label for Method (≤16 characters)." }
-              - { label: Clinics Link, name: forClinics, widget: string, hint: "Header navigation label for For Clinics (≤20 characters)." }
+              - { label: For Professionals Link, name: forProfessionals, widget: string, hint: "Header navigation label for the For Professionals link (≤20 characters)." }
+              - { label: Story Link, name: manifesto, widget: string, hint: "Dropdown label for the Story & Manifesto page (≤24 characters)." }
+              - { label: Videos Link, name: videos, widget: string, hint: "Dropdown label for Videos (≤20 characters)." }
+              - { label: Product Education Link, name: productEducation, widget: string, hint: "Dropdown label for Product Education (≤24 characters)." }
+              - { label: Method Link, name: method, widget: string, hint: "Dropdown label for Method (≤20 characters)." }
+              - { label: Training Link, name: training, widget: string, hint: "Dropdown label for Training (≤20 characters)." }
+              - { label: Clinics Link, name: clinics, widget: string, hint: "Dropdown label for the Clinics page (≤20 characters)." }
               - { label: About Link, name: about, widget: string, hint: "Header navigation label for About (≤16 characters)." }
               - { label: Contact Link, name: contact, widget: string, hint: "Header navigation label for Contact (≤16 characters)." }
           - <<: *nav_fields
