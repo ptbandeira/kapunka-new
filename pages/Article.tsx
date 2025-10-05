@@ -10,7 +10,7 @@ import { motion } from 'framer-motion';
 import { useLanguage } from '../contexts/LanguageContext';
 import type { Article, Product } from '../types';
 import ProductCard from '../components/ProductCard';
-import Seo from '../components/Seo';
+import Seo from '../src/components/Seo';
 import {
   loadLearnPageContent,
   type LearnPageContentResult,

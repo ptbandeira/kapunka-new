@@ -7,7 +7,7 @@ import { fetchVisualEditorJson } from '../utils/fetchVisualEditorJson';
 import { getVisualEditorAttributes } from '../utils/stackbitBindings';
 import { useVisualEditorSync } from '../contexts/VisualEditorSyncContext';
 import { buildLocalizedPath } from '../utils/localePaths';
-import Seo from '../components/Seo';
+import Seo from '../src/components/Seo';
 
 interface PoliciesResponse {
     items?: Policy[];

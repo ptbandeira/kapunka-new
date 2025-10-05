@@ -22,7 +22,7 @@ import type { Language, LocalizedText } from './types';
 import { ensureVisualEditorAnnotations } from './utils/visualEditorAnnotations';
 import { isVisualEditorRuntime } from './utils/visualEditorRuntime';
 import { buildLocalizedPath, isSupportedLanguage, removeLocaleFromPath } from './utils/localePaths';
-import Seo from './components/Seo';
+import Seo from './src/components/Seo';
 
 const Home = lazy(() => import('./pages/Home'));
 const Shop = lazy(() => import('./pages/Shop'));

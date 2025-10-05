@@ -9,12 +9,13 @@ import { useUI } from '../contexts/UIContext';
 import SectionRenderer from '../components/SectionRenderer';
 import type { Product, ProductKnowledge, ProductTabsSectionContent } from '../types';
 import ProductCard from '../components/ProductCard';
-import Seo from '../components/Seo';
+import Seo from '../src/components/Seo';
 import { fetchVisualEditorJson } from '../utils/fetchVisualEditorJson';
 import { getVisualEditorAttributes } from '../utils/stackbitBindings';
 import { formatCurrency } from '../utils/currency';
 import { useVisualEditorSync } from '../contexts/VisualEditorSyncContext';
 import { getCloudinaryUrl } from '../utils/imageUrl';
+import { buildLocalizedPath } from '../utils/localePaths';
 
 interface ProductsResponse {
     items?: Product[];
@@ -26,6 +27,18 @@ const ProductDetail: React.FC = () => {
     const { addToCart } = useCart();
     const { openCart } = useUI();
     const { contentVersion } = useVisualEditorSync();
+    const siteUrl = useMemo(() => {
+        const raw = (process.env.NEXT_PUBLIC_SITE_URL ?? '').trim();
+        if (raw.length > 0) {
+            return raw.replace(/\/+$/, '');
+        }
+
+        if (typeof window !== 'undefined') {
+            return window.location.origin;
+        }
+
+        return undefined;
+    }, []);
 
     const [product, setProduct] = useState<Product | null>(null);
     const [allProducts, setAllProducts] = useState<Product[]>([]);
@@ -78,6 +91,7 @@ const ProductDetail: React.FC = () => {
 
     const productImageSrc = (product?.imageUrl ?? '').trim();
     const productImageUrl = productImageSrc ? getCloudinaryUrl(productImageSrc) ?? productImageSrc : '';
+    const socialImage = productImageUrl || undefined;
 
     const handleAddToCart = () => {
         if (product && selectedSizeId) {
@@ -98,6 +112,44 @@ const ProductDetail: React.FC = () => {
         return allProducts.filter(p => p.id !== product.id).slice(0, 4);
     }, [product, allProducts]);
 
+    const productJsonLd = useMemo(() => {
+        if (!product) {
+            return undefined;
+        }
+
+        const name = (translate(product.name) as string | undefined)?.trim();
+        if (!name) {
+            return undefined;
+        }
+
+        const normalizedImage = typeof socialImage === 'string' ? socialImage.trim() : undefined;
+        if (!normalizedImage) {
+            return undefined;
+        }
+
+        const descriptionSource = product.description
+            ? (translate(product.description) as string | undefined)
+            : (translate(product.tagline) as string | undefined);
+        const descriptionText = descriptionSource?.trim();
+
+        const payload: Record<string, unknown> = {
+            '@context': 'https://schema.org',
+            '@type': 'Product',
+            name,
+            image: normalizedImage,
+        };
+
+        if (descriptionText) {
+            payload.description = descriptionText;
+        }
+
+        if (siteUrl) {
+            payload.url = `${siteUrl}${buildLocalizedPath(`/product/${product.id}`, language)}`;
+        }
+
+        return payload;
+    }, [language, product, siteUrl, socialImage, translate]);
+
     if (loading) {
         return <div className="text-center py-20">{t('common.loadingProduct')}</div>;
     }
@@ -112,7 +164,6 @@ const ProductDetail: React.FC = () => {
     const translatedTagline = translate(product.tagline) as string;
     const pageTitle = `${translate(product.name)} | Kapunka Skincare`;
     const description = translatedTagline;
-    const socialImage = productImageUrl || undefined;
 
     const productIndex = allProducts.findIndex((p) => p.id === product.id);
     const productFieldPath = productIndex >= 0 ? `products.items.${productIndex}` : undefined;
@@ -330,6 +381,7 @@ const ProductDetail: React.FC = () => {
                 image={socialImage}
                 locale={language}
                 type="product"
+                jsonLd={productJsonLd}
             />
 
             <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-16" {...getVisualEditorAttributes(productFieldPath)}>

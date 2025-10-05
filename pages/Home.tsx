@@ -32,7 +32,7 @@ import { getVisualEditorAttributes } from '../utils/stackbitBindings';
 import { fetchTestimonialsByRefs } from '../utils/fetchTestimonialsByRefs';
 import { buildLocalizedPath } from '../utils/localePaths';
 import { getCloudinaryUrl, isAbsoluteUrl } from '../utils/imageUrl';
-import Seo from '../components/Seo';
+import Seo from '../src/components/Seo';
 
 interface ProductsResponse {
   items?: Product[];
@@ -3699,13 +3699,80 @@ const Home: React.FC = () => {
     ?? siteSettings.home?.heroImage
     ?? undefined;
 
+  const seoImage = socialImage
+    ? isAbsoluteUrl(socialImage)
+      ? socialImage
+      : getCloudinaryUrl(socialImage) ?? socialImage
+    : undefined;
+
+  const brandName = useMemo(() => {
+    const brandValue = siteSettings.brand?.name;
+
+    if (!brandValue) {
+      return 'Kapunka Skincare';
+    }
+
+    if (typeof brandValue === 'string') {
+      const trimmed = brandValue.trim();
+      return trimmed.length > 0 ? trimmed : 'Kapunka Skincare';
+    }
+
+    const localized = brandValue[language];
+    if (typeof localized === 'string') {
+      const trimmedLocalized = localized.trim();
+      if (trimmedLocalized.length > 0) {
+        return trimmedLocalized;
+      }
+    }
+
+    const fallbackOrder: Language[] = ['en', 'pt', 'es'];
+    for (const locale of fallbackOrder) {
+      const candidate = brandValue[locale];
+      if (typeof candidate === 'string') {
+        const trimmedCandidate = candidate.trim();
+        if (trimmedCandidate.length > 0) {
+          return trimmedCandidate;
+        }
+      }
+    }
+
+    const firstAvailable = Object.values(brandValue).find(
+      (entry): entry is string => typeof entry === 'string' && entry.trim().length > 0,
+    );
+
+    return firstAvailable?.trim() ?? 'Kapunka Skincare';
+  }, [language, siteSettings.brand?.name]);
+
+  const siteUrl = useMemo(() => {
+    const raw = (process.env.NEXT_PUBLIC_SITE_URL ?? '').trim();
+    if (raw.length > 0) {
+      return raw.replace(/\/+$/, '');
+    }
+
+    if (typeof window !== 'undefined') {
+      return window.location.origin;
+    }
+
+    return undefined;
+  }, []);
+
+  const organizationJsonLd = useMemo(() => ({
+    '@context': 'https://schema.org',
+    '@type': 'Organization',
+    name: brandName,
+    ...(siteUrl ? { url: siteUrl } : {}),
+    ...(seoImage ? { logo: seoImage } : {}),
+  }), [brandName, seoImage, siteUrl]);
+
   return (
     <div>
       <Seo
         title={computedTitle}
         description={computedDescription}
-        image={socialImage}
+        image={seoImage}
         locale={language}
+        siteName={brandName}
+        jsonLd={organizationJsonLd}
       />
       {shouldRenderLocalSections ? (
         renderedLocalSections

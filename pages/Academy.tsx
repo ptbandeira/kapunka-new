@@ -6,7 +6,7 @@ import type { Course } from '../types';
 import { fetchVisualEditorJson } from '../utils/fetchVisualEditorJson';
 import { useVisualEditorSync } from '../contexts/VisualEditorSyncContext';
 import { getVisualEditorAttributes } from '../utils/stackbitBindings';
-import Seo from '../components/Seo';
+import Seo from '../src/components/Seo';
 
 interface CoursesResponse {
     courses?: Course[];

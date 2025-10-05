@@ -7,7 +7,7 @@ import { fetchVisualEditorMarkdown } from '../utils/fetchVisualEditorMarkdown';
 import { getVisualEditorAttributes } from '../utils/stackbitBindings';
 import { useVisualEditorSync } from '../contexts/VisualEditorSyncContext';
 import { useSiteSettings } from '../contexts/SiteSettingsContext';
-import Seo from '../components/Seo';
+import Seo from '../src/components/Seo';
 import { fetchTrainingProgramContent, TRAINING_PROGRAM_OBJECT_ID, type TrainingProgramContent } from '../utils/trainingProgramContent';
 
 const SUPPORTED_SECTION_TYPES = new Set<PageSection['type']>([

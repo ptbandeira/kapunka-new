@@ -13,7 +13,7 @@ import {
 import { useVisualEditorSync } from '../contexts/VisualEditorSyncContext';
 import { fetchTestimonialsByRefs } from '../utils/fetchTestimonialsByRefs';
 import { getCloudinaryUrl } from '../utils/imageUrl';
-import Seo from '../components/Seo';
+import Seo from '../src/components/Seo';
 
 interface ClinicProtocol {
   title: string;

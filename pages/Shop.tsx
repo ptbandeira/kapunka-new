@@ -10,7 +10,8 @@ import { fetchVisualEditorJson } from '../utils/fetchVisualEditorJson';
 import { getVisualEditorAttributes } from '../utils/stackbitBindings';
 import { useVisualEditorSync } from '../contexts/VisualEditorSyncContext';
 import { buildLocalizedPath } from '../utils/localePaths';
-import Seo from '../components/Seo';
+import Seo from '../src/components/Seo';
+import { getCloudinaryUrl } from '../utils/imageUrl';
 
 const linkIcons: Record<ShopCategoryLink['type'], LucideIcon> = {
   product: ArrowUpRight,
@@ -30,6 +31,19 @@ const Shop: React.FC = () => {
   const [loading, setLoading] = useState(true);
   const { t, translate, language } = useLanguage();
   const { contentVersion } = useVisualEditorSync();
+
+  const siteUrl = useMemo(() => {
+    const raw = (process.env.NEXT_PUBLIC_SITE_URL ?? '').trim();
+    if (raw.length > 0) {
+      return raw.replace(/\/+$/, '');
+    }
+
+    if (typeof window !== 'undefined') {
+      return window.location.origin;
+    }
+
+    return undefined;
+  }, []);
 
   const handleCategoryClick = useCallback((event: React.MouseEvent<HTMLButtonElement>) => {
     const { tabId } = event.currentTarget.dataset;
@@ -148,6 +162,69 @@ const Shop: React.FC = () => {
     return sortProducts(categoryProducts);
   }, [activeCategory, products, productsById, sortProducts]);
 
+  const featuredProductImage = useMemo(() => {
+    if (displayedProducts.length === 0) {
+      return undefined;
+    }
+
+    const normalized = getCloudinaryUrl(displayedProducts[0].imageUrl) ?? displayedProducts[0].imageUrl;
+    if (!normalized) {
+      return undefined;
+    }
+
+    const trimmed = normalized.trim();
+    return trimmed.length > 0 ? trimmed : undefined;
+  }, [displayedProducts]);
+
+  const productJsonLd = useMemo(() => {
+    if (displayedProducts.length === 0) {
+      return undefined;
+    }
+
+    const nodes = displayedProducts
+      .map((product) => {
+        const name = (translate(product.name) as string | undefined)?.trim();
+        if (!name) {
+          return null;
+        }
+
+        const descriptionCandidate = product.description
+          ? (translate(product.description) as string | undefined)
+          : (translate(product.tagline) as string | undefined);
+        const descriptionText = descriptionCandidate?.trim();
+
+        const rawImage = getCloudinaryUrl(product.imageUrl) ?? product.imageUrl;
+        if (!rawImage) {
+          return null;
+        }
+
+        const trimmedImage = rawImage.trim();
+        if (trimmedImage.length === 0) {
+          return null;
+        }
+
+        const node: Record<string, unknown> = {
+          '@context': 'https://schema.org',
+          '@type': 'Product',
+          name,
+          image: trimmedImage,
+        };
+
+        if (descriptionText) {
+          node.description = descriptionText;
+        }
+
+        if (siteUrl) {
+          node.url = `${siteUrl}${buildLocalizedPath(`/product/${product.id}`, language)}`;
+        }
+
+        return node;
+      })
+      .filter((node): node is Record<string, unknown> => Boolean(node));
+
+    return nodes.length > 0 ? nodes : undefined;
+  }, [displayedProducts, language, siteUrl, translate]);
+
   const categoryTabs = useMemo(() => {
     const tabs = categories.map((category, index) => ({
       id: category.id,
@@ -170,7 +247,13 @@ const Shop: React.FC = () => {
 
   return (
     <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-16">
-      <Seo title={pageTitle} description={description} locale={language} />
+      <Seo
+        title={pageTitle}
+        description={description}
+        locale={language}
+        image={featuredProductImage}
+        jsonLd={productJsonLd}
+      />
       <header className="text-center mb-12">
         <h1
           className="text-4xl sm:text-5xl font-semibold tracking-tight"

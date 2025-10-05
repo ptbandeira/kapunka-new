@@ -5,7 +5,7 @@ import { useSiteSettings } from '../contexts/SiteSettingsContext';
 import { fetchTrainingProgramContent, TRAINING_PROGRAM_OBJECT_ID, type TrainingProgramContent } from '../utils/trainingProgramContent';
 import { useVisualEditorSync } from '../contexts/VisualEditorSyncContext';
 import { getCloudinaryUrl } from '../utils/imageUrl';
-import Seo from '../components/Seo';
+import Seo from '../src/components/Seo';
 
 const TrainingProgram: React.FC = () => {
   const [content, setContent] = useState<TrainingProgramContent | null>(null);

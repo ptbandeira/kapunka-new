@@ -5,7 +5,7 @@ import { useLanguage } from '../contexts/LanguageContext';
 import { useSiteSettings } from '../contexts/SiteSettingsContext';
 import { getVisualEditorAttributes } from '../utils/stackbitBindings';
 import { getCloudinaryUrl } from '../utils/imageUrl';
-import Seo from '../components/Seo';
+import Seo from '../src/components/Seo';
 
 const FORM_NAME = 'kapunka-contact';
 
