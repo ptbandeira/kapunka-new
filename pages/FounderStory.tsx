@@ -1,8 +1,9 @@
 import React, { useEffect, useMemo, useState } from 'react';
-import { Helmet } from 'react-helmet-async';
+import Head from 'next/head';
 import { motion } from 'framer-motion';
 import { fetchVisualEditorMarkdown } from '../utils/fetchVisualEditorMarkdown';
 import { useVisualEditorSync } from '../contexts/VisualEditorSyncContext';
+import { useSiteSettings } from '../contexts/SiteSettingsContext';
 
 interface MicroStory {
   quote?: string;
@@ -149,6 +150,7 @@ const FounderStory: React.FC = () => {
   const [content, setContent] = useState<FounderStoryContent | null>(null);
   const [error, setError] = useState<string | null>(null);
   const { contentVersion } = useVisualEditorSync();
+  const { settings: siteSettings } = useSiteSettings();
 
   useEffect(() => {
     let isMounted = true;
@@ -206,21 +208,31 @@ const FounderStory: React.FC = () => {
   }, [content?.body]);
 
   const pageTitle = content?.headline ?? 'Founder Story';
-  const pageDescription = content?.subheadline ?? 'Discover the story behind Kapunka.';
+  const pageDescription =
+    content?.subheadline
+    ?? 'Discover the Kapunka founder story rooted in Berber argan traditions and clinical skincare innovation.';
+  const socialImage = content?.images?.hero?.src ?? siteSettings.home?.heroImage;
 
   return (
     <div className="bg-stone-50 text-stone-800" data-sb-object-id={FOUNDER_STORY_OBJECT_ID}>
-      <Helmet>
+      <Head>
         <title>{pageTitle} | Kapunka Skincare</title>
         <meta name="description" content={pageDescription} />
-      </Helmet>
+        <meta property="og:title" content={`${pageTitle} | Kapunka Skincare`} />
+        <meta property="og:description" content={pageDescription} />
+        {socialImage ? <meta property="og:image" content={socialImage} /> : null}
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content={`${pageTitle} | Kapunka Skincare`} />
+        <meta name="twitter:description" content={pageDescription} />
+        {socialImage ? <meta name="twitter:image" content={socialImage} /> : null}
+      </Head>
 
       <section className="relative overflow-hidden bg-stone-100">
         {heroImage?.src ? (
           <div className="absolute inset-0">
             <img
               src={heroImage.src}
-              alt={heroImage.alt ?? 'Founder story hero'}
+              alt={heroImage.alt ?? pageTitle}
               className="h-full w-full object-cover opacity-40"
               data-sb-field-path="images.hero.src#@src images.hero.alt#@alt"
             />
@@ -354,7 +366,7 @@ const FounderStory: React.FC = () => {
                   {image.src ? (
                     <img
                       src={image.src}
-                      alt={image.alt ?? 'Founder gallery'}
+                      alt={image.alt ?? pageTitle}
                       className="h-56 w-full object-cover"
                       data-sb-field-path="src#@src alt#@alt"
                     />

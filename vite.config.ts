@@ -13,7 +13,10 @@ export default defineConfig(({ mode }) => {
       "process.env.GEMINI_API_KEY": JSON.stringify(env.GEMINI_API_KEY)
     },
     resolve: {
-      alias: { "@": path.resolve(__dirname, ".") }
+      alias: {
+        "@": path.resolve(__dirname, "."),
+        "next": path.resolve(__dirname, "next")
+      }
     },
     server: {
       host: true,                 // accept requests from Netlify's proxy

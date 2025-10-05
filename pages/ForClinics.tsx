@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useMemo } from 'react';
-import { Helmet } from 'react-helmet-async';
+import Head from 'next/head';
 import { motion } from 'framer-motion';
 import { useLanguage } from '../contexts/LanguageContext';
 import { useSiteSettings } from '../contexts/SiteSettingsContext';
@@ -186,6 +186,36 @@ const ForClinics: React.FC = () => {
 
   const metaTitle = pageContent?.data.metaTitle ?? t('clinics.title');
   const metaDescription = pageContent?.data.metaDescription ?? t('clinics.metaDescription');
+  const firstSectionImage = useMemo(() => {
+    const sections = pageContent?.data.sections;
+    if (!Array.isArray(sections)) {
+      return undefined;
+    }
+
+    for (const section of sections) {
+      if (!section || typeof section !== 'object') {
+        continue;
+      }
+
+      const sectionRecord = section as Record<string, unknown>;
+      const imageValue = sectionRecord.image;
+
+      if (typeof imageValue === 'string' && imageValue.trim().length > 0) {
+        return imageValue;
+      }
+
+      if (imageValue && typeof imageValue === 'object') {
+        const imageRecord = imageValue as Record<string, unknown>;
+        const srcValue = imageRecord.src;
+        if (typeof srcValue === 'string' && srcValue.trim().length > 0) {
+          return srcValue;
+        }
+      }
+    }
+
+    return undefined;
+  }, [pageContent?.data.sections]);
+  const socialImage = firstSectionImage ?? siteSettings.home?.heroImage;
 
   const headerTitle = pageContent?.data.headerTitle ?? t('clinics.headerTitle');
   const headerSubtitle = pageContent?.data.headerSubtitle ?? t('clinics.headerSubtitle');
@@ -363,10 +393,17 @@ const ForClinics: React.FC = () => {
 
   return (
     <div>
-      <Helmet>
+      <Head>
         <title>{metaTitle} | Kapunka Skincare</title>
         <meta name="description" content={metaDescription} />
-      </Helmet>
+        <meta property="og:title" content={`${metaTitle} | Kapunka Skincare`} />
+        <meta property="og:description" content={metaDescription} />
+        {socialImage ? <meta property="og:image" content={socialImage} /> : null}
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content={`${metaTitle} | Kapunka Skincare`} />
+        <meta name="twitter:description" content={metaDescription} />
+        {socialImage ? <meta name="twitter:image" content={socialImage} /> : null}
+      </Head>
       <header className="py-20 sm:py-32 bg-stone-100 text-center">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <motion.h1

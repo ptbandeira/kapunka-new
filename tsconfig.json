@@ -22,6 +22,9 @@
     "paths": {
       "@/*": [
         "./*"
+      ],
+      "next/*": [
+        "./next/*"
       ]
     },
     "resolveJsonModule": true,

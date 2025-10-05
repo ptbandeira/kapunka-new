@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import ReactMarkdown from 'react-markdown';
 import type { Components as MarkdownComponents } from 'react-markdown';
-import { Helmet } from 'react-helmet-async';
+import Head from 'next/head';
 import { z } from 'zod';
 import ProductCard from '../components/ProductCard';
 import TimelineSection from '../components/TimelineSection';
@@ -1271,7 +1271,7 @@ const ClinicsBlock: React.FC<ClinicsBlockProps> = ({ data, fieldPath, fallbackCt
                         >
                             <img
                                 src={clinicsImage}
-                                alt={clinicsTitle ?? 'Clinics highlight'}
+                                alt={clinicsTitle ?? clinicsBody ?? fallbackCtaLabel}
                                 className="w-full rounded-lg shadow-lg object-cover"
                                 {...getVisualEditorAttributes(fieldPath ? `${fieldPath}.clinicsImage` : undefined)}
                             />
@@ -1342,7 +1342,7 @@ const GalleryRows: React.FC<GalleryRowsProps> = ({ rows, fieldPath }) => {
 
                                 const imageSrc = item.image?.trim();
                                 const caption = item.caption?.trim();
-                                const altText = item.alt?.trim() ?? caption ?? 'Gallery highlight';
+                                const altText = item.alt?.trim() ?? caption ?? computedTitle;
                                 const hasContent = Boolean(imageSrc);
 
                                 if (!hasContent) {
@@ -2462,7 +2462,7 @@ const Home: React.FC = () => {
                       {item.icon && (
                         <img
                           src={item.icon}
-                          alt={item.label ?? 'Feature icon'}
+                          alt={item.label ?? sectionTitle ?? computedTitle}
                           className="h-12 w-12 object-contain"
                           {...getVisualEditorAttributes(`${sectionFieldPath}.items.${itemIndex}.icon`)}
                         />
@@ -2552,9 +2552,9 @@ const Home: React.FC = () => {
         const title = sanitizeString((mediaContent?.heading ?? section.title) ?? null);
         const body = sanitizeString((mediaContent?.body ?? section.body) ?? null);
         const mediaImage = sanitizeString(pickImage(mediaContent?.image ?? section.image));
-        const imageAlt = sanitizeString(
-          (mediaContent?.image?.alt ?? section.imageAlt ?? title) ?? null,
-        ) ?? 'Media highlight';
+        const imageAlt =
+          sanitizeString((mediaContent?.image?.alt ?? section.imageAlt ?? title) ?? null)
+          ?? computedTitle;
         if (!title && !body && !mediaImage) {
           return null;
         }
@@ -3018,7 +3018,7 @@ const Home: React.FC = () => {
                       {item.icon && (
                         <img
                           src={item.icon}
-                          alt={item.label ?? 'Feature icon'}
+                          alt={item.label ?? sectionTitle ?? computedTitle}
                           className="h-12 w-12 object-contain"
                           {...getVisualEditorAttributes(`${sectionFieldPath}.items.${itemIndex}.icon`)}
                         />
@@ -3051,7 +3051,7 @@ const Home: React.FC = () => {
         const title = sanitizeString(section.title ?? null);
         const body = sanitizeString(section.body ?? null);
         const mediaImage = sanitizeString(pickImage(section.image));
-        const imageAlt = sanitizeString(section.imageAlt ?? null) ?? title ?? 'Media highlight';
+        const imageAlt = sanitizeString(section.imageAlt ?? null) ?? title ?? computedTitle;
         if (!title && !body && !mediaImage) {
           return null;
         }
@@ -3607,12 +3607,26 @@ const Home: React.FC = () => {
     .map((section, index) => renderSection(section, index))
     .filter(Boolean) as React.ReactNode[];
 
+  const socialImage = heroBackgroundImage
+    ?? heroInlineImage
+    ?? heroImageLeft
+    ?? heroImageRight
+    ?? siteSettings.home?.heroImage
+    ?? undefined;
+
   return (
     <div>
-      <Helmet>
+      <Head>
         <title>{computedTitle}</title>
         <meta name="description" content={computedDescription} />
-      </Helmet>
+        <meta property="og:title" content={computedTitle} />
+        <meta property="og:description" content={computedDescription} />
+        {socialImage ? <meta property="og:image" content={socialImage} /> : null}
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content={computedTitle} />
+        <meta name="twitter:description" content={computedDescription} />
+        {socialImage ? <meta name="twitter:image" content={socialImage} /> : null}
+      </Head>
       {shouldRenderLocalSections ? (
         renderedLocalSections
       ) : (

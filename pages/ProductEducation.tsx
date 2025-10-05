@@ -1,8 +1,9 @@
 import React, { useEffect, useMemo, useState } from 'react';
-import { Helmet } from 'react-helmet-async';
+import Head from 'next/head';
 import { motion } from 'framer-motion';
 import { fetchVisualEditorMarkdown } from '../utils/fetchVisualEditorMarkdown';
 import { useVisualEditorSync } from '../contexts/VisualEditorSyncContext';
+import { useSiteSettings } from '../contexts/SiteSettingsContext';
 
 interface BenefitItem {
   title?: string;
@@ -114,6 +115,7 @@ const ProductEducation: React.FC = () => {
   const [content, setContent] = useState<ProductEducationContent | null>(null);
   const [error, setError] = useState<string | null>(null);
   const { contentVersion } = useVisualEditorSync();
+  const { settings: siteSettings } = useSiteSettings();
 
   useEffect(() => {
     let isMounted = true;
@@ -157,8 +159,10 @@ const ProductEducation: React.FC = () => {
   const faqs = content?.faqs?.filter((faq) => faq && (faq.question?.trim() || faq.answer?.trim())) ?? [];
   const certifications = content?.certifications?.filter((cert) => cert.trim().length > 0) ?? [];
 
-  const metaTitle = content?.headline ?? 'Product Education';
-  const metaDescription = content?.subheadline ?? 'Learn how Kapunka products are composed, certified, and used.';
+  const metaTitle = content?.headline ?? 'Kapunka Product Education';
+  const metaDescription = content?.subheadline ?? 'Learn how Kapunka argan skincare is composed, certified, and used in clinical rituals.';
+  const pageTitle = `${metaTitle} | Kapunka Skincare`;
+  const socialImage = siteSettings.home?.heroImage;
 
   const compositionParagraphs = useMemo(() => {
     if (!content?.composition) {
@@ -173,10 +177,17 @@ const ProductEducation: React.FC = () => {
 
   return (
     <div className="bg-white text-stone-900" data-sb-object-id={PRODUCT_EDUCATION_OBJECT_ID}>
-      <Helmet>
-        <title>{metaTitle} | Kapunka Skincare</title>
+      <Head>
+        <title>{pageTitle}</title>
         <meta name="description" content={metaDescription} />
-      </Helmet>
+        <meta property="og:title" content={pageTitle} />
+        <meta property="og:description" content={metaDescription} />
+        {socialImage ? <meta property="og:image" content={socialImage} /> : null}
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content={pageTitle} />
+        <meta name="twitter:description" content={metaDescription} />
+        {socialImage ? <meta name="twitter:image" content={socialImage} /> : null}
+      </Head>
 
       <section className="bg-stone-100 py-20 sm:py-28">
         <div className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8 text-center">

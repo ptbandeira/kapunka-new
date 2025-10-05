@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from 'react';
-import { Helmet } from 'react-helmet-async';
+import Head from 'next/head';
 import { motion } from 'framer-motion';
 import { useLanguage } from '../contexts/LanguageContext';
 import type { Language } from '../types';
 import { fetchVisualEditorMarkdown } from '../utils/fetchVisualEditorMarkdown';
 import { getVisualEditorAttributes } from '../utils/stackbitBindings';
 import { useVisualEditorSync } from '../contexts/VisualEditorSyncContext';
+import { useSiteSettings } from '../contexts/SiteSettingsContext';
 
 interface SpecialtyItem {
   title: string;
@@ -132,6 +133,7 @@ const Method: React.FC = () => {
   const { language, t } = useLanguage();
   const [content, setContent] = useState<MethodPageContent | null>(null);
   const { contentVersion } = useVisualEditorSync();
+  const { settings: siteSettings } = useSiteSettings();
 
   useEffect(() => {
     let isMounted = true;
@@ -181,6 +183,8 @@ const Method: React.FC = () => {
   const heroSubtitle = content?.heroSubtitle ?? fallbackMetaDescriptions[language];
   const metaTitle = content?.metaTitle ?? heroTitle;
   const metaDescription = content?.metaDescription ?? fallbackMetaDescriptions[language];
+  const pageTitle = `${metaTitle} | Kapunka Skincare`;
+  const socialImage = siteSettings.home?.heroImage;
   const sections = content?.sections ?? [];
   const clinicalNotes = content?.clinicalNotes?.filter((note) => {
     const hasTitle = note.title.trim().length > 0;
@@ -323,10 +327,17 @@ const Method: React.FC = () => {
 
   return (
     <div>
-      <Helmet>
-        <title>{`${metaTitle} | Kapunka Skincare`}</title>
+      <Head>
+        <title>{pageTitle}</title>
         <meta name="description" content={metaDescription} />
-      </Helmet>
+        <meta property="og:title" content={pageTitle} />
+        <meta property="og:description" content={metaDescription} />
+        {socialImage ? <meta property="og:image" content={socialImage} /> : null}
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content={pageTitle} />
+        <meta name="twitter:description" content={metaDescription} />
+        {socialImage ? <meta name="twitter:image" content={socialImage} /> : null}
+      </Head>
 
       <header className="py-20 sm:py-32 bg-stone-100 text-center">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
