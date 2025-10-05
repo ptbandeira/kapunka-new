@@ -4,6 +4,7 @@ import { useLanguage } from '../contexts/LanguageContext';
 import { Facebook, Instagram, Linkedin, Youtube, Globe } from 'lucide-react';
 import { useSiteSettings } from '../contexts/SiteSettingsContext';
 import { getStackbitAttributes, getStackbitObjectId, getVisualEditorAttributes } from '../utils/stackbitBindings';
+import { buildLocalizedPath } from '../utils/localePaths';
 
 const FooterLink: React.FC<{
     to: string;
@@ -20,11 +21,11 @@ const FooterLink: React.FC<{
 );
 
 const Footer: React.FC = () => {
-    const { t, language } = useLanguage();
+    const { t, language, translate } = useLanguage();
     const { settings } = useSiteSettings();
     const socialLinks = settings.footer?.socialLinks ?? [];
-    const legalName = settings.footer?.legalName ?? 'Kapunka Skincare';
-    const brandName = settings.brand?.name ?? 'KAPUNKA';
+    const legalName = translate(settings.footer?.legalName ?? 'Kapunka Skincare');
+    const brandName = translate(settings.brand?.name ?? 'KAPUNKA');
     const footerTranslationsObjectId = getStackbitObjectId('translations.en.footer.tagline');
     const socialLinksAttributes = getStackbitAttributes('site.footer.socialLinks');
 
@@ -66,13 +67,14 @@ const Footer: React.FC = () => {
                         {socialLinks.map((link, index) => {
                             const iconKey = link.icon ? link.icon.toLowerCase() : '';
                             const Icon = socialIconMap[iconKey] ?? Globe;
+                            const label = translate(link.label ?? link.id);
                             return (
                                 <a
                                     key={link.id}
                                     href={link.url || '#'}
                                     target="_blank"
                                     rel="noopener noreferrer"
-                                    aria-label={link.label}
+                                    aria-label={label}
                                     className="text-stone-500 hover:text-stone-900 transition-colors"
                                     {...getVisualEditorAttributes(`site.footer.socialLinks.${index}`)}
                                 >
@@ -95,7 +97,7 @@ const Footer: React.FC = () => {
             <ul className="space-y-3 text-sm">
               <li>
                 <FooterLink
-                  to="/shop"
+                  to={buildLocalizedPath('/shop', language)}
                   fieldPath={`translations.${language}.footer.allProducts`}
                 >
                   {t('footer.allProducts')}
@@ -103,7 +105,7 @@ const Footer: React.FC = () => {
               </li>
               <li>
                 <FooterLink
-                  to="/learn"
+                  to={buildLocalizedPath('/learn', language)}
                   fieldPath={`translations.${language}.footer.guides`}
                 >
                   {t('footer.guides')}
@@ -122,7 +124,7 @@ const Footer: React.FC = () => {
             <ul className="space-y-3 text-sm">
               <li>
                 <FooterLink
-                  to="/story"
+                  to={buildLocalizedPath('/story', language)}
                   fieldPath={`translations.${language}.footer.ourStory`}
                 >
                   {t('footer.ourStory')}
@@ -130,7 +132,7 @@ const Footer: React.FC = () => {
               </li>
               <li>
                 <FooterLink
-                  to="/contact"
+                  to={buildLocalizedPath('/contact', language)}
                   fieldPath={`translations.${language}.footer.contact`}
                 >
                   {t('footer.contact')}
@@ -149,7 +151,7 @@ const Footer: React.FC = () => {
             <ul className="space-y-3 text-sm">
               <li>
                 <FooterLink
-                  to="/policy/shipping"
+                  to={buildLocalizedPath('/policy/shipping', language)}
                   fieldPath={`translations.${language}.footer.shipping`}
                 >
                   {t('footer.shipping')}
@@ -157,7 +159,7 @@ const Footer: React.FC = () => {
               </li>
               <li>
                 <FooterLink
-                  to="/policy/returns"
+                  to={buildLocalizedPath('/policy/returns', language)}
                   fieldPath={`translations.${language}.footer.returns`}
                 >
                   {t('footer.returns')}
@@ -165,7 +167,7 @@ const Footer: React.FC = () => {
               </li>
               <li>
                 <FooterLink
-                  to="/policy/privacy"
+                  to={buildLocalizedPath('/policy/privacy', language)}
                   fieldPath={`translations.${language}.footer.privacy`}
                 >
                   {t('footer.privacy')}
@@ -173,7 +175,7 @@ const Footer: React.FC = () => {
               </li>
               <li>
                 <FooterLink
-                  to="/policy/terms"
+                  to={buildLocalizedPath('/policy/terms', language)}
                   fieldPath={`translations.${language}.footer.terms`}
                 >
                   {t('footer.terms')}

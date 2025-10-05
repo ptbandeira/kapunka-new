@@ -1,6 +1,8 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { getVisualEditorAttributes } from '../../utils/stackbitBindings';
+import { useLanguage } from '../../contexts/LanguageContext';
+import { buildLocalizedPath } from '../../utils/localePaths';
 
 export interface MediaShowcaseItem {
   eyebrow?: string;
@@ -37,6 +39,8 @@ const normalizeInternal = (href: string) => {
 };
 
 const MediaShowcase: React.FC<MediaShowcaseProps> = ({ title, items, fieldPath }) => {
+  const { language } = useLanguage();
+
   return (
     <section
       className="py-20 sm:py-28 bg-white"
@@ -142,7 +146,7 @@ const MediaShowcase: React.FC<MediaShowcaseProps> = ({ title, items, fieldPath }
                       <div className="pt-2">
                         {isInternal(ctaHref) ? (
                           <Link
-                            to={normalizeInternal(ctaHref)}
+                            to={buildLocalizedPath(normalizeInternal(ctaHref), language)}
                             className="inline-flex items-center rounded-full border border-white/60 bg-white/10 px-5 py-2 text-sm font-medium tracking-wide text-white transition hover:bg-white hover:text-stone-900"
                             {...getVisualEditorAttributes(item.ctaHrefFieldPath)}
                             data-sb-field-path={item.ctaHrefFieldPath}

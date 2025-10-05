@@ -4,6 +4,7 @@ import { motion } from 'framer-motion';
 import { useLanguage } from '../contexts/LanguageContext';
 import type { Article } from '../types';
 import { getVisualEditorAttributes } from '../utils/stackbitBindings';
+import { buildLocalizedPath } from '../utils/localePaths';
 
 interface ArticleCardProps {
   article: Article;
@@ -48,7 +49,7 @@ const ArticleCard: React.FC<ArticleCardProps> = (props) => {
       {...getVisualEditorAttributes(fieldPath)}
       data-sb-field-path={dataSbFieldPath ?? fieldPath}
     >
-      <Link to={`/learn/${article.slug}`} className="group block">
+      <Link to={buildLocalizedPath(`/learn/${article.slug}`, language)} className="group block">
         <div className="overflow-hidden rounded-lg">
           <img
             src={article.imageUrl}

@@ -547,7 +547,7 @@ collections:
             name: brand
             widget: object
             fields:
-              - { label: Name, name: name, widget: string }
+              - { label: Name, name: name, widget: string, i18n: true }
           - label: Home
             name: home
             widget: object
@@ -587,6 +587,7 @@ collections:
               - label: Brand Story Alt Text
                 name: storyAlt
                 widget: string
+                i18n: true
                 hint: "Provide localized alt copy describing the hero image."
               - label: Argan Sourcing Image
                 name: sourcingImage
@@ -596,6 +597,7 @@ collections:
               - label: Argan Sourcing Alt Text
                 name: sourcingAlt
                 widget: string
+                i18n: true
                 hint: "Provide localized alt copy describing the sourcing photograph."
           - label: For Clinics
             name: clinics
@@ -613,14 +615,14 @@ collections:
             name: footer
             widget: object
             fields:
-              - { label: Legal Name, name: legalName, widget: string }
+              - { label: Legal Name, name: legalName, widget: string, i18n: true }
               - label: Social Links
                 name: socialLinks
                 widget: list
                 summary: "{{fields.label}}"
                 fields:
                   - { label: ID, name: id, widget: string }
-                  - { label: Label, name: label, widget: string }
+                  - { label: Label, name: label, widget: string, i18n: true }
                   - { label: URL, name: url, widget: string }
                   - label: Icon
                     name: icon
