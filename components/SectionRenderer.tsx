@@ -1,20 +1,24 @@
-// LEGACY: kept for reference during migration. Current pages render their own sections.
-import React, { useMemo, useState, useCallback } from 'react';
-import TimelineSection from '../TimelineSection';
-import ImageTextHalf from '../sections/ImageTextHalf';
-import ImageGrid from '../sections/ImageGrid';
-import VideoGallery from '../VideoGallery';
-import TrainingList from '../TrainingList';
-import { getVisualEditorAttributes } from '../../utils/stackbitBindings';
-import type { PageSection, ProductTabsSectionContent, ProductTab } from '../../types';
+import React, { useCallback, useMemo, useState } from 'react';
+import TimelineSection from './TimelineSection';
+import ImageTextHalf from './sections/ImageTextHalf';
+import ImageGrid from './sections/ImageGrid';
+import VideoGallery from './VideoGallery';
+import TrainingList from './TrainingList';
+import CommunityCarousel from './sections/CommunityCarousel';
+import { getVisualEditorAttributes } from '../utils/stackbitBindings';
+import type { PageSection, ProductTab, ProductTabsSectionContent } from '../types';
 
 const ProductTabsSection: React.FC<{ section: ProductTabsSectionContent }> = ({ section }) => {
   const { tabs, initialActiveTab } = section;
-  const sanitizedTabs = useMemo(() => tabs.filter((tab): tab is ProductTab => Boolean(tab?.id && tab.label)), [tabs]);
+  const sanitizedTabs = useMemo(
+    () => tabs.filter((tab): tab is ProductTab => Boolean(tab?.id && tab.label)),
+    [tabs],
+  );
 
-  const defaultActive = initialActiveTab && sanitizedTabs.some((tab) => tab.id === initialActiveTab)
-    ? initialActiveTab
-    : sanitizedTabs[0]?.id;
+  const defaultActive =
+    initialActiveTab && sanitizedTabs.some((tab) => tab.id === initialActiveTab)
+      ? initialActiveTab
+      : sanitizedTabs[0]?.id;
 
   const [activeTab, setActiveTab] = useState<string | undefined>(defaultActive);
 
@@ -155,6 +159,37 @@ const SectionRenderer: React.FC<SectionRendererProps> = ({ sections, fieldPath }
                 section={section}
               />
             );
+          case 'communityCarousel': {
+            const slides = (section.slides ?? []).map((slide, slideIndex) => {
+              const baseFieldPath = sectionFieldPath ? `${sectionFieldPath}.slides.${slideIndex}` : undefined;
+
+              return {
+                image: slide.image,
+                alt: slide.alt,
+                quote: slide.quote,
+                name: slide.name,
+                role: slide.role,
+                fieldPath: baseFieldPath,
+                imageFieldPath: baseFieldPath ? `${baseFieldPath}.image` : undefined,
+                altFieldPath: baseFieldPath ? `${baseFieldPath}.alt` : undefined,
+                quoteFieldPath: baseFieldPath ? `${baseFieldPath}.quote` : undefined,
+                nameFieldPath: baseFieldPath ? `${baseFieldPath}.name` : undefined,
+                roleFieldPath: baseFieldPath ? `${baseFieldPath}.role` : undefined,
+              };
+            });
+
+            return (
+              <CommunityCarousel
+                key={buildSectionKey('community-carousel', section)}
+                title={section.title}
+                slides={slides}
+                fieldPath={sectionFieldPath}
+                slidesFieldPath={sectionFieldPath ? `${sectionFieldPath}.slides` : undefined}
+                slideDuration={section.slideDuration}
+                quoteDuration={section.quoteDuration}
+              />
+            );
+          }
           default:
             return null;
         }

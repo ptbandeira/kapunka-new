@@ -7,8 +7,6 @@
     "dev": "vite",
     "build": "vite build && node scripts/postbuild.js",
     "preview": "vite preview",
-    "migrate:home": "node scripts/migrate-home.ts",
-    "migrate:pages": "node scripts/migrate-pages-to-unified.mjs",
     "visual:prepare": "node scripts/prepare-visual-editor-content.js"
   },
   "dependencies": {
