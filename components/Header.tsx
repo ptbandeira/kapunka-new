@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useCallback } from 'react';
+import React, { useState, useEffect, useCallback, useMemo, useRef } from 'react';
 import { Link, NavLink, useLocation } from 'react-router-dom';
 // Fix: AnimatePresence was used but not imported.
 import { motion, AnimatePresence } from 'framer-motion';
@@ -9,6 +9,7 @@ import { useUI } from '../contexts/UIContext';
 import { useSiteSettings } from '../contexts/SiteSettingsContext';
 import { getVisualEditorAttributes } from '../utils/stackbitBindings';
 import LanguageSwitcher from './LanguageSwitcher';
+import MegaMenu, { type MegaMenuItem } from './MegaMenu';
 import { buildLocalizedPath, removeLocaleFromPath } from '../utils/localePaths';
 
 type NavDropdownChild = {
@@ -91,7 +92,38 @@ const NAVIGATION_CONFIG: NavConfigItem[] = [
   { type: 'language-switcher' },
 ];
 
-const NavItem: React.FC<{
+const MEGA_MENU_METADATA = {
+  learn: {
+    manifesto: {
+      icon: 'content/uploads/shared/kapunka-origem.jpg',
+      descriptionFallback: 'Discover the origins of Kapunka and the values that guide our craft.',
+    },
+    videos: {
+      icon: 'content/uploads/shared/kapunka-instagrammer.jpg',
+      descriptionFallback: 'Watch tutorials and stories to see our rituals in motion.',
+    },
+    productEducation: {
+      icon: 'content/uploads/products/aceite-argan-dosificador-250ml-300x300.jpg',
+      descriptionFallback: 'Learn how to choose and use argan-based products for every routine.',
+    },
+    method: {
+      icon: 'content/uploads/shared/banner-image2.png',
+      descriptionFallback: 'Explore the Kapunka method with step-by-step techniques.',
+    },
+  },
+  forProfessionals: {
+    training: {
+      icon: 'content/uploads/shared/pexels-ivan-drazic-20457695-13812743.jpg',
+      descriptionFallback: 'Join certified programs designed for therapists and wellness experts.',
+    },
+    clinics: {
+      icon: 'content/uploads/shared/kapunka-instagrammer-lidia-simon-canut-.jpg',
+      descriptionFallback: 'Partner with clinics bringing Kapunka treatments to their clients.',
+    },
+  },
+} as const;
+
+interface NavItemProps {
   to: string;
   label: string;
   fieldPath?: string;
@@ -101,7 +133,16 @@ const NavItem: React.FC<{
   isActiveOverride?: boolean;
   ariaHaspopup?: React.AriaAttributes['aria-haspopup'];
   ariaExpanded?: boolean;
-}> = ({
+  ariaControls?: string;
+  id?: string;
+  onMouseEnter?: React.MouseEventHandler<HTMLAnchorElement>;
+  onMouseLeave?: React.MouseEventHandler<HTMLAnchorElement>;
+  onFocus?: React.FocusEventHandler<HTMLAnchorElement>;
+  onBlur?: React.FocusEventHandler<HTMLAnchorElement>;
+  onKeyDown?: React.KeyboardEventHandler<HTMLAnchorElement>;
+}
+
+const NavItem = React.forwardRef<HTMLAnchorElement, NavItemProps>(({
   to,
   label,
   fieldPath,
@@ -111,7 +152,14 @@ const NavItem: React.FC<{
   isActiveOverride,
   ariaHaspopup,
   ariaExpanded,
-}) => {
+  ariaControls,
+  id,
+  onMouseEnter,
+  onMouseLeave,
+  onFocus,
+  onBlur,
+  onKeyDown,
+}, ref) => {
   const navLinkClassName = useCallback(({ isActive }: { isActive: boolean }) => {
     const active = isActiveOverride ?? isActive;
     return `relative transition-colors duration-300 ${
@@ -151,12 +199,22 @@ const NavItem: React.FC<{
       data-sb-object-id={sbObjectId}
       aria-haspopup={ariaHaspopup}
       aria-expanded={ariaExpanded}
+      aria-controls={ariaControls}
+      id={id}
+      onMouseEnter={onMouseEnter}
+      onMouseLeave={onMouseLeave}
+      onFocus={onFocus}
+      onBlur={onBlur}
+      onKeyDown={onKeyDown}
+      ref={ref}
       {...navLinkProps}
     >
       {({ isActive }) => renderNavContent({ isActive })}
     </NavLink>
   );
-};
+});
+
+NavItem.displayName = 'NavItem';
 
 const Header: React.FC = () => {
   const { t, language, translate } = useLanguage();
@@ -164,12 +222,17 @@ const Header: React.FC = () => {
   const { toggleCart } = useUI();
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [openDropdownKey, setOpenDropdownKey] = useState<string | null>(null);
   const { settings } = useSiteSettings();
   const brandName = translate(settings.brand?.name ?? 'KAPUNKA');
   const homePath = buildLocalizedPath('/', language);
   const searchPath = buildLocalizedPath('/search', language);
   const location = useLocation();
   const currentBasePath = removeLocaleFromPath(location.pathname);
+  const navLinkRefs = useRef<Record<string, HTMLAnchorElement | null>>({});
+  const dropdownRefs = useRef<Record<string, HTMLDivElement | null>>({});
+  const menuRefs = useRef<Record<string, HTMLDivElement | null>>({});
+  const keyboardOpenKeyRef = useRef<string | null>(null);
 
   const handleMenuToggle = useCallback(() => {
     setIsMenuOpen((prev) => !prev);
@@ -179,6 +242,10 @@ const Header: React.FC = () => {
     setIsMenuOpen(false);
   }, []);
 
+  const closeDropdown = useCallback(() => {
+    setOpenDropdownKey(null);
+  }, []);
+
   useEffect(() => {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 10);
@@ -186,6 +253,41 @@ const Header: React.FC = () => {
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
+
+  useEffect(() => {
+    setOpenDropdownKey(null);
+  }, [location.pathname]);
+
+  useEffect(() => {
+    if (!openDropdownKey) {
+      return;
+    }
+
+    const handleClickOutside = (event: MouseEvent) => {
+      const container = dropdownRefs.current[openDropdownKey];
+      if (container && !container.contains(event.target as Node)) {
+        setOpenDropdownKey(null);
+      }
+    };
+
+    document.addEventListener('mousedown', handleClickOutside);
+
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
+  }, [openDropdownKey]);
+
+  useEffect(() => {
+    if (!openDropdownKey) {
+      return;
+    }
+
+    if (keyboardOpenKeyRef.current === openDropdownKey) {
+      const firstLink = menuRefs.current[openDropdownKey]?.querySelector<HTMLAnchorElement>('a[href]');
+      firstLink?.focus();
+      keyboardOpenKeyRef.current = null;
+    }
+  }, [openDropdownKey]);
 
   const isPathMatch = useCallback((basePath: string, targetPath: string) => {
     if (targetPath === '/') {
@@ -203,6 +305,24 @@ const Header: React.FC = () => {
       label: isTranslated ? translated : fallback,
       fieldPath: isTranslated ? `translations.${language}.nav.${key}` : undefined,
       sbFieldPath: isTranslated ? `${language}.${key}` : undefined,
+    };
+  }, [language, t]);
+
+  const getNavDescription = useCallback((
+    category: 'learn' | 'forProfessionals',
+    key: string,
+    fallback: string,
+  ) => {
+    const translationKey = `navDescriptions.${category}.${key}`;
+    const translated = t(translationKey);
+    const isTranslated = translated !== translationKey;
+
+    return {
+      label: isTranslated ? translated : fallback,
+      fieldPath: isTranslated
+        ? `translations.${language}.navDescriptions.${category}.${key}`
+        : undefined,
+      sbFieldPath: isTranslated ? `${language}.navDescriptions.${category}.${key}` : undefined,
     };
   }, [language, t]);
 
@@ -244,6 +364,75 @@ const Header: React.FC = () => {
 
     return resolvedDropdown;
   });
+
+  const learnMegaItems = useMemo(() => {
+    const dropdown = navItems.find(
+      (navItem): navItem is ResolvedNavDropdownConfig =>
+        navItem.type === 'dropdown' && navItem.key === 'learn',
+    );
+
+    if (!dropdown) {
+      return [] as MegaMenuItem[];
+    }
+
+    return dropdown.items
+      .map((child) => {
+        const meta = MEGA_MENU_METADATA.learn[child.key as keyof typeof MEGA_MENU_METADATA.learn];
+        if (!meta) {
+          return undefined;
+        }
+
+        const description = getNavDescription('learn', child.key, meta.descriptionFallback);
+
+        return {
+          title: child.label,
+          href: child.to,
+          icon: meta.icon,
+          description: description.label,
+          titleFieldPath: child.fieldPath,
+          titleSbFieldPath: child.sbFieldPath,
+          descriptionFieldPath: description.fieldPath,
+          descriptionSbFieldPath: description.sbFieldPath,
+        } satisfies MegaMenuItem;
+      })
+      .filter((item): item is MegaMenuItem => Boolean(item));
+  }, [getNavDescription, navItems]);
+
+  const professionalMegaItems = useMemo(() => {
+    const dropdown = navItems.find(
+      (navItem): navItem is ResolvedNavDropdownConfig =>
+        navItem.type === 'dropdown' && navItem.key === 'forProfessionals',
+    );
+
+    if (!dropdown) {
+      return [] as MegaMenuItem[];
+    }
+
+    return dropdown.items
+      .map((child) => {
+        const meta =
+          MEGA_MENU_METADATA.forProfessionals[
+            child.key as keyof typeof MEGA_MENU_METADATA.forProfessionals
+          ];
+        if (!meta) {
+          return undefined;
+        }
+
+        const description = getNavDescription('forProfessionals', child.key, meta.descriptionFallback);
+
+        return {
+          title: child.label,
+          href: child.to,
+          icon: meta.icon,
+          description: description.label,
+          titleFieldPath: child.fieldPath,
+          titleSbFieldPath: child.sbFieldPath,
+          descriptionFieldPath: description.fieldPath,
+          descriptionSbFieldPath: description.sbFieldPath,
+        } satisfies MegaMenuItem;
+      })
+      .filter((item): item is MegaMenuItem => Boolean(item));
+  }, [getNavDescription, navItems]);
 
   const hasLanguageSwitcher = navItems.some((item) => item.type === 'language-switcher');
 
@@ -312,40 +501,112 @@ const Header: React.FC = () => {
                 );
                 const isActive = isTopLevelActive || isChildActive;
 
+                const shouldUseMegaMenu = item.key === 'learn' || item.key === 'forProfessionals';
+                const isDropdownOpen = openDropdownKey === item.key;
+                const highlightActive = isActive || isDropdownOpen;
+                const triggerId = `nav-item-${item.key}`;
+                const menuId = `mega-menu-${item.key}`;
+                const megaMenuItems = item.key === 'learn' ? learnMegaItems : professionalMegaItems;
+
                 return (
-                  <div key={item.to} className="relative group">
+                  <div
+                    key={item.to}
+                    className="relative"
+                    ref={(node) => {
+                      dropdownRefs.current[item.key] = node;
+                    }}
+                    onMouseEnter={() => setOpenDropdownKey(item.key)}
+                    onMouseLeave={closeDropdown}
+                    onFocusCapture={() => setOpenDropdownKey(item.key)}
+                    onBlur={(event) => {
+                      const relatedTarget = event.relatedTarget as Node | null;
+                      if (!relatedTarget || !event.currentTarget.contains(relatedTarget)) {
+                        setOpenDropdownKey((current) => (current === item.key ? null : current));
+                      }
+                    }}
+                  >
                     <NavItem
+                      ref={(node) => {
+                        navLinkRefs.current[item.key] = node;
+                      }}
                       to={item.to}
                       label={item.label}
                       fieldPath={item.fieldPath}
                       sbFieldPath={item.sbFieldPath}
                       sbObjectId={navTranslationsObjectId}
-                      isActiveOverride={isActive}
+                      isActiveOverride={highlightActive}
                       ariaHaspopup="menu"
-                      ariaExpanded={isActive}
+                      ariaExpanded={isDropdownOpen}
+                      ariaControls={shouldUseMegaMenu ? menuId : undefined}
+                      id={triggerId}
+                      onFocus={() => setOpenDropdownKey(item.key)}
+                      onKeyDown={(event) => {
+                        if (event.key === 'Escape') {
+                          event.preventDefault();
+                          closeDropdown();
+                          navLinkRefs.current[item.key]?.focus();
+                        }
+
+                        if (event.key === 'ArrowDown') {
+                          event.preventDefault();
+                          keyboardOpenKeyRef.current = item.key;
+                          setOpenDropdownKey(item.key);
+                        }
+                      }}
                     />
-                    <div
-                      className="pointer-events-none absolute left-1/2 top-full mt-4 flex min-w-[220px] -translate-x-1/2 flex-col rounded-lg bg-stone-50 p-4 text-left shadow-lg opacity-0 transition-opacity duration-150 ease-out group-focus-within:pointer-events-auto group-focus-within:opacity-100 group-hover:pointer-events-auto group-hover:opacity-100"
-                    >
-                      {item.items.map((child) => (
-                        <NavLink
-                          key={child.to}
-                          to={child.to}
-                          className={({ isActive }) => `block whitespace-nowrap text-sm transition-colors duration-300 ${
-                            isActive ? 'text-stone-900' : 'text-stone-500 hover:text-stone-900'
-                          }`}
-                          data-sb-field-path={child.sbFieldPath}
-                          data-sb-object-id={navTranslationsObjectId}
-                        >
-                          <span
-                            {...getVisualEditorAttributes(child.fieldPath ?? undefined)}
-                            data-sb-field-path={child.sbFieldPath ?? undefined}
+                    {shouldUseMegaMenu ? (
+                      <AnimatePresence>
+                        {isDropdownOpen && megaMenuItems.length > 0 && (
+                          <MegaMenu
+                            items={megaMenuItems}
+                            onClose={closeDropdown}
+                            labelledBy={triggerId}
+                            menuId={menuId}
+                            menuRef={(node) => {
+                              menuRefs.current[item.key] = node;
+                            }}
+                            sbObjectId={navTranslationsObjectId}
+                            onEscape={() => {
+                              navLinkRefs.current[item.key]?.focus();
+                            }}
+                          />
+                        )}
+                      </AnimatePresence>
+                    ) : (
+                      <AnimatePresence>
+                        {isDropdownOpen && (
+                          <motion.div
+                            initial={{ opacity: 0, y: 8 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            exit={{ opacity: 0, y: 8 }}
+                            transition={{ duration: 0.15, ease: 'easeOut' }}
+                            className="absolute left-1/2 top-full mt-4 flex min-w-[220px] -translate-x-1/2 flex-col rounded-lg bg-stone-50 p-4 text-left shadow-lg"
                           >
-                            {child.label}
-                          </span>
-                        </NavLink>
-                      ))}
-                    </div>
+                            {item.items.map((child) => (
+                              <NavLink
+                                key={child.to}
+                                to={child.to}
+                                className={({ isActive: childActive }) =>
+                                  `block whitespace-nowrap text-sm transition-colors duration-300 ${
+                                    childActive ? 'text-stone-900' : 'text-stone-500 hover:text-stone-900'
+                                  }`
+                                }
+                                data-sb-field-path={child.sbFieldPath}
+                                data-sb-object-id={navTranslationsObjectId}
+                                onClick={closeDropdown}
+                              >
+                                <span
+                                  {...getVisualEditorAttributes(child.fieldPath ?? undefined)}
+                                  data-sb-field-path={child.sbFieldPath ?? undefined}
+                                >
+                                  {child.label}
+                                </span>
+                              </NavLink>
+                            ))}
+                          </motion.div>
+                        )}
+                      </AnimatePresence>
+                    )}
                   </div>
                 );
               })}
