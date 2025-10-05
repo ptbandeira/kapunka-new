@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from 'react';
-import Head from 'next/head';
 import { motion } from 'framer-motion';
 import { Mail, Phone, MessageSquare } from 'lucide-react';
 import { useLanguage } from '../contexts/LanguageContext';
 import { useSiteSettings } from '../contexts/SiteSettingsContext';
 import { getVisualEditorAttributes } from '../utils/stackbitBindings';
 import { getCloudinaryUrl } from '../utils/imageUrl';
+import Seo from '../components/Seo';
 
 const ContactForm: React.FC = () => {
     const { t, language } = useLanguage();
@@ -92,19 +92,17 @@ const Contact: React.FC = () => {
     const rawSocialImage = settings.home?.heroImage?.trim() ?? '';
     const socialImage = rawSocialImage ? getCloudinaryUrl(rawSocialImage) ?? rawSocialImage : undefined;
 
+    const pageTitle = `${t('contact.title')} | Kapunka Skincare`;
+    const description = t('contact.metaDescription');
+
     return (
         <div className="py-16 sm:py-24">
-            <Helmet>
-                <title>{t('contact.title')} | Kapunka Skincare</title>
-                <meta name="description" content={t('contact.metaDescription')} />
-                <meta property="og:title" content={`${t('contact.title')} | Kapunka Skincare`} />
-                <meta property="og:description" content={t('contact.metaDescription')} />
-                {socialImage ? <meta property="og:image" content={socialImage} /> : null}
-                <meta name="twitter:card" content="summary_large_image" />
-                <meta name="twitter:title" content={`${t('contact.title')} | Kapunka Skincare`} />
-                <meta name="twitter:description" content={t('contact.metaDescription')} />
-                {socialImage ? <meta name="twitter:image" content={socialImage} /> : null}
-            </Helmet>
+            <Seo
+                title={pageTitle}
+                description={description}
+                image={socialImage}
+                locale={language}
+            />
             <div className="container mx-auto px-4 sm:px-6 lg:px-8">
                 <header className="text-center mb-16">
                 <h1

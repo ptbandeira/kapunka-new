@@ -1,11 +1,11 @@
 import React, { useEffect, useMemo, useState } from 'react';
-import Head from 'next/head';
 import { motion } from 'framer-motion';
 import { useLanguage } from '../contexts/LanguageContext';
 import { useSiteSettings } from '../contexts/SiteSettingsContext';
 import { fetchVisualEditorMarkdown } from '../utils/fetchVisualEditorMarkdown';
 import { useVisualEditorSync } from '../contexts/VisualEditorSyncContext';
 import { getCloudinaryUrl } from '../utils/imageUrl';
+import Seo from '../components/Seo';
 
 interface PillarContent {
   title?: string;
@@ -163,7 +163,7 @@ const MethodKapunka: React.FC = () => {
   const [content, setContent] = useState<MethodContent | null>(null);
   const [error, setError] = useState<string | null>(null);
   const { contentVersion } = useVisualEditorSync();
-  const { t } = useLanguage();
+  const { t, language } = useLanguage();
   const { settings } = useSiteSettings();
 
   useEffect(() => {
@@ -233,17 +233,12 @@ const MethodKapunka: React.FC = () => {
 
   return (
     <div className="bg-white text-stone-800" data-sb-object-id={METHOD_OBJECT_ID}>
-      <Helmet>
-        <title>{pageTitle}</title>
-        <meta name="description" content={metaDescription} />
-        <meta property="og:title" content={pageTitle} />
-        <meta property="og:description" content={metaDescription} />
-        {socialImage ? <meta property="og:image" content={socialImage} /> : null}
-        <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:title" content={pageTitle} />
-        <meta name="twitter:description" content={metaDescription} />
-        {socialImage ? <meta name="twitter:image" content={socialImage} /> : null}
-      </Helmet>
+      <Seo
+        title={pageTitle}
+        description={metaDescription}
+        image={socialImage}
+        locale={language}
+      />
 
       <section className="bg-stone-100 py-20 sm:py-28">
         <div className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8 text-center">

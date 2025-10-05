@@ -5,12 +5,12 @@ import React, {
   useCallback,
 } from 'react';
 import { useParams, Link } from 'react-router-dom';
-import { Helmet } from 'react-helmet-async';
 import { motion } from 'framer-motion';
 
 import { useLanguage } from '../contexts/LanguageContext';
 import type { Article, Product } from '../types';
 import ProductCard from '../components/ProductCard';
+import Seo from '../components/Seo';
 import {
   loadLearnPageContent,
   type LearnPageContentResult,
@@ -244,17 +244,24 @@ const ArticlePage: React.FC = () => {
     const articleImageSrc = (article.imageUrl ?? '').trim();
     const articleImageUrl = articleImageSrc ? getCloudinaryUrl(articleImageSrc) ?? articleImageSrc : '';
 
+    const pageTitle = `${translate(article.title)} | Kapunka Skincare`;
+    const pageDescription = translate(article.preview);
+
     return (
         <div>
-            <Helmet>
-                <title>{translate(article.title)} | Kapunka Skincare</title>
-                <meta name="description" content={translate(article.preview)} />
+            <Seo
+                title={pageTitle}
+                description={pageDescription}
+                image={articleImageUrl}
+                locale={language}
+                type="article"
+            >
                 {faqSchema && (
                     <script type="application/ld+json">
                         {JSON.stringify(faqSchema)}
                     </script>
                 )}
-            </Helmet>
+            </Seo>
 
             <div
                 className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-4xl py-12 sm:py-16"

@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
-import Head from 'next/head';
 import { motion } from 'framer-motion';
 import SectionRenderer from '../components/SectionRenderer';
+import Seo from '../components/Seo';
 import { useLanguage } from '../contexts/LanguageContext';
 import type { PageContent, PageSection } from '../types';
 import { fetchVisualEditorMarkdown } from '../utils/fetchVisualEditorMarkdown';
@@ -124,17 +124,12 @@ const Videos: React.FC = () => {
 
   return (
     <div>
-      <Helmet>
-        <title>{pageTitle}</title>
-        <meta name="description" content={metaDescription} />
-        <meta property="og:title" content={pageTitle} />
-        <meta property="og:description" content={metaDescription} />
-        {socialImage ? <meta property="og:image" content={socialImage} /> : null}
-        <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:title" content={pageTitle} />
-        <meta name="twitter:description" content={metaDescription} />
-        {socialImage ? <meta name="twitter:image" content={socialImage} /> : null}
-      </Helmet>
+      <Seo
+        title={pageTitle}
+        description={metaDescription}
+        image={socialImage}
+        locale={language}
+      />
 
       <header className="py-20 sm:py-28 bg-stone-100">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 text-center">

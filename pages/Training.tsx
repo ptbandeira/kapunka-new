@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react';
-import Head from 'next/head';
 import { motion } from 'framer-motion';
 import SectionRenderer from '../components/SectionRenderer';
 import { useLanguage } from '../contexts/LanguageContext';
@@ -8,6 +7,7 @@ import { fetchVisualEditorMarkdown } from '../utils/fetchVisualEditorMarkdown';
 import { getVisualEditorAttributes } from '../utils/stackbitBindings';
 import { useVisualEditorSync } from '../contexts/VisualEditorSyncContext';
 import { useSiteSettings } from '../contexts/SiteSettingsContext';
+import Seo from '../components/Seo';
 
 const SUPPORTED_SECTION_TYPES = new Set<PageSection['type']>([
   'timeline',
@@ -121,17 +121,12 @@ const Training: React.FC = () => {
 
   return (
     <div>
-      <Head>
-        <title>{computedTitle}</title>
-        <meta name="description" content={computedDescription} />
-        <meta property="og:title" content={computedTitle} />
-        <meta property="og:description" content={computedDescription} />
-        {socialImage ? <meta property="og:image" content={socialImage} /> : null}
-        <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:title" content={computedTitle} />
-        <meta name="twitter:description" content={computedDescription} />
-        {socialImage ? <meta name="twitter:image" content={socialImage} /> : null}
-      </Head>
+      <Seo
+        title={computedTitle}
+        description={computedDescription}
+        image={socialImage}
+        locale={language}
+      />
 
       <header className="py-20 sm:py-28 bg-stone-100">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 text-center">

@@ -1,5 +1,4 @@
 import React, { useState, useEffect, useMemo } from 'react';
-import Head from 'next/head';
 import { motion } from 'framer-motion';
 import { useLanguage } from '../contexts/LanguageContext';
 import { useSiteSettings } from '../contexts/SiteSettingsContext';
@@ -14,6 +13,7 @@ import {
 import { useVisualEditorSync } from '../contexts/VisualEditorSyncContext';
 import { fetchTestimonialsByRefs } from '../utils/fetchTestimonialsByRefs';
 import { getCloudinaryUrl } from '../utils/imageUrl';
+import Seo from '../components/Seo';
 
 interface ClinicProtocol {
   title: string;
@@ -397,17 +397,12 @@ const ForClinics: React.FC = () => {
 
   return (
     <div>
-      <Head>
-        <title>{metaTitle} | Kapunka Skincare</title>
-        <meta name="description" content={metaDescription} />
-        <meta property="og:title" content={`${metaTitle} | Kapunka Skincare`} />
-        <meta property="og:description" content={metaDescription} />
-        {socialImage ? <meta property="og:image" content={socialImage} /> : null}
-        <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:title" content={`${metaTitle} | Kapunka Skincare`} />
-        <meta name="twitter:description" content={metaDescription} />
-        {socialImage ? <meta name="twitter:image" content={socialImage} /> : null}
-      </Head>
+      <Seo
+        title={`${metaTitle} | Kapunka Skincare`}
+        description={metaDescription}
+        image={socialImage}
+        locale={language}
+      />
       <header className="py-20 sm:py-32 bg-stone-100 text-center">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <motion.h1

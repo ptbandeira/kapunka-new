@@ -1,6 +1,5 @@
 import React, { useEffect, useMemo, useState } from 'react';
 import { useParams, Link } from 'react-router-dom';
-import { Helmet } from 'react-helmet-async';
 import ReactMarkdown from 'react-markdown';
 import { useLanguage } from '../contexts/LanguageContext';
 import type { Policy, PolicySection } from '../types';
@@ -8,6 +7,7 @@ import { fetchVisualEditorJson } from '../utils/fetchVisualEditorJson';
 import { getVisualEditorAttributes } from '../utils/stackbitBindings';
 import { useVisualEditorSync } from '../contexts/VisualEditorSyncContext';
 import { buildLocalizedPath } from '../utils/localePaths';
+import Seo from '../components/Seo';
 
 interface PoliciesResponse {
     items?: Policy[];
@@ -98,10 +98,12 @@ const PolicyPage: React.FC = () => {
 
     return (
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-4xl py-12 sm:py-16" {...getVisualEditorAttributes(policyFieldPath)}>
-            <Helmet>
-                <title>{helmetTitle}</title>
-                {helmetDescription && <meta name="description" content={helmetDescription} />}
-            </Helmet>
+            <Seo
+                title={helmetTitle}
+                description={helmetDescription}
+                locale={language}
+                type="article"
+            />
             <header className="mb-12">
                 <h1
                     className="text-4xl sm:text-5xl font-semibold tracking-tight"

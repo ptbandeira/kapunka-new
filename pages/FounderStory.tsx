@@ -1,11 +1,11 @@
 import React, { useEffect, useMemo, useState } from 'react';
-import Head from 'next/head';
 import { motion } from 'framer-motion';
 import { fetchVisualEditorMarkdown } from '../utils/fetchVisualEditorMarkdown';
 import { useVisualEditorSync } from '../contexts/VisualEditorSyncContext';
 import { useSiteSettings } from '../contexts/SiteSettingsContext';
 import { getCloudinaryUrl } from '../utils/imageUrl';
 import { useLanguage } from '../contexts/LanguageContext';
+import Seo from '../components/Seo';
 
 interface MicroStory {
   quote?: string;
@@ -263,17 +263,13 @@ const FounderStory: React.FC = () => {
 
   return (
     <div className="bg-stone-50 text-stone-800" data-sb-object-id={FOUNDER_STORY_OBJECT_ID}>
-      <Head>
-        <title>{pageTitle}</title>
-        <meta name="description" content={pageDescription} />
-        <meta property="og:title" content={pageTitle} />
-        <meta property="og:description" content={pageDescription} />
-        {socialImage ? <meta property="og:image" content={socialImage} /> : null}
-        <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:title" content={pageTitle} />
-        <meta name="twitter:description" content={pageDescription} />
-        {socialImage ? <meta name="twitter:image" content={socialImage} /> : null}
-      </Head>
+      <Seo
+        title={pageTitle}
+        description={pageDescription}
+        image={socialImage}
+        locale={language}
+        type="article"
+      />
 
       <section className="relative overflow-hidden bg-stone-100">
         {heroImageUrl ? (

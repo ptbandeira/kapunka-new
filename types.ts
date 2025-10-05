@@ -216,12 +216,14 @@ export interface ImageTextHalfSectionContent {
   image?: string;
   title?: string;
   text?: string;
+  imageAlt?: string;
 }
 
 export interface ImageGridItem {
   image?: string;
   title?: string;
   subtitle?: string;
+  alt?: string;
 }
 
 export interface ImageGridSectionContent {

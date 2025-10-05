@@ -121,6 +121,7 @@ const SectionRenderer: React.FC<SectionRendererProps> = ({ sections, fieldPath }
                 image={section.image}
                 title={section.title}
                 text={section.text}
+                imageAlt={section.imageAlt}
                 fieldPath={sectionFieldPath}
               />
             );

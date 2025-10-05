@@ -3,7 +3,6 @@ import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import ReactMarkdown from 'react-markdown';
 import type { Components as MarkdownComponents } from 'react-markdown';
-import Head from 'next/head';
 import { z } from 'zod';
 import ProductCard from '../components/ProductCard';
 import TimelineSection from '../components/TimelineSection';
@@ -32,6 +31,7 @@ import { getVisualEditorAttributes } from '../utils/stackbitBindings';
 import { fetchTestimonialsByRefs } from '../utils/fetchTestimonialsByRefs';
 import { buildLocalizedPath } from '../utils/localePaths';
 import { getCloudinaryUrl, isAbsoluteUrl } from '../utils/imageUrl';
+import Seo from '../components/Seo';
 
 interface ProductsResponse {
   items?: Product[];
@@ -2879,6 +2879,7 @@ const Home: React.FC = () => {
             image={section.image}
             title={section.title}
             text={section.text}
+            imageAlt={(section as { imageAlt?: string }).imageAlt}
             fieldPath={sectionFieldPath}
           />
         );
@@ -3645,17 +3646,12 @@ const Home: React.FC = () => {
 
   return (
     <div>
-      <Head>
-        <title>{computedTitle}</title>
-        <meta name="description" content={computedDescription} />
-        <meta property="og:title" content={computedTitle} />
-        <meta property="og:description" content={computedDescription} />
-        {socialImage ? <meta property="og:image" content={socialImage} /> : null}
-        <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:title" content={computedTitle} />
-        <meta name="twitter:description" content={computedDescription} />
-        {socialImage ? <meta name="twitter:image" content={socialImage} /> : null}
-      </Head>
+      <Seo
+        title={computedTitle}
+        description={computedDescription}
+        image={socialImage}
+        locale={language}
+      />
       {shouldRenderLocalSections ? (
         renderedLocalSections
       ) : (

@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react';
-import Head from 'next/head';
 import { motion } from 'framer-motion';
 import { useLanguage } from '../contexts/LanguageContext';
 import { useSiteSettings } from '../contexts/SiteSettingsContext';
@@ -10,6 +9,7 @@ import { fetchVisualEditorJson } from '../utils/fetchVisualEditorJson';
 import { fetchVisualEditorMarkdown } from '../utils/fetchVisualEditorMarkdown';
 import { getVisualEditorAttributes } from '../utils/stackbitBindings';
 import { useVisualEditorSync } from '../contexts/VisualEditorSyncContext';
+import Seo from '../components/Seo';
 
 const isTimelineEntry = (value: unknown): value is TimelineEntry => {
   if (!value || typeof value !== 'object') {
@@ -314,17 +314,12 @@ const About: React.FC = () => {
 
   return (
     <div>
-        <Head>
-            <title>{computedTitle}</title>
-            <meta name="description" content={computedDescription} />
-            <meta property="og:title" content={computedTitle} />
-            <meta property="og:description" content={computedDescription} />
-            {socialImage ? <meta property="og:image" content={socialImage} /> : null}
-            <meta name="twitter:card" content="summary_large_image" />
-            <meta name="twitter:title" content={computedTitle} />
-            <meta name="twitter:description" content={computedDescription} />
-            {socialImage ? <meta name="twitter:image" content={socialImage} /> : null}
-        </Head>
+        <Seo
+            title={computedTitle}
+            description={computedDescription}
+            image={socialImage}
+            locale={language}
+        />
       <header className="py-20 sm:py-32 bg-stone-100 text-center">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <motion.h1

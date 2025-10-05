@@ -1,11 +1,11 @@
 import React, { useEffect, useMemo, useState } from 'react';
-import Head from 'next/head';
 import { motion } from 'framer-motion';
 import { fetchVisualEditorMarkdown } from '../utils/fetchVisualEditorMarkdown';
 import { useVisualEditorSync } from '../contexts/VisualEditorSyncContext';
 import { useSiteSettings } from '../contexts/SiteSettingsContext';
 import { useLanguage } from '../contexts/LanguageContext';
 import { getCloudinaryUrl } from '../utils/imageUrl';
+import Seo from '../components/Seo';
 
 interface BenefitItem {
   title?: string;
@@ -132,7 +132,7 @@ const isProductEducationContent = (value: unknown): value is ProductEducationCon
 const ProductEducation: React.FC = () => {
   const [content, setContent] = useState<ProductEducationContent | null>(null);
   const [error, setError] = useState<string | null>(null);
-  const { t } = useLanguage();
+  const { t, language } = useLanguage();
   const { contentVersion } = useVisualEditorSync();
   const { settings: siteSettings } = useSiteSettings();
 
@@ -201,17 +201,12 @@ const ProductEducation: React.FC = () => {
 
   return (
     <div className="bg-white text-stone-900" data-sb-object-id={PRODUCT_EDUCATION_OBJECT_ID}>
-      <Head>
-        <title>{pageTitle}</title>
-        <meta name="description" content={metaDescription} />
-        <meta property="og:title" content={pageTitle} />
-        <meta property="og:description" content={metaDescription} />
-        {socialImage ? <meta property="og:image" content={socialImage} /> : null}
-        <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:title" content={pageTitle} />
-        <meta name="twitter:description" content={metaDescription} />
-        {socialImage ? <meta name="twitter:image" content={socialImage} /> : null}
-      </Head>
+      <Seo
+        title={pageTitle}
+        description={metaDescription}
+        image={socialImage}
+        locale={language}
+      />
 
       <section className="bg-stone-100 py-20 sm:py-28">
         <div className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8 text-center">
