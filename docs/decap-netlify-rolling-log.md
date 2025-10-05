@@ -11,6 +11,11 @@ This log records day-to-day investigations, fixes, and decisions that affect the
 
 ---
 
+## 2025-10-10 — Localized site settings refinements
+- **What changed**: Updated `admin/config.yml` so brand name, alt text, footer legal copy, social labels, and SEO defaults use explicit locale fields instead of raw maps, added validation patterns for contact links, and introduced descriptive hints to guide editors.
+- **Impact & follow-up**: Editors now see one input per language for shared site settings and get immediate validation for contact URLs, reducing content errors in Decap. Monitor upcoming edits to ensure the new patterns do not block legitimate international phone formats.
+- **References**: Pending PR
+
 ## 2025-10-05 — Retired legacy test page from CMS
 - **What changed**: Removed the unused `TestPage` model from `stackbit.config.ts`, dropped the `/test` entry from the unified pages index, and deleted the lone English markdown file so every published page now has matching `en`, `es`, and `pt` sources.
 - **Impact & follow-up**: Editors no longer see the orphaned test entry in Decap/Stackbit, eliminating a source of partial translations. Confirm Netlify previews rebuild without referencing the retired slug and watch for any lingering `/test` links in future content audits.
