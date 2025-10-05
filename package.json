@@ -10,7 +10,9 @@
     "visual:prepare": "node scripts/prepare-visual-editor-content.js"
   },
   "dependencies": {
-    "framer-motion": "11.2.10",
+    "decap-cms-app": "^3",
+    "decap-cms-media-library-cloudinary": "^1",
+    "framer-motion": "^11",
     "js-yaml": "^4.1.0",
     "lucide-react": "0.395.0",
     "react": "^18.3.1",
