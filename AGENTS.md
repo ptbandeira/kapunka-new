@@ -100,7 +100,7 @@ To ensure high-quality, non-breaking changes, the agent must employ detailed spe
 ## A. Cloudinary Image Pipeline
 
 * `CLOUDINARY_BASE_URL` is injected by Vite (`vite.config.ts`) and must remain the single source for the Cloudinary cloud name + upload root.
-* Always wrap CMS-provided image paths with `toCld()` from `src/lib/images.ts` before rendering. The helper strips legacy upload prefixes and safely concatenates the base URL.
+* All media assets are committed to `/static/images/uploads` and referenced via the CMS. When rendering them in React/TSX, wrap the stored path with `toCld()` from `src/lib/images.ts` so the helper trims legacy prefixes and concatenates the base URL safely.
 * Skip `toCld()` only when you can prove the source is already an absolute `https://` URL (the helper performs this guard, so it is typically safe to call unconditionally).
 * Never inline hard-coded Cloudinary domains; rely on the environment variable so staging and production share the same transformation pipeline.
 
@@ -108,11 +108,11 @@ To ensure high-quality, non-breaking changes, the agent must employ detailed spe
 
 * Page content is consolidated inside `content/pages_v2/index.json`. Each entry represents a full page and must stay self-contained.
 * The `sections` arrays inside each page are mirrored by collapsible groups in the Netlify Visual Editor. Preserve these group boundaries when adding, reordering, or deleting blocks so editors retain predictable collapse behaviour.
-* Localised copy and metadata values are stored as objects keyed by locale (`en`, `pt`, `es`). New fields must follow the same shape and include all supported locales.
+* Localised copy and metadata values are stored as objects keyed by locale (`en`, `pt`, `es`). Each locale renders as a tab in the editor; keep values as objects (not flattened strings) so editors can switch tabs without losing context. Always populate every locale key whenever you add a field.
 * When introducing new schema fields, update `metadata.json` and the Visual Editor mirror in a single commit to prevent drift.
 
 ## C. Branch and Commit Conventions
 
 * Stay on the branch provided in the task (no new branches, no rebasing onto `main`).
-* Use focused commits with imperative, conventional messages. Do not bypass pre-existing instructions (e.g., never run `git commit -am`, avoid force-pushing).
+* Write focused commits with [type](https://www.conventionalcommits.org/en/v1.0.0/)-prefixed, imperative subjects (e.g., `feat:`, `fix:`, `chore:`). Never use `git commit -am` or force-push; stage files explicitly so history stays reviewable.
 * Run required checks before committing, document the results, and prefer minimal diffs that keep rollbacks trivial.
