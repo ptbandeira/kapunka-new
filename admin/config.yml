@@ -1094,6 +1094,68 @@ collections:
           - *meta_title_field
           - *meta_description_field
           - *sections_field
+      - name: story
+        label: Story & Manifesto Page
+        file: content/pages/en/story.md
+        format: frontmatter
+        media_folder: "content/uploads/story"
+        public_folder: "/content/uploads/story"
+        i18n: true
+        editor: { preview: true }
+        description: "Brand manifesto narrative, value pillars, and optional supporting sections."
+        preview_path: "/story"
+        fields:
+          - *meta_title_field
+          - *meta_description_field
+          - label: "Hero Title"
+            name: heroTitle
+            widget: string
+            i18n: true
+            required: false
+            hint: "Headline introducing the manifesto (≤80 characters)."
+          - label: "Hero Subtitle"
+            name: heroSubtitle
+            widget: text
+            i18n: true
+            required: false
+            hint: "Supporting line shown below the hero title (≤200 characters)."
+          - label: "Manifesto Introduction"
+            name: manifestoIntro
+            widget: markdown
+            i18n: true
+            required: false
+            hint: "Opening narrative that frames the manifesto pillars."
+          - label: "Manifesto Statements"
+            name: manifestoStatements
+            widget: list
+            i18n: true
+            collapsed: true
+            summary: "{{fields.heading}}"
+            hint: "Key manifesto pillars, each with optional highlight and descriptive copy."
+            fields:
+              - { label: Heading, name: heading, widget: string, i18n: true, required: false, hint: "Title for this manifesto pillar (≤80 characters)." }
+              - { label: Highlight, name: highlight, widget: string, i18n: true, required: false, hint: "Optional uppercase accent line (≤90 characters)." }
+              - { label: Body, name: body, widget: markdown, i18n: true, required: false, hint: "Use Markdown for rich storytelling across multiple paragraphs." }
+          - label: "Values Grid"
+            name: values
+            widget: list
+            i18n: true
+            collapsed: true
+            summary: "{{fields.title}}"
+            hint: "Value pillars displayed in the dark grid."
+            fields:
+              - { label: Title, name: title, widget: string, i18n: true, required: false, hint: "Name of the value pillar (≤60 characters)." }
+              - { label: Description, name: description, widget: text, i18n: true, required: false, hint: "One to two sentences describing how this value shows up (≤200 characters)." }
+          - label: "Closing Section"
+            name: closing
+            widget: object
+            i18n: true
+            collapsed: true
+            required: false
+            fields:
+              - { label: Heading, name: heading, widget: string, i18n: true, required: false, hint: "Optional closing promise headline (≤80 characters)." }
+              - { label: Body, name: body, widget: markdown, i18n: true, required: false, hint: "Closing paragraphs inviting readers to act or reflect." }
+          - *sections_field
       - name: contact
         label: Contact Page
         file: content/pages/en/contact.md
