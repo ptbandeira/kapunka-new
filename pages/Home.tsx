@@ -10,7 +10,7 @@ import ImageTextHalf from '../components/sections/ImageTextHalf';
 import ImageGrid from '../components/sections/ImageGrid';
 import CommunityCarousel from '../components/sections/CommunityCarousel';
 import MediaShowcase from '../components/sections/MediaShowcase';
-import { usePrefersReducedMotion } from '../src/hooks/useReducedMotion';
+import { usePrefersReducedMotion } from '../src/hooks/usePrefersReducedMotion';
 import { useLanguage } from '../contexts/LanguageContext';
 import { useSiteSettings } from '../contexts/SiteSettingsContext';
 import { useVisualEditorSync } from '../contexts/VisualEditorSyncContext';
