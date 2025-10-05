@@ -11,7 +11,19 @@
     "training": "Training",
     "clinics": "Clinics",
     "about": "About",
-    "contact": "Contact"
+    "contact": "Contact",
+    "navDescriptions": {
+      "learn": {
+        "manifesto": "Discover the origins of Kapunka and the values that guide our craft.",
+        "videos": "Watch tutorials and stories to see our rituals in motion.",
+        "productEducation": "Learn how to choose and use argan-based products for every routine.",
+        "method": "Explore the Kapunka method with step-by-step techniques."
+      },
+      "forProfessionals": {
+        "training": "Join certified programs designed for therapists and wellness experts.",
+        "clinics": "Partner with clinics bringing Kapunka treatments to their clients."
+      }
+    }
   },
   "pt": {
     "shop": "Loja",
@@ -24,7 +36,19 @@
     "training": "Treinamento",
     "clinics": "Clínicas",
     "about": "Sobre",
-    "contact": "Contato"
+    "contact": "Contato",
+    "navDescriptions": {
+      "learn": {
+        "manifesto": "Descubra as origens da Kapunka e os valores que orientam o nosso ofício.",
+        "videos": "Assista a tutoriais e histórias para ver os nossos rituais em ação.",
+        "productEducation": "Aprenda a escolher e usar produtos à base de argan em cada rotina.",
+        "method": "Explore o método Kapunka com técnicas passo a passo."
+      },
+      "forProfessionals": {
+        "training": "Participe em programas certificados para terapeutas e especialistas em bem-estar.",
+        "clinics": "Associe-se a clínicas que oferecem tratamentos Kapunka aos seus clientes."
+      }
+    }
   },
   "es": {
     "shop": "Tienda",
@@ -37,6 +61,18 @@
     "training": "Formación",
     "clinics": "Clínicas",
     "about": "Nosotros",
-    "contact": "Contacto"
+    "contact": "Contacto",
+    "navDescriptions": {
+      "learn": {
+        "manifesto": "Descubre los orígenes de Kapunka y los valores que guían nuestro oficio.",
+        "videos": "Mira tutoriales e historias para ver nuestros rituales en acción.",
+        "productEducation": "Aprende a elegir y usar productos a base de argán en cada rutina.",
+        "method": "Explora el método Kapunka con técnicas paso a paso."
+      },
+      "forProfessionals": {
+        "training": "Únete a programas certificados pensados para terapeutas y expertos en bienestar.",
+        "clinics": "Colabora con clínicas que llevan los tratamientos Kapunka a sus clientes."
+      }
+    }
   }
 }
