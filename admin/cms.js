@@ -11,14 +11,34 @@
       return;
     }
 
-    bootstrapCms(window.CMS);
+    bootstrapCms(window.CMS).catch((error) => {
+      console.error('Failed to initialize CMS previews', error);
+    });
   }
 
-  function bootstrapCms(CMS) {
+  async function bootstrapCms(CMS) {
     const ReactNamespace = window.React || { createElement: window.h };
     const createElement = ReactNamespace.createElement.bind(ReactNamespace);
 
+    const {
+      PreviewLayout,
+      Hero,
+      SectionCard,
+      ProductGrid,
+      FeatureGrid,
+      MediaShowcase,
+      CommunityCarousel,
+      NewsletterSignup,
+      Testimonials,
+      Faq,
+      MediaCopy,
+      VideoSection,
+      Banner,
+      GenericSection,
+    } = await import('./preview-components.js');
+
     CMS.registerPreviewStyle('/admin/preview.css');
+    CMS.registerPreviewStyle('/styles/globals.css');
 
     const localeState = {
       latestEntryLocale: null,
@@ -180,6 +200,31 @@
       }
     }
 
+    function getEntrySlug(entry) {
+      if (!entry || typeof entry.get !== 'function') {
+        return '';
+      }
+
+      const directSlug = entry.get('slug');
+      if (typeof directSlug === 'string' && directSlug.trim()) {
+        return directSlug.trim();
+      }
+
+      const dataSlug = entry.getIn && entry.getIn(['data', 'slug']);
+      if (typeof dataSlug === 'string' && dataSlug.trim()) {
+        return dataSlug.trim();
+      }
+
+      const path = entry.get('path');
+      if (typeof path === 'string' && path) {
+        const normalized = path.replace(/\.md$/, '');
+        const segments = normalized.split('/').filter(Boolean);
+        return segments[segments.length - 1] || '';
+      }
+
+      return '';
+    }
+
     window.addEventListener('hashchange', scheduleLocaleRender);
     scheduleLocaleRender();
 
@@ -225,64 +270,12 @@
       );
     }
 
-    function renderCtas(ctas) {
-      if (!ctas || (!ctas.primary && !ctas.secondary)) {
-        return null;
-      }
-
-      const buttons = [];
-      if (ctas.primary) {
-        buttons.push(createElement(
-          'a',
-          {
-            key: 'primary',
-            href: ctas.primary.href || '#',
-            className: 'inline-flex items-center rounded-full bg-stone-900 text-white px-4 py-2 text-sm font-medium shadow-sm hover:bg-stone-800 transition',
-          },
-          ctas.primary.label || 'Primary CTA',
-        ));
-      }
-
-      if (ctas.secondary) {
-        buttons.push(createElement(
-          'a',
-          {
-            key: 'secondary',
-            href: ctas.secondary.href || '#',
-            className: 'inline-flex items-center rounded-full border border-stone-900 text-stone-900 px-4 py-2 text-sm font-medium hover:bg-stone-900 hover:text-white transition',
-          },
-          ctas.secondary.label || 'Secondary CTA',
-        ));
-      }
-
-      if (buttons.length === 0) {
-        return null;
-      }
-
-      return createElement(
-        'div',
-        { className: 'flex flex-wrap gap-3 mt-6' },
-        buttons,
-      );
-    }
-
-    function PreviewLayout(props) {
-      return createElement(
-        'div',
-        { className: 'cms-preview-root min-h-screen bg-stone-100 py-12 px-6 sm:px-10' },
-        createElement(
-          'div',
-          { className: 'mx-auto max-w-6xl space-y-10' },
-          props.children,
-        ),
-      );
-    }
-
     function HomePreview(props) {
       const { entry } = props;
       const heroHeadline = getEntryValue(entry, ['data', 'heroHeadline'], 'Add a hero headline');
       const heroSubheadline = getEntryValue(entry, ['data', 'heroSubheadline'], 'Add a supporting statement');
       const heroCtas = getEntryValue(entry, ['data', 'heroCtas'], {});
+      const heroAlignment = getEntryValue(entry, ['data', 'heroAlignment'], null);
       const sections = asArray(getEntryValue(entry, ['data', 'sections'], []));
 
       noteEntryLocale(entry);
@@ -293,24 +286,16 @@
       return createElement(
         PreviewLayout,
         null,
-        createElement(
-          'section',
-          { className: 'cms-preview-card p-10 bg-gradient-to-br from-stone-900 via-stone-800 to-stone-900 text-white' },
-          createElement(
-            'div',
-            { className: 'flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between' },
-            createElement('div', { className: 'space-y-3' },
-              createElement('div', { className: 'cms-preview-badge bg-white/15 text-white/90' }, 'Home hero'),
-              createElement('h1', { className: 'text-4xl sm:text-5xl font-semibold tracking-tight' }, heroHeadline),
-              createElement('p', { className: 'text-base sm:text-lg text-white/80 max-w-2xl leading-relaxed' }, heroSubheadline),
-            ),
-            renderHeroAlignment(entry),
-          ),
-          renderCtas({
+        createElement(Hero, {
+          badge: 'Home hero',
+          headline: heroHeadline,
+          subheadline: heroSubheadline,
+          ctas: {
             primary: heroCtas?.ctaPrimary,
             secondary: heroCtas?.ctaSecondary,
-          }),
-        ),
+          },
+          alignment: heroAlignment,
+        }),
         createElement(
           'section',
           { className: 'space-y-6' },
@@ -325,302 +310,56 @@
       );
     }
 
-    function renderHeroAlignment(entry) {
-      const alignment = getEntryValue(entry, ['data', 'heroAlignment'], null);
-      if (!alignment || typeof alignment !== 'object') {
-        return null;
-      }
-
-      const items = [
-        alignment.heroAlignX ? `Horizontal: ${alignment.heroAlignX}` : null,
-        alignment.heroAlignY ? `Vertical: ${alignment.heroAlignY}` : null,
-        alignment.heroTextPosition ? `Text position: ${alignment.heroTextPosition}` : null,
-        alignment.heroOverlay ? `Overlay: ${alignment.heroOverlay}` : null,
-        alignment.heroLayoutHint ? `Layout: ${alignment.heroLayoutHint}` : null,
-      ].filter(Boolean);
-
-      if (items.length === 0) {
-        return null;
-      }
-
-      return createElement(
-        'div',
-        { className: 'rounded-2xl border border-white/20 bg-white/10 px-4 py-3 text-xs uppercase tracking-wide text-white/80 space-y-1 max-w-xs' },
-        items.map((item, index) => createElement('div', { key: `hero-alignment-${index}` }, item)),
-      );
-    }
-
     function renderHomeSection(section, index) {
       const type = typeof section.type === 'string' ? section.type : 'section';
       const title = section.title || section.heading || section.headline || 'Untitled section';
       const key = `${type}-${index}`;
-      const badge = createSectionBadge(type);
-
       let body = null;
 
       switch (type) {
         case 'productGrid':
-          body = renderProductGridSection(section);
+          body = createElement(ProductGrid, section);
           break;
         case 'featureGrid':
-          body = renderFeatureGridSection(section);
+          body = createElement(FeatureGrid, section);
           break;
         case 'mediaShowcase':
-          body = renderMediaShowcaseSection(section);
+          body = createElement(MediaShowcase, section);
           break;
         case 'communityCarousel':
-          body = renderCommunityCarouselSection(section);
+          body = createElement(CommunityCarousel, section);
           break;
         case 'newsletterSignup':
-          body = renderNewsletterSection(section);
+          body = createElement(NewsletterSignup, section);
           break;
         case 'testimonials':
-          body = renderTestimonialsSection(section);
+          body = createElement(Testimonials, section);
           break;
         case 'faq':
-          body = renderFaqSection(section);
+          body = createElement(Faq, section);
           break;
         case 'mediaCopy':
-          body = renderMediaCopySection(section);
+          body = createElement(MediaCopy, section);
           break;
         case 'video':
-          body = renderVideoSection(section);
+          body = createElement(VideoSection, section);
           break;
         case 'banner':
-          body = renderBannerSection(section);
+          body = createElement(Banner, section);
           break;
         default:
-          body = renderGenericSection(section);
+          body = createElement(GenericSection, section);
       }
 
       return createElement(
-        'article',
-        { key, className: 'cms-preview-card p-8 space-y-4 border border-stone-200/60' },
-        createElement('div', { className: 'flex items-start justify-between gap-4' },
-          createElement('div', { className: 'space-y-1' },
-            badge,
-            createElement('h3', { className: 'cms-preview-section-title text-stone-900' }, title),
-          ),
-          section.columns ? createElement('span', { className: 'cms-preview-pill' }, `${section.columns} column layout`) : null,
-        ),
+        SectionCard,
+        {
+          key,
+          badge: type,
+          title,
+          meta: section.columns ? `${section.columns} column layout` : null,
+        },
         body,
-      );
-    }
-
-    function renderGenericSection(section) {
-      const content = section.body || section.text || section.description;
-      if (!content) {
-        return createElement('p', { className: 'cms-preview-muted text-sm' }, 'Add copy or media to this section.');
-      }
-
-      return createElement('p', { className: 'text-sm text-stone-600 leading-relaxed whitespace-pre-wrap' }, content);
-    }
-
-    function renderProductGridSection(section) {
-      const products = Array.isArray(section.products) ? section.products : [];
-      if (products.length === 0) {
-        return createElement('p', { className: 'cms-preview-muted text-sm' }, 'Select product IDs to highlight.');
-      }
-
-      return createElement(
-        'div',
-        { className: 'grid gap-3 sm:grid-cols-2' },
-        products.map((product, idx) => {
-          const id = typeof product === 'string' ? product : product?.id;
-          return createElement(
-            'div',
-            {
-              key: `product-${idx}`,
-              className: 'flex items-center justify-between rounded-xl border border-stone-200 px-4 py-3 bg-stone-50',
-            },
-            createElement('span', { className: 'font-medium text-stone-800' }, id || `Product ${idx + 1}`),
-            createElement('span', { className: 'text-xs text-stone-500 uppercase tracking-wide' }, 'Featured'),
-          );
-        }),
-      );
-    }
-
-    function renderFeatureGridSection(section) {
-      const items = Array.isArray(section.items) ? section.items : [];
-      if (items.length === 0) {
-        return createElement('p', { className: 'cms-preview-muted text-sm' }, 'Add feature items to populate this grid.');
-      }
-
-      return createElement(
-        'div',
-        { className: 'grid gap-4 sm:grid-cols-2' },
-        items.map((item, idx) => createElement(
-          'div',
-          {
-            key: `feature-${idx}`,
-            className: 'rounded-2xl border border-stone-200 bg-white p-5 shadow-sm flex flex-col gap-2',
-          },
-          createElement('span', { className: 'font-medium text-stone-900' }, item.label || `Feature ${idx + 1}`),
-          item.description ? createElement('p', { className: 'text-sm text-stone-600 leading-relaxed' }, item.description) : null,
-        )),
-      );
-    }
-
-    function renderMediaShowcaseSection(section) {
-      const items = Array.isArray(section.items) ? section.items : [];
-      if (items.length === 0) {
-        return createElement('p', { className: 'cms-preview-muted text-sm' }, 'Add showcase items with imagery and CTAs.');
-      }
-
-      return createElement(
-        'div',
-        { className: 'grid gap-4 md:grid-cols-2' },
-        items.map((item, idx) => createElement(
-          'div',
-          {
-            key: `media-${idx}`,
-            className: 'overflow-hidden rounded-2xl border border-stone-200 bg-white shadow-sm',
-          },
-          item.image
-            ? createElement('img', {
-              src: item.image,
-              alt: item.alt || item.title || 'Media item',
-              className: 'h-40 w-full object-cover',
-            })
-            : createElement('div', {
-              className: 'flex h-40 w-full items-center justify-center bg-stone-100 text-xs text-stone-500',
-            }, 'Add an image'),
-          createElement('div', { className: 'space-y-2 p-5' },
-            item.eyebrow ? createElement('span', { className: 'text-xs font-semibold uppercase tracking-[0.18em] text-stone-500' }, item.eyebrow) : null,
-            createElement('h4', { className: 'text-lg font-semibold text-stone-900' }, item.title || `Showcase ${idx + 1}`),
-            item.body ? createElement('p', { className: 'text-sm text-stone-600 leading-relaxed' }, item.body) : null,
-            item.ctaLabel ? createElement('span', { className: 'cms-preview-pill w-fit' }, item.ctaLabel) : null,
-          ),
-        )),
-      );
-    }
-
-    function renderCommunityCarouselSection(section) {
-      const slides = Array.isArray(section.slides) ? section.slides : [];
-      return createElement(
-        'div',
-        { className: 'space-y-4' },
-        createElement('p', { className: 'text-sm text-stone-600' }, 'Community imagery and quotes rotate in this carousel.'),
-        slides.length > 0
-          ? createElement('div', { className: 'grid grid-cols-2 sm:grid-cols-3 gap-3' },
-            slides.slice(0, 6).map((slide, idx) => createElement(
-              'div',
-              {
-                key: `slide-${idx}`,
-                className: 'flex flex-col overflow-hidden rounded-2xl border border-stone-200 bg-white shadow-sm',
-              },
-              slide.image
-                ? createElement('img', {
-                  src: slide.image,
-                  alt: slide.alt || 'Community slide',
-                  className: 'h-32 w-full object-cover',
-                })
-                : createElement('div', { className: 'flex h-32 items-center justify-center bg-stone-100 text-xs text-stone-500' }, 'Add a community image'),
-              (slide.quote || slide.name) ? createElement('div', { className: 'space-y-1 p-4' },
-                slide.quote ? createElement('p', { className: 'text-xs italic text-stone-600 line-clamp-3' }, `“${slide.quote}”`) : null,
-                slide.name ? createElement('p', { className: 'text-xs font-medium text-stone-700' }, slide.name) : null,
-                slide.role ? createElement('p', { className: 'text-[11px] uppercase tracking-wide text-stone-400' }, slide.role) : null,
-              ) : null,
-            )))
-          : createElement('div', { className: 'cms-preview-card p-6 text-sm text-stone-500' }, 'Add slides with imagery, quotes, and names to activate the carousel.'),
-      );
-    }
-
-    function renderNewsletterSection(section) {
-      return createElement(
-        'div',
-        { className: 'rounded-3xl border border-amber-200 bg-amber-50 p-6 space-y-4 text-amber-900' },
-        createElement('p', { className: 'text-xs uppercase tracking-[0.22em] font-semibold' }, section.background ? `${section.background} theme` : 'Newsletter signup'),
-        createElement('h4', { className: 'text-xl font-semibold' }, section.title || 'Newsletter headline'),
-        section.subtitle ? createElement('p', { className: 'text-sm leading-relaxed' }, section.subtitle) : null,
-        createElement('div', { className: 'flex flex-col gap-2 text-sm' },
-          createElement('div', { className: 'rounded-full bg-white px-4 py-2 text-stone-400 border border-amber-200/70' }, section.placeholder || 'Email placeholder'),
-          createElement('div', { className: 'cms-preview-pill bg-amber-600 text-white w-fit' }, section.ctaLabel || 'CTA label'),
-        ),
-      );
-    }
-
-    function renderTestimonialsSection(section) {
-      const testimonials = asArray(section.testimonials || section.quotes);
-      if (testimonials.length === 0) {
-        return createElement('p', { className: 'cms-preview-muted text-sm' }, 'Add testimonials with quotes, authors, and roles.');
-      }
-
-      return createElement(
-        'div',
-        { className: 'space-y-4' },
-        testimonials.map((testimonial, idx) => createElement(
-          'blockquote',
-          {
-            key: `testimonial-${idx}`,
-            className: 'rounded-2xl border border-stone-200 bg-white p-6 shadow-sm space-y-3',
-          },
-          testimonial.quote || testimonial.text
-            ? createElement('p', { className: 'text-sm text-stone-700 leading-relaxed italic' }, `“${testimonial.quote || testimonial.text}”`)
-            : createElement('p', { className: 'text-sm text-stone-500' }, 'Add testimonial copy'),
-          createElement('footer', { className: 'text-xs uppercase tracking-[0.2em] text-stone-400 flex flex-col gap-1' },
-            createElement('span', null, testimonial.author || 'Author name'),
-            testimonial.role ? createElement('span', { className: 'text-[11px] text-stone-300 normal-case' }, testimonial.role) : null,
-          ),
-        )),
-      );
-    }
-
-    function renderFaqSection(section) {
-      const items = Array.isArray(section.items) ? section.items : [];
-      if (items.length === 0) {
-        return createElement('p', { className: 'cms-preview-muted text-sm' }, 'Add question and answer pairs.');
-      }
-
-      return createElement(
-        'div',
-        { className: 'space-y-3' },
-        items.map((item, idx) => createElement(
-          'div',
-          { key: `faq-${idx}`, className: 'rounded-2xl border border-stone-200 bg-white p-5 shadow-sm space-y-2' },
-          createElement('p', { className: 'text-sm font-semibold text-stone-800' }, item.q || `Question ${idx + 1}`),
-          item.a ? createElement('p', { className: 'text-sm text-stone-600 leading-relaxed' }, item.a) : null,
-        )),
-      );
-    }
-
-    function renderMediaCopySection(section) {
-      const image = section.image && typeof section.image === 'object' ? section.image.src : section.image;
-      const text = section.content?.body || section.body || '';
-
-      return createElement(
-        'div',
-        { className: 'grid gap-5 md:grid-cols-2 items-start' },
-        createElement('div', { className: 'space-y-3' },
-          section.content?.heading || section.title
-            ? createElement('h4', { className: 'text-lg font-semibold text-stone-900' }, section.content?.heading || section.title)
-            : null,
-          text
-            ? createElement('p', { className: 'text-sm text-stone-600 leading-relaxed whitespace-pre-wrap' }, text)
-            : createElement('p', { className: 'text-sm text-stone-400' }, 'Add body content to describe this block.'),
-        ),
-        image
-          ? createElement('img', { src: image, alt: section.content?.image?.alt || section.imageAlt || 'Media image', className: 'w-full rounded-2xl object-cover border border-stone-200 shadow-sm' })
-          : createElement('div', { className: 'flex h-44 w-full items-center justify-center rounded-2xl border border-dashed border-stone-300 bg-stone-100 text-xs text-stone-500' }, 'Upload an image to complete this split layout.'),
-      );
-    }
-
-    function renderVideoSection(section) {
-      if (!section.url) {
-        return createElement('p', { className: 'cms-preview-muted text-sm' }, 'Paste a video URL to render this embed.');
-      }
-
-      return createElement('div', { className: 'rounded-2xl border border-stone-200 bg-black/90 text-white p-5 space-y-2' },
-        createElement('p', { className: 'text-xs uppercase tracking-[0.22em] text-white/70' }, 'Video embed'),
-        createElement('div', { className: 'rounded-xl border border-white/30 bg-black/40 px-4 py-3 font-mono text-xs break-all text-white/80' }, section.url),
-      );
-    }
-
-    function renderBannerSection(section) {
-      return createElement('div', { className: 'rounded-full bg-stone-900 text-white px-6 py-4 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3' },
-        createElement('span', { className: 'text-sm font-semibold tracking-wide uppercase text-white/80' }, section.text || 'Add banner copy'),
-        section.cta ? createElement('span', { className: 'cms-preview-pill bg-white text-stone-900' }, section.cta) : null,
-        section.url ? createElement('span', { className: 'text-xs text-white/60 truncate' }, section.url) : null,
       );
     }
 
@@ -658,12 +397,50 @@
     function renderGenericPageSection(section, index) {
       const type = typeof section.type === 'string' ? section.type : 'section';
       const title = section.title || section.heading || section.headline || 'Untitled block';
-      const body = section.body || section.text || section.description;
 
-      return createElement('article', { key: `page-section-${index}`, className: 'cms-preview-card p-8 space-y-3 border border-stone-200/70' },
-        createSectionBadge(type),
-        createElement('h3', { className: 'text-xl font-semibold text-stone-900' }, title),
-        body ? createElement('p', { className: 'text-sm text-stone-600 leading-relaxed whitespace-pre-wrap' }, body) : createElement('p', { className: 'cms-preview-muted text-sm' }, 'Add descriptive copy for this section.'),
+      return createElement(
+        SectionCard,
+        {
+          key: `page-section-${index}`,
+          badge: type,
+          title,
+        },
+        createElement(GenericSection, section),
+      );
+    }
+
+    function GenericPagePreview(props) {
+      const { entry } = props;
+      noteEntryLocale(entry);
+      scheduleLocaleRender();
+
+      const slug = getEntrySlug(entry) || 'page';
+      const heroTitle = getEntryValue(entry, ['data', 'heroTitle'], null)
+        || getEntryValue(entry, ['data', 'headerTitle'], null)
+        || getEntryValue(entry, ['data', 'title'], null)
+        || `Previewing ${slug}`;
+      const heroSubtitle = getEntryValue(entry, ['data', 'heroSubtitle'], null)
+        || getEntryValue(entry, ['data', 'headerSubtitle'], null)
+        || getEntryValue(entry, ['data', 'description'], null)
+        || 'Configure sections to see a live preview of this page.';
+      const sections = asArray(getEntryValue(entry, ['data', 'sections'], []));
+
+      return createElement(
+        PreviewLayout,
+        null,
+        createElement('section', { className: 'cms-preview-card bg-white p-10 space-y-6 border border-stone-200' },
+          createElement('div', { className: 'cms-preview-badge text-stone-700 bg-stone-100' }, `Page hero · ${slug}`),
+          createElement('h1', { className: 'text-4xl font-semibold text-stone-900 tracking-tight' }, heroTitle),
+          heroSubtitle
+            ? createElement('p', { className: 'text-base text-stone-600 leading-relaxed max-w-3xl' }, heroSubtitle)
+            : null,
+        ),
+        sections.length > 0
+          ? createElement('section', { className: 'space-y-6' },
+              createElement('h2', { className: 'text-2xl font-semibold text-stone-900' }, 'Page sections'),
+              createElement('div', { className: 'cms-preview-grid md:grid-cols-2' }, sections.map((section, index) => renderGenericPageSection(section || {}, index))),
+            )
+          : createElement('section', { className: 'cms-preview-card p-12 text-center text-stone-500 border border-dashed border-stone-300' }, 'Add sections to preview the page layout.'),
       );
     }
 
@@ -736,6 +513,21 @@
         createElement('h3', { className: 'text-xl font-semibold text-stone-900' }, title),
         body,
       );
+    }
+
+    function PagePreview(props) {
+      const slug = getEntrySlug(props.entry);
+
+      switch (slug) {
+        case 'home':
+          return createElement(HomePreview, props);
+        case 'learn':
+          return createElement(LearnPreview, props);
+        case 'method':
+          return createElement(MethodPreview, props);
+        default:
+          return createElement(GenericPagePreview, props);
+      }
     }
 
     function DashboardWidget() {
@@ -850,20 +642,7 @@
 
     CMS.registerWidget('dashboard', DashboardWidget);
 
-    const homeTemplates = ['home_en', 'home_pt', 'home_es'];
-    homeTemplates.forEach((template) => {
-      CMS.registerPreviewTemplate(template, HomePreview);
-    });
-
-    const learnTemplates = ['learn_en', 'learn_pt', 'learn_es'];
-    learnTemplates.forEach((template) => {
-      CMS.registerPreviewTemplate(template, LearnPreview);
-    });
-
-    const methodTemplates = ['method_en', 'method_pt', 'method_es'];
-    methodTemplates.forEach((template) => {
-      CMS.registerPreviewTemplate(template, MethodPreview);
-    });
+    CMS.registerPreviewTemplate('pages', PagePreview);
   }
 
   waitForCms();

@@ -11,6 +11,11 @@ This log records day-to-day investigations, fixes, and decisions that affect the
 
 ---
 
+## 2025-10-08 — Refactored Decap previews to use site components
+- **What changed**: Updated `admin/cms.js` to dynamically import shared preview components, switched page previews to render the same hero and section React elements used on the live site, and registered the global Tailwind CSS bundle so previews mirror production styling.
+- **Impact & follow-up**: Editors now get richer, more accurate previews for localized pages without manually duplicating markup. Monitor Decap for any module loading errors in older browsers and confirm additional page types render correctly via the new generic fallback.
+- **References**: Pending PR
+
 ## 2025-10-07 — Switched Decap media library to Cloudinary
 - **What changed**: Pointed `admin/config.yml` at Cloudinary via the `media_library` block, updated the global media/public folders to `/uploads`, and documented that the API secret must be supplied through the `CLOUDINARY_API_SECRET` environment variable.
 - **Impact & follow-up**: Editors now browse Cloudinary assets from the media picker while existing uploads keep their URLs. Confirm the secret is added to Netlify before enabling production edits.
