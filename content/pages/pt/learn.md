@@ -1,25 +1,27 @@
 ---
 type: LearnPage
-metaTitle: Biblioteca de Skincare
+metaTitle: Skincare Library
 metaDescription: >-
-  Explore artigos e guias sobre skincare, ingredientes e como manter uma
-  barreira cutânea saudável.
-heroTitle: Biblioteca de Skincare
-heroSubtitle: Guias e insights para ajudar você a entender melhor a sua pele.
+  Explore articles and guides on skincare, ingredients, and maintaining a
+  healthy skin barrier.
+heroTitle: Skincare Library
+heroSubtitle: Guides and insights to help you understand your skin better.
 categories:
   - id: all
-    label: Todos os temas
+    label: All topics
   - id: argan-oil
-    label: Óleo de Argan
+    label: Argan Oil
   - id: uses-applications
-    label: Usos e Aplicações
+    label: Uses & Applications
   - id: post-procedure
-    label: Pós-Procedimento
+    label: Post-Procedure
   - id: skin-barrier
-    label: Barreira Cutânea
+    label: Skin Barrier
   - id: baby
-    label: Cuidados com Bebês
+    label: Baby Care
   - id: scars
-    label: Cicatrizes e Recuperação
+    label: Scars & Recovery
 sections: []
 ---
+
+# TODO: Translate to Portuguese

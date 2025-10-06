@@ -1038,7 +1038,8 @@ collections:
     group: "1. Pages"
     description: "Edit Kapunka pages with reusable, reorderable sections."
     files:
-      - name: home
+      - &home_page
+        name: home
         label: Home Page
         file: content/pages/en/home.md
         format: frontmatter
@@ -1186,7 +1187,18 @@ collections:
             summary: "{{fields.type}} · {{fields.title.en | default(fields.content.headline.en) | default(fields.content.heading.en)}}"
             hint: "Scroll, reorder, duplicate, or add sections in page order."
             types: *section_library
-      - name: learn
+      - <<: *home_page
+        name: home_pt
+        label: Home Page (Portuguese)
+        file: content/pages/pt/home.md
+        preview_path: "/pt"
+      - <<: *home_page
+        name: home_es
+        label: Home Page (Spanish)
+        file: content/pages/es/home.md
+        preview_path: "/es"
+      - &learn_page
+        name: learn
         label: Learn Page
         file: content/pages/en/learn.md
         format: frontmatter
@@ -1241,7 +1253,18 @@ collections:
                     name: "label"
                     hint: "Localized category label (≤30 characters)."
           - *sections_field
-      - name: method
+      - <<: *learn_page
+        name: learn_pt
+        label: Learn Page (Portuguese)
+        file: content/pages/pt/learn.md
+        preview_path: "/pt/learn"
+      - <<: *learn_page
+        name: learn_es
+        label: Learn Page (Spanish)
+        file: content/pages/es/learn.md
+        preview_path: "/es/learn"
+      - &method_page
+        name: method
         label: Method Page
         file: content/pages/en/method.md
         format: frontmatter
@@ -1306,7 +1329,18 @@ collections:
               - *section_facts
               - *section_bullets
               - *section_specialties
-      - name: clinics
+      - <<: *method_page
+        name: method_pt
+        label: Method Page (Portuguese)
+        file: content/pages/pt/method.md
+        preview_path: "/pt/method"
+      - <<: *method_page
+        name: method_es
+        label: Method Page (Spanish)
+        file: content/pages/es/method.md
+        preview_path: "/es/method"
+      - &clinics_page
+        name: clinics
         label: For Clinics Page
         file: content/pages/en/clinics.md
         format: frontmatter
@@ -1542,7 +1576,18 @@ collections:
             name: "partnersTitle"
             hint: "Heading displayed above clinic partners (≤60 characters)."
           - *sections_field
-      - name: about
+      - <<: *clinics_page
+        name: clinics_pt
+        label: For Clinics Page (Portuguese)
+        file: content/pages/pt/clinics.md
+        preview_path: "/pt/for-clinics"
+      - <<: *clinics_page
+        name: clinics_es
+        label: For Clinics Page (Spanish)
+        file: content/pages/es/clinics.md
+        preview_path: "/es/for-clinics"
+      - &about_page
+        name: about
         label: About Page
         file: content/pages/en/about.md
         format: frontmatter
@@ -1563,7 +1608,18 @@ collections:
               - *meta_title_field
               - *meta_description_field
           - *sections_field
-      - name: story
+      - <<: *about_page
+        name: about_pt
+        label: About Page (Portuguese)
+        file: content/pages/pt/about.md
+        preview_path: "/pt/about"
+      - <<: *about_page
+        name: about_es
+        label: About Page (Spanish)
+        file: content/pages/es/about.md
+        preview_path: "/es/about"
+      - &story_page
+        name: story
         label: Story & Manifesto Page
         file: content/pages/en/story.md
         format: frontmatter
@@ -1657,7 +1713,18 @@ collections:
                     name: "body"
                     hint: "Closing paragraphs inviting readers to reflect or engage."
           - *sections_field
-      - name: contact
+      - <<: *story_page
+        name: story_pt
+        label: Story & Manifesto Page (Portuguese)
+        file: content/pages/pt/story.md
+        preview_path: "/pt/story"
+      - <<: *story_page
+        name: story_es
+        label: Story & Manifesto Page (Spanish)
+        file: content/pages/es/story.md
+        preview_path: "/es/story"
+      - &contact_page
+        name: contact
         label: Contact Page
         file: content/pages/en/contact.md
         format: frontmatter
@@ -1706,6 +1773,16 @@ collections:
             required: false
             pattern: ["^https://", "Use a secure (https://) embed URL."]
             hint: "Paste the full Google Maps iframe URL to render a location map."
+      - <<: *contact_page
+        name: contact_pt
+        label: Contact Page (Portuguese)
+        file: content/pages/pt/contact.md
+        preview_path: "/pt/contact"
+      - <<: *contact_page
+        name: contact_es
+        label: Contact Page (Spanish)
+        file: content/pages/es/contact.md
+        preview_path: "/es/contact"
       - name: shop
         label: Shop Page
         file: content/shop.json

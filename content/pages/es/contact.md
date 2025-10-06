@@ -1,13 +1,15 @@
 ---
 type: ContactPage
-metaTitle: Contacta a Kapunka — Estamos aquí para ti
-metaDescription: 'Escríbenos para recibir rutinas, formación u opciones mayoristas a tu medida.'
+metaTitle: Contact Kapunka — We're here for you
+metaDescription: 'Reach out to Kapunka for tailored routines, training, or wholesale support.'
 sections:
   - type: mediaCopy
-    title: Estamos aquí para escucharte
+    title: We're ready to listen
     body: >-
-      Clínicas, aliados y personas—cuéntanos qué necesitas y te guiamos hacia la
-      rutina, la formación u opción mayorista adecuada.
+      Clinics, partners, and individuals—tell us what you need and we’ll guide
+      you to the right routine, training, or wholesale option.
     layout: image-right
     image: /content/uploads/contact/argan-fields.jpg
 ---
+
+# TODO: Translate to Spanish

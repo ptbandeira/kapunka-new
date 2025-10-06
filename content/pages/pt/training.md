@@ -1,12 +1,14 @@
 ---
 type: TrainingPage
-metaTitle: Treinamento Kapunka – Workshops para clínicas e parceiros
+metaTitle: Kapunka Training – Workshops for clinics and partners
 metaDescription: >-
-  Agende formações avançadas de protocolos com argan, refrescos em vídeo e
-  suporte de onboarding feito para a sua clínica.
+  Schedule advanced argan protocol training, video refreshers, and onboarding
+  support tailored to your practice.
 sections:
   - type: trainingList
     title: ''
     description: ''
     entries: []
 ---
+
+# TODO: Translate to Portuguese

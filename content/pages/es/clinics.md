@@ -1,129 +1,121 @@
 ---
 type: ClinicsPage
-metaTitle: 'Para clínicas — Confiable, sencillo, enseñable'
+metaTitle: 'For Clinics — Trusted, simple, teachable'
 metaDescription: >-
-  Suministro B2B de cuidado de la piel para el post-tratamiento. Accede a aceite
-  de argán aprobado por dermatólogos, protocolos clínicos y capacitación para tu
-  clínica.
-heroTitle: Programa Profesional Kapunka
+  B2B skincare supply for post-treatment skin care. Access
+  dermatologist-approved argan oil, clinical protocols, and training for your
+  clinic.
+heroTitle: Professional Clinic Partnership Program
 heroSubtitle: >-
-  Ofrece un cuidado post-tratamiento coherente con aceite de argán aprobado por
-  dermatólogos y fórmulas minimalistas probadas en clínica para la recuperación
-  y la hidratación hormonal.
+  Deliver consistent post-treatment skin care with dermatologist-approved argan
+  oil and minimalist, clinic-tested formulas tailored for recovery and hormonal
+  hydration.
 sections:
   - type: mediaCopy
-    title: Del quirófano a la rutina diaria
+    title: From operating room to everyday routine
     body: >-
-      Equipos de dermatología y estética confían en nosotros para el cuidado de
-      cicatrices y la recuperación. Opciones de bajo residuo, consideradas con
-      la fragancia y protocolos imprimibles.
+      Trusted by dermatology and aesthetic teams for scar care and recovery.
+      Low-residue, fragrance-considerate options and printable protocols.
     layout: image-right
     image: https://images.pexels.com/photos/6129683/pexels-photo-6129683.jpeg?auto=compress&cs=tinysrgb&w=1920
   - type: featureGrid
     title: ''
     columns: 3
     items:
-      - label: Protocolos
-        description: 'Pasos sencillos para preoperatorio, postoperatorio y cuidado en casa.'
-      - label: Formación
-        description: Onboarding breve y capacitaciones en servicio.
-      - label: Mayoristas
-        description: Kits iniciales y reposición constante.
+      - label: Protocols
+        description: 'Simple steps for pre-op, post-op, and home care.'
+      - label: Education
+        description: Short onboarding and in-service training.
+      - label: Wholesale
+        description: Starter kits and steady replenishment.
   - type: banner
-    text: Explora mayoristas y capacitación
-    cta: Contacta a nuestro equipo
+    text: Explore wholesale and training
+    cta: Contact our team
     url: /contact
-headerTitle: Programa Profesional Kapunka
+headerTitle: Professional Clinic Partnership Program
 headerSubtitle: >-
-  Ofrece un post-treatment skin care coherente con aceite de argán aprobado por
-  dermatólogos y fórmulas minimalistas, probadas en clínica para la recuperación
-  y la hidratación hormonal.
-section1Title: Soporte basado en evidencia para cada sala de tratamiento
+  Deliver consistent post-treatment skin care with dermatologist-approved argan
+  oil and minimalist, clinic-tested formulas tailored for recovery and hormonal
+  hydration.
+section1Title: Evidence-Led Support for Every Treatment Room
 section1Text1: >-
-  Nuestro suministro B2B de skincare combina aceite de argán ECOCERT, agua de
-  rosas de Damasco y lípidos que refuerzan la barrera con materiales educativos
-  personalizables. Los protocolos son revisados por dermatólogos certificados
-  para que tu equipo brinde indicaciones seguras tras microneedling, peelings
-  químicos, láser o sequedad ligada a la menopausia.
+  Our B2B skincare supply combines ECOCERT argan oil, Damask rose water, and
+  barrier-strengthening lipids with educational assets you can personalize.
+  Protocols are reviewed by board-certified dermatologists so your team can
+  offer confident guidance after microneedling, chemical peels, laser, or
+  menopause-related dryness.
 section1Text2: >-
-  Los socios reciben precios mayoristas, módulos de onboarding y fichas de
-  cuidados post-tratamiento listas para imprimir en inglés, portugués y español.
-  Kapunka simplifica el traspaso del procedimiento al cuidado en casa, ayudando
-  a fidelizar pacientes y aumentar el ticket minorista.
+  Partners receive wholesale pricing, onboarding modules, and printable
+  aftercare one-pagers in English, Portuguese, and Spanish. Kapunka simplifies
+  the handoff from procedure to home care, helping you retain patients and build
+  retail revenue.
 protocolSection:
-  title: Planos de protocolo para personalizar
+  title: Protocol Blueprints You Can Personalize
   subtitle: >-
-    Rutinas revisadas por dermatólogos y descargables para guiar a los pacientes
-    en los tratamientos más solicitados.
+    Downloadable, dermatologist-reviewed routines to guide patients through the
+    most requested treatments.
   cards:
-    - title: Cuidados tras microneedling (0–72 horas)
-      focus: >-
-        Estabiliza la barrera, reduce la TEWL y evita la contaminación
-        microbiana.
+    - title: Microneedling Aftercare (0–72 hours)
+      focus: 'Stabilize the barrier, reduce TEWL, and prevent microbial contamination.'
       steps:
         - >-
-          Inmediatamente después del tratamiento: pulveriza Agua de Rosas de
-          Damasco Kapunka o suero fisiológico estéril y presiona tres gotas de
-          nuestro aceite de argán aprobado por dermatólogos sobre las zonas
-          tratadas para sellar los microcanales.
+          Immediately post-treatment: mist Kapunka Damask Rose Water or sterile
+          saline, then press three drops of our dermatologist-approved argan oil
+          over treated zones to seal microchannels.
         - >-
-          Primera noche: indica a los pacientes que eviten maquillaje y
-          retinoides; reaplica el aceite de argán sobre la piel húmeda cada 6–8
-          horas para mantener saturada la matriz lipídica.
+          First night: instruct patients to avoid makeup and retinoids; reapply
+          argan oil on damp skin every 6–8 hours to keep the lipid matrix
+          saturated.
         - >-
-          Días 2–3: coloca un sérum de ácido hialurónico bajo el aceite de
-          argán; retoma el protector solar mineral cuando el eritema disminuya.
+          Days 2–3: layer a hyaluronic serum under argan oil; resume mineral SPF
+          once erythema resolves.
       evidence: >-
-        Basado en Fabbrocini et al., Journal of Clinical and Aesthetic
-        Dermatology (2014), que documenta la alteración de la barrera hasta 48
-        horas después del microneedling y los beneficios de los emolientes ricos
-        en lípidos.
-    - title: Recuperación de peeling químico medio (Día 0–7)
+        Guided by Fabbrocini et al., Journal of Clinical and Aesthetic
+        Dermatology (2014), which documents barrier disruption for up to 48
+        hours post-microneedling and the benefits of lipid-rich emollients.
+    - title: Medium-Depth Chemical Peel Recovery (Day 0–7)
       focus: >-
-        Modera la inflamación, favorece la descamación y reconstruye el estrato
-        córneo.
+        Modulate inflammation, support desquamation, and rebuild the stratum
+        corneum.
       steps:
         - >-
-          Día 0: neutraliza el peeling según las instrucciones del fabricante;
-          cuando la piel recupere su temperatura, pulveriza Agua de Rosas de
-          Damasco y aplica un velo fino de aceite de argán para aliviar la
-          tirantez.
+          Day 0: neutralize the peel per manufacturer instructions; once skin
+          temperature normalizes, mist Damask Rose Water and apply a thin veil
+          of argan oil to buffer tightness.
         - >-
-          Días 1–3: limpia con leches de pH equilibrado; alterna compresas de
-          agua de rosas con oclusión de aceite de argán para minimizar las
-          costras.
+          Days 1–3: cleanse with pH-balanced milk cleansers; alternate rose
+          water compresses with argan oil occlusion to minimize crusting.
         - >-
-          Días 4–7: incorpora una crema con ceramidas sobre el aceite de argán;
-          refuerza el fotoprotector FPS 50 de amplio espectro y evita
-          exfoliantes hasta finalizar la descamación.
+          Days 4–7: introduce ceramide cream over argan oil; reinforce
+          broad-spectrum SPF 50 and avoid exfoliants until peeling completes.
       evidence: >-
-        Respaldado por Soleymani et al., Journal of Clinical and Aesthetic
-        Dermatology (2018), que destaca la reposición lipídica como clave para
-        una reepitelización controlada.
-    - title: Soporte de hidratación durante la menopausia
+        Informed by Soleymani et al., Journal of Clinical and Aesthetic
+        Dermatology (2018), highlighting lipid replenishment as a key
+        determinant of controlled re-epithelialization.
+    - title: Hydration Support During Menopause
       focus: >-
-        Restituye lípidos, mejora la elasticidad y calma la sequedad neurogénica
-        asociada al descenso de estrógenos.
+        Restore lipids, improve elasticity, and calm neurogenic dryness linked
+        to estrogen decline.
       steps:
         - >-
-          Mañana: pulveriza Agua de Rosas de Damasco, mezcla dos gotas de aceite
-          de argán con la crema de ceramidas y finaliza con protector solar para
-          abordar la fotosensibilidad aumentada.
+          Morning: spritz Damask Rose Water, cocktail two drops of argan oil
+          with ceramide moisturizer, and finish with SPF to address increased
+          photosensitivity.
         - >-
-          Noche: aplica aceite de argán en rostro, cuello y escote con la piel
-          húmeda; realiza un masaje ligero para estimular la microcirculación.
+          Evening: apply argan oil to face, neck, and décolletage while skin is
+          damp; follow with light massage to stimulate microcirculation.
         - >-
-          Semanalmente: sugiere masajes capilares con aceite de argán para
-          compensar los cambios en la densidad del cabello y ofrece tratamientos
-          de manos y antebrazos durante las visitas a la clínica.
+          Weekly: suggest scalp massages with argan oil to offset hair density
+          changes and provide hand and forearm treatments during in-clinic
+          visits.
       evidence: >-
-        En línea con Lephart, Biomedicine & Pharmacotherapy (2016) y Sator et
-        al., Journal of the American Academy of Dermatology (2001), que informan
-        mejoras de elasticidad e hidratación en la piel posmenopáusica tras
-        lípidos tópicos.
+        Aligned with Lephart, Biomedicine & Pharmacotherapy (2016) and Sator et
+        al., Journal of the American Academy of Dermatology (2001), which report
+        improved elasticity and hydration in postmenopausal skin after topical
+        phyto-lipids.
 referencesSection:
-  title: Referencias clínicas y voces expertas
-  studiesTitle: Destacados revisados por pares
+  title: Clinical References & Expert Voices
+  studiesTitle: Peer-reviewed highlights
   studies:
     - title: 'Fabbrocini A. et al. Microneedling in dermatology: A review.'
       details: 'Journal of Clinical and Aesthetic Dermatology, 2014.'
@@ -131,74 +123,65 @@ referencesSection:
       details: 'Journal of Clinical and Aesthetic Dermatology, 2018.'
     - title: 'Lephart E.D. Skin aging and menopause: Implications for treatment.'
       details: 'Biomedicine & Pharmacotherapy, 2016.'
-  testimonialsTitle: Testimonios de dermatólogos
+  testimonialsTitle: Dermatologist testimonials
   testimonialRefs:
-    - content/testimonials/dra-sofia-mendes-es.json
-    - content/testimonials/dra-elena-ruiz-es.json
+    - content/testimonials/dr-sofia-mendes-en.json
+    - content/testimonials/dr-elena-ruiz-en.json
 keywordSection:
-  title: Suministro B2B de skincare optimizado
+  title: Optimized B2B Skincare Supply
   subtitle: >-
-    Incluye estos enfoques en tus listados y campañas para llegar a pacientes
-    exigentes.
+    Include these focus points in your listings and marketing to reach
+    discerning patients.
   keywords:
-    - >-
-      post-treatment skin care protocols (protocolos de cuidado
-      post-tratamiento)
-    - >-
-      dermatologist-approved argan oil retail sets (sets minoristas de aceite de
-      argán aprobado por dermatólogos)
-    - >-
-      B2B skincare supply for medical spas (suministro B2B de skincare para
-      clínicas y spas médicos)
-    - hormonal hydration support kits (kits de soporte de hidratación hormonal)
-    - >-
-      sustainable Moroccan argan oil wholesale (aceite de argán marroquí
-      sostenible al por mayor)
+    - post-treatment skin care protocols
+    - dermatologist-approved argan oil retail sets
+    - B2B skincare supply for medical spas
+    - hormonal hydration support kits
+    - sustainable Moroccan argan oil wholesale
 faqSection:
-  title: Preguntas frecuentes para clínicas
-  subtitle: 'Logística, formación y métodos de aplicación adaptados a tu equipo.'
+  title: Clinic FAQs
+  subtitle: 'Logistics, training, and application methods tailored for your team.'
   items:
-    - question: ¿Cuál es la cantidad mínima de pedido (MOQ)?
+    - question: What is the minimum order quantity (MOQ)?
       answer: >-
-        Los pedidos iniciales comienzan con 24 unidades minoristas o 6 unidades
-        profesionales de back bar. Los estuches mixtos califican para el mismo
-        precio mayorista para que las clínicas más pequeñas puedan curar su
-        surtido.
-    - question: ¿Ofrecen capacitación en protocolos?
+        Opening orders start at 24 retail units or 6 professional back-bar
+        units. Mixed product cases qualify for the same wholesale pricing so
+        smaller clinics can curate assortments.
+    - question: Do you provide protocol training?
       answer: >-
-        Sí. Los socios acceden a un portal e-learning bilingüe con módulos de
-        microneedling, peeling químico e hidratación en la menopausia. Webinars
-        trimestrales en vivo repasan novedades y permiten preguntas a nuestro
-        comité médico.
-    - question: ¿Cómo deben aplicar los clínicos el aceite de argán en cabina?
+        Yes. Partners access a bilingual e-learning portal with microneedling,
+        chemical peel, and menopause hydration modules. Live quarterly webinars
+        review updates and allow Q&A with our medical advisory board.
+    - question: How should clinicians apply the argan oil in treatment rooms?
       answer: >-
-        Transfiérelo a cuentagotas estériles. Tras finalizar el tratamiento,
-        pulveriza agua de rosas sobre la piel y presiona el aceite con manos
-        enguantadas para evitar fricción. En servicios capilares o corporales,
-        templa el aceite a temperatura corporal antes del masaje.
-    - question: ¿Kapunka puede proporcionar materiales white label o co-brandeados?
+        Decant into sterile droppers. After finishing a treatment, mist the skin
+        with rose water and press the oil in gloved hands to avoid friction. For
+        scalp or body services, warm the oil to body temperature before massage.
+    - question: Can Kapunka support white-label or co-branded materials?
       answer: >-
-        Ofrecemos tarjetas post-tratamiento personalizables y fundas
-        co-brandeadas después de tu tercer pedido. Nuestro equipo de diseño
-        adapta los materiales a tu marca en un máximo de cinco días hábiles.
-doctorsTitle: Con la confianza de los mejores profesionales
-ctaTitle: Conviértete en socio
+        We offer customizable post-treatment cards and co-branded sleeves after
+        your third order. Our design team adapts assets to your brand within
+        five business days.
+doctorsTitle: Trusted by Top Professionals
+ctaTitle: Become a Partner
 ctaSubtitle: >-
-  Agenda una llamada para revisar precios mayoristas, sampling y soporte de
-  lanzamiento en clínica.
-ctaButton: Contáctanos
-partnersTitle: Avalado por clínicas
+  Schedule a call to review wholesale pricing, sampling, and clinic launch
+  support.
+ctaButton: Contact Us
+partnersTitle: Trusted by clinicians
 intro:
-  title: Soporte basado en evidencia para cada sala de tratamiento
+  title: Evidence-Led Support for Every Treatment Room
   text1: >-
-    Nuestro suministro B2B de skincare combina aceite de argán ECOCERT, agua de
-    rosas de Damasco y lípidos que refuerzan la barrera con materiales
-    educativos personalizables. Los protocolos son revisados por dermatólogos
-    certificados para que tu equipo brinde indicaciones seguras tras
-    microneedling, peelings químicos, láser o sequedad ligada a la menopausia.
+    Our B2B skincare supply combines ECOCERT argan oil, Damask rose water, and
+    barrier-strengthening lipids with educational assets you can personalize.
+    Protocols are reviewed by board-certified dermatologists so your team can
+    offer confident guidance after microneedling, chemical peels, laser, or
+    menopause-related dryness.
   text2: >-
-    Los socios reciben precios mayoristas, módulos de onboarding y fichas de
-    cuidados post-tratamiento listas para imprimir en inglés, portugués y
-    español. Kapunka simplifica el traspaso del procedimiento al cuidado en
-    casa, ayudando a fidelizar pacientes y aumentar el ticket minorista.
+    Partners receive wholesale pricing, onboarding modules, and printable
+    aftercare one-pagers in English, Portuguese, and Spanish. Kapunka simplifies
+    the handoff from procedure to home care, helping you retain patients and
+    build retail revenue.
 ---
+
+# TODO: Translate to Spanish

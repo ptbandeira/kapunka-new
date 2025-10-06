@@ -1,84 +1,85 @@
 ---
 type: StoryPage
-metaTitle: Manifiesto Kapunka – Cuidar la piel y la tierra al unísono
+metaTitle: Kapunka Manifesto – Caring for skin and soil in tandem
 metaDescription: >-
-  Descubre el manifiesto Kapunka: abastecimiento regenerativo, rituales validados
-  clínicamente y un compromiso con un cuidado de la piel minimalista y transparente que
-  honra a las cooperativas que elaboran nuestro aceite de argán.
-heroTitle: El Manifiesto Kapunka
-heroSubtitle: Un ritual de cuidado que protege la barrera cutánea y celebra a las mujeres y paisajes que lo hacen posible.
+  Discover the Kapunka manifesto: regenerative sourcing, clinically tested rituals,
+  and a commitment to transparent, minimalist skincare that honours the cooperatives
+  who craft our argan oil.
+heroTitle: The Kapunka Manifesto
+heroSubtitle: Ritual skincare that protects the barrier while honouring the women and landscapes that make it possible.
 manifestoIntro: >-
-  Kapunka existe para cuidar la piel con la misma reverencia que mostramos al suelo, a
-  las semillas y a las manos que lo sostienen. Cada decisión se guía por la
-  reciprocidad: devolvemos a las cooperativas que nos enseñan, a las clínicas que
-  confían en nosotros y a las personas que integran Kapunka en su ritual diario.
+  Kapunka exists to care for skin with the same reverence we show the soil, seeds,
+  and hands that sustain it. Every choice we make is guided by reciprocity: we give
+  back to the cooperatives that teach us, the clinics that trust us, and the people
+  who invite Kapunka into their daily ritual.
 manifestoStatements:
-  - heading: Arraigados en la sabiduría cooperativa
-    highlight: Reinvertimos en las cooperativas dirigidas por mujeres que nos enseñaron cada ritual de argán.
+  - heading: Rooted in cooperative wisdom
+    highlight: We reinvest in the women-led argan cooperatives that taught us every ritual.
     body: |-
-      Del Valle del Souss a nuestro estudio, Kapunka se nutre de saberes
-      intergeneracionales. Trabajamos exclusivamente con cooperativas lideradas por
-      mujeres, garantizando remuneración digna, contratos a largo plazo y
-      reinversión en programas de educación y biodiversidad locales.
-  - heading: Ciencia con alma
-    highlight: Rigor clínico con cuidado sensorial.
+      From the Souss Valley to our studio, Kapunka is powered by intergenerational
+      expertise. We partner exclusively with women-run cooperatives, guaranteeing
+      dignified pay, long-term contracts, and reinvestment into local education and
+      biodiversity programmes.
+  - heading: Science with soul
+    highlight: Clinical rigor meets sensorial care.
     body: |-
-      Cada fórmula se desarrolla junto a dermatólogos y esteticistas que observan el
-      impacto en la piel real cada día. Combinamos esos datos con texturas y aromas
-      sensoriales que invitan a rituales lentos y conscientes en lugar de rutinas
-      apresuradas.
-  - heading: Menos, mejor, transparente
-    highlight: Rutinas esenciales con ingredientes totalmente trazables.
+      Each formula is iterated alongside dermatologists and estheticians who see the
+      impact on real skin every day. We pair their data with sensorial textures and
+      scents that invite slow, mindful rituals rather than rushed routines.
+  - heading: Less, better, transparent
+    highlight: Minimal routines, fully traceable ingredients.
     body: |-
-      Publicamos cada lista de ingredientes, porcentaje y relación con proveedores. Nuestro
-      catálogo prioriza héroes multifunción frente a lanzamientos infinitos para que
-      clínicas y ritualistas confíen en cada gota.
+      We publish every ingredient list, percentage, and supplier relationship. Our
+      catalogue favours multi-use heroes over endless launches, so clinicians and
+      at-home ritualists can trust every drop to work harder with less.
 values:
-  - title: Custodia del origen
-    description: Protegemos los ecosistemas marroquíes que sostienen la cultura del argán mediante acuerdos de cosecha regenerativa y plantaciones resilientes al clima.
-  - title: Transparencia radical
-    description: El origen de los ingredientes, la formación de precios y las métricas de impacto se mantienen abiertas a nuestra comunidad.
-  - title: Alianza con profesionales
-    description: Diseñamos junto a equipos de dermatología y fundadoras de clínicas para que Kapunka acompañe protocolos en cabina y la recuperación en casa.
-  - title: Diseño de ritual inclusivo
-    description: Nuestras rutinas respetan distintos tonos de piel, estados de barrera y ritmos de vida, permitiendo que cualquiera construya un ritual posible.
-  - title: Reciprocidad continua
-    description: Las participaciones en beneficios y las becas educativas regresan a las cooperativas y clínicas que crecen con nosotros.
+  - title: Stewardship of origin
+    description: We protect the Moroccan ecosystems that sustain argan culture through regenerative harvesting agreements and climate-resilient planting.
+  - title: Radical transparency
+    description: Ingredient provenance, pricing, and impact metrics remain open to our community, empowering informed choices.
+  - title: Partnership with practitioners
+    description: We design alongside dermatology teams and clinic founders to ensure Kapunka supports both in-office protocols and at-home recovery.
+  - title: Inclusive ritual design
+    description: Our routines respect diverse skin tones, barrier conditions, and schedules, encouraging anyone to build a ritual that feels attainable.
+  - title: Continuous reciprocity
+    description: Profit shares and educational grants cycle back to the cooperatives and clinics that grow with us.
 closing:
-  heading: Una promesa para la piel y la tierra
+  heading: A promise to skin and soil
   body: >-
-    Kapunka seguirá invirtiendo en ciencia que repara, en abastecimiento que regenera
-    y en narrativas que sitúan a las personas detrás de cada frasco. Gracias por
-    acompañarnos en un ritual que nutre mucho más que la piel.
+    Kapunka will continue investing in science that heals, sourcing that regenerates,
+    and storytelling that centres the people behind every bottle. Thank you for
+    standing with us in a ritual that nourishes more than skin.
 sections:
   - type: timeline
-    title: Kapunka a través de los años
+    title: Kapunka through the years
     entries:
       - year: '2014'
-        title: Orígenes en el Valle del Souss
+        title: Origins in the Souss Valley
         description: >-
-          Kapunka nace cuando nuestras fundadoras regresan a las cooperativas de argán
-          en Tazghlilt.
+          Kapunka emerges from our founders' return to the argan cooperatives of
+          Tazghlilt.
 
-          Comenzamos a embotellar los primeros lotes prensados en frío trabajando
-          directamente con las artesanas que nos transmiten sus rituales de extracción.
+          We begin bottling the first cold-pressed batches by working directly with
+          women artisans who teach us their extraction rituals.
         image: ''
       - year: '2017'
-        title: Alianzas que amplían el impacto
+        title: Partnerships that scale impact
         description: >-
-          El Método Kapunka gana la confianza de equipos de dermatología en Lisboa,
-          Barcelona y Casablanca.
+          Method Kapunka earns the trust of dermatology teams across Lisbon,
+          Barcelona, and Casablanca.
 
-          Las cooperativas amplían su membresía y formalizamos acuerdos de compra que
-          garantizan precios justos y previsibles.
+          Cooperatives expand membership, and we formalize long-term purchasing
+          agreements that guarantee equitable pricing.
         image: ''
       - year: '2021'
-        title: La versión 2.0 se lanza globalmente
+        title: Version 2.0 launches globally
         description: >-
-          Presentamos la segunda generación de fórmulas Kapunka, combinando validación
-          clínica con abastecimiento regenerativo.
+          We introduce the second generation of Kapunka formulas, pairing
+          clinical validation with regenerative sourcing.
 
-          Nuestro ritual híbrido de cuidado en casa y recuperación en clínica llega ahora
-          a pacientes en tres continentes.
+          Our hybrid ritual of home care and in-clinic recovery now reaches
+          patients in three continents.
         image: ''
 ---
+
+# TODO: Translate to Spanish

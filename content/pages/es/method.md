@@ -1,84 +1,81 @@
 ---
 type: MethodPage
-metaTitle: Método Kapunka
+metaTitle: Method Kapunka
 metaDescription: >-
-  Protocolos limpios de argán que equilibran el trabajo cooperativo con la
-  recuperación avalada por la dermatología.
-heroTitle: Método Kapunka
+  Clean argan protocols that balance rural stewardship with dermatology-backed
+  recovery.
+heroTitle: Method Kapunka
 heroSubtitle: >-
-  Cuidado sensible arraigado en la tradición bereber y validado por la ciencia
-  dérmica moderna.
+  Sensitive care rooted in Berber tradition and validated with modern dermal
+  science.
 clinicalNotes:
-  - title: Compromisos con el bosque y el abastecimiento
+  - title: Forest & sourcing commitments
     bullets:
-      - Reserva de la biosfera de la UNESCO con 828 mil hectáreas
-      - Las cooperativas de comercio justo coordinan la cosecha y los ingresos
-  - title: Protocolo de clarificación
+      - UNESCO biosphere reserve spanning 828k hectares
+      - Fair-trade cooperatives oversee harvesting and revenue
+  - title: Clarification protocol
     bullets:
-      - Sin disolventes
-      - Decantación física con doble filtrado
-      - Sin refinado químico
+      - No solvents
+      - Physical decanting then double filtration
+      - No chemical refining
 sections:
   - type: facts
-    title: Bosque de argán y abastecimiento
+    title: Argan forest & sourcing
     text: >-
-      El bosque de argán se extiende por 828 mil hectáreas y es una reserva de
-      la biosfera de la UNESCO. Abastecemos a través de cooperativas y trabajo
-      rural justo.
+      The Argan forest spans 828k hectares and is a UNESCO biosphere reserve. We
+      source through cooperatives and fair rural labor.
   - type: bullets
-    title: Clarificación
+    title: Clarification
     items:
-      - Sin disolventes
-      - Decantación física con doble filtrado
-      - Sin refinado químico
+      - No solvents
+      - Physical decanting then double filtration
+      - No chemical refining
   - type: specialties
-    title: Especialidades clínicas que acompañamos
+    title: Clinical specialties we support
     items:
-      - title: Pediatría
+      - title: Pediatrics
         bullets:
-          - Hidratación desde los 3 meses
-          - Dermatitis del pañal
-          - Dermatitis atópica
-      - title: Dermatología
+          - Hydration from 3 months
+          - Diaper dermatitis
+          - Atopic dermatitis
+      - title: Dermatology
         bullets:
-          - Piel seca y descamada
+          - 'Dry, scaly skin'
           - Psoriasis/dermatitis
-          - Marcas postacné o cirugía
-      - title: Postoperatorio
+          - Post-acne or surgery marks
+      - title: Post-op
         bullets:
-          - >-
-            Favorece una recuperación epitelial más rápida con cicatrices
-            ligeras
-      - title: Fisioterapia
+          - Supports faster epithelial recovery with lighter scarring
+      - title: Physio
         bullets:
-          - Masaje rehabilitador
-          - Recuperación cutánea tras vendajes
-      - title: Estética
+          - Rehabilitative massage
+          - Skin recovery after dressings
+      - title: Aesthetics
         bullets:
-          - Cuidado posterior a tratamientos (depilación/peelings/RF)
-          - Post-solar
+          - Post-treatment care (waxing/peels/RF)
+          - After Sun
     specialties:
-      - title: Pediatría
+      - title: Pediatrics
         bullets:
-          - Hidratación desde los 3 meses
-          - Dermatitis del pañal
-          - Dermatitis atópica
-      - title: Dermatología
+          - Hydration from 3 months
+          - Diaper dermatitis
+          - Atopic dermatitis
+      - title: Dermatology
         bullets:
-          - Piel seca y descamada
+          - 'Dry, scaly skin'
           - Psoriasis/dermatitis
-          - Marcas postacné o cirugía
-      - title: Postoperatorio
+          - Post-acne or surgery marks
+      - title: Post-op
         bullets:
-          - >-
-            Favorece una recuperación epitelial más rápida con cicatrices
-            ligeras
-      - title: Fisioterapia
+          - Supports faster epithelial recovery with lighter scarring
+      - title: Physio
         bullets:
-          - Masaje rehabilitador
-          - Recuperación cutánea tras vendajes
-      - title: Estética
+          - Rehabilitative massage
+          - Skin recovery after dressings
+      - title: Aesthetics
         bullets:
-          - Cuidado posterior a tratamientos (depilación/peelings/RF)
-          - Post-solar
+          - Post-treatment care (waxing/peels/RF)
+          - After Sun
 ---
+
+# TODO: Translate to Spanish
