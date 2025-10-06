@@ -1,17 +1,17 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useMemo, useState } from 'react';
 import { motion } from 'framer-motion';
 import { useLanguage } from '../contexts/LanguageContext';
 import { useSiteSettings } from '../contexts/SiteSettingsContext';
 import { getCloudinaryUrl } from '../utils/imageUrl';
 import SectionRenderer from '../components/SectionRenderer';
-import type { PageContent, PageSection, TimelineEntry, TimelineSectionContent } from '../types';
-import { fetchVisualEditorJson } from '../utils/fetchVisualEditorJson';
-import { fetchVisualEditorMarkdown } from '../utils/fetchVisualEditorMarkdown';
+import type { Language, PageContent, PageSection, TimelineEntry, TimelineSectionContent } from '../types';
+import { fetchVisualEditorMarkdown, type VisualEditorContentSource } from '../utils/fetchVisualEditorMarkdown';
 import { getVisualEditorAttributes } from '../utils/stackbitBindings';
 import { useVisualEditorSync } from '../contexts/VisualEditorSyncContext';
 import Seo from '../src/components/Seo';
 import { loadPage } from '../src/lib/content';
 import { filterVisible } from '../utils/contentVisibility';
+import { loadUnifiedPage } from '../utils/unifiedPageLoader';
 
 const isTimelineEntry = (value: unknown): value is TimelineEntry => {
   if (!value || typeof value !== 'object') {
@@ -146,13 +146,36 @@ interface AboutStoryBlock {
   imageAlt?: string | null;
 }
 
-interface AboutPageContent {
+interface AboutPageData extends Record<string, unknown> {
   metaTitle?: string;
   metaDescription?: string;
+  headerTitle?: string;
+  headerSubtitle?: string;
   heroTitle?: string;
   heroSubtitle?: string;
+  title?: string;
+  storyTitle?: string;
+  storyText1?: string;
+  storyText2?: string;
+  sourcingTitle?: string;
+  sourcingText1?: string;
+  sourcingText2?: string;
+  sourcingImageAlt?: string;
   story?: AboutStoryBlock[];
   sections?: PageSection[];
+  visible?: boolean;
+}
+
+interface AboutPageContentResult {
+  data: AboutPageData;
+  locale: Language;
+  source: VisualEditorContentSource;
+}
+
+interface StoryPageContentResult {
+  data: PageContent;
+  locale: Language;
+  source: VisualEditorContentSource;
 }
 
 const isAboutStoryBlock = (value: unknown): value is AboutStoryBlock => {
@@ -170,7 +193,24 @@ const isAboutStoryBlock = (value: unknown): value is AboutStoryBlock => {
   );
 };
 
-const isAboutPageContent = (value: unknown): value is AboutPageContent => {
+const STRING_FIELDS: Array<keyof AboutPageData> = [
+  'metaTitle',
+  'metaDescription',
+  'headerTitle',
+  'headerSubtitle',
+  'heroTitle',
+  'heroSubtitle',
+  'title',
+  'storyTitle',
+  'storyText1',
+  'storyText2',
+  'sourcingTitle',
+  'sourcingText1',
+  'sourcingText2',
+  'sourcingImageAlt',
+];
+
+const isAboutPageContent = (value: unknown): value is AboutPageData => {
   if (!value || typeof value !== 'object') {
     return false;
   }
@@ -189,184 +229,249 @@ const isAboutPageContent = (value: unknown): value is AboutPageContent => {
     }
   }
 
-  return (
-    (content.metaTitle === undefined || typeof content.metaTitle === 'string')
-    && (content.metaDescription === undefined || typeof content.metaDescription === 'string')
-    && (content.heroTitle === undefined || typeof content.heroTitle === 'string')
-    && (content.heroSubtitle === undefined || typeof content.heroSubtitle === 'string')
-  );
+  for (const field of STRING_FIELDS) {
+    const candidate = content[field as string];
+    if (candidate !== undefined && candidate !== null && typeof candidate !== 'string') {
+      return false;
+    }
+  }
+
+  if (content.visible !== undefined && typeof content.visible !== 'boolean') {
+    return false;
+  }
+
+  return true;
 };
 
 const About: React.FC = () => {
-    const { t, language, translate } = useLanguage();
-    const { settings } = useSiteSettings();
-    const translationsAboutFieldPath = `translations.${language}.about`;
-    const aboutFieldPath = `pages.about_${language}`;
-    const defaultStoryImage = 'https://images.unsplash.com/photo-1598555769781-8714b14a293f?q=80&w=1974&auto=format&fit=crop';
-    const defaultSourcingImage = 'https://images.unsplash.com/photo-1616893904984-7a57a3b35338?q=80&w=1964&auto=format&fit=crop';
-    const storyImageSourceRaw = settings.about?.storyImage || defaultStoryImage;
-    const sourcingImageSourceRaw = settings.about?.sourcingImage || defaultSourcingImage;
-    const storyImageSource = storyImageSourceRaw ? storyImageSourceRaw.trim() : '';
-    const sourcingImageSource = sourcingImageSourceRaw ? sourcingImageSourceRaw.trim() : '';
-    const storyImage = storyImageSource ? getCloudinaryUrl(storyImageSource) ?? storyImageSource : '';
-    const sourcingImage = sourcingImageSource ? getCloudinaryUrl(sourcingImageSource) ?? sourcingImageSource : '';
-    const storyAlt = translate(settings.about?.storyAlt ?? 'Brand story');
-    const sourcingAlt = translate(settings.about?.sourcingAlt ?? t('about.sourcingImageAlt'));
-    const [aboutContent, setAboutContent] = useState<AboutPageContent | null>(null);
-    const [storyContent, setStoryContent] = useState<PageContent | null>(null);
-    const { contentVersion } = useVisualEditorSync();
+  const { t, language, translate } = useLanguage();
+  const { settings } = useSiteSettings();
+  const translationsAboutFieldPath = `translations.${language}.about`;
+  const defaultStoryImage = 'https://images.unsplash.com/photo-1598555769781-8714b14a293f?q=80&w=1974&auto=format&fit=crop';
+  const defaultSourcingImage = 'https://images.unsplash.com/photo-1616893904984-7a57a3b35338?q=80&w=1964&auto=format&fit=crop';
+  const storyImageSourceRaw = settings.about?.storyImage || defaultStoryImage;
+  const sourcingImageSourceRaw = settings.about?.sourcingImage || defaultSourcingImage;
+  const storyImageSource = storyImageSourceRaw ? storyImageSourceRaw.trim() : '';
+  const sourcingImageSource = sourcingImageSourceRaw ? sourcingImageSourceRaw.trim() : '';
+  const storyImage = storyImageSource ? getCloudinaryUrl(storyImageSource) ?? storyImageSource : '';
+  const sourcingImage = sourcingImageSource ? getCloudinaryUrl(sourcingImageSource) ?? sourcingImageSource : '';
+  const [aboutContent, setAboutContent] = useState<AboutPageContentResult | null>(null);
+  const [aboutContentLoaded, setAboutContentLoaded] = useState(false);
+  const [storyContent, setStoryContent] = useState<StoryPageContentResult | null>(null);
+  const { contentVersion } = useVisualEditorSync();
 
-    useEffect(() => {
-        let isMounted = true;
-        setAboutContent(null);
+  useEffect(() => {
+    let isMounted = true;
+    setAboutContent(null);
+    setAboutContentLoaded(false);
 
-        const loadAboutContent = async () => {
-            let result;
+    const loadAboutContent = async () => {
+      try {
+        const unified = await loadUnifiedPage<AboutPageData>('about', language);
+        if (unified) {
+          if (!isAboutPageContent(unified.data)) {
+            console.error('Invalid about page content structure from unified loader');
+          } else if (isMounted) {
+            setAboutContent(unified);
+            return;
+          }
+        }
 
-            try {
-                result = await loadPage({
-                    slug: 'about',
-                    locale: language,
-                    loader: async ({ locale: currentLocale }) => fetchVisualEditorMarkdown<unknown>(
-                        `/content/pages/${currentLocale}/about.md`,
-                        { cache: 'no-store' },
-                    ),
-                });
-            } catch (error) {
-                console.error('Failed to load about page content', error);
-                if (isMounted) {
-                    setAboutContent(null);
-                }
-                return;
-            }
+        let result;
 
-            if (!isMounted) {
-                return;
-            }
+        try {
+          result = await loadPage({
+            slug: 'about',
+            locale: language,
+            loader: async ({ locale: currentLocale }) => fetchVisualEditorMarkdown<AboutPageData>(
+              `/content/pages/${currentLocale}/about.md`,
+              { cache: 'no-store' },
+            ),
+          });
+        } catch (error) {
+          console.error('Failed to load about page content', error);
+          if (isMounted) {
+            setAboutContent(null);
+          }
+          return;
+        }
 
-            let payload = result.data;
+        if (!isMounted) {
+          return;
+        }
 
-            if (!isAboutPageContent(payload) && result.localeUsed !== 'en') {
-                try {
-                    result = await loadPage({
-                        slug: 'about',
-                        locale: 'en',
-                        loader: async ({ locale: fallbackLocale }) => fetchVisualEditorMarkdown<unknown>(
-                            `/content/pages/${fallbackLocale}/about.md`,
-                            { cache: 'no-store' },
-                        ),
-                    });
+        let payload: unknown = result.data;
 
-                    if (!isMounted) {
-                        return;
-                    }
-
-                    payload = result.data;
-                } catch (fallbackError) {
-                    console.error('Failed to load fallback about page content', fallbackError);
-                    if (isMounted) {
-                        setAboutContent(null);
-                    }
-                    return;
-                }
-            }
-
-            if (!isAboutPageContent(payload)) {
-                console.error('Invalid about page content structure');
-                if (isMounted) {
-                    setAboutContent(null);
-                }
-                return;
-            }
-
-            setAboutContent(payload);
-        };
-
-        loadAboutContent().catch((error) => {
-            console.error('Unhandled error while loading about page content', error);
-        });
-
-        return () => {
-            isMounted = false;
-        };
-    }, [language, contentVersion]);
-
-    useEffect(() => {
-        let isMounted = true;
-        setStoryContent(null);
-
-        const loadStorySections = async () => {
-            let result;
-
-            try {
-                result = await loadPage({
-                    slug: 'story',
-                    locale: language,
-                    loader: async ({ locale: currentLocale }) => fetchVisualEditorMarkdown<unknown>(
-                        `/content/pages/${currentLocale}/story.md`,
-                        { cache: 'no-store' },
-                    ),
-                });
-            } catch (error) {
-                console.error('Failed to load story timeline content', error);
-                if (isMounted) {
-                    setStoryContent(null);
-                }
-                return;
-            }
+        if (!isAboutPageContent(payload) && result.localeUsed !== 'en') {
+          try {
+            result = await loadPage({
+              slug: 'about',
+              locale: 'en',
+              loader: async ({ locale: fallbackLocale }) => fetchVisualEditorMarkdown<AboutPageData>(
+                `/content/pages/${fallbackLocale}/about.md`,
+                { cache: 'no-store' },
+              ),
+            });
 
             if (!isMounted) {
-                return;
+              return;
             }
 
-            let payload = result.data;
-
-            if (!isPageContent(payload) && result.localeUsed !== 'en') {
-                try {
-                    result = await loadPage({
-                        slug: 'story',
-                        locale: 'en',
-                        loader: async ({ locale: fallbackLocale }) => fetchVisualEditorMarkdown<unknown>(
-                            `/content/pages/${fallbackLocale}/story.md`,
-                            { cache: 'no-store' },
-                        ),
-                    });
-
-                    if (!isMounted) {
-                        return;
-                    }
-
-                    payload = result.data;
-                } catch (fallbackError) {
-                    console.error('Failed to load fallback story timeline content', fallbackError);
-                    if (isMounted) {
-                        setStoryContent(null);
-                    }
-                    return;
-                }
+            payload = result.data;
+          } catch (fallbackError) {
+            console.error('Failed to load fallback about page content', fallbackError);
+            if (isMounted) {
+              setAboutContent(null);
             }
+            return;
+          }
+        }
 
-            if (!isPageContent(payload)) {
-                console.error('Invalid story timeline content structure');
-                if (isMounted) {
-                    setStoryContent(null);
-                }
-                return;
-            }
+        if (!isAboutPageContent(payload)) {
+          console.error('Invalid about page content structure');
+          if (isMounted) {
+            setAboutContent(null);
+          }
+          return;
+        }
 
-            setStoryContent(payload);
-        };
+        if (isMounted) {
+          setAboutContent({
+            data: payload,
+            locale: result.localeUsed,
+            source: result.source,
+          });
+        }
+      } catch (error) {
+        console.error('Unhandled error while loading about page content', error);
+        if (isMounted) {
+          setAboutContent(null);
+        }
+      } finally {
+        if (isMounted) {
+          setAboutContentLoaded(true);
+        }
+      }
+    };
 
-        loadStorySections().catch((error) => {
-            console.error('Unhandled error while loading about story sections', error);
+    loadAboutContent();
+
+    return () => {
+      isMounted = false;
+    };
+  }, [language, contentVersion]);
+
+  useEffect(() => {
+    if (!aboutContentLoaded) {
+      return;
+    }
+
+    if (aboutContent?.data.sections && aboutContent.data.sections.length > 0) {
+      setStoryContent(null);
+      return;
+    }
+
+    let isMounted = true;
+    setStoryContent(null);
+
+    const loadStorySections = async () => {
+      let result;
+
+      try {
+        result = await loadPage({
+          slug: 'story',
+          locale: language,
+          loader: async ({ locale: currentLocale }) => fetchVisualEditorMarkdown<unknown>(
+            `/content/pages/${currentLocale}/story.md`,
+            { cache: 'no-store' },
+          ),
         });
+      } catch (error) {
+        console.error('Failed to load story timeline content', error);
+        if (isMounted) {
+          setStoryContent(null);
+        }
+        return;
+      }
 
-        return () => {
-            isMounted = false;
-        };
-    }, [language, contentVersion]);
+      if (!isMounted) {
+        return;
+      }
 
-    const aboutStoryBlocks = aboutContent?.story?.filter((block) => {
+      let payload: unknown = result.data;
+
+      if (!isPageContent(payload) && result.localeUsed !== 'en') {
+        try {
+          result = await loadPage({
+            slug: 'story',
+            locale: 'en',
+            loader: async ({ locale: fallbackLocale }) => fetchVisualEditorMarkdown<unknown>(
+              `/content/pages/${fallbackLocale}/story.md`,
+              { cache: 'no-store' },
+            ),
+          });
+
+          if (!isMounted) {
+            return;
+          }
+
+          payload = result.data;
+        } catch (fallbackError) {
+          console.error('Failed to load fallback story timeline content', fallbackError);
+          if (isMounted) {
+            setStoryContent(null);
+          }
+          return;
+        }
+      }
+
+      if (!isPageContent(payload)) {
+        console.error('Invalid story timeline content structure');
+        if (isMounted) {
+          setStoryContent(null);
+        }
+        return;
+      }
+
+      if (isMounted) {
+        setStoryContent({
+          data: payload,
+          locale: result.localeUsed,
+          source: result.source,
+        });
+      }
+    };
+
+    loadStorySections().catch((error) => {
+      console.error('Unhandled error while loading about story sections', error);
+    });
+
+    return () => {
+      isMounted = false;
+    };
+  }, [aboutContent, aboutContentLoaded, language, contentVersion]);
+
+  const aboutFieldPath = useMemo(() => {
+    if (!aboutContent) {
+      return `pages.about_${language}`;
+    }
+
+    return aboutContent.source === 'visual-editor'
+      ? `site.content.${aboutContent.locale}.pages.about`
+      : `pages.about_${aboutContent.locale}`;
+  }, [aboutContent, language]);
+
+  const storyFieldPath = useMemo(() => {
+    if (!storyContent) {
+      return `pages.story_${language}`;
+    }
+
+    return storyContent.source === 'visual-editor'
+      ? `site.content.${storyContent.locale}.pages.story`
+      : `pages.story_${storyContent.locale}`;
+  }, [storyContent, language]);
+
+  const aboutStoryBlocks = aboutContent?.data.story?.filter((block) => {
         if (!block) {
             return false;
         }
@@ -376,37 +481,112 @@ const About: React.FC = () => {
         return hasText || hasImage;
     }) ?? [];
 
-    const sectionsFromAbout = aboutContent?.visible === false
+    const sectionsFromAbout = aboutContent?.data.visible === false
         ? []
-        : filterVisible(aboutContent?.sections ?? []);
-    const fallbackSections = storyContent?.visible === false
+        : filterVisible(aboutContent?.data.sections ?? []);
+    const fallbackSections = storyContent?.data.visible === false
         ? []
-        : filterVisible(storyContent?.sections ?? []);
+        : filterVisible(storyContent?.data.sections ?? []);
     const sectionsToRender = sectionsFromAbout.length > 0 ? sectionsFromAbout : fallbackSections;
     const sectionsFieldPath = sectionsFromAbout.length > 0
         ? `${aboutFieldPath}.sections`
-        : `pages.story_${language}.sections`;
+        : `${storyFieldPath}.sections`;
 
-    const sanitize = (value?: string | null): string | undefined => {
-        if (typeof value !== 'string') {
-            return undefined;
+  const sanitize = (value?: string | null): string | undefined => {
+    if (typeof value !== 'string') {
+      return undefined;
+    }
+    const trimmed = value.trim();
+    return trimmed.length > 0 ? trimmed : undefined;
+  };
+
+  const resolveAboutField = (
+    keys: (keyof AboutPageData)[],
+    fallbackValue: string | undefined,
+    fallbackFieldPath?: string,
+  ): { value: string; fieldPath?: string } => {
+    for (const key of keys) {
+      const raw = aboutContent?.data?.[key];
+      if (typeof raw === 'string') {
+        const candidate = sanitize(raw);
+        if (candidate) {
+          return {
+            value: candidate,
+            fieldPath: `${aboutFieldPath}.${key}`,
+          };
         }
-        const trimmed = value.trim();
-        return trimmed.length > 0 ? trimmed : undefined;
-    };
+      }
+    }
 
-    const metaTitleBase = sanitize(aboutContent?.metaTitle)
-        ?? sanitize(storyContent?.metaTitle)
-        ?? t('about.metaTitle');
-    const computedDescription = sanitize(aboutContent?.metaDescription)
-        ?? sanitize(storyContent?.metaDescription)
-        ?? t('about.metaDescription');
-    const computedTitle = metaTitleBase.includes('Kapunka') ? metaTitleBase : `${metaTitleBase} | Kapunka Skincare`;
-    const fallbackSocialImage = settings.home?.heroImage?.trim() ?? '';
-    const socialImageCandidate = storyImage || sourcingImage || fallbackSocialImage;
-    const socialImage = socialImageCandidate
-        ? getCloudinaryUrl(socialImageCandidate) ?? socialImageCandidate
-        : undefined;
+    const fallback = sanitize(fallbackValue) ?? '';
+    return {
+      value: fallback,
+      fieldPath: fallbackFieldPath,
+    };
+  };
+
+  const heroTitleData = resolveAboutField(
+    ['headerTitle', 'heroTitle', 'title'],
+    t('about.headerTitle'),
+    `${translationsAboutFieldPath}.headerTitle`,
+  );
+  const heroSubtitleData = resolveAboutField(
+    ['headerSubtitle', 'heroSubtitle'],
+    t('about.headerSubtitle'),
+    `${translationsAboutFieldPath}.headerSubtitle`,
+  );
+  const storyTitleData = resolveAboutField(
+    ['storyTitle'],
+    t('about.storyTitle'),
+    `${translationsAboutFieldPath}.storyTitle`,
+  );
+  const storyText1Data = resolveAboutField(
+    ['storyText1'],
+    t('about.storyText1'),
+    `${translationsAboutFieldPath}.storyText1`,
+  );
+  const storyText2Data = resolveAboutField(
+    ['storyText2'],
+    t('about.storyText2'),
+    `${translationsAboutFieldPath}.storyText2`,
+  );
+  const sourcingTitleData = resolveAboutField(
+    ['sourcingTitle'],
+    t('about.sourcingTitle'),
+    `${translationsAboutFieldPath}.sourcingTitle`,
+  );
+  const sourcingText1Data = resolveAboutField(
+    ['sourcingText1'],
+    t('about.sourcingText1'),
+    `${translationsAboutFieldPath}.sourcingText1`,
+  );
+  const sourcingText2Data = resolveAboutField(
+    ['sourcingText2'],
+    t('about.sourcingText2'),
+    `${translationsAboutFieldPath}.sourcingText2`,
+  );
+
+  const sourcingAltFromContent = typeof aboutContent?.data?.sourcingImageAlt === 'string'
+    ? sanitize(aboutContent.data.sourcingImageAlt)
+    : undefined;
+  const sourcingAlt = sourcingAltFromContent
+    ?? translate(settings.about?.sourcingAlt ?? t('about.sourcingImageAlt'));
+  const storyAlt = translate(settings.about?.storyAlt ?? 'Brand story');
+
+  const metaTitleBase = sanitize(aboutContent?.data.metaTitle)
+    ?? sanitize(storyContent?.data.metaTitle)
+    ?? sanitize(heroTitleData.value)
+    ?? t('about.metaTitle');
+  const computedDescription = sanitize(aboutContent?.data.metaDescription)
+    ?? sanitize(storyContent?.data.metaDescription)
+    ?? sanitize(heroSubtitleData.value)
+    ?? t('about.metaDescription');
+  const computedTitle = metaTitleBase.includes('Kapunka') ? metaTitleBase : `${metaTitleBase} | Kapunka Skincare`;
+  const fallbackSocialImage = settings.home?.heroImage?.trim() ?? '';
+  const socialImageCandidate = storyImage || sourcingImage || fallbackSocialImage;
+  const socialImage = socialImageCandidate
+    ? getCloudinaryUrl(socialImageCandidate) ?? socialImageCandidate
+    : undefined;
 
   return (
     <div>
@@ -418,24 +598,28 @@ const About: React.FC = () => {
         />
       <header className="py-20 sm:py-32 bg-stone-100 text-center">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-          <motion.h1
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-            className="text-4xl sm:text-5xl font-semibold tracking-tight"
-            {...getVisualEditorAttributes(`${translationsAboutFieldPath}.headerTitle`)}
-          >
-            {t('about.headerTitle')}
-          </motion.h1>
-          <motion.p
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.1 }}
-            className="mt-4 text-lg text-stone-600 max-w-3xl mx-auto"
-            {...getVisualEditorAttributes(`${translationsAboutFieldPath}.headerSubtitle`)}
-          >
-            {t('about.headerSubtitle')}
-          </motion.p>
+          {heroTitleData.value ? (
+            <motion.h1
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6 }}
+              className="text-4xl sm:text-5xl font-semibold tracking-tight"
+              {...getVisualEditorAttributes(heroTitleData.fieldPath)}
+            >
+              {heroTitleData.value}
+            </motion.h1>
+          ) : null}
+          {heroSubtitleData.value ? (
+            <motion.p
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.1 }}
+              className="mt-4 text-lg text-stone-600 max-w-3xl mx-auto"
+              {...getVisualEditorAttributes(heroSubtitleData.fieldPath)}
+            >
+              {heroSubtitleData.value}
+            </motion.p>
+          ) : null}
         </div>
       </header>
 
@@ -499,7 +683,7 @@ const About: React.FC = () => {
                         >
                     <img
                         src={imageUrl}
-                        alt={block.imageAlt ?? block.heading ?? t('about.headerTitle')}
+                        alt={block.imageAlt ?? block.heading ?? (heroTitleData.value || t('about.headerTitle'))}
                                 className="rounded-lg shadow-lg"
                             />
                         </motion.div>
@@ -536,19 +720,25 @@ const About: React.FC = () => {
                     viewport={{ once: true }}
                     transition={{ duration: 0.6 }}
                 >
-                  <h2
-                    className="text-3xl font-semibold mb-6"
-                    {...getVisualEditorAttributes(`${translationsAboutFieldPath}.storyTitle`)}
-                  >
-                    {t('about.storyTitle')}
-                  </h2>
+                  {storyTitleData.value ? (
+                    <h2
+                      className="text-3xl font-semibold mb-6"
+                      {...getVisualEditorAttributes(storyTitleData.fieldPath)}
+                    >
+                      {storyTitleData.value}
+                    </h2>
+                  ) : null}
                   <div className="text-stone-600 leading-relaxed space-y-4">
-                    <p {...getVisualEditorAttributes(`${translationsAboutFieldPath}.storyText1`)}>
-                      {t('about.storyText1')}
-                    </p>
-                    <p {...getVisualEditorAttributes(`${translationsAboutFieldPath}.storyText2`)}>
-                      {t('about.storyText2')}
-                    </p>
+                    {storyText1Data.value ? (
+                      <p {...getVisualEditorAttributes(storyText1Data.fieldPath)}>
+                        {storyText1Data.value}
+                      </p>
+                    ) : null}
+                    {storyText2Data.value ? (
+                      <p {...getVisualEditorAttributes(storyText2Data.fieldPath)}>
+                        {storyText2Data.value}
+                      </p>
+                    ) : null}
                   </div>
                 </motion.div>
                 <motion.div
@@ -580,19 +770,25 @@ const About: React.FC = () => {
                     transition={{ duration: 0.6 }}
                     className="md:order-2"
                 >
-                  <h2
-                    className="text-3xl font-semibold mb-6"
-                    {...getVisualEditorAttributes(`${translationsAboutFieldPath}.sourcingTitle`)}
-                  >
-                    {t('about.sourcingTitle')}
-                  </h2>
+                  {sourcingTitleData.value ? (
+                    <h2
+                      className="text-3xl font-semibold mb-6"
+                      {...getVisualEditorAttributes(sourcingTitleData.fieldPath)}
+                    >
+                      {sourcingTitleData.value}
+                    </h2>
+                  ) : null}
                   <div className="text-stone-600 leading-relaxed space-y-4">
-                    <p {...getVisualEditorAttributes(`${translationsAboutFieldPath}.sourcingText1`)}>
-                      {t('about.sourcingText1')}
-                    </p>
-                    <p {...getVisualEditorAttributes(`${translationsAboutFieldPath}.sourcingText2`)}>
-                      {t('about.sourcingText2')}
-                    </p>
+                    {sourcingText1Data.value ? (
+                      <p {...getVisualEditorAttributes(sourcingText1Data.fieldPath)}>
+                        {sourcingText1Data.value}
+                      </p>
+                    ) : null}
+                    {sourcingText2Data.value ? (
+                      <p {...getVisualEditorAttributes(sourcingText2Data.fieldPath)}>
+                        {sourcingText2Data.value}
+                      </p>
+                    ) : null}
                   </div>
                 </motion.div>
                 <motion.div
