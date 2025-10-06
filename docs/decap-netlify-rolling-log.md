@@ -160,3 +160,8 @@ This log records day-to-day investigations, fixes, and decisions that affect the
 - **What changed**: Introduced a new `pages/for-clinics.tsx` layout that pulls meta, hero, and section copy from translations with Markdown overrides. Added `heroTitle`/`heroSubtitle` fields to the clinics Markdown entries plus matching translation keys, and exposed the hero controls in `admin/config.yml` so editors can manage the new page.
 - **Impact & follow-up**: The For Clinics experience now loads faster with a streamlined hero and curated sections while remaining fully editable in the Visual Editor and Decap. Verify Stackbit bindings continue to resolve correctly when switching locales in the Visual Editor.
 - **References**: Pending PR
+
+## 2025-10-07 — Added localized page loader fallback to English
+- **What changed**: Updated `src/lib/content.ts` so localized Markdown/JSON requests retry with the English slug when the locale-specific file is missing or empty, preventing hard failures in the Visual Editor.
+- **Impact & follow-up**: Ensures editors always see the English baseline when localized files have not been authored yet. Monitor future localized page additions to confirm they return localized content once present.
+- **References**: Pending PR

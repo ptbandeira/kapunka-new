@@ -23,20 +23,25 @@ export const loadPage = async <TResult extends Record<string, unknown>>({
   locale,
   loader,
 }: LoadPageParams<TResult>): Promise<LoadPageResult<TResult>> => {
-  const tryLocales = [locale, 'en'].filter(
-    (candidate, index, array): candidate is Language => (
-      isLanguage(candidate) && array.indexOf(candidate) === index
-    ),
-  );
+  const localesToTry: Language[] = [];
 
-  let lastError: unknown;
+  if (isLanguage(locale) && locale !== 'en') {
+    localesToTry.push(locale);
+  }
 
-  for (const currentLocale of tryLocales) {
+  localesToTry.push('en');
+
+  const errors: unknown[] = [];
+
+  for (const currentLocale of localesToTry) {
     try {
       const result = await loader({ slug, locale: currentLocale });
+      if (result == null) {
+        throw new Error(`Page content missing for ${slug} (${currentLocale})`);
+      }
       return { ...result, localeUsed: currentLocale };
     } catch (error) {
-      lastError = error;
+      errors.push(error);
       if (import.meta.env.DEV) {
         // eslint-disable-next-line no-console
         console.warn(`[content] Failed to load slug "${slug}" for locale "${currentLocale}"`, error);
@@ -44,9 +49,11 @@ export const loadPage = async <TResult extends Record<string, unknown>>({
     }
   }
 
-  if (lastError instanceof Error) {
-    throw lastError;
+  for (const error of errors) {
+    if (error instanceof Error) {
+      throw error;
+    }
   }
 
-  throw new Error(`Page not found: ${slug}`);
+  throw new Error(`Page ${slug} not found`);
 };
