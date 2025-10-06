@@ -1584,10 +1584,6 @@ collections:
                     name: "answer"
                     hint: "Concise answer that supports clinics (≤400 characters)."
           - <<: *localized_string_field
-            label: "Doctors Title"
-            name: "doctorsTitle"
-            hint: "Heading for the clinicians carousel (≤60 characters)."
-          - <<: *localized_string_field
             label: "CTA Title"
             name: "ctaTitle"
             hint: "Headline encouraging clinics to engage (≤60 characters)."
@@ -1599,10 +1595,6 @@ collections:
             label: "CTA Button Label"
             name: "ctaButton"
             hint: "Call-to-action button text (≤24 characters)."
-          - <<: *localized_string_field
-            label: "Partners Title"
-            name: "partnersTitle"
-            hint: "Heading displayed above clinic partners (≤60 characters)."
           - *sections_field
       - <<: *clinics_page
         name: clinics_pt
@@ -2485,11 +2477,9 @@ collections:
                     fields:
                       - { label: Question, name: question, widget: string }
                       - { label: Answer, name: answer, widget: text }
-              - { label: Doctors Title, name: doctorsTitle, widget: string }
               - { label: CTA Title, name: ctaTitle, widget: string }
               - { label: CTA Subtitle, name: ctaSubtitle, widget: text }
               - { label: CTA Button, name: ctaButton, widget: string }
-              - { label: Partners Title, name: partnersTitle, widget: string }
           - <<: *clinics_fields
             label: Portuguese
             name: pt
@@ -2896,47 +2886,6 @@ collections:
               - { label: Course Title, name: courseTitle, widget: string, required: true }
               - { label: Course Summary, name: courseSummary, widget: text, required: true }
               - { label: Link URL, name: linkUrl, widget: string, required: false }
-  - name: doctors
-    label: Doctors
-    group: "9. Legacy / Catalog"
-    editor: { preview: false }
-    hidden: true
-    files:
-      - name: doctors
-        label: Professional Network
-        file: content/doctors.json
-        format: json
-        media_folder: "content/uploads/doctors-json"
-        public_folder: "/content/uploads/doctors-json"
-        fields:
-          - label: Doctors
-            name: doctors
-            widget: list
-            summary: "{{fields.name}}"
-            fields:
-              - { label: ID, name: id, widget: string }
-              - { label: Name, name: name, widget: string }
-              - { label: Image, name: imageUrl, widget: image, choose_url: true }
-  - name: partners
-    label: Partners
-    group: "9. Legacy / Catalog"
-    editor: { preview: false }
-    hidden: true
-    files:
-      - name: partners
-        label: Press & Clinics
-        file: content/partners.json
-        format: json
-        fields:
-          - label: Partners
-            name: partners
-            widget: list
-            summary: "{{fields.name}}"
-            fields:
-              - { label: ID, name: id, widget: string }
-              - { label: Name, name: name, widget: string }
-              - { label: Logo, name: logoUrl, widget: image, choose_url: true }
-              - { label: Description, name: description, widget: text, required: false }
   - name: policies
     label: Policies
     group: "9. Legacy / Catalog"

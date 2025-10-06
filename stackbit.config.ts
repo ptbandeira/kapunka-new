@@ -1570,40 +1570,6 @@ const customModels = [
     ],
   },
   {
-    name: 'Partner',
-    type: 'object',
-    label: 'Partner',
-    fields: [
-      {
-        name: 'id',
-        type: 'string',
-        label: 'ID',
-      },
-      {
-        name: 'name',
-        type: 'string',
-        label: 'Name',
-      },
-      {
-        name: 'logoUrl',
-        type: 'image',
-        label: 'Logo',
-      },
-      {
-        name: 'description',
-        type: 'text',
-        label: 'Description',
-        required: false,
-      },
-      {
-        name: 'url',
-        type: 'string',
-        label: 'URL',
-        required: false,
-      },
-    ],
-  },
-  {
     name: 'TrainingItem',
     type: 'object',
     label: 'Training Item',
@@ -1843,30 +1809,6 @@ const customModels = [
     ],
   },
   {
-    name: 'PartnerCollection',
-    type: 'data',
-    file: 'content/partners.json',
-    label: 'Partner Collection',
-    filePath: 'content/partners.json',
-    fields: [
-      {
-        name: 'partners',
-        type: 'list',
-        label: 'Partners',
-        items: {
-          type: 'model',
-          models: ['Partner'],
-        },
-      },
-      {
-        name: 'type',
-        type: 'string',
-        label: 'Type',
-        required: false,
-      },
-    ],
-  },
-  {
     name: 'TestimonialEntry',
     type: 'data',
     label: 'Testimonial Entry',
@@ -1903,40 +1845,6 @@ const customModels = [
           { label: 'Portuguese', value: 'pt' },
           { label: 'Spanish', value: 'es' },
         ],
-      },
-    ],
-  },
-  {
-    name: 'DoctorCollection',
-    type: 'data',
-    file: 'content/doctors.json',
-    label: 'Doctor Collection',
-    filePath: 'content/doctors.json',
-    fields: [
-      {
-        name: 'doctors',
-        type: 'list',
-        label: 'Doctors',
-        items: {
-          type: 'object',
-          fields: [
-            {
-              name: 'id',
-              type: 'string',
-              label: 'ID',
-            },
-            {
-              name: 'name',
-              type: 'string',
-              label: 'Name',
-            },
-            {
-              name: 'imageUrl',
-              type: 'image',
-              label: 'Image',
-            },
-          ],
-        },
       },
     ],
   },

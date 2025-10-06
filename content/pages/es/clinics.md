@@ -162,13 +162,11 @@ faqSection:
         We offer customizable post-treatment cards and co-branded sleeves after
         your third order. Our design team adapts assets to your brand within
         five business days.
-doctorsTitle: Trusted by Top Professionals
 ctaTitle: Become a Partner
 ctaSubtitle: >-
   Schedule a call to review wholesale pricing, sampling, and clinic launch
   support.
 ctaButton: Contact Us
-partnersTitle: Trusted by clinicians
 intro:
   title: Evidence-Led Support for Every Treatment Room
   text1: >-

@@ -263,14 +263,6 @@
           }
         },
         {
-          "key": "doctorsTitle",
-          "value": {
-            "en": "Trusted by Top Professionals",
-            "pt": "Aprovado pelos melhores profissionais",
-            "es": "Con la confianza de los mejores profesionales"
-          }
-        },
-        {
           "key": "faqSection.items.0.answer",
           "value": {
             "en": "Opening orders start at 24 retail units or 6 professional back-bar units. Mixed product cases qualify for the same wholesale pricing so smaller clinics can curate assortments.",
@@ -444,14 +436,6 @@
             "en": "Optimized B2B Skincare Supply",
             "pt": "Fornecimento B2B de skincare otimizado",
             "es": "Suministro B2B de skincare optimizado"
-          }
-        },
-        {
-          "key": "partnersTitle",
-          "value": {
-            "en": "As Seen In",
-            "pt": "Como visto em",
-            "es": "Como visto en"
           }
         },
         {

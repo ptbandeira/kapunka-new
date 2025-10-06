@@ -110,19 +110,6 @@ export interface Course {
     enrollLink: string;
 }
 
-export interface Doctor {
-    id: string;
-    name: string;
-    imageUrl: string;
-}
-
-export interface Partner {
-    id: string;
-    name: string;
-    logoUrl: string;
-    description?: string;
-}
-
 export interface TestimonialEntry {
     id?: string;
     name?: string;
