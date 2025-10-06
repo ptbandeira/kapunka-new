@@ -1,277 +1,248 @@
-import React, { useState } from 'react';
-import { motion } from 'framer-motion';
-import { Mail, Phone, MessageSquare, MapPin } from 'lucide-react';
+import React, { useEffect, useMemo, useState } from 'react';
+import { Mail, MapPin, Phone } from 'lucide-react';
+import ContactForm from '../components/ContactForm';
 import { useLanguage } from '../contexts/LanguageContext';
 import { useSiteSettings } from '../contexts/SiteSettingsContext';
+import { useVisualEditorSync } from '../contexts/VisualEditorSyncContext';
 import { getVisualEditorAttributes } from '../utils/stackbitBindings';
 import { getCloudinaryUrl } from '../utils/imageUrl';
 import Seo from '../src/components/Seo';
+import {
+  loadContactPageContent,
+  type ContactPageContentResult,
+} from '../utils/loadContactPageContent';
 
-const FORM_NAME = 'kapunka-contact';
+const sanitizePhoneHref = (value: string | undefined): string | undefined => {
+  if (!value) {
+    return undefined;
+  }
 
-const ContactForm: React.FC = () => {
-  const { t, language } = useLanguage();
-  const [status, setStatus] = useState<'idle' | 'submitting' | 'success' | 'error'>('idle');
-  const contactFormFieldPath = `translations.${language}.contact.form`;
+  const digits = value.replace(/[^+\d]/g, '');
+  return digits.length > 0 ? `tel:${digits}` : undefined;
+};
 
-  const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
-    event.preventDefault();
-    setStatus('submitting');
+const splitAddressLines = (value: string | undefined): string[] => {
+  if (!value) {
+    return [];
+  }
 
-    const form = event.currentTarget;
-    const formData = new FormData(form);
-    formData.append('form-name', FORM_NAME);
-
-    try {
-      const response = await fetch('/', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-        body: new URLSearchParams(Array.from(formData.entries()) as [string, string][]).toString(),
-      });
-
-      if (!response.ok) {
-        throw new Error('Network error');
-      }
-
-      form.reset();
-      setStatus('success');
-    } catch (error) {
-      console.error('Failed to submit contact form', error);
-      setStatus('error');
-    }
-  };
-
-  return (
-    <form
-      name={FORM_NAME}
-      method="POST"
-      data-netlify="true"
-      data-netlify-honeypot="bot-field"
-      onSubmit={handleSubmit}
-      className="space-y-6"
-    >
-      <input type="hidden" name="form-name" value={FORM_NAME} />
-      <div hidden aria-hidden="true">
-        <label htmlFor="bot-field" className="block text-sm text-stone-500">
-          Do not fill this field
-        </label>
-        <input id="bot-field" name="bot-field" className="mt-1 w-full rounded-md border border-stone-300 p-2" />
-      </div>
-      <div className="grid grid-cols-1 gap-6 sm:grid-cols-2">
-        <input
-          type="text"
-          name="name"
-          placeholder={t('contact.form.name')}
-          required
-          className="rounded-md border border-stone-300 p-3 focus:border-stone-500 focus:ring-stone-500"
-          {...getVisualEditorAttributes(`${contactFormFieldPath}.name`)}
-        />
-        <input
-          type="email"
-          name="email"
-          placeholder={t('contact.form.email')}
-          required
-          className="rounded-md border border-stone-300 p-3 focus:border-stone-500 focus:ring-stone-500"
-          {...getVisualEditorAttributes(`${contactFormFieldPath}.email`)}
-        />
-      </div>
-      <textarea
-        name="message"
-        placeholder={t('contact.form.message')}
-        rows={5}
-        required
-        className="w-full rounded-md border border-stone-300 p-3 focus:border-stone-500 focus:ring-stone-500"
-        {...getVisualEditorAttributes(`${contactFormFieldPath}.message`)}
-      />
-      <button
-        type="submit"
-        disabled={status === 'submitting'}
-        className="w-full rounded-md bg-stone-900 py-3 font-semibold text-white transition-colors duration-300 hover:bg-stone-700 disabled:bg-stone-400"
-      >
-        {status === 'submitting' ? (
-          <span {...getVisualEditorAttributes(`${contactFormFieldPath}.sending`)}>
-            {t('contact.form.sending')}
-          </span>
-        ) : (
-          <span {...getVisualEditorAttributes(`${contactFormFieldPath}.submit`)}>
-            {t('contact.form.submit')}
-          </span>
-        )}
-      </button>
-      <div className="text-center" aria-live="polite">
-        {status === 'success' ? (
-          <p className="text-green-600" {...getVisualEditorAttributes(`${contactFormFieldPath}.success`)}>
-            {t('contact.form.success')}
-          </p>
-        ) : null}
-        {status === 'error' ? (
-          <p className="text-red-600" {...getVisualEditorAttributes(`${contactFormFieldPath}.error`)}>
-            {t('contact.form.error')}
-          </p>
-        ) : null}
-      </div>
-    </form>
-  );
+  return value
+    .split(/\r?\n/)
+    .map((line) => line.trim())
+    .filter((line) => line.length > 0);
 };
 
 const Contact: React.FC = () => {
-  const { t, language } = useLanguage();
+  const { language, t } = useLanguage();
   const { settings } = useSiteSettings();
-  const contactSettings = settings.contact ?? {
-    email: 'hello@kapunka.com',
-    phone: '+1 (234) 567-890',
-    whatsapp: 'https://wa.me/1234567890',
-  };
-  const emailLink = contactSettings.email ? `mailto:${contactSettings.email}` : '#';
-  const phoneLink = contactSettings.phone ? `tel:${contactSettings.phone.replace(/[^+\d]/g, '')}` : '#';
-  const whatsappLink = contactSettings.whatsapp || '#';
-  const contactFieldPath = `translations.${language}.contact`;
-  const addressLinesRaw = t<unknown>('contact.addressLines');
-  const addressLines = Array.isArray(addressLinesRaw)
-    ? (addressLinesRaw.filter((line) => typeof line === 'string' && line.trim().length > 0) as string[])
-    : [];
-  const rawSocialImage = settings.home?.heroImage?.trim() ?? '';
-  const socialImage = rawSocialImage ? getCloudinaryUrl(rawSocialImage) ?? rawSocialImage : undefined;
+  const { contentVersion } = useVisualEditorSync();
+  const [pageContent, setPageContent] = useState<ContactPageContentResult | null>(null);
 
-  const metaTitle = t('contact.metaTitle');
+  useEffect(() => {
+    let isMounted = true;
+    setPageContent(null);
+
+    loadContactPageContent(language)
+      .then((result) => {
+        if (!isMounted) {
+          return;
+        }
+        setPageContent(result);
+      })
+      .catch((error) => {
+        console.error('Failed to load Contact page content', error);
+        if (isMounted) {
+          setPageContent(null);
+        }
+      });
+
+    return () => {
+      isMounted = false;
+    };
+  }, [language, contentVersion]);
+
+  const contactFieldPath = useMemo(() => {
+    if (!pageContent) {
+      return `pages.contact_${language}`;
+    }
+
+    return pageContent.source === 'visual-editor'
+      ? `site.content.${pageContent.locale}.pages.contact`
+      : `pages.contact_${pageContent.locale}`;
+  }, [language, pageContent]);
+
+  const heroTitle = pageContent?.data.heroTitle?.trim() || t('contact.headerTitle');
+  const heroSubtitle = pageContent?.data.heroSubtitle?.trim() || t('contact.headerSubtitle');
+  const contactEmail = pageContent?.data.contactEmail?.trim() || settings.contact?.email || '';
+  const phone = pageContent?.data.phone?.trim() || settings.contact?.phone || '';
+  const address = pageContent?.data.address?.trim() || '';
+  const mapEmbedUrl = pageContent?.data.mapEmbedUrl?.trim() || '';
+
+  const emailHref = contactEmail ? `mailto:${contactEmail}` : undefined;
+  const phoneHref = sanitizePhoneHref(phone);
+  const translationAddressLinesRaw = t<unknown>('contact.addressLines');
+  const translationAddressLines = Array.isArray(translationAddressLinesRaw)
+    ? translationAddressLinesRaw
+      .map((line) => (typeof line === 'string' ? line.trim() : ''))
+      .filter((line): line is string => line.length > 0)
+    : [];
+  const addressLines = splitAddressLines(address);
+  const displayAddressLines = addressLines.length > 0 ? addressLines : translationAddressLines;
+
+  const metaTitle = pageContent?.data.metaTitle?.trim() || heroTitle || 'Contact Kapunka';
+  const metaDescription = pageContent?.data.metaDescription?.trim() || heroSubtitle || t('contact.headerSubtitle');
   const pageTitle = `${metaTitle} | Kapunka Skincare`;
-  const description = t('contact.metaDescription');
+
+  const socialImageSource = settings.home?.heroImage?.trim() || '';
+  const socialImage = socialImageSource ? getCloudinaryUrl(socialImageSource) ?? socialImageSource : undefined;
+
+  const translationFieldPath = `translations.${language}.contact`;
+
+  const heroTitleFieldPath = pageContent ? `${contactFieldPath}.heroTitle` : undefined;
+  const heroSubtitleFieldPath = pageContent ? `${contactFieldPath}.heroSubtitle` : undefined;
+  const emailFieldPath = pageContent ? `${contactFieldPath}.contactEmail` : undefined;
+  const phoneFieldPath = pageContent ? `${contactFieldPath}.phone` : undefined;
+  const addressFieldPath = pageContent ? `${contactFieldPath}.address` : undefined;
+  const mapEmbedFieldPath = pageContent ? `${contactFieldPath}.mapEmbedUrl` : undefined;
 
   return (
     <div className="py-16 sm:py-24">
-      <Seo title={pageTitle} description={description} image={socialImage} locale={language} />
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-        <header className="mb-16 text-center">
-          <h1
-            className="text-4xl font-semibold tracking-tight sm:text-5xl"
-            {...getVisualEditorAttributes(`${contactFieldPath}.headerTitle`)}
-          >
-            {t('contact.headerTitle')}
-          </h1>
-          <p
-            className="mx-auto mt-4 max-w-2xl text-lg text-stone-600"
-            {...getVisualEditorAttributes(`${contactFieldPath}.headerSubtitle`)}
-          >
-            {t('contact.headerSubtitle')}
-          </p>
-        </header>
+      <Seo title={pageTitle} description={metaDescription} image={socialImage} locale={language} />
+      <div className="container mx-auto max-w-5xl px-4 sm:px-6 lg:px-8">
+        {(heroTitle || heroSubtitle) && (
+          <header className="mb-16 text-center space-y-4">
+            {heroTitle ? (
+              <h1
+                className="text-4xl font-semibold tracking-tight text-stone-900 sm:text-5xl"
+                {...getVisualEditorAttributes(heroTitleFieldPath)}
+              >
+                {heroTitle}
+              </h1>
+            ) : null}
+            {heroSubtitle ? (
+              <p
+                className="mx-auto max-w-2xl text-lg text-stone-600"
+                {...getVisualEditorAttributes(heroSubtitleFieldPath)}
+              >
+                {heroSubtitle}
+              </p>
+            ) : null}
+          </header>
+        )}
 
-        <div className="mx-auto grid max-w-5xl gap-12 md:grid-cols-2">
-          <motion.div
-            initial={{ opacity: 0, x: -30 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-            className="space-y-8"
-          >
-            <div>
+        <div className="grid gap-12 lg:grid-cols-2">
+          <div className="space-y-10">
+            <section className="space-y-8">
+              <div className="space-y-3">
+                <h2
+                  className="text-2xl font-semibold text-stone-900"
+                  {...getVisualEditorAttributes(`${translationFieldPath}.infoTitle`)}
+                >
+                  {t('contact.infoTitle')}
+                </h2>
+              </div>
+
+              <div className="space-y-6">
+                {contactEmail ? (
+                  <div className="flex items-start gap-4">
+                    <Mail className="mt-1 h-6 w-6 text-stone-500" aria-hidden="true" />
+                    <div className="space-y-1">
+                      <h3
+                        className="font-semibold text-stone-900"
+                        {...getVisualEditorAttributes(`${translationFieldPath}.emailTitle`)}
+                      >
+                        {t('contact.emailTitle')}
+                      </h3>
+                      <a
+                        href={emailHref}
+                        className="text-stone-600 transition-colors hover:text-stone-900"
+                        {...getVisualEditorAttributes(emailFieldPath)}
+                      >
+                        {contactEmail}
+                      </a>
+                    </div>
+                  </div>
+                ) : null}
+
+                {phone ? (
+                  <div className="flex items-start gap-4">
+                    <Phone className="mt-1 h-6 w-6 text-stone-500" aria-hidden="true" />
+                    <div className="space-y-1">
+                      <h3
+                        className="font-semibold text-stone-900"
+                        {...getVisualEditorAttributes(`${translationFieldPath}.phoneTitle`)}
+                      >
+                        {t('contact.phoneTitle')}
+                      </h3>
+                      {phoneHref ? (
+                        <a
+                          href={phoneHref}
+                          className="text-stone-600 transition-colors hover:text-stone-900"
+                          {...getVisualEditorAttributes(phoneFieldPath)}
+                        >
+                          {phone}
+                        </a>
+                      ) : (
+                        <p className="text-stone-600" {...getVisualEditorAttributes(phoneFieldPath)}>
+                          {phone}
+                        </p>
+                      )}
+                    </div>
+                  </div>
+                ) : null}
+
+                {displayAddressLines.length > 0 ? (
+                  <div className="flex items-start gap-4">
+                    <MapPin className="mt-1 h-6 w-6 text-stone-500" aria-hidden="true" />
+                    <div className="space-y-1">
+                      <h3
+                        className="font-semibold text-stone-900"
+                        {...getVisualEditorAttributes(`${translationFieldPath}.addressTitle`)}
+                      >
+                        {t('contact.addressTitle')}
+                      </h3>
+                      <address
+                        className="not-italic text-stone-600"
+                        {...getVisualEditorAttributes(addressFieldPath)}
+                      >
+                        {displayAddressLines.map((line, index) => (
+                          <div key={`${line}-${index}`}>{line}</div>
+                        ))}
+                      </address>
+                    </div>
+                  </div>
+                ) : null}
+              </div>
+            </section>
+          </div>
+
+          <div className="lg:pl-8">
+            <div className="rounded-2xl border border-stone-200 bg-white p-6 shadow-sm">
               <h2
-                className="mb-4 text-2xl font-semibold"
-                {...getVisualEditorAttributes(`${contactFieldPath}.formTitle`)}
+                className="mb-6 text-2xl font-semibold text-stone-900"
+                {...getVisualEditorAttributes(`${translationFieldPath}.formTitle`)}
               >
                 {t('contact.formTitle')}
               </h2>
               <ContactForm />
             </div>
-          </motion.div>
-          <motion.div
-            initial={{ opacity: 0, x: 30 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-            className="space-y-8"
-          >
-            <h2
-              className="text-2xl font-semibold"
-              {...getVisualEditorAttributes(`${contactFieldPath}.infoTitle`)}
-            >
-              {t('contact.infoTitle')}
-            </h2>
-            <div className="space-y-6">
-              <div className="flex items-start space-x-4">
-                <Mail className="mt-1 h-6 w-6 text-stone-600" />
-                <div>
-                  <h3
-                    className="font-semibold"
-                    {...getVisualEditorAttributes(`${contactFieldPath}.emailTitle`)}
-                  >
-                    {t('contact.emailTitle')}
-                  </h3>
-                  <a
-                    href={emailLink}
-                    className="text-stone-600 transition-colors hover:text-stone-900"
-                    {...getVisualEditorAttributes('site.contact.email')}
-                  >
-                    {contactSettings.email}
-                  </a>
-                </div>
-              </div>
-              <div className="flex items-start space-x-4">
-                <Phone className="mt-1 h-6 w-6 text-stone-600" />
-                <div>
-                  <h3
-                    className="font-semibold"
-                    {...getVisualEditorAttributes(`${contactFieldPath}.phoneTitle`)}
-                  >
-                    {t('contact.phoneTitle')}
-                  </h3>
-                  <a
-                    href={phoneLink}
-                    className="text-stone-600 transition-colors hover:text-stone-900"
-                    {...getVisualEditorAttributes('site.contact.phone')}
-                  >
-                    {contactSettings.phone}
-                  </a>
-                </div>
-              </div>
-              <div className="flex items-start space-x-4">
-                <MessageSquare className="mt-1 h-6 w-6 text-stone-600" />
-                <div>
-                  <h3
-                    className="font-semibold"
-                    {...getVisualEditorAttributes(`${contactFieldPath}.whatsappTitle`)}
-                  >
-                    {t('contact.whatsappTitle')}
-                  </h3>
-                  <a
-                    href={whatsappLink}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="text-stone-600 transition-colors hover:text-stone-900"
-                    {...getVisualEditorAttributes('site.contact.whatsapp')}
-                  >
-                    <span {...getVisualEditorAttributes(`${contactFieldPath}.whatsappAction`)}>
-                      {t('contact.whatsappAction')}
-                    </span>
-                  </a>
-                </div>
-              </div>
-              {addressLines.length > 0 ? (
-                <div className="flex items-start space-x-4">
-                  <MapPin className="mt-1 h-6 w-6 text-stone-600" />
-                  <div>
-                    <h3
-                      className="font-semibold"
-                      {...getVisualEditorAttributes(`${contactFieldPath}.addressTitle`)}
-                    >
-                      {t('contact.addressTitle')}
-                    </h3>
-                    <ul className="mt-2 space-y-1 text-stone-600">
-                      {addressLines.map((line, index) => (
-                        <li
-                          key={`${line}-${index}`}
-                          {...getVisualEditorAttributes(`${contactFieldPath}.addressLines.${index}`)}
-                        >
-                          {line}
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-                </div>
-              ) : null}
-            </div>
-          </motion.div>
+          </div>
         </div>
+
+        {mapEmbedUrl ? (
+          <div className="mt-16">
+            <div className="aspect-[4/3] w-full overflow-hidden rounded-2xl shadow-lg">
+              <iframe
+                src={mapEmbedUrl}
+                title="Kapunka location map"
+                className="h-full w-full border-0"
+                loading="lazy"
+                referrerPolicy="no-referrer-when-downgrade"
+                {...getVisualEditorAttributes(mapEmbedFieldPath)}
+              />
+            </div>
+          </div>
+        ) : null}
       </div>
     </div>
   );

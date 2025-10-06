@@ -1669,15 +1669,43 @@ collections:
         preview_path: "/contact"
         fields:
           - { label: "Page Type", name: "type", widget: "hidden", default: "ContactPage" }
-          - label: "Page Metadata"
-            name: "metadata"
+          - label: "SEO"
+            name: "seo"
             widget: "object"
             collapsed: true
-            hint: "SEO title and description for the Contact page."
+            hint: "Meta title and description for the Contact page."
             fields:
               - *meta_title_field
               - *meta_description_field
-          - *sections_field
+          - <<: *localized_string_field
+            label: "Hero Title"
+            name: "heroTitle"
+            hint: "Primary heading that introduces the Contact page (≤60 characters)."
+          - <<: *localized_text_field
+            label: "Hero Subtitle"
+            name: "heroSubtitle"
+            hint: "Supporting copy that appears beneath the hero title (≤200 characters)."
+          - label: "Contact Email"
+            name: "contactEmail"
+            widget: "string"
+            required: true
+            hint: "Email address that receives contact form submissions."
+          - label: "Phone Number"
+            name: "phone"
+            widget: "string"
+            required: false
+            hint: "Optional phone number displayed next to the form. Include country code."
+          - label: "Address"
+            name: "address"
+            widget: "text"
+            required: false
+            hint: "Physical location shown in the contact details. Use line breaks to separate lines."
+          - label: "Map Embed URL"
+            name: "mapEmbedUrl"
+            widget: "string"
+            required: false
+            pattern: ["^https://", "Use a secure (https://) embed URL."]
+            hint: "Paste the full Google Maps iframe URL to render a location map."
       - name: shop
         label: Shop Page
         file: content/shop.json
