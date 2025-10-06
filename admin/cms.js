@@ -444,6 +444,177 @@
       );
     }
 
+    function ContactPreview(props) {
+      const { entry } = props;
+      noteEntryLocale(entry);
+      scheduleLocaleRender();
+
+      const heroTitle = getEntryValue(entry, ['data', 'heroTitle'], 'Invite visitors to reach out');
+      const heroSubtitle = getEntryValue(entry, ['data', 'heroSubtitle'], 'Share how Kapunka can support enquiries.');
+      const contactEmail = getEntryValue(entry, ['data', 'contactEmail'], '');
+      const phone = getEntryValue(entry, ['data', 'phone'], '');
+      const address = getEntryValue(entry, ['data', 'address'], '');
+      const mapEmbedUrl = getEntryValue(entry, ['data', 'mapEmbedUrl'], '');
+      const sections = asArray(getEntryValue(entry, ['data', 'sections'], []));
+
+      const details = [];
+
+      if (typeof contactEmail === 'string' && contactEmail.trim().length > 0) {
+        details.push({ label: 'Email', value: contactEmail.trim(), type: 'text' });
+      }
+
+      if (typeof phone === 'string' && phone.trim().length > 0) {
+        details.push({ label: 'Phone', value: phone.trim(), type: 'text' });
+      }
+
+      if (typeof address === 'string' && address.trim().length > 0) {
+        details.push({ label: 'Address', value: address.trim(), type: 'address' });
+      }
+
+      if (typeof mapEmbedUrl === 'string' && mapEmbedUrl.trim().length > 0) {
+        details.push({ label: 'Map embed URL', value: mapEmbedUrl.trim(), type: 'map' });
+      }
+
+      const renderedSections = sections.map((section, index) => renderHomeSection(section || {}, index));
+
+      return createElement(
+        PreviewLayout,
+        null,
+        createElement(Hero, {
+          badge: 'Contact hero',
+          headline: heroTitle,
+          subheadline: heroSubtitle,
+        }),
+        createElement('section', { className: 'cms-preview-card border border-stone-200 bg-white p-8 space-y-6' },
+          createElement('div', { className: 'flex flex-wrap items-center justify-between gap-3' },
+            createElement('h2', { className: 'text-2xl font-semibold text-stone-900' }, 'Contact details'),
+            createElement('span', { className: 'cms-preview-pill' }, `${details.length} item${details.length === 1 ? '' : 's'}`),
+          ),
+          details.length > 0
+            ? createElement('dl', { className: 'cms-preview-contact-details sm:grid-cols-2' },
+                details.map((item, idx) => createElement('div', { key: `detail-${idx}`, className: 'space-y-1' },
+                  createElement('dt', { className: 'text-[11px] font-semibold uppercase tracking-[0.22em] text-stone-400' }, item.label),
+                  createElement('dd', {
+                    className: item.type === 'map'
+                      ? 'cms-preview-monospace text-xs text-stone-500 break-all rounded-lg bg-stone-900/5 px-3 py-2'
+                      : item.type === 'address'
+                        ? 'text-sm text-stone-600 leading-relaxed whitespace-pre-line'
+                        : 'text-sm text-stone-600 leading-relaxed',
+                  }, item.value),
+                )),
+              )
+            : createElement('p', { className: 'cms-preview-muted text-sm' }, 'Add an email, phone number, address, or map embed URL for the contact page.'),
+        ),
+        renderedSections.length > 0
+          ? createElement('section', { className: 'space-y-6' },
+              createElement('h2', { className: 'text-2xl font-semibold text-stone-900' }, 'Supporting sections'),
+              createElement('div', { className: 'cms-preview-grid md:grid-cols-2' }, renderedSections),
+            )
+          : createElement('section', { className: 'cms-preview-card p-12 text-center text-stone-500 border border-dashed border-stone-300' }, 'Add optional sections such as FAQs or media blocks to round out the Contact page.'),
+      );
+    }
+
+    function renderTrainingSection(section, index) {
+      const type = typeof section.type === 'string' ? section.type : 'section';
+      const title = section.title || section.heading || `Section ${index + 1}`;
+
+      if (type === 'trainingList') {
+        const entries = asArray(section.entries);
+        const entryNodes = entries.length > 0
+          ? entries.map((entry, idx) => createElement('div', { key: `training-entry-${idx}`, className: 'rounded-2xl border border-stone-200 bg-white/60 p-5 space-y-2' },
+              createElement('h4', { className: 'text-sm font-semibold text-stone-900' }, entry.courseTitle || `Course ${idx + 1}`),
+              entry.courseSummary
+                ? createElement('p', { className: 'text-sm text-stone-600 leading-relaxed' }, entry.courseSummary)
+                : null,
+              entry.linkUrl
+                ? createElement('span', { className: 'cms-preview-pill w-fit' }, entry.linkUrl)
+                : null,
+            ))
+          : createElement('p', { className: 'cms-preview-muted text-sm' }, 'Add training entries with course titles, summaries, and optional links.');
+
+        return createElement(SectionCard, {
+          key: `training-section-${index}`,
+          badge: type,
+          title,
+          meta: entries.length > 0 ? `${entries.length} course${entries.length === 1 ? '' : 's'}` : null,
+        }, entryNodes);
+      }
+
+      if (type === 'timeline') {
+        const milestones = asArray(section.entries);
+        const milestoneNodes = milestones.length > 0
+          ? milestones.map((milestone, idx) => createElement('div', { key: `timeline-entry-${idx}`, className: 'relative border-l-2 border-stone-200 pl-5 space-y-1' },
+              createElement('span', { className: 'absolute -left-[9px] top-1.5 h-3 w-3 rounded-full bg-stone-400' }),
+              createElement('h4', { className: 'text-sm font-semibold text-stone-900' }, milestone.title || `Milestone ${idx + 1}`),
+              milestone.description
+                ? createElement('p', { className: 'text-sm text-stone-600 leading-relaxed' }, milestone.description)
+                : null,
+            ))
+          : createElement('p', { className: 'cms-preview-muted text-sm' }, 'Add timeline entries to outline the training journey.');
+
+        return createElement(SectionCard, {
+          key: `training-section-${index}`,
+          badge: type,
+          title,
+          meta: milestones.length > 0 ? `${milestones.length} step${milestones.length === 1 ? '' : 's'}` : null,
+        }, milestoneNodes);
+      }
+
+      if (type === 'videoGallery') {
+        const videos = asArray(section.entries);
+        const videoNodes = videos.length > 0
+          ? createElement('div', { className: 'grid gap-3 sm:grid-cols-2' },
+              videos.map((video, idx) => createElement('div', { key: `video-${idx}`, className: 'space-y-2 rounded-2xl border border-stone-200 bg-white p-4' },
+                createElement('h4', { className: 'text-sm font-semibold text-stone-900' }, video.title || `Video ${idx + 1}`),
+                video.description
+                  ? createElement('p', { className: 'text-sm text-stone-600 leading-relaxed' }, video.description)
+                  : null,
+                video.videoUrl
+                  ? createElement('div', { className: 'cms-preview-monospace text-xs text-stone-500 break-all rounded-lg bg-stone-900/5 px-3 py-2' }, video.videoUrl)
+                  : null,
+              )))
+          : createElement('p', { className: 'cms-preview-muted text-sm' }, 'Add videos with titles, descriptions, and URLs to enrich the gallery.');
+
+        return createElement(SectionCard, {
+          key: `training-section-${index}`,
+          badge: type,
+          title,
+          meta: videos.length > 0 ? `${videos.length} video${videos.length === 1 ? '' : 's'}` : null,
+        }, videoNodes);
+      }
+
+      return renderHomeSection(section, index);
+    }
+
+    function TrainingPreview(props) {
+      const { entry } = props;
+      noteEntryLocale(entry);
+      scheduleLocaleRender();
+
+      const metaTitle = getEntryValue(entry, ['data', 'metaTitle'], 'Introduce the Kapunka training program');
+      const metaDescription = getEntryValue(entry, ['data', 'metaDescription'], 'Summarise who the training supports and what participants will learn.');
+      const sections = asArray(getEntryValue(entry, ['data', 'sections'], []));
+      const renderedSections = sections.map((section, index) => renderTrainingSection(section || {}, index));
+
+      return createElement(
+        PreviewLayout,
+        null,
+        createElement('section', { className: 'cms-preview-card bg-white p-10 space-y-6 border border-stone-200' },
+          createElement('div', { className: 'cms-preview-badge text-stone-700 bg-stone-100' }, 'Training overview'),
+          createElement('h1', { className: 'text-4xl font-semibold text-stone-900 tracking-tight' }, metaTitle || 'Training page'),
+          metaDescription
+            ? createElement('p', { className: 'text-base text-stone-600 leading-relaxed max-w-3xl whitespace-pre-line' }, metaDescription)
+            : createElement('p', { className: 'cms-preview-muted text-sm' }, 'Add meta description copy to introduce the training journey.'),
+        ),
+        renderedSections.length > 0
+          ? createElement('section', { className: 'space-y-6' },
+              createElement('h2', { className: 'text-2xl font-semibold text-stone-900' }, 'Training sections'),
+              createElement('div', { className: 'cms-preview-grid md:grid-cols-2' }, renderedSections),
+            )
+          : createElement('section', { className: 'cms-preview-card p-12 text-center text-stone-500 border border-dashed border-stone-300' }, 'Add modules, timelines, or video galleries to preview the training experience.'),
+      );
+    }
+
     function MethodPreview(props) {
       const { entry } = props;
       noteEntryLocale(entry);
@@ -525,6 +696,10 @@
           return createElement(LearnPreview, props);
         case 'method':
           return createElement(MethodPreview, props);
+        case 'contact':
+          return createElement(ContactPreview, props);
+        case 'training':
+          return createElement(TrainingPreview, props);
         default:
           return createElement(GenericPagePreview, props);
       }
@@ -641,6 +816,21 @@
     });
 
     CMS.registerWidget('dashboard', DashboardWidget);
+
+    let registerPagePreviews;
+    try {
+      ({ registerPagePreviews } = await import('./preview-templates.js'));
+    } catch (error) {
+      console.warn('Failed to load targeted preview templates', error);
+    }
+
+    if (typeof registerPagePreviews === 'function') {
+      try {
+        registerPagePreviews(CMS, { ContactPreview, TrainingPreview });
+      } catch (error) {
+        console.warn('Failed to register targeted previews', error);
+      }
+    }
 
     CMS.registerPreviewTemplate('pages', PagePreview);
   }

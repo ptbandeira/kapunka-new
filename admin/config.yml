@@ -9,7 +9,7 @@ localized_string_field: &localized_string_field
   i18n: true
   required: false
   editor:
-    type: tabs
+    display: 'tabs'
   fields:
     - { label: English, name: en, widget: string }
     - { label: Portuguese, name: pt, widget: string }
@@ -20,7 +20,7 @@ localized_text_field: &localized_text_field
   i18n: true
   required: false
   editor:
-    type: tabs
+    display: 'tabs'
   fields:
     - { label: English, name: en, widget: text }
     - { label: Portuguese, name: pt, widget: text }
@@ -31,7 +31,7 @@ localized_markdown_field: &localized_markdown_field
   i18n: true
   required: false
   editor:
-    type: tabs
+    display: 'tabs'
   fields:
     - { label: English, name: en, widget: markdown }
     - { label: Portuguese, name: pt, widget: markdown }
@@ -1045,7 +1045,7 @@ collections:
         media_folder: "content/uploads/home"
         public_folder: "/content/uploads/home"
         i18n: true
-        editor: { preview: true, type: tabs }
+        editor: { preview: true, display: 'tabs' }
         description: "Hero and storytelling blocks presented in live page order."
         preview_path: "/"
         fields:
@@ -1193,7 +1193,7 @@ collections:
         media_folder: "content/uploads/learn"
         public_folder: "/content/uploads/learn"
         i18n: true
-        editor: { preview: true, type: tabs }
+        editor: { preview: true, display: 'tabs' }
         description: "Optional storytelling sections surrounding the Learn hub."
         preview_path: "/learn"
         fields:
@@ -1248,7 +1248,7 @@ collections:
         media_folder: "content/uploads/method"
         public_folder: "/content/uploads/method"
         i18n: true
-        editor: { preview: true, type: tabs }
+        editor: { preview: true, display: 'tabs' }
         description: "Clinical method overview plus supporting content blocks."
         preview_path: "/method"
         fields:
@@ -1313,7 +1313,7 @@ collections:
         media_folder: "content/uploads/clinics"
         public_folder: "/content/uploads/clinics"
         i18n: true
-        editor: { preview: true, type: tabs }
+        editor: { preview: true, display: 'tabs' }
         description: "Clinic partnership story arranged top-to-bottom."
         preview_path: "/for-clinics"
         fields:
@@ -1549,7 +1549,7 @@ collections:
         media_folder: "content/uploads/about"
         public_folder: "/content/uploads/about"
         i18n: true
-        editor: { preview: true, type: tabs }
+        editor: { preview: true, display: 'tabs' }
         description: "Brand story sections in live page sequence."
         preview_path: "/about"
         fields:
@@ -1570,7 +1570,7 @@ collections:
         media_folder: "content/uploads/story"
         public_folder: "/content/uploads/story"
         i18n: true
-        editor: { preview: true, type: tabs }
+        editor: { preview: true, display: 'tabs' }
         description: "Brand manifesto narrative, value pillars, and optional supporting sections."
         preview_path: "/story"
         fields:
@@ -1664,7 +1664,7 @@ collections:
         media_folder: "content/uploads/contact"
         public_folder: "/content/uploads/contact"
         i18n: true
-        editor: { preview: true, type: tabs }
+        editor: { preview: true, display: 'tabs' }
         description: "Contact introductions and optional follow-up sections."
         preview_path: "/contact"
         fields:

@@ -1,0 +1,24 @@
+@import './preview.css';
+
+.cms-preview-contact-details {
+  display: grid;
+  gap: 1rem;
+}
+
+.cms-preview-contact-details dt {
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: rgba(120, 113, 108, 0.65);
+}
+
+.cms-preview-contact-details dd {
+  font-size: 0.875rem;
+  color: #57534e;
+  line-height: 1.6;
+}
+
+.cms-preview-monospace {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier New', monospace;
+}
