@@ -1,4 +1,4 @@
-import type { Language } from '../types';
+import type { Language, PageSection } from '../types';
 import { fetchVisualEditorMarkdown, type VisualEditorContentSource } from './fetchVisualEditorMarkdown';
 import { loadUnifiedPage } from './unifiedPageLoader';
 import { loadPage } from '../src/lib/content';
@@ -6,24 +6,24 @@ import { loadPage } from '../src/lib/content';
 export interface ClinicsPageData {
   metaTitle?: string;
   metaDescription?: string;
-  headerTitle?: string;
-  headerSubtitle?: string;
-  section1Title?: string;
-  section1Text1?: string;
-  section1Text2?: string;
-  intro?: {
-    title?: string;
-    text1?: string;
-    text2?: string;
+  hero?: Record<string, unknown>;
+  heroHeadline?: string;
+  heroTitle?: string;
+  heroSubheadline?: string;
+  heroSubtitle?: string;
+  heroEyebrow?: string;
+  heroCtas?: {
+    ctaPrimary?: unknown;
+    ctaSecondary?: unknown;
   };
-  protocolSection?: unknown;
-  referencesSection?: unknown;
-  keywordSection?: unknown;
-  faqSection?: unknown;
+  heroPrimaryCta?: unknown;
+  heroCtaPrimary?: unknown;
+  heroSecondaryCta?: unknown;
+  heroCtaSecondary?: unknown;
   ctaTitle?: string;
   ctaSubtitle?: string;
   ctaButton?: string;
-  sections?: unknown[];
+  sections?: PageSection[];
 }
 
 export interface ClinicsPageContentResult {
