@@ -16,7 +16,7 @@ sections:
         imageAlt: Hands applying argan oil in warm light
         ctaLabel: Our Story
         ctaHref: /about
-        image: /content/uploads/shared/9bae3f87-12d5-43f4-a2a0-5cfc768e429d.jpg
+        image: shared/9bae3f87-12d5-43f4-a2a0-5cfc768e429d.jpg
         imageUrl: https://images.pexels.com/photos/86623/olive-branch-tree-leaves-86623.jpeg?auto=compress&cs=tinysrgb&w=1920
       - eyebrow: For clinics
         title: Trusted by professionals
@@ -34,7 +34,7 @@ sections:
         imageAlt: Harvested argan fruit gathered in a woven basket
         ctaLabel: Our Standards
         ctaHref: /method
-        image: /content/uploads/shared/a-woman-picks-fruit-from-an-argan-tree-1-.jpg
+        image: shared/a-woman-picks-fruit-from-an-argan-tree-1-.jpg
         imageUrl: https://images.pexels.com/photos/8887309/pexels-photo-8887309.jpeg?auto=compress&cs=tinysrgb&w=1920
       - eyebrow: Rituals
         title: From hammam rituals to modern recovery
@@ -42,37 +42,37 @@ sections:
         imageAlt: Steam-filled hammam room with a person resting
         ctaLabel: Shop Rituals
         ctaHref: /shop
-        image: /content/uploads/shared/342cecc0-3c00-4094-97d6-5c9d9da02330.jpg
+        image: shared/342cecc0-3c00-4094-97d6-5c9d9da02330.jpg
         imageUrl: https://images.pexels.com/photos/6621462/pexels-photo-6621462.jpeg?auto=compress&cs=tinysrgb&w=1920
   - type: communityCarousel
     title: Rituals in our community
     slides:
-      - image: /content/uploads/shared/img_20200328_165251-copia-3-.jpg
+      - image: shared/img_20200328_165251-copia-3-.jpg
         alt: Add a photo of a Kapunka ritual in use
         quote: >-
           “Use this placeholder to share how someone experiences Kapunka in
           their routine.”
         name: Customer name
         role: Clinic or city
-      - image: /content/uploads/shared/img_20200328_165441-copia-2-.jpg
+      - image: shared/img_20200328_165441-copia-2-.jpg
         alt: Upload another community image
         quote: '“Highlight a partner testimonial, recovery story, or everyday ritual.”'
         name: Partner or practitioner
         role: Role or treatment focus
-      - image: /content/uploads/shared/img_20200328_165521-copia-2-.jpg
+      - image: shared/img_20200328_165521-copia-2-.jpg
         alt: Add lifestyle imagery that feels real and warm
         quote: “Add an authentic note about how Kapunka supports their skin goals.”
         name: Add a name
         role: Location or context
-      - image: /content/uploads/shared/img_20200328_162420-copia-3-.jpg
-      - image: /content/uploads/shared/img_20200328_165740-copia-2-.jpg
-      - image: /content/uploads/shared/img_20200328_165916-copia-2-.jpg
-      - image: /content/uploads/shared/img_20200328_165948-copia-2-.jpg
-      - image: /content/uploads/shared/img_20200328_170735-copia-2-.jpg
-      - image: /content/uploads/shared/instagrammer-kapunka-maria-capell-.jpg
+      - image: shared/img_20200328_162420-copia-3-.jpg
+      - image: shared/img_20200328_165740-copia-2-.jpg
+      - image: shared/img_20200328_165916-copia-2-.jpg
+      - image: shared/img_20200328_165948-copia-2-.jpg
+      - image: shared/img_20200328_170735-copia-2-.jpg
+      - image: shared/instagrammer-kapunka-maria-capell-.jpg
       - image: https://images.pexels.com/photos/415829/pexels-photo-415829.jpeg?auto=compress&cs=tinysrgb&w=1920
-      - image: /content/uploads/shared/kapunka-in-the-wild.jpg
-      - image: /content/uploads/shared/kapunka-instagrammer-lidia-simon-canut-.jpg
+      - image: shared/kapunka-in-the-wild.jpg
+      - image: shared/kapunka-instagrammer-lidia-simon-canut-.jpg
   - type: newsletterSignup
     title: Join The List
     subtitle: >-

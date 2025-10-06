@@ -15,8 +15,8 @@
     "ctaLink": "https://kapunka.com/#/contact"
   },
   "about": {
-    "storyImage": "/content/uploads/site/monica-argan-.jpg",
-    "sourcingImage": "/content/uploads/site/argan-production.jpg",
+    "storyImage": "site/monica-argan-.jpg",
+    "sourcingImage": "site/argan-production.jpg",
     "storyAlt": {
       "en": "Brand story",
       "pt": "História da marca",
