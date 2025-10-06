@@ -1,22 +1,24 @@
 ---
 type: AboutPage
-metaTitle: Sobre a Kapunka
-metaDescription: Um padrão sereno de cuidado nascido da gratidão.
+metaTitle: About Kapunka
+metaDescription: A calm standard of care born from gratitude.
 sections:
   - type: mediaCopy
-    title: De onde vem a Kapunka
+    title: Where Kapunka comes from
     body: >-
-      A Kapunka começou com uma ideia simples: a forma como tocamos muda a
-      maneira como curamos. Anos ao lado de equipes clínicas moldaram um método
-      cuidadoso, preciso e gentil.
+      Kapunka began with a simple idea: the way we touch changes how we heal.
+      Years beside clinicians shaped a method that is careful, precise, and
+      kind.
     layout: image-right
     image: https://images.pexels.com/photos/5711884/pexels-photo-5711884.jpeg?auto=compress&cs=tinysrgb&w=1920
   - type: mediaCopy
-    title: O nome
+    title: The name
     body: >-
-      Nossa fundadora ouviu ‘Kapunka’ pela primeira vez em uma escola em Ubud. A
-      palavra — obrigado — tornou-se uma promessa: criar um cuidado que
-      retribua. Seja grato à sua pele.
+      ‘Kapunka’ was first heard by our founder in a school in Ubud. The
+      word—thank you—became a promise: make care that gives back. Be thankful to
+      your skin.
     layout: image-right
     image: https://images.pexels.com/photos/8714552/pexels-photo-8714552.jpeg?auto=compress&cs=tinysrgb&w=1920
 ---
+
+# TODO: Translate to Portuguese

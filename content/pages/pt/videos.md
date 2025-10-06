@@ -1,12 +1,14 @@
 ---
 type: VideosPage
-metaTitle: Videoteca Kapunka – Demonstrações de rituais
+metaTitle: Kapunka Video Library – Ritual demonstrations
 metaDescription: >-
-  Assista a protocolos guiados, dicas profissionais e explicações para clientes
-  gravadas no estúdio Kapunka.
+  Stream guided protocols, pro tips, and client explainers filmed inside the
+  Kapunka studio.
 sections:
   - type: videoGallery
     title: ''
     description: ''
     entries: []
 ---
+
+# TODO: Translate to Portuguese

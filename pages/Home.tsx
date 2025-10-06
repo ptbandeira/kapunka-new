@@ -1736,6 +1736,8 @@ const Home: React.FC = () => {
         : [];
 
       const hasStructuredHeroSection = sections.some((section) => section.type === 'hero');
+      const shouldRenderLocal =
+        hasSectionsArray && (hasStructuredHeroSection || result.localeUsed !== language);
 
       const structuredSectionEntries = rawSections.reduce<StructuredSectionEntry[]>((acc, section, index) => {
         const parsedSection = structuredSectionSchema.safeParse(section);
@@ -1791,7 +1793,7 @@ const Home: React.FC = () => {
         legacySectionEntries,
         localSections: sections,
         hasSectionsArray,
-        shouldRenderLocalSections: hasSectionsArray && hasStructuredHeroSection,
+        shouldRenderLocalSections: shouldRenderLocal,
         sections: legacySectionEntries.map((entry) => entry.section as PageSection),
         resolvedLocale: result.localeUsed,
         contentSource: result.source,

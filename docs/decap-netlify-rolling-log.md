@@ -11,6 +11,11 @@ This log records day-to-day investigations, fixes, and decisions that affect the
 
 ---
 
+## 2025-10-23 — Enabled locale fallbacks for page Markdown
+- **What changed**: Duplicated every English page Markdown file into the `content/pages/pt` and `content/pages/es` folders with placeholder TODO notes, registered the PT/ES files in `admin/config.yml` using YAML anchors with `i18n: true`, and updated the Home page loader to render structured sections when the English fallback is used.
+- **Impact & follow-up**: `/pt` and `/es` routes now render instead of 404ing when translations are missing, and CMS editors can open localized files to replace the placeholder copy. Translate the new Markdown files to Portuguese and Spanish when ready.
+- **References**: Pending PR
+
 ## 2025-10-22 — Enforced SPA fallback redirect in Netlify config
 - **What changed**: Added an explicit `[[redirects]]` rule to `netlify.toml` so Netlify always routes unknown paths to `/index.html`, ensuring the SPA fallback survives even if the `_redirects` artifact is missing.
 - **Impact & follow-up**: Prevents localized routes like `/pt` and `/es` from 404ing on preview builds that omit `_redirects`. Confirm subsequent deployments keep the generated `_redirects` file in `dist/`.
