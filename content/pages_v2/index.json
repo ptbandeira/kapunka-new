@@ -969,140 +969,6 @@
           "items": [
             {
               "body": {
-                "pt": "De um gesto simples nasceu um protocolo terapêutico.",
-                "es": "De un gesto sencillo nació un protocolo terapéutico."
-              },
-              "ctaHref": {
-                "pt": "/about",
-                "es": "/about"
-              },
-              "ctaLabel": {
-                "pt": "Nossa história",
-                "es": "Nuestra historia"
-              },
-              "eyebrow": {
-                "pt": "Do blog",
-                "es": "Desde el blog"
-              },
-              "imageAlt": {
-                "pt": "Mãos aplicando óleo de argan sob luz quente",
-                "es": "Manos aplicando aceite de argán con luz cálida"
-              },
-              "title": {
-                "pt": "Da gratidão ao método",
-                "es": "De la gratitud al método"
-              }
-            },
-            {
-              "body": {
-                "pt": "Utilizado há mais de uma década por dermatologistas e clínicas de recuperação.",
-                "es": "Utilizado desde hace más de una década por dermatólogos y clínicas de recuperación."
-              },
-              "ctaHref": {
-                "pt": "/clinics",
-                "es": "/clinics"
-              },
-              "ctaLabel": {
-                "pt": "Parceria conosco",
-                "es": "Aliarte con nosotros"
-              },
-              "eyebrow": {
-                "pt": "Para clínicas",
-                "es": "Para clínicas"
-              },
-              "imageAlt": {
-                "pt": "Profissional massageando o rosto de uma cliente com cuidado de argan",
-                "es": "Profesional masajeando el rostro de una clienta con cuidado de argán"
-              },
-              "title": {
-                "pt": "De confiança profissional",
-                "es": "De confianza profesional"
-              }
-            },
-            {
-              "body": {
-                "pt": "Das cooperativas marroquinas às salas de hospital.",
-                "es": "De las cooperativas marroquíes a las salas hospitalarias."
-              },
-              "ctaHref": {
-                "pt": "/method",
-                "es": "/method"
-              },
-              "ctaLabel": {
-                "pt": "Nossos padrões",
-                "es": "Nuestros estándares"
-              },
-              "eyebrow": {
-                "pt": "Cadeia de fornecimento",
-                "es": "Cadena de suministro"
-              },
-              "imageAlt": {
-                "pt": "Frutos de argan recém-colhidos em um cesto de palha",
-                "es": "Frutos de argán recién cosechados en una cesta tejida"
-              },
-              "title": {
-                "pt": "Origem com herança, padrão clínico",
-                "es": "Origen con herencia, estándar clínico"
-              }
-            },
-            {
-              "body": {
-                "pt": "Sabedoria ancestral com estrutura científica.",
-                "es": "Sabiduría ancestral, estructura científica."
-              },
-              "ctaHref": {
-                "pt": "/shop",
-                "es": "/shop"
-              },
-              "ctaLabel": {
-                "pt": "Comprar rituais",
-                "es": "Comprar rituales"
-              },
-              "eyebrow": {
-                "pt": "Rituais",
-                "es": "Rituales"
-              },
-              "imageAlt": {
-                "pt": "Sala de hammam com vapor e uma pessoa relaxando",
-                "es": "Sala de hammam llena de vapor con una persona descansando"
-              },
-              "title": {
-                "pt": "Do hammam à recuperação moderna",
-                "es": "Del hammam a la recuperación moderna"
-              }
-            }
-          ],
-          "products": [
-            {
-              "id": {
-                "en": "pure-argan-100"
-              }
-            },
-            {
-              "id": {
-                "en": "scar-care"
-              }
-            },
-            {
-              "id": {
-                "en": "ritual-pack"
-              }
-            }
-          ],
-          "title": {
-            "en": "Essentials for daily rituals",
-            "pt": "Histórias de Rituais",
-            "es": "Historias de Rituales"
-          },
-          "type": "productGrid",
-          "columns": {
-            "en": 3
-          }
-        },
-        {
-          "items": [
-            {
-              "body": {
                 "en": "How a simple gesture of care became a therapeutic protocol."
               },
               "ctaHref": {
@@ -1222,72 +1088,6 @@
           "columns": {
             "pt": 4,
             "es": 4
-          }
-        },
-        {
-          "items": [
-            {
-              "description": {
-                "en": "Skin-friendly, clean, cold-pressed."
-              },
-              "label": {
-                "en": "Clinic-ready batching"
-              }
-            },
-            {
-              "description": {
-                "en": "Low-residue textures and gentle aromas for sensitive skin."
-              },
-              "label": {
-                "en": "Holistic sensorial care"
-              }
-            },
-            {
-              "description": {
-                "en": "Starter sets and education for consistent home routines."
-              },
-              "label": {
-                "en": "Flexible retail stories"
-              }
-            },
-            {
-              "description": {
-                "en": "Fair relationships across Morocco’s cooperatives."
-              },
-              "label": {
-                "en": "Sustainable partnerships"
-              }
-            }
-          ],
-          "products": [
-            {
-              "id": {
-                "pt": "pure-argan-100",
-                "es": "pure-argan-100"
-              }
-            },
-            {
-              "id": {
-                "pt": "scar-care",
-                "es": "scar-care"
-              }
-            },
-            {
-              "id": {
-                "pt": "ritual-pack",
-                "es": "ritual-pack"
-              }
-            }
-          ],
-          "title": {
-            "pt": "Essenciais para rituais diários",
-            "es": "Esenciales para rituales diarios"
-          },
-          "type": "featureGrid",
-          "columns": {
-            "en": 4,
-            "pt": 3,
-            "es": 3
           }
         },
         {
@@ -1435,6 +1235,140 @@
           "type": "newsletterSignup"
         },
         {
+          "items": [
+            {
+              "body": {
+                "pt": "De um gesto simples nasceu um protocolo terapêutico.",
+                "es": "De un gesto sencillo nació un protocolo terapéutico."
+              },
+              "ctaHref": {
+                "pt": "/about",
+                "es": "/about"
+              },
+              "ctaLabel": {
+                "pt": "Nossa história",
+                "es": "Nuestra historia"
+              },
+              "eyebrow": {
+                "pt": "Do blog",
+                "es": "Desde el blog"
+              },
+              "imageAlt": {
+                "pt": "Mãos aplicando óleo de argan sob luz quente",
+                "es": "Manos aplicando aceite de argán con luz cálida"
+              },
+              "title": {
+                "pt": "Da gratidão ao método",
+                "es": "De la gratitud al método"
+              }
+            },
+            {
+              "body": {
+                "pt": "Utilizado há mais de uma década por dermatologistas e clínicas de recuperação.",
+                "es": "Utilizado desde hace más de una década por dermatólogos y clínicas de recuperación."
+              },
+              "ctaHref": {
+                "pt": "/clinics",
+                "es": "/clinics"
+              },
+              "ctaLabel": {
+                "pt": "Parceria conosco",
+                "es": "Aliarte con nosotros"
+              },
+              "eyebrow": {
+                "pt": "Para clínicas",
+                "es": "Para clínicas"
+              },
+              "imageAlt": {
+                "pt": "Profissional massageando o rosto de uma cliente com cuidado de argan",
+                "es": "Profesional masajeando el rostro de una clienta con cuidado de argán"
+              },
+              "title": {
+                "pt": "De confiança profissional",
+                "es": "De confianza profesional"
+              }
+            },
+            {
+              "body": {
+                "pt": "Das cooperativas marroquinas às salas de hospital.",
+                "es": "De las cooperativas marroquíes a las salas hospitalarias."
+              },
+              "ctaHref": {
+                "pt": "/method",
+                "es": "/method"
+              },
+              "ctaLabel": {
+                "pt": "Nossos padrões",
+                "es": "Nuestros estándares"
+              },
+              "eyebrow": {
+                "pt": "Cadeia de fornecimento",
+                "es": "Cadena de suministro"
+              },
+              "imageAlt": {
+                "pt": "Frutos de argan recém-colhidos em um cesto de palha",
+                "es": "Frutos de argán recién cosechados en una cesta tejida"
+              },
+              "title": {
+                "pt": "Origem com herança, padrão clínico",
+                "es": "Origen con herencia, estándar clínico"
+              }
+            },
+            {
+              "body": {
+                "pt": "Sabedoria ancestral com estrutura científica.",
+                "es": "Sabiduría ancestral, estructura científica."
+              },
+              "ctaHref": {
+                "pt": "/shop",
+                "es": "/shop"
+              },
+              "ctaLabel": {
+                "pt": "Comprar rituais",
+                "es": "Comprar rituales"
+              },
+              "eyebrow": {
+                "pt": "Rituais",
+                "es": "Rituales"
+              },
+              "imageAlt": {
+                "pt": "Sala de hammam com vapor e uma pessoa relaxando",
+                "es": "Sala de hammam llena de vapor con una persona descansando"
+              },
+              "title": {
+                "pt": "Do hammam à recuperação moderna",
+                "es": "Del hammam a la recuperación moderna"
+              }
+            }
+          ],
+          "products": [
+            {
+              "id": {
+                "en": "pure-argan-100"
+              }
+            },
+            {
+              "id": {
+                "en": "scar-care"
+              }
+            },
+            {
+              "id": {
+                "en": "ritual-pack"
+              }
+            }
+          ],
+          "title": {
+            "en": "Essentials for daily rituals",
+            "pt": "Histórias de Rituais",
+            "es": "Historias de Rituales"
+          },
+          "type": "productGrid",
+          "columns": {
+            "en": 3
+          }
+        },
+        {
           "quotes": [
             {
               "author": {
@@ -1477,6 +1411,72 @@
             "es": "Lo que dicen los Profesionales"
           },
           "type": "testimonials"
+        },
+        {
+          "items": [
+            {
+              "description": {
+                "en": "Skin-friendly, clean, cold-pressed."
+              },
+              "label": {
+                "en": "Clinic-ready batching"
+              }
+            },
+            {
+              "description": {
+                "en": "Low-residue textures and gentle aromas for sensitive skin."
+              },
+              "label": {
+                "en": "Holistic sensorial care"
+              }
+            },
+            {
+              "description": {
+                "en": "Starter sets and education for consistent home routines."
+              },
+              "label": {
+                "en": "Flexible retail stories"
+              }
+            },
+            {
+              "description": {
+                "en": "Fair relationships across Morocco’s cooperatives."
+              },
+              "label": {
+                "en": "Sustainable partnerships"
+              }
+            }
+          ],
+          "products": [
+            {
+              "id": {
+                "pt": "pure-argan-100",
+                "es": "pure-argan-100"
+              }
+            },
+            {
+              "id": {
+                "pt": "scar-care",
+                "es": "scar-care"
+              }
+            },
+            {
+              "id": {
+                "pt": "ritual-pack",
+                "es": "ritual-pack"
+              }
+            }
+          ],
+          "title": {
+            "pt": "Essenciais para rituais diários",
+            "es": "Esenciales para rituales diarios"
+          },
+          "type": "featureGrid",
+          "columns": {
+            "en": 4,
+            "pt": 3,
+            "es": 3
+          }
         }
       ],
       "fields": [

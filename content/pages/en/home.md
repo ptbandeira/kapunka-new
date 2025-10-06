@@ -83,10 +83,6 @@ sections:
     confirmation: Thank you for subscribing!
     background: beige
     alignment: center
-  - type: testimonials
-    testimonials:
-      - testimonialRef: content/testimonials/dr-isabella-rossi-en.json
-      - testimonialRef: content/testimonials/chloe-davis-en.json
   - type: productGrid
     title: Essentials for daily rituals
     products:
@@ -94,6 +90,10 @@ sections:
       - id: scar-care
       - id: ritual-pack
     columns: 3
+  - type: testimonials
+    testimonials:
+      - testimonialRef: content/testimonials/dr-isabella-rossi-en.json
+      - testimonialRef: content/testimonials/chloe-davis-en.json
   - type: featureGrid
     title: ''
     columns: 4

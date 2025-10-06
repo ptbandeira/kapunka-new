@@ -10,60 +10,60 @@ sections:
   - type: mediaShowcase
     title: ''
     items:
-      - eyebrow: From the blog
-        title: From gratitude to method
-        body: How a simple gesture of care became a therapeutic protocol.
-        imageAlt: Hands applying argan oil in warm light
-        ctaLabel: Our Story
+      - eyebrow: Desde el blog
+        title: De la gratitud al método
+        body: De un gesto sencillo nació un protocolo terapéutico.
+        imageAlt: Manos aplicando aceite de argán con luz cálida
+        ctaLabel: Nuestra historia
         ctaHref: /about
         image: shared/9bae3f87-12d5-43f4-a2a0-5cfc768e429d.jpg
         imageUrl: https://images.pexels.com/photos/86623/olive-branch-tree-leaves-86623.jpeg?auto=compress&cs=tinysrgb&w=1920
-      - eyebrow: For clinics
-        title: Trusted by professionals
+      - eyebrow: Para clínicas
+        title: De confianza profesional
         body: >-
-          Used by dermatologists, medspas, and recovery clinics for over a
-          decade.
-        imageAlt: Practitioner massaging a client's face with argan care
-        ctaLabel: Partner With Us
+          Utilizado desde hace más de una década por dermatólogos y clínicas
+          de recuperación.
+        imageAlt: Profesional masajeando el rostro de una clienta con cuidado de argán
+        ctaLabel: Aliarte con nosotros
         ctaHref: /clinics
         image: https://images.pexels.com/photos/3865548/pexels-photo-3865548.jpeg?auto=compress&cs=tinysrgb&w=1920
         imageUrl: https://images.pexels.com/photos/3997987/pexels-photo-3997987.jpeg?auto=compress&cs=tinysrgb&w=1920
-      - eyebrow: Supply chain
-        title: 'Heritage sourcing, clinical standards'
-        body: From Moroccan cooperatives to hospital rooms.
-        imageAlt: Harvested argan fruit gathered in a woven basket
-        ctaLabel: Our Standards
+      - eyebrow: Cadena de suministro
+        title: Origen con herencia, estándar clínico
+        body: De las cooperativas marroquíes a las salas hospitalarias.
+        imageAlt: Frutos de argán recién cosechados en una cesta tejida
+        ctaLabel: Nuestros estándares
         ctaHref: /method
         image: shared/a-woman-picks-fruit-from-an-argan-tree-1-.jpg
         imageUrl: https://images.pexels.com/photos/8887309/pexels-photo-8887309.jpeg?auto=compress&cs=tinysrgb&w=1920
-      - eyebrow: Rituals
-        title: From hammam rituals to modern recovery
-        body: 'Ancient wisdom, scientifically structured.'
-        imageAlt: Steam-filled hammam room with a person resting
-        ctaLabel: Shop Rituals
+      - eyebrow: Rituales
+        title: Del hammam a la recuperación moderna
+        body: Sabiduría ancestral, estructura científica.
+        imageAlt: Sala de hammam llena de vapor con una persona descansando
+        ctaLabel: Comprar rituales
         ctaHref: /shop
         image: shared/342cecc0-3c00-4094-97d6-5c9d9da02330.jpg
         imageUrl: https://images.pexels.com/photos/6621462/pexels-photo-6621462.jpeg?auto=compress&cs=tinysrgb&w=1920
   - type: communityCarousel
-    title: Rituals in our community
+    title: Rituales en nuestra comunidad
     slides:
       - image: shared/img_20200328_165251-copia-3-.jpg
-        alt: Add a photo of a Kapunka ritual in use
+        alt: Añade una foto de un ritual de Kapunka en uso
         quote: >-
-          “Use this placeholder to share how someone experiences Kapunka in
-          their routine.”
-        name: Customer name
-        role: Clinic or city
+          “Utiliza este espacio para contar cómo alguien vive Kapunka en su
+          rutina.”
+        name: Nombre del cliente
+        role: Clínica o ciudad
       - image: shared/img_20200328_165441-copia-2-.jpg
-        alt: Upload another community image
-        quote: '“Highlight a partner testimonial, recovery story, or everyday ritual.”'
-        name: Partner or practitioner
-        role: Role or treatment focus
+        alt: Sube otra imagen de la comunidad
+        quote: '“Destaca un testimonio de un socio, una historia de recuperación o un ritual diario.”'
+        name: Socio o profesional
+        role: Rol o enfoque del tratamiento
       - image: shared/img_20200328_165521-copia-2-.jpg
-        alt: Add lifestyle imagery that feels real and warm
-        quote: “Add an authentic note about how Kapunka supports their skin goals.”
-        name: Add a name
-        role: Location or context
+        alt: Añade imágenes de estilo de vida cálidas y reales
+        quote: '“Añade una nota auténtica sobre cómo Kapunka acompaña sus objetivos de piel.”'
+        name: Añade un nombre
+        role: Ubicación o contexto
       - image: shared/img_20200328_162420-copia-3-.jpg
       - image: shared/img_20200328_165740-copia-2-.jpg
       - image: shared/img_20200328_165916-copia-2-.jpg
@@ -74,52 +74,55 @@ sections:
       - image: shared/kapunka-in-the-wild.jpg
       - image: shared/kapunka-instagrammer-lidia-simon-canut-.jpg
   - type: newsletterSignup
-    title: Join The List
+    title: Únete a la Lista
     subtitle: >-
-      Monthly reflections on skin, care, and recovery. No noise — just
-      thoughtful notes from Kapunka.
-    placeholder: Enter your email address
-    ctaLabel: Subscribe
-    confirmation: Thank you for subscribing!
+      Reflexiones mensuales sobre piel, cuidado y recuperación. Sin ruido —
+      solo mensajes con propósito de Kapunka.
+    placeholder: Introduce tu correo electrónico
+    ctaLabel: Suscribirme
+    confirmation: ¡Gracias por suscribirte!
     background: beige
     alignment: center
-  - type: testimonials
-    testimonials:
-      - testimonialRef: content/testimonials/dr-isabella-rossi-en.json
-      - testimonialRef: content/testimonials/chloe-davis-en.json
   - type: productGrid
-    title: Essentials for daily rituals
+    title: Esenciales para rituales diarios
     products:
       - id: pure-argan-100
       - id: scar-care
       - id: ritual-pack
     columns: 3
+  - type: testimonials
+    testimonials:
+      - testimonialRef: content/testimonials/dr-isabella-rossi-en.json
+      - testimonialRef: content/testimonials/chloe-davis-en.json
   - type: featureGrid
     title: ''
     columns: 4
     items:
-      - label: Clinic-ready batching
-        description: 'Skin-friendly, clean, cold-pressed.'
-      - label: Holistic sensorial care
-        description: Low-residue textures and gentle aromas for sensitive skin.
-      - label: Flexible retail stories
-        description: Starter sets and education for consistent home routines.
-      - label: Sustainable partnerships
-        description: Fair relationships across Morocco’s cooperatives.
-heroHeadline: Be thankful to your skin.
-metaTitle: Kapunka — Argan rituals for sensitive and post-procedure skin
+      - label: Origen marroquí trazable
+        description: Semillas recolectadas a mano y prensadas en 24 horas para preservar los omegas.
+      - label: Seguro post-tratamiento
+        description: Fórmulas revisadas por dermatología y envasadas en instalaciones GMP para pureza máxima.
+      - label: Rituales multifunción
+        description: Un solo aceite para reparar la barrera, calmar el cuero cabelludo y dar brillo al cuerpo sin residuos.
+      - label: Impacto sostenible
+        description: Alianza con cooperativas de Essaouira lideradas por mujeres que sostienen la agricultura local.
+heroHeadline: Da las gracias a tu piel.
+metaTitle: Kapunka — Rituales de argán para piel sensible y post-procedimiento
 metaDescription: >-
-  Clinical-grade Moroccan argan care trusted by clinics, designed for everyday
-  recovery.
+  Kapunka formula aceites de argán, brumas y tratamientos de hammam
+  marroquíes en los que confían las clínicas estéticas para la
+  recuperación post-procedimiento, la reparación de la barrera y los
+  rituales diarios.
 type: HomePage
 heroSubheadline: >-
-  Born in clinics, refined by touch. Kapunka brings therapeutic rituals with
-  pure Moroccan argan oil — care that reconnects body and mind.
+  Nacida en clínicas, perfeccionada con el tacto. Kapunka une rituales
+  terapéuticos y aceite de argán puro de Marruecos — un cuidado que
+  reconecta cuerpo y mente.
 heroCtas:
   ctaPrimary:
-    label: Shop argan rituals
+    label: Comprar rituales de argán
     href: /shop
   ctaSecondary:
-    label: For clinics & professionals
+    label: Para clínicas y profesionales
     href: /clinics
 ---
