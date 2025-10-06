@@ -93,7 +93,7 @@ const buildPageModelMap = (): PageModelMap => {
   const pageModels: PageModelMap = new Map();
 
   for (const [filePath, modelName] of modelNameByFilePath.entries()) {
-    const match = filePath.match(/^content\/pages\/([a-z]{2})\/([a-z0-9-]+)\.json$/);
+    const match = filePath.match(/^content\/pages\/([a-z]{2})\/([a-z0-9-]+)\.md$/);
     if (!match) {
       continue;
     }
@@ -323,7 +323,7 @@ const resolveSiteBinding = (value: string): StackbitBinding | null => {
         return null;
       }
 
-      const filePath = `content/pages/${locale}/${slug}.json`;
+      const filePath = `content/pages/${locale}/${slug}.md`;
       const joined = restParts.slice(2).join('.');
       const fieldPath = normalizeStackbitFieldPath(joined);
       return {
@@ -377,7 +377,7 @@ const resolvePageBinding = (value: string): StackbitBinding | null => {
     return null;
   }
 
-  const filePath = `content/pages/${locale}/${slug}.json`;
+  const filePath = `content/pages/${locale}/${slug}.md`;
   const joined = restParts.join('.');
   const fieldPath = normalizeStackbitFieldPath(joined);
   return {
