@@ -262,6 +262,23 @@
       return [];
     }
 
+    function getLocalizedString(value, fallback = '') {
+      if (!value) {
+        return fallback;
+      }
+      if (typeof value === 'string') {
+        return value;
+      }
+      if (typeof value.toJS === 'function') {
+        const plain = value.toJS();
+        return plain.en || plain.pt || plain.es || fallback;
+      }
+      if (typeof value === 'object') {
+        return value.en || value.pt || value.es || fallback;
+      }
+      return fallback;
+    }
+
     function createSectionBadge(type, extraClassName) {
       return createElement(
         'span',
@@ -406,6 +423,104 @@
           title,
         },
         createElement(GenericSection, section),
+      );
+    }
+
+    function ProductsPreview({ entry }) {
+      const items = asArray(getEntryValue(entry, ['data', 'items'], []));
+
+      return createElement(
+        PreviewLayout,
+        null,
+        createElement(
+          'section',
+          { className: 'cms-preview-card bg-white p-10 space-y-6 border border-stone-200' },
+          createElement('div', { className: 'cms-preview-badge bg-stone-900/10 text-stone-800' }, 'Product catalog'),
+          items.length > 0
+            ? createElement(
+                'div',
+                { className: 'space-y-4' },
+                items.map((product, index) => {
+                  const name = getLocalizedString(product?.name, `Product ${index + 1}`);
+                  const tagline = getLocalizedString(product?.tagline, '');
+                  const badges = asArray(product?.badges?.en || product?.badges || []).slice(0, 3);
+                  return createElement(
+                    'article',
+                    {
+                      key: `product-${product?.id || index}`,
+                      className: 'flex flex-col gap-2 rounded-2xl border border-stone-200/70 bg-stone-50 p-5',
+                    },
+                    createElement(
+                      'div',
+                      { className: 'flex items-start justify-between gap-3' },
+                      createElement('div', { className: 'space-y-1' },
+                        createElement('h3', { className: 'text-lg font-semibold text-stone-900' }, name),
+                        tagline
+                          ? createElement('p', { className: 'text-sm text-stone-600' }, tagline)
+                          : null,
+                      ),
+                      createElement('span', { className: 'cms-preview-pill bg-white text-stone-700' }, product?.id || 'Unassigned ID'),
+                    ),
+                    badges.length > 0
+                      ? createElement(
+                          'div',
+                          { className: 'flex flex-wrap gap-2 pt-1' },
+                          badges.map((badge, badgeIndex) => createElement('span', {
+                            key: `badge-${badgeIndex}`,
+                            className: 'cms-preview-pill bg-stone-900/10 text-stone-700',
+                          }, badge)),
+                        )
+                      : null,
+                  );
+                }),
+              )
+            : createElement(
+                'p',
+                { className: 'text-sm text-stone-500' },
+                'Add products to preview catalog summaries here.',
+              ),
+        ),
+      );
+    }
+
+    function ArticlesPreview({ entry }) {
+      const items = asArray(getEntryValue(entry, ['data', 'items'], []));
+
+      return createElement(
+        PreviewLayout,
+        null,
+        createElement(
+          'section',
+          { className: 'cms-preview-card bg-white p-10 space-y-6 border border-stone-200' },
+          createElement('div', { className: 'cms-preview-badge bg-blue-100 text-blue-700' }, 'Article library'),
+          items.length > 0
+            ? createElement(
+                'div',
+                { className: 'space-y-4' },
+                items.map((article, index) => {
+                  const title = getLocalizedString(article?.title, `Article ${index + 1}`);
+                  const preview = getLocalizedString(article?.preview, '');
+                  const category = article?.category || 'uncategorised';
+                  return createElement(
+                    'article',
+                    {
+                      key: `article-${article?.slug || index}`,
+                      className: 'rounded-2xl border border-stone-200/70 bg-stone-50 p-5 space-y-2',
+                    },
+                    createElement('span', { className: 'cms-preview-pill bg-stone-900/10 text-stone-700' }, category),
+                    createElement('h3', { className: 'text-lg font-semibold text-stone-900' }, title),
+                    preview
+                      ? createElement('p', { className: 'text-sm text-stone-600 leading-relaxed' }, preview)
+                      : null,
+                  );
+                }),
+              )
+            : createElement(
+                'p',
+                { className: 'text-sm text-stone-500' },
+                'Add articles to preview how they appear in the Learn hub.',
+              ),
+        ),
       );
     }
 
@@ -796,6 +911,11 @@
                     <p class="text-xs text-stone-600 leading-relaxed">Manage product copy, pricing, and imagery.</p>
                     <span class="text-[11px] font-medium uppercase tracking-[0.18em] text-stone-400">Open →</span>
                   </a>
+                  <a class="cms-preview-quicklink" href="#/collections/articles/entries/articles">
+                    <span class="text-sm font-semibold text-stone-900">Articles library</span>
+                    <p class="text-xs text-stone-600 leading-relaxed">Edit Learn hub long-form content.</p>
+                    <span class="text-[11px] font-medium uppercase tracking-[0.18em] text-stone-400">Open →</span>
+                  </a>
                 </div>
               </div>
             </div>
@@ -833,6 +953,8 @@
     }
 
     CMS.registerPreviewTemplate('pages', PagePreview);
+    CMS.registerPreviewTemplate('products', ProductsPreview);
+    CMS.registerPreviewTemplate('articles', ArticlesPreview);
   }
 
   waitForCms();

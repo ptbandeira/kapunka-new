@@ -37,6 +37,26 @@ localized_markdown_field: &localized_markdown_field
     - { label: Portuguese, name: pt, widget: markdown }
     - { label: Spanish, name: es, widget: markdown }
 
+localized_list_field: &localized_list_field
+  widget: object
+  i18n: true
+  required: false
+  editor:
+    display: 'tabs'
+  fields:
+    - label: English
+      name: en
+      widget: list
+      field: { label: Item, name: value, widget: string }
+    - label: Portuguese
+      name: pt
+      widget: list
+      field: { label: Item, name: value, widget: string }
+    - label: Spanish
+      name: es
+      widget: list
+      field: { label: Item, name: value, widget: string }
+
 visibility_field: &visibility_field
   label: "Visible on site"
   name: "visible"
@@ -2453,9 +2473,8 @@ collections:
 
   - name: products
     label: Products
-    group: "9. Legacy / Catalog"
+    group: "2. Catalog"
     editor: { preview: false }
-    hidden: true
     files:
       - name: catalog
         label: Product Catalog
@@ -2470,37 +2489,27 @@ collections:
             summary: "{{fields.name.en}}"
             fields:
               - { label: ID, name: id, widget: string }
-              - label: Name
-                name: name
-                widget: object
-                fields:
-                  - { label: English, name: en, widget: string }
-                  - { label: Portuguese, name: pt, widget: string }
-                  - { label: Spanish, name: es, widget: string }
-              - label: Title Addition
-                name: titleAddition
-                widget: object
-                fields:
-                  - { label: English, name: en, widget: string }
-                  - { label: Portuguese, name: pt, widget: string }
-                  - { label: Spanish, name: es, widget: string }
-              - label: Tagline
-                name: tagline
-                widget: object
-                fields:
-                  - { label: English, name: en, widget: string }
-                  - { label: Portuguese, name: pt, widget: string }
-                  - { label: Spanish, name: es, widget: string }
-              - label: Description
-                name: description
-                widget: object
-                fields:
-                  - { label: English, name: en, widget: text }
-                  - { label: Portuguese, name: pt, widget: text }
-                  - { label: Spanish, name: es, widget: text }
-              - label: Bundle Includes
-                name: bundleIncludes
-                widget: object
+              - <<: *localized_string_field
+                label: "Name"
+                name: "name"
+                required: true
+                hint: "Displayed product name for PDPs and cards."
+              - <<: *localized_string_field
+                label: "Name Add-on"
+                name: "titleAddition"
+                hint: "Optional text appended to the product title (≤30 characters)."
+              - <<: *localized_string_field
+                label: "Tagline"
+                name: "tagline"
+                hint: "Short positioning statement shown on product cards (≤80 characters)."
+              - <<: *localized_text_field
+                label: "Description"
+                name: "description"
+                hint: "Hero description for PDP hero and cart tooltip."
+              - <<: *localized_list_field
+                label: "Bundle Includes"
+                name: "bundleIncludes"
+                hint: "Outline the items contained in a bundle."
                 fields:
                   - label: English
                     name: en
@@ -2514,7 +2523,7 @@ collections:
                     name: es
                     widget: list
                     field: { label: Item, name: item, widget: string }
-              - { label: Image, name: imageUrl, widget: image, choose_url: true }
+              - { label: "Primary Image", name: "imageUrl", widget: "image", choose_url: true, hint: "Hero product image displayed on cards and PDP." }
               - label: Sizes
                 name: sizes
                 widget: list
@@ -2523,9 +2532,10 @@ collections:
                   - { label: Option ID, name: id, widget: string }
                   - { label: Size (ml), name: size, widget: number }
                   - { label: Price, name: price, widget: number, value_type: float }
-              - label: Badges
-                name: badges
-                widget: object
+              - <<: *localized_list_field
+                label: "Badges"
+                name: "badges"
+                hint: "Short selling points displayed as badges."
                 fields:
                   - label: English
                     name: en
@@ -2539,9 +2549,10 @@ collections:
                     name: es
                     widget: list
                     field: { label: Distintivo, name: badge, widget: string }
-              - label: Benefits
-                name: benefits
-                widget: object
+              - <<: *localized_list_field
+                label: "Benefits"
+                name: "benefits"
+                hint: "Bulleted list summarising key results."
                 fields:
                   - label: English
                     name: en
@@ -2555,41 +2566,31 @@ collections:
                     name: es
                     widget: list
                     field: { label: Beneficio, name: benefit, widget: string }
-              - label: How to Use
-                name: howToUse
-                widget: object
-                fields:
-                  - { label: English, name: en, widget: text }
-                  - { label: Portuguese, name: pt, widget: text }
-                  - { label: Spanish, name: es, widget: text }
-              - label: Ingredients
-                name: ingredients
-                widget: object
-                fields:
-                  - { label: English, name: en, widget: text }
-                  - { label: Portuguese, name: pt, widget: text }
-                  - { label: Spanish, name: es, widget: text }
-              - label: Origin & Purity Note
-                name: labTestedNote
-                widget: object
-                fields:
-                  - { label: English, name: en, widget: text }
-                  - { label: Portuguese, name: pt, widget: text }
-                  - { label: Spanish, name: es, widget: text }
+              - <<: *localized_text_field
+                label: "How to Use"
+                name: "howToUse"
+                hint: "Step-by-step application guidance (supports Markdown)."
+              - <<: *localized_text_field
+                label: "Ingredients"
+                name: "ingredients"
+                hint: "Full INCI or ingredient description list."
+              - <<: *localized_text_field
+                label: "Origin & Purity Note"
+                name: "labTestedNote"
+                hint: "Highlight lab testing or sourcing credentials."
               - label: Good to Know
                 name: goodToKnow
                 widget: object
+                collapsed: true
                 fields:
-                  - label: Title
-                    name: title
-                    widget: object
-                    fields:
-                      - { label: English, name: en, widget: string }
-                      - { label: Portuguese, name: pt, widget: string }
-                      - { label: Spanish, name: es, widget: string }
-                  - label: Items
-                    name: items
-                    widget: object
+                  - <<: *localized_string_field
+                    label: "Title"
+                    name: "title"
+                    hint: "Optional heading above the quick facts list."
+                  - <<: *localized_list_field
+                    label: "Items"
+                    name: "items"
+                    hint: "Short facts or usage notes."
                     fields:
                       - label: English
                         name: en
@@ -2603,69 +2604,60 @@ collections:
                         name: es
                         widget: list
                         field: { label: Item, name: item, widget: string }
+              - <<: *localized_list_field
+                label: "Multi-use Tips"
+                name: "multiUseTips"
+                hint: "Optional multi-use ideas shown on PDP."
+                fields:
+                  - label: English
+                    name: en
+                    widget: list
+                    field: { label: Tip, name: item, widget: string }
+                  - label: Portuguese
+                    name: pt
+                    widget: list
+                    field: { label: Dica, name: item, widget: string }
+                  - label: Spanish
+                    name: es
+                    widget: list
+                    field: { label: Consejo, name: item, widget: string }
               - label: Knowledge Hub
                 name: knowledge
                 widget: object
+                collapsed: true
                 fields:
-                  - label: What It Is
-                    name: whatItIs
-                    widget: object
-                    fields:
-                      - { label: English, name: en, widget: text }
-                      - { label: Portuguese, name: pt, widget: text }
-                      - { label: Spanish, name: es, widget: text }
-                  - label: How It Works
-                    name: howItWorks
-                    widget: object
-                    fields:
-                      - { label: English, name: en, widget: text }
-                      - { label: Portuguese, name: pt, widget: text }
-                      - { label: Spanish, name: es, widget: text }
-                  - label: Who It's For
-                    name: whoItsFor
-                    widget: object
-                    fields:
-                      - { label: English, name: en, widget: text }
-                      - { label: Portuguese, name: pt, widget: text }
-                      - { label: Spanish, name: es, widget: text }
-                  - label: Scientific Backing
-                    name: scientificBacking
-                    widget: object
-                    fields:
-                      - { label: English, name: en, widget: text }
-                      - { label: Portuguese, name: pt, widget: text }
-                      - { label: Spanish, name: es, widget: text }
-                  - label: Cultural & Traditional Context
-                    name: culturalContext
-                    widget: object
-                    fields:
-                      - { label: English, name: en, widget: text }
-                      - { label: Portuguese, name: pt, widget: text }
-                      - { label: Spanish, name: es, widget: text }
+                  - <<: *localized_text_field
+                    label: "What It Is"
+                    name: "whatItIs"
+                  - <<: *localized_text_field
+                    label: "How It Works"
+                    name: "howItWorks"
+                  - <<: *localized_text_field
+                    label: "Who It's For"
+                    name: "whoItsFor"
+                  - <<: *localized_text_field
+                    label: "Scientific Backing"
+                    name: "scientificBacking"
+                  - <<: *localized_text_field
+                    label: "Cultural & Traditional Context"
+                    name: "culturalContext"
               - label: FAQs
                 name: faqs
                 widget: list
                 summary: "{{fields.question.en}}"
                 fields:
-                  - label: Question
-                    name: question
-                    widget: object
-                    fields:
-                      - { label: English, name: en, widget: text }
-                      - { label: Portuguese, name: pt, widget: text }
-                      - { label: Spanish, name: es, widget: text }
-                  - label: Answer
-                    name: answer
-                    widget: object
-                    fields:
-                      - { label: English, name: en, widget: text }
-                      - { label: Portuguese, name: pt, widget: text }
-                      - { label: Spanish, name: es, widget: text }
+                  - <<: *localized_text_field
+                    label: "Question"
+                    name: "question"
+                    hint: "The customer-facing FAQ prompt."
+                  - <<: *localized_text_field
+                    label: "Answer"
+                    name: "answer"
+                    hint: "Concise answer (supports Markdown)."
   - name: articles
     label: Articles
-    group: "9. Legacy / Catalog"
+    group: "2. Catalog"
     editor: { preview: false }
-    hidden: true
     files:
       - name: articles
         label: Skincare Library
@@ -2681,30 +2673,22 @@ collections:
             fields:
               - { label: ID, name: id, widget: string }
               - { label: Slug, name: slug, widget: string }
-              - label: Title
-                name: title
-                widget: object
-                fields:
-                  - { label: English, name: en, widget: string }
-                  - { label: Portuguese, name: pt, widget: string }
-                  - { label: Spanish, name: es, widget: string }
-              - label: Preview
-                name: preview
-                widget: object
-                fields:
-                  - { label: English, name: en, widget: text }
-                  - { label: Portuguese, name: pt, widget: text }
-                  - { label: Spanish, name: es, widget: text }
-              - label: Content
-                name: content
-                widget: object
-                fields:
-                  - { label: English, name: en, widget: markdown }
-                  - { label: Portuguese, name: pt, widget: markdown }
-                  - { label: Spanish, name: es, widget: markdown }
-              - { label: Category, name: category, widget: string }
-              - { label: Featured Image, name: imageUrl, widget: image, choose_url: true }
-              - { label: Related Product ID, name: relatedProductId, widget: string, required: false }
+              - <<: *localized_string_field
+                label: "Title"
+                name: "title"
+                required: true
+                hint: "Displayed as the article headline."
+              - <<: *localized_text_field
+                label: "Preview"
+                name: "preview"
+                hint: "Short summary shown in the Learn hub (≤200 characters)."
+              - <<: *localized_markdown_field
+                label: "Content"
+                name: "content"
+                hint: "Full article body. Supports Markdown."
+              - { label: Category, name: category, widget: string, hint: "Used for filtering in the Learn hub." }
+              - { label: Featured Image, name: imageUrl, widget: image, choose_url: true, hint: "Preview image shown on the Learn hub and article hero." }
+              - { label: Related Product ID, name: relatedProductId, widget: string, required: false, hint: "Optional primary product ID to highlight." }
               - label: Related Product IDs
                 name: relatedProductIds
                 widget: list
@@ -2716,20 +2700,14 @@ collections:
                 required: false
                 summary: "{{fields.question.en}}"
                 fields:
-                  - label: Question
-                    name: question
-                    widget: object
-                    fields:
-                      - { label: English, name: en, widget: text }
-                      - { label: Portuguese, name: pt, widget: text }
-                      - { label: Spanish, name: es, widget: text }
-                  - label: Answer
-                    name: answer
-                    widget: object
-                    fields:
-                      - { label: English, name: en, widget: text }
-                      - { label: Portuguese, name: pt, widget: text }
-                      - { label: Spanish, name: es, widget: text }
+                  - <<: *localized_text_field
+                    label: "Question"
+                    name: "question"
+                    hint: "FAQ prompt surfaced in the PDP article block."
+                  - <<: *localized_text_field
+                    label: "Answer"
+                    name: "answer"
+                    hint: "Response displayed beneath the question."
   - name: reviews
     label: Testimonials
     group: "3. Testimonials"

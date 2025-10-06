@@ -15,6 +15,11 @@
 - **Impact & follow-up**: Critical above-the-fold imagery now respects intentional framing out-of-the-box, reducing manual editor work for the most visible assets. Continue reviewing other pages to flag images that still need focal tuning.
 - **References**: Pending PR
 
+## 2025-10-18 — Streamlined catalog editing experience
+- **What changed**: Promoted the Products and Articles collections (now under “Catalog”), collapsed high-noise groups, replaced repeated locale objects with shared anchors, and exposed multi-use tips. Added dedicated preview templates so catalog updates render instantly inside Decap.
+- **Impact & follow-up**: Editors can locate catalog content without digging into legacy groups, update copy with fewer nested clicks, and visualise product/article changes before publishing. Review additional legacy collections to see if similar simplifications are warranted.
+- **References**: Pending PR
+
 ## 2025-10-31 — Expanded section renderer coverage
 - **What changed**: Added strongly typed models for every Stackbit builder block in `types.ts`, introduced reusable section components (media copy, feature grid, banner, newsletter, product grid, testimonials, facts, bullets, specialties), and updated `SectionRenderer` plus the story/about/training/videos page loaders to recognise the new variants with proper Visual Editor field bindings.
 - **Impact & follow-up**: Visual Editor sections now render consistently across detail pages and inline editing works for the newly supported blocks, reducing manual QA when editors add builder sections. Monitor upcoming content syncs to confirm product grids resolve product references correctly.
