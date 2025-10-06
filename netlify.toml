@@ -8,6 +8,12 @@
 [[plugins]]
   package = "@netlify/plugin-visual-editor"
 
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
+  force = true
+
 [dev]
   framework = "#custom"
   command = "npm run dev"
