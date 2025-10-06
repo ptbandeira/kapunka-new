@@ -1,12 +1,14 @@
 import React, { useEffect, useMemo, useState } from 'react';
 import { Mail, MapPin, Phone } from 'lucide-react';
 import ContactForm from '../components/ContactForm';
+import SectionRenderer from '../components/SectionRenderer';
 import { useLanguage } from '../contexts/LanguageContext';
 import { useSiteSettings } from '../contexts/SiteSettingsContext';
 import { useVisualEditorSync } from '../contexts/VisualEditorSyncContext';
 import { getVisualEditorAttributes } from '../utils/stackbitBindings';
 import { getCloudinaryUrl } from '../utils/imageUrl';
 import Seo from '../src/components/Seo';
+import type { HeroSimpleSectionContent, PageSection } from '../types';
 import {
   loadContactPageContent,
   type ContactPageContentResult,
@@ -30,6 +32,21 @@ const splitAddressLines = (value: string | undefined): string[] => {
     .split(/\r?\n/)
     .map((line) => line.trim())
     .filter((line) => line.length > 0);
+};
+
+const SUPPORTED_SECTION_TYPES = new Set<PageSection['type']>(['mediaCopy']);
+
+const isSupportedSection = (value: unknown): value is PageSection => {
+  if (!value || typeof value !== 'object') {
+    return false;
+  }
+
+  const section = value as { type?: unknown };
+  if (typeof section.type !== 'string') {
+    return false;
+  }
+
+  return SUPPORTED_SECTION_TYPES.has(section.type as PageSection['type']);
 };
 
 const Contact: React.FC = () => {
@@ -71,8 +88,40 @@ const Contact: React.FC = () => {
       : `pages.contact_${pageContent.locale}`;
   }, [language, pageContent]);
 
-  const heroTitle = pageContent?.data.heroTitle?.trim() || t('contact.headerTitle');
-  const heroSubtitle = pageContent?.data.heroSubtitle?.trim() || t('contact.headerSubtitle');
+  const fallbackHeroTitle = t('contact.headerTitle');
+  const fallbackHeroSubtitle = t('contact.headerSubtitle');
+  const heroTitleValue = pageContent?.data.heroTitle?.trim();
+  const heroSubtitleValue = pageContent?.data.heroSubtitle?.trim();
+
+  const heroSection = useMemo<HeroSimpleSectionContent | null>(() => {
+    const resolvedTitle = heroTitleValue || fallbackHeroTitle;
+    const resolvedSubtitle = heroSubtitleValue || fallbackHeroSubtitle;
+
+    if (!resolvedTitle && !resolvedSubtitle) {
+      return null;
+    }
+
+    const baseFieldPath = pageContent ? contactFieldPath : undefined;
+
+    return {
+      type: 'heroSimple',
+      title: resolvedTitle,
+      subtitle: resolvedSubtitle,
+      fieldPathOverride: baseFieldPath,
+      titleFieldPath: pageContent ? `${contactFieldPath}.heroTitle` : undefined,
+      subtitleFieldPath: pageContent ? `${contactFieldPath}.heroSubtitle` : undefined,
+    };
+  }, [
+    contactFieldPath,
+    fallbackHeroSubtitle,
+    fallbackHeroTitle,
+    heroSubtitleValue,
+    heroTitleValue,
+    pageContent,
+  ]);
+
+  const heroTitle = heroSection?.title || fallbackHeroTitle;
+  const heroSubtitle = heroSection?.subtitle || fallbackHeroSubtitle;
   const contactEmail = pageContent?.data.contactEmail?.trim() || settings.contact?.email || '';
   const phone = pageContent?.data.phone?.trim() || settings.contact?.phone || '';
   const address = pageContent?.data.address?.trim() || '';
@@ -98,139 +147,138 @@ const Contact: React.FC = () => {
 
   const translationFieldPath = `translations.${language}.contact`;
 
-  const heroTitleFieldPath = pageContent ? `${contactFieldPath}.heroTitle` : undefined;
-  const heroSubtitleFieldPath = pageContent ? `${contactFieldPath}.heroSubtitle` : undefined;
   const emailFieldPath = pageContent ? `${contactFieldPath}.contactEmail` : undefined;
   const phoneFieldPath = pageContent ? `${contactFieldPath}.phone` : undefined;
   const addressFieldPath = pageContent ? `${contactFieldPath}.address` : undefined;
   const mapEmbedFieldPath = pageContent ? `${contactFieldPath}.mapEmbedUrl` : undefined;
 
+  const structuredSections = useMemo<PageSection[]>(() => {
+    if (!pageContent?.data.sections || !Array.isArray(pageContent.data.sections)) {
+      return [];
+    }
+
+    return pageContent.data.sections.filter(isSupportedSection);
+  }, [pageContent]);
+
+  const sectionsFieldPath = pageContent ? `${contactFieldPath}.sections` : undefined;
+
   return (
-    <div className="py-16 sm:py-24">
+    <div className="bg-white">
       <Seo title={pageTitle} description={metaDescription} image={socialImage} locale={language} />
-      <div className="container mx-auto max-w-5xl px-4 sm:px-6 lg:px-8">
-        {(heroTitle || heroSubtitle) && (
-          <header className="mb-16 text-center space-y-4">
-            {heroTitle ? (
-              <h1
-                className="text-4xl font-semibold tracking-tight text-stone-900 sm:text-5xl"
-                {...getVisualEditorAttributes(heroTitleFieldPath)}
-              >
-                {heroTitle}
-              </h1>
-            ) : null}
-            {heroSubtitle ? (
-              <p
-                className="mx-auto max-w-2xl text-lg text-stone-600"
-                {...getVisualEditorAttributes(heroSubtitleFieldPath)}
-              >
-                {heroSubtitle}
-              </p>
-            ) : null}
-          </header>
-        )}
+      {heroSection ? (
+        <SectionRenderer sections={[heroSection]} />
+      ) : null}
 
-        <div className="grid gap-12 lg:grid-cols-2">
-          <div className="space-y-10">
-            <section className="space-y-8">
-              <div className="space-y-3">
-                <h2
-                  className="text-2xl font-semibold text-stone-900"
-                  {...getVisualEditorAttributes(`${translationFieldPath}.infoTitle`)}
-                >
-                  {t('contact.infoTitle')}
-                </h2>
-              </div>
+      <section className="py-16 sm:py-24">
+        <div className="container mx-auto max-w-5xl px-4 sm:px-6 lg:px-8">
+          <div className="grid gap-12 lg:grid-cols-2">
+            <div className="space-y-10">
+              <section className="space-y-8">
+                <div className="space-y-3">
+                  <h2
+                    className="text-2xl font-semibold text-stone-900"
+                    {...getVisualEditorAttributes(`${translationFieldPath}.infoTitle`)}
+                  >
+                    {t('contact.infoTitle')}
+                  </h2>
+                </div>
 
-              <div className="space-y-6">
-                {contactEmail ? (
-                  <div className="flex items-start gap-4">
-                    <Mail className="mt-1 h-6 w-6 text-stone-500" aria-hidden="true" />
-                    <div className="space-y-1">
-                      <h3
-                        className="font-semibold text-stone-900"
-                        {...getVisualEditorAttributes(`${translationFieldPath}.emailTitle`)}
-                      >
-                        {t('contact.emailTitle')}
-                      </h3>
-                      <a
-                        href={emailHref}
-                        className="text-stone-600 transition-colors hover:text-stone-900"
-                        {...getVisualEditorAttributes(emailFieldPath)}
-                      >
-                        {contactEmail}
-                      </a>
-                    </div>
-                  </div>
-                ) : null}
-
-                {phone ? (
-                  <div className="flex items-start gap-4">
-                    <Phone className="mt-1 h-6 w-6 text-stone-500" aria-hidden="true" />
-                    <div className="space-y-1">
-                      <h3
-                        className="font-semibold text-stone-900"
-                        {...getVisualEditorAttributes(`${translationFieldPath}.phoneTitle`)}
-                      >
-                        {t('contact.phoneTitle')}
-                      </h3>
-                      {phoneHref ? (
-                        <a
-                          href={phoneHref}
-                          className="text-stone-600 transition-colors hover:text-stone-900"
-                          {...getVisualEditorAttributes(phoneFieldPath)}
+                <div className="space-y-6">
+                  {contactEmail ? (
+                    <div className="flex items-start gap-4">
+                      <Mail className="mt-1 h-6 w-6 text-stone-500" aria-hidden="true" />
+                      <div className="space-y-1">
+                        <h3
+                          className="font-semibold text-stone-900"
+                          {...getVisualEditorAttributes(`${translationFieldPath}.emailTitle`)}
                         >
-                          {phone}
+                          {t('contact.emailTitle')}
+                        </h3>
+                        <a
+                          href={emailHref}
+                          className="text-stone-600 transition-colors hover:text-stone-900"
+                          {...getVisualEditorAttributes(emailFieldPath)}
+                        >
+                          {contactEmail}
                         </a>
-                      ) : (
-                        <p className="text-stone-600" {...getVisualEditorAttributes(phoneFieldPath)}>
-                          {phone}
-                        </p>
-                      )}
+                      </div>
                     </div>
-                  </div>
-                ) : null}
+                  ) : null}
 
-                {displayAddressLines.length > 0 ? (
-                  <div className="flex items-start gap-4">
-                    <MapPin className="mt-1 h-6 w-6 text-stone-500" aria-hidden="true" />
-                    <div className="space-y-1">
-                      <h3
-                        className="font-semibold text-stone-900"
-                        {...getVisualEditorAttributes(`${translationFieldPath}.addressTitle`)}
-                      >
-                        {t('contact.addressTitle')}
-                      </h3>
-                      <address
-                        className="not-italic text-stone-600"
-                        {...getVisualEditorAttributes(addressFieldPath)}
-                      >
-                        {displayAddressLines.map((line, index) => (
-                          <div key={`${line}-${index}`}>{line}</div>
-                        ))}
-                      </address>
+                  {phone ? (
+                    <div className="flex items-start gap-4">
+                      <Phone className="mt-1 h-6 w-6 text-stone-500" aria-hidden="true" />
+                      <div className="space-y-1">
+                        <h3
+                          className="font-semibold text-stone-900"
+                          {...getVisualEditorAttributes(`${translationFieldPath}.phoneTitle`)}
+                        >
+                          {t('contact.phoneTitle')}
+                        </h3>
+                        {phoneHref ? (
+                          <a
+                            href={phoneHref}
+                            className="text-stone-600 transition-colors hover:text-stone-900"
+                            {...getVisualEditorAttributes(phoneFieldPath)}
+                          >
+                            {phone}
+                          </a>
+                        ) : (
+                          <p className="text-stone-600" {...getVisualEditorAttributes(phoneFieldPath)}>
+                            {phone}
+                          </p>
+                        )}
+                      </div>
                     </div>
-                  </div>
-                ) : null}
+                  ) : null}
+
+                  {displayAddressLines.length > 0 ? (
+                    <div className="flex items-start gap-4">
+                      <MapPin className="mt-1 h-6 w-6 text-stone-500" aria-hidden="true" />
+                      <div className="space-y-1">
+                        <h3
+                          className="font-semibold text-stone-900"
+                          {...getVisualEditorAttributes(`${translationFieldPath}.addressTitle`)}
+                        >
+                          {t('contact.addressTitle')}
+                        </h3>
+                        <address
+                          className="not-italic text-stone-600"
+                          {...getVisualEditorAttributes(addressFieldPath)}
+                        >
+                          {displayAddressLines.map((line, index) => (
+                            <div key={`${line}-${index}`}>{line}</div>
+                          ))}
+                        </address>
+                      </div>
+                    </div>
+                  ) : null}
+                </div>
+              </section>
+            </div>
+
+            <div className="lg:pl-8">
+              <div className="rounded-2xl border border-stone-200 bg-white p-6 shadow-sm">
+                <h2
+                  className="mb-6 text-2xl font-semibold text-stone-900"
+                  {...getVisualEditorAttributes(`${translationFieldPath}.formTitle`)}
+                >
+                  {t('contact.formTitle')}
+                </h2>
+                <ContactForm />
               </div>
-            </section>
-          </div>
-
-          <div className="lg:pl-8">
-            <div className="rounded-2xl border border-stone-200 bg-white p-6 shadow-sm">
-              <h2
-                className="mb-6 text-2xl font-semibold text-stone-900"
-                {...getVisualEditorAttributes(`${translationFieldPath}.formTitle`)}
-              >
-                {t('contact.formTitle')}
-              </h2>
-              <ContactForm />
             </div>
           </div>
         </div>
+      </section>
 
-        {mapEmbedUrl ? (
-          <div className="mt-16">
+      {structuredSections.length > 0 ? (
+        <SectionRenderer sections={structuredSections} fieldPath={sectionsFieldPath} />
+      ) : null}
+
+      {mapEmbedUrl ? (
+        <section className="pb-16 sm:pb-24">
+          <div className="container mx-auto max-w-5xl px-4 sm:px-6 lg:px-8">
             <div className="aspect-[4/3] w-full overflow-hidden rounded-2xl shadow-lg">
               <iframe
                 src={mapEmbedUrl}
@@ -242,8 +290,8 @@ const Contact: React.FC = () => {
               />
             </div>
           </div>
-        ) : null}
-      </div>
+        </section>
+      ) : null}
     </div>
   );
 };

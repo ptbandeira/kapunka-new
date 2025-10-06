@@ -238,6 +238,17 @@ export interface MediaCopySectionContent extends VisibilityFlag {
   content?: MediaCopyContentBlock;
 }
 
+export interface HeroSimpleSectionContent extends VisibilityFlag {
+  type: 'heroSimple';
+  title?: string;
+  subtitle?: string;
+  eyebrow?: string;
+  titleFieldPath?: string;
+  subtitleFieldPath?: string;
+  eyebrowFieldPath?: string;
+  fieldPathOverride?: string;
+}
+
 export interface ImageTextHalfSectionContent extends VisibilityFlag {
   type: 'imageTextHalf';
   image?: string;
@@ -470,6 +481,7 @@ export interface ProductTabsSectionContent extends VisibilityFlag {
 }
 
 export type PageSection =
+  | HeroSimpleSectionContent
   | TimelineSectionContent
   | MediaCopySectionContent
   | ImageTextHalfSectionContent
