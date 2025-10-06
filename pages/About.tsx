@@ -79,26 +79,51 @@ const isImageGridSection = (value: unknown): value is PageSection => {
   return section.type === 'imageGrid' && Array.isArray(section.items) && section.items.every(isImageGridItem);
 };
 
+const SUPPORTED_SECTION_TYPES = new Set<PageSection['type']>([
+  'timeline',
+  'imageTextHalf',
+  'imageGrid',
+  'communityCarousel',
+  'videoGallery',
+  'trainingList',
+  'productTabs',
+  'mediaCopy',
+  'mediaShowcase',
+  'featureGrid',
+  'productGrid',
+  'banner',
+  'newsletterSignup',
+  'testimonials',
+  'facts',
+  'bullets',
+  'specialties',
+]);
+
 const isPageSection = (value: unknown): value is PageSection => {
   if (!value || typeof value !== 'object') {
     return false;
   }
 
   const section = value as Record<string, unknown>;
+  const type = section.type;
 
-  if (section.type === 'timeline') {
+  if (typeof type !== 'string' || !SUPPORTED_SECTION_TYPES.has(type as PageSection['type'])) {
+    return false;
+  }
+
+  if (type === 'timeline') {
     return isTimelineSection(section);
   }
 
-  if (section.type === 'imageTextHalf') {
+  if (type === 'imageTextHalf') {
     return isImageTextHalfSection(section);
   }
 
-  if (section.type === 'imageGrid') {
+  if (type === 'imageGrid') {
     return isImageGridSection(section);
   }
 
-  return false;
+  return true;
 };
 
 const isPageContent = (value: unknown): value is PageContent => {

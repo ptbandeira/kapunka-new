@@ -19,6 +19,7 @@ const SUPPORTED_SECTION_TYPES = new Set<PageSection['type']>([
   'mediaShowcase',
   'featureGrid',
   'productGrid',
+  'productTabs',
   'banner',
   'newsletterSignup',
   'communityCarousel',
