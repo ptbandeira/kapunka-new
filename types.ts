@@ -19,6 +19,8 @@ export type TranslatableArray = {
 };
 
 export type LocalizedText = string | Partial<Record<Language, string>>;
+export type LocalizedValue<T> = T | Partial<Record<Language, T>>;
+export type LocalizedNumber = LocalizedValue<number>;
 
 export interface SeoSettings {
     defaultTitle?: LocalizedText;
@@ -203,6 +205,39 @@ export interface TimelineSectionContent extends VisibilityFlag {
   entries: TimelineEntry[];
 }
 
+export interface MediaCopyOverlaySettings {
+  columnStart?: LocalizedNumber;
+  columnSpan?: LocalizedNumber;
+  rowStart?: LocalizedNumber;
+  rowSpan?: LocalizedNumber;
+  textAlign?: LocalizedValue<'left' | 'center' | 'right'>;
+  verticalAlign?: LocalizedValue<'start' | 'center' | 'end'>;
+  theme?: LocalizedValue<'light' | 'dark'>;
+  background?: LocalizedValue<'none' | 'scrim-light' | 'scrim-dark' | 'panel'>;
+  cardWidth?: LocalizedValue<'sm' | 'md' | 'lg'>;
+}
+
+export interface MediaCopyContentBlock {
+  heading?: LocalizedText;
+  body?: LocalizedText;
+  image?: {
+    src?: string | null;
+    alt?: LocalizedText;
+  };
+}
+
+export interface MediaCopySectionContent extends VisibilityFlag {
+  type: 'mediaCopy';
+  title?: LocalizedText;
+  body?: LocalizedText;
+  image?: string | { src?: string | null };
+  imageAlt?: LocalizedText;
+  layout?: LocalizedValue<'image-left' | 'image-right' | 'overlay'>;
+  columns?: LocalizedNumber;
+  overlay?: MediaCopyOverlaySettings;
+  content?: MediaCopyContentBlock;
+}
+
 export interface ImageTextHalfSectionContent extends VisibilityFlag {
   type: 'imageTextHalf';
   image?: string;
@@ -237,6 +272,115 @@ export interface CommunityCarouselSectionContent extends VisibilityFlag {
   slides?: CommunityCarouselSlide[];
   slideDuration?: number;
   quoteDuration?: number;
+}
+
+export interface MediaShowcaseItemContent {
+  eyebrow?: LocalizedText;
+  title?: LocalizedText;
+  body?: LocalizedText;
+  description?: LocalizedText;
+  label?: LocalizedText;
+  image?: string;
+  imageAlt?: LocalizedText;
+  ctaLabel?: LocalizedText;
+  ctaHref?: LocalizedText;
+}
+
+export interface MediaShowcaseSectionContent extends VisibilityFlag {
+  type: 'mediaShowcase';
+  title?: LocalizedText;
+  items?: MediaShowcaseItemContent[];
+}
+
+export interface FeatureGridItemContent {
+  label?: LocalizedText;
+  description?: LocalizedText;
+  icon?: string;
+}
+
+export interface FeatureGridSectionContent extends VisibilityFlag {
+  type: 'featureGrid';
+  title?: LocalizedText;
+  columns?: LocalizedNumber;
+  items?: FeatureGridItemContent[];
+}
+
+export interface ProductGridProductReference {
+  id?: LocalizedText;
+}
+
+export interface ProductGridHighlightItem {
+  eyebrow?: LocalizedText;
+  title?: LocalizedText;
+  label?: LocalizedText;
+  description?: LocalizedText;
+  body?: LocalizedText;
+  image?: string;
+  imageAlt?: LocalizedText;
+  ctaLabel?: LocalizedText;
+  ctaHref?: LocalizedText;
+}
+
+export interface ProductGridSectionContent extends VisibilityFlag {
+  type: 'productGrid';
+  title?: LocalizedText;
+  columns?: LocalizedNumber;
+  products?: ProductGridProductReference[];
+  items?: ProductGridHighlightItem[];
+}
+
+export interface BannerSectionContent extends VisibilityFlag {
+  type: 'banner';
+  text?: LocalizedText;
+  cta?: LocalizedText;
+  url?: LocalizedText;
+  style?: LocalizedText;
+}
+
+export interface NewsletterSignupSectionContent extends VisibilityFlag {
+  type: 'newsletterSignup';
+  title?: LocalizedText;
+  subtitle?: LocalizedText;
+  placeholder?: LocalizedText;
+  ctaLabel?: LocalizedText;
+  confirmation?: LocalizedText;
+  background?: LocalizedValue<'light' | 'beige' | 'dark'>;
+  alignment?: LocalizedValue<'left' | 'center'>;
+}
+
+export interface TestimonialQuoteContent {
+  text?: LocalizedText;
+  author?: LocalizedText;
+  role?: LocalizedText;
+}
+
+export interface TestimonialsSectionContent extends VisibilityFlag {
+  type: 'testimonials';
+  title?: LocalizedText;
+  quotes?: TestimonialQuoteContent[];
+}
+
+export interface FactsSectionContent extends VisibilityFlag {
+  type: 'facts';
+  title?: LocalizedText;
+  text?: LocalizedText;
+}
+
+export interface BulletsSectionContent extends VisibilityFlag {
+  type: 'bullets';
+  title?: LocalizedText;
+  items?: LocalizedText[];
+}
+
+export interface SpecialtyItemContent {
+  title?: LocalizedText;
+  bullets?: LocalizedText[];
+}
+
+export interface SpecialtiesSectionContent extends VisibilityFlag {
+  type: 'specialties';
+  title?: LocalizedText;
+  items?: SpecialtyItemContent[];
 }
 
 export interface ClinicsBlockContent {
@@ -327,12 +471,22 @@ export interface ProductTabsSectionContent extends VisibilityFlag {
 
 export type PageSection =
   | TimelineSectionContent
+  | MediaCopySectionContent
   | ImageTextHalfSectionContent
   | ImageGridSectionContent
   | CommunityCarouselSectionContent
+  | MediaShowcaseSectionContent
+  | FeatureGridSectionContent
+  | ProductGridSectionContent
   | VideoGallerySectionContent
   | TrainingListSectionContent
-  | ProductTabsSectionContent;
+  | ProductTabsSectionContent
+  | BannerSectionContent
+  | NewsletterSignupSectionContent
+  | TestimonialsSectionContent
+  | FactsSectionContent
+  | BulletsSectionContent
+  | SpecialtiesSectionContent;
 
 export interface PageContent extends VisibilityFlag {
   sections: PageSection[];

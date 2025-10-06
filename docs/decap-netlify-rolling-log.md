@@ -1,5 +1,10 @@
 # Decap CMS & Netlify Rolling Log
 
+## 2025-10-31 — Expanded section renderer coverage
+- **What changed**: Added strongly typed models for every Stackbit builder block in `types.ts`, introduced reusable section components (media copy, feature grid, banner, newsletter, product grid, testimonials, facts, bullets, specialties), and updated `SectionRenderer` plus the story/about/training/videos page loaders to recognise the new variants with proper Visual Editor field bindings.
+- **Impact & follow-up**: Visual Editor sections now render consistently across detail pages and inline editing works for the newly supported blocks, reducing manual QA when editors add builder sections. Monitor upcoming content syncs to confirm product grids resolve product references correctly.
+- **References**: Pending PR
+
 ## 2025-10-30 — Restored localized Home hero content
 - **What changed**: Re-applied the English Home markdown hero showcase copy directly from commit `4f69023` so the supply chain and rituals tiles use the design-approved wording while confirming the Portuguese and Spanish files already matched the same structure.
 - **Impact & follow-up**: Ensures the homepage hero module renders with the expected headings and CTAs across locales, keeping the visual editor in sync with the reference layout. Monitor future homepage edits in Decap to make sure the localized markdown stays aligned with the design baseline.

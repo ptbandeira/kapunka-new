@@ -17,6 +17,18 @@ const SUPPORTED_SECTION_TYPES = new Set<PageSection['type']>([
   'imageGrid',
   'videoGallery',
   'trainingList',
+  'communityCarousel',
+  'productTabs',
+  'mediaCopy',
+  'mediaShowcase',
+  'featureGrid',
+  'productGrid',
+  'banner',
+  'newsletterSignup',
+  'testimonials',
+  'facts',
+  'bullets',
+  'specialties',
 ]);
 
 const isPageSection = (value: unknown): value is PageSection => {
@@ -39,19 +51,11 @@ const isPageSection = (value: unknown): value is PageSection => {
     return Array.isArray(section.entries);
   }
 
-  if (type === 'imageTextHalf') {
-    return true;
-  }
-
-  if (type === 'videoGallery') {
+  if (type === 'videoGallery' || type === 'trainingList') {
     return section.entries === undefined || Array.isArray(section.entries);
   }
 
-  if (type === 'trainingList') {
-    return section.entries === undefined || Array.isArray(section.entries);
-  }
-
-  return false;
+  return true;
 };
 
 const isPageContent = (value: unknown): value is PageContent => {

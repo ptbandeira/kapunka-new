@@ -2,6 +2,16 @@ import React, { useCallback, useMemo, useState } from 'react';
 import TimelineSection from './TimelineSection';
 import ImageTextHalf from './sections/ImageTextHalf';
 import ImageGrid from './sections/ImageGrid';
+import MediaCopy from './sections/MediaCopy';
+import MediaShowcase from './sections/MediaShowcase';
+import FeatureGrid from './sections/FeatureGrid';
+import ProductGrid from './sections/ProductGrid';
+import Banner from './sections/Banner';
+import NewsletterSignupSection from './sections/NewsletterSignup';
+import Testimonials from './sections/Testimonials';
+import Facts from './sections/Facts';
+import Bullets from './sections/Bullets';
+import Specialties from './sections/Specialties';
 import VideoGallery from './VideoGallery';
 import TrainingList from './TrainingList';
 import CommunityCarousel from './sections/CommunityCarousel';
@@ -134,6 +144,14 @@ const SectionRenderer: React.FC<SectionRendererProps> = ({ sections, fieldPath }
                 fieldPath={sectionFieldPath}
               />
             );
+          case 'mediaCopy':
+            return (
+              <MediaCopy
+                key={buildSectionKey('media-copy', section)}
+                section={section}
+                fieldPath={sectionFieldPath}
+              />
+            );
           case 'imageTextHalf':
             return (
               <ImageTextHalf
@@ -150,6 +168,30 @@ const SectionRenderer: React.FC<SectionRendererProps> = ({ sections, fieldPath }
               <ImageGrid
                 key={buildSectionKey('image-grid', section)}
                 items={section.items}
+                fieldPath={sectionFieldPath}
+              />
+            );
+          case 'mediaShowcase':
+            return (
+              <MediaShowcase
+                key={buildSectionKey('media-showcase', section)}
+                section={section}
+                fieldPath={sectionFieldPath}
+              />
+            );
+          case 'featureGrid':
+            return (
+              <FeatureGrid
+                key={buildSectionKey('feature-grid', section)}
+                section={section}
+                fieldPath={sectionFieldPath}
+              />
+            );
+          case 'productGrid':
+            return (
+              <ProductGrid
+                key={buildSectionKey('product-grid', section)}
+                section={section}
                 fieldPath={sectionFieldPath}
               />
             );
@@ -178,6 +220,54 @@ const SectionRenderer: React.FC<SectionRendererProps> = ({ sections, fieldPath }
               <ProductTabsSection
                 key={buildSectionKey('product-tabs', section)}
                 section={section}
+              />
+            );
+          case 'banner':
+            return (
+              <Banner
+                key={buildSectionKey('banner', section)}
+                section={section}
+                fieldPath={sectionFieldPath}
+              />
+            );
+          case 'newsletterSignup':
+            return (
+              <NewsletterSignupSection
+                key={buildSectionKey('newsletter-signup', section)}
+                section={section}
+                fieldPath={sectionFieldPath}
+              />
+            );
+          case 'testimonials':
+            return (
+              <Testimonials
+                key={buildSectionKey('testimonials', section)}
+                section={section}
+                fieldPath={sectionFieldPath}
+              />
+            );
+          case 'facts':
+            return (
+              <Facts
+                key={buildSectionKey('facts', section)}
+                section={section}
+                fieldPath={sectionFieldPath}
+              />
+            );
+          case 'bullets':
+            return (
+              <Bullets
+                key={buildSectionKey('bullets', section)}
+                section={section}
+                fieldPath={sectionFieldPath}
+              />
+            );
+          case 'specialties':
+            return (
+              <Specialties
+                key={buildSectionKey('specialties', section)}
+                section={section}
+                fieldPath={sectionFieldPath}
               />
             );
           case 'communityCarousel': {
