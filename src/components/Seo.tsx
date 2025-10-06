@@ -1,6 +1,9 @@
-import React, { useMemo } from 'react';
+import React, { useContext, useMemo } from 'react';
 import { Helmet } from 'react-helmet-async';
 import { useLocation } from 'react-router-dom';
+import { LanguageContext } from '@/contexts/LanguageContext';
+import { useSiteSettings } from '@/contexts/SiteSettingsContext';
+import type { Language } from '@/types';
 
 export type JsonLd = Record<string, unknown> | Record<string, unknown>[];
 
@@ -24,6 +27,35 @@ const sanitize = (value?: string | null): string | undefined => {
 
   const trimmed = value.trim();
   return trimmed.length > 0 ? trimmed : undefined;
+};
+
+const getLocalizedValue = <T,>(
+  value: Partial<Record<Language, T>> | null | undefined,
+  preferredLanguage?: Language,
+): T | undefined => {
+  if (!value) {
+    return undefined;
+  }
+
+  if (preferredLanguage) {
+    const preferredValue = value[preferredLanguage];
+    if (preferredValue !== undefined && preferredValue !== null) {
+      return preferredValue;
+    }
+  }
+
+  const englishValue = value.en;
+  if (englishValue !== undefined && englishValue !== null) {
+    return englishValue;
+  }
+
+  for (const candidate of Object.values(value)) {
+    if (candidate !== undefined && candidate !== null) {
+      return candidate;
+    }
+  }
+
+  return undefined;
 };
 
 const SITE_URL = (() => {
@@ -50,6 +82,8 @@ const Seo: React.FC<SeoProps> = ({
   children,
 }) => {
   const location = useLocation();
+  const languageContext = useContext(LanguageContext);
+  const { settings } = useSiteSettings();
 
   const canonicalUrl = useMemo(() => {
     const explicit = sanitize(url);
@@ -64,13 +98,23 @@ const Seo: React.FC<SeoProps> = ({
     return `${SITE_URL}${location.pathname}`;
   }, [url, location.pathname]);
 
+  const contextLanguage = languageContext?.language;
   const metaTitle = sanitize(title);
   const metaDescription = sanitize(description);
   const metaImage = sanitize(image);
-  const metaLocale = sanitize(locale);
+  const metaLocale = sanitize(locale) ?? sanitize(contextLanguage ?? null);
   const metaType = sanitize(type) ?? 'website';
   const twitterCardType = sanitize(twitterCard) ?? 'summary_large_image';
   const metaSiteName = sanitize(siteName) ?? DEFAULT_SITE_NAME;
+  const defaultTitle = sanitize(
+    getLocalizedValue(settings?.seo?.defaultTitle ?? null, contextLanguage),
+  );
+  const defaultDescription = sanitize(
+    getLocalizedValue(settings?.seo?.defaultDescription ?? null, contextLanguage),
+  );
+  const resolvedTitle = metaTitle ?? defaultTitle ?? metaSiteName;
+  const resolvedDescription = metaDescription ?? defaultDescription;
+  const htmlLang = metaLocale ?? 'en';
 
   const jsonLdPayloads = useMemo(() => {
     if (!jsonLd) {
@@ -86,12 +130,15 @@ const Seo: React.FC<SeoProps> = ({
 
   return (
     <Helmet>
-      {metaTitle ? <title>{metaTitle}</title> : null}
-      {metaDescription ? <meta name="description" content={metaDescription} /> : null}
+      <html lang={htmlLang} />
+      <title>{resolvedTitle}</title>
+      {resolvedDescription ? <meta name="description" content={resolvedDescription} /> : null}
       {canonicalUrl ? <link rel="canonical" href={canonicalUrl} /> : null}
 
-      {metaTitle ? <meta property="og:title" content={metaTitle} /> : null}
-      {metaDescription ? <meta property="og:description" content={metaDescription} /> : null}
+      {resolvedTitle ? <meta property="og:title" content={resolvedTitle} /> : null}
+      {resolvedDescription ? (
+        <meta property="og:description" content={resolvedDescription} />
+      ) : null}
       {canonicalUrl ? <meta property="og:url" content={canonicalUrl} /> : null}
       {metaSiteName ? <meta property="og:site_name" content={metaSiteName} /> : null}
       {metaType ? <meta property="og:type" content={metaType} /> : null}
@@ -99,8 +146,10 @@ const Seo: React.FC<SeoProps> = ({
       {metaImage ? <meta property="og:image" content={metaImage} /> : null}
 
       {twitterCardType ? <meta name="twitter:card" content={twitterCardType} /> : null}
-      {metaTitle ? <meta name="twitter:title" content={metaTitle} /> : null}
-      {metaDescription ? <meta name="twitter:description" content={metaDescription} /> : null}
+      {resolvedTitle ? <meta name="twitter:title" content={resolvedTitle} /> : null}
+      {resolvedDescription ? (
+        <meta name="twitter:description" content={resolvedDescription} />
+      ) : null}
       {metaImage ? <meta name="twitter:image" content={metaImage} /> : null}
 
       {jsonLdPayloads.map((node, index) => (
