@@ -11,6 +11,11 @@ This log records day-to-day investigations, fixes, and decisions that affect the
 
 ---
 
+## 2025-10-06 — Added locale fallback loader and seeded placeholder content
+- **What changed**: Introduced a shared `loadPage` helper that retries localized Markdown fetches with an automatic English fallback. Updated Home, Learn, Method, Clinics, About, and Training page loaders to surface the resolved locale and added PT/ES placeholder copies (with TODO markers) for the Method Kapunka, Founder Story, Product Education, and Training Program Markdown sources.
+- **Impact & follow-up**: Locale-prefixed routes now render even when a translation file is missing, while analytics can track which locale supplied the content. Replace the placeholder Markdown with localized copy once translations are available.
+- **References**: Pending PR
+
 ## 2025-10-05 — Added Decap tabs to page locale editors
 - **What changed**: Enabled the tabbed editor layout for every file in the `pages` collection so translators can switch between English, Portuguese, and Spanish views without scrolling through sequential field groups.
 - **Impact & follow-up**: Simplifies copy editing by aligning all page-level forms with the localized section widgets. Verify Decap renders the tabs correctly once deployed and extend the pattern to any new page entries.

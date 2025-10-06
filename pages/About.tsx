@@ -10,6 +10,7 @@ import { fetchVisualEditorMarkdown } from '../utils/fetchVisualEditorMarkdown';
 import { getVisualEditorAttributes } from '../utils/stackbitBindings';
 import { useVisualEditorSync } from '../contexts/VisualEditorSyncContext';
 import Seo from '../src/components/Seo';
+import { loadPage } from '../src/lib/content';
 
 const isTimelineEntry = (value: unknown): value is TimelineEntry => {
   if (!value || typeof value !== 'object') {
@@ -194,32 +195,65 @@ const About: React.FC = () => {
         setAboutContent(null);
 
         const loadAboutContent = async () => {
-            const localesToTry = [language, 'en'].filter((locale, index, arr) => arr.indexOf(locale) === index);
+            let result;
 
-            for (const locale of localesToTry) {
-                try {
-                    const { data } = await fetchVisualEditorMarkdown<unknown>(
-                        `/content/pages/${locale}/about.md`,
+            try {
+                result = await loadPage({
+                    slug: 'about',
+                    locale: language,
+                    loader: async ({ locale: currentLocale }) => fetchVisualEditorMarkdown<unknown>(
+                        `/content/pages/${currentLocale}/about.md`,
                         { cache: 'no-store' },
-                    );
+                    ),
+                });
+            } catch (error) {
+                console.error('Failed to load about page content', error);
+                if (isMounted) {
+                    setAboutContent(null);
+                }
+                return;
+            }
+
+            if (!isMounted) {
+                return;
+            }
+
+            let payload = result.data;
+
+            if (!isAboutPageContent(payload) && result.localeUsed !== 'en') {
+                try {
+                    result = await loadPage({
+                        slug: 'about',
+                        locale: 'en',
+                        loader: async ({ locale: fallbackLocale }) => fetchVisualEditorMarkdown<unknown>(
+                            `/content/pages/${fallbackLocale}/about.md`,
+                            { cache: 'no-store' },
+                        ),
+                    });
+
                     if (!isMounted) {
                         return;
                     }
 
-                    if (isAboutPageContent(data)) {
-                        setAboutContent(data);
-                        return;
+                    payload = result.data;
+                } catch (fallbackError) {
+                    console.error('Failed to load fallback about page content', fallbackError);
+                    if (isMounted) {
+                        setAboutContent(null);
                     }
-                } catch (error) {
-                    if (locale === localesToTry[localesToTry.length - 1]) {
-                        console.error('Failed to load about page content', error);
-                    }
+                    return;
                 }
             }
 
-            if (isMounted) {
-                setAboutContent(null);
+            if (!isAboutPageContent(payload)) {
+                console.error('Invalid about page content structure');
+                if (isMounted) {
+                    setAboutContent(null);
+                }
+                return;
             }
+
+            setAboutContent(payload);
         };
 
         loadAboutContent().catch((error) => {
@@ -236,32 +270,65 @@ const About: React.FC = () => {
         setStoryContent(null);
 
         const loadStorySections = async () => {
-            const localesToTry = [language, 'en'].filter((locale, index, arr) => arr.indexOf(locale) === index);
+            let result;
 
-            for (const locale of localesToTry) {
-                try {
-                    const { data } = await fetchVisualEditorMarkdown<unknown>(
-                        `/content/pages/${locale}/story.md`,
+            try {
+                result = await loadPage({
+                    slug: 'story',
+                    locale: language,
+                    loader: async ({ locale: currentLocale }) => fetchVisualEditorMarkdown<unknown>(
+                        `/content/pages/${currentLocale}/story.md`,
                         { cache: 'no-store' },
-                    );
+                    ),
+                });
+            } catch (error) {
+                console.error('Failed to load story timeline content', error);
+                if (isMounted) {
+                    setStoryContent(null);
+                }
+                return;
+            }
+
+            if (!isMounted) {
+                return;
+            }
+
+            let payload = result.data;
+
+            if (!isPageContent(payload) && result.localeUsed !== 'en') {
+                try {
+                    result = await loadPage({
+                        slug: 'story',
+                        locale: 'en',
+                        loader: async ({ locale: fallbackLocale }) => fetchVisualEditorMarkdown<unknown>(
+                            `/content/pages/${fallbackLocale}/story.md`,
+                            { cache: 'no-store' },
+                        ),
+                    });
+
                     if (!isMounted) {
                         return;
                     }
 
-                    if (isPageContent(data)) {
-                        setStoryContent(data);
-                        return;
+                    payload = result.data;
+                } catch (fallbackError) {
+                    console.error('Failed to load fallback story timeline content', fallbackError);
+                    if (isMounted) {
+                        setStoryContent(null);
                     }
-                } catch (error) {
-                    if (locale === localesToTry[localesToTry.length - 1]) {
-                        console.error('Failed to load story timeline content', error);
-                    }
+                    return;
                 }
             }
 
-            if (isMounted) {
-                setStoryContent(null);
+            if (!isPageContent(payload)) {
+                console.error('Invalid story timeline content structure');
+                if (isMounted) {
+                    setStoryContent(null);
+                }
+                return;
             }
+
+            setStoryContent(payload);
         };
 
         loadStorySections().catch((error) => {

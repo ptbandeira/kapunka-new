@@ -9,6 +9,7 @@ import { useVisualEditorSync } from '../contexts/VisualEditorSyncContext';
 import { useSiteSettings } from '../contexts/SiteSettingsContext';
 import Seo from '../src/components/Seo';
 import { fetchTrainingProgramContent, TRAINING_PROGRAM_OBJECT_ID, type TrainingProgramContent } from '../utils/trainingProgramContent';
+import { loadPage } from '../src/lib/content';
 
 const SUPPORTED_SECTION_TYPES = new Set<PageSection['type']>([
   'timeline',
@@ -79,32 +80,65 @@ const Training: React.FC = () => {
     setPageContent(null);
 
     const loadSections = async () => {
-      const localesToTry = [language, 'en'].filter((locale, index, arr) => arr.indexOf(locale) === index);
+      let result;
 
-      for (const locale of localesToTry) {
-        try {
-          const { data } = await fetchVisualEditorMarkdown<unknown>(
-            `/content/pages/${locale}/training.md`,
+      try {
+        result = await loadPage({
+          slug: 'training',
+          locale: language,
+          loader: async ({ locale: currentLocale }) => fetchVisualEditorMarkdown<unknown>(
+            `/content/pages/${currentLocale}/training.md`,
             { cache: 'no-store' },
-          );
+          ),
+        });
+      } catch (error) {
+        console.error('Failed to load training page content', error);
+        if (isMounted) {
+          setPageContent(null);
+        }
+        return;
+      }
+
+      if (!isMounted) {
+        return;
+      }
+
+      let payload = result.data;
+
+      if (!isPageContent(payload) && result.localeUsed !== 'en') {
+        try {
+          result = await loadPage({
+            slug: 'training',
+            locale: 'en',
+            loader: async ({ locale: fallbackLocale }) => fetchVisualEditorMarkdown<unknown>(
+              `/content/pages/${fallbackLocale}/training.md`,
+              { cache: 'no-store' },
+            ),
+          });
+
           if (!isMounted) {
             return;
           }
 
-          if (isPageContent(data)) {
-            setPageContent(data);
-            return;
+          payload = result.data;
+        } catch (fallbackError) {
+          console.error('Failed to load fallback training page content', fallbackError);
+          if (isMounted) {
+            setPageContent(null);
           }
-        } catch (error) {
-          if (locale === localesToTry[localesToTry.length - 1]) {
-            console.error('Failed to load training page content', error);
-          }
+          return;
         }
       }
 
-      if (isMounted) {
-        setPageContent(null);
+      if (!isPageContent(payload)) {
+        console.error('Invalid training page content structure');
+        if (isMounted) {
+          setPageContent(null);
+        }
+        return;
       }
+
+      setPageContent(payload);
     };
 
     loadSections().catch((error) => {

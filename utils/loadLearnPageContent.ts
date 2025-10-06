@@ -1,6 +1,7 @@
 import type { Language } from '../types';
 import { fetchVisualEditorMarkdown, type VisualEditorContentSource } from './fetchVisualEditorMarkdown';
 import { loadUnifiedPage } from './unifiedPageLoader';
+import { loadPage } from '../src/lib/content';
 
 export interface LearnPageCategory {
   id: string;
@@ -30,22 +31,23 @@ export const loadLearnPageContent = async (
     return unified;
   }
 
-  const locales: Language[] = language === 'en' ? ['en'] : [language, 'en'];
-
-  for (const locale of locales) {
-    try {
-      const { data, source } = await fetchVisualEditorMarkdown<LearnPageData>(
-        `/content/pages/${locale}/learn.md`,
+  try {
+    const result = await loadPage({
+      slug: 'learn',
+      locale: language,
+      loader: async ({ locale: currentLocale }) => fetchVisualEditorMarkdown<LearnPageData>(
+        `/content/pages/${currentLocale}/learn.md`,
         { cache: 'no-store' },
-      );
-      return {
-        data,
-        locale,
-        source,
-      };
-    } catch (error) {
-      console.warn('Learn page content fetch failed', locale, error);
-    }
+      ),
+    });
+
+    return {
+      data: result.data,
+      locale: result.localeUsed,
+      source: result.source,
+    };
+  } catch (error) {
+    console.warn('Learn page content fetch failed', error);
   }
 
   return null;

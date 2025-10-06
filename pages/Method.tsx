@@ -7,6 +7,7 @@ import { getVisualEditorAttributes } from '../utils/stackbitBindings';
 import { useVisualEditorSync } from '../contexts/VisualEditorSyncContext';
 import { useSiteSettings } from '../contexts/SiteSettingsContext';
 import Seo from '../src/components/Seo';
+import { loadPage } from '../src/lib/content';
 
 interface SpecialtyItem {
   title: string;
@@ -140,34 +141,65 @@ const Method: React.FC = () => {
     setContent(null);
 
     const loadContent = async () => {
-      const localesToTry: Language[] = [language, 'en'].filter(
-        (locale, index, arr) => arr.indexOf(locale) === index,
-      ) as Language[];
+      let result;
 
-      for (const locale of localesToTry) {
-        try {
-          const { data } = await fetchVisualEditorMarkdown<unknown>(
-            `/content/pages/${locale}/method.md`,
+      try {
+        result = await loadPage({
+          slug: 'method',
+          locale: language,
+          loader: async ({ locale: currentLocale }) => fetchVisualEditorMarkdown<unknown>(
+            `/content/pages/${currentLocale}/method.md`,
             { cache: 'no-store' },
-          );
+          ),
+        });
+      } catch (error) {
+        console.error('Failed to load Method page content', error);
+        if (isMounted) {
+          setContent(null);
+        }
+        return;
+      }
+
+      if (!isMounted) {
+        return;
+      }
+
+      let payload = result.data;
+
+      if (!isMethodPageContent(payload) && result.localeUsed !== 'en') {
+        try {
+          result = await loadPage({
+            slug: 'method',
+            locale: 'en',
+            loader: async ({ locale: fallbackLocale }) => fetchVisualEditorMarkdown<unknown>(
+              `/content/pages/${fallbackLocale}/method.md`,
+              { cache: 'no-store' },
+            ),
+          });
+
           if (!isMounted) {
             return;
           }
 
-          if (isMethodPageContent(data)) {
-            setContent(data);
-            return;
+          payload = result.data;
+        } catch (fallbackError) {
+          console.error('Failed to load fallback Method page content', fallbackError);
+          if (isMounted) {
+            setContent(null);
           }
-        } catch (error) {
-          if (locale === localesToTry[localesToTry.length - 1]) {
-            console.error('Failed to load Method page content', error);
-          }
+          return;
         }
       }
 
-      if (isMounted) {
-        setContent(null);
+      if (!isMethodPageContent(payload)) {
+        console.error('Invalid Method page content structure');
+        if (isMounted) {
+          setContent(null);
+        }
+        return;
       }
+
+      setContent(payload);
     };
 
     loadContent().catch((error) => {
