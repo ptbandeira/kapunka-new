@@ -403,41 +403,61 @@ const Header: React.FC = () => {
       .filter((item): item is MegaMenuItem => Boolean(item));
   }, [getNavDescription, navItems]);
 
+  const getProfessionalDescription = useCallback(
+    (key: 'training' | 'clinics', fallback: string) => {
+      const translationKey = `nav.${key}_desc`;
+      const translated = t(translationKey);
+      const isTranslated = translated !== translationKey;
+
+      if (isTranslated) {
+        return {
+          label: translated,
+          fieldPath: `translations.${language}.nav.${key}_desc`,
+          sbFieldPath: `${language}.${key}_desc`,
+        };
+      }
+
+      return getNavDescription('forProfessionals', key, fallback);
+    },
+    [getNavDescription, language, t],
+  );
+
   const professionalMegaItems = useMemo(() => {
-    const dropdown = navItems.find(
-      (navItem): navItem is ResolvedNavDropdownConfig =>
-        navItem.type === 'dropdown' && navItem.key === 'forProfessionals',
-    );
+    const proItems = [
+      { key: 'training' as const, path: '/training', fallbackTitle: 'Training' },
+      { key: 'clinics' as const, path: '/for-clinics', fallbackTitle: 'Clinics' },
+    ];
 
-    if (!dropdown) {
-      return [] as MegaMenuItem[];
-    }
-
-    return dropdown.items
-      .map((child) => {
-        const meta =
-          MEGA_MENU_METADATA.forProfessionals[
-            child.key as keyof typeof MEGA_MENU_METADATA.forProfessionals
-          ];
+    return proItems
+      .map((item) => {
+        const meta = MEGA_MENU_METADATA.forProfessionals[item.key];
         if (!meta) {
           return undefined;
         }
 
-        const description = getNavDescription('forProfessionals', child.key, meta.descriptionFallback);
+        const translatedTitle = t(`nav.${item.key}`);
+        const hasTitleTranslation = translatedTitle !== `nav.${item.key}`;
+        const title = hasTitleTranslation ? translatedTitle : item.fallbackTitle;
+        const titleFieldPath = hasTitleTranslation
+          ? `translations.${language}.nav.${item.key}`
+          : undefined;
+        const titleSbFieldPath = hasTitleTranslation ? `${language}.${item.key}` : undefined;
+
+        const description = getProfessionalDescription(item.key, meta.descriptionFallback);
 
         return {
-          title: child.label,
-          href: child.to,
+          title,
+          href: buildLocalizedPath(item.path, language),
           icon: meta.icon,
           description: description.label,
-          titleFieldPath: child.fieldPath,
-          titleSbFieldPath: child.sbFieldPath,
+          titleFieldPath,
+          titleSbFieldPath,
           descriptionFieldPath: description.fieldPath,
           descriptionSbFieldPath: description.sbFieldPath,
         } satisfies MegaMenuItem;
       })
       .filter((item): item is MegaMenuItem => Boolean(item));
-  }, [getNavDescription, navItems]);
+  }, [getProfessionalDescription, language, t]);
 
   const hasLanguageSwitcher = navItems.some((item) => item.type === 'language-switcher');
 

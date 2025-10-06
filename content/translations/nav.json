@@ -10,7 +10,9 @@
     "productEducation": "Product Education",
     "method": "Method Kapunka",
     "training": "Training",
+    "training_desc": "Join certified programs designed for therapists and wellness experts.",
     "clinics": "Clinics",
+    "clinics_desc": "Partner with clinics bringing Kapunka treatments to their clients.",
     "about": "About",
     "contact": "Contact",
     "navDescriptions": {
@@ -37,7 +39,9 @@
     "productEducation": "Educação sobre Produtos",
     "method": "Método Kapunka",
     "training": "Treinamento",
+    "training_desc": "Participe em programas certificados para terapeutas e especialistas em bem-estar.",
     "clinics": "Clínicas",
+    "clinics_desc": "Associe-se a clínicas que oferecem tratamentos Kapunka aos seus clientes.",
     "about": "Sobre",
     "contact": "Contato",
     "navDescriptions": {
@@ -64,7 +68,9 @@
     "productEducation": "Educación sobre Productos",
     "method": "Método Kapunka",
     "training": "Formación",
+    "training_desc": "Únete a programas certificados pensados para terapeutas y expertos en bienestar.",
     "clinics": "Clínicas",
+    "clinics_desc": "Colabora con clínicas que llevan los tratamientos Kapunka a sus clientes.",
     "about": "Nosotros",
     "contact": "Contacto",
     "navDescriptions": {
