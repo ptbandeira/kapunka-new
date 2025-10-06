@@ -11,6 +11,11 @@ This log records day-to-day investigations, fixes, and decisions that affect the
 
 ---
 
+## 2025-10-17 — Enforced training catalog validation
+- **What changed**: Marked the training catalog list in `admin/config.yml` with a minimum entry count and required course title/summaries so editors cannot save empty modules. Updated the TrainingList React component to ignore entries without titles and hide empty summaries/CTAs on the `/training` page.
+- **Impact & follow-up**: Prevents blank "Learn more" cards from rendering when placeholder rows exist in Decap. Monitor future catalog imports to ensure they provide both title and summary content.
+- **References**: Pending PR
+
 ## 2025-10-06 — Added locale fallback loader and seeded placeholder content
 - **What changed**: Introduced a shared `loadPage` helper that retries localized Markdown fetches with an automatic English fallback. Updated Home, Learn, Method, Clinics, About, and Training page loaders to surface the resolved locale and added PT/ES placeholder copies (with TODO markers) for the Method Kapunka, Founder Story, Product Education, and Training Program Markdown sources.
 - **Impact & follow-up**: Locale-prefixed routes now render even when a translation file is missing, while analytics can track which locale supplied the content. Replace the placeholder Markdown with localized copy once translations are available.

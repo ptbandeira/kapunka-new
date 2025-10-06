@@ -2755,9 +2755,10 @@ collections:
             name: trainings
             widget: list
             summary: "{{fields.courseTitle}}"
+            min: 1
             fields:
-              - { label: Course Title, name: courseTitle, widget: string, required: false }
-              - { label: Course Summary, name: courseSummary, widget: text, required: false }
+              - { label: Course Title, name: courseTitle, widget: string, required: true }
+              - { label: Course Summary, name: courseSummary, widget: text, required: true }
               - { label: Link URL, name: linkUrl, widget: string, required: false }
   - name: doctors
     label: Doctors

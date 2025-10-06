@@ -55,14 +55,13 @@ const TrainingList: React.FC<TrainingListProps> = ({ title, description, entries
     };
   }, [entries, contentVersion]);
 
-  const items = useMemo(() => {
-    if (entries && entries.length > 0) {
-      return entries;
-    }
-    return catalogEntries;
+  const modules = useMemo(() => {
+    const sourceEntries = entries && entries.length > 0 ? entries : catalogEntries;
+
+    return sourceEntries.filter((entry): entry is TrainingEntry => Boolean(entry?.courseTitle?.trim()));
   }, [entries, catalogEntries]);
 
-  if (!title && !description && items.length === 0) {
+  if (modules.length === 0) {
     return null;
   }
 
@@ -104,62 +103,58 @@ const TrainingList: React.FC<TrainingListProps> = ({ title, description, entries
           </div>
         )}
 
-        {items.length === 0 ? (
-          <p
-            className="text-stone-500"
-            {...getVisualEditorAttributes(`translations.${language}.training.emptyState`)}
-            data-sb-field-path={`translations.${language}.training.emptyState`}
-          >
-            {t('training.emptyState')}
-          </p>
-        ) : (
-          <div className="grid gap-8 md:grid-cols-2">
-            {items.map((item, index) => {
-              const key = `${item.courseTitle ?? 'training'}-${index}`;
-              const itemFieldPath = fieldPath ? `${fieldPath}.entries.${index}` : undefined;
+        <div className="grid gap-8 md:grid-cols-2">
+          {modules.map((item, index) => {
+            const key = `${item.courseTitle ?? 'training'}-${index}`;
+            const itemFieldPath = fieldPath ? `${fieldPath}.entries.${index}` : undefined;
+            const title = item.courseTitle?.trim();
+            const summary = item.courseSummary?.trim();
+            const hasSummary = Boolean(summary);
+            const linkUrl = item.linkUrl?.trim();
 
-              return (
-                <motion.article
-                  key={key}
-                  initial={{ opacity: 0, y: 24 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.45, delay: index * 0.05 }}
-                  className="flex h-full flex-col justify-between rounded-3xl border border-stone-200 bg-white p-8 shadow-sm shadow-stone-100"
-                  {...getVisualEditorAttributes(itemFieldPath)}
-                  data-sb-field-path={itemFieldPath}
-                >
-                  <div>
-                    {item.courseTitle && (
-                      <h3
-                        className="text-xl font-semibold text-stone-900"
-                        {...getVisualEditorAttributes(itemFieldPath ? `${itemFieldPath}.courseTitle` : undefined)}
-                        data-sb-field-path={itemFieldPath ? `${itemFieldPath}.courseTitle` : undefined}
-                      >
-                        {item.courseTitle}
-                      </h3>
-                    )}
-                    {item.courseSummary && (
-                      <p
-                        className="mt-4 text-sm text-stone-600"
-                        {...getVisualEditorAttributes(itemFieldPath ? `${itemFieldPath}.courseSummary` : undefined)}
-                        data-sb-field-path={itemFieldPath ? `${itemFieldPath}.courseSummary` : undefined}
-                      >
-                        {item.courseSummary}
-                      </p>
-                    )}
-                  </div>
+            return (
+              <motion.article
+                key={key}
+                initial={{ opacity: 0, y: 24 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.45, delay: index * 0.05 }}
+                className="flex h-full flex-col justify-between rounded-3xl border border-stone-200 bg-white p-8 shadow-sm shadow-stone-100"
+                {...getVisualEditorAttributes(itemFieldPath)}
+                data-sb-field-path={itemFieldPath}
+              >
+                <div>
+                  {title ? (
+                    <h3
+                      className="text-xl font-semibold text-stone-900"
+                      {...getVisualEditorAttributes(itemFieldPath ? `${itemFieldPath}.courseTitle` : undefined)}
+                      data-sb-field-path={itemFieldPath ? `${itemFieldPath}.courseTitle` : undefined}
+                    >
+                      {title}
+                    </h3>
+                  ) : null}
+                  {hasSummary ? (
+                    <p
+                      className="mt-4 text-sm text-stone-600"
+                      {...getVisualEditorAttributes(itemFieldPath ? `${itemFieldPath}.courseSummary` : undefined)}
+                      data-sb-field-path={itemFieldPath ? `${itemFieldPath}.courseSummary` : undefined}
+                    >
+                      {summary}
+                    </p>
+                  ) : null}
+                </div>
+                {hasSummary ? (
                   <div className="mt-6 flex items-center gap-3">
                     <a
-                      href={item.linkUrl ?? '#'}
+                      href={linkUrl ?? '#'}
                       className={`inline-flex items-center justify-center rounded-full px-5 py-2 text-sm font-semibold transition ${
-                        item.linkUrl
+                        linkUrl
                           ? 'bg-stone-900 text-white hover:bg-stone-700'
                           : 'cursor-not-allowed bg-stone-200 text-stone-500'
                       }`}
-                      target={item.linkUrl ? '_blank' : undefined}
-                      rel={item.linkUrl ? 'noopener noreferrer' : undefined}
-                      aria-disabled={!item.linkUrl}
+                      target={linkUrl ? '_blank' : undefined}
+                      rel={linkUrl ? 'noopener noreferrer' : undefined}
+                      aria-disabled={!linkUrl}
                       {...getVisualEditorAttributes(itemFieldPath ? `${itemFieldPath}.linkUrl` : undefined)}
                       data-sb-field-path={itemFieldPath ? `${itemFieldPath}.linkUrl` : undefined}
                     >
@@ -171,11 +166,11 @@ const TrainingList: React.FC<TrainingListProps> = ({ title, description, entries
                       </span>
                     </a>
                   </div>
-                </motion.article>
-              );
-            })}
-          </div>
-        )}
+                ) : null}
+              </motion.article>
+            );
+          })}
+        </div>
       </div>
     </section>
   );
