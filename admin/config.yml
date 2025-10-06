@@ -1005,6 +1005,12 @@ collections:
             name: seo
             widget: object
             fields:
+              - label: Favicon
+                name: favicon
+                widget: image
+                choose_url: true
+                required: false
+                hint: "Upload a square SVG, PNG, or ICO file used as the site favicon (at least 64×64)."
               - label: Default Title
                 name: defaultTitle
                 widget: object
