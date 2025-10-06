@@ -1,5 +1,10 @@
 # Decap CMS & Netlify Rolling Log
 
+## 2025-10-06 — Removed duplicate Home preview path configuration
+- **What changed**: Deleted the redundant `preview_path: "/"` from the Home page entry in `admin/config.yml` so the setting is defined only once alongside the rest of the page metadata.
+- **Impact & follow-up**: Prevents Decap from flagging a duplicate preview path on load and keeps the Home configuration consistent with other page files. Confirm the CMS continues to resolve the homepage preview correctly after future schema edits.
+- **References**: Pending PR
+
 ## 2025-10-07 — Added visibility toggles for pages and sections
 - **What changed**: Introduced a reusable `visible` toggle in `admin/config.yml` for every page entry and section template, then wired the React loaders (`utils/unifiedPageLoader.ts`, `SectionRenderer`, and page components) to drop sections marked hidden and surface the new page-level visibility flag. Documented the content pipeline audit along the way to confirm unified JSON, Markdown fallbacks, and Stackbit bindings all honor the new field.
 - **Impact & follow-up**: Editors can now stage sections or entire pages without deleting content, while the frontend filters hidden entries consistently. Monitor upcoming Decap edits to ensure localized markdown includes the toggle when desired and expand visibility handling to nested list items if editors request finer control.
