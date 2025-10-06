@@ -11,6 +11,11 @@ This log records day-to-day investigations, fixes, and decisions that affect the
 
 ---
 
+## 2025-10-22 — Documented SPA fallback redirect for Netlify
+- **What changed**: Recorded the addition of the catch-all redirect in `public/_redirects` so Netlify always serves `index.html` for client-routed paths.
+- **Impact & follow-up**: Prevents 404s when editors or visitors land on deep links (including locale-prefixed routes) by ensuring the SPA router boots before navigation. Confirm future deploy previews include `_redirects` in the publish bundle and spot-check a few nested routes after each infrastructure change.
+- **References**: [Commit 8543ca4](https://github.com/ptbandeira/kapunka-new/commit/8543ca4612ec19dc7d788ecc5bcdd2aaa353d0f9) · Pending PR
+
 ## 2025-10-21 — Streamlined contact & training editing previews
 - **What changed**: Updated `admin/config.yml` so every page builder form renders locale tabs via the new `display: 'tabs'` editor setting and added targeted contact/training preview components plus a shared template loader to reuse site styles.
 - **Impact & follow-up**: Editors get consistent language tabs across key pages and live previews for contact/training entries that surface hero copy, contact details, and module sections. Monitor Decap for any console warnings about the targeted templates on load.
