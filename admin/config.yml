@@ -1,6 +1,6 @@
 # ===== Internationalization =====
 i18n:
-  structure: single_file
+  structure: multiple_folders
   locales: [en, pt, es]
   default_locale: en
 
@@ -1071,7 +1071,7 @@ collections:
       - &home_page
         name: home
         label: Home Page
-        file: content/pages/en/home.md
+        file: content/pages/{{locale}}/home.md
         format: frontmatter
         media_folder: "content/uploads/home"
         public_folder: "/content/uploads/home"
@@ -1218,20 +1218,11 @@ collections:
             summary: "{{fields.type}} · {{fields.title.en | default(fields.content.headline.en) | default(fields.content.heading.en)}}"
             hint: "Scroll, reorder, duplicate, or add sections in page order."
             types: *section_library
-      - <<: *home_page
-        name: home_pt
-        label: Home Page (Portuguese)
-        file: content/pages/pt/home.md
-        preview_path: "/pt"
-      - <<: *home_page
-        name: home_es
-        label: Home Page (Spanish)
-        file: content/pages/es/home.md
-        preview_path: "/es"
+        preview_path: "/"
       - &learn_page
         name: learn
         label: Learn Page
-        file: content/pages/en/learn.md
+        file: content/pages/{{locale}}/learn.md
         format: frontmatter
         media_folder: "content/uploads/learn"
         public_folder: "/content/uploads/learn"
@@ -1285,20 +1276,10 @@ collections:
                     name: "label"
                     hint: "Localized category label (≤30 characters)."
           - *sections_field
-      - <<: *learn_page
-        name: learn_pt
-        label: Learn Page (Portuguese)
-        file: content/pages/pt/learn.md
-        preview_path: "/pt/learn"
-      - <<: *learn_page
-        name: learn_es
-        label: Learn Page (Spanish)
-        file: content/pages/es/learn.md
-        preview_path: "/es/learn"
       - &method_page
         name: method
         label: Method Page
-        file: content/pages/en/method.md
+        file: content/pages/{{locale}}/method.md
         format: frontmatter
         media_folder: "content/uploads/method"
         public_folder: "/content/uploads/method"
@@ -1362,20 +1343,10 @@ collections:
               - *section_facts
               - *section_bullets
               - *section_specialties
-      - <<: *method_page
-        name: method_pt
-        label: Method Page (Portuguese)
-        file: content/pages/pt/method.md
-        preview_path: "/pt/method"
-      - <<: *method_page
-        name: method_es
-        label: Method Page (Spanish)
-        file: content/pages/es/method.md
-        preview_path: "/es/method"
       - &clinics_page
         name: clinics
         label: For Clinics Page
-        file: content/pages/en/clinics.md
+        file: content/pages/{{locale}}/clinics.md
         format: frontmatter
         media_folder: "content/uploads/clinics"
         public_folder: "/content/uploads/clinics"
@@ -1602,20 +1573,10 @@ collections:
             name: "ctaButton"
             hint: "Call-to-action button text (≤24 characters)."
           - *sections_field
-      - <<: *clinics_page
-        name: clinics_pt
-        label: For Clinics Page (Portuguese)
-        file: content/pages/pt/clinics.md
-        preview_path: "/pt/for-clinics"
-      - <<: *clinics_page
-        name: clinics_es
-        label: For Clinics Page (Spanish)
-        file: content/pages/es/clinics.md
-        preview_path: "/es/for-clinics"
       - &about_page
         name: about
         label: About Page
-        file: content/pages/en/about.md
+        file: content/pages/{{locale}}/about.md
         format: frontmatter
         media_folder: "content/uploads/about"
         public_folder: "/content/uploads/about"
@@ -1635,20 +1596,10 @@ collections:
               - *meta_title_field
               - *meta_description_field
           - *sections_field
-      - <<: *about_page
-        name: about_pt
-        label: About Page (Portuguese)
-        file: content/pages/pt/about.md
-        preview_path: "/pt/about"
-      - <<: *about_page
-        name: about_es
-        label: About Page (Spanish)
-        file: content/pages/es/about.md
-        preview_path: "/es/about"
       - &story_page
         name: story
         label: Story & Manifesto Page
-        file: content/pages/en/story.md
+        file: content/pages/{{locale}}/story.md
         format: frontmatter
         media_folder: "content/uploads/story"
         public_folder: "/content/uploads/story"
@@ -1741,20 +1692,10 @@ collections:
                     name: "body"
                     hint: "Closing paragraphs inviting readers to reflect or engage."
           - *sections_field
-      - <<: *story_page
-        name: story_pt
-        label: Story & Manifesto Page (Portuguese)
-        file: content/pages/pt/story.md
-        preview_path: "/pt/story"
-      - <<: *story_page
-        name: story_es
-        label: Story & Manifesto Page (Spanish)
-        file: content/pages/es/story.md
-        preview_path: "/es/story"
       - &contact_page
         name: contact
         label: Contact Page
-        file: content/pages/en/contact.md
+        file: content/pages/{{locale}}/contact.md
         format: frontmatter
         media_folder: "content/uploads/contact"
         public_folder: "/content/uploads/contact"
@@ -1802,16 +1743,6 @@ collections:
             required: false
             pattern: ["^https://", "Use a secure (https://) embed URL."]
             hint: "Paste the full Google Maps iframe URL to render a location map."
-      - <<: *contact_page
-        name: contact_pt
-        label: Contact Page (Portuguese)
-        file: content/pages/pt/contact.md
-        preview_path: "/pt/contact"
-      - <<: *contact_page
-        name: contact_es
-        label: Contact Page (Spanish)
-        file: content/pages/es/contact.md
-        preview_path: "/es/contact"
       - name: shop
         label: Shop Page
         file: content/shop.json
