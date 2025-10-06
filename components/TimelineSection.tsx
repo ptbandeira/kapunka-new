@@ -13,7 +13,23 @@ interface TimelineSectionProps {
 }
 
 const TimelineSection: React.FC<TimelineSectionProps> = ({ title, entries, fieldPath }) => {
-  if (!entries || entries.length === 0) {
+  const sanitizedEntries = Array.isArray(entries)
+    ? entries.filter((entry) => {
+      if (!entry) {
+        return false;
+      }
+
+      const hasYear = entry.year?.trim();
+      const hasTitle = entry.title?.trim();
+      const hasDescription = entry.description?.trim();
+      const hasImage = entry.image?.trim();
+
+      return Boolean(hasYear || hasTitle || hasDescription || hasImage);
+    })
+    : [];
+  const trimmedTitle = title?.trim();
+
+  if (!trimmedTitle && sanitizedEntries.length === 0) {
     return null;
   }
 
@@ -54,7 +70,7 @@ const TimelineSection: React.FC<TimelineSectionProps> = ({ title, entries, field
       {...getVisualEditorAttributes(fieldPath)}
       data-sb-field-path={fieldPath}
     >
-      {title && (
+      {trimmedTitle ? (
         <motion.h2
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -64,15 +80,15 @@ const TimelineSection: React.FC<TimelineSectionProps> = ({ title, entries, field
           {...getVisualEditorAttributes(fieldPath ? `${fieldPath}.title` : undefined)}
           data-sb-field-path={fieldPath ? `${fieldPath}.title` : undefined}
         >
-          {title}
+          {trimmedTitle}
         </motion.h2>
-      )}
+      ) : null}
       <div
         className="space-y-16"
         {...getVisualEditorAttributes(entriesFieldPath)}
         data-sb-field-path={entriesFieldPath}
       >
-        {entries.map((entry, index) => {
+        {sanitizedEntries.map((entry, index) => {
           const hasImage = Boolean(entry.image && entry.image.trim().length > 0);
           const isEven = index % 2 === 0;
           const entryFieldPath = entriesFieldPath ? `${entriesFieldPath}.${index}` : undefined;
@@ -115,28 +131,34 @@ const TimelineSection: React.FC<TimelineSectionProps> = ({ title, entries, field
                 viewport={{ once: true }}
                 transition={{ duration: 0.6, delay: 0.1 }}
               >
-                <span
+                {entry.year?.trim() ? (
+                  <span
                   className="text-sm uppercase tracking-[0.3em] text-stone-500"
                   {...getVisualEditorAttributes(entryFieldPath ? `${entryFieldPath}.year` : undefined)}
                   data-sb-field-path={entryFieldPath ? `${entryFieldPath}.year` : undefined}
                 >
-                  {entry.year}
-                </span>
-                <h3
+                    {entry.year.trim()}
+                  </span>
+                ) : null}
+                {entry.title?.trim() ? (
+                  <h3
                   className="mt-2 text-2xl font-semibold"
                   {...getVisualEditorAttributes(entryFieldPath ? `${entryFieldPath}.title` : undefined)}
                   data-sb-field-path={entryFieldPath ? `${entryFieldPath}.title` : undefined}
                 >
-                  {entry.title}
-                </h3>
-                <div
-                  {...getVisualEditorAttributes(entryFieldPath ? `${entryFieldPath}.description` : undefined)}
-                  data-sb-field-path={entryFieldPath ? `${entryFieldPath}.description` : undefined}
-                >
-                  <ReactMarkdown components={markdownComponents}>
-                    {entry.description}
-                  </ReactMarkdown>
-                </div>
+                    {entry.title.trim()}
+                  </h3>
+                ) : null}
+                {entry.description?.trim() ? (
+                  <div
+                    {...getVisualEditorAttributes(entryFieldPath ? `${entryFieldPath}.description` : undefined)}
+                    data-sb-field-path={entryFieldPath ? `${entryFieldPath}.description` : undefined}
+                  >
+                    <ReactMarkdown components={markdownComponents}>
+                      {entry.description.trim()}
+                    </ReactMarkdown>
+                  </div>
+                ) : null}
               </motion.div>
             </div>
           );

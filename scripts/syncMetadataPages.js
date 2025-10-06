@@ -15,7 +15,6 @@ const pageDefinitions = [
   { slug: 'story', label: 'Story' },
   { slug: 'training', label: 'Training' },
   { slug: 'videos', label: 'Videos' },
-  { slug: 'test', label: 'Test' },
 ];
 
 const toSentenceCase = (value) =>

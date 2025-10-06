@@ -204,9 +204,30 @@ const ForClinics: React.FC = () => {
     return null;
   })();
 
-  const protocolCards = protocolSectionSource?.data.cards?.filter((card) => (
-    hasContent(card.title) || hasContent(card.focus) || isStringArray(card.steps) || hasContent(card.evidence)
-  )) ?? [];
+  const hasProtocolHeading = protocolSectionSource
+    ? hasContent(protocolSectionSource.data.title) || hasContent(protocolSectionSource.data.subtitle)
+    : false;
+
+  const protocolCards = useMemo(() => {
+    if (!protocolSectionSource) {
+      return [] as ProtocolCard[];
+    }
+
+    const cards = protocolSectionSource.data.cards;
+    if (!Array.isArray(cards) || cards.length === 0) {
+      return [] as ProtocolCard[];
+    }
+
+    return cards.filter((card) => (
+      Boolean(card)
+      && (
+        hasContent(card?.title)
+        || hasContent(card?.focus)
+        || (Array.isArray(card?.steps) && card.steps.some((step) => hasContent(step)))
+        || hasContent(card?.evidence)
+      )
+    ));
+  }, [protocolSectionSource]);
 
   const benefitsTitleSource = hasContent(pageContent?.data.section1Title)
     ? {
@@ -391,7 +412,7 @@ const ForClinics: React.FC = () => {
           </div>
         </section>
 
-        {protocolSectionSource ? (
+        {protocolSectionSource && (hasProtocolHeading || protocolCards.length > 0) ? (
           <section className="bg-stone-50 py-16 sm:py-20">
             <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
               <motion.div
@@ -421,8 +442,13 @@ const ForClinics: React.FC = () => {
                 <div className="mt-10 grid gap-6 sm:grid-cols-2">
                   {protocolCards.map((card, index) => {
                     const cardFieldPath = `${protocolSectionSource.fieldPath}.cards.${index}`;
+                    const title = card.title?.trim();
+                    const focus = card.focus?.trim();
+                    const evidence = card.evidence?.trim();
                     const steps = Array.isArray(card.steps)
-                      ? card.steps.filter((step) => hasContent(step))
+                      ? card.steps
+                        .map((step) => (typeof step === 'string' ? step.trim() : ''))
+                        .filter((step) => step.length > 0)
                       : [];
 
                     return (
@@ -434,20 +460,20 @@ const ForClinics: React.FC = () => {
                         transition={{ duration: 0.5, delay: 0.1 * index }}
                         {...getVisualEditorAttributes(cardFieldPath)}
                       >
-                        {hasContent(card.title) ? (
+                        {title ? (
                           <h3
                             className="text-2xl font-semibold text-stone-900"
                             {...getVisualEditorAttributes(`${cardFieldPath}.title`)}
                           >
-                            {card.title}
+                            {title}
                           </h3>
                         ) : null}
-                        {hasContent(card.focus) ? (
+                        {focus ? (
                           <p
                             className="mt-2 text-sm font-medium uppercase tracking-wide text-stone-500"
                             {...getVisualEditorAttributes(`${cardFieldPath}.focus`)}
                           >
-                            {card.focus}
+                            {focus}
                           </p>
                         ) : null}
                         {steps.length > 0 ? (
@@ -464,12 +490,12 @@ const ForClinics: React.FC = () => {
                             ))}
                           </ul>
                         ) : null}
-                        {hasContent(card.evidence) ? (
+                        {evidence ? (
                           <p
                             className="mt-4 text-sm text-stone-500"
                             {...getVisualEditorAttributes(`${cardFieldPath}.evidence`)}
                           >
-                            {card.evidence}
+                            {evidence}
                           </p>
                         ) : null}
                       </motion.article>

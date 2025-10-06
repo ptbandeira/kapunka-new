@@ -38,7 +38,7 @@ const VideoGallery: React.FC<VideoGalleryProps> = ({ title, description, entries
   const { contentVersion } = useVisualEditorSync();
 
   useEffect(() => {
-    if (entries && entries.length > 0) {
+    if (Array.isArray(entries) && entries.length > 0) {
       return;
     }
 
@@ -61,13 +61,39 @@ const VideoGallery: React.FC<VideoGalleryProps> = ({ title, description, entries
   }, [entries, contentVersion]);
 
   const items = useMemo(() => {
-    if (entries && entries.length > 0) {
-      return entries;
+    if (Array.isArray(entries) && entries.length > 0) {
+      return entries.filter((entry) => {
+        if (!entry) {
+          return false;
+        }
+
+        const hasTitle = entry.title?.trim();
+        const hasDescription = entry.description?.trim();
+        const hasVideoUrl = entry.videoUrl?.trim();
+        const hasThumbnail = entry.thumbnail?.trim();
+
+        return Boolean(hasTitle || hasDescription || hasVideoUrl || hasThumbnail);
+      });
     }
-    return libraryEntries;
+
+    return libraryEntries.filter((entry) => {
+      if (!entry) {
+        return false;
+      }
+
+      const hasTitle = entry.title?.trim();
+      const hasDescription = entry.description?.trim();
+      const hasVideoUrl = entry.videoUrl?.trim();
+      const hasThumbnail = entry.thumbnail?.trim();
+
+      return Boolean(hasTitle || hasDescription || hasVideoUrl || hasThumbnail);
+    });
   }, [entries, libraryEntries]);
 
-  if (!title && !description && items.length === 0) {
+  const trimmedTitle = title?.trim();
+  const trimmedDescription = description?.trim();
+
+  if (!trimmedTitle && !trimmedDescription && items.length === 0) {
     return null;
   }
 
@@ -78,9 +104,9 @@ const VideoGallery: React.FC<VideoGalleryProps> = ({ title, description, entries
       data-sb-field-path={fieldPath}
     >
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-        {(title || description) && (
+        {(trimmedTitle || trimmedDescription) && (
           <div className="mb-12 max-w-3xl">
-            {title && (
+            {trimmedTitle ? (
               <motion.h2
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
@@ -90,10 +116,10 @@ const VideoGallery: React.FC<VideoGalleryProps> = ({ title, description, entries
                 {...getVisualEditorAttributes(fieldPath ? `${fieldPath}.title` : undefined)}
                 data-sb-field-path={fieldPath ? `${fieldPath}.title` : undefined}
               >
-                {title}
+                {trimmedTitle}
               </motion.h2>
-            )}
-            {description && (
+            ) : null}
+            {trimmedDescription ? (
               <motion.p
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
@@ -103,9 +129,9 @@ const VideoGallery: React.FC<VideoGalleryProps> = ({ title, description, entries
                 {...getVisualEditorAttributes(fieldPath ? `${fieldPath}.description` : undefined)}
                 data-sb-field-path={fieldPath ? `${fieldPath}.description` : undefined}
               >
-                {description}
+                {trimmedDescription}
               </motion.p>
-            )}
+            ) : null}
           </div>
         )}
 
@@ -120,11 +146,18 @@ const VideoGallery: React.FC<VideoGalleryProps> = ({ title, description, entries
         ) : (
           <div className="grid gap-10 sm:grid-cols-2 lg:grid-cols-3">
             {items.map((item, index) => {
+              if (!item) {
+                return null;
+              }
+
               const key = `${item.title ?? 'video'}-${index}`;
               const itemFieldPath = fieldPath ? `${fieldPath}.entries.${index}` : undefined;
               const hasThumbnail = typeof item.thumbnail === 'string' && item.thumbnail.trim().length > 0;
               const thumbnailSrc = item.thumbnail?.trim() ?? '';
               const cloudinaryUrl = thumbnailSrc ? getCloudinaryUrl(thumbnailSrc) ?? thumbnailSrc : '';
+              const titleText = item.title?.trim();
+              const descriptionText = item.description?.trim();
+              const videoUrl = item.videoUrl?.trim();
 
               return (
                 <motion.article
@@ -157,29 +190,29 @@ const VideoGallery: React.FC<VideoGalleryProps> = ({ title, description, entries
                     </div>
                   </div>
 
-                  {item.title && (
+                  {titleText ? (
                     <h3
                       className="mt-6 text-xl font-semibold text-stone-900"
                       {...getVisualEditorAttributes(itemFieldPath ? `${itemFieldPath}.title` : undefined)}
                       data-sb-field-path={itemFieldPath ? `${itemFieldPath}.title` : undefined}
                     >
-                      {item.title}
+                      {titleText}
                     </h3>
-                  )}
+                  ) : null}
 
-                  {item.description && (
+                  {descriptionText ? (
                     <p
                       className="mt-3 text-sm text-stone-600"
                       {...getVisualEditorAttributes(itemFieldPath ? `${itemFieldPath}.description` : undefined)}
                       data-sb-field-path={itemFieldPath ? `${itemFieldPath}.description` : undefined}
                     >
-                      {item.description}
+                      {descriptionText}
                     </p>
-                  )}
+                  ) : null}
 
-                  {item.videoUrl && (
+                  {videoUrl ? (
                     <a
-                      href={item.videoUrl}
+                      href={videoUrl}
                       className="mt-6 inline-flex items-center text-sm font-semibold text-stone-900 underline decoration-stone-300 decoration-2 underline-offset-4 transition hover:decoration-stone-500"
                       target="_blank"
                       rel="noopener noreferrer"
@@ -193,7 +226,7 @@ const VideoGallery: React.FC<VideoGalleryProps> = ({ title, description, entries
                         {t('videos.watchLabel')}
                       </span>
                     </a>
-                  )}
+                  ) : null}
                 </motion.article>
               );
             })}
