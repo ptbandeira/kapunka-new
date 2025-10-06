@@ -36,6 +36,11 @@ This log records day-to-day investigations, fixes, and decisions that affect the
 - **Impact & follow-up**: Prevents blank "Learn more" cards from rendering when placeholder rows exist in Decap. Monitor future catalog imports to ensure they provide both title and summary content.
 - **References**: Pending PR
 
+## 2025-10-06 — Restored home layout order and localized PT/ES copy
+- **What changed**: Reordered the Home page section array in both the Markdown sources and `content/pages_v2/index.json` so the rendered layout matches the legacy hero → showcase → community → newsletter → product → testimonials flow. Updated the Portuguese and Spanish Markdown front matter for hero copy, carousel text, newsletter CTA, and value props to use localized strings instead of English fallbacks.
+- **Impact & follow-up**: `/pt` and `/es` now render with native copy and no longer mis-order the hero-adjacent sections, keeping the CMS editing experience consistent across locales. Monitor future homepage edits to ensure the localized Markdown stays in sync with the unified JSON model.
+- **References**: Pending PR
+
 ## 2025-10-06 — Added locale fallback loader and seeded placeholder content
 - **What changed**: Introduced a shared `loadPage` helper that retries localized Markdown fetches with an automatic English fallback. Updated Home, Learn, Method, Clinics, About, and Training page loaders to surface the resolved locale and added PT/ES placeholder copies (with TODO markers) for the Method Kapunka, Founder Story, Product Education, and Training Program Markdown sources.
 - **Impact & follow-up**: Locale-prefixed routes now render even when a translation file is missing, while analytics can track which locale supplied the content. Replace the placeholder Markdown with localized copy once translations are available.
