@@ -3,6 +3,7 @@ import { Helmet } from 'react-helmet-async';
 import { useLocation } from 'react-router-dom';
 import { LanguageContext } from '@/contexts/LanguageContext';
 import { useSiteSettings } from '@/contexts/SiteSettingsContext';
+import { getCloudinaryUrl } from '@/utils/imageUrl';
 import type { Language } from '@/types';
 
 export type JsonLd = Record<string, unknown> | Record<string, unknown>[];
@@ -116,6 +117,38 @@ const Seo: React.FC<SeoProps> = ({
   const resolvedDescription = metaDescription ?? defaultDescription;
   const htmlLang = metaLocale ?? 'en';
 
+  const faviconHref = useMemo(() => {
+    const faviconSource = sanitize(settings?.seo?.favicon ?? null);
+    if (!faviconSource) {
+      return undefined;
+    }
+
+    const cloudinaryUrl = getCloudinaryUrl(faviconSource);
+    return cloudinaryUrl ?? faviconSource;
+  }, [settings?.seo?.favicon]);
+
+  const faviconType = useMemo(() => {
+    if (!faviconHref) {
+      return undefined;
+    }
+
+    const normalized = faviconHref.toLowerCase();
+    if (normalized.endsWith('.svg')) {
+      return 'image/svg+xml';
+    }
+    if (normalized.endsWith('.png')) {
+      return 'image/png';
+    }
+    if (normalized.endsWith('.ico')) {
+      return 'image/x-icon';
+    }
+    if (normalized.endsWith('.jpg') || normalized.endsWith('.jpeg')) {
+      return 'image/jpeg';
+    }
+
+    return undefined;
+  }, [faviconHref]);
+
   const jsonLdPayloads = useMemo(() => {
     if (!jsonLd) {
       return [];
@@ -157,6 +190,10 @@ const Seo: React.FC<SeoProps> = ({
           {JSON.stringify(node)}
         </script>
       ))}
+
+      {faviconHref ? (
+        <link rel="icon" href={faviconHref} type={faviconType} />
+      ) : null}
 
       {children}
     </Helmet>

@@ -5,6 +5,11 @@
 - **Impact & follow-up**: Editors can now stage sections or entire pages without deleting content, while the frontend filters hidden entries consistently. Monitor upcoming Decap edits to ensure localized markdown includes the toggle when desired and expand visibility handling to nested list items if editors request finer control.
 - **References**: Pending PR
 
+## 2025-10-06 — Added CMS-managed favicon controls
+- **What changed**: Exposed a favicon upload in the Site Configuration SEO group, seeded `content/site.json` with a default SVG icon, and updated the shared `<Seo>` component to emit a Cloudinary-aware `<link rel="icon">` tag.
+- **Impact & follow-up**: Editors can now swap the browser tab icon without code changes, and the frontend automatically loads the chosen asset. Confirm the Visual Editor surfaces the new field alongside the existing SEO defaults after the next sync.
+- **References**: Pending PR
+
 This log records day-to-day investigations, fixes, and decisions that affect the Decap CMS configuration or Netlify delivery. Use it to understand why a change shipped, what problem it solved, and where to look for deeper context (PRs, commits, and audit docs).
 
 ## How to add a new entry

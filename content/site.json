@@ -59,6 +59,7 @@
     ]
   },
   "seo": {
+    "favicon": "site/favicon.svg",
     "defaultTitle": {
       "en": "Kapunka Skincare",
       "pt": "Kapunka Skincare",

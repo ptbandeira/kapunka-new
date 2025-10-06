@@ -23,6 +23,7 @@ export type LocalizedText = string | Partial<Record<Language, string>>;
 export interface SeoSettings {
     defaultTitle?: LocalizedText;
     defaultDescription?: LocalizedText;
+    favicon?: string;
 }
 
 export interface ProductSize {

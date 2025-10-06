@@ -278,6 +278,34 @@ const customModels = [
     filePath: 'content/site.json',
     fields: [
       {
+        name: 'seo',
+        type: 'object',
+        label: 'SEO Defaults',
+        fields: [
+          {
+            name: 'favicon',
+            type: 'image',
+            label: 'Favicon',
+            description: 'Upload a square SVG, PNG, or ICO used for the browser tab icon.',
+            required: false,
+          },
+          {
+            name: 'defaultTitle',
+            type: 'model',
+            label: 'Default Title',
+            models: ['LocalizedString'],
+            required: false,
+          },
+          {
+            name: 'defaultDescription',
+            type: 'model',
+            label: 'Default Description',
+            models: ['LocalizedText'],
+            required: false,
+          },
+        ],
+      },
+      {
         name: 'header',
         type: 'model',
         models: ['Header'],
