@@ -1,5 +1,10 @@
 # Decap CMS & Netlify Rolling Log
 
+## 2025-10-07 — Added visibility toggles for pages and sections
+- **What changed**: Introduced a reusable `visible` toggle in `admin/config.yml` for every page entry and section template, then wired the React loaders (`utils/unifiedPageLoader.ts`, `SectionRenderer`, and page components) to drop sections marked hidden and surface the new page-level visibility flag. Documented the content pipeline audit along the way to confirm unified JSON, Markdown fallbacks, and Stackbit bindings all honor the new field.
+- **Impact & follow-up**: Editors can now stage sections or entire pages without deleting content, while the frontend filters hidden entries consistently. Monitor upcoming Decap edits to ensure localized markdown includes the toggle when desired and expand visibility handling to nested list items if editors request finer control.
+- **References**: Pending PR
+
 This log records day-to-day investigations, fixes, and decisions that affect the Decap CMS configuration or Netlify delivery. Use it to understand why a change shipped, what problem it solved, and where to look for deeper context (PRs, commits, and audit docs).
 
 ## How to add a new entry

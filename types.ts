@@ -2,6 +2,10 @@ import type { ReactNode } from 'react';
 
 export type Language = 'en' | 'pt' | 'es';
 
+export interface VisibilityFlag {
+  visible?: boolean;
+}
+
 export type Translatable = {
   en: string;
   pt: string;
@@ -205,13 +209,13 @@ export interface TimelineEntry {
   image?: string;
 }
 
-export interface TimelineSectionContent {
+export interface TimelineSectionContent extends VisibilityFlag {
   type: 'timeline';
   title?: string;
   entries: TimelineEntry[];
 }
 
-export interface ImageTextHalfSectionContent {
+export interface ImageTextHalfSectionContent extends VisibilityFlag {
   type: 'imageTextHalf';
   image?: string;
   title?: string;
@@ -226,7 +230,7 @@ export interface ImageGridItem {
   alt?: string;
 }
 
-export interface ImageGridSectionContent {
+export interface ImageGridSectionContent extends VisibilityFlag {
   type: 'imageGrid';
   items: ImageGridItem[];
 }
@@ -239,7 +243,7 @@ export interface CommunityCarouselSlide {
   role?: string;
 }
 
-export interface CommunityCarouselSectionContent {
+export interface CommunityCarouselSectionContent extends VisibilityFlag {
   type: 'communityCarousel';
   title?: string;
   slides?: CommunityCarouselSlide[];
@@ -300,7 +304,7 @@ export interface VideoEntry {
   thumbnail?: string;
 }
 
-export interface VideoGallerySectionContent {
+export interface VideoGallerySectionContent extends VisibilityFlag {
   type: 'videoGallery';
   title?: string;
   description?: string;
@@ -313,7 +317,7 @@ export interface TrainingEntry {
   linkUrl?: string;
 }
 
-export interface TrainingListSectionContent {
+export interface TrainingListSectionContent extends VisibilityFlag {
   type: 'trainingList';
   title?: string;
   description?: string;
@@ -327,7 +331,7 @@ export interface ProductTab {
   content: ReactNode | (() => ReactNode);
 }
 
-export interface ProductTabsSectionContent {
+export interface ProductTabsSectionContent extends VisibilityFlag {
   type: 'productTabs';
   tabs: ProductTab[];
   initialActiveTab?: string;
@@ -342,7 +346,7 @@ export type PageSection =
   | TrainingListSectionContent
   | ProductTabsSectionContent;
 
-export interface PageContent {
+export interface PageContent extends VisibilityFlag {
   sections: PageSection[];
   type?: string;
   metaTitle?: string;

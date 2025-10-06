@@ -9,10 +9,12 @@ interface LocalizedValueMap {
 interface UnifiedPageFieldEntry {
   key?: string;
   value?: LocalizedValueMap;
+  visible?: boolean;
 }
 
 interface RawUnifiedPageSection {
   type?: string;
+  visible?: boolean;
   [key: string]: unknown;
 }
 
@@ -25,6 +27,7 @@ interface RawUnifiedPageRecord {
   id?: string;
   label?: string;
   slug?: string;
+  visible?: boolean;
   metadata?: RawUnifiedPageMetadata;
   hero?: Record<string, unknown>;
   sections?: RawUnifiedPageSection[];
@@ -264,6 +267,10 @@ const resolveSection = (
     return null;
   }
 
+  if (resolved.visible === false) {
+    return null;
+  }
+
   return resolved;
 };
 
@@ -437,6 +444,9 @@ const applyFields = (
     if (typeof entry?.key !== 'string') {
       return;
     }
+    if (entry.visible === false) {
+      return;
+    }
     const localized = getLocalizedPrimitive(entry.value, language);
     if (!localized) {
       return;
@@ -510,6 +520,9 @@ export const loadUnifiedPage = async <TData = Record<string, unknown>>(
       }
       if (typeof match.slug === 'string' && match.slug.length > 0) {
         data.slug = match.slug;
+      }
+      if (match.visible !== undefined) {
+        data.visible = match.visible !== false;
       }
 
       const resolvedLocale = determineResolvedLocale(localesUsed, language);

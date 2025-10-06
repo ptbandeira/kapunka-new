@@ -1,13 +1,14 @@
 import React, { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
 import { useLanguage } from '../contexts/LanguageContext';
-import type { Language } from '../types';
+import type { Language, VisibilityFlag } from '../types';
 import { fetchVisualEditorMarkdown } from '../utils/fetchVisualEditorMarkdown';
 import { getVisualEditorAttributes } from '../utils/stackbitBindings';
 import { useVisualEditorSync } from '../contexts/VisualEditorSyncContext';
 import { useSiteSettings } from '../contexts/SiteSettingsContext';
 import Seo from '../src/components/Seo';
 import { loadPage } from '../src/lib/content';
+import { filterVisible } from '../utils/contentVisibility';
 
 interface SpecialtyItem {
   title: string;
@@ -20,24 +21,24 @@ interface ClinicalNote {
 }
 
 type MethodSection =
-  | {
+  | ({
       type: 'facts';
       title: string;
       text: string;
-    }
-  | {
+    } & VisibilityFlag)
+  | ({
       type: 'bullets';
       title: string;
       items: string[];
-    }
-  | {
+    } & VisibilityFlag)
+  | ({
       type: 'specialties';
       title?: string;
       items?: SpecialtyItem[];
       specialties?: SpecialtyItem[];
-    };
+    } & VisibilityFlag);
 
-interface MethodPageContent {
+interface MethodPageContent extends VisibilityFlag {
   metaTitle?: string;
   metaDescription?: string;
   heroTitle?: string;
@@ -217,7 +218,9 @@ const Method: React.FC = () => {
   const metaDescription = content?.metaDescription ?? fallbackMetaDescriptions[language];
   const pageTitle = `${metaTitle} | Kapunka Skincare`;
   const socialImage = siteSettings.home?.heroImage;
-  const sections = content?.sections ?? [];
+  const sections = content?.visible === false
+    ? []
+    : filterVisible(content?.sections ?? []);
   const clinicalNotes = content?.clinicalNotes?.filter((note) => {
     const hasTitle = note.title.trim().length > 0;
     const hasBullets = note.bullets.some((bullet) => bullet.trim().length > 0);

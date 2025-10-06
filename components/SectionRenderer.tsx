@@ -7,6 +7,7 @@ import TrainingList from './TrainingList';
 import CommunityCarousel from './sections/CommunityCarousel';
 import { getVisualEditorAttributes } from '../utils/stackbitBindings';
 import type { PageSection, ProductTab, ProductTabsSectionContent } from '../types';
+import { filterVisible } from '../utils/contentVisibility';
 
 const ProductTabsSection: React.FC<{ section: ProductTabsSectionContent }> = ({ section }) => {
   const { tabs, initialActiveTab } = section;
@@ -112,7 +113,7 @@ const buildSectionKey = (prefix: string, section: PageSection): string => {
 };
 
 const SectionRenderer: React.FC<SectionRendererProps> = ({ sections, fieldPath }) => {
-  const safeSections = Array.isArray(sections) ? sections : [];
+  const safeSections = filterVisible(sections);
 
   if (safeSections.length === 0) {
     return null;

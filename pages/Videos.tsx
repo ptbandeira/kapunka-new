@@ -9,6 +9,7 @@ import { getVisualEditorAttributes } from '../utils/stackbitBindings';
 import { useVisualEditorSync } from '../contexts/VisualEditorSyncContext';
 import { useSiteSettings } from '../contexts/SiteSettingsContext';
 import { getCloudinaryUrl } from '../utils/imageUrl';
+import { filterVisible } from '../utils/contentVisibility';
 
 const SUPPORTED_SECTION_TYPES = new Set<PageSection['type']>([
   'timeline',
@@ -114,7 +115,9 @@ const Videos: React.FC = () => {
     };
   }, [language, contentVersion]);
 
-  const sections = pageContent?.sections ?? [];
+  const sections = pageContent?.visible === false
+    ? []
+    : filterVisible(pageContent?.sections ?? []);
   const sectionsFieldPath = `pages.videos_${language}.sections`;
   const metaTitle = (pageContent?.metaTitle ?? t('videos.metaTitle'))?.trim();
   const metaDescription = (pageContent?.metaDescription ?? t('videos.metaDescription'))?.trim();
