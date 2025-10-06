@@ -16,6 +16,11 @@ This log records day-to-day investigations, fixes, and decisions that affect the
 
 ---
 
+## 2025-10-24 — Retired unused partner/doctor CMS modules
+- **What changed**: Removed the dormant partner carousel and doctor roster from Decap, deleting `content/partners.json`/`content/doctors.json`, pruning the related collections from `admin/config.yml`, Stackbit bindings, and `stackbit.config.ts`, and clearing the leftover `doctorsTitle`/`partnersTitle` fields from page content.
+- **Impact & follow-up**: CMS editors no longer see unused groups or fields tied to defunct features, reducing clutter without touching rendered sections. Verify future content audits don't rely on the retired JSON files before purging the unused uploads folder.
+- **References**: Pending PR
+
 ## 2025-10-23 — Enabled locale fallbacks for page Markdown
 - **What changed**: Duplicated every English page Markdown file into the `content/pages/pt` and `content/pages/es` folders with placeholder TODO notes, registered the PT/ES files in `admin/config.yml` using YAML anchors with `i18n: true`, and updated the Home page loader to render structured sections when the English fallback is used.
 - **Impact & follow-up**: `/pt` and `/es` routes now render instead of 404ing when translations are missing, and CMS editors can open localized files to replace the placeholder copy. Translate the new Markdown files to Portuguese and Spanish when ready.

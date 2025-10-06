@@ -20,11 +20,9 @@ export interface ClinicsPageData {
   referencesSection?: unknown;
   keywordSection?: unknown;
   faqSection?: unknown;
-  doctorsTitle?: string;
   ctaTitle?: string;
   ctaSubtitle?: string;
   ctaButton?: string;
-  partnersTitle?: string;
   sections?: unknown[];
 }
 

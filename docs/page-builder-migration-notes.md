@@ -10,8 +10,8 @@ These notes capture how page-specific migrations were completed so we can repeat
 
 - **Content Source**: migrated clinic hero, intro, protocol cards, references, keywords, FAQ, and CTA strings out of `content/translations/clinics.json` into `content/pages/{locale}/clinics.md` (mirrored during builds into `.netlify/visual-editor/content`). Existing section arrays remain intact.
 - **Runtime Loader**: added `utils/loadClinicsPageContent.ts` and updated `pages/ForClinics.tsx` to consume the new JSON while preserving translation fallbacks.
-- **CMS Schema**: expanded the Page Builder entry with structured objects (Intro, Protocol cards, References, Keywords, FAQ, CTA, Partners) so editors can update everything from the page form.
-- **Partner Carousel**: `components/PartnerCarousel.tsx` accepts optional `title`/`fieldPath` props, letting pages override the heading pulled from CMS.
+- **CMS Schema**: expanded the Page Builder entry with structured objects (Intro, Protocol cards, References, Keywords, FAQ, CTA) so editors can update everything from the page form.
+- **Clinic partners**: the legacy partner carousel module was retired during the 2025 CMS cleanup once no pages referenced the shared list.
 
 ## Community Carousel Refresh (April 2025)
 - **New Layout**: `components/sections/CommunityCarousel.tsx` now renders a marquee-style slider with square imagery and a floating quote overlay, matching the requested visual style.

@@ -179,8 +179,6 @@ const fallbackCollectionObjectIds: Record<string, string> = {
   shop: 'ShopContent:content/shop.json',
   policies: 'PolicyCollection:content/policies.json',
   courses: 'CourseCollection:content/courses.json',
-  partners: 'PartnerCollection:content/partners.json',
-  doctors: 'DoctorCollection:content/doctors.json',
 };
 
 const missingCollectionWarnings = new Set<string>();
