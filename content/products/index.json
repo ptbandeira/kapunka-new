@@ -128,7 +128,7 @@
         "pt": "Óleo de Argan Puro",
         "es": "Aceite de Argán Puro"
       },
-      "imageUrl": "/content/uploads/products/aceite-argan-dosificador-250ml-2.jpg",
+      "imageUrl": "products/aceite-argan-dosificador-250ml-2.jpg",
       "tags": {
         "en": [
           "fragrance-free"
@@ -373,7 +373,7 @@
         "pt": "Kapunka Cicatrizes",
         "es": "Kapunka Cicatrices"
       },
-      "imageUrl": "/content/uploads/products/aceite-argan-dosificador-100m-forest-box.jpg",
+      "imageUrl": "products/aceite-argan-dosificador-100m-forest-box.jpg",
       "tags": {
         "en": [
           "scar care"
@@ -598,7 +598,7 @@
         "pt": "Kapunka óleo de argan cicatrizante roll-on 10 ml",
         "es": "Kapunka aceite de argán cicatrizante roll-on 10ml"
       },
-      "imageUrl": "/content/uploads/products/aceite-argan-dosificador-30ml-forest.jpg",
+      "imageUrl": "products/aceite-argan-dosificador-30ml-forest.jpg",
       "tags": {
         "en": [
           "scar care"
@@ -823,7 +823,7 @@
         "pt": "Kapunka óleo de argan cicatrizante 30 ml",
         "es": "Kapunka aceite de argán cicatrizante 30ml"
       },
-      "imageUrl": "/content/uploads/products/aceite-argan-dosificador-100m-forest-box.jpg",
+      "imageUrl": "products/aceite-argan-dosificador-100m-forest-box.jpg",
       "tags": {
         "en": [
           "scar care"
@@ -1048,7 +1048,7 @@
         "pt": "Kapunka óleo de argan cicatrizante 50 ml",
         "es": "Kapunka aceite de argán cicatrizante 50ml"
       },
-      "imageUrl": "/content/uploads/products/aceite-argan-dosificador-250ml-2.jpg",
+      "imageUrl": "products/aceite-argan-dosificador-250ml-2.jpg",
       "tags": {
         "en": [
           "scar care"
@@ -1273,7 +1273,7 @@
         "pt": "Kapunka óleo de argan cicatrizante 100 ml",
         "es": "Kapunka aceite de argán cicatrizante 100ml"
       },
-      "imageUrl": "/content/uploads/products/aceite-argan-dosificador-100m-forest-box.jpg",
+      "imageUrl": "products/aceite-argan-dosificador-100m-forest-box.jpg",
       "tags": {
         "en": [
           "scar care"
@@ -1521,7 +1521,7 @@
         "pt": "Óleo de Argan + Algodão",
         "es": "Aceite de Argán Puro con Algodón"
       },
-      "imageUrl": "/content/uploads/products/aceite-argan-dosificador-250ml-300x300.jpg",
+      "imageUrl": "products/aceite-argan-dosificador-250ml-300x300.jpg",
       "id": "cotton-argan-oil",
       "howToUse": {
         "en": "Apply 2–3 drops to clean skin AM/PM. For hair, smooth a drop on mid-lengths and ends. For post-procedure routines, follow your clinician’s guidance.",
@@ -1758,7 +1758,7 @@
         "pt": "Óleo de Argan + Incenso de Agra",
         "es": "Aceite de Argán Puro con Incienso de Agra"
       },
-      "imageUrl": "/content/uploads/products/aceite-argan-dosificador-30ml-forest.jpg",
+      "imageUrl": "products/aceite-argan-dosificador-30ml-forest.jpg",
       "id": "agra-incense-argan-oil",
       "howToUse": {
         "en": "Apply 2–3 drops to clean skin AM/PM. For hair, smooth a drop on mid-lengths and ends. For post-procedure routines, follow your clinician’s guidance.",
@@ -1995,7 +1995,7 @@
         "pt": "Óleo de Argan + Jasmim",
         "es": "Aceite de Argán Puro con Jazmín"
       },
-      "imageUrl": "/content/uploads/products/aceite-argan-dosificador-30ml-forest.jpg",
+      "imageUrl": "products/aceite-argan-dosificador-30ml-forest.jpg",
       "id": "jasmine-argan-oil",
       "howToUse": {
         "en": "Apply 2–3 drops to clean skin AM/PM. For hair, smooth a drop on mid-lengths and ends. For post-procedure routines, follow your clinician’s guidance.",
@@ -2209,7 +2209,7 @@
         "pt": "Óleo de Argan + Lavanda",
         "es": "Aceite de Argán Puro con Lavanda"
       },
-      "imageUrl": "/content/uploads/products/aceite-argan-puro-primera-prensada-frio-250ml.jpg",
+      "imageUrl": "products/aceite-argan-puro-primera-prensada-frio-250ml.jpg",
       "id": "lavender-argan-oil",
       "howToUse": {
         "en": "Apply 2–3 drops to clean skin AM/PM. For hair, smooth a drop on mid-lengths and ends. For post-procedure routines, follow your clinician’s guidance.",
@@ -2423,7 +2423,7 @@
         "pt": "Óleo de Argan + Alecrim",
         "es": "Aceite de Argán Puro con Romero"
       },
-      "imageUrl": "/content/uploads/products/aceite-argan-puro-primera-prensada-frio-250ml-con-romero.jpg",
+      "imageUrl": "products/aceite-argan-puro-primera-prensada-frio-250ml-con-romero.jpg",
       "tags": {
         "en": [
           "rosemary scent"
@@ -2853,7 +2853,7 @@
         "pt": "Luva Kessa Kapunka",
         "es": "Manopla Kessa Kapunka"
       },
-      "imageUrl": "/content/uploads/products/product-item2.png",
+      "imageUrl": "products/product-item2.png",
       "tags": {
         "en": [
           "hammam accessory"
@@ -3086,7 +3086,7 @@
         "pt": "Necessaire Kapunka",
         "es": "Neceser Kapunka"
       },
-      "imageUrl": "/content/uploads/products/pack-aceite-argnan-puro-lavanda-2.jpg",
+      "imageUrl": "products/pack-aceite-argnan-puro-lavanda-2.jpg",
       "tags": {
         "en": [
           "travel accessory"
@@ -3335,7 +3335,7 @@
         "pt": "Esfoliar + Nutrir",
         "es": "Exfoliar + Nutrir"
       },
-      "imageUrl": "/content/uploads/products/product-item2.png",
+      "imageUrl": "products/product-item2.png",
       "tags": {
         "en": [
           "bundle",

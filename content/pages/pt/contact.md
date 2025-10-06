@@ -9,7 +9,7 @@ sections:
       Clinics, partners, and individuals—tell us what you need and we’ll guide
       you to the right routine, training, or wholesale option.
     layout: image-right
-    image: /content/uploads/contact/argan-fields.jpg
+    image: contact/argan-fields.jpg
 ---
 
 # TODO: Translate to Portuguese

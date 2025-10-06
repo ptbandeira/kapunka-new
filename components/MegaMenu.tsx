@@ -1,7 +1,7 @@
 import React, { useCallback } from 'react';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import { toCld } from '@/src/lib/images';
+import { getCloudinaryUrl } from '../utils/imageUrl';
 import { getVisualEditorAttributes } from '../utils/stackbitBindings';
 
 export type MegaMenuItem = {
@@ -61,7 +61,7 @@ const MegaMenu: React.FC<MegaMenuProps> = ({
     >
       <div className="grid gap-4 sm:grid-cols-2">
         {items.map((item) => {
-          const cloudinaryUrl = toCld(item.icon);
+          const cloudinaryUrl = getCloudinaryUrl(item.icon) ?? item.icon;
 
           return (
             <Link

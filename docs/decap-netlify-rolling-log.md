@@ -156,6 +156,11 @@ This log records day-to-day investigations, fixes, and decisions that affect the
 - **Impact & follow-up**: Editors can now reuse quotes across locales without copy/paste while enriching the “Trusted by clinicians” carousel. Monitor new testimonial entries to confirm relation widgets save the expected `fileRelativePath` values.
 - **References**: Pending PR
 
+## 2025-10-06 — Normalized CMS image references for Cloudinary delivery
+- **What changed**: Replaced legacy `/content/uploads/...` paths across product, article, and page content entries with Cloudinary public IDs. Updated the shared `getCloudinaryUrl` helper to strip historic upload prefixes and fall back to runtime environment variables exposed by Vite.
+- **Impact & follow-up**: Ensures Visual Editor previews and the live site load media from Cloudinary regardless of locale or section source. Monitor upcoming CMS edits for any new `/content/uploads/` paths that may need automatic normalization.
+- **References**: Pending PR
+
 ## 2025-10-06 — Added simplified For Clinics hero and section overrides
 - **What changed**: Introduced a new `pages/for-clinics.tsx` layout that pulls meta, hero, and section copy from translations with Markdown overrides. Added `heroTitle`/`heroSubtitle` fields to the clinics Markdown entries plus matching translation keys, and exposed the hero controls in `admin/config.yml` so editors can manage the new page.
 - **Impact & follow-up**: The For Clinics experience now loads faster with a streamlined hero and curated sections while remaining fully editable in the Visual Editor and Decap. Verify Stackbit bindings continue to resolve correctly when switching locales in the Visual Editor.

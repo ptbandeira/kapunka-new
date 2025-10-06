@@ -4,32 +4,32 @@
     {
       "id": "1",
       "name": "Dr. Vila Rovira",
-      "imageUrl": "/content/uploads/doctors-json/dr-vila-rovira-kapunka-257x300.jpg"
+      "imageUrl": "doctors-json/dr-vila-rovira-kapunka-257x300.jpg"
     },
     {
       "id": "2",
       "name": "Dr. Pelegrí",
-      "imageUrl": "/content/uploads/doctors-json/dr-pelegri-kapunka-257x300.jpg"
+      "imageUrl": "doctors-json/dr-pelegri-kapunka-257x300.jpg"
     },
     {
       "id": "3",
       "name": "Dr. García",
-      "imageUrl": "/content/uploads/doctors-json/dr-garcia-kapunka-257x300.jpg"
+      "imageUrl": "doctors-json/dr-garcia-kapunka-257x300.jpg"
     },
     {
       "id": "4",
       "name": "Dr. Hernández",
-      "imageUrl": "/content/uploads/doctors-json/dr-victor-hernandez-machado-kapunka-257x300.jpg"
+      "imageUrl": "doctors-json/dr-victor-hernandez-machado-kapunka-257x300.jpg"
     },
     {
       "id": "5",
       "name": "Dr. López",
-      "imageUrl": "/content/uploads/doctors-json/dr-salas-kapunka-257x300.jpg"
+      "imageUrl": "doctors-json/dr-salas-kapunka-257x300.jpg"
     },
     {
       "id": "6",
       "name": "Dra. Moreno",
-      "imageUrl": "/content/uploads/doctors-json/dra.-maria-francia-colina-ginecologa-y-master-en-medicina-regenerativa-y-funcional-en-ginecologia-.jpeg"
+      "imageUrl": "doctors-json/dra.-maria-francia-colina-ginecologa-y-master-en-medicina-regenerativa-y-funcional-en-ginecologia-.jpeg"
     }
   ]
 }

@@ -8,7 +8,7 @@ import { useUI } from '../contexts/UIContext';
 import { useLanguage } from '../contexts/LanguageContext';
 import { getVisualEditorAttributes } from '../utils/stackbitBindings';
 import { formatCurrency } from '../utils/currency';
-import { toCld } from '@/src/lib/images';
+import { getCloudinaryUrl } from '../utils/imageUrl';
 import type { Product } from '../types';
 import { buildLocalizedPath } from '../utils/localePaths';
 
@@ -55,7 +55,7 @@ const ProductCard: React.FC<ProductCardProps> = (props) => {
   }, [setSelectedSizeId]);
 
   const productImageSrc = (product.imageUrl ?? '').trim();
-  const cloudinaryUrl = toCld(productImageSrc);
+  const cloudinaryUrl = getCloudinaryUrl(productImageSrc) ?? productImageSrc;
 
   return (
     <motion.div
