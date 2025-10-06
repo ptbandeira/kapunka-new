@@ -103,6 +103,27 @@ product_faq_fields: &product_faq_fields
     name: "answer"
     hint: "Short response (supports Markdown)."
 
+course_item_fields: &course_item_fields
+  - { label: ID, name: id, widget: string }
+  - <<: *localized_string_field
+    label: "Title"
+    name: "title"
+    required: true
+  - { label: Image, name: imageUrl, widget: image, choose_url: true, hint: "Thumbnail used on the Academy page." }
+  - { label: Price, name: price, widget: number, value_type: float }
+  - { label: Enroll Link, name: enrollLink, widget: string, hint: "URL to course registration." }
+
+video_entry_fields: &video_entry_fields
+  - { label: Title, name: title, widget: string, required: false }
+  - { label: Description, name: description, widget: text, required: false }
+  - { label: Video URL, name: videoUrl, widget: string, required: false }
+  - { label: Thumbnail, name: thumbnail, widget: image, choose_url: true, required: false }
+
+training_entry_fields: &training_entry_fields
+  - { label: Course Title, name: courseTitle, widget: string, required: true }
+  - { label: Course Summary, name: courseSummary, widget: text, required: true }
+  - { label: Link URL, name: linkUrl, widget: string, required: false }
+
 product_item_fields: &product_item_fields
   - { label: ID, name: id, widget: string }
   - <<: *localized_string_field
@@ -2703,6 +2724,7 @@ collections:
     group: "9. Legacy / Catalog"
     editor: { preview: false }
     hidden: true
+    load_strategy: lazy
     files:
       - name: courses
         label: Academy Courses
@@ -2713,23 +2735,13 @@ collections:
             name: courses
             widget: list
             summary: "{{fields.title.en}}"
-            fields:
-              - { label: ID, name: id, widget: string }
-              - label: Title
-                name: title
-                widget: object
-                fields:
-                  - { label: English, name: en, widget: string }
-                  - { label: Portuguese, name: pt, widget: string }
-                  - { label: Spanish, name: es, widget: string }
-              - { label: Image, name: imageUrl, widget: image, choose_url: true }
-              - { label: Price, name: price, widget: number, value_type: float }
-              - { label: Enroll Link, name: enrollLink, widget: string }
+            fields: *course_item_fields
   - name: videoEntries
     label: Video Entries
     group: "9. Legacy / Catalog"
     editor: { preview: false }
     hidden: true
+    load_strategy: lazy
     files:
       - name: videos
         label: Video Library
@@ -2740,16 +2752,13 @@ collections:
             name: videos
             widget: list
             summary: "{{fields.title}}"
-            fields:
-              - { label: Title, name: title, widget: string, required: false }
-              - { label: Description, name: description, widget: text, required: false }
-              - { label: Video URL, name: videoUrl, widget: string, required: false }
-              - { label: Thumbnail, name: thumbnail, widget: image, choose_url: true, required: false }
+            fields: *video_entry_fields
   - name: trainingEntries
     label: Training Entries
     group: "9. Legacy / Catalog"
     editor: { preview: false }
     hidden: true
+    load_strategy: lazy
     files:
       - name: training
         label: Training Catalog
@@ -2761,10 +2770,7 @@ collections:
             widget: list
             summary: "{{fields.courseTitle}}"
             min: 1
-            fields:
-              - { label: Course Title, name: courseTitle, widget: string, required: true }
-              - { label: Course Summary, name: courseSummary, widget: text, required: true }
-              - { label: Link URL, name: linkUrl, widget: string, required: false }
+            fields: *training_entry_fields
   - name: policies
     label: Policies
     group: "9. Legacy / Catalog"

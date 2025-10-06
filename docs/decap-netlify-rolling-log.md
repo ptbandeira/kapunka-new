@@ -16,7 +16,7 @@
 - **References**: Pending PR
 
 ## 2025-10-18 — Streamlined catalog editing experience
-- **What changed**: Promoted the Products and Articles collections (now under “Catalog”), collapsed high-noise groups, replaced repeated locale objects with shared anchors, and exposed multi-use tips. Added dedicated preview templates, switched the large collections to lazy loading, and centralised product/article fieldsets to trim the config footprint.
+- **What changed**: Promoted the Products and Articles collections (now under “Catalog”), collapsed high-noise groups, replaced repeated locale objects with shared anchors, and exposed multi-use tips. Added dedicated preview templates, switched the large collections to lazy loading, centralised product/article fieldsets, and applied the same anchor/lazy pattern to Courses, Videos, and Training catalogs.
 - **Impact & follow-up**: Editors can locate catalog content without digging into legacy groups, update copy with fewer nested tabs, and visualise product/article changes before publishing while reducing initial CMS load time. Review additional legacy collections to see if similar simplifications are warranted.
 - **References**: Pending PR
 
