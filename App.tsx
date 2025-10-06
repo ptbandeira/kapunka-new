@@ -86,14 +86,31 @@ const getLocalizedValue = (
     return trimmed.length > 0 ? trimmed : undefined;
   }
 
-  const candidates: Language[] = [language, ...languageFallbackOrder.filter((lang) => lang !== language)];
-  for (const lang of candidates) {
-    const localized = value[lang];
-    if (localized) {
-      const trimmed = localized.trim();
-      if (trimmed.length > 0) {
-        return trimmed;
-      }
+  const normalize = (candidate: string | undefined): string | undefined => {
+    if (typeof candidate !== 'string') {
+      return undefined;
+    }
+    const trimmed = candidate.trim();
+    return trimmed.length > 0 ? trimmed : undefined;
+  };
+
+  const directMatch = normalize(value[language]);
+  if (directMatch) {
+    return directMatch;
+  }
+
+  if (language !== 'en') {
+    const englishFallback = normalize(value.en);
+    if (englishFallback) {
+      return englishFallback;
+    }
+  }
+
+  const additionalFallbacks = languageFallbackOrder.filter((lang) => lang !== language && lang !== 'en');
+  for (const fallbackLanguage of additionalFallbacks) {
+    const fallbackValue = normalize(value[fallbackLanguage]);
+    if (fallbackValue) {
+      return fallbackValue;
     }
   }
 
