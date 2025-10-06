@@ -806,87 +806,7 @@
       ],
       "fields": [
         {
-          "key": "emailTitle",
-          "value": {
-            "en": "Email",
-            "pt": "E-mail",
-            "es": "Correo electrónico"
-          }
-        },
-        {
-          "key": "form.email",
-          "value": {
-            "en": "Email Address",
-            "pt": "Endereço de E-mail",
-            "es": "Correo Electrónico"
-          }
-        },
-        {
-          "key": "form.error",
-          "value": {
-            "en": "Sorry, something went wrong. Please try again.",
-            "pt": "Desculpe, algo deu errado. Por favor, tente novamente.",
-            "es": "Lo sentimos, algo salió mal. Por favor, inténtalo de nuevo."
-          }
-        },
-        {
-          "key": "form.message",
-          "value": {
-            "en": "Your Message",
-            "pt": "Sua Mensagem",
-            "es": "Tu Mensaje"
-          }
-        },
-        {
-          "key": "form.name",
-          "value": {
-            "en": "Full Name",
-            "pt": "Nome Completo",
-            "es": "Nombre Completo"
-          }
-        },
-        {
-          "key": "form.sending",
-          "value": {
-            "en": "Sending...",
-            "pt": "Enviando...",
-            "es": "Enviando..."
-          }
-        },
-        {
-          "key": "form.submit",
-          "value": {
-            "en": "Send Message",
-            "pt": "Enviar Mensagem",
-            "es": "Enviar Mensaje"
-          }
-        },
-        {
-          "key": "form.success",
-          "value": {
-            "en": "Thank you! Your message has been sent.",
-            "pt": "Obrigado! Sua mensagem foi enviada.",
-            "es": "¡Gracias! Tu mensaje ha sido enviado."
-          }
-        },
-        {
-          "key": "formTitle",
-          "value": {
-            "en": "Send us a message",
-            "pt": "Envie-nos uma mensagem",
-            "es": "Envíanos un mensaje"
-          }
-        },
-        {
-          "key": "headerSubtitle",
-          "value": {
-            "en": "We're here to help. Whether you have a question about our products or want to share your skin journey, we'd love to hear from you.",
-            "pt": "Estamos aqui para ajudar. Se você tem uma pergunta sobre nossos produtos ou quer compartilhar sua jornada com a pele, adoraríamos ouvir de você.",
-            "es": "Estamos aquí para ayudar. Ya sea que tengas una pregunta sobre nuestros productos o quieras compartir tu viaje con la piel, nos encantaría saber de ti."
-          }
-        },
-        {
-          "key": "headerTitle",
+          "key": "heroTitle",
           "value": {
             "en": "Get in Touch",
             "pt": "Entre em Contato",
@@ -894,43 +814,43 @@
           }
         },
         {
-          "key": "infoTitle",
+          "key": "heroSubtitle",
           "value": {
-            "en": "Other ways to connect",
-            "pt": "Outras formas de conectar",
-            "es": "Otras formas de conectar"
+            "en": "We're here to help. Whether you have a question about our products or want to share your skin journey, we'd love to hear from you.",
+            "pt": "Estamos aqui para ajudar. Se você tem uma pergunta sobre nossos produtos ou quer compartilhar sua jornada com a pele, adoraríamos ouvir de você.",
+            "es": "Estamos aquí para ayudar. Ya sea que tengas una pregunta sobre nuestros productos o quieras compartir tu viaje con la piel, nos encantaría saber de ti."
           }
         },
         {
-          "key": "phoneTitle",
+          "key": "contactEmail",
           "value": {
-            "en": "Phone",
-            "pt": "Telefone",
-            "es": "Teléfono"
+            "en": "global@kapunka.com",
+            "pt": "global@kapunka.com",
+            "es": "global@kapunka.com"
           }
         },
         {
-          "key": "title",
+          "key": "phone",
           "value": {
-            "en": "Contact Us",
-            "pt": "Fale Conosco",
-            "es": "Contáctanos"
+            "en": "+34 637 520 704",
+            "pt": "+34 637 520 704",
+            "es": "+34 637 520 704"
           }
         },
         {
-          "key": "whatsappAction",
+          "key": "address",
           "value": {
-            "en": "Chat with us",
-            "pt": "Converse conosco",
-            "es": "Chatea con nosotros"
+            "en": "Els Alamús (25221) Lleida\nCarrer de la Plaça la Placeta, 2, 2º\nSpain",
+            "pt": "Els Alamús (25221) Lleida\nCarrer de la Plaça la Placeta, 2, 2º\nEspanha",
+            "es": "Els Alamús (25221) Lleida\nCarrer de la Plaça la Placeta, 2, 2º\nEspaña"
           }
         },
         {
-          "key": "whatsappTitle",
+          "key": "mapEmbedUrl",
           "value": {
-            "en": "WhatsApp",
-            "pt": "WhatsApp",
-            "es": "WhatsApp"
+            "en": "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2995.713025614638!2d0.7958955763531695!3d41.6292109792388!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x12a6f42321753ef3%3A0x3dfcc1a2ddedfb78!2sPla%C3%A7a%20la%20Placeta%2C%202%2C%2025201%20Els%20Alam%C3%BAs%2C%20Lleida%2C%20Spain!5e0!3m2!1sen!2ses!4v1700000000000!5m2!1sen!2ses",
+            "pt": "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2995.713025614638!2d0.7958955763531695!3d41.6292109792388!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x12a6f42321753ef3%3A0x3dfcc1a2ddedfb78!2sPla%C3%A7a%20la%20Placeta%2C%202%2C%2025201%20Els%20Alam%C3%BAs%2C%20Lleida%2C%20Spain!5e0!3m2!1sen!2ses!4v1700000000000!5m2!1sen!2ses",
+            "es": "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2995.713025614638!2d0.7958955763531695!3d41.6292109792388!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x12a6f42321753ef3%3A0x3dfcc1a2ddedfb78!2sPla%C3%A7a%20la%20Placeta%2C%202%2C%2025201%20Els%20Alam%C3%BAs%2C%20Lleida%2C%20Spain!5e0!3m2!1sen!2ses!4v1700000000000!5m2!1sen!2ses"
           }
         }
       ]

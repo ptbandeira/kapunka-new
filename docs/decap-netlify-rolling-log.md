@@ -11,6 +11,11 @@ This log records day-to-day investigations, fixes, and decisions that affect the
 
 ---
 
+## 2025-10-18 — Refreshed Contact page schema & Netlify form
+- **What changed**: Rebuilt the `/contact` page to load unified page data, added a reusable Netlify-enabled `ContactForm` component, and updated the CMS schema so editors manage hero copy, email, phone, address, and map embeds in one place.
+- **Impact & follow-up**: Editors now have dedicated fields for contact details and the rendered page mirrors those updates while keeping a Netlify form fallback. Confirm the Google Maps embed renders correctly across locales and monitor Netlify form submissions after deployment.
+- **References**: Pending PR
+
 ## 2025-10-17 — Enforced training catalog validation
 - **What changed**: Marked the training catalog list in `admin/config.yml` with a minimum entry count and required course title/summaries so editors cannot save empty modules. Updated the TrainingList React component to ignore entries without titles and hide empty summaries/CTAs on the `/training` page.
 - **Impact & follow-up**: Prevents blank "Learn more" cards from rendering when placeholder rows exist in Decap. Monitor future catalog imports to ensure they provide both title and summary content.
