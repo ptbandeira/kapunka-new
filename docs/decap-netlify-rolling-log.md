@@ -215,3 +215,8 @@ This log records day-to-day investigations, fixes, and decisions that affect the
 - **What changed**: Copied the updated `content/pages/en/home.md` structure into the Portuguese and Spanish Markdown sources so they match the fields expected by the page loader.
 - **Impact & follow-up**: Prevents 404s when localized entries are incomplete by ensuring the Visual Editor and runtime can fall back to English copy until translations are ready.
 - **References**: Pending PR
+
+## 2025-10-07 — Wired Clinics page to unified sections and hero fields
+- **What changed**: Updated `pages/for-clinics.tsx` to render the new builder-driven sections via `SectionRenderer`, pulling hero and CTA copy from the unified hero/fields data exposed by `loadClinicsPageContent`. Trimmed the legacy Markdown-era fields and refreshed Stackbit bindings so edits map to `site.content.<locale>.pages.clinics.*`.
+- **Impact & follow-up**: Clinics editors now manage a single section list across locales in the Visual Editor, and hero/CTA strings stay in sync with builder data. Verify Stackbit shows the section blocks under `pages.clinics` in each locale and that hero CTA links resolve correctly after publish.
+- **References**: Pending PR
