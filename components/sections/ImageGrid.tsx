@@ -1,12 +1,14 @@
 import React from 'react';
+import type { FocalPoint } from '../../types';
 import { getVisualEditorAttributes } from '../../utils/stackbitBindings';
-import { getCloudinaryUrl } from '../../utils/imageUrl';
+import { getCloudinaryUrl, getObjectPositionFromFocal } from '../../utils/imageUrl';
 
 interface ImageGridItemProps {
   image?: string;
   title?: string;
   subtitle?: string;
   alt?: string;
+  imageFocal?: FocalPoint | null;
 }
 
 interface ImageGridProps {
@@ -38,6 +40,8 @@ const ImageGrid: React.FC<ImageGridProps> = ({ items, fieldPath }) => {
               ?? JSON.stringify(item ?? {});
             const imageSrc = item.image?.trim();
             const cloudinaryUrl = imageSrc ? getCloudinaryUrl(imageSrc) ?? imageSrc : '';
+            const objectPosition = getObjectPositionFromFocal(item.imageFocal ?? undefined);
+            const imageStyle = objectPosition ? { objectPosition } : undefined;
             const altText = [item.alt, item.title, item.subtitle]
               .map((value) => value?.trim())
               .find((value): value is string => Boolean(value))
@@ -54,7 +58,12 @@ const ImageGrid: React.FC<ImageGridProps> = ({ items, fieldPath }) => {
                   {...(itemFieldPath ? getVisualEditorAttributes(`${itemFieldPath}.image`) : {})}
                 >
                   {imageSrc ? (
-                    <img src={cloudinaryUrl} alt={altText} className="w-full h-full object-cover" />
+                    <img
+                      src={cloudinaryUrl}
+                      alt={altText}
+                      className="w-full h-full object-cover"
+                      style={imageStyle}
+                    />
                   ) : (
                     <span className="text-sm text-stone-400">Image coming soon</span>
                   )}

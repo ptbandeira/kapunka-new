@@ -179,6 +179,7 @@ const SectionRenderer: React.FC<SectionRendererProps> = ({ sections, fieldPath }
               <ImageTextHalf
                 key={buildSectionKey('image-text-half', section)}
                 image={section.image}
+                imageFocal={section.imageFocal ?? null}
                 title={section.title}
                 text={section.text}
                 imageAlt={section.imageAlt}

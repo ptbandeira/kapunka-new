@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import { useLanguage } from '../../contexts/LanguageContext';
 import { buildLocalizedPath } from '../../utils/localePaths';
 import { getVisualEditorAttributes } from '../../utils/stackbitBindings';
-import { getCloudinaryUrl } from '../../utils/imageUrl';
+import { getCloudinaryUrl, getObjectPositionFromFocal } from '../../utils/imageUrl';
 import type { MediaShowcaseSectionContent } from '../../types';
 
 interface MediaShowcaseProps {
@@ -36,6 +36,7 @@ const MediaShowcase: React.FC<MediaShowcaseProps> = ({ section, fieldPath }) => 
     const ctaHref = item?.ctaHref ? translate(item.ctaHref) : '';
     const imageSrc = item?.image?.trim();
     const imageUrl = imageSrc ? getCloudinaryUrl(imageSrc) ?? imageSrc : undefined;
+    const imageFocal = item?.imageFocal ?? null;
     const imageAlt = item?.imageAlt ? translate(item.imageAlt) : itemTitle || label || eyebrow || 'Showcase image';
     const itemFieldPath = fieldPath ? `${fieldPath}.items.${index}` : undefined;
 
@@ -48,6 +49,7 @@ const MediaShowcase: React.FC<MediaShowcaseProps> = ({ section, fieldPath }) => 
       ctaLabel,
       ctaHref,
       imageUrl,
+      imageFocal,
       imageAlt,
       fieldPath: itemFieldPath,
       eyebrowFieldPath: itemFieldPath ? `${itemFieldPath}.eyebrow` : undefined,
@@ -128,8 +130,10 @@ const MediaShowcase: React.FC<MediaShowcaseProps> = ({ section, fieldPath }) => 
 
             const contentAlignment = index === 3 ? 'items-end text-right' : 'items-start text-left';
             const justify = index === 3 ? 'lg:items-end' : 'lg:items-start';
+            const objectPosition = getObjectPositionFromFocal(item.imageFocal ?? undefined);
+            const imageStyle = objectPosition ? { objectPosition } : undefined;
 
-            return (
+          return (
               <article
                 key={item.fieldPath ?? index}
                 className={`relative overflow-hidden bg-stone-900 text-white flex ${layoutClasses}`}
@@ -141,6 +145,7 @@ const MediaShowcase: React.FC<MediaShowcaseProps> = ({ section, fieldPath }) => 
                     src={item.imageUrl}
                     alt={item.imageAlt}
                     className="absolute inset-0 h-full w-full object-cover"
+                    style={imageStyle}
                     {...getVisualEditorAttributes(item.imageFieldPath)}
                   />
                 ) : (

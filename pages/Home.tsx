@@ -3016,6 +3016,13 @@ const Home: React.FC = () => {
           const quote = sanitizeString(slide.quote ?? null);
           const name = sanitizeString(slide.name ?? null);
           const role = sanitizeString(slide.role ?? null);
+          const focalCandidate = (slide as { imageFocal?: { x?: unknown; y?: unknown } | null }).imageFocal ?? null;
+          const imageFocal = focalCandidate && typeof focalCandidate === 'object'
+            ? {
+                x: typeof focalCandidate.x === 'number' ? focalCandidate.x : undefined,
+                y: typeof focalCandidate.y === 'number' ? focalCandidate.y : undefined,
+              }
+            : undefined;
           const imageFieldPath = `${basePath}.image`;
 
           return {
@@ -3024,6 +3031,7 @@ const Home: React.FC = () => {
             quote,
             name,
             role,
+            imageFocal,
             fieldPath: basePath,
             imageFieldPath,
             altFieldPath: `${basePath}.alt`,
@@ -3687,12 +3695,20 @@ const Home: React.FC = () => {
         const showcaseTitle = sanitizeString(section.title ?? null);
         const items = (section.items ?? []).map((item, itemIndex) => {
           const fieldScope = `${sectionFieldPath}.items.${itemIndex}`;
+          const focalCandidate = (item as { imageFocal?: { x?: unknown; y?: unknown } | null }).imageFocal ?? null;
+          const imageFocal = focalCandidate && typeof focalCandidate === 'object'
+            ? {
+                x: typeof focalCandidate.x === 'number' ? focalCandidate.x : undefined,
+                y: typeof focalCandidate.y === 'number' ? focalCandidate.y : undefined,
+              }
+            : undefined;
           return {
             eyebrow: sanitizeString(item.eyebrow ?? null) ?? undefined,
             title: sanitizeString(item.title ?? null) ?? undefined,
             body: sanitizeString(item.body ?? null) ?? undefined,
             image: sanitizeString(pickImage(item.image)) ?? undefined,
             imageAlt: sanitizeString(item.imageAlt ?? null) ?? undefined,
+            imageFocal,
             fieldPath: fieldScope,
             imageFieldPath: `${fieldScope}.image`,
             eyebrowFieldPath: `${fieldScope}.eyebrow`,

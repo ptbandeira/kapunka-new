@@ -1,19 +1,28 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import ReactMarkdown from 'react-markdown';
+import type { FocalPoint } from '../../types';
 import { getVisualEditorAttributes } from '../../utils/stackbitBindings';
-import { getCloudinaryUrl } from '../../utils/imageUrl';
+import { getCloudinaryUrl, getObjectPositionFromFocal } from '../../utils/imageUrl';
 import { usePrefersReducedMotion } from '../../src/hooks/usePrefersReducedMotion';
 
 interface ImageTextHalfProps {
   image?: string;
+  imageFocal?: FocalPoint | null;
   title?: string;
   text?: string;
   imageAlt?: string;
   fieldPath?: string;
 }
 
-const ImageTextHalf: React.FC<ImageTextHalfProps> = ({ image, title, text, imageAlt, fieldPath }) => {
+const ImageTextHalf: React.FC<ImageTextHalfProps> = ({
+  image,
+  imageFocal,
+  title,
+  text,
+  imageAlt,
+  fieldPath,
+}) => {
   const prefersReducedMotion = usePrefersReducedMotion();
 
   const trimmedTitle = title?.trim();
@@ -25,6 +34,8 @@ const ImageTextHalf: React.FC<ImageTextHalfProps> = ({ image, title, text, image
   }
 
   const cloudinaryUrl = trimmedImage ? getCloudinaryUrl(trimmedImage) ?? trimmedImage : '';
+  const objectPosition = getObjectPositionFromFocal(imageFocal ?? undefined);
+  const imageStyle = objectPosition ? { objectPosition } : undefined;
   const altText = [imageAlt, title]
     .map((value) => value?.trim())
     .find((value): value is string => Boolean(value))
@@ -73,6 +84,7 @@ const ImageTextHalf: React.FC<ImageTextHalfProps> = ({ image, title, text, image
       src={cloudinaryUrl}
       alt={altText}
       className="w-full h-full object-cover rounded-lg shadow-sm"
+      style={imageStyle}
       {...(fieldPath ? getVisualEditorAttributes(`${fieldPath}.image`) : {})}
     />
   ) : (

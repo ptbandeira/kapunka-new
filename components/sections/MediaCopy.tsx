@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactMarkdown from 'react-markdown';
 import { getVisualEditorAttributes } from '../../utils/stackbitBindings';
-import { getCloudinaryUrl } from '../../utils/imageUrl';
+import { getCloudinaryUrl, getObjectPositionFromFocal } from '../../utils/imageUrl';
 import { useLanguage } from '../../contexts/LanguageContext';
 import type { MediaCopySectionContent, LocalizedNumber, LocalizedValue } from '../../types';
 
@@ -97,8 +97,25 @@ const MediaCopy: React.FC<MediaCopyProps> = ({ section, fieldPath }) => {
     return undefined;
   })();
 
+  const imageFocal = (() => {
+    if (imageSource?.focal) {
+      return imageSource.focal ?? undefined;
+    }
+    if (
+      section.image
+      && typeof section.image === 'object'
+      && 'focal' in section.image
+      && section.image.focal
+    ) {
+      return section.image.focal ?? undefined;
+    }
+    return undefined;
+  })();
+
   const trimmedImage = rawImage?.trim();
   const imageUrl = trimmedImage ? getCloudinaryUrl(trimmedImage) ?? trimmedImage : undefined;
+  const objectPosition = getObjectPositionFromFocal(imageFocal);
+  const imageStyle = objectPosition ? { objectPosition } : undefined;
 
   const hasContentImage = Boolean(section.content && 'image' in section.content && section.content.image !== undefined);
   const usesObjectImage = !hasContentImage
@@ -208,6 +225,7 @@ const MediaCopy: React.FC<MediaCopyProps> = ({ section, fieldPath }) => {
               src={imageUrl}
               alt={imageAlt}
               className="h-full w-full object-cover"
+              style={imageStyle}
               {...getVisualEditorAttributes(imageFieldPath)}
             />
             <div className="absolute inset-0 flex p-6 sm:p-10">
@@ -238,6 +256,7 @@ const MediaCopy: React.FC<MediaCopyProps> = ({ section, fieldPath }) => {
                 src={imageUrl}
                 alt={imageAlt}
                 className="w-full rounded-2xl object-cover shadow-sm"
+                style={imageStyle}
                 {...getVisualEditorAttributes(imageFieldPath)}
               />
             </div>

@@ -4,7 +4,7 @@ import ReactMarkdown from 'react-markdown';
 import type { Components } from 'react-markdown';
 import type { TimelineEntry } from '../types';
 import { getVisualEditorAttributes } from '../utils/stackbitBindings';
-import { getCloudinaryUrl } from '../utils/imageUrl';
+import { getCloudinaryUrl, getObjectPositionFromFocal } from '../utils/imageUrl';
 
 interface TimelineSectionProps {
   title?: string;
@@ -94,6 +94,8 @@ const TimelineSection: React.FC<TimelineSectionProps> = ({ title, entries, field
           const entryFieldPath = entriesFieldPath ? `${entriesFieldPath}.${index}` : undefined;
           const imageSrc = entry.image?.trim() ?? '';
           const cloudinaryUrl = imageSrc ? getCloudinaryUrl(imageSrc) ?? imageSrc : '';
+          const objectPosition = getObjectPositionFromFocal(entry.imageFocal ?? undefined);
+          const imageStyle = objectPosition ? { objectPosition } : undefined;
 
           const imageWrapperClassName = isEven ? 'order-1 md:order-1' : 'order-1 md:order-2';
           const contentWrapperClassName = hasImage
@@ -119,6 +121,7 @@ const TimelineSection: React.FC<TimelineSectionProps> = ({ title, entries, field
                     src={cloudinaryUrl}
                     alt={entry.title}
                     className="rounded-lg shadow-lg w-full object-cover"
+                    style={imageStyle}
                     {...getVisualEditorAttributes(entryFieldPath ? `${entryFieldPath}.image` : undefined)}
                     data-sb-field-path={entryFieldPath ? `${entryFieldPath}.image` : undefined}
                   />

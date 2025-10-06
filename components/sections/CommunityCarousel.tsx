@@ -1,7 +1,8 @@
 import React, { useEffect, useMemo, useState, useCallback } from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
+import type { FocalPoint } from '../../types';
 import { getVisualEditorAttributes } from '../../utils/stackbitBindings';
-import { getCloudinaryUrl } from '../../utils/imageUrl';
+import { getCloudinaryUrl, getObjectPositionFromFocal } from '../../utils/imageUrl';
 
 export interface CommunityCarouselSlideProps {
   image?: string;
@@ -9,6 +10,7 @@ export interface CommunityCarouselSlideProps {
   quote?: string;
   name?: string;
   role?: string;
+  imageFocal?: FocalPoint | null;
   fieldPath?: string;
   imageFieldPath?: string;
   altFieldPath?: string;
@@ -150,6 +152,8 @@ const CommunityCarousel: React.FC<CommunityCarouselProps> = ({
                   {marqueeSlides.map((slide, index) => {
                     const slideImageSrc = slide.image?.trim() ?? '';
                     const cloudinaryUrl = slideImageSrc ? getCloudinaryUrl(slideImageSrc) ?? slideImageSrc : '';
+                    const objectPosition = getObjectPositionFromFocal(slide.imageFocal ?? undefined);
+                    const imageStyle = objectPosition ? { objectPosition } : undefined;
 
                     return (
                     <figure
@@ -163,6 +167,7 @@ const CommunityCarousel: React.FC<CommunityCarouselProps> = ({
                           src={cloudinaryUrl}
                           alt={slide.alt?.trim() || 'Kapunka ritual in our community'}
                           className="h-full w-full object-cover"
+                          style={imageStyle}
                           {...getVisualEditorAttributes(slide.imageFieldPath)}
                           data-sb-field-path={slide.imageFieldPath}
                         />

@@ -5,6 +5,11 @@
 - **Impact & follow-up**: Editors can now upload assets through the Cloudinary media library without configuration warnings, while the site references a single Cloudinary base URL for asset delivery. Confirm Netlify’s environment variable screen reflects the API key and that Decap connects to Cloudinary successfully after deployment.
 - **References**: Pending PR
 
+## 2025-10-18 — Enabled Cloudinary optimization & focal points
+- **What changed**: Added default Cloudinary transformations (`f_auto`, `q_auto`, `dpr_auto`) to the delivery helper and Cloudinary media library config so uploads are auto-optimized, introduced reusable focal point fields in `admin/config.yml`, and updated section components (timeline, media copy, carousel, showcase, image grid, image split) to respect the new focal metadata via `object-position`.
+- **Impact & follow-up**: Editors can now dial in focal points per asset and see that focus honored on the frontend while optimized Cloudinary URLs keep payloads lean. Encourage content editors to populate focal values for legacy media that currently crops awkwardly.
+- **References**: Pending PR
+
 ## 2025-10-31 — Expanded section renderer coverage
 - **What changed**: Added strongly typed models for every Stackbit builder block in `types.ts`, introduced reusable section components (media copy, feature grid, banner, newsletter, product grid, testimonials, facts, bullets, specialties), and updated `SectionRenderer` plus the story/about/training/videos page loaders to recognise the new variants with proper Visual Editor field bindings.
 - **Impact & follow-up**: Visual Editor sections now render consistently across detail pages and inline editing works for the newly supported blocks, reducing manual QA when editors add builder sections. Monitor upcoming content syncs to confirm product grids resolve product references correctly.

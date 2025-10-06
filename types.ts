@@ -22,6 +22,11 @@ export type LocalizedText = string | Partial<Record<Language, string>>;
 export type LocalizedValue<T> = T | Partial<Record<Language, T>>;
 export type LocalizedNumber = LocalizedValue<number>;
 
+export interface FocalPoint {
+  x?: number | null;
+  y?: number | null;
+}
+
 export interface SeoSettings {
     defaultTitle?: LocalizedText;
     defaultDescription?: LocalizedText;
@@ -197,6 +202,7 @@ export interface TimelineEntry {
   title: string;
   description: string;
   image?: string;
+  imageFocal?: FocalPoint;
 }
 
 export interface TimelineSectionContent extends VisibilityFlag {
@@ -223,6 +229,7 @@ export interface MediaCopyContentBlock {
   image?: {
     src?: string | null;
     alt?: LocalizedText;
+    focal?: FocalPoint | null;
   };
 }
 
@@ -230,7 +237,7 @@ export interface MediaCopySectionContent extends VisibilityFlag {
   type: 'mediaCopy';
   title?: LocalizedText;
   body?: LocalizedText;
-  image?: string | { src?: string | null };
+  image?: string | { src?: string | null; focal?: FocalPoint | null };
   imageAlt?: LocalizedText;
   layout?: LocalizedValue<'image-left' | 'image-right' | 'overlay'>;
   columns?: LocalizedNumber;
@@ -252,6 +259,7 @@ export interface HeroSimpleSectionContent extends VisibilityFlag {
 export interface ImageTextHalfSectionContent extends VisibilityFlag {
   type: 'imageTextHalf';
   image?: string;
+  imageFocal?: FocalPoint | null;
   title?: string;
   text?: string;
   imageAlt?: string;
@@ -262,6 +270,7 @@ export interface ImageGridItem {
   title?: string;
   subtitle?: string;
   alt?: string;
+  imageFocal?: FocalPoint | null;
 }
 
 export interface ImageGridSectionContent extends VisibilityFlag {
@@ -275,6 +284,7 @@ export interface CommunityCarouselSlide {
   quote?: string;
   name?: string;
   role?: string;
+  imageFocal?: FocalPoint | null;
 }
 
 export interface CommunityCarouselSectionContent extends VisibilityFlag {
@@ -293,6 +303,7 @@ export interface MediaShowcaseItemContent {
   label?: LocalizedText;
   image?: string;
   imageAlt?: LocalizedText;
+  imageFocal?: FocalPoint | null;
   ctaLabel?: LocalizedText;
   ctaHref?: LocalizedText;
 }

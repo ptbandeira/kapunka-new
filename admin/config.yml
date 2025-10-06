@@ -45,6 +45,17 @@ visibility_field: &visibility_field
   default: true
   hint: "Uncheck to hide this item from the live site without deleting it."
 
+focal_point_field: &focal_point_field
+  label: "Focal Point"
+  name: "focal"
+  widget: "object"
+  collapsed: true
+  required: false
+  hint: "Adjust the image focus area. Values between 0 and 1 represent the relative horizontal and vertical point to keep in view."
+  fields:
+    - { label: "Horizontal (0–1)", name: "x", widget: "number", value_type: "float", min: 0, max: 1, step: 0.01, required: false }
+    - { label: "Vertical (0–1)", name: "y", widget: "number", value_type: "float", min: 0, max: 1, step: 0.01, required: false }
+
 # ===== Shared Section Templates (anchors) =====
 hero_content_fields: &hero_content_fields
   - <<: *localized_string_field
@@ -86,6 +97,8 @@ hero_content_fields: &hero_content_fields
         label: "Alt Text"
         name: "alt"
         hint: "Describe the visual for accessibility and SEO."
+      - <<: *focal_point_field
+        hint: "Optional focus point to control how the hero image crops responsively."
   - label: "Text Anchor Override"
     name: "position"
     widget: "select"
@@ -132,6 +145,8 @@ media_copy_fields: &media_copy_fields
         label: "Alt Text"
         name: "alt"
         hint: "Describe the image for screen readers."
+      - <<: *focal_point_field
+        hint: "Optional focus point to guide cropping when the layout uses object-fit cover."
 
 testimonial_fields: &testimonial_fields
   - <<: *localized_markdown_field
@@ -306,6 +321,10 @@ shared_sections: &shared_sections
             name: "imageAlt"
             required: false
             hint: "Describe the image for accessibility (≤120 characters)."
+          - <<: *focal_point_field
+            name: "imageFocal"
+            label: "Image Focal Point"
+            hint: "Fine-tune the focal point (0–1) so the featured image crops around the right subject."
           - <<: *localized_string_field
             label: "CTA Label"
             name: "ctaLabel"
@@ -433,6 +452,10 @@ shared_sections: &shared_sections
             i18n: true
             required: false
             hint: "Upload or choose from existing assets."
+          - <<: *focal_point_field
+            name: "imageFocal"
+            label: "Image Focal Point"
+            hint: "Optional focus point for this slide (0–1) to keep the subject centered in the carousel crop."
           - <<: *localized_string_field
             label: "Alt Text"
             name: "alt"
@@ -690,6 +713,10 @@ shared_sections: &shared_sections
             required: true
             hint: "Expanded detail about the milestone (≤400 characters)."
           - { label: "Image", name: "image", widget: "image", choose_url: true, required: false, hint: "Optional supporting image for the milestone." }
+          - <<: *focal_point_field
+            name: "imageFocal"
+            label: "Image Focal Point"
+            hint: "Set a horizontal and vertical focus (0–1) to keep key details in frame when the image crops."
   - &section_facts
     label: "Facts"
     name: "facts"
@@ -847,6 +874,8 @@ media_library:
   config:
     cloud_name: "du6xl727e"
     api_key: "${NETLIFY_ENV_CLOUDINARY_API_KEY}"
+    default_transformations:
+      - - { fetch_format: "auto", quality: "auto", dpr: "auto" }
 
 collections:
   - name: site
@@ -1055,13 +1084,8 @@ collections:
       - { label: "Alt text", name: "alt", widget: "string", required: false, hint: "Descriptive copy for accessibility and SEO (≤120 characters)." }
       - { label: "Credit / Source", name: "credit", widget: "string", required: false, hint: "Optional attribution or photographer credit (≤80 characters)." }
       - { label: "Tags", name: "tags", widget: "list", required: false, hint: "Add descriptors to group related images." }
-      - label: "Focal point"
-        name: "focal"
-        widget: "object"
-        required: false
-        fields:
-          - { label: "x (0..1)", name: "x", widget: "number", value_type: "float", min: 0, max: 1, required: false, hint: "Horizontal focal point as a decimal between 0 and 1." }
-          - { label: "y (0..1)", name: "y", widget: "number", value_type: "float", min: 0, max: 1, required: false, hint: "Vertical focal point as a decimal between 0 and 1." }
+      - <<: *focal_point_field
+        hint: "Optional default focal point metadata shared across entries that reference this asset."
   - name: pages
     label: Page Builder
     label_singular: Page
@@ -1829,6 +1853,10 @@ collections:
         fields:
           - { label: "Image", name: "src", widget: "image", hint: "Upload the image file for this media set item." }
           - { label: "Caption (optional)", name: "caption", widget: "string", required: false, hint: "Short caption describing the image (≤120 characters)." }
+          - <<: *focal_point_field
+            name: "focal"
+            label: "Focal Point"
+            hint: "Optional focal point (0–1) to reuse when rendering this media set image."
   - name: translations
     label: Translations
     files:
