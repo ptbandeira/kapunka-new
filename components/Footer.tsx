@@ -121,7 +121,7 @@ const Footer: React.FC = () => {
               )}
             </div>
           </div>
-          <div className="md:col-span-3 grid grid-cols-1 sm:grid-cols-3 gap-8">
+          <div className="md:col-span-3 grid grid-cols-1 md:grid-cols-3 gap-8">
             {FOOTER_SECTIONS.map((section) => (
               <div key={section.key}>
                 <h4
