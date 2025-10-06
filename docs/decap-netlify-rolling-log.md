@@ -11,6 +11,11 @@ This log records day-to-day investigations, fixes, and decisions that affect the
 
 ---
 
+## 2025-10-22 — Enforced SPA fallback redirect in Netlify config
+- **What changed**: Added an explicit `[[redirects]]` rule to `netlify.toml` so Netlify always routes unknown paths to `/index.html`, ensuring the SPA fallback survives even if the `_redirects` artifact is missing.
+- **Impact & follow-up**: Prevents localized routes like `/pt` and `/es` from 404ing on preview builds that omit `_redirects`. Confirm subsequent deployments keep the generated `_redirects` file in `dist/`.
+- **References**: Pending PR
+
 ## 2025-10-21 — Streamlined contact & training editing previews
 - **What changed**: Updated `admin/config.yml` so every page builder form renders locale tabs via the new `display: 'tabs'` editor setting and added targeted contact/training preview components plus a shared template loader to reuse site styles.
 - **Impact & follow-up**: Editors get consistent language tabs across key pages and live previews for contact/training entries that surface hero copy, contact details, and module sections. Monitor Decap for any console warnings about the targeted templates on load.
