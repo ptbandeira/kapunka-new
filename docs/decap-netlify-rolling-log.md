@@ -11,6 +11,11 @@ This log records day-to-day investigations, fixes, and decisions that affect the
 
 ---
 
+## 2025-10-21 — Streamlined contact & training editing previews
+- **What changed**: Updated `admin/config.yml` so every page builder form renders locale tabs via the new `display: 'tabs'` editor setting and added targeted contact/training preview components plus a shared template loader to reuse site styles.
+- **Impact & follow-up**: Editors get consistent language tabs across key pages and live previews for contact/training entries that surface hero copy, contact details, and module sections. Monitor Decap for any console warnings about the targeted templates on load.
+- **References**: Pending PR
+
 ## 2025-10-18 — Refreshed Contact page schema & Netlify form
 - **What changed**: Rebuilt the `/contact` page to load unified page data, added a reusable Netlify-enabled `ContactForm` component, and updated the CMS schema so editors manage hero copy, email, phone, address, and map embeds in one place.
 - **Impact & follow-up**: Editors now have dedicated fields for contact details and the rendered page mirrors those updates while keeping a Netlify form fallback. Confirm the Google Maps embed renders correctly across locales and monitor Netlify form submissions after deployment.
