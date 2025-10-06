@@ -1,5 +1,7 @@
 [build.environment]
   NODE_VERSION = "20"
+  CLOUDINARY_BASE_URL = "https://res.cloudinary.com/du6xl727e/image/upload"
+  NETLIFY_ENV_CLOUDINARY_API_KEY = "_LAI3fKbumFxgclHTtbAuC-0_co"
 
 [build]
   command = "npm run build"

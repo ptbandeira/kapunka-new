@@ -845,8 +845,8 @@ display_url: https://kapunka-new.netlify.app
 media_library:
   name: cloudinary
   config:
-    cloud_name: "<your_cloud_name>"
-    api_key: "<NETLIFY_ENV_CLOUDINARY_API_KEY>"
+    cloud_name: "du6xl727e"
+    api_key: "${NETLIFY_ENV_CLOUDINARY_API_KEY}"
 
 collections:
   - name: site

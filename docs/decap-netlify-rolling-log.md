@@ -1,5 +1,10 @@
 # Decap CMS & Netlify Rolling Log
 
+## 2025-10-18 — Updated Cloudinary credentials for Decap
+- **What changed**: Replaced the placeholder Cloudinary cloud name with `du6xl727e` in `admin/config.yml` and wired `NETLIFY_ENV_CLOUDINARY_API_KEY` plus the `CLOUDINARY_BASE_URL` delivery root into `netlify.toml` so the build, Visual Editor, and Decap UI read the real account settings.
+- **Impact & follow-up**: Editors can now upload assets through the Cloudinary media library without configuration warnings, while the site references a single Cloudinary base URL for asset delivery. Confirm Netlify’s environment variable screen reflects the API key and that Decap connects to Cloudinary successfully after deployment.
+- **References**: Pending PR
+
 ## 2025-10-31 — Expanded section renderer coverage
 - **What changed**: Added strongly typed models for every Stackbit builder block in `types.ts`, introduced reusable section components (media copy, feature grid, banner, newsletter, product grid, testimonials, facts, bullets, specialties), and updated `SectionRenderer` plus the story/about/training/videos page loaders to recognise the new variants with proper Visual Editor field bindings.
 - **Impact & follow-up**: Visual Editor sections now render consistently across detail pages and inline editing works for the newly supported blocks, reducing manual QA when editors add builder sections. Monitor upcoming content syncs to confirm product grids resolve product references correctly.
