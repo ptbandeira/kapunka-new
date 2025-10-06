@@ -18,6 +18,10 @@
 ## 2025-10-18 — Streamlined catalog editing experience
 - **What changed**: Promoted the Products and Articles collections (now under “Catalog”), collapsed high-noise groups, replaced repeated locale objects with shared anchors, and exposed multi-use tips. Added dedicated preview templates, switched the large collections to lazy loading, centralised product/article fieldsets, and applied the same anchor/lazy pattern to Courses, Videos, and Training catalogs.
 - **Impact & follow-up**: Editors can locate catalog content without digging into legacy groups, update copy with fewer nested tabs, and visualise product/article changes before publishing while reducing initial CMS load time. Review additional legacy collections to see if similar simplifications are warranted.
+
+## 2025-10-18 — Added editorial workflow helpers
+- **What changed**: Introduced reusable `status` and `scheduling` anchors across page files and catalog items, enabling publish/unpublish windows inside Decap. Added scripts `scripts/bulk-update-status.mjs` for bulk status/scheduling updates and `scripts/create-page-from-template.mjs` with a reusable `content/templates/page-default.md` starter for rapid page creation.
+- **Impact & follow-up**: Editors can coordinate workflow states directly in the CMS, schedule go-live dates without manual deploy timing, batch-update large catalogs from the CLI, and spin up consistent new pages faster. Consider adding additional templates for campaign-specific layouts as the component library grows.
 - **References**: Pending PR
 
 ## 2025-10-31 — Expanded section renderer coverage

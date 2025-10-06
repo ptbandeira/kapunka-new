@@ -57,6 +57,29 @@ localized_list_field: &localized_list_field
       widget: list
       field: { label: Item, name: item, widget: string }
 
+status_field: &status_field
+  label: "Editorial Status"
+  name: "status"
+  widget: "select"
+  options:
+    - { label: "Draft", value: "draft" }
+    - { label: "In Review", value: "in_review" }
+    - { label: "Scheduled", value: "scheduled" }
+    - { label: "Approved", value: "approved" }
+  default: "draft"
+  hint: "Track the current editorial state of this entry."
+
+schedule_fields: &schedule_fields
+  label: "Scheduling"
+  name: "scheduling"
+  widget: "object"
+  collapsed: true
+  required: false
+  hint: "Optional publish/unpublish timestamps for automated scheduling."
+  fields:
+    - { label: "Publish At", name: "publishAt", widget: "datetime", required: false }
+    - { label: "Unpublish At", name: "unpublishAt", widget: "datetime", required: false }
+
 visibility_field: &visibility_field
   label: "Visible on site"
   name: "visible"
@@ -105,6 +128,8 @@ product_faq_fields: &product_faq_fields
 
 course_item_fields: &course_item_fields
   - { label: ID, name: id, widget: string }
+  - *status_field
+  - *schedule_fields
   - <<: *localized_string_field
     label: "Title"
     name: "title"
@@ -114,18 +139,24 @@ course_item_fields: &course_item_fields
   - { label: Enroll Link, name: enrollLink, widget: string, hint: "URL to course registration." }
 
 video_entry_fields: &video_entry_fields
+  - *status_field
+  - *schedule_fields
   - { label: Title, name: title, widget: string, required: false }
   - { label: Description, name: description, widget: text, required: false }
   - { label: Video URL, name: videoUrl, widget: string, required: false }
   - { label: Thumbnail, name: thumbnail, widget: image, choose_url: true, required: false }
 
 training_entry_fields: &training_entry_fields
+  - *status_field
+  - *schedule_fields
   - { label: Course Title, name: courseTitle, widget: string, required: true }
   - { label: Course Summary, name: courseSummary, widget: text, required: true }
   - { label: Link URL, name: linkUrl, widget: string, required: false }
 
 product_item_fields: &product_item_fields
   - { label: ID, name: id, widget: string }
+  - *status_field
+  - *schedule_fields
   - <<: *localized_string_field
     label: "Name"
     name: "name"
@@ -1285,6 +1316,8 @@ collections:
         fields:
           - { label: "Page Type", name: "type", widget: "hidden", default: "HomePage" }
           - *visibility_field
+          - *status_field
+          - *schedule_fields
           - label: "Page Metadata"
             name: "metadata"
             widget: "object"
@@ -1435,6 +1468,8 @@ collections:
         fields:
           - { label: "Page Type", name: "type", widget: "hidden", default: "LearnPage" }
           - *visibility_field
+          - *status_field
+          - *schedule_fields
           - label: "Page Metadata"
             name: "metadata"
             widget: "object"
@@ -1492,6 +1527,8 @@ collections:
         fields:
           - { label: "Page Type", name: "type", widget: "hidden", default: "MethodPage" }
           - *visibility_field
+          - *status_field
+          - *schedule_fields
           - label: "Page Metadata"
             name: "metadata"
             widget: "object"
@@ -1559,6 +1596,8 @@ collections:
         fields:
           - { label: "Page Type", name: "type", widget: "hidden", default: "ClinicsPage" }
           - *visibility_field
+          - *status_field
+          - *schedule_fields
           - label: "Page Metadata"
             name: "metadata"
             widget: "object"
@@ -1789,6 +1828,8 @@ collections:
         fields:
           - { label: "Page Type", name: "type", widget: "hidden", default: "AboutPage" }
           - *visibility_field
+          - *status_field
+          - *schedule_fields
           - label: "Page Metadata"
             name: "metadata"
             widget: "object"
@@ -1812,6 +1853,8 @@ collections:
         fields:
           - { label: "Page Type", name: "type", widget: "hidden", default: "StoryPage" }
           - *visibility_field
+          - *status_field
+          - *schedule_fields
           - label: "Page Metadata"
             name: "metadata"
             widget: "object"
@@ -1908,6 +1951,8 @@ collections:
         fields:
           - { label: "Page Type", name: "type", widget: "hidden", default: "ContactPage" }
           - *visibility_field
+          - *status_field
+          - *schedule_fields
           - label: "SEO"
             name: "seo"
             widget: "object"
