@@ -17,6 +17,9 @@ sections:
         ctaLabel: Nuestra historia
         ctaHref: /about
         image: shared/9bae3f87-12d5-43f4-a2a0-5cfc768e429d.jpg
+        imageFocal:
+          x: 0.52
+          y: 0.42
         imageUrl: https://images.pexels.com/photos/86623/olive-branch-tree-leaves-86623.jpeg?auto=compress&cs=tinysrgb&w=1920
       - eyebrow: Para clínicas
         title: De confianza profesional
@@ -27,6 +30,9 @@ sections:
         ctaLabel: Aliarte con nosotros
         ctaHref: /clinics
         image: https://images.pexels.com/photos/3865548/pexels-photo-3865548.jpeg?auto=compress&cs=tinysrgb&w=1920
+        imageFocal:
+          x: 0.44
+          y: 0.38
         imageUrl: https://images.pexels.com/photos/3997987/pexels-photo-3997987.jpeg?auto=compress&cs=tinysrgb&w=1920
       - eyebrow: Cadena de suministro
         title: Origen con herencia, estándar clínico
@@ -35,6 +41,9 @@ sections:
         ctaLabel: Nuestros estándares
         ctaHref: /method
         image: shared/a-woman-picks-fruit-from-an-argan-tree-1-.jpg
+        imageFocal:
+          x: 0.62
+          y: 0.38
         imageUrl: https://images.pexels.com/photos/8887309/pexels-photo-8887309.jpeg?auto=compress&cs=tinysrgb&w=1920
       - eyebrow: Rituales
         title: Del hammam a la recuperación moderna
@@ -43,11 +52,17 @@ sections:
         ctaLabel: Comprar rituales
         ctaHref: /shop
         image: shared/342cecc0-3c00-4094-97d6-5c9d9da02330.jpg
+        imageFocal:
+          x: 0.5
+          y: 0.46
         imageUrl: https://images.pexels.com/photos/6621462/pexels-photo-6621462.jpeg?auto=compress&cs=tinysrgb&w=1920
   - type: communityCarousel
     title: Rituales en nuestra comunidad
     slides:
       - image: shared/img_20200328_165251-copia-3-.jpg
+        imageFocal:
+          x: 0.5
+          y: 0.48
         alt: Añade una foto de un ritual de Kapunka en uso
         quote: >-
           “Utiliza este espacio para contar cómo alguien vive Kapunka en su
@@ -55,24 +70,57 @@ sections:
         name: Nombre del cliente
         role: Clínica o ciudad
       - image: shared/img_20200328_165441-copia-2-.jpg
+        imageFocal:
+          x: 0.46
+          y: 0.42
         alt: Sube otra imagen de la comunidad
         quote: '“Destaca un testimonio de un socio, una historia de recuperación o un ritual diario.”'
         name: Socio o profesional
         role: Rol o enfoque del tratamiento
       - image: shared/img_20200328_165521-copia-2-.jpg
+        imageFocal:
+          x: 0.54
+          y: 0.4
         alt: Añade imágenes de estilo de vida cálidas y reales
         quote: '“Añade una nota auténtica sobre cómo Kapunka acompaña sus objetivos de piel.”'
         name: Añade un nombre
         role: Ubicación o contexto
       - image: shared/img_20200328_162420-copia-3-.jpg
+        imageFocal:
+          x: 0.5
+          y: 0.5
       - image: shared/img_20200328_165740-copia-2-.jpg
+        imageFocal:
+          x: 0.48
+          y: 0.45
       - image: shared/img_20200328_165916-copia-2-.jpg
+        imageFocal:
+          x: 0.52
+          y: 0.44
       - image: shared/img_20200328_165948-copia-2-.jpg
+        imageFocal:
+          x: 0.51
+          y: 0.52
       - image: shared/img_20200328_170735-copia-2-.jpg
+        imageFocal:
+          x: 0.53
+          y: 0.47
       - image: shared/instagrammer-kapunka-maria-capell-.jpg
+        imageFocal:
+          x: 0.49
+          y: 0.41
       - image: https://images.pexels.com/photos/415829/pexels-photo-415829.jpeg?auto=compress&cs=tinysrgb&w=1920
+        imageFocal:
+          x: 0.48
+          y: 0.35
       - image: shared/kapunka-in-the-wild.jpg
+        imageFocal:
+          x: 0.52
+          y: 0.56
       - image: shared/kapunka-instagrammer-lidia-simon-canut-.jpg
+        imageFocal:
+          x: 0.47
+          y: 0.44
   - type: newsletterSignup
     title: Únete a la Lista
     subtitle: >-
