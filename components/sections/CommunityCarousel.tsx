@@ -50,6 +50,7 @@ const CommunityCarousel: React.FC<CommunityCarouselProps> = ({
   slideDuration = DEFAULT_DURATION,
   quoteDuration,
 }) => {
+  const safeSlides = Array.isArray(slides) ? slides : [];
   const safeDuration = useMemo(() => Math.max(slideDuration, MIN_DURATION), [slideDuration]);
   const resolvedQuoteDuration = useMemo(() => {
     const overridden = typeof quoteDuration === 'number' && Number.isFinite(quoteDuration)
@@ -58,16 +59,16 @@ const CommunityCarousel: React.FC<CommunityCarouselProps> = ({
     return Math.max(overridden, MIN_DURATION);
   }, [quoteDuration, safeDuration]);
   const slidesWithImages = useMemo(
-    () => slides.filter((slide) => Boolean(slide?.image)),
-    [slides],
+    () => safeSlides.filter((slide) => Boolean(slide?.image?.trim())),
+    [safeSlides],
   );
   const marqueeSlides = useMemo(() => (
     slidesWithImages.length > 0 ? [...slidesWithImages, ...slidesWithImages] : []
   ), [slidesWithImages]);
 
   const slidesWithQuotes = useMemo(
-    () => slides.filter((slide) => typeof slide?.quote === 'string' && slide.quote.trim().length > 0),
-    [slides],
+    () => safeSlides.filter((slide) => typeof slide?.quote === 'string' && slide.quote.trim().length > 0),
+    [safeSlides],
   );
   const [quoteIndex, setQuoteIndex] = useState(0);
   const [quotePositionIndex, setQuotePositionIndex] = useState(0);
@@ -124,15 +125,15 @@ const CommunityCarousel: React.FC<CommunityCarouselProps> = ({
       data-sb-field-path={fieldPath}
     >
       <div className="container mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
-        {title && (
+        {title?.trim() ? (
           <div
             className="max-w-3xl"
             {...getVisualEditorAttributes(fieldPath ? `${fieldPath}.title` : undefined)}
             data-sb-field-path={fieldPath ? `${fieldPath}.title` : undefined}
           >
-            <h2 className="text-3xl sm:text-4xl font-semibold tracking-tight text-stone-900">{title}</h2>
+            <h2 className="text-3xl sm:text-4xl font-semibold tracking-tight text-stone-900">{title.trim()}</h2>
           </div>
-        )}
+        ) : null}
         <div className="mt-14">
           <div className="relative overflow-hidden">
             <div
@@ -157,10 +158,10 @@ const CommunityCarousel: React.FC<CommunityCarouselProps> = ({
                       {...getVisualEditorAttributes(slide.fieldPath)}
                       data-sb-field-path={slide.fieldPath}
                     >
-                      {slide.image ? (
+                      {slideImageSrc ? (
                         <img
                           src={cloudinaryUrl}
-                          alt={slide.alt ?? 'Kapunka ritual in our community'}
+                          alt={slide.alt?.trim() || 'Kapunka ritual in our community'}
                           className="h-full w-full object-cover"
                           {...getVisualEditorAttributes(slide.imageFieldPath)}
                           data-sb-field-path={slide.imageFieldPath}
@@ -175,13 +176,15 @@ const CommunityCarousel: React.FC<CommunityCarouselProps> = ({
                           <span>Upload via CMS</span>
                         </div>
                       )}
-                      <span
-                        className="sr-only"
-                        {...getVisualEditorAttributes(slide.altFieldPath)}
-                        data-sb-field-path={slide.altFieldPath}
-                      >
-                        {slide.alt ?? 'Community carousel image'}
-                      </span>
+                      {slide.alt?.trim() ? (
+                        <span
+                          className="sr-only"
+                          {...getVisualEditorAttributes(slide.altFieldPath)}
+                          data-sb-field-path={slide.altFieldPath}
+                        >
+                          {slide.alt.trim()}
+                        </span>
+                      ) : null}
                     </figure>
                   );
                   })}

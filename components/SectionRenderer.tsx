@@ -10,10 +10,20 @@ import type { PageSection, ProductTab, ProductTabsSectionContent } from '../type
 
 const ProductTabsSection: React.FC<{ section: ProductTabsSectionContent }> = ({ section }) => {
   const { tabs, initialActiveTab } = section;
-  const sanitizedTabs = useMemo(
-    () => tabs.filter((tab): tab is ProductTab => Boolean(tab?.id && tab.label)),
-    [tabs],
-  );
+  const sanitizedTabs = useMemo(() => {
+    if (!Array.isArray(tabs) || tabs.length === 0) {
+      return [] as ProductTab[];
+    }
+
+    return tabs.filter((tab): tab is ProductTab => {
+      if (!tab?.id) {
+        return false;
+      }
+
+      const label = tab.label?.trim();
+      return Boolean(label);
+    });
+  }, [tabs]);
 
   const defaultActive =
     initialActiveTab && sanitizedTabs.some((tab) => tab.id === initialActiveTab)
@@ -37,10 +47,16 @@ const ProductTabsSection: React.FC<{ section: ProductTabsSectionContent }> = ({ 
     <div>
       <div className="border-b border-stone-200">
         <nav className="-mb-px flex space-x-8" aria-label="Tabs">
-          {sanitizedTabs.map((tab) => (
-            <button
-              key={tab.id}
-              onClick={handleTabClick}
+          {sanitizedTabs.map((tab) => {
+            const label = tab.label?.trim();
+            if (!label) {
+              return null;
+            }
+
+            return (
+              <button
+                key={tab.id}
+                onClick={handleTabClick}
               className={`${
                 activeTab === tab.id
                   ? 'border-stone-800 text-stone-900'
@@ -48,9 +64,10 @@ const ProductTabsSection: React.FC<{ section: ProductTabsSectionContent }> = ({ 
               } whitespace-nowrap py-4 px-1 border-b-2 font-medium text-sm`}
               data-tab-id={tab.id}
             >
-              <span {...getVisualEditorAttributes(tab.labelFieldPath)}>{tab.label}</span>
+              <span {...getVisualEditorAttributes(tab.labelFieldPath)}>{label}</span>
             </button>
-          ))}
+            );
+          })}
         </nav>
       </div>
       <div className="mt-6 prose prose-stone max-w-none text-stone-700">
@@ -95,13 +112,15 @@ const buildSectionKey = (prefix: string, section: PageSection): string => {
 };
 
 const SectionRenderer: React.FC<SectionRendererProps> = ({ sections, fieldPath }) => {
-  if (!sections || sections.length === 0) {
+  const safeSections = Array.isArray(sections) ? sections : [];
+
+  if (safeSections.length === 0) {
     return null;
   }
 
   return (
     <>
-      {sections.map((section, index) => {
+      {safeSections.map((section, index) => {
         const sectionFieldPath = fieldPath ? `${fieldPath}.${index}` : undefined;
 
         switch (section.type) {
@@ -161,7 +180,12 @@ const SectionRenderer: React.FC<SectionRendererProps> = ({ sections, fieldPath }
               />
             );
           case 'communityCarousel': {
-            const slides = (section.slides ?? []).map((slide, slideIndex) => {
+            const slidesSource = Array.isArray(section.slides) ? section.slides : [];
+            if (slidesSource.length === 0 && !section.title?.trim()) {
+              return null;
+            }
+
+            const slides = slidesSource.map((slide, slideIndex) => {
               const baseFieldPath = sectionFieldPath ? `${sectionFieldPath}.slides.${slideIndex}` : undefined;
 
               return {

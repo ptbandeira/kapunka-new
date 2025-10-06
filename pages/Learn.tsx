@@ -193,10 +193,41 @@ const Learn: React.FC = () => {
     return articles.filter(article => article.category === activeCategory);
   }, [activeCategory, articles]);
 
-  const metaTitle = (pageContent?.data.metaTitle ?? t('learn.metaTitle'))?.trim();
-  const metaDescription = (pageContent?.data.metaDescription ?? t('learn.metaDescription'))?.trim();
-  const heroTitle = pageContent?.data.heroTitle ?? t('learn.title');
-  const heroSubtitle = pageContent?.data.heroSubtitle ?? t('learn.subtitle');
+  const categoryButtons = useMemo(() => {
+    return allCategories.reduce<React.ReactElement[]>((acc, category) => {
+      const label = formatCategoryLabel(category.id).trim();
+      if (!label) {
+        return acc;
+      }
+
+      const categoryFieldPath = category.fieldPath
+        ? `${category.fieldPath}.label`
+        : undefined;
+
+      acc.push(
+        <button
+          key={category.id}
+          onClick={handleCategoryClick}
+          className={`text-sm px-4 py-2 border rounded-full transition-colors duration-300 ${
+            activeCategory === category.id
+              ? 'bg-stone-800 text-white border-stone-800'
+              : 'border-stone-300 text-stone-500 hover:border-stone-800 hover:text-stone-800'
+          }`}
+          data-category={category.id}
+          {...getVisualEditorAttributes(categoryFieldPath)}
+        >
+          {label}
+        </button>,
+      );
+
+      return acc;
+    }, []);
+  }, [allCategories, activeCategory, formatCategoryLabel, handleCategoryClick]);
+
+  const metaTitle = (pageContent?.data.metaTitle ?? t('learn.metaTitle'))?.trim() || t('learn.title');
+  const metaDescription = (pageContent?.data.metaDescription ?? t('learn.metaDescription'))?.trim() || undefined;
+  const heroTitle = (pageContent?.data.heroTitle ?? t('learn.title'))?.trim();
+  const heroSubtitle = (pageContent?.data.heroSubtitle ?? t('learn.subtitle'))?.trim();
   const heroTitleFieldPath = `${learnFieldPath}.heroTitle`;
   const heroSubtitleFieldPath = `${learnFieldPath}.heroSubtitle`;
   const rawSocialImage = settings.home?.heroImage?.trim() ?? '';
@@ -212,55 +243,45 @@ const Learn: React.FC = () => {
         locale={language}
       />
 
-      <motion.header
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.6 }}
-        className="text-center mb-12"
-      >
-        <h1
-          className="text-4xl sm:text-5xl font-semibold tracking-tight"
-          {...getVisualEditorAttributes(heroTitleFieldPath)}
+      {(heroTitle || heroSubtitle) ? (
+        <motion.header
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6 }}
+          className="text-center mb-12"
         >
-          {heroTitle}
-        </h1>
-        <p
-          className="mt-4 text-lg text-stone-600 max-w-2xl mx-auto"
-          {...getVisualEditorAttributes(heroSubtitleFieldPath)}
-        >
-          {heroSubtitle}
-        </p>
-      </motion.header>
-
-      <div className="flex justify-center flex-wrap gap-2 mb-12">
-        {allCategories.map((category) => {
-          const categoryFieldPath = category.fieldPath
-            ? `${category.fieldPath}.label`
-            : undefined;
-          return (
-            <button
-              key={category.id}
-              onClick={handleCategoryClick}
-              className={`text-sm px-4 py-2 border rounded-full transition-colors duration-300 ${
-                activeCategory === category.id
-                  ? 'bg-stone-800 text-white border-stone-800'
-                  : 'border-stone-300 text-stone-500 hover:border-stone-800 hover:text-stone-800'
-              }`}
-              data-category={category.id}
-              {...getVisualEditorAttributes(categoryFieldPath)}
+          {heroTitle ? (
+            <h1
+              className="text-4xl sm:text-5xl font-semibold tracking-tight"
+              {...getVisualEditorAttributes(heroTitleFieldPath)}
             >
-              {formatCategoryLabel(category.id)}
-            </button>
-          );
-        })}
-      </div>
+              {heroTitle}
+            </h1>
+          ) : null}
+          {heroSubtitle ? (
+            <p
+              className="mt-4 text-lg text-stone-600 max-w-2xl mx-auto"
+              {...getVisualEditorAttributes(heroSubtitleFieldPath)}
+            >
+              {heroSubtitle}
+            </p>
+          ) : null}
+        </motion.header>
+      ) : null}
+
+      {categoryButtons.length > 0 ? (
+        <div className="flex justify-center flex-wrap gap-2 mb-12">
+          {categoryButtons}
+        </div>
+      ) : null}
 
       {loading ? (
         <p className="text-center py-10" {...getVisualEditorAttributes(`translations.${language}.common.loading`)}>
           {t('common.loading')}
         </p>
       ) : (
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12">
+        filteredArticles.length > 0 ? (
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12">
             {filteredArticles.map((article, index) => {
               const articleIndex = articles.findIndex((item) => item.id === article.id);
               const fieldPath = articleIndex >= 0 ? `articles.items.${articleIndex}` : undefined;
@@ -268,19 +289,26 @@ const Learn: React.FC = () => {
               const categoryFieldPath = categoryDetails?.fieldPath
                 ? `${categoryDetails.fieldPath}.label`
                 : undefined;
+              const categoryLabel = categoryDetails?.label?.trim();
+
               return (
                 <ArticleCard
                   key={article.id}
                   article={article}
                   index={index}
                   fieldPath={fieldPath}
-                  categoryLabel={categoryDetails?.label}
+                  categoryLabel={categoryLabel}
                   categoryFieldPath={categoryFieldPath}
                   data-sb-field-path={`.${index}`}
                 />
               );
             })}
-        </div>
+          </div>
+        ) : (
+          <p className="text-center text-stone-500" {...getVisualEditorAttributes(`translations.${language}.common.unableToLoad`)}>
+            {t('common.unableToLoad')}
+          </p>
+        )
       )}
     </div>
   );

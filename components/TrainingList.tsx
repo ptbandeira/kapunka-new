@@ -33,7 +33,7 @@ const TrainingList: React.FC<TrainingListProps> = ({ title, description, entries
   const { contentVersion } = useVisualEditorSync();
 
   useEffect(() => {
-    if (entries && entries.length > 0) {
+    if (Array.isArray(entries) && entries.length > 0) {
       return;
     }
 
@@ -56,12 +56,25 @@ const TrainingList: React.FC<TrainingListProps> = ({ title, description, entries
   }, [entries, contentVersion]);
 
   const modules = useMemo(() => {
-    const sourceEntries = entries && entries.length > 0 ? entries : catalogEntries;
+    const sourceEntries = Array.isArray(entries) && entries.length > 0 ? entries : catalogEntries;
 
-    return sourceEntries.filter((entry): entry is TrainingEntry => Boolean(entry?.courseTitle?.trim()));
+    return sourceEntries.filter((entry): entry is TrainingEntry => {
+      if (!entry) {
+        return false;
+      }
+
+      const hasTitle = entry.courseTitle?.trim();
+      const hasSummary = entry.courseSummary?.trim();
+      const hasLink = entry.linkUrl?.trim();
+
+      return Boolean(hasTitle || hasSummary || hasLink);
+    });
   }, [entries, catalogEntries]);
 
-  if (modules.length === 0) {
+  const trimmedTitle = title?.trim();
+  const trimmedDescription = description?.trim();
+
+  if (!trimmedTitle && !trimmedDescription && modules.length === 0) {
     return null;
   }
 
@@ -72,9 +85,9 @@ const TrainingList: React.FC<TrainingListProps> = ({ title, description, entries
       data-sb-field-path={fieldPath}
     >
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-        {(title || description) && (
+        {(trimmedTitle || trimmedDescription) && (
           <div className="mb-12 max-w-3xl">
-            {title && (
+            {trimmedTitle ? (
               <motion.h2
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
@@ -84,10 +97,10 @@ const TrainingList: React.FC<TrainingListProps> = ({ title, description, entries
                 {...getVisualEditorAttributes(fieldPath ? `${fieldPath}.title` : undefined)}
                 data-sb-field-path={fieldPath ? `${fieldPath}.title` : undefined}
               >
-                {title}
+                {trimmedTitle}
               </motion.h2>
-            )}
-            {description && (
+            ) : null}
+            {trimmedDescription ? (
               <motion.p
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
@@ -97,9 +110,9 @@ const TrainingList: React.FC<TrainingListProps> = ({ title, description, entries
                 {...getVisualEditorAttributes(fieldPath ? `${fieldPath}.description` : undefined)}
                 data-sb-field-path={fieldPath ? `${fieldPath}.description` : undefined}
               >
-                {description}
+                {trimmedDescription}
               </motion.p>
-            )}
+            ) : null}
           </div>
         )}
 

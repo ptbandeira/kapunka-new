@@ -16,12 +16,14 @@ interface ImageTextHalfProps {
 const ImageTextHalf: React.FC<ImageTextHalfProps> = ({ image, title, text, imageAlt, fieldPath }) => {
   const prefersReducedMotion = usePrefersReducedMotion();
 
-  if (!title && !text && !image) {
+  const trimmedTitle = title?.trim();
+  const markdownSource = text?.trim();
+  const trimmedImage = image?.trim();
+
+  if (!trimmedTitle && !markdownSource && !trimmedImage) {
     return null;
   }
 
-  const markdownSource = text?.trim();
-  const trimmedImage = image?.trim();
   const cloudinaryUrl = trimmedImage ? getCloudinaryUrl(trimmedImage) ?? trimmedImage : '';
   const altText = [imageAlt, title]
     .map((value) => value?.trim())
@@ -37,14 +39,14 @@ const ImageTextHalf: React.FC<ImageTextHalfProps> = ({ image, title, text, image
 
   const textContent = (
     <>
-      {title && (
+      {trimmedTitle ? (
         <h2
           className="text-3xl font-semibold text-stone-900 mb-6"
           {...(fieldPath ? getVisualEditorAttributes(`${fieldPath}.title`) : {})}
         >
-          {title}
+          {trimmedTitle}
         </h2>
-      )}
+      ) : null}
       {markdownSource && (
         <div
           className="prose prose-stone max-w-none text-stone-700"

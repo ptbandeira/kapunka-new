@@ -187,18 +187,69 @@ const Training: React.FC = () => {
     };
   }, [contentVersion]);
 
-  const sections = pageContent?.sections ?? [];
+  const sections = Array.isArray(pageContent?.sections) ? pageContent.sections : [];
   const sectionsFieldPath = `pages.training_${language}.sections`;
 
-  const modules = useMemo(() => (
-    programContent?.modules?.filter((module) => module && (module.title?.trim() || module.description?.trim())) ?? []
-  ), [programContent?.modules]);
-  const objectives = useMemo(() => (
-    programContent?.objectives?.filter((objective) => objective && objective.trim().length > 0) ?? []
-  ), [programContent?.objectives]);
-  const callToActions = useMemo(() => (
-    programContent?.callToActions?.filter((cta) => cta && (cta.label?.trim() || cta.url?.trim())) ?? []
-  ), [programContent?.callToActions]);
+  const modules = useMemo(() => {
+    const sourceModules = programContent?.modules;
+    if (!Array.isArray(sourceModules) || sourceModules.length === 0) {
+      return [];
+    }
+
+    return sourceModules.filter((module) => {
+      if (!module) {
+        return false;
+      }
+
+      const hasLearningOutcomes = Array.isArray(module.learningOutcomes)
+        && module.learningOutcomes.some((outcome) => typeof outcome === 'string' && outcome.trim().length > 0);
+
+      return Boolean(
+        module.title?.trim()
+        || module.description?.trim()
+        || module.duration?.trim()
+        || hasLearningOutcomes,
+      );
+    });
+  }, [programContent?.modules]);
+
+  const objectives = useMemo(() => {
+    const sourceObjectives = programContent?.objectives;
+    if (!Array.isArray(sourceObjectives) || sourceObjectives.length === 0) {
+      return [];
+    }
+
+    return sourceObjectives
+      .map((objective) => (typeof objective === 'string' ? objective.trim() : ''))
+      .filter((objective) => objective.length > 0);
+  }, [programContent?.objectives]);
+
+  const callToActions = useMemo(() => {
+    const sourceCallToActions = programContent?.callToActions;
+    if (!Array.isArray(sourceCallToActions) || sourceCallToActions.length === 0) {
+      return [];
+    }
+
+    return sourceCallToActions.reduce((acc, cta) => {
+      if (!cta) {
+        return acc;
+      }
+
+      const label = cta.label?.trim() ?? '';
+      const url = cta.url?.trim() ?? '';
+
+      if (label.length === 0 && url.length === 0) {
+        return acc;
+      }
+
+      acc.push({
+        label: label || undefined,
+        url: url || undefined,
+      });
+
+      return acc;
+    }, [] as NonNullable<TrainingProgramContent['callToActions']>);
+  }, [programContent?.callToActions]);
 
   const baseMetaTitle = (programContent?.metaTitle ?? pageContent?.metaTitle ?? t('training.metaTitle'))?.trim();
   const computedTitle = baseMetaTitle ? `${baseMetaTitle} | Kapunka Skincare` : 'Kapunka Skincare';
@@ -289,10 +340,25 @@ const Training: React.FC = () => {
               </motion.h2>
             </div>
             <div className="mt-12 grid gap-8 md:grid-cols-2">
-              {modules.map((module, index) => (
-                <motion.article
-                  key={[module.title, index].join('|')}
-                  initial={{ opacity: 0, y: 24 }}
+              {modules.map((module, index) => {
+                const title = module.title?.trim();
+                const duration = module.duration?.trim();
+                const description = module.description?.trim();
+                const learningOutcomes = Array.isArray(module.learningOutcomes)
+                  ? module.learningOutcomes
+                    .map((outcome) => (typeof outcome === 'string' ? outcome.trim() : ''))
+                    .filter((outcome) => outcome.length > 0)
+                  : [];
+                const moduleKey = [title, duration, index].filter(Boolean).join('|') || `module-${index}`;
+
+                if (!title && !duration && !description && learningOutcomes.length === 0) {
+                  return null;
+                }
+
+                return (
+                  <motion.article
+                    key={moduleKey}
+                    initial={{ opacity: 0, y: 24 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ duration: 0.45, delay: index * 0.05 }}
@@ -300,19 +366,19 @@ const Training: React.FC = () => {
                   data-sb-field-path={`modules.${index}`}
                 >
                   <div>
-                    {module.title ? (
-                      <h3 className="text-xl font-semibold text-stone-900">{module.title}</h3>
+                    {title ? (
+                      <h3 className="text-xl font-semibold text-stone-900">{title}</h3>
                     ) : null}
-                    {module.duration ? (
-                      <p className="mt-2 text-sm font-medium uppercase tracking-wide text-stone-500">{module.duration}</p>
+                    {duration ? (
+                      <p className="mt-2 text-sm font-medium uppercase tracking-wide text-stone-500">{duration}</p>
                     ) : null}
-                    {module.description ? (
-                      <p className="mt-4 text-base text-stone-600">{module.description}</p>
+                    {description ? (
+                      <p className="mt-4 text-base text-stone-600">{description}</p>
                     ) : null}
                   </div>
-                  {module.learningOutcomes && module.learningOutcomes.length > 0 ? (
+                  {learningOutcomes.length > 0 ? (
                     <ul className="mt-6 list-disc space-y-2 pl-5 text-sm text-stone-500" data-sb-field-path={`modules.${index}.learningOutcomes`}>
-                      {module.learningOutcomes.map((outcome, outcomeIndex) => (
+                      {learningOutcomes.map((outcome, outcomeIndex) => (
                         <li key={[outcome, outcomeIndex].join('|')} data-sb-field-path={`modules.${index}.learningOutcomes.${outcomeIndex}`}>
                           {outcome}
                         </li>
@@ -320,7 +386,8 @@ const Training: React.FC = () => {
                     </ul>
                   ) : null}
                 </motion.article>
-              ))}
+              );
+              })}
             </div>
           </div>
         </section>
@@ -340,18 +407,23 @@ const Training: React.FC = () => {
               {t('training.ctaHeading')}
             </motion.h2>
             <div className="mt-8 flex flex-wrap justify-center gap-4">
-              {callToActions.map((cta, index) => (
-                <a
-                  key={[cta.label, cta.url, index].join('|')}
-                  href={cta.url ?? '#'}
-                  className="inline-flex items-center justify-center rounded-full bg-white px-6 py-3 text-sm font-semibold text-stone-900 shadow-sm transition-transform duration-300 hover:scale-[1.02]"
-                  data-sb-field-path={`callToActions.${index}`}
-                  target={cta.url ? '_blank' : undefined}
-                  rel={cta.url ? 'noopener noreferrer' : undefined}
-                >
-                  {cta.label ?? t('training.learnMore')}
-                </a>
-              ))}
+              {callToActions.map((cta, index) => {
+                const label = cta.label?.trim() ?? '';
+                const url = cta.url?.trim() ?? '';
+
+                return (
+                  <a
+                    key={[label, url, index].join('|')}
+                    href={url || '#'}
+                    className="inline-flex items-center justify-center rounded-full bg-white px-6 py-3 text-sm font-semibold text-stone-900 shadow-sm transition-transform duration-300 hover:scale-[1.02]"
+                    data-sb-field-path={`callToActions.${index}`}
+                    target={url ? '_blank' : undefined}
+                    rel={url ? 'noopener noreferrer' : undefined}
+                  >
+                    {label || t('training.learnMore')}
+                  </a>
+                );
+              })}
             </div>
           </div>
         </section>

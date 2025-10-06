@@ -15,7 +15,7 @@ interface ImageGridProps {
 }
 
 const ImageGrid: React.FC<ImageGridProps> = ({ items, fieldPath }) => {
-  if (!items || items.length === 0) {
+  if (!Array.isArray(items) || items.length === 0) {
     return null;
   }
 
@@ -27,6 +27,10 @@ const ImageGrid: React.FC<ImageGridProps> = ({ items, fieldPath }) => {
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
           {items.map((item, index) => {
+            if (!item) {
+              return null;
+            }
+
             const itemFieldPath = fieldPath ? `${fieldPath}.items.${index}` : undefined;
             const itemKey = item.image
               ?? item.title
@@ -56,22 +60,22 @@ const ImageGrid: React.FC<ImageGridProps> = ({ items, fieldPath }) => {
                   )}
                 </div>
                 <div className="p-6 flex flex-col gap-2">
-                  {item.title && (
+                  {item.title?.trim() ? (
                     <h3
                       className="text-lg font-semibold text-stone-900"
                       {...(itemFieldPath ? getVisualEditorAttributes(`${itemFieldPath}.title`) : {})}
                     >
-                      {item.title}
+                      {item.title.trim()}
                     </h3>
-                  )}
-                  {item.subtitle && (
+                  ) : null}
+                  {item.subtitle?.trim() ? (
                     <p
                       className="text-sm text-stone-600"
                       {...(itemFieldPath ? getVisualEditorAttributes(`${itemFieldPath}.subtitle`) : {})}
                     >
-                      {item.subtitle}
+                      {item.subtitle.trim()}
                     </p>
-                  )}
+                  ) : null}
                 </div>
               </div>
             );
