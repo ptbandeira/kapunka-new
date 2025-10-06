@@ -47,15 +47,15 @@ localized_list_field: &localized_list_field
     - label: English
       name: en
       widget: list
-      field: { label: Item, name: value, widget: string }
+      field: { label: Item, name: item, widget: string }
     - label: Portuguese
       name: pt
       widget: list
-      field: { label: Item, name: value, widget: string }
+      field: { label: Item, name: item, widget: string }
     - label: Spanish
       name: es
       widget: list
-      field: { label: Item, name: value, widget: string }
+      field: { label: Item, name: item, widget: string }
 
 visibility_field: &visibility_field
   label: "Visible on site"
@@ -75,6 +75,144 @@ focal_point_field: &focal_point_field
   fields:
     - { label: "Horizontal (0–1)", name: "x", widget: "number", value_type: "float", min: 0, max: 1, step: 0.01, required: false }
     - { label: "Vertical (0–1)", name: "y", widget: "number", value_type: "float", min: 0, max: 1, step: 0.01, required: false }
+
+product_knowledge_fields: &product_knowledge_fields
+  - <<: *localized_text_field
+    label: "What It Is"
+    name: "whatItIs"
+  - <<: *localized_text_field
+    label: "How It Works"
+    name: "howItWorks"
+  - <<: *localized_text_field
+    label: "Who It's For"
+    name: "whoItsFor"
+  - <<: *localized_text_field
+    label: "Scientific Backing"
+    name: "scientificBacking"
+  - <<: *localized_text_field
+    label: "Cultural & Traditional Context"
+    name: "culturalContext"
+
+product_faq_fields: &product_faq_fields
+  - <<: *localized_text_field
+    label: "Question"
+    name: "question"
+    hint: "FAQ prompt displayed on PDP."
+  - <<: *localized_text_field
+    label: "Answer"
+    name: "answer"
+    hint: "Short response (supports Markdown)."
+
+product_item_fields: &product_item_fields
+  - { label: ID, name: id, widget: string }
+  - <<: *localized_string_field
+    label: "Name"
+    name: "name"
+    required: true
+    hint: "Displayed product name for PDPs and cards."
+  - <<: *localized_string_field
+    label: "Name Add-on"
+    name: "titleAddition"
+    hint: "Optional text appended to the product title (≤30 characters)."
+  - <<: *localized_string_field
+    label: "Tagline"
+    name: "tagline"
+    hint: "Short positioning statement shown on product cards (≤80 characters)."
+  - <<: *localized_text_field
+    label: "Description"
+    name: "description"
+    hint: "Hero description for PDP hero and cart tooltip."
+  - <<: *localized_list_field
+    label: "Bundle Includes"
+    name: "bundleIncludes"
+    hint: "Outline the items contained in a bundle."
+  - { label: "Primary Image", name: "imageUrl", widget: "image", choose_url: true, hint: "Hero product image displayed on cards and PDP." }
+  - label: Sizes
+    name: sizes
+    widget: list
+    summary: "{{fields.size}} ml"
+    fields:
+      - { label: Option ID, name: id, widget: string }
+      - { label: Size (ml), name: size, widget: number }
+      - { label: Price, name: price, widget: number, value_type: float }
+  - <<: *localized_list_field
+    label: "Badges"
+    name: "badges"
+    hint: "Short selling points displayed as badges."
+  - <<: *localized_list_field
+    label: "Benefits"
+    name: "benefits"
+    hint: "Bulleted list summarising key results."
+  - <<: *localized_text_field
+    label: "How to Use"
+    name: "howToUse"
+    hint: "Step-by-step application guidance (supports Markdown)."
+  - <<: *localized_text_field
+    label: "Ingredients"
+    name: "ingredients"
+    hint: "Full INCI or ingredient description list."
+  - <<: *localized_text_field
+    label: "Origin & Purity Note"
+    name: "labTestedNote"
+    hint: "Highlight lab testing or sourcing credentials."
+  - label: Good to Know
+    name: goodToKnow
+    widget: object
+    collapsed: true
+    fields:
+      - <<: *localized_string_field
+        label: "Title"
+        name: "title"
+        hint: "Optional heading above the quick facts list."
+      - <<: *localized_list_field
+        label: "Items"
+        name: "items"
+        hint: "Short facts or usage notes."
+  - <<: *localized_list_field
+    label: "Multi-use Tips"
+    name: "multiUseTips"
+    hint: "Optional multi-use ideas shown on PDP."
+  - label: Knowledge Hub
+    name: knowledge
+    widget: object
+    collapsed: true
+    fields: *product_knowledge_fields
+  - label: FAQs
+    name: faqs
+    widget: list
+    summary: "{{fields.question.en}}"
+    fields: *product_faq_fields
+
+article_item_fields: &article_item_fields
+  - { label: ID, name: id, widget: string }
+  - { label: Slug, name: slug, widget: string }
+  - <<: *localized_string_field
+    label: "Title"
+    name: "title"
+    required: true
+    hint: "Displayed as the article headline."
+  - <<: *localized_text_field
+    label: "Preview"
+    name: "preview"
+    hint: "Short summary shown in the Learn hub (≤200 characters)."
+  - <<: *localized_markdown_field
+    label: "Content"
+    name: "content"
+    hint: "Full article body. Supports Markdown."
+  - { label: Category, name: category, widget: string, hint: "Used for filtering in the Learn hub." }
+  - { label: Featured Image, name: imageUrl, widget: image, choose_url: true, hint: "Preview image shown on the Learn hub and article hero." }
+  - { label: Related Product ID, name: relatedProductId, widget: string, required: false, hint: "Optional primary product ID to highlight." }
+  - label: Related Product IDs
+    name: relatedProductIds
+    widget: list
+    required: false
+    field: { label: Product ID, name: id, widget: string }
+  - label: FAQs
+    name: faqs
+    widget: list
+    required: false
+    summary: "{{fields.question.en}}"
+    fields: *product_faq_fields
 
 # ===== Shared Section Templates (anchors) =====
 hero_content_fields: &hero_content_fields
@@ -2475,6 +2613,7 @@ collections:
     label: Products
     group: "2. Catalog"
     editor: { preview: false }
+    load_strategy: lazy
     files:
       - name: catalog
         label: Product Catalog
@@ -2487,177 +2626,12 @@ collections:
             name: items
             widget: list
             summary: "{{fields.name.en}}"
-            fields:
-              - { label: ID, name: id, widget: string }
-              - <<: *localized_string_field
-                label: "Name"
-                name: "name"
-                required: true
-                hint: "Displayed product name for PDPs and cards."
-              - <<: *localized_string_field
-                label: "Name Add-on"
-                name: "titleAddition"
-                hint: "Optional text appended to the product title (≤30 characters)."
-              - <<: *localized_string_field
-                label: "Tagline"
-                name: "tagline"
-                hint: "Short positioning statement shown on product cards (≤80 characters)."
-              - <<: *localized_text_field
-                label: "Description"
-                name: "description"
-                hint: "Hero description for PDP hero and cart tooltip."
-              - <<: *localized_list_field
-                label: "Bundle Includes"
-                name: "bundleIncludes"
-                hint: "Outline the items contained in a bundle."
-                fields:
-                  - label: English
-                    name: en
-                    widget: list
-                    field: { label: Item, name: item, widget: string }
-                  - label: Portuguese
-                    name: pt
-                    widget: list
-                    field: { label: Item, name: item, widget: string }
-                  - label: Spanish
-                    name: es
-                    widget: list
-                    field: { label: Item, name: item, widget: string }
-              - { label: "Primary Image", name: "imageUrl", widget: "image", choose_url: true, hint: "Hero product image displayed on cards and PDP." }
-              - label: Sizes
-                name: sizes
-                widget: list
-                summary: "{{fields.size}} ml"
-                fields:
-                  - { label: Option ID, name: id, widget: string }
-                  - { label: Size (ml), name: size, widget: number }
-                  - { label: Price, name: price, widget: number, value_type: float }
-              - <<: *localized_list_field
-                label: "Badges"
-                name: "badges"
-                hint: "Short selling points displayed as badges."
-                fields:
-                  - label: English
-                    name: en
-                    widget: list
-                    field: { label: Badge, name: badge, widget: string }
-                  - label: Portuguese
-                    name: pt
-                    widget: list
-                    field: { label: Selo, name: badge, widget: string }
-                  - label: Spanish
-                    name: es
-                    widget: list
-                    field: { label: Distintivo, name: badge, widget: string }
-              - <<: *localized_list_field
-                label: "Benefits"
-                name: "benefits"
-                hint: "Bulleted list summarising key results."
-                fields:
-                  - label: English
-                    name: en
-                    widget: list
-                    field: { label: Benefit, name: benefit, widget: string }
-                  - label: Portuguese
-                    name: pt
-                    widget: list
-                    field: { label: Benefício, name: benefit, widget: string }
-                  - label: Spanish
-                    name: es
-                    widget: list
-                    field: { label: Beneficio, name: benefit, widget: string }
-              - <<: *localized_text_field
-                label: "How to Use"
-                name: "howToUse"
-                hint: "Step-by-step application guidance (supports Markdown)."
-              - <<: *localized_text_field
-                label: "Ingredients"
-                name: "ingredients"
-                hint: "Full INCI or ingredient description list."
-              - <<: *localized_text_field
-                label: "Origin & Purity Note"
-                name: "labTestedNote"
-                hint: "Highlight lab testing or sourcing credentials."
-              - label: Good to Know
-                name: goodToKnow
-                widget: object
-                collapsed: true
-                fields:
-                  - <<: *localized_string_field
-                    label: "Title"
-                    name: "title"
-                    hint: "Optional heading above the quick facts list."
-                  - <<: *localized_list_field
-                    label: "Items"
-                    name: "items"
-                    hint: "Short facts or usage notes."
-                    fields:
-                      - label: English
-                        name: en
-                        widget: list
-                        field: { label: Item, name: item, widget: string }
-                      - label: Portuguese
-                        name: pt
-                        widget: list
-                        field: { label: Item, name: item, widget: string }
-                      - label: Spanish
-                        name: es
-                        widget: list
-                        field: { label: Item, name: item, widget: string }
-              - <<: *localized_list_field
-                label: "Multi-use Tips"
-                name: "multiUseTips"
-                hint: "Optional multi-use ideas shown on PDP."
-                fields:
-                  - label: English
-                    name: en
-                    widget: list
-                    field: { label: Tip, name: item, widget: string }
-                  - label: Portuguese
-                    name: pt
-                    widget: list
-                    field: { label: Dica, name: item, widget: string }
-                  - label: Spanish
-                    name: es
-                    widget: list
-                    field: { label: Consejo, name: item, widget: string }
-              - label: Knowledge Hub
-                name: knowledge
-                widget: object
-                collapsed: true
-                fields:
-                  - <<: *localized_text_field
-                    label: "What It Is"
-                    name: "whatItIs"
-                  - <<: *localized_text_field
-                    label: "How It Works"
-                    name: "howItWorks"
-                  - <<: *localized_text_field
-                    label: "Who It's For"
-                    name: "whoItsFor"
-                  - <<: *localized_text_field
-                    label: "Scientific Backing"
-                    name: "scientificBacking"
-                  - <<: *localized_text_field
-                    label: "Cultural & Traditional Context"
-                    name: "culturalContext"
-              - label: FAQs
-                name: faqs
-                widget: list
-                summary: "{{fields.question.en}}"
-                fields:
-                  - <<: *localized_text_field
-                    label: "Question"
-                    name: "question"
-                    hint: "The customer-facing FAQ prompt."
-                  - <<: *localized_text_field
-                    label: "Answer"
-                    name: "answer"
-                    hint: "Concise answer (supports Markdown)."
+            fields: *product_item_fields
   - name: articles
     label: Articles
     group: "2. Catalog"
     editor: { preview: false }
+    load_strategy: lazy
     files:
       - name: articles
         label: Skincare Library
@@ -2670,44 +2644,7 @@ collections:
             name: items
             widget: list
             summary: "{{fields.title.en}}"
-            fields:
-              - { label: ID, name: id, widget: string }
-              - { label: Slug, name: slug, widget: string }
-              - <<: *localized_string_field
-                label: "Title"
-                name: "title"
-                required: true
-                hint: "Displayed as the article headline."
-              - <<: *localized_text_field
-                label: "Preview"
-                name: "preview"
-                hint: "Short summary shown in the Learn hub (≤200 characters)."
-              - <<: *localized_markdown_field
-                label: "Content"
-                name: "content"
-                hint: "Full article body. Supports Markdown."
-              - { label: Category, name: category, widget: string, hint: "Used for filtering in the Learn hub." }
-              - { label: Featured Image, name: imageUrl, widget: image, choose_url: true, hint: "Preview image shown on the Learn hub and article hero." }
-              - { label: Related Product ID, name: relatedProductId, widget: string, required: false, hint: "Optional primary product ID to highlight." }
-              - label: Related Product IDs
-                name: relatedProductIds
-                widget: list
-                required: false
-                field: { label: Product ID, name: id, widget: string }
-              - label: FAQs
-                name: faqs
-                widget: list
-                required: false
-                summary: "{{fields.question.en}}"
-                fields:
-                  - <<: *localized_text_field
-                    label: "Question"
-                    name: "question"
-                    hint: "FAQ prompt surfaced in the PDP article block."
-                  - <<: *localized_text_field
-                    label: "Answer"
-                    name: "answer"
-                    hint: "Response displayed beneath the question."
+            fields: *article_item_fields
   - name: reviews
     label: Testimonials
     group: "3. Testimonials"

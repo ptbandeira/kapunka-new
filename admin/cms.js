@@ -279,6 +279,44 @@
       return fallback;
     }
 
+    function getLocalizedList(value) {
+      if (!value) {
+        return [];
+      }
+      if (Array.isArray(value)) {
+        return value;
+      }
+      if (typeof value.toJS === 'function') {
+        const plain = value.toJS();
+        if (Array.isArray(plain)) {
+          return plain;
+        }
+        if (plain && typeof plain === 'object') {
+          return plain.en || plain.pt || plain.es || [];
+        }
+        return [];
+      }
+      if (typeof value === 'object') {
+        const list = value.en || value.pt || value.es;
+        return Array.isArray(list) ? list : [];
+      }
+      return [];
+    }
+
+    function normalizeListItems(list) {
+      return list
+        .map((item) => {
+          if (typeof item === 'string') {
+            return item;
+          }
+          if (item && typeof item === 'object') {
+            return item.item || item.value || item.label || '';
+          }
+          return '';
+        })
+        .filter((item) => typeof item === 'string' && item.trim().length > 0);
+    }
+
     function createSectionBadge(type, extraClassName) {
       return createElement(
         'span',
@@ -443,7 +481,8 @@
                 items.map((product, index) => {
                   const name = getLocalizedString(product?.name, `Product ${index + 1}`);
                   const tagline = getLocalizedString(product?.tagline, '');
-                  const badges = asArray(product?.badges?.en || product?.badges || []).slice(0, 3);
+                  const rawBadges = getLocalizedList(product?.badges);
+                  const badges = normalizeListItems(rawBadges).slice(0, 3);
                   return createElement(
                     'article',
                     {
