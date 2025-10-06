@@ -15,8 +15,9 @@ import Specialties from './sections/Specialties';
 import VideoGallery from './VideoGallery';
 import TrainingList from './TrainingList';
 import CommunityCarousel from './sections/CommunityCarousel';
+import HeroSimple from './sections/HeroSimple';
 import { getVisualEditorAttributes } from '../utils/stackbitBindings';
-import type { PageSection, ProductTab, ProductTabsSectionContent } from '../types';
+import type { HeroSimpleSectionContent, PageSection, ProductTab, ProductTabsSectionContent } from '../types';
 import { filterVisible } from '../utils/contentVisibility';
 
 const ProductTabsSection: React.FC<{ section: ProductTabsSectionContent }> = ({ section }) => {
@@ -122,6 +123,19 @@ const buildSectionKey = (prefix: string, section: PageSection): string => {
   return prefix;
 };
 
+const getSectionFieldPath = (
+  section: PageSection,
+  baseFieldPath: string | undefined,
+  index: number,
+): string | undefined => {
+  const override = (section as HeroSimpleSectionContent | undefined)?.fieldPathOverride;
+  if (typeof override === 'string' && override.length > 0) {
+    return override;
+  }
+
+  return baseFieldPath ? `${baseFieldPath}.${index}` : undefined;
+};
+
 const SectionRenderer: React.FC<SectionRendererProps> = ({ sections, fieldPath }) => {
   const safeSections = filterVisible(sections);
 
@@ -132,9 +146,17 @@ const SectionRenderer: React.FC<SectionRendererProps> = ({ sections, fieldPath }
   return (
     <>
       {safeSections.map((section, index) => {
-        const sectionFieldPath = fieldPath ? `${fieldPath}.${index}` : undefined;
+        const sectionFieldPath = getSectionFieldPath(section, fieldPath, index);
 
         switch (section.type) {
+          case 'heroSimple':
+            return (
+              <HeroSimple
+                key={buildSectionKey('hero-simple', section)}
+                section={section}
+                fieldPath={sectionFieldPath}
+              />
+            );
           case 'timeline':
             return (
               <TimelineSection

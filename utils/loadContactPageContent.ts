@@ -1,4 +1,4 @@
-import type { Language } from '../types';
+import type { Language, PageSection } from '../types';
 import { fetchVisualEditorMarkdown, type VisualEditorContentSource } from './fetchVisualEditorMarkdown';
 import { loadUnifiedPage } from './unifiedPageLoader';
 import { loadPage } from '../src/lib/content';
@@ -12,7 +12,7 @@ export interface ContactPageData {
   phone?: string;
   address?: string;
   mapEmbedUrl?: string;
-  sections?: unknown[];
+  sections?: PageSection[];
 }
 
 export interface ContactPageContentResult {
