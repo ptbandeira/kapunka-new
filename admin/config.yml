@@ -1218,7 +1218,6 @@ collections:
             summary: "{{fields.type}} · {{fields.title.en | default(fields.content.headline.en) | default(fields.content.heading.en)}}"
             hint: "Scroll, reorder, duplicate, or add sections in page order."
             types: *section_library
-        preview_path: "/"
       - &learn_page
         name: learn
         label: Learn Page
