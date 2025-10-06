@@ -10,6 +10,7 @@ import { useSiteSettings } from '../contexts/SiteSettingsContext';
 import Seo from '../src/components/Seo';
 import { fetchTrainingProgramContent, TRAINING_PROGRAM_OBJECT_ID, type TrainingProgramContent } from '../utils/trainingProgramContent';
 import { loadPage } from '../src/lib/content';
+import { filterVisible } from '../utils/contentVisibility';
 
 const SUPPORTED_SECTION_TYPES = new Set<PageSection['type']>([
   'timeline',
@@ -187,7 +188,9 @@ const Training: React.FC = () => {
     };
   }, [contentVersion]);
 
-  const sections = Array.isArray(pageContent?.sections) ? pageContent.sections : [];
+  const sections = pageContent?.visible === false
+    ? []
+    : filterVisible(pageContent?.sections ?? []);
   const sectionsFieldPath = `pages.training_${language}.sections`;
 
   const modules = useMemo(() => {

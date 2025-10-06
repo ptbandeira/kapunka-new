@@ -32,6 +32,7 @@ import { getVisualEditorAttributes } from '../utils/stackbitBindings';
 import { fetchTestimonialsByRefs } from '../utils/fetchTestimonialsByRefs';
 import { buildLocalizedPath } from '../utils/localePaths';
 import { getCloudinaryUrl, isAbsoluteUrl } from '../utils/imageUrl';
+import { filterVisible } from '../utils/contentVisibility';
 import Seo from '../src/components/Seo';
 import { loadPage } from '../src/lib/content';
 
@@ -1721,18 +1722,28 @@ const Home: React.FC = () => {
       });
       heroImagesData = heroValidation.heroImages ?? heroImagesData;
       const sections: HomeSection[] = hasSectionsArray
-        ? (rawSections.filter((section): section is HomeSection =>
-            section?.type === 'hero'
-            || section?.type === 'featureGrid'
-            || section?.type === 'mediaCopy'
-            || section?.type === 'productGrid'
-            || section?.type === 'testimonials'
-            || section?.type === 'faq'
-            || section?.type === 'banner'
-            || section?.type === 'newsletterSignup'
-            || section?.type === 'communityCarousel'
-            || section?.type === 'video'
-          ))
+        ? (rawSections.filter((section): section is HomeSection => {
+            if (!section || typeof section !== 'object') {
+              return false;
+            }
+
+            if ('visible' in section && (section as { visible?: unknown }).visible === false) {
+              return false;
+            }
+
+            const sectionType = (section as { type?: unknown }).type;
+
+            return sectionType === 'hero'
+              || sectionType === 'featureGrid'
+              || sectionType === 'mediaCopy'
+              || sectionType === 'productGrid'
+              || sectionType === 'testimonials'
+              || sectionType === 'faq'
+              || sectionType === 'banner'
+              || sectionType === 'newsletterSignup'
+              || sectionType === 'communityCarousel'
+              || sectionType === 'video';
+          }))
         : [];
 
       const hasStructuredHeroSection = sections.some((section) => section.type === 'hero');
@@ -1740,6 +1751,10 @@ const Home: React.FC = () => {
         hasSectionsArray && (hasStructuredHeroSection || result.localeUsed !== language);
 
       const structuredSectionEntries = rawSections.reduce<StructuredSectionEntry[]>((acc, section, index) => {
+        if (section && typeof section === 'object' && 'visible' in section && (section as { visible?: unknown }).visible === false) {
+          return acc;
+        }
+
         const parsedSection = structuredSectionSchema.safeParse(section);
         if (parsedSection.success) {
           acc.push({ index, section: parsedSection.data });
@@ -1748,6 +1763,10 @@ const Home: React.FC = () => {
       }, []);
 
       const legacySectionEntries = rawSections.reduce<LegacySectionEntry[]>((acc, section, index) => {
+        if (section && typeof section === 'object' && 'visible' in section && (section as { visible?: unknown }).visible === false) {
+          return acc;
+        }
+
         const parsedSection = legacySectionSchema.safeParse(section);
         if (parsedSection.success) {
           acc.push({ index, section: parsedSection.data });
@@ -2099,7 +2118,9 @@ const Home: React.FC = () => {
     </motion.div>
   );
 
-  const sections = Array.isArray(pageContent?.localSections) ? pageContent.localSections : [];
+  const sections = pageContent?.visible === false
+    ? []
+    : filterVisible(pageContent?.localSections ?? []);
   const homeSections = pageContent?.rawSections ?? [];
   const homeSectionsFieldPath = `${homeFieldPath}.sections`;
   const computedTitle = pageContent?.metaTitle ?? `Kapunka Skincare | ${t('home.metaTitle')}`;

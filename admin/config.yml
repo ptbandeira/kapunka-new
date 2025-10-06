@@ -37,6 +37,14 @@ localized_markdown_field: &localized_markdown_field
     - { label: Portuguese, name: pt, widget: markdown }
     - { label: Spanish, name: es, widget: markdown }
 
+visibility_field: &visibility_field
+  label: "Visible on site"
+  name: "visible"
+  widget: "boolean"
+  required: false
+  default: true
+  hint: "Uncheck to hide this item from the live site without deleting it."
+
 # ===== Shared Section Templates (anchors) =====
 hero_content_fields: &hero_content_fields
   - <<: *localized_string_field
@@ -183,6 +191,7 @@ shared_sections: &shared_sections
     summary: "Hero · {{fields.content.headline.en}}"
     fields:
       - { name: "type", widget: "hidden", default: "hero" }
+      - *visibility_field
       - *hero_object
   - &section_mediaCopy
     label: "Media + Copy"
@@ -192,6 +201,7 @@ shared_sections: &shared_sections
     summary: "Media + Copy · {{fields.content.heading.en}}"
     fields:
       - { name: "type", widget: "hidden", default: "mediaCopy" }
+      - *visibility_field
       - *media_copy_object
       - label: "Layout"
         name: "layout"
@@ -263,6 +273,7 @@ shared_sections: &shared_sections
     summary: "Media Showcase · {{fields.title.en}}"
     fields:
       - { name: "type", widget: "hidden", default: "mediaShowcase" }
+      - *visibility_field
       - <<: *localized_string_field
         label: "Title"
         name: "title"
@@ -313,6 +324,7 @@ shared_sections: &shared_sections
     summary: "Feature Grid · {{fields.title.en}}"
     fields:
       - { name: "type", widget: "hidden", default: "featureGrid" }
+      - *visibility_field
       - <<: *localized_string_field
         label: "Title"
         name: "title"
@@ -344,6 +356,7 @@ shared_sections: &shared_sections
     summary: "Product Grid · {{fields.title.en}}"
     fields:
       - { name: "type", widget: "hidden", default: "productGrid" }
+      - *visibility_field
       - <<: *localized_string_field
         label: "Title"
         name: "title"
@@ -378,6 +391,7 @@ shared_sections: &shared_sections
     summary: "Testimonials · {{fields.testimonials.0.author.en | default(fields.title.en)}}"
     fields:
       - { name: "type", widget: "hidden", default: "testimonials" }
+      - *visibility_field
       - <<: *localized_string_field
         label: "Section Title"
         name: "title"
@@ -399,6 +413,7 @@ shared_sections: &shared_sections
       - name: "type"
         widget: "hidden"
         default: "communityCarousel"
+      - *visibility_field
       - <<: *localized_string_field
         label: "Title"
         name: "title"
@@ -458,6 +473,7 @@ shared_sections: &shared_sections
     summary: "FAQ · {{fields.title.en}}"
     fields:
       - { name: "type", widget: "hidden", default: "faq" }
+      - *visibility_field
       - <<: *localized_string_field
         label: "Title"
         name: "title"
@@ -488,6 +504,7 @@ shared_sections: &shared_sections
     summary: "Banner · {{fields.text.en}}"
     fields:
       - { name: "type", widget: "hidden", default: "banner" }
+      - *visibility_field
       - <<: *localized_string_field
         label: "Text"
         name: "text"
@@ -512,6 +529,7 @@ shared_sections: &shared_sections
     summary: "Newsletter · {{fields.title.en}}"
     fields:
       - { name: "type", widget: "hidden", default: "newsletterSignup" }
+      - *visibility_field
       - <<: *localized_string_field
         label: "Title"
         name: "title"
@@ -564,6 +582,7 @@ shared_sections: &shared_sections
     summary: "Video Gallery · {{fields.title.en}}"
     fields:
       - { name: "type", widget: "hidden", default: "videoGallery" }
+      - *visibility_field
       - <<: *localized_string_field
         label: "Title"
         name: "title"
@@ -601,6 +620,7 @@ shared_sections: &shared_sections
     summary: "Training List · {{fields.title.en}}"
     fields:
       - { name: "type", widget: "hidden", default: "trainingList" }
+      - *visibility_field
       - <<: *localized_string_field
         label: "Title"
         name: "title"
@@ -641,6 +661,7 @@ shared_sections: &shared_sections
     summary: "Timeline · {{fields.title.en}}"
     fields:
       - { name: "type", widget: "hidden", default: "timeline" }
+      - *visibility_field
       - <<: *localized_string_field
         label: "Title"
         name: "title"
@@ -677,6 +698,7 @@ shared_sections: &shared_sections
     summary: "Facts · {{fields.title.en}}"
     fields:
       - { name: "type", widget: "hidden", default: "facts" }
+      - *visibility_field
       - <<: *localized_string_field
         label: "Title"
         name: "title"
@@ -695,6 +717,7 @@ shared_sections: &shared_sections
     summary: "Bullets · {{fields.title.en}}"
     fields:
       - { name: "type", widget: "hidden", default: "bullets" }
+      - *visibility_field
       - <<: *localized_string_field
         label: "Title"
         name: "title"
@@ -719,6 +742,7 @@ shared_sections: &shared_sections
     summary: "Specialties · {{fields.title.en}}"
     fields:
       - { name: "type", widget: "hidden", default: "specialties" }
+      - *visibility_field
       - <<: *localized_string_field
         label: "Title"
         name: "title"
@@ -1051,6 +1075,7 @@ collections:
         preview_path: "/"
         fields:
           - { label: "Page Type", name: "type", widget: "hidden", default: "HomePage" }
+          - *visibility_field
           - label: "Page Metadata"
             name: "metadata"
             widget: "object"
@@ -1210,6 +1235,7 @@ collections:
         preview_path: "/learn"
         fields:
           - { label: "Page Type", name: "type", widget: "hidden", default: "LearnPage" }
+          - *visibility_field
           - label: "Page Metadata"
             name: "metadata"
             widget: "object"
@@ -1276,6 +1302,7 @@ collections:
         preview_path: "/method"
         fields:
           - { label: "Page Type", name: "type", widget: "hidden", default: "MethodPage" }
+          - *visibility_field
           - label: "Page Metadata"
             name: "metadata"
             widget: "object"
@@ -1352,6 +1379,7 @@ collections:
         preview_path: "/for-clinics"
         fields:
           - { label: "Page Type", name: "type", widget: "hidden", default: "ClinicsPage" }
+          - *visibility_field
           - label: "Page Metadata"
             name: "metadata"
             widget: "object"
@@ -1599,6 +1627,7 @@ collections:
         preview_path: "/about"
         fields:
           - { label: "Page Type", name: "type", widget: "hidden", default: "AboutPage" }
+          - *visibility_field
           - label: "Page Metadata"
             name: "metadata"
             widget: "object"
@@ -1631,6 +1660,7 @@ collections:
         preview_path: "/story"
         fields:
           - { label: "Page Type", name: "type", widget: "hidden", default: "StoryPage" }
+          - *visibility_field
           - label: "Page Metadata"
             name: "metadata"
             widget: "object"
@@ -1736,6 +1766,7 @@ collections:
         preview_path: "/contact"
         fields:
           - { label: "Page Type", name: "type", widget: "hidden", default: "ContactPage" }
+          - *visibility_field
           - label: "SEO"
             name: "seo"
             widget: "object"

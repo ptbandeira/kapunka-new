@@ -9,6 +9,7 @@ import { getVisualEditorAttributes } from '../utils/stackbitBindings';
 import { getCloudinaryUrl } from '../utils/imageUrl';
 import { useSiteSettings } from '../contexts/SiteSettingsContext';
 import Seo from '../src/components/Seo';
+import { filterVisible } from '../utils/contentVisibility';
 
 const SUPPORTED_SECTION_TYPES = new Set<PageSection['type']>([
   'timeline',
@@ -189,12 +190,12 @@ const Story: React.FC = () => {
   }, [pageContent?.story]);
 
   const sections = useMemo(() => {
-    if (!pageContent?.sections) {
+    if (!pageContent?.sections || pageContent.visible === false) {
       return [] as PageSection[];
     }
 
-    return pageContent.sections.filter(isPageSection);
-  }, [pageContent?.sections]);
+    return filterVisible(pageContent.sections.filter(isPageSection));
+  }, [pageContent?.sections, pageContent?.visible]);
 
   const baseMetaTitle = (pageContent?.metaTitle ?? t('nav.manifesto'))?.trim();
   const includesBrand = baseMetaTitle.toLowerCase().includes('kapunka');

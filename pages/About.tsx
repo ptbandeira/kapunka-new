@@ -11,6 +11,7 @@ import { getVisualEditorAttributes } from '../utils/stackbitBindings';
 import { useVisualEditorSync } from '../contexts/VisualEditorSyncContext';
 import Seo from '../src/components/Seo';
 import { loadPage } from '../src/lib/content';
+import { filterVisible } from '../utils/contentVisibility';
 
 const isTimelineEntry = (value: unknown): value is TimelineEntry => {
   if (!value || typeof value !== 'object') {
@@ -350,9 +351,12 @@ const About: React.FC = () => {
         return hasText || hasImage;
     }) ?? [];
 
-    const rawAboutSections = aboutContent?.sections;
-    const sectionsFromAbout = Array.isArray(rawAboutSections) ? rawAboutSections : [];
-    const fallbackSections = storyContent?.sections ?? [];
+    const sectionsFromAbout = aboutContent?.visible === false
+        ? []
+        : filterVisible(aboutContent?.sections ?? []);
+    const fallbackSections = storyContent?.visible === false
+        ? []
+        : filterVisible(storyContent?.sections ?? []);
     const sectionsToRender = sectionsFromAbout.length > 0 ? sectionsFromAbout : fallbackSections;
     const sectionsFieldPath = sectionsFromAbout.length > 0
         ? `${aboutFieldPath}.sections`

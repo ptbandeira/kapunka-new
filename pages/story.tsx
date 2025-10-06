@@ -7,6 +7,7 @@ import type { PageSection } from '../types';
 import { fetchVisualEditorMarkdown } from '../utils/fetchVisualEditorMarkdown';
 import { getVisualEditorAttributes } from '../utils/stackbitBindings';
 import Seo from '../src/components/Seo';
+import { filterVisible } from '../utils/contentVisibility';
 
 const SUPPORTED_SECTION_TYPES = new Set<PageSection['type']>([
   'timeline',
@@ -246,12 +247,12 @@ const StoryManifestoPage: React.FC = () => {
   }, [pageContent?.values]);
 
   const sections = useMemo(() => {
-    if (!pageContent?.sections) {
+    if (!pageContent?.sections || pageContent.visible === false) {
       return [] as PageSection[];
     }
 
-    return pageContent.sections.filter(isPageSection);
-  }, [pageContent?.sections]);
+    return filterVisible(pageContent.sections.filter(isPageSection));
+  }, [pageContent?.sections, pageContent?.visible]);
 
   const closingNote = useMemo(() => {
     const closing = pageContent?.closing;
