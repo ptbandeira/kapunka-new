@@ -29,7 +29,7 @@ sections:
         image: https://images.pexels.com/photos/3865548/pexels-photo-3865548.jpeg?auto=compress&cs=tinysrgb&w=1920
         imageUrl: https://images.pexels.com/photos/3997987/pexels-photo-3997987.jpeg?auto=compress&cs=tinysrgb&w=1920
       - eyebrow: Supply chain
-        title: 'Heritage sourcing, clinical standards'
+        title: Heritage sourcing, clinical standards
         body: From Moroccan cooperatives to hospital rooms.
         imageAlt: Harvested argan fruit gathered in a woven basket
         ctaLabel: Our Standards
@@ -38,7 +38,7 @@ sections:
         imageUrl: https://images.pexels.com/photos/8887309/pexels-photo-8887309.jpeg?auto=compress&cs=tinysrgb&w=1920
       - eyebrow: Rituals
         title: From hammam rituals to modern recovery
-        body: 'Ancient wisdom, scientifically structured.'
+        body: Ancient wisdom, scientifically structured.
         imageAlt: Steam-filled hammam room with a person resting
         ctaLabel: Shop Rituals
         ctaHref: /shop

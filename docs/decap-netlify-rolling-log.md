@@ -1,5 +1,10 @@
 # Decap CMS & Netlify Rolling Log
 
+## 2025-10-30 — Restored localized Home hero content
+- **What changed**: Re-applied the English Home markdown hero showcase copy directly from commit `4f69023` so the supply chain and rituals tiles use the design-approved wording while confirming the Portuguese and Spanish files already matched the same structure.
+- **Impact & follow-up**: Ensures the homepage hero module renders with the expected headings and CTAs across locales, keeping the visual editor in sync with the reference layout. Monitor future homepage edits in Decap to make sure the localized markdown stays aligned with the design baseline.
+- **References**: Pending PR
+
 ## 2025-10-06 — Removed duplicate Home preview path configuration
 - **What changed**: Deleted the redundant `preview_path: "/"` from the Home page entry in `admin/config.yml` so the setting is defined only once alongside the rest of the page metadata.
 - **Impact & follow-up**: Prevents Decap from flagging a duplicate preview path on load and keeps the Home configuration consistent with other page files. Confirm the CMS continues to resolve the homepage preview correctly after future schema edits.
