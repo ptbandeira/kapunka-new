@@ -10,7 +10,7 @@ export interface MediaShowcaseItem {
   title?: string;
   body?: string;
   image?: string;
-  alt?: string;
+  imageAlt?: string;
   fieldPath?: string;
   imageFieldPath?: string;
   eyebrowFieldPath?: string;
@@ -67,6 +67,7 @@ const MediaShowcase: React.FC<MediaShowcaseProps> = ({ title, items, fieldPath }
             const body = item.body?.trim();
             const ctaLabel = item.ctaLabel?.trim();
             const ctaHref = item.ctaHref?.trim();
+            const altText = item.imageAlt?.trim();
 
             const layoutClasses = (() => {
               if (index === 0) {
@@ -101,7 +102,7 @@ const MediaShowcase: React.FC<MediaShowcaseProps> = ({ title, items, fieldPath }
                 {imageSrc ? (
                   <img
                     src={cloudinaryUrl}
-                    alt={item.alt ?? itemTitle ?? 'Kapunka highlight'}
+                    alt={altText ?? itemTitle ?? 'Kapunka highlight'}
                     className="absolute inset-0 h-full w-full object-cover"
                     {...getVisualEditorAttributes(item.imageFieldPath)}
                     data-sb-field-path={item.imageFieldPath}

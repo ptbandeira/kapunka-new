@@ -1483,7 +1483,7 @@ interface NewsletterSignupProps {
   ctaLabel?: string;
   confirmation?: string;
   alignment?: 'left' | 'center';
-  backgroundVariant?: NewsletterBackground;
+  background?: NewsletterBackground;
   fieldPath?: string;
 }
 
@@ -1500,7 +1500,7 @@ const NewsletterSignup: React.FC<NewsletterSignupProps> = ({
   ctaLabel,
   confirmation,
   alignment = 'center',
-  backgroundVariant = 'light',
+  background = 'light',
   fieldPath,
 }) => {
   const { t } = useLanguage();
@@ -1522,8 +1522,8 @@ const NewsletterSignup: React.FC<NewsletterSignupProps> = ({
   const resolvedCtaLabel = ctaLabel?.trim().length ? ctaLabel : t('home.newsletterSubmit');
   const resolvedConfirmation = confirmation?.trim().length ? confirmation : t('home.newsletterThanks');
 
-  const backgroundClass = newsletterBackgroundClassMap[backgroundVariant] ?? newsletterBackgroundClassMap.light;
-  const isDark = backgroundVariant === 'dark';
+  const backgroundClass = newsletterBackgroundClassMap[background] ?? newsletterBackgroundClassMap.light;
+  const isDark = background === 'dark';
   const alignmentWrapperClass = alignment === 'left' ? 'items-start text-left' : 'items-center text-center';
   const formAlignmentClass = alignment === 'left' ? 'sm:flex-row sm:justify-start' : 'sm:flex-row sm:justify-center';
   const containerMaxWidth = alignment === 'left' ? 'max-w-3xl' : 'max-w-2xl';
@@ -2136,22 +2136,44 @@ const Home: React.FC = () => {
   const referencedTestimonialRefs = useMemo(() => {
     const refs = new Set<string>();
 
-    sections.forEach((section) => {
-      if (section?.type !== 'testimonials') {
+    const collectRefs = (candidateSections: unknown) => {
+      if (!Array.isArray(candidateSections)) {
         return;
       }
 
-      const entries = Array.isArray(section.testimonials) ? section.testimonials : [];
-      entries.forEach((entry) => {
-        const refCandidate = typeof entry?.testimonialRef === 'string' ? entry.testimonialRef.trim() : '';
-        if (refCandidate.length > 0) {
-          refs.add(refCandidate);
+      candidateSections.forEach((section) => {
+        if (!section || typeof section !== 'object') {
+          return;
         }
+
+        const typedSection = section as { type?: string; testimonials?: unknown };
+        if (typedSection.type !== 'testimonials') {
+          return;
+        }
+
+        const entries = Array.isArray(typedSection.testimonials) ? typedSection.testimonials : [];
+        entries.forEach((entry) => {
+          if (!entry || typeof entry !== 'object') {
+            return;
+          }
+
+          const refCandidate =
+            'testimonialRef' in entry && typeof entry.testimonialRef === 'string'
+              ? entry.testimonialRef.trim()
+              : '';
+
+          if (refCandidate.length > 0) {
+            refs.add(refCandidate);
+          }
+        });
       });
-    });
+    };
+
+    collectRefs(sections);
+    collectRefs(homeSections);
 
     return Array.from(refs);
-  }, [sections]);
+  }, [sections, homeSections]);
 
   useEffect(() => {
     let isMounted = true;
@@ -3022,13 +3044,14 @@ const Home: React.FC = () => {
         );
       }
       case 'newsletterSignup': {
-        const title = sanitizeString(section.title ?? null);
-        const subtitle = sanitizeString(section.subtitle ?? null);
-        const placeholder = sanitizeString(section.placeholder ?? null);
-        const ctaLabel = sanitizeString(section.ctaLabel ?? null);
-        const confirmation = sanitizeString(section.confirmation ?? null);
+        const title = sanitizeString(section.title ?? null) ?? undefined;
+        const subtitle = sanitizeString(section.subtitle ?? null) ?? undefined;
+        const placeholder = sanitizeString(section.placeholder ?? null) ?? undefined;
+        const ctaLabel = sanitizeString(section.ctaLabel ?? null) ?? undefined;
+        const confirmation = sanitizeString(section.confirmation ?? null) ?? undefined;
         const background = section.background === 'beige' || section.background === 'dark' ? section.background : 'light';
         const alignment = section.alignment === 'left' ? 'left' : 'center';
+        const hasCopy = Boolean(title || subtitle || placeholder || ctaLabel || confirmation);
         const structuredNewsletterKey = createKeyFromParts('structured-newsletter', [
           title,
           subtitle,
@@ -3039,11 +3062,11 @@ const Home: React.FC = () => {
           alignment,
         ]);
 
-        if (!title && !subtitle && !ctaLabel && !placeholder && !confirmation) {
+        if (!hasCopy) {
           return (
             <NewsletterSignup
               key={structuredNewsletterKey}
-              backgroundVariant={background}
+              background={background}
               alignment={alignment}
               fieldPath={sectionFieldPath}
             />
@@ -3058,7 +3081,7 @@ const Home: React.FC = () => {
             placeholder={placeholder}
             ctaLabel={ctaLabel}
             confirmation={confirmation}
-            backgroundVariant={background}
+            background={background}
             alignment={alignment}
             fieldPath={sectionFieldPath}
           />
@@ -3648,7 +3671,7 @@ const Home: React.FC = () => {
             title: sanitizeString(item.title ?? null) ?? undefined,
             body: sanitizeString(item.body ?? null) ?? undefined,
             image: sanitizeString(pickImage(item.image)) ?? undefined,
-            alt: sanitizeString(item.imageAlt ?? null) ?? undefined,
+            imageAlt: sanitizeString(item.imageAlt ?? null) ?? undefined,
             fieldPath: fieldScope,
             imageFieldPath: `${fieldScope}.image`,
             eyebrowFieldPath: `${fieldScope}.eyebrow`,
