@@ -7,13 +7,6 @@ heroAlignment:
   heroOverlay: medium
   heroLayoutHint: bg
 sections:
-  - type: productGrid
-    title: Essentials for daily rituals
-    products:
-      - id: pure-argan-100
-      - id: scar-care
-      - id: ritual-pack
-    columns: 3
   - type: mediaShowcase
     title: ''
     items:
@@ -51,18 +44,6 @@ sections:
         ctaHref: /shop
         image: /content/uploads/shared/342cecc0-3c00-4094-97d6-5c9d9da02330.jpg
         imageUrl: https://images.pexels.com/photos/6621462/pexels-photo-6621462.jpeg?auto=compress&cs=tinysrgb&w=1920
-  - type: featureGrid
-    title: ''
-    columns: 4
-    items:
-      - label: Clinic-ready batching
-        description: 'Skin-friendly, clean, cold-pressed.'
-      - label: Holistic sensorial care
-        description: Low-residue textures and gentle aromas for sensitive skin.
-      - label: Flexible retail stories
-        description: Starter sets and education for consistent home routines.
-      - label: Sustainable partnerships
-        description: Fair relationships across Morocco’s cooperatives.
   - type: communityCarousel
     title: Rituals in our community
     slides:
@@ -103,10 +84,28 @@ sections:
     background: beige
     alignment: center
   - type: testimonials
-    title: What Professionals Say
     testimonials:
       - testimonialRef: content/testimonials/dr-isabella-rossi-en.json
       - testimonialRef: content/testimonials/chloe-davis-en.json
+  - type: productGrid
+    title: Essentials for daily rituals
+    products:
+      - id: pure-argan-100
+      - id: scar-care
+      - id: ritual-pack
+    columns: 3
+  - type: featureGrid
+    title: ''
+    columns: 4
+    items:
+      - label: Clinic-ready batching
+        description: 'Skin-friendly, clean, cold-pressed.'
+      - label: Holistic sensorial care
+        description: Low-residue textures and gentle aromas for sensitive skin.
+      - label: Flexible retail stories
+        description: Starter sets and education for consistent home routines.
+      - label: Sustainable partnerships
+        description: Fair relationships across Morocco’s cooperatives.
 heroHeadline: Be thankful to your skin.
 metaTitle: Kapunka — Argan rituals for sensitive and post-procedure skin
 metaDescription: >-
