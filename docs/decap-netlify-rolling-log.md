@@ -170,3 +170,8 @@ This log records day-to-day investigations, fixes, and decisions that affect the
 - **What changed**: Updated `src/lib/content.ts` so localized Markdown/JSON requests retry with the English slug when the locale-specific file is missing or empty, preventing hard failures in the Visual Editor.
 - **Impact & follow-up**: Ensures editors always see the English baseline when localized files have not been authored yet. Monitor future localized page additions to confirm they return localized content once present.
 - **References**: Pending PR
+
+## 2025-10-07 — Synced pt/es home content to English baseline
+- **What changed**: Copied the updated `content/pages/en/home.md` structure into the Portuguese and Spanish Markdown sources so they match the fields expected by the page loader.
+- **Impact & follow-up**: Prevents 404s when localized entries are incomplete by ensuring the Visual Editor and runtime can fall back to English copy until translations are ready.
+- **References**: Pending PR

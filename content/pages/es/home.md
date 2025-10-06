@@ -123,5 +123,3 @@ heroCtas:
     label: For clinics & professionals
     href: /clinics
 ---
-
-# TODO: Translate to Spanish
