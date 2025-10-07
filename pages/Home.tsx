@@ -25,17 +25,14 @@ import type {
   PageContent,
   Language,
   TestimonialEntry,
-  VisibilityFlag,
 } from '../types';
 import { fetchVisualEditorJson } from '../utils/fetchVisualEditorJson';
-import { fetchVisualEditorMarkdown, type VisualEditorMarkdownDocument } from '../utils/fetchVisualEditorMarkdown';
+import { fetchVisualEditorMarkdown } from '../utils/fetchVisualEditorMarkdown';
 import { getVisualEditorAttributes } from '../utils/stackbitBindings';
 import { fetchTestimonialsByRefs } from '../utils/fetchTestimonialsByRefs';
 import { buildLocalizedPath } from '../utils/localePaths';
 import { getCloudinaryUrl, isAbsoluteUrl } from '../utils/imageUrl';
-import { filterVisible } from '../utils/contentVisibility';
 import Seo from '../src/components/Seo';
-import { loadPage, type LoadPageResult } from '../src/lib/content';
 
 interface ProductsResponse {
   items?: Product[];
@@ -103,7 +100,7 @@ type TestimonialEntryFields = {
   testimonialRef?: string | null;
 };
 
-type HomeSection = (
+type HomeSection =
   | {
       type: 'hero';
       content?: HeroSectionContentFields | null;
@@ -196,8 +193,7 @@ type HomeSection = (
         ctaLabel?: string;
         ctaHref?: string;
       }>;
-    }
-) & VisibilityFlag;
+    };
 
 const heroAlignmentSchema = z
   .object({
@@ -707,53 +703,6 @@ const sanitizeCmsUrl = (value?: string | null): string | undefined => {
   return undefined;
 };
 
-const SUPPORTED_LANGUAGES: Language[] = ['en', 'pt', 'es'];
-
-const resolveLocalizedString = (value: unknown, language: Language): string | undefined => {
-  if (typeof value === 'string') {
-    return sanitizeCmsString(value);
-  }
-
-  if (!value || typeof value !== 'object') {
-    return undefined;
-  }
-
-  const record = value as Record<string, unknown>;
-  const preference = [language, ...SUPPORTED_LANGUAGES];
-
-  for (const locale of preference) {
-    const candidate = record[locale];
-    if (typeof candidate === 'string') {
-      const sanitized = sanitizeCmsString(candidate);
-      if (sanitized) {
-        return sanitized;
-      }
-    }
-  }
-
-  return undefined;
-};
-
-const resolveHeroOverlayKeyword = (value?: string | null): string | undefined => {
-  const normalized = sanitizeCmsString(value);
-  if (!normalized) {
-    return undefined;
-  }
-
-  switch (normalized) {
-    case 'none':
-      return 'rgba(0,0,0,0)';
-    case 'light':
-      return 'rgba(0,0,0,0.25)';
-    case 'medium':
-      return 'rgba(0,0,0,0.45)';
-    case 'strong':
-      return 'rgba(0,0,0,0.65)';
-    default:
-      return normalized;
-  }
-};
-
 const isCmsCtaObject = (value: unknown): value is CmsCtaShape => {
   if (!value || typeof value !== 'object') {
     return false;
@@ -809,6 +758,24 @@ const toCmsCtaLike = (value: unknown): CmsCtaLike => {
   }
 
   return undefined;
+};
+
+const loadHomeContentForLocale = async (
+  locale: Language,
+): Promise<{ data: unknown; source: ContentSource } | null> => {
+  try {
+    const { data, source } = await fetchVisualEditorMarkdown<unknown>(
+      `/content/pages/${locale}/home.md`,
+      { cache: 'no-store' },
+    );
+    return { data, source };
+  } catch (error) {
+    if (import.meta.env.DEV) {
+      console.warn('Home content fetch failed for locale', locale, error);
+    }
+  }
+
+  return null;
 };
 
 const createKeyFromParts = (prefix: string, parts: Array<string | null | undefined>) => {
@@ -1184,8 +1151,6 @@ const Bestsellers: React.FC<BestsellersProps> = ({ intro, introFieldPath }) => {
     );
 };
 
-type MarkdownPageDocument<T> = VisualEditorMarkdownDocument<T> & Record<string, unknown>;
-
 interface ClinicsBlockProps {
     data?: ClinicsBlockContent;
     fieldPath?: string;
@@ -1221,7 +1186,6 @@ const ClinicsBlock: React.FC<ClinicsBlockProps> = ({ data, fieldPath, fallbackCt
         return null;
     }
 
-    const { language } = useLanguage();
     const { clinicsTitle, clinicsBody, clinicsCtaHref, clinicsCtaLabel, clinicsImage } = data;
     const trimmedClinicsImage = clinicsImage?.trim() ?? '';
     const clinicsImageUrl = trimmedClinicsImage ? getCloudinaryUrl(trimmedClinicsImage) ?? trimmedClinicsImage : '';
@@ -1332,7 +1296,6 @@ const ClinicsBlock: React.FC<ClinicsBlockProps> = ({ data, fieldPath, fallbackCt
 interface GalleryRowsProps {
     rows?: GalleryRowContent[];
     fieldPath?: string;
-    fallbackAlt?: string;
 }
 
 const galleryLayoutMap: Record<NonNullable<GalleryRowContent['layout']>, string> = {
@@ -1341,7 +1304,7 @@ const galleryLayoutMap: Record<NonNullable<GalleryRowContent['layout']>, string>
     quarters: 'grid-cols-2 lg:grid-cols-4',
 };
 
-const GalleryRows: React.FC<GalleryRowsProps> = ({ rows, fieldPath, fallbackAlt }) => {
+const GalleryRows: React.FC<GalleryRowsProps> = ({ rows, fieldPath }) => {
     const sanitizedRows = rows
         ?.map((row) => {
             if (!row) {
@@ -1390,7 +1353,7 @@ const GalleryRows: React.FC<GalleryRowsProps> = ({ rows, fieldPath, fallbackAlt 
                                 const rawImageSrc = item.image?.trim() ?? '';
                                 const imageSrc = rawImageSrc ? getCloudinaryUrl(rawImageSrc) ?? rawImageSrc : '';
                                 const caption = item.caption?.trim();
-                                const altText = item.alt?.trim() ?? caption ?? fallbackAlt ?? 'Gallery image';
+                                const altText = item.alt?.trim() ?? caption ?? computedTitle;
                                 const hasContent = Boolean(imageSrc);
 
                                 if (!hasContent) {
@@ -1537,7 +1500,7 @@ interface NewsletterSignupProps {
   ctaLabel?: string;
   confirmation?: string;
   alignment?: 'left' | 'center';
-  background?: NewsletterBackground;
+  backgroundVariant?: NewsletterBackground;
   fieldPath?: string;
 }
 
@@ -1554,7 +1517,7 @@ const NewsletterSignup: React.FC<NewsletterSignupProps> = ({
   ctaLabel,
   confirmation,
   alignment = 'center',
-  background = 'light',
+  backgroundVariant = 'light',
   fieldPath,
 }) => {
   const { t } = useLanguage();
@@ -1576,8 +1539,8 @@ const NewsletterSignup: React.FC<NewsletterSignupProps> = ({
   const resolvedCtaLabel = ctaLabel?.trim().length ? ctaLabel : t('home.newsletterSubmit');
   const resolvedConfirmation = confirmation?.trim().length ? confirmation : t('home.newsletterThanks');
 
-  const backgroundClass = newsletterBackgroundClassMap[background] ?? newsletterBackgroundClassMap.light;
-  const isDark = background === 'dark';
+  const backgroundClass = newsletterBackgroundClassMap[backgroundVariant] ?? newsletterBackgroundClassMap.light;
+  const isDark = backgroundVariant === 'dark';
   const alignmentWrapperClass = alignment === 'left' ? 'items-start text-left' : 'items-center text-center';
   const formAlignmentClass = alignment === 'left' ? 'sm:flex-row sm:justify-start' : 'sm:flex-row sm:justify-center';
   const containerMaxWidth = alignment === 'left' ? 'max-w-3xl' : 'max-w-2xl';
@@ -1697,258 +1660,137 @@ const Home: React.FC = () => {
     setPageContent(null);
 
     const loadSections = async () => {
-      let result: LoadPageResult<MarkdownPageDocument<unknown>>;
+      const localesToTry = [language, 'en'].filter(
+        (candidate, index, arr): candidate is Language => arr.indexOf(candidate) === index,
+      );
 
-      try {
-        result = await loadPage<MarkdownPageDocument<unknown>>({
-          slug: 'home',
-          locale: language,
-          loader: async ({ locale: currentLocale }) => {
-            const doc = await fetchVisualEditorMarkdown<unknown>(
-              `/content/pages/${currentLocale}/home.md`,
-              { cache: 'no-store' },
-            );
-            return doc as MarkdownPageDocument<unknown>;
-          },
-        });
-      } catch (error) {
-        console.error('Failed to load home sections', error);
-        if (isMounted) {
-          setPageContent(null);
-        }
-        return;
-      }
-
-      if (!isMounted) {
-        return;
-      }
-
-      let parsedResult = homeContentSchema.safeParse(result.data);
-
-      if (!parsedResult.success && result.localeUsed !== 'en') {
+      for (const locale of localesToTry) {
         try {
-          result = await loadPage<MarkdownPageDocument<unknown>>({
-            slug: 'home',
-            locale: 'en',
-            loader: async ({ locale: fallbackLocale }) => {
-              const doc = await fetchVisualEditorMarkdown<unknown>(
-                `/content/pages/${fallbackLocale}/home.md`,
-                { cache: 'no-store' },
-              );
-              return doc as MarkdownPageDocument<unknown>;
-            },
-          });
+          const fetched = await loadHomeContentForLocale(locale);
+          if (!fetched) {
+            continue;
+          }
+
+          const { data, source } = fetched;
 
           if (!isMounted) {
             return;
           }
 
-          parsedResult = homeContentSchema.safeParse(result.data);
-        } catch (fallbackError) {
-          console.error('Failed to load fallback home sections', fallbackError);
-          if (isMounted) {
-            setPageContent(null);
+          const parsedResult = homeContentSchema.safeParse(data);
+          if (!parsedResult.success) {
+            if (import.meta.env.DEV) {
+              console.warn('Invalid home content schema for locale', locale, parsedResult.error);
+            }
+            continue;
           }
+
+          const parsedData = parsedResult.data;
+          const hasSectionsArray = Array.isArray(parsedData?.sections);
+          const rawSections = hasSectionsArray ? parsedData.sections ?? [] : [];
+          const heroAlignmentData = parsedData?.heroAlignment;
+          let heroImagesData: HeroImagesGroup | undefined = parsedData?.heroImages ?? undefined;
+          const heroCtasData = parsedData?.heroCtas;
+          const heroHeadlineData = parsedData?.heroHeadline;
+          const heroSubheadlineData = parsedData?.heroSubheadline;
+
+          const heroValidation = validateHeroContent({
+            heroHeadline: heroHeadlineData,
+            heroImages: heroImagesData,
+            heroImageLeft: parsedData?.heroImageLeft ?? null,
+            heroImageRight: parsedData?.heroImageRight ?? null,
+            heroFallback: heroFallbackRaw,
+          });
+          heroImagesData = heroValidation.heroImages ?? heroImagesData;
+          const sections: HomeSection[] = hasSectionsArray
+            ? (rawSections.filter((section): section is HomeSection =>
+                section?.type === 'hero'
+                || section?.type === 'featureGrid'
+                || section?.type === 'mediaCopy'
+                || section?.type === 'productGrid'
+                || section?.type === 'testimonials'
+                || section?.type === 'faq'
+                || section?.type === 'banner'
+                || section?.type === 'newsletterSignup'
+                || section?.type === 'communityCarousel'
+                || section?.type === 'video'
+              ))
+            : [];
+
+          const hasStructuredHeroSection = sections.some((section) => section.type === 'hero');
+
+          const structuredSectionEntries = rawSections.reduce<StructuredSectionEntry[]>((acc, section, index) => {
+            const parsedSection = structuredSectionSchema.safeParse(section);
+            if (parsedSection.success) {
+              acc.push({ index, section: parsedSection.data });
+            }
+            return acc;
+          }, []);
+
+          const legacySectionEntries = rawSections.reduce<LegacySectionEntry[]>((acc, section, index) => {
+            const parsedSection = legacySectionSchema.safeParse(section);
+            if (parsedSection.success) {
+              acc.push({ index, section: parsedSection.data });
+            }
+            return acc;
+          }, []);
+
+          const heroImageLeftCandidate = firstDefined([
+            heroImagesData?.heroImageLeft,
+            parsedData?.heroImageLeft,
+            heroFallbackRaw,
+          ]);
+          const heroImageRightCandidate = firstDefined([
+            heroImagesData?.heroImageRight,
+            parsedData?.heroImageRight,
+            heroFallbackRaw,
+          ]);
+          const heroImageLeftUrl = normalizeImagePath(heroImageLeftCandidate, locale) ?? null;
+          const heroImageRightUrl = normalizeImagePath(heroImageRightCandidate, locale) ?? null;
+
+          if (
+            import.meta.env.DEV
+            && !heroImageLeftUrl
+            && !heroImageRightUrl
+            && !hasWarnedMissingHeroImages
+          ) {
+            console.warn('Home hero images are not configured. Add hero image references or legacy URLs in the CMS.');
+            hasWarnedMissingHeroImages = true;
+          }
+
+          const baseContent = parsedData as PageContent & HomeContentData;
+          const pageData: HomePageContent = {
+            ...baseContent,
+            ...(heroHeadlineData !== undefined ? { heroHeadline: heroHeadlineData } : {}),
+            ...(heroSubheadlineData !== undefined ? { heroSubheadline: heroSubheadlineData } : {}),
+            heroAlignment: heroAlignmentData,
+            heroImages: heroImagesData,
+            heroCtas: heroCtasData,
+            heroImageLeftUrl,
+            heroImageRightUrl,
+            rawSections,
+            structuredSectionEntries,
+            legacySectionEntries,
+            localSections: sections,
+            hasSectionsArray,
+            shouldRenderLocalSections: hasSectionsArray && hasStructuredHeroSection,
+            sections: legacySectionEntries.map((entry) => entry.section as PageSection),
+            resolvedLocale: locale,
+            contentSource: source,
+          };
+
+          setPageContent(pageData);
           return;
-        }
-      }
-
-      if (!parsedResult.success) {
-        if (import.meta.env.DEV) {
-          console.warn('Invalid home content schema', parsedResult.error);
-        }
-        if (isMounted) {
-          setPageContent(null);
-        }
-        return;
-      }
-
-      const parsedData = parsedResult.data;
-      const hasSectionsArray = Array.isArray(parsedData?.sections);
-      const rawSections = hasSectionsArray ? parsedData.sections ?? [] : [];
-      let heroAlignmentData = parsedData?.heroAlignment;
-      let heroImagesData: HeroImagesGroup | undefined = parsedData?.heroImages ?? undefined;
-      let heroCtasData = parsedData?.heroCtas;
-      let heroHeadlineData = parsedData?.heroHeadline;
-      let heroSubheadlineData = parsedData?.heroSubheadline;
-
-      const heroBlock = parsedData?.hero;
-      if (heroBlock && typeof heroBlock === 'object') {
-        const heroContent = (heroBlock as { content?: Record<string, unknown> }).content ?? null;
-        if (heroContent && typeof heroContent === 'object') {
-          heroHeadlineData = heroHeadlineData
-            ?? resolveLocalizedString(heroContent.headline, result.localeUsed)
-            ?? resolveLocalizedString(heroContent.title, result.localeUsed);
-          heroSubheadlineData = heroSubheadlineData
-            ?? resolveLocalizedString(heroContent.subheadline, result.localeUsed)
-            ?? resolveLocalizedString(heroContent.body, result.localeUsed);
-        }
-
-        if (!heroCtasData) {
-          const heroCtas = (heroBlock as { ctas?: Record<string, unknown> }).ctas ?? null;
-          if (heroCtas && typeof heroCtas === 'object') {
-           const resolveCta = (cta: unknown) => {
-             if (!cta || typeof cta !== 'object') {
-               return undefined;
-             }
-             const ctaRecord = cta as Record<string, unknown>;
-             const label = resolveLocalizedString(ctaRecord.label, result.localeUsed);
-             const href = resolveLocalizedString(ctaRecord.href, result.localeUsed);
-             if (!label && !href) {
-               return undefined;
-             }
-             return {
-               ...(label ? { label } : {}),
-               ...(href ? { href } : {}),
-             };
-           };
-
-            const primaryCta = resolveCta(heroCtas.primary ?? heroCtas.shop);
-            const secondaryCta = resolveCta(heroCtas.secondary ?? heroCtas.pro);
-
-            if (primaryCta || secondaryCta) {
-              heroCtasData = {
-                ...(primaryCta ? { ctaPrimary: primaryCta } : {}),
-                ...(secondaryCta ? { ctaSecondary: secondaryCta } : {}),
-              } as HeroCtasGroup;
-            }
-          }
-        }
-
-        if (!heroAlignmentData) {
-          const heroLayout = (heroBlock as { layout?: Record<string, unknown> }).layout ?? null;
-          if (heroLayout && typeof heroLayout === 'object') {
-            const alignX = resolveLocalizedString(heroLayout.alignX, result.localeUsed);
-            const alignY = resolveLocalizedString(heroLayout.alignY, result.localeUsed);
-            const textPosition = resolveLocalizedString(heroLayout.textPosition, result.localeUsed);
-            const textAnchor = resolveLocalizedString(heroLayout.textAnchor, result.localeUsed);
-            const overlayKeyword = resolveLocalizedString(heroLayout.overlay, result.localeUsed);
-            const layoutHintRaw = resolveLocalizedString(heroLayout.layoutHint, result.localeUsed);
-            const normalizedLayoutHint = layoutHintRaw ? normalizeHeroLayoutHint(layoutHintRaw) : undefined;
-            const alignmentPatch: Partial<HeroAlignmentGroup> = {
-              ...(alignX === 'left' || alignX === 'center' || alignX === 'right' ? { heroAlignX: alignX } : {}),
-              ...(alignY === 'top' || alignY === 'middle' || alignY === 'bottom' ? { heroAlignY: alignY } : {}),
-              ...(textPosition === 'overlay' || textPosition === 'below' ? { heroTextPosition: textPosition } : {}),
-              ...(textAnchor && HERO_TEXT_POSITION_MAP[textAnchor as HeroTextAnchor]
-                ? { heroTextAnchor: textAnchor as HeroTextAnchor }
-                : {}),
-              ...(normalizedLayoutHint ? { heroLayoutHint: normalizedLayoutHint } : {}),
-              ...(overlayKeyword ? { heroOverlay: resolveHeroOverlayKeyword(overlayKeyword) } : {}),
-            };
-
-            if (Object.keys(alignmentPatch).length > 0) {
-              heroAlignmentData = { ...(heroAlignmentData ?? {}), ...alignmentPatch } as HeroAlignmentGroup;
-            }
+        } catch (error) {
+          if (locale === localesToTry[localesToTry.length - 1]) {
+            console.error('Failed to load home sections', error);
           }
         }
       }
 
-      const heroValidation = validateHeroContent({
-        heroHeadline: heroHeadlineData,
-        heroImages: heroImagesData,
-        heroImageLeft: parsedData?.heroImageLeft ?? null,
-        heroImageRight: parsedData?.heroImageRight ?? null,
-        heroFallback: heroFallbackRaw,
-      });
-      heroImagesData = heroValidation.heroImages ?? heroImagesData;
-      const sections: HomeSection[] = hasSectionsArray
-        ? (rawSections.filter((section): section is HomeSection => {
-            if (!section || typeof section !== 'object') {
-              return false;
-            }
-
-            if ('visible' in section && (section as { visible?: unknown }).visible === false) {
-              return false;
-            }
-
-            const sectionType = (section as { type?: unknown }).type;
-
-            return sectionType === 'hero'
-              || sectionType === 'featureGrid'
-              || sectionType === 'mediaCopy'
-              || sectionType === 'productGrid'
-              || sectionType === 'testimonials'
-              || sectionType === 'faq'
-              || sectionType === 'banner'
-              || sectionType === 'newsletterSignup'
-              || sectionType === 'communityCarousel'
-              || sectionType === 'video';
-          }))
-        : [];
-
-      const hasStructuredHeroSection = sections.some((section) => section.type === 'hero');
-      const shouldRenderLocal =
-        hasSectionsArray && (hasStructuredHeroSection || result.localeUsed !== language);
-
-      const structuredSectionEntries = rawSections.reduce<StructuredSectionEntry[]>((acc, section, index) => {
-        if (section && typeof section === 'object' && 'visible' in section && (section as { visible?: unknown }).visible === false) {
-          return acc;
-        }
-
-        const parsedSection = structuredSectionSchema.safeParse(section);
-        if (parsedSection.success) {
-          acc.push({ index, section: parsedSection.data });
-        }
-        return acc;
-      }, []);
-
-      const legacySectionEntries = rawSections.reduce<LegacySectionEntry[]>((acc, section, index) => {
-        if (section && typeof section === 'object' && 'visible' in section && (section as { visible?: unknown }).visible === false) {
-          return acc;
-        }
-
-        const parsedSection = legacySectionSchema.safeParse(section);
-        if (parsedSection.success) {
-          acc.push({ index, section: parsedSection.data });
-        }
-        return acc;
-      }, []);
-
-      const heroImageLeftCandidate = firstDefined([
-        heroImagesData?.heroImageLeft,
-        parsedData?.heroImageLeft,
-        heroFallbackRaw,
-      ]);
-      const heroImageRightCandidate = firstDefined([
-        heroImagesData?.heroImageRight,
-        parsedData?.heroImageRight,
-        heroFallbackRaw,
-      ]);
-      const heroImageLeftUrl = normalizeImagePath(heroImageLeftCandidate, result.localeUsed) ?? null;
-      const heroImageRightUrl = normalizeImagePath(heroImageRightCandidate, result.localeUsed) ?? null;
-
-      if (
-        import.meta.env.DEV
-        && !heroImageLeftUrl
-        && !heroImageRightUrl
-        && !hasWarnedMissingHeroImages
-      ) {
-        console.warn('Home hero images are not configured. Add hero image references or legacy URLs in the CMS.');
-        hasWarnedMissingHeroImages = true;
+      if (isMounted) {
+        setPageContent(null);
       }
-
-      const baseContent = parsedData as PageContent & HomeContentData;
-      const pageData: HomePageContent = {
-        ...baseContent,
-        ...(heroHeadlineData !== undefined ? { heroHeadline: heroHeadlineData } : {}),
-        ...(heroSubheadlineData !== undefined ? { heroSubheadline: heroSubheadlineData } : {}),
-        heroAlignment: heroAlignmentData,
-        heroImages: heroImagesData,
-        heroCtas: heroCtasData,
-        heroImageLeftUrl,
-        heroImageRightUrl,
-        rawSections,
-        structuredSectionEntries,
-        legacySectionEntries,
-        localSections: sections,
-        hasSectionsArray,
-        shouldRenderLocalSections: shouldRenderLocal,
-        sections: legacySectionEntries.map((entry) => entry.section as PageSection),
-        resolvedLocale: result.localeUsed,
-        contentSource: result.source,
-      };
-
-      setPageContent(pageData);
     };
 
     loadSections().catch((error) => {
@@ -2248,9 +2090,7 @@ const Home: React.FC = () => {
     </motion.div>
   );
 
-  const sections = pageContent?.visible === false
-    ? []
-    : filterVisible(pageContent?.localSections ?? []);
+  const sections = Array.isArray(pageContent?.localSections) ? pageContent.localSections : [];
   const homeSections = pageContent?.rawSections ?? [];
   const homeSectionsFieldPath = `${homeFieldPath}.sections`;
   const computedTitle = pageContent?.metaTitle ?? `Kapunka Skincare | ${t('home.metaTitle')}`;
@@ -2287,44 +2127,22 @@ const Home: React.FC = () => {
   const referencedTestimonialRefs = useMemo(() => {
     const refs = new Set<string>();
 
-    const collectRefs = (candidateSections: unknown) => {
-      if (!Array.isArray(candidateSections)) {
+    sections.forEach((section) => {
+      if (section?.type !== 'testimonials') {
         return;
       }
 
-      candidateSections.forEach((section) => {
-        if (!section || typeof section !== 'object') {
-          return;
+      const entries = Array.isArray(section.testimonials) ? section.testimonials : [];
+      entries.forEach((entry) => {
+        const refCandidate = typeof entry?.testimonialRef === 'string' ? entry.testimonialRef.trim() : '';
+        if (refCandidate.length > 0) {
+          refs.add(refCandidate);
         }
-
-        const typedSection = section as { type?: string; testimonials?: unknown };
-        if (typedSection.type !== 'testimonials') {
-          return;
-        }
-
-        const entries = Array.isArray(typedSection.testimonials) ? typedSection.testimonials : [];
-        entries.forEach((entry) => {
-          if (!entry || typeof entry !== 'object') {
-            return;
-          }
-
-          const refCandidate =
-            'testimonialRef' in entry && typeof entry.testimonialRef === 'string'
-              ? entry.testimonialRef.trim()
-              : '';
-
-          if (refCandidate.length > 0) {
-            refs.add(refCandidate);
-          }
-        });
       });
-    };
-
-    collectRefs(sections);
-    collectRefs(homeSections);
+    });
 
     return Array.from(refs);
-  }, [sections, homeSections]);
+  }, [sections]);
 
   useEffect(() => {
     let isMounted = true;
@@ -3146,13 +2964,6 @@ const Home: React.FC = () => {
           const quote = sanitizeString(slide.quote ?? null);
           const name = sanitizeString(slide.name ?? null);
           const role = sanitizeString(slide.role ?? null);
-          const focalCandidate = (slide as { imageFocal?: { x?: unknown; y?: unknown } | null }).imageFocal ?? null;
-          const imageFocal = focalCandidate && typeof focalCandidate === 'object'
-            ? {
-                x: typeof focalCandidate.x === 'number' ? focalCandidate.x : undefined,
-                y: typeof focalCandidate.y === 'number' ? focalCandidate.y : undefined,
-              }
-            : undefined;
           const imageFieldPath = `${basePath}.image`;
 
           return {
@@ -3161,7 +2972,6 @@ const Home: React.FC = () => {
             quote,
             name,
             role,
-            imageFocal,
             fieldPath: basePath,
             imageFieldPath,
             altFieldPath: `${basePath}.alt`,
@@ -3203,14 +3013,13 @@ const Home: React.FC = () => {
         );
       }
       case 'newsletterSignup': {
-        const title = sanitizeString(section.title ?? null) ?? undefined;
-        const subtitle = sanitizeString(section.subtitle ?? null) ?? undefined;
-        const placeholder = sanitizeString(section.placeholder ?? null) ?? undefined;
-        const ctaLabel = sanitizeString(section.ctaLabel ?? null) ?? undefined;
-        const confirmation = sanitizeString(section.confirmation ?? null) ?? undefined;
+        const title = sanitizeString(section.title ?? null);
+        const subtitle = sanitizeString(section.subtitle ?? null);
+        const placeholder = sanitizeString(section.placeholder ?? null);
+        const ctaLabel = sanitizeString(section.ctaLabel ?? null);
+        const confirmation = sanitizeString(section.confirmation ?? null);
         const background = section.background === 'beige' || section.background === 'dark' ? section.background : 'light';
         const alignment = section.alignment === 'left' ? 'left' : 'center';
-        const hasCopy = Boolean(title || subtitle || placeholder || ctaLabel || confirmation);
         const structuredNewsletterKey = createKeyFromParts('structured-newsletter', [
           title,
           subtitle,
@@ -3221,11 +3030,11 @@ const Home: React.FC = () => {
           alignment,
         ]);
 
-        if (!hasCopy) {
+        if (!title && !subtitle && !ctaLabel && !placeholder && !confirmation) {
           return (
             <NewsletterSignup
               key={structuredNewsletterKey}
-              background={background}
+              backgroundVariant={background}
               alignment={alignment}
               fieldPath={sectionFieldPath}
             />
@@ -3240,7 +3049,7 @@ const Home: React.FC = () => {
             placeholder={placeholder}
             ctaLabel={ctaLabel}
             confirmation={confirmation}
-            background={background}
+            backgroundVariant={background}
             alignment={alignment}
             fieldPath={sectionFieldPath}
           />
@@ -3323,9 +3132,6 @@ const Home: React.FC = () => {
         );
       }
       case 'mediaCopy': {
-        const mediaTitleFieldPath = `${sectionFieldPath}.title`;
-        const mediaBodyFieldPath = `${sectionFieldPath}.body`;
-        const mediaImageFieldPath = `${sectionFieldPath}.image`;
         const title = sanitizeString(section.title ?? null);
         const body = sanitizeString(section.body ?? null);
         const mediaImage = sanitizeString(pickImage(section.image));
@@ -3825,25 +3631,36 @@ const Home: React.FC = () => {
         );
       }
       case 'mediaShowcase': {
-        const hasItems = (section.items ?? []).some((item) => {
-          if (!item || typeof item !== 'object') {
-            return false;
-          }
-          return Boolean(
-            sanitizeString((item as { title?: string }).title ?? null)
-            || sanitizeString((item as { body?: string }).body ?? null)
-            || sanitizeString((item as { image?: string }).image ?? null)
-          );
-        });
+        const showcaseTitle = sanitizeString(section.title ?? null);
+        const items = (section.items ?? []).map((item, itemIndex) => {
+          const fieldScope = `${sectionFieldPath}.items.${itemIndex}`;
+          return {
+            eyebrow: sanitizeString(item.eyebrow ?? null) ?? undefined,
+            title: sanitizeString(item.title ?? null) ?? undefined,
+            body: sanitizeString(item.body ?? null) ?? undefined,
+            image: sanitizeString(pickImage(item.image)) ?? undefined,
+            alt: sanitizeString(item.imageAlt ?? null) ?? undefined,
+            fieldPath: fieldScope,
+            imageFieldPath: `${fieldScope}.image`,
+            eyebrowFieldPath: `${fieldScope}.eyebrow`,
+            titleFieldPath: `${fieldScope}.title`,
+            bodyFieldPath: `${fieldScope}.body`,
+            ctaLabel: sanitizeString(item.ctaLabel ?? null) ?? undefined,
+            ctaHref: sanitizeString(item.ctaHref ?? null) ?? undefined,
+            ctaLabelFieldPath: `${fieldScope}.ctaLabel`,
+            ctaHrefFieldPath: `${fieldScope}.ctaHref`,
+          };
+        }).filter((item) => item.image || item.title || item.body);
 
-        if (!sanitizeString(section.title ?? null) && !hasItems) {
+        if (items.length === 0) {
           return null;
         }
 
         return (
           <MediaShowcase
-            key={createKeyFromParts('section-media-showcase', [section.title, (section.items ?? []).length.toString()])}
-            section={section}
+            key={createKeyFromParts('section-media-showcase', [showcaseTitle, items.map((item) => item.title ?? item.image ?? '').join('|')])}
+            title={showcaseTitle}
+            items={items}
             fieldPath={sectionFieldPath}
           />
         );
@@ -3882,80 +3699,13 @@ const Home: React.FC = () => {
     ?? siteSettings.home?.heroImage
     ?? undefined;
 
-  const seoImage = socialImage
-    ? isAbsoluteUrl(socialImage)
-      ? socialImage
-      : getCloudinaryUrl(socialImage) ?? socialImage
-    : undefined;
-
-  const brandName = useMemo(() => {
-    const brandValue = siteSettings.brand?.name;
-
-    if (!brandValue) {
-      return 'Kapunka Skincare';
-    }
-
-    if (typeof brandValue === 'string') {
-      const trimmed = brandValue.trim();
-      return trimmed.length > 0 ? trimmed : 'Kapunka Skincare';
-    }
-
-    const localized = brandValue[language];
-    if (typeof localized === 'string') {
-      const trimmedLocalized = localized.trim();
-      if (trimmedLocalized.length > 0) {
-        return trimmedLocalized;
-      }
-    }
-
-    const fallbackOrder: Language[] = ['en', 'pt', 'es'];
-    for (const locale of fallbackOrder) {
-      const candidate = brandValue[locale];
-      if (typeof candidate === 'string') {
-        const trimmedCandidate = candidate.trim();
-        if (trimmedCandidate.length > 0) {
-          return trimmedCandidate;
-        }
-      }
-    }
-
-    const firstAvailable = Object.values(brandValue).find(
-      (entry): entry is string => typeof entry === 'string' && entry.trim().length > 0,
-    );
-
-    return firstAvailable?.trim() ?? 'Kapunka Skincare';
-  }, [language, siteSettings.brand?.name]);
-
-  const siteUrl = useMemo(() => {
-    const raw = (process.env.NEXT_PUBLIC_SITE_URL ?? '').trim();
-    if (raw.length > 0) {
-      return raw.replace(/\/+$/, '');
-    }
-
-    if (typeof window !== 'undefined') {
-      return window.location.origin;
-    }
-
-    return undefined;
-  }, []);
-
-  const organizationJsonLd = useMemo(() => ({
-    '@context': 'https://schema.org',
-    '@type': 'Organization',
-    name: brandName,
-    ...(siteUrl ? { url: siteUrl } : {}),
-    ...(seoImage ? { logo: seoImage } : {}),
-  }), [brandName, seoImage, siteUrl]);
-
   return (
     <div>
       <Seo
         title={computedTitle}
         description={computedDescription}
-        image={seoImage}
+        image={socialImage}
         locale={language}
-        siteName={brandName}
-        jsonLd={organizationJsonLd}
       />
       {shouldRenderLocalSections ? (
         renderedLocalSections
@@ -4014,7 +3764,7 @@ const Home: React.FC = () => {
             fallbackCtaLabel={t('home.ctaClinics')}
           />
           {renderedSections.length > 0 && renderedSections}
-          <GalleryRows rows={galleryRowsData} fieldPath={`${homeFieldPath}.galleryRows`} fallbackAlt={computedTitle} />
+          <GalleryRows rows={galleryRowsData} fieldPath={`${homeFieldPath}.galleryRows`} />
           <Bestsellers intro={bestsellersIntro} introFieldPath={`${homeFieldPath}.bestsellersIntro`} />
           <Reviews />
           <NewsletterSignup />

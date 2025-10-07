@@ -349,3 +349,8 @@ This log records day-to-day investigations, fixes, and decisions that affect the
 - **What changed**: Added localized helpers, restored `VisibilityFlag` typing, and mapped the unified hero/layout schema back into the legacy `Home.tsx`. This clears the IDE TypeScript errors (missing `language`, `computedTitle`, CTA generics, etc.) while keeping the classic design.
 - **Impact & follow-up**: Dev tooling stops flagging the Home page, and the hero + media sections stay editable through the Visual Editor. Continue migrating remaining sections cautiously to avoid reintroducing type mismatches.
 - **References**: Pending PR
+
+## 2025-10-07 — Reverted Home.tsx to legacy layout baseline
+- **What changed**: Checked out the pre-unified `pages/Home.tsx` (commit 13f87fe) so the hero, media grid, carousel, newsletter, and testimonials match the original reference screenshot exactly.
+- **Impact & follow-up**: Restores the homepage experience while we re-evaluate the unified schema rollout. Ensure future refactors preserve this layout before merging.
+- **References**: Pending PR
