@@ -5,6 +5,11 @@
 - **Impact & follow-up**: Content designers can now work in English-first mode and reveal additional locales on demand while relying on ready-made section blueprints for frequent layouts. Gather feedback on additional templates that would speed up campaign builds and consider migrating legacy sections to the new CTA controls over time.
 - **References**: Pending PR
 
+## 2025-10-07 — Restored Page Builder data bindings
+- **What changed**: Realigned the Page Builder schema in `admin/config.yml` with the existing Markdown frontmatter, replacing the stale localized fieldsets with per-page fields (`heroHeadline`, `heroAlignment`, `sections`, etc.) and redefining every section type to use simple strings/lists that mirror the live site.
+- **Impact & follow-up**: Editors now see the real content (hero copy, section data, carousel entries) instead of empty localized objects, eliminating the red validation errors and ensuring Decap matches the production pages. Verify each page in the CMS to confirm the new forms load existing data and report any additional section shapes that still feel off.
+- **References**: Pending PR
+
 ## 2025-10-07 — Restored Cloudinary previews in Decap
 - **What changed**: Added a Cloudinary-aware image resolver inside `admin/preview-components.js` so preview thumbnails pull the CMS cloud name, strip legacy upload prefixes, and render full CDN URLs rather than broken relative paths.
 - **Impact & follow-up**: Editors now see the same media framing in the CMS as on the live site while keeping the API key sourced from the `NETLIFY_ENV_CLOUDINARY_API_KEY` Netlify environment variable instead of committing secrets. Confirm the env var remains set in each Netlify context and provide a local `.env` when running the CMS locally.
