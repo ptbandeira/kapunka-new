@@ -810,23 +810,6 @@ section_library: &section_library
   - *section_bullets
   - *section_specialties
   - *section_faq
-section_library: &section_library
-  - *section_hero
-  - *section_mediaCopy
-  - *section_mediaShowcase
-  - *section_featureGrid
-  - *section_productGrid
-  - *section_communityCarousel
-  - *section_testimonials
-  - *section_faq
-  - *section_banner
-  - *section_newsletterSignup
-  - *section_videoGallery
-  - *section_trainingList
-  - *section_timeline
-  - *section_facts
-  - *section_bullets
-  - *section_specialties
 sections_field: &sections_field
   label: "Sections"
   name: "sections"
