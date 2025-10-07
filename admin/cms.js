@@ -15,6 +15,32 @@
     es: 'ES',
   };
   const LOCALE_MODE_STORAGE_KEY = 'kapunka.cms.localeMode';
+  const EDIT_MODE_STORAGE_KEY = 'kapunka.cms.editMode';
+  const EDIT_MODE_DEFAULT = 'beginner';
+  const EDIT_MODES = ['beginner', 'advanced'];
+  const ADVANCED_FIELD_EXACT = new Set([
+    'heroAlignment.heroAlignX',
+    'heroAlignment.heroAlignY',
+    'heroAlignment.heroTextAnchor',
+    'heroAlignment.heroOverlay',
+    'heroAlignment.heroLayoutHint',
+    'heroCtas.ctaSecondary.label',
+    'heroCtas.ctaSecondary.href',
+  ]);
+  const ADVANCED_FIELD_PATTERNS = [
+    /^heroAlignment\./,
+    /^heroCtas\.ctaSecondary\./,
+    /^sections\.[^.]+\.layout$/,
+    /^sections\.[^.]+\.columns$/,
+    /^sections\.[^.]+\.overlay/,
+    /^sections\.[^.]+\.imageFocal/,
+    /^sections\.[^.]+\.slideDuration$/,
+    /^sections\.[^.]+\.quoteDuration$/,
+    /^sections\.[^.]+\.background$/,
+    /^sections\.[^.]+\.alignment$/,
+    /^sections\.[^.]+\.column(Start|Span|Width)?$/,
+  ];
+  const ADVANCED_STYLE_ID = 'cms-advanced-style';
 
   function waitForCms() {
     if (!window.CMS || !(window.React || window.h)) {
@@ -47,6 +73,93 @@
     }
   }
 
+  function loadStoredEditMode() {
+    try {
+      const stored = window.localStorage.getItem(EDIT_MODE_STORAGE_KEY);
+      if (stored && EDIT_MODES.includes(stored)) {
+        return stored;
+      }
+    } catch (error) {
+      console.warn('Unable to read edit mode from storage', error);
+    }
+    return EDIT_MODE_DEFAULT;
+  }
+
+  function persistEditMode(mode) {
+    try {
+      window.localStorage.setItem(EDIT_MODE_STORAGE_KEY, mode);
+    } catch (error) {
+      console.warn('Unable to persist edit mode', error);
+    }
+  }
+
+  function ensureAdvancedStyles() {
+    if (document.getElementById(ADVANCED_STYLE_ID)) {
+      return;
+    }
+    const style = document.createElement('style');
+    style.id = ADVANCED_STYLE_ID;
+    style.textContent = `
+      body.cms-mode-beginner [data-cms-advanced="true"] {
+        display: none !important;
+      }
+      body.cms-mode-advanced [data-cms-advanced="true"] {
+        display: block;
+      }
+      .cms-advanced-badge {
+        display: inline-flex;
+        align-items: center;
+        margin-left: 6px;
+        padding: 1px 6px;
+        border-radius: 999px;
+        background: rgba(79, 70, 229, 0.12);
+        color: #4338ca;
+        font-size: 10px;
+        font-weight: 600;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+      }
+    `;
+    document.head.appendChild(style);
+  }
+
+  function isAdvancedField(path) {
+    if (!path) {
+      return false;
+    }
+    if (ADVANCED_FIELD_EXACT.has(path)) {
+      return true;
+    }
+    return ADVANCED_FIELD_PATTERNS.some((pattern) => pattern.test(path));
+  }
+
+  function markAdvancedField(node) {
+    if (!node || node.dataset.cmsAdvanced === 'true') {
+      return;
+    }
+    node.dataset.cmsAdvanced = 'true';
+
+    const candidateLabels = node.querySelectorAll('label, legend, [data-testid$="-label"]');
+    const label = candidateLabels && candidateLabels[0];
+    if (label && !label.querySelector('.cms-advanced-badge')) {
+      const badge = document.createElement('span');
+      badge.className = 'cms-advanced-badge';
+      badge.textContent = 'Advanced';
+      label.appendChild(badge);
+    }
+  }
+
+  function annotateAdvancedFields() {
+    ensureAdvancedStyles();
+    const nodes = document.querySelectorAll('[data-field-path]');
+    nodes.forEach((node) => {
+      const path = node.getAttribute('data-field-path');
+      if (isAdvancedField(path)) {
+        markAdvancedField(node);
+      }
+    });
+  }
+
   async function bootstrapCms(CMS) {
     const ReactNamespace = window.React || { createElement: window.h };
     const createElement = ReactNamespace.createElement.bind(ReactNamespace);
@@ -77,6 +190,10 @@
     };
     const localeModeState = {
       mode: loadStoredLocaleMode(),
+      pendingApply: false,
+    };
+    const editModeState = {
+      mode: loadStoredEditMode(),
       pendingApply: false,
     };
 
@@ -231,7 +348,9 @@
       container.appendChild(previewRow);
 
       renderLocaleModeControls(container);
+      renderEditModeControls(container);
       scheduleLocaleModeApply();
+      scheduleEditModeApply();
     }
 
     function renderLocaleModeControls(container) {
@@ -288,6 +407,58 @@
       });
 
       modeRow.appendChild(buttonGroup);
+      container.appendChild(modeRow);
+    }
+
+    function renderEditModeControls(container) {
+      if (!container) {
+        return;
+      }
+
+      const modeRow = document.createElement('div');
+      modeRow.className = 'cms-edit-mode-row';
+      modeRow.style.display = 'flex';
+      modeRow.style.alignItems = 'center';
+      modeRow.style.gap = '6px';
+
+      const label = document.createElement('span');
+      label.textContent = 'Fields';
+      label.style.opacity = '0.65';
+      label.style.fontWeight = '600';
+      label.style.fontSize = '10px';
+      label.style.letterSpacing = '0.12em';
+      label.style.textTransform = 'uppercase';
+
+      modeRow.appendChild(label);
+
+      const group = document.createElement('div');
+      group.style.display = 'flex';
+      group.style.gap = '4px';
+
+      EDIT_MODES.forEach((mode) => {
+        const button = document.createElement('button');
+        button.type = 'button';
+        button.dataset.editMode = mode;
+        button.textContent = mode === 'beginner' ? 'Beginner' : 'Advanced';
+        button.style.border = '1px solid #bcccdc';
+        button.style.borderRadius = '999px';
+        button.style.background = editModeState.mode === mode ? '#1f2933' : '#ffffff';
+        button.style.color = editModeState.mode === mode ? '#f0f4f8' : '#1f2933';
+        button.style.padding = '2px 10px';
+        button.style.fontSize = '10px';
+        button.style.fontWeight = '600';
+        button.style.letterSpacing = '0.08em';
+        button.style.textTransform = 'uppercase';
+        button.style.cursor = editModeState.mode === mode ? 'default' : 'pointer';
+
+        if (editModeState.mode !== mode) {
+          button.addEventListener('click', () => setEditMode(mode));
+        }
+
+        group.appendChild(button);
+      });
+
+      modeRow.appendChild(group);
       container.appendChild(modeRow);
     }
 
@@ -374,6 +545,42 @@
       scheduleLocaleRender();
     }
 
+    function scheduleEditModeApply() {
+      if (editModeState.pendingApply) {
+        return;
+      }
+      editModeState.pendingApply = true;
+      window.requestAnimationFrame(() => {
+        editModeState.pendingApply = false;
+        applyEditMode();
+      });
+    }
+
+    function applyEditMode() {
+      const mode = editModeState.mode;
+      document.body.classList.toggle('cms-mode-advanced', mode === 'advanced');
+      document.body.classList.toggle('cms-mode-beginner', mode === 'beginner');
+
+      document.querySelectorAll('[data-edit-mode]').forEach((button) => {
+        const buttonMode = button.dataset.editMode;
+        const isActive = buttonMode === mode;
+        button.style.background = isActive ? '#1f2933' : '#ffffff';
+        button.style.color = isActive ? '#f0f4f8' : '#1f2933';
+        button.style.cursor = isActive ? 'default' : 'pointer';
+      });
+    }
+
+    function setEditMode(mode) {
+      if (!EDIT_MODES.includes(mode) || editModeState.mode === mode) {
+        return;
+      }
+
+      editModeState.mode = mode;
+      persistEditMode(mode);
+      scheduleEditModeApply();
+      scheduleLocaleRender();
+    }
+
     function scheduleLocaleRender() {
       if (localeState.refreshScheduled) {
         return;
@@ -426,9 +633,14 @@
     window.addEventListener('hashchange', scheduleLocaleRender);
     scheduleLocaleRender();
     scheduleLocaleModeApply();
+    ensureAdvancedStyles();
+    annotateAdvancedFields();
+    scheduleEditModeApply();
 
     const localeTabObserver = new MutationObserver(() => {
       scheduleLocaleModeApply();
+      annotateAdvancedFields();
+      scheduleEditModeApply();
     });
     localeTabObserver.observe(document.body, { childList: true, subtree: true });
 

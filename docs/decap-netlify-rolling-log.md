@@ -10,6 +10,11 @@
 - **Impact & follow-up**: Editors now see the real content (hero copy, section data, carousel entries) instead of empty localized objects, eliminating the red validation errors and ensuring Decap matches the production pages. Verify each page in the CMS to confirm the new forms load existing data and report any additional section shapes that still feel off.
 - **References**: Pending PR
 
+## 2025-10-07 — Added editorial focus modes & audit tooling
+- **What changed**: Introduced beginner/advanced editing modes in `admin/cms.js` that hide power-user fields by default, added inline “Advanced” badges, tightened required metadata on Learn/Method/Clinics/Story/Contact pages, and published `scripts/audit-translations.mjs` to flag missing localized meta copy.
+- **Impact & follow-up**: Editors get a calmer Page Builder with progressive disclosure, while advanced users can flip a toggle to access layout controls. Run `node scripts/audit-translations.mjs` in CI or locally to keep EN/PT/ES metadata aligned and extend the advanced-field list if new power settings appear.
+- **References**: Pending PR
+
 ## 2025-10-07 — Restored Cloudinary previews in Decap
 - **What changed**: Added a Cloudinary-aware image resolver inside `admin/preview-components.js` so preview thumbnails pull the CMS cloud name, strip legacy upload prefixes, and render full CDN URLs rather than broken relative paths.
 - **Impact & follow-up**: Editors now see the same media framing in the CMS as on the live site while keeping the API key sourced from the `NETLIFY_ENV_CLOUDINARY_API_KEY` Netlify environment variable instead of committing secrets. Confirm the env var remains set in each Netlify context and provide a local `.env` when running the CMS locally.
