@@ -1736,6 +1736,7 @@ const Home: React.FC = () => {
             return sectionType === 'hero'
               || sectionType === 'featureGrid'
               || sectionType === 'mediaCopy'
+              || sectionType === 'mediaShowcase'
               || sectionType === 'productGrid'
               || sectionType === 'testimonials'
               || sectionType === 'faq'

@@ -26,7 +26,7 @@
 - **References**: Pending PR
 
 ## 2025-10-07 — Re-enabled localized home sections & forced local rendering
-- **What changed**: Restored the `sections` field to use Decap’s locale-aware editing and relaxed the home loader so structured sections render even when no explicit hero section is defined.
+- **What changed**: Restored the `sections` field to use Decap’s locale-aware editing, relaxed the home loader so structured sections render even without a hero block, and reinstated `mediaShowcase` in the allowed section filter.
 - **Impact & follow-up**: The homepage now shows the full Media Showcase and Community Carousel stacks again, and editors can translate per-locale sections without data loss. Confirm the CMS still resolves the section arrays for EN/PT/ES as expected.
 - **References**: Pending PR
 
