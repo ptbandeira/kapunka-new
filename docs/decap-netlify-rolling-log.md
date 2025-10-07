@@ -24,6 +24,11 @@
 - **Impact & follow-up**: Editors can coordinate workflow states directly in the CMS, schedule go-live dates without manual deploy timing, batch-update large catalogs from the CLI, and spin up consistent new pages faster. Consider adding additional templates for campaign-specific layouts as the component library grows.
 - **References**: Pending PR
 
+## 2025-10-18 — Instrumented CMS analytics & audit tooling
+- **What changed**: Added Netlify function `cms-analytics` with Decap event hooks (save/delete/publish) and global error tracking inside `admin/cms.js`, plus offline queue flushing. Introduced CLI scripts `scripts/generate-content-audit.mjs` and JSON output `analytics/content-audit.json` to snapshot entry status/scheduling across pages and catalogs.
+- **Impact & follow-up**: Maintainers can monitor editor behavior, capture runtime errors, and produce compliance-friendly audit trails without manual spreadsheet work. Review Netlify function logs periodically and expand audit reporting if additional metadata (e.g. approver) is required.
+- **References**: Pending PR
+
 ## 2025-10-31 — Expanded section renderer coverage
 - **What changed**: Added strongly typed models for every Stackbit builder block in `types.ts`, introduced reusable section components (media copy, feature grid, banner, newsletter, product grid, testimonials, facts, bullets, specialties), and updated `SectionRenderer` plus the story/about/training/videos page loaders to recognise the new variants with proper Visual Editor field bindings.
 - **Impact & follow-up**: Visual Editor sections now render consistently across detail pages and inline editing works for the newly supported blocks, reducing manual QA when editors add builder sections. Monitor upcoming content syncs to confirm product grids resolve product references correctly.

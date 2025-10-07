@@ -317,6 +317,114 @@
         .filter((item) => typeof item === 'string' && item.trim().length > 0);
     }
 
+    const ANALYTICS_ENDPOINT = '/.netlify/functions/cms-analytics';
+    const OFFLINE_QUEUE_KEY = 'cmsAnalyticsOfflineQueue';
+
+    function enqueueOffline(body) {
+      try {
+        const queue = JSON.parse(window.localStorage.getItem(OFFLINE_QUEUE_KEY) || '[]');
+        queue.push(body);
+        window.localStorage.setItem(OFFLINE_QUEUE_KEY, JSON.stringify(queue.slice(-50)));
+      } catch (error) {
+        console.warn('[cms-analytics] Unable to persist offline queue', error);
+      }
+    }
+
+    async function flushOfflineQueue() {
+      let queue;
+      try {
+        queue = JSON.parse(window.localStorage.getItem(OFFLINE_QUEUE_KEY) || '[]');
+      } catch (error) {
+        queue = [];
+      }
+
+      if (!Array.isArray(queue) || queue.length === 0) {
+        return;
+      }
+
+      const pending = [...queue];
+      window.localStorage.setItem(OFFLINE_QUEUE_KEY, '[]');
+
+      await Promise.all(pending.map((body) => fetch(ANALYTICS_ENDPOINT, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body,
+      }).catch((error) => {
+        console.warn('[cms-analytics] Failed to flush cached event', error);
+        enqueueOffline(body);
+      })));
+    }
+
+    if (typeof window !== 'undefined') {
+      window.addEventListener('online', () => {
+        flushOfflineQueue().catch((error) => {
+          console.warn('[cms-analytics] Failed to flush queue after reconnect', error);
+        });
+      });
+    }
+
+    function trackCmsEvent(eventType, data = {}, options = {}) {
+      const payload = {
+        eventType,
+        data,
+        source: 'decap-admin',
+        timestamp: new Date().toISOString(),
+      };
+
+      const body = JSON.stringify(payload);
+
+      if (typeof navigator !== 'undefined' && typeof navigator.sendBeacon === 'function' && options.fireAndForget !== false) {
+        try {
+          const blob = new Blob([body], { type: 'application/json' });
+          const sent = navigator.sendBeacon(ANALYTICS_ENDPOINT, blob);
+          if (sent) {
+            return;
+          }
+        } catch (error) {
+          console.warn('[cms-analytics] sendBeacon failed', error);
+        }
+      }
+
+      fetch(ANALYTICS_ENDPOINT, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body,
+      }).catch((error) => {
+        console.warn('[cms-analytics] Network request failed, queueing offline event', error);
+        enqueueOffline(body);
+      });
+    }
+
+    function extractEntryMetadata(entry) {
+      if (!entry) {
+        return {};
+      }
+
+      const slug = getEntrySlug(entry);
+      const path = typeof entry.get === 'function' ? entry.get('path') : entry.path;
+      return { slug, path };
+    }
+
+    function extractEventMetadata(event) {
+      const collection = event?.collection || event?.collectionName || event?.data?.collectionName || event?.data?.collection;
+      const entry = event?.entry || event?.data?.entry;
+      const metadata = extractEntryMetadata(entry);
+      return {
+        collection: typeof collection === 'string' ? collection : collection?.get?.('name') || collection?.name || 'unknown',
+        ...metadata,
+      };
+    }
+
+    function handleCmsError(type, error, context = {}) {
+      const payload = {
+        type,
+        message: error?.message || (typeof error === 'string' ? error : 'Unknown error'),
+        stack: error?.stack,
+        context,
+      };
+      trackCmsEvent('cms:error', payload, { fireAndForget: false });
+    }
+
     function createSectionBadge(type, extraClassName) {
       return createElement(
         'span',
@@ -989,6 +1097,48 @@
       } catch (error) {
         console.warn('Failed to register targeted previews', error);
       }
+    }
+
+    trackCmsEvent('cms:booted', { version: CMS?.VERSION || 'unknown' });
+    flushOfflineQueue().catch((error) => {
+      console.warn('[cms-analytics] Initial queue flush failed', error);
+    });
+
+    const analyticsEvents = [
+      { name: 'preSave', event: 'entry:preSave' },
+      { name: 'postSave', event: 'entry:postSave' },
+      { name: 'preDelete', event: 'entry:preDelete' },
+      { name: 'postDelete', event: 'entry:postDelete' },
+      { name: 'postPublish', event: 'entry:postPublish' },
+      { name: 'postUnpublish', event: 'entry:postUnpublish' },
+    ];
+
+    analyticsEvents.forEach(({ name, event }) => {
+      try {
+        CMS.registerEventListener({
+          name,
+          handler: (payload = {}) => {
+            const meta = extractEventMetadata(payload);
+            trackCmsEvent(event, meta);
+          },
+        });
+      } catch (error) {
+        console.warn(`[cms-analytics] Failed to register ${name} listener`, error);
+      }
+    });
+
+    if (typeof window !== 'undefined') {
+      window.addEventListener('error', (event) => {
+        handleCmsError('window:error', event.error || event.message, {
+          filename: event.filename,
+          lineno: event.lineno,
+          colno: event.colno,
+        });
+      });
+
+      window.addEventListener('unhandledrejection', (event) => {
+        handleCmsError('window:unhandledrejection', event.reason, {});
+      });
     }
 
     CMS.registerPreviewTemplate('pages', PagePreview);

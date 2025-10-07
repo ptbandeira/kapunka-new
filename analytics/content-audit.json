@@ -1,0 +1,533 @@
+{
+  "generatedAt": "2025-10-07T08:25:22.859Z",
+  "totals": {
+    "pages": 39,
+    "collections": 35
+  },
+  "pages": [
+    {
+      "type": "page",
+      "locale": "about",
+      "file": "content/pages/about/index.es.md",
+      "status": "unknown",
+      "scheduling": null,
+      "updatedAt": "2025-10-06T20:55:18.814Z"
+    },
+    {
+      "type": "page",
+      "locale": "about",
+      "file": "content/pages/about/index.md",
+      "status": "unknown",
+      "scheduling": null,
+      "updatedAt": "2025-10-05T13:43:53.007Z"
+    },
+    {
+      "type": "page",
+      "locale": "about",
+      "file": "content/pages/about/index.pt.md",
+      "status": "unknown",
+      "scheduling": null,
+      "updatedAt": "2025-10-06T20:55:18.814Z"
+    },
+    {
+      "type": "page",
+      "locale": "en",
+      "file": "content/pages/en/about.md",
+      "status": "unknown",
+      "scheduling": null,
+      "updatedAt": "2025-10-05T13:43:53.007Z"
+    },
+    {
+      "type": "page",
+      "locale": "en",
+      "file": "content/pages/en/clinics.md",
+      "status": "unknown",
+      "scheduling": null,
+      "updatedAt": "2025-10-06T20:55:18.815Z"
+    },
+    {
+      "type": "page",
+      "locale": "en",
+      "file": "content/pages/en/contact.md",
+      "status": "unknown",
+      "scheduling": null,
+      "updatedAt": "2025-10-06T20:55:18.815Z"
+    },
+    {
+      "type": "page",
+      "locale": "en",
+      "file": "content/pages/en/home.md",
+      "status": "unknown",
+      "scheduling": null,
+      "updatedAt": "2025-10-06T21:40:08.098Z"
+    },
+    {
+      "type": "page",
+      "locale": "en",
+      "file": "content/pages/en/learn.md",
+      "status": "unknown",
+      "scheduling": null,
+      "updatedAt": "2025-10-05T13:43:53.008Z"
+    },
+    {
+      "type": "page",
+      "locale": "en",
+      "file": "content/pages/en/method.md",
+      "status": "unknown",
+      "scheduling": null,
+      "updatedAt": "2025-10-05T13:43:53.008Z"
+    },
+    {
+      "type": "page",
+      "locale": "en",
+      "file": "content/pages/en/story.md",
+      "status": "unknown",
+      "scheduling": null,
+      "updatedAt": "2025-10-05T13:43:53.008Z"
+    },
+    {
+      "type": "page",
+      "locale": "en",
+      "file": "content/pages/en/training.md",
+      "status": "unknown",
+      "scheduling": null,
+      "updatedAt": "2025-10-05T13:43:53.008Z"
+    },
+    {
+      "type": "page",
+      "locale": "en",
+      "file": "content/pages/en/videos.md",
+      "status": "unknown",
+      "scheduling": null,
+      "updatedAt": "2025-10-05T13:43:53.008Z"
+    },
+    {
+      "type": "page",
+      "locale": "es",
+      "file": "content/pages/es/about.md",
+      "status": "unknown",
+      "scheduling": null,
+      "updatedAt": "2025-10-06T20:55:18.815Z"
+    },
+    {
+      "type": "page",
+      "locale": "es",
+      "file": "content/pages/es/clinics.md",
+      "status": "unknown",
+      "scheduling": null,
+      "updatedAt": "2025-10-06T20:55:18.815Z"
+    },
+    {
+      "type": "page",
+      "locale": "es",
+      "file": "content/pages/es/contact.md",
+      "status": "unknown",
+      "scheduling": null,
+      "updatedAt": "2025-10-06T20:55:18.816Z"
+    },
+    {
+      "type": "page",
+      "locale": "es",
+      "file": "content/pages/es/home.md",
+      "status": "unknown",
+      "scheduling": null,
+      "updatedAt": "2025-10-06T21:40:44.469Z"
+    },
+    {
+      "type": "page",
+      "locale": "es",
+      "file": "content/pages/es/learn.md",
+      "status": "unknown",
+      "scheduling": null,
+      "updatedAt": "2025-10-06T20:55:18.816Z"
+    },
+    {
+      "type": "page",
+      "locale": "es",
+      "file": "content/pages/es/method.md",
+      "status": "unknown",
+      "scheduling": null,
+      "updatedAt": "2025-10-06T20:55:18.816Z"
+    },
+    {
+      "type": "page",
+      "locale": "es",
+      "file": "content/pages/es/story.md",
+      "status": "unknown",
+      "scheduling": null,
+      "updatedAt": "2025-10-06T20:55:18.816Z"
+    },
+    {
+      "type": "page",
+      "locale": "es",
+      "file": "content/pages/es/training.md",
+      "status": "unknown",
+      "scheduling": null,
+      "updatedAt": "2025-10-06T20:55:18.817Z"
+    },
+    {
+      "type": "page",
+      "locale": "es",
+      "file": "content/pages/es/videos.md",
+      "status": "unknown",
+      "scheduling": null,
+      "updatedAt": "2025-10-06T20:55:18.817Z"
+    },
+    {
+      "type": "page",
+      "locale": "method",
+      "file": "content/pages/method/index.es.md",
+      "status": "unknown",
+      "scheduling": null,
+      "updatedAt": "2025-10-06T20:55:18.817Z"
+    },
+    {
+      "type": "page",
+      "locale": "method",
+      "file": "content/pages/method/index.md",
+      "status": "unknown",
+      "scheduling": null,
+      "updatedAt": "2025-10-05T13:43:53.009Z"
+    },
+    {
+      "type": "page",
+      "locale": "method",
+      "file": "content/pages/method/index.pt.md",
+      "status": "unknown",
+      "scheduling": null,
+      "updatedAt": "2025-10-06T20:55:18.817Z"
+    },
+    {
+      "type": "page",
+      "locale": "product",
+      "file": "content/pages/product/index.es.md",
+      "status": "unknown",
+      "scheduling": null,
+      "updatedAt": "2025-10-06T20:55:18.817Z"
+    },
+    {
+      "type": "page",
+      "locale": "product",
+      "file": "content/pages/product/index.md",
+      "status": "unknown",
+      "scheduling": null,
+      "updatedAt": "2025-10-05T13:43:53.010Z"
+    },
+    {
+      "type": "page",
+      "locale": "product",
+      "file": "content/pages/product/index.pt.md",
+      "status": "unknown",
+      "scheduling": null,
+      "updatedAt": "2025-10-06T20:55:18.817Z"
+    },
+    {
+      "type": "page",
+      "locale": "pt",
+      "file": "content/pages/pt/about.md",
+      "status": "unknown",
+      "scheduling": null,
+      "updatedAt": "2025-10-06T20:55:18.817Z"
+    },
+    {
+      "type": "page",
+      "locale": "pt",
+      "file": "content/pages/pt/clinics.md",
+      "status": "unknown",
+      "scheduling": null,
+      "updatedAt": "2025-10-06T20:55:18.818Z"
+    },
+    {
+      "type": "page",
+      "locale": "pt",
+      "file": "content/pages/pt/contact.md",
+      "status": "unknown",
+      "scheduling": null,
+      "updatedAt": "2025-10-06T20:55:18.818Z"
+    },
+    {
+      "type": "page",
+      "locale": "pt",
+      "file": "content/pages/pt/home.md",
+      "status": "unknown",
+      "scheduling": null,
+      "updatedAt": "2025-10-06T21:40:59.311Z"
+    },
+    {
+      "type": "page",
+      "locale": "pt",
+      "file": "content/pages/pt/learn.md",
+      "status": "unknown",
+      "scheduling": null,
+      "updatedAt": "2025-10-06T20:55:18.818Z"
+    },
+    {
+      "type": "page",
+      "locale": "pt",
+      "file": "content/pages/pt/method.md",
+      "status": "unknown",
+      "scheduling": null,
+      "updatedAt": "2025-10-06T20:55:18.818Z"
+    },
+    {
+      "type": "page",
+      "locale": "pt",
+      "file": "content/pages/pt/story.md",
+      "status": "unknown",
+      "scheduling": null,
+      "updatedAt": "2025-10-06T20:55:18.818Z"
+    },
+    {
+      "type": "page",
+      "locale": "pt",
+      "file": "content/pages/pt/training.md",
+      "status": "unknown",
+      "scheduling": null,
+      "updatedAt": "2025-10-06T20:55:18.818Z"
+    },
+    {
+      "type": "page",
+      "locale": "pt",
+      "file": "content/pages/pt/videos.md",
+      "status": "unknown",
+      "scheduling": null,
+      "updatedAt": "2025-10-06T20:55:18.819Z"
+    },
+    {
+      "type": "page",
+      "locale": "training",
+      "file": "content/pages/training/index.es.md",
+      "status": "unknown",
+      "scheduling": null,
+      "updatedAt": "2025-10-06T20:55:18.819Z"
+    },
+    {
+      "type": "page",
+      "locale": "training",
+      "file": "content/pages/training/index.md",
+      "status": "unknown",
+      "scheduling": null,
+      "updatedAt": "2025-10-05T13:43:53.011Z"
+    },
+    {
+      "type": "page",
+      "locale": "training",
+      "file": "content/pages/training/index.pt.md",
+      "status": "unknown",
+      "scheduling": null,
+      "updatedAt": "2025-10-06T20:55:18.819Z"
+    }
+  ],
+  "collections": [
+    {
+      "type": "products",
+      "id": "pure-argan-oil",
+      "status": "unknown",
+      "scheduling": null
+    },
+    {
+      "type": "products",
+      "id": "kapunka-cicatrices",
+      "status": "unknown",
+      "scheduling": null
+    },
+    {
+      "type": "products",
+      "id": "kapunka-cicatrices-roll-on-10ml",
+      "status": "unknown",
+      "scheduling": null
+    },
+    {
+      "type": "products",
+      "id": "kapunka-cicatrices-30ml",
+      "status": "unknown",
+      "scheduling": null
+    },
+    {
+      "type": "products",
+      "id": "kapunka-cicatrices-50ml",
+      "status": "unknown",
+      "scheduling": null
+    },
+    {
+      "type": "products",
+      "id": "kapunka-cicatrices-100ml",
+      "status": "unknown",
+      "scheduling": null
+    },
+    {
+      "type": "products",
+      "id": "cotton-argan-oil",
+      "status": "unknown",
+      "scheduling": null
+    },
+    {
+      "type": "products",
+      "id": "agra-incense-argan-oil",
+      "status": "unknown",
+      "scheduling": null
+    },
+    {
+      "type": "products",
+      "id": "jasmine-argan-oil",
+      "status": "unknown",
+      "scheduling": null
+    },
+    {
+      "type": "products",
+      "id": "lavender-argan-oil",
+      "status": "unknown",
+      "scheduling": null
+    },
+    {
+      "type": "products",
+      "id": "rosemary-argan-oil",
+      "status": "unknown",
+      "scheduling": null
+    },
+    {
+      "type": "products",
+      "id": "patchouli-argan-oil",
+      "status": "unknown",
+      "scheduling": null
+    },
+    {
+      "type": "products",
+      "id": "kessa-glove",
+      "status": "unknown",
+      "scheduling": null
+    },
+    {
+      "type": "products",
+      "id": "kapunka-neceser",
+      "status": "unknown",
+      "scheduling": null
+    },
+    {
+      "type": "products",
+      "id": "pack-kapunka",
+      "status": "unknown",
+      "scheduling": null
+    },
+    {
+      "type": "articles",
+      "id": "6",
+      "status": "unknown",
+      "scheduling": null
+    },
+    {
+      "type": "articles",
+      "id": "7",
+      "status": "unknown",
+      "scheduling": null
+    },
+    {
+      "type": "articles",
+      "id": "8",
+      "status": "unknown",
+      "scheduling": null
+    },
+    {
+      "type": "articles",
+      "id": "9",
+      "status": "unknown",
+      "scheduling": null
+    },
+    {
+      "type": "articles",
+      "id": "10",
+      "status": "unknown",
+      "scheduling": null
+    },
+    {
+      "type": "articles",
+      "id": "11",
+      "status": "unknown",
+      "scheduling": null
+    },
+    {
+      "type": "articles",
+      "id": "1",
+      "status": "unknown",
+      "scheduling": null
+    },
+    {
+      "type": "articles",
+      "id": "2",
+      "status": "unknown",
+      "scheduling": null
+    },
+    {
+      "type": "articles",
+      "id": "3",
+      "status": "unknown",
+      "scheduling": null
+    },
+    {
+      "type": "articles",
+      "id": "4",
+      "status": "unknown",
+      "scheduling": null
+    },
+    {
+      "type": "articles",
+      "id": "5",
+      "status": "unknown",
+      "scheduling": null
+    },
+    {
+      "type": "courses",
+      "id": "1",
+      "status": "unknown",
+      "scheduling": null
+    },
+    {
+      "type": "courses",
+      "id": "2",
+      "status": "unknown",
+      "scheduling": null
+    },
+    {
+      "type": "courses",
+      "id": "3",
+      "status": "unknown",
+      "scheduling": null
+    },
+    {
+      "type": "videos",
+      "id": null,
+      "status": "unknown",
+      "scheduling": null
+    },
+    {
+      "type": "videos",
+      "id": null,
+      "status": "unknown",
+      "scheduling": null
+    },
+    {
+      "type": "videos",
+      "id": null,
+      "status": "unknown",
+      "scheduling": null
+    },
+    {
+      "type": "training",
+      "id": null,
+      "status": "unknown",
+      "scheduling": null
+    },
+    {
+      "type": "training",
+      "id": null,
+      "status": "unknown",
+      "scheduling": null
+    },
+    {
+      "type": "training",
+      "id": null,
+      "status": "unknown",
+      "scheduling": null
+    }
+  ]
+}
