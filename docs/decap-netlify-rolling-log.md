@@ -25,6 +25,11 @@
 - **Impact & follow-up**: The Page Builder now lists the existing home sections instead of showing an empty array, and hero content aligns left/middle/right exactly as configured. Revisit other pages to confirm they no longer expose unnecessary locale tabs for shared sections.
 - **References**: Pending PR
 
+## 2025-10-07 — Re-enabled localized home sections & forced local rendering
+- **What changed**: Restored the `sections` field to use Decap’s locale-aware editing and relaxed the home loader so structured sections render even when no explicit hero section is defined.
+- **Impact & follow-up**: The homepage now shows the full Media Showcase and Community Carousel stacks again, and editors can translate per-locale sections without data loss. Confirm the CMS still resolves the section arrays for EN/PT/ES as expected.
+- **References**: Pending PR
+
 ## 2025-10-07 — Restored Cloudinary previews in Decap
 - **What changed**: Added a Cloudinary-aware image resolver inside `admin/preview-components.js` so preview thumbnails pull the CMS cloud name, strip legacy upload prefixes, and render full CDN URLs rather than broken relative paths.
 - **Impact & follow-up**: Editors now see the same media framing in the CMS as on the live site while keeping the API key sourced from the `NETLIFY_ENV_CLOUDINARY_API_KEY` Netlify environment variable instead of committing secrets. Confirm the env var remains set in each Netlify context and provide a local `.env` when running the CMS locally.

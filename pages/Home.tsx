@@ -1747,8 +1747,7 @@ const Home: React.FC = () => {
         : [];
 
       const hasStructuredHeroSection = sections.some((section) => section.type === 'hero');
-      const shouldRenderLocal =
-        hasSectionsArray && (hasStructuredHeroSection || result.localeUsed !== language);
+      const shouldRenderLocal = hasSectionsArray && (sections.length > 0 || result.localeUsed !== language);
 
       const structuredSectionEntries = rawSections.reduce<StructuredSectionEntry[]>((acc, section, index) => {
         if (section && typeof section === 'object' && 'visible' in section && (section as { visible?: unknown }).visible === false) {
