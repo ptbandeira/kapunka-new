@@ -25,16 +25,17 @@ import type {
   PageContent,
   Language,
   TestimonialEntry,
+  VisibilityFlag,
 } from '../types';
 import { fetchVisualEditorJson } from '../utils/fetchVisualEditorJson';
-import { fetchVisualEditorMarkdown } from '../utils/fetchVisualEditorMarkdown';
+import { fetchVisualEditorMarkdown, type VisualEditorMarkdownDocument } from '../utils/fetchVisualEditorMarkdown';
 import { getVisualEditorAttributes } from '../utils/stackbitBindings';
 import { fetchTestimonialsByRefs } from '../utils/fetchTestimonialsByRefs';
 import { buildLocalizedPath } from '../utils/localePaths';
 import { getCloudinaryUrl, isAbsoluteUrl } from '../utils/imageUrl';
 import { filterVisible } from '../utils/contentVisibility';
 import Seo from '../src/components/Seo';
-import { loadPage } from '../src/lib/content';
+import { loadPage, type LoadPageResult } from '../src/lib/content';
 
 interface ProductsResponse {
   items?: Product[];
@@ -43,6 +44,8 @@ interface ProductsResponse {
 interface ReviewsResponse {
   items?: Review[];
 }
+
+type MarkdownPageDocument<T> = VisualEditorMarkdownDocument<T> & Record<string, unknown>;
 
 type CmsCtaShape = {
   label?: string | null;
@@ -102,7 +105,15 @@ type TestimonialEntryFields = {
   testimonialRef?: string | null;
 };
 
-type HomeSection =
+type NormalizedTestimonial = {
+  text: string;
+  author?: string;
+  role?: string;
+  avatar?: string;
+  relationRef?: string;
+};
+
+type HomeSection = (
   | {
       type: 'hero';
       content?: HeroSectionContentFields | null;
@@ -195,7 +206,8 @@ type HomeSection =
         ctaLabel?: string;
         ctaHref?: string;
       }>;
-    };
+    }
+) & VisibilityFlag;
 
 const heroAlignmentSchema = z
   .object({
@@ -1170,6 +1182,7 @@ const ClinicsBlock: React.FC<ClinicsBlockProps> = ({ data, fieldPath, fallbackCt
         return null;
     }
 
+    const { language } = useLanguage();
     const { clinicsTitle, clinicsBody, clinicsCtaHref, clinicsCtaLabel, clinicsImage } = data;
     const trimmedClinicsImage = clinicsImage?.trim() ?? '';
     const clinicsImageUrl = trimmedClinicsImage ? getCloudinaryUrl(trimmedClinicsImage) ?? trimmedClinicsImage : '';
@@ -1280,6 +1293,7 @@ const ClinicsBlock: React.FC<ClinicsBlockProps> = ({ data, fieldPath, fallbackCt
 interface GalleryRowsProps {
     rows?: GalleryRowContent[];
     fieldPath?: string;
+    fallbackAlt?: string;
 }
 
 const galleryLayoutMap: Record<NonNullable<GalleryRowContent['layout']>, string> = {
@@ -1288,7 +1302,7 @@ const galleryLayoutMap: Record<NonNullable<GalleryRowContent['layout']>, string>
     quarters: 'grid-cols-2 lg:grid-cols-4',
 };
 
-const GalleryRows: React.FC<GalleryRowsProps> = ({ rows, fieldPath }) => {
+const GalleryRows: React.FC<GalleryRowsProps> = ({ rows, fieldPath, fallbackAlt }) => {
     const sanitizedRows = rows
         ?.map((row) => {
             if (!row) {
@@ -1337,7 +1351,7 @@ const GalleryRows: React.FC<GalleryRowsProps> = ({ rows, fieldPath }) => {
                                 const rawImageSrc = item.image?.trim() ?? '';
                                 const imageSrc = rawImageSrc ? getCloudinaryUrl(rawImageSrc) ?? rawImageSrc : '';
                                 const caption = item.caption?.trim();
-                                const altText = item.alt?.trim() ?? caption ?? computedTitle;
+                                const altText = item.alt?.trim() ?? caption ?? fallbackAlt ?? 'Gallery image';
                                 const hasContent = Boolean(imageSrc);
 
                                 if (!hasContent) {
@@ -1644,16 +1658,19 @@ const Home: React.FC = () => {
     setPageContent(null);
 
     const loadSections = async () => {
-      let result;
+      let result: LoadPageResult<MarkdownPageDocument<unknown>>;
 
       try {
-        result = await loadPage({
+        result = await loadPage<MarkdownPageDocument<unknown>>({
           slug: 'home',
           locale: language,
-          loader: async ({ locale: currentLocale }) => fetchVisualEditorMarkdown<unknown>(
-            `/content/pages/${currentLocale}/home.md`,
-            { cache: 'no-store' },
-          ),
+          loader: async ({ locale: currentLocale }) => {
+            const doc = await fetchVisualEditorMarkdown<unknown>(
+              `/content/pages/${currentLocale}/home.md`,
+              { cache: 'no-store' },
+            );
+            return doc as MarkdownPageDocument<unknown>;
+          },
         });
       } catch (error) {
         console.error('Failed to load home sections', error);
@@ -1671,13 +1688,16 @@ const Home: React.FC = () => {
 
       if (!parsedResult.success && result.localeUsed !== 'en') {
         try {
-          result = await loadPage({
+          result = await loadPage<MarkdownPageDocument<unknown>>({
             slug: 'home',
             locale: 'en',
-            loader: async ({ locale: fallbackLocale }) => fetchVisualEditorMarkdown<unknown>(
-              `/content/pages/${fallbackLocale}/home.md`,
-              { cache: 'no-store' },
-            ),
+            loader: async ({ locale: fallbackLocale }) => {
+              const doc = await fetchVisualEditorMarkdown<unknown>(
+                `/content/pages/${fallbackLocale}/home.md`,
+                { cache: 'no-store' },
+              );
+              return doc as MarkdownPageDocument<unknown>;
+            },
           });
 
           if (!isMounted) {
@@ -3206,6 +3226,9 @@ const Home: React.FC = () => {
         const body = sanitizeString(section.body ?? null);
         const mediaImage = sanitizeString(pickImage(section.image));
         const imageAlt = sanitizeString(section.imageAlt ?? null) ?? title ?? computedTitle;
+        const mediaTitleFieldPath = `${sectionFieldPath}.title`;
+        const mediaBodyFieldPath = `${sectionFieldPath}.body`;
+        const mediaImageFieldPath = `${sectionFieldPath}.image`;
         if (!title && !body && !mediaImage) {
           return null;
         }
@@ -3275,7 +3298,7 @@ const Home: React.FC = () => {
                     src={mediaImage}
                     alt={imageAlt}
                     className="h-full w-full object-cover"
-                    {...getVisualEditorAttributes(imageFieldPath)}
+                    {...getVisualEditorAttributes(mediaImageFieldPath)}
                   />
                   <div
                     className="pointer-events-none absolute inset-0 grid"
@@ -3433,33 +3456,44 @@ const Home: React.FC = () => {
         const testimonialSection = section as Extract<HomeSection, { type: 'testimonials' }>;
         const sectionTitle = sanitizeString(testimonialSection.title ?? null);
         const testimonialsList = (testimonialSection.testimonials ?? [])
-          .map((entry) => {
-            const relationRef = sanitizeString(entry?.testimonialRef ?? null);
+          .map<NormalizedTestimonial | null>((entry) => {
+            const relationRef = sanitizeString(entry?.testimonialRef ?? null) ?? undefined;
             const resolved = relationRef ? testimonialLibrary[relationRef] : undefined;
 
-            const text = sanitizeString(entry?.quote ?? resolved?.quote ?? null);
-            const author = sanitizeString(entry?.author ?? resolved?.name ?? null);
-            const role = sanitizeString(entry?.role ?? resolved?.title ?? null);
-            const avatar = sanitizeString(entry?.avatar ?? resolved?.avatar ?? null);
-            const avatarUrl = avatar ? getCloudinaryUrl(avatar) ?? avatar : undefined;
+            const text = sanitizeString(entry?.quote ?? resolved?.quote ?? null) ?? undefined;
+            if (!text) {
+              return null;
+            }
+
+            const author = sanitizeString(entry?.author ?? resolved?.name ?? null) ?? undefined;
+            const role = sanitizeString(entry?.role ?? resolved?.title ?? null) ?? undefined;
+            const avatarCandidate = sanitizeString(entry?.avatar ?? resolved?.avatar ?? null) ?? undefined;
+            const avatar = avatarCandidate ? getCloudinaryUrl(avatarCandidate) ?? avatarCandidate : undefined;
 
             return {
               text,
               author,
               role,
-              avatar: avatarUrl,
+              avatar,
               relationRef,
             };
           })
-          .filter((entry) => typeof entry.text === 'string' && entry.text.length > 0);
+          .filter((entry): entry is NormalizedTestimonial => Boolean(entry));
 
         const legacyQuotes = (testimonialSection.quotes ?? [])
-          .map((quote) => ({
-            text: sanitizeString(quote.text ?? null),
-            author: sanitizeString(quote.author ?? null),
-            role: sanitizeString(quote.role ?? null),
-          }))
-          .filter((quote) => typeof quote.text === 'string' && quote.text.length > 0);
+          .map<NormalizedTestimonial | null>((quote) => {
+            const text = sanitizeString(quote.text ?? null) ?? undefined;
+            if (!text) {
+              return null;
+            }
+
+            return {
+              text,
+              author: sanitizeString(quote.author ?? null) ?? undefined,
+              role: sanitizeString(quote.role ?? null) ?? undefined,
+            };
+          })
+          .filter((quote): quote is NormalizedTestimonial => Boolean(quote));
 
         const quotes = testimonialsList.length > 0 ? testimonialsList : legacyQuotes;
 
@@ -3702,43 +3736,26 @@ const Home: React.FC = () => {
       }
       case 'mediaShowcase': {
         const showcaseTitle = sanitizeString(section.title ?? null);
-        const items = (section.items ?? []).map((item, itemIndex) => {
-          const fieldScope = `${sectionFieldPath}.items.${itemIndex}`;
-          const focalCandidate = (item as { imageFocal?: { x?: unknown; y?: unknown } | null }).imageFocal ?? null;
-          const imageFocal = focalCandidate && typeof focalCandidate === 'object'
-            ? {
-                x: typeof focalCandidate.x === 'number' ? focalCandidate.x : undefined,
-                y: typeof focalCandidate.y === 'number' ? focalCandidate.y : undefined,
-              }
-            : undefined;
-          return {
+        const normalizedItems = (section.items ?? [])
+          .map((item) => ({
             eyebrow: sanitizeString(item.eyebrow ?? null) ?? undefined,
             title: sanitizeString(item.title ?? null) ?? undefined,
             body: sanitizeString(item.body ?? null) ?? undefined,
             image: sanitizeString(pickImage(item.image)) ?? undefined,
             imageAlt: sanitizeString(item.imageAlt ?? null) ?? undefined,
-            imageFocal,
-            fieldPath: fieldScope,
-            imageFieldPath: `${fieldScope}.image`,
-            eyebrowFieldPath: `${fieldScope}.eyebrow`,
-            titleFieldPath: `${fieldScope}.title`,
-            bodyFieldPath: `${fieldScope}.body`,
             ctaLabel: sanitizeString(item.ctaLabel ?? null) ?? undefined,
             ctaHref: sanitizeString(item.ctaHref ?? null) ?? undefined,
-            ctaLabelFieldPath: `${fieldScope}.ctaLabel`,
-            ctaHrefFieldPath: `${fieldScope}.ctaHref`,
-          };
-        }).filter((item) => item.image || item.title || item.body);
+          }))
+          .filter((item) => item.image || item.title || item.body || item.ctaHref || item.ctaLabel);
 
-        if (items.length === 0) {
+        if (!showcaseTitle && normalizedItems.length === 0) {
           return null;
         }
 
         return (
           <MediaShowcase
-            key={createKeyFromParts('section-media-showcase', [showcaseTitle, items.map((item) => item.title ?? item.image ?? '').join('|')])}
-            title={showcaseTitle}
-            items={items}
+            key={createKeyFromParts('section-media-showcase', [showcaseTitle, normalizedItems.map((item) => item.title ?? item.image ?? '').join('|')])}
+            section={section}
             fieldPath={sectionFieldPath}
           />
         );
@@ -3909,7 +3926,11 @@ const Home: React.FC = () => {
             fallbackCtaLabel={t('home.ctaClinics')}
           />
           {renderedSections.length > 0 && renderedSections}
-          <GalleryRows rows={galleryRowsData} fieldPath={`${homeFieldPath}.galleryRows`} />
+          <GalleryRows
+            rows={galleryRowsData}
+            fieldPath={`${homeFieldPath}.galleryRows`}
+            fallbackAlt={computedTitle}
+          />
           <Bestsellers intro={bestsellersIntro} introFieldPath={`${homeFieldPath}.bestsellersIntro`} />
           <Reviews />
           <NewsletterSignup />

@@ -294,3 +294,8 @@ This log records day-to-day investigations, fixes, and decisions that affect the
 - **What changed**: Updated `pages/for-clinics.tsx` to render the new builder-driven sections via `SectionRenderer`, pulling hero and CTA copy from the unified hero/fields data exposed by `loadClinicsPageContent`. Trimmed the legacy Markdown-era fields and refreshed Stackbit bindings so edits map to `site.content.<locale>.pages.clinics.*`.
 - **Impact & follow-up**: Clinics editors now manage a single section list across locales in the Visual Editor, and hero/CTA strings stay in sync with builder data. Verify Stackbit shows the section blocks under `pages.clinics` in each locale and that hero CTA links resolve correctly after publish.
 - **References**: Pending PR
+
+## 2025-10-07 — Stabilized Home page bindings
+- **What changed**: Refactored `pages/Home.tsx` to pull language context into clinics CTAs, inject fallback gallery alt text, align Stackbit field path bindings for media copy, and harden testimonials/media showcase loaders with stricter typing so the Visual Editor and runtime agree on section data.
+- **Impact & follow-up**: Home sections now compile without TypeScript failures and the Visual Editor maps edits back to the unified content schema, reducing broken bindings when editors adjust hero, gallery, or testimonial blocks. Re-run localized page syncs once outstanding content model fixes land to keep schemas aligned.
+- **References**: Pending PR
