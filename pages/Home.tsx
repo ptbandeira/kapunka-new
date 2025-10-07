@@ -25,16 +25,17 @@ import type {
   PageContent,
   Language,
   TestimonialEntry,
+  VisibilityFlag,
 } from '../types';
 import { fetchVisualEditorJson } from '../utils/fetchVisualEditorJson';
-import { fetchVisualEditorMarkdown } from '../utils/fetchVisualEditorMarkdown';
+import { fetchVisualEditorMarkdown, type VisualEditorMarkdownDocument } from '../utils/fetchVisualEditorMarkdown';
 import { getVisualEditorAttributes } from '../utils/stackbitBindings';
 import { fetchTestimonialsByRefs } from '../utils/fetchTestimonialsByRefs';
 import { buildLocalizedPath } from '../utils/localePaths';
 import { getCloudinaryUrl, isAbsoluteUrl } from '../utils/imageUrl';
 import { filterVisible } from '../utils/contentVisibility';
 import Seo from '../src/components/Seo';
-import { loadPage } from '../src/lib/content';
+import { loadPage, type LoadPageResult } from '../src/lib/content';
 
 interface ProductsResponse {
   items?: Product[];
@@ -102,7 +103,7 @@ type TestimonialEntryFields = {
   testimonialRef?: string | null;
 };
 
-type HomeSection =
+type HomeSection = (
   | {
       type: 'hero';
       content?: HeroSectionContentFields | null;
@@ -195,7 +196,8 @@ type HomeSection =
         ctaLabel?: string;
         ctaHref?: string;
       }>;
-    };
+    }
+) & VisibilityFlag;
 
 const heroAlignmentSchema = z
   .object({
@@ -1182,6 +1184,8 @@ const Bestsellers: React.FC<BestsellersProps> = ({ intro, introFieldPath }) => {
     );
 };
 
+type MarkdownPageDocument<T> = VisualEditorMarkdownDocument<T> & Record<string, unknown>;
+
 interface ClinicsBlockProps {
     data?: ClinicsBlockContent;
     fieldPath?: string;
@@ -1217,6 +1221,7 @@ const ClinicsBlock: React.FC<ClinicsBlockProps> = ({ data, fieldPath, fallbackCt
         return null;
     }
 
+    const { language } = useLanguage();
     const { clinicsTitle, clinicsBody, clinicsCtaHref, clinicsCtaLabel, clinicsImage } = data;
     const trimmedClinicsImage = clinicsImage?.trim() ?? '';
     const clinicsImageUrl = trimmedClinicsImage ? getCloudinaryUrl(trimmedClinicsImage) ?? trimmedClinicsImage : '';
@@ -1327,6 +1332,7 @@ const ClinicsBlock: React.FC<ClinicsBlockProps> = ({ data, fieldPath, fallbackCt
 interface GalleryRowsProps {
     rows?: GalleryRowContent[];
     fieldPath?: string;
+    fallbackAlt?: string;
 }
 
 const galleryLayoutMap: Record<NonNullable<GalleryRowContent['layout']>, string> = {
@@ -1335,7 +1341,7 @@ const galleryLayoutMap: Record<NonNullable<GalleryRowContent['layout']>, string>
     quarters: 'grid-cols-2 lg:grid-cols-4',
 };
 
-const GalleryRows: React.FC<GalleryRowsProps> = ({ rows, fieldPath }) => {
+const GalleryRows: React.FC<GalleryRowsProps> = ({ rows, fieldPath, fallbackAlt }) => {
     const sanitizedRows = rows
         ?.map((row) => {
             if (!row) {
@@ -1384,7 +1390,7 @@ const GalleryRows: React.FC<GalleryRowsProps> = ({ rows, fieldPath }) => {
                                 const rawImageSrc = item.image?.trim() ?? '';
                                 const imageSrc = rawImageSrc ? getCloudinaryUrl(rawImageSrc) ?? rawImageSrc : '';
                                 const caption = item.caption?.trim();
-                                const altText = item.alt?.trim() ?? caption ?? computedTitle;
+                                const altText = item.alt?.trim() ?? caption ?? fallbackAlt ?? 'Gallery image';
                                 const hasContent = Boolean(imageSrc);
 
                                 if (!hasContent) {
@@ -1691,16 +1697,19 @@ const Home: React.FC = () => {
     setPageContent(null);
 
     const loadSections = async () => {
-      let result;
+      let result: LoadPageResult<MarkdownPageDocument<unknown>>;
 
       try {
-        result = await loadPage({
+        result = await loadPage<MarkdownPageDocument<unknown>>({
           slug: 'home',
           locale: language,
-          loader: async ({ locale: currentLocale }) => fetchVisualEditorMarkdown<unknown>(
-            `/content/pages/${currentLocale}/home.md`,
-            { cache: 'no-store' },
-          ),
+          loader: async ({ locale: currentLocale }) => {
+            const doc = await fetchVisualEditorMarkdown<unknown>(
+              `/content/pages/${currentLocale}/home.md`,
+              { cache: 'no-store' },
+            );
+            return doc as MarkdownPageDocument<unknown>;
+          },
         });
       } catch (error) {
         console.error('Failed to load home sections', error);
@@ -1718,13 +1727,16 @@ const Home: React.FC = () => {
 
       if (!parsedResult.success && result.localeUsed !== 'en') {
         try {
-          result = await loadPage({
+          result = await loadPage<MarkdownPageDocument<unknown>>({
             slug: 'home',
             locale: 'en',
-            loader: async ({ locale: fallbackLocale }) => fetchVisualEditorMarkdown<unknown>(
-              `/content/pages/${fallbackLocale}/home.md`,
-              { cache: 'no-store' },
-            ),
+            loader: async ({ locale: fallbackLocale }) => {
+              const doc = await fetchVisualEditorMarkdown<unknown>(
+                `/content/pages/${fallbackLocale}/home.md`,
+                { cache: 'no-store' },
+              );
+              return doc as MarkdownPageDocument<unknown>;
+            },
           });
 
           if (!isMounted) {
@@ -1775,21 +1787,21 @@ const Home: React.FC = () => {
         if (!heroCtasData) {
           const heroCtas = (heroBlock as { ctas?: Record<string, unknown> }).ctas ?? null;
           if (heroCtas && typeof heroCtas === 'object') {
-            const resolveCta = (cta: unknown) => {
-              if (!cta || typeof cta !== 'object') {
-                return undefined;
-              }
-              const ctaRecord = cta as Record<string, unknown>;
-              const label = resolveLocalizedString(ctaRecord.label, result.localeUsed);
-              const href = resolveLocalizedString(ctaRecord.href, result.localeUsed);
-              if (!label && !href) {
-                return undefined;
-              }
-              return {
-                ...(label ? { label } : {}),
-                ...(href ? { href } : {}),
-              };
-            };
+           const resolveCta = (cta: unknown) => {
+             if (!cta || typeof cta !== 'object') {
+               return undefined;
+             }
+             const ctaRecord = cta as Record<string, unknown>;
+             const label = resolveLocalizedString(ctaRecord.label, result.localeUsed);
+             const href = resolveLocalizedString(ctaRecord.href, result.localeUsed);
+             if (!label && !href) {
+               return undefined;
+             }
+             return {
+               ...(label ? { label } : {}),
+               ...(href ? { href } : {}),
+             };
+           };
 
             const primaryCta = resolveCta(heroCtas.primary ?? heroCtas.shop);
             const secondaryCta = resolveCta(heroCtas.secondary ?? heroCtas.pro);
@@ -1798,7 +1810,7 @@ const Home: React.FC = () => {
               heroCtasData = {
                 ...(primaryCta ? { ctaPrimary: primaryCta } : {}),
                 ...(secondaryCta ? { ctaSecondary: secondaryCta } : {}),
-              };
+              } as HeroCtasGroup;
             }
           }
         }
@@ -1811,18 +1823,22 @@ const Home: React.FC = () => {
             const textPosition = resolveLocalizedString(heroLayout.textPosition, result.localeUsed);
             const textAnchor = resolveLocalizedString(heroLayout.textAnchor, result.localeUsed);
             const overlayKeyword = resolveLocalizedString(heroLayout.overlay, result.localeUsed);
-            const layoutHint = resolveLocalizedString(heroLayout.layoutHint, result.localeUsed);
-
-            heroAlignmentData = {
+            const layoutHintRaw = resolveLocalizedString(heroLayout.layoutHint, result.localeUsed);
+            const normalizedLayoutHint = layoutHintRaw ? normalizeHeroLayoutHint(layoutHintRaw) : undefined;
+            const alignmentPatch: Partial<HeroAlignmentGroup> = {
               ...(alignX === 'left' || alignX === 'center' || alignX === 'right' ? { heroAlignX: alignX } : {}),
               ...(alignY === 'top' || alignY === 'middle' || alignY === 'bottom' ? { heroAlignY: alignY } : {}),
               ...(textPosition === 'overlay' || textPosition === 'below' ? { heroTextPosition: textPosition } : {}),
               ...(textAnchor && HERO_TEXT_POSITION_MAP[textAnchor as HeroTextAnchor]
                 ? { heroTextAnchor: textAnchor as HeroTextAnchor }
                 : {}),
-              ...(layoutHint ? { heroLayoutHint: layoutHint } : {}),
+              ...(normalizedLayoutHint ? { heroLayoutHint: normalizedLayoutHint } : {}),
               ...(overlayKeyword ? { heroOverlay: resolveHeroOverlayKeyword(overlayKeyword) } : {}),
             };
+
+            if (Object.keys(alignmentPatch).length > 0) {
+              heroAlignmentData = { ...(heroAlignmentData ?? {}), ...alignmentPatch } as HeroAlignmentGroup;
+            }
           }
         }
       }
@@ -3307,6 +3323,9 @@ const Home: React.FC = () => {
         );
       }
       case 'mediaCopy': {
+        const mediaTitleFieldPath = `${sectionFieldPath}.title`;
+        const mediaBodyFieldPath = `${sectionFieldPath}.body`;
+        const mediaImageFieldPath = `${sectionFieldPath}.image`;
         const title = sanitizeString(section.title ?? null);
         const body = sanitizeString(section.body ?? null);
         const mediaImage = sanitizeString(pickImage(section.image));
@@ -3806,44 +3825,25 @@ const Home: React.FC = () => {
         );
       }
       case 'mediaShowcase': {
-        const showcaseTitle = sanitizeString(section.title ?? null);
-        const items = (section.items ?? []).map((item, itemIndex) => {
-          const fieldScope = `${sectionFieldPath}.items.${itemIndex}`;
-          const focalCandidate = (item as { imageFocal?: { x?: unknown; y?: unknown } | null }).imageFocal ?? null;
-          const imageFocal = focalCandidate && typeof focalCandidate === 'object'
-            ? {
-                x: typeof focalCandidate.x === 'number' ? focalCandidate.x : undefined,
-                y: typeof focalCandidate.y === 'number' ? focalCandidate.y : undefined,
-              }
-            : undefined;
-          return {
-            eyebrow: sanitizeString(item.eyebrow ?? null) ?? undefined,
-            title: sanitizeString(item.title ?? null) ?? undefined,
-            body: sanitizeString(item.body ?? null) ?? undefined,
-            image: sanitizeString(pickImage(item.image)) ?? undefined,
-            imageAlt: sanitizeString(item.imageAlt ?? null) ?? undefined,
-            imageFocal,
-            fieldPath: fieldScope,
-            imageFieldPath: `${fieldScope}.image`,
-            eyebrowFieldPath: `${fieldScope}.eyebrow`,
-            titleFieldPath: `${fieldScope}.title`,
-            bodyFieldPath: `${fieldScope}.body`,
-            ctaLabel: sanitizeString(item.ctaLabel ?? null) ?? undefined,
-            ctaHref: sanitizeString(item.ctaHref ?? null) ?? undefined,
-            ctaLabelFieldPath: `${fieldScope}.ctaLabel`,
-            ctaHrefFieldPath: `${fieldScope}.ctaHref`,
-          };
-        }).filter((item) => item.image || item.title || item.body);
+        const hasItems = (section.items ?? []).some((item) => {
+          if (!item || typeof item !== 'object') {
+            return false;
+          }
+          return Boolean(
+            sanitizeString((item as { title?: string }).title ?? null)
+            || sanitizeString((item as { body?: string }).body ?? null)
+            || sanitizeString((item as { image?: string }).image ?? null)
+          );
+        });
 
-        if (items.length === 0) {
+        if (!sanitizeString(section.title ?? null) && !hasItems) {
           return null;
         }
 
         return (
           <MediaShowcase
-            key={createKeyFromParts('section-media-showcase', [showcaseTitle, items.map((item) => item.title ?? item.image ?? '').join('|')])}
-            title={showcaseTitle}
-            items={items}
+            key={createKeyFromParts('section-media-showcase', [section.title, (section.items ?? []).length.toString()])}
+            section={section}
             fieldPath={sectionFieldPath}
           />
         );
@@ -4014,7 +4014,7 @@ const Home: React.FC = () => {
             fallbackCtaLabel={t('home.ctaClinics')}
           />
           {renderedSections.length > 0 && renderedSections}
-          <GalleryRows rows={galleryRowsData} fieldPath={`${homeFieldPath}.galleryRows`} />
+          <GalleryRows rows={galleryRowsData} fieldPath={`${homeFieldPath}.galleryRows`} fallbackAlt={computedTitle} />
           <Bestsellers intro={bestsellersIntro} introFieldPath={`${homeFieldPath}.bestsellersIntro`} />
           <Reviews />
           <NewsletterSignup />

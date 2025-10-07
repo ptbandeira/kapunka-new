@@ -344,3 +344,8 @@ This log records day-to-day investigations, fixes, and decisions that affect the
 - **What changed**: `pages/Home.tsx` now reads the new `hero.content`, `hero.ctas`, and `hero.layout` fields from `pages_v2` and maps them to the legacy hero alignment, overlay, and CTA props so the hero matches the intended design again.
 - **Impact & follow-up**: Restores left-aligned hero copy, dual CTAs, and overlay treatment without regressing the rest of the homepage. Continue validating other sections against the unified schema before re-enabling full migration.
 - **References**: Pending PR
+
+## 2025-10-07 — Patched Home TS typings for legacy layout
+- **What changed**: Added localized helpers, restored `VisibilityFlag` typing, and mapped the unified hero/layout schema back into the legacy `Home.tsx`. This clears the IDE TypeScript errors (missing `language`, `computedTitle`, CTA generics, etc.) while keeping the classic design.
+- **Impact & follow-up**: Dev tooling stops flagging the Home page, and the hero + media sections stay editable through the Visual Editor. Continue migrating remaining sections cautiously to avoid reintroducing type mismatches.
+- **References**: Pending PR
