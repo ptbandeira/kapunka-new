@@ -334,3 +334,8 @@ This log records day-to-day investigations, fixes, and decisions that affect the
 - **What changed**: Updated `pages/Home.tsx` to translate the new `hero` schema (localized headings, CTAs, layout hints) into the legacy rendering fields so the homepage hero and marquee blocks load again.
 - **Impact & follow-up**: Restores the full hero experience with overlay image, dual CTAs, and alignment controls matching the design in production. Continue aligning remaining sections before re-enabling unified-only loading.
 - **References**: Pending PR
+
+## 2025-10-07 — Reverted Home page to pre-unified layout
+- **What changed**: Restored `pages/Home.tsx` from commit 7871f64 (before the unified content experiments) so the hero, media showcase grid, carousel, newsletter, bestsellers, and testimonials render exactly like the reference design.
+- **Impact & follow-up**: The homepage now matches the original layout; future unified-content work must ship behind toggles to prevent layout regressions. Update the new schema to align with this implementation before reattempting migration.
+- **References**: Pending PR
