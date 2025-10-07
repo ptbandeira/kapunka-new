@@ -44,6 +44,150 @@ const toPlainObject = (value) => {
   return null;
 };
 
+const ABSOLUTE_URL_PATTERN = /^([a-z]+:)?\/\//i;
+const uploadPrefixPatterns = [
+  /^\/?content\/[a-z]{2}\/uploads\//i,
+  /^\/?content\/uploads\//i,
+  /^\/?static\/images\/uploads\//i,
+  /^\/?images\/uploads\//i,
+];
+const DEFAULT_CLOUDINARY_TRANSFORMATIONS = ['f_auto', 'q_auto', 'dpr_auto'];
+
+const getCmsInstance = () => (typeof window !== 'undefined' ? window.CMS : null);
+
+const getCmsConfig = () => {
+  const CMS = getCmsInstance();
+  if (!CMS || typeof CMS.getConfig !== 'function') {
+    return null;
+  }
+  return CMS.getConfig();
+};
+
+const stripUploadPrefixes = (value) => {
+  return uploadPrefixPatterns.reduce((acc, pattern) => acc.replace(pattern, ''), value).replace(/^\/+/, '');
+};
+
+const normalizeTransformations = (groups) => {
+  const transformations = [];
+
+  asArray(groups).forEach((group) => {
+    asArray(group).forEach((item) => {
+      const plain = toPlainObject(item);
+      if (!plain) {
+        return;
+      }
+
+      Object.entries(plain).forEach(([key, val]) => {
+        if (typeof val === 'string' && val.trim().length > 0) {
+          transformations.push(`${key}_${val.trim()}`);
+        }
+      });
+    });
+  });
+
+  if (transformations.length > 0) {
+    return transformations.join(',');
+  }
+
+  return DEFAULT_CLOUDINARY_TRANSFORMATIONS.join(',');
+};
+
+const cachedCloudinarySettings = {
+  resolved: false,
+  base: null,
+  transformations: null,
+};
+
+const resolveCloudinarySettings = () => {
+  if (cachedCloudinarySettings.resolved) {
+    return cachedCloudinarySettings;
+  }
+
+  const config = getCmsConfig();
+  if (!config || typeof config.getIn !== 'function') {
+    return cachedCloudinarySettings;
+  }
+
+  const cloudName = config.getIn(['media_library', 'config', 'cloud_name']);
+  if (typeof cloudName === 'string' && cloudName.trim().length > 0) {
+    cachedCloudinarySettings.base = `https://res.cloudinary.com/${cloudName.trim()}/image/upload`;
+  }
+
+  const defaultTransformations = config.getIn(['media_library', 'config', 'default_transformations']);
+  cachedCloudinarySettings.transformations = normalizeTransformations(defaultTransformations);
+  cachedCloudinarySettings.resolved = true;
+
+  return cachedCloudinarySettings;
+};
+
+const extractImagePath = (value) => {
+  if (!value) {
+    return undefined;
+  }
+
+  if (typeof value === 'string') {
+    return value;
+  }
+
+  if (typeof value.get === 'function') {
+    const fromMap = value.get('src') || value.get('path');
+    if (typeof fromMap === 'string') {
+      return fromMap;
+    }
+  }
+
+  if (typeof value.src === 'string') {
+    return value.src;
+  }
+
+  if (typeof value.toJS === 'function') {
+    const plain = value.toJS();
+    if (plain && typeof plain.src === 'string') {
+      return plain.src;
+    }
+    if (plain && typeof plain.path === 'string') {
+      return plain.path;
+    }
+  }
+
+  if (typeof value === 'object') {
+    if (typeof value.path === 'string') {
+      return value.path;
+    }
+    if (typeof value.url === 'string') {
+      return value.url;
+    }
+  }
+
+  return undefined;
+};
+
+const getPreviewImageSrc = (input) => {
+  const raw = extractImagePath(input);
+  if (!isNonEmptyString(raw)) {
+    return undefined;
+  }
+
+  const trimmed = raw.trim();
+  if (ABSOLUTE_URL_PATTERN.test(trimmed)) {
+    return trimmed;
+  }
+
+  const sanitized = stripUploadPrefixes(trimmed);
+  const { base, transformations } = resolveCloudinarySettings();
+
+  if (!base) {
+    return sanitized || trimmed;
+  }
+
+  const segments = [base, transformations, sanitized]
+    .filter((segment) => isNonEmptyString(segment));
+
+  return segments
+    .map((segment, index) => (index === 0 ? segment.replace(/\/+$/, '') : segment.replace(/^\/+/, '').replace(/\/+$/, '')))
+    .join('/');
+};
+
 function renderCtas(ctas) {
   if (!ctas || (!ctas.primary && !ctas.secondary)) {
     return null;
@@ -236,16 +380,18 @@ export function MediaShowcase(props) {
   return createElement(
     'div',
     { className: 'grid gap-4 md:grid-cols-2' },
-    items.map((item, idx) =>
-      createElement(
+    items.map((item, idx) => {
+      const imageSrc = getPreviewImageSrc(item.image) || extractImagePath(item.image);
+
+      return createElement(
         'div',
         {
           key: `media-${idx}`,
           className: 'overflow-hidden rounded-2xl border border-stone-200 bg-white shadow-sm',
         },
-        item.image
+        isNonEmptyString(imageSrc)
           ? createElement('img', {
-              src: item.image,
+              src: imageSrc,
               alt: item.alt || item.title || 'Media item',
               className: 'h-40 w-full object-cover',
             })
@@ -272,8 +418,8 @@ export function MediaShowcase(props) {
             : null,
           item.ctaLabel ? createElement('span', { className: 'cms-preview-pill w-fit' }, item.ctaLabel) : null,
         ),
-      ),
-    ),
+      );
+    }),
   );
 }
 
@@ -287,16 +433,18 @@ export function CommunityCarousel(props) {
       ? createElement(
           'div',
           { className: 'grid grid-cols-2 sm:grid-cols-3 gap-3' },
-          slides.slice(0, 6).map((slide, idx) =>
-            createElement(
+          slides.slice(0, 6).map((slide, idx) => {
+            const imageSrc = getPreviewImageSrc(slide.image) || extractImagePath(slide.image);
+
+            return createElement(
               'div',
               {
                 key: `slide-${idx}`,
                 className: 'flex flex-col overflow-hidden rounded-2xl border border-stone-200 bg-white shadow-sm',
               },
-              slide.image
+              isNonEmptyString(imageSrc)
                 ? createElement('img', {
-                    src: slide.image,
+                    src: imageSrc,
                     alt: slide.alt || 'Community slide',
                     className: 'h-32 w-full object-cover',
                   })
@@ -322,8 +470,8 @@ export function CommunityCarousel(props) {
                       : null,
                   )
                 : null,
-            ),
-          ),
+            );
+          }),
         )
       : createElement(
           'div',
@@ -416,7 +564,8 @@ export function Faq(props) {
 }
 
 export function MediaCopy(props) {
-  const image = props.image && typeof props.image === 'object' ? props.image.src : props.image;
+  const imageCandidate = props.image ?? props.content?.image;
+  const imageSrc = getPreviewImageSrc(imageCandidate) || extractImagePath(imageCandidate);
   const text = props.content?.body || props.body || '';
 
   return createElement(
@@ -432,9 +581,9 @@ export function MediaCopy(props) {
         ? createElement('p', { className: 'text-sm text-stone-600 leading-relaxed whitespace-pre-wrap' }, text)
         : createElement('p', { className: 'text-sm text-stone-400' }, 'Add body content to describe this block.'),
     ),
-    image
+    isNonEmptyString(imageSrc)
       ? createElement('img', {
-          src: image,
+          src: imageSrc,
           alt: props.content?.image?.alt || props.imageAlt || 'Media image',
           className: 'w-full rounded-2xl object-cover border border-stone-200 shadow-sm',
         })

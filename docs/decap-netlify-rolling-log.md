@@ -1,5 +1,15 @@
 # Decap CMS & Netlify Rolling Log
 
+## 2025-10-07 — Restored Cloudinary previews in Decap
+- **What changed**: Added a Cloudinary-aware image resolver inside `admin/preview-components.js` so preview thumbnails pull the CMS cloud name, strip legacy upload prefixes, and render full CDN URLs rather than broken relative paths.
+- **Impact & follow-up**: Editors now see the same media framing in the CMS as on the live site while keeping the API key sourced from the `NETLIFY_ENV_CLOUDINARY_API_KEY` Netlify environment variable instead of committing secrets. Confirm the env var remains set in each Netlify context and provide a local `.env` when running the CMS locally.
+- **References**: Pending PR
+
+## 2025-10-07 — Consolidated Decap collections for editors
+- **What changed**: Grouped the CMS collections into six `collection_groups` (Site Settings, Page Builder, Assets & Media, Translations, Products, Blog Posts), aligned each collection’s `group` label, surfaced the catalog/policy libraries that were previously hidden, and renamed a few panels for plain-language clarity (e.g. Blog Posts, Product Reviews, Video Library).
+- **Impact & follow-up**: Editors now see a cleaner left rail with predictable categories and no hidden catalog entries, reducing the cognitive load when jumping between assets, products, and long-form pages. Monitor first editing sessions to confirm the new grouping matches editorial workflows and note any categories that still feel overloaded.
+- **References**: Pending PR
+
 ## 2025-10-18 — Updated Cloudinary credentials for Decap
 - **What changed**: Replaced the placeholder Cloudinary cloud name with `du6xl727e` in `admin/config.yml` and wired `NETLIFY_ENV_CLOUDINARY_API_KEY` plus the `CLOUDINARY_BASE_URL` delivery root into `netlify.toml` so the build, Visual Editor, and Decap UI read the real account settings.
 - **Impact & follow-up**: Editors can now upload assets through the Cloudinary media library without configuration warnings, while the site references a single Cloudinary base URL for asset delivery. Confirm Netlify’s environment variable screen reflects the API key and that Decap connects to Cloudinary successfully after deployment.

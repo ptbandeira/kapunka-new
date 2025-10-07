@@ -1079,6 +1079,20 @@ public_folder: "/uploads"
 site_url: https://kapunka-new.netlify.app
 display_url: https://kapunka-new.netlify.app
 
+collection_groups:
+  - label: "Site Settings"
+    collections: [site, policies]
+  - label: "Page Builder"
+    collections: [pages]
+  - label: "Assets & Media"
+    collections: [assets_images, mediaSets]
+  - label: "Translations"
+    collections: [translations]
+  - label: "Products"
+    collections: [products, reviews, testimonials, courses, trainingEntries]
+  - label: "Blog Posts"
+    collections: [articles, videoEntries]
+
 media_library:
   name: cloudinary
   config:
@@ -1090,6 +1104,7 @@ media_library:
 collections:
   - name: site
     label: Site Settings
+    group: "Site Settings"
     files:
       - name: site
         label: Site Configuration
@@ -1269,9 +1284,9 @@ collections:
                   - { label: Portuguese Description, name: pt, widget: text, pattern: ["^.{1,160}$", "Enter 1–160 characters."], hint: "Default Portuguese meta description." }
                   - { label: Spanish Description, name: es, widget: text, pattern: ["^.{1,160}$", "Enter 1–160 characters."], hint: "Default Spanish meta description." }
   - name: "assets_images"
-    label: "Media / Images"
+    label: "Image Library"
     label_singular: "Image"
-    group: "4. Media / Images"
+    group: "Assets & Media"
     editor: { preview: false }
     folder: "content/assets/images"
     create: true
@@ -1299,7 +1314,7 @@ collections:
   - name: pages
     label: Page Builder
     label_singular: Page
-    group: "1. Pages"
+    group: "Page Builder"
     description: "Edit Kapunka pages with reusable, reorderable sections."
     files:
       - &home_page
@@ -2063,6 +2078,7 @@ collections:
 
   - name: "mediaSets"
     label: "Media Sets"
+    group: "Assets & Media"
     folder: "content/media-sets"
     create: true
     slug: "{{slug}}"
@@ -2083,6 +2099,7 @@ collections:
             hint: "Optional focal point (0–1) to reuse when rendering this media set image."
   - name: translations
     label: Translations
+    group: "Translations"
     files:
       - name: nav
         label: Navigation
@@ -2677,7 +2694,7 @@ collections:
 
   - name: products
     label: Products
-    group: "2. Catalog"
+    group: "Products"
     editor: { preview: false }
     load_strategy: lazy
     files:
@@ -2694,8 +2711,8 @@ collections:
             summary: "{{fields.name.en}}"
             fields: *product_item_fields
   - name: articles
-    label: Articles
-    group: "2. Catalog"
+    label: Blog Posts
+    group: "Blog Posts"
     editor: { preview: false }
     load_strategy: lazy
     files:
@@ -2712,8 +2729,8 @@ collections:
             summary: "{{fields.title.en}}"
             fields: *article_item_fields
   - name: reviews
-    label: Testimonials
-    group: "3. Testimonials"
+    label: Product Reviews
+    group: "Products"
     files:
       - name: reviews
         label: Testimonials
@@ -2742,7 +2759,7 @@ collections:
                   - { label: Spanish, name: es, widget: string }
   - name: testimonials
     label: Clinical Testimonials
-    group: "3. Testimonials"
+    group: "Products"
     editor: { preview: false }
     folder: content/testimonials
     format: json
@@ -2766,9 +2783,8 @@ collections:
         default: "en"
   - name: courses
     label: Courses
-    group: "9. Legacy / Catalog"
+    group: "Products"
     editor: { preview: false }
-    hidden: true
     load_strategy: lazy
     files:
       - name: courses
@@ -2782,10 +2798,9 @@ collections:
             summary: "{{fields.title.en}}"
             fields: *course_item_fields
   - name: videoEntries
-    label: Video Entries
-    group: "9. Legacy / Catalog"
+    label: Video Library
+    group: "Blog Posts"
     editor: { preview: false }
-    hidden: true
     load_strategy: lazy
     files:
       - name: videos
@@ -2799,10 +2814,9 @@ collections:
             summary: "{{fields.title}}"
             fields: *video_entry_fields
   - name: trainingEntries
-    label: Training Entries
-    group: "9. Legacy / Catalog"
+    label: Training Library
+    group: "Products"
     editor: { preview: false }
-    hidden: true
     load_strategy: lazy
     files:
       - name: training
@@ -2818,9 +2832,8 @@ collections:
             fields: *training_entry_fields
   - name: policies
     label: Policies
-    group: "9. Legacy / Catalog"
+    group: "Site Settings"
     editor: { preview: false }
-    hidden: true
     files:
       - name: policies
         label: Store Policies
