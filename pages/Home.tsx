@@ -26,6 +26,7 @@ import type {
   Language,
   TestimonialEntry,
   VisibilityFlag,
+  MediaShowcaseSectionContent,
 } from '../types';
 import { fetchVisualEditorJson } from '../utils/fetchVisualEditorJson';
 import { fetchVisualEditorMarkdown, type VisualEditorMarkdownDocument } from '../utils/fetchVisualEditorMarkdown';
@@ -208,6 +209,26 @@ type HomeSection = (
       }>;
     }
 ) & VisibilityFlag;
+
+const HOME_SECTION_TYPES = [
+  'hero',
+  'featureGrid',
+  'productGrid',
+  'mediaCopy',
+  'testimonials',
+  'faq',
+  'banner',
+  'newsletterSignup',
+  'communityCarousel',
+  'video',
+  'mediaShowcase',
+] as const;
+
+const HOME_SECTION_TYPE_SET = new Set<HomeSection['type']>(HOME_SECTION_TYPES);
+
+const isHomeSectionType = (value: unknown): value is HomeSection['type'] => (
+  typeof value === 'string' && HOME_SECTION_TYPE_SET.has(value as HomeSection['type'])
+);
 
 const heroAlignmentSchema = z
   .object({
@@ -538,6 +559,15 @@ type SectionEntry = z.infer<typeof sectionSchema>;
 type HomeContentData = z.infer<typeof homeContentSchema>;
 type StructuredSectionEntry = { index: number; section: StructuredSection };
 type LegacySectionEntry = { index: number; section: LegacySection };
+
+const isHomeSection = (section: SectionEntry): section is HomeSection => {
+  if (!section || typeof section !== 'object') {
+    return false;
+  }
+
+  const typeValue = (section as { type?: unknown }).type;
+  return isHomeSectionType(typeValue);
+};
 
 const heroMarkdownComponents: MarkdownComponents = {
     p: ({ children, ...props }) => (
@@ -1726,7 +1756,7 @@ const Home: React.FC = () => {
 
       const parsedData = parsedResult.data;
       const hasSectionsArray = Array.isArray(parsedData?.sections);
-      const rawSections = hasSectionsArray ? parsedData.sections ?? [] : [];
+      const rawSections: SectionEntry[] = hasSectionsArray ? (parsedData.sections ?? []) : [];
       const heroAlignmentData = parsedData?.heroAlignment;
       let heroImagesData: HeroImagesGroup | undefined = parsedData?.heroImages ?? undefined;
       const heroCtasData = parsedData?.heroCtas;
@@ -1742,29 +1772,7 @@ const Home: React.FC = () => {
       });
       heroImagesData = heroValidation.heroImages ?? heroImagesData;
       const sections: HomeSection[] = hasSectionsArray
-        ? (rawSections.filter((section): section is HomeSection => {
-            if (!section || typeof section !== 'object') {
-              return false;
-            }
-
-            if ('visible' in section && (section as { visible?: unknown }).visible === false) {
-              return false;
-            }
-
-            const sectionType = (section as { type?: unknown }).type;
-
-            return sectionType === 'hero'
-              || sectionType === 'featureGrid'
-              || sectionType === 'mediaCopy'
-              || sectionType === 'mediaShowcase'
-              || sectionType === 'productGrid'
-              || sectionType === 'testimonials'
-              || sectionType === 'faq'
-              || sectionType === 'banner'
-              || sectionType === 'newsletterSignup'
-              || sectionType === 'communityCarousel'
-              || sectionType === 'video';
-          }))
+        ? rawSections.filter((section): section is HomeSection => isHomeSection(section) && section.visible !== false)
         : [];
 
       const hasStructuredHeroSection = sections.some((section) => section.type === 'hero');
@@ -3752,10 +3760,15 @@ const Home: React.FC = () => {
           return null;
         }
 
+        const mediaShowcaseSection = {
+          ...section,
+          type: 'mediaShowcase' as const,
+        } as MediaShowcaseSectionContent;
+
         return (
           <MediaShowcase
             key={createKeyFromParts('section-media-showcase', [showcaseTitle, normalizedItems.map((item) => item.title ?? item.image ?? '').join('|')])}
-            section={section}
+            section={mediaShowcaseSection}
             fieldPath={sectionFieldPath}
           />
         );

@@ -299,3 +299,8 @@ This log records day-to-day investigations, fixes, and decisions that affect the
 - **What changed**: Refactored `pages/Home.tsx` to pull language context into clinics CTAs, inject fallback gallery alt text, align Stackbit field path bindings for media copy, and harden testimonials/media showcase loaders with stricter typing so the Visual Editor and runtime agree on section data.
 - **Impact & follow-up**: Home sections now compile without TypeScript failures and the Visual Editor maps edits back to the unified content schema, reducing broken bindings when editors adjust hero, gallery, or testimonial blocks. Re-run localized page syncs once outstanding content model fixes land to keep schemas aligned.
 - **References**: Pending PR
+
+## 2025-10-07 — Harmonized Home section typing
+- **What changed**: Tightened the Home page section filters to use explicit type guards, ensuring only builder-backed blocks enter the render pipeline, and coerced media showcase entries to the shared `MediaShowcaseSectionContent` shape so the Visual Editor annotations resolve correctly.
+- **Impact & follow-up**: TypeScript now compiles without treating legacy timeline blocks as hero data, and media showcases surface consistent bindings inside Stackbit. Confirm upcoming schema cleanup removes deprecated section variants so the guard list stays authoritative.
+- **References**: Pending PR
