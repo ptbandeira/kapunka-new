@@ -25,19 +25,16 @@ import type {
   PageContent,
   Language,
   TestimonialEntry,
-  VisibilityFlag,
-  MediaShowcaseSectionContent,
 } from '../types';
 import { fetchVisualEditorJson } from '../utils/fetchVisualEditorJson';
-import { fetchVisualEditorMarkdown, type VisualEditorMarkdownDocument } from '../utils/fetchVisualEditorMarkdown';
+import { fetchVisualEditorMarkdown } from '../utils/fetchVisualEditorMarkdown';
 import { getVisualEditorAttributes } from '../utils/stackbitBindings';
 import { fetchTestimonialsByRefs } from '../utils/fetchTestimonialsByRefs';
 import { buildLocalizedPath } from '../utils/localePaths';
 import { getCloudinaryUrl, isAbsoluteUrl } from '../utils/imageUrl';
 import { filterVisible } from '../utils/contentVisibility';
 import Seo from '../src/components/Seo';
-import { loadPage, type LoadPageResult } from '../src/lib/content';
-import { loadUnifiedPage } from '../utils/unifiedPageLoader';
+import { loadPage } from '../src/lib/content';
 
 interface ProductsResponse {
   items?: Product[];
@@ -46,8 +43,6 @@ interface ProductsResponse {
 interface ReviewsResponse {
   items?: Review[];
 }
-
-type MarkdownPageDocument<T> = VisualEditorMarkdownDocument<T> & Record<string, unknown>;
 
 type CmsCtaShape = {
   label?: string | null;
@@ -107,15 +102,7 @@ type TestimonialEntryFields = {
   testimonialRef?: string | null;
 };
 
-type NormalizedTestimonial = {
-  text: string;
-  author?: string;
-  role?: string;
-  avatar?: string;
-  relationRef?: string;
-};
-
-type HomeSection = (
+type HomeSection =
   | {
       type: 'hero';
       content?: HeroSectionContentFields | null;
@@ -208,28 +195,7 @@ type HomeSection = (
         ctaLabel?: string;
         ctaHref?: string;
       }>;
-    }
-) & VisibilityFlag;
-
-const HOME_SECTION_TYPES = [
-  'hero',
-  'featureGrid',
-  'productGrid',
-  'mediaCopy',
-  'testimonials',
-  'faq',
-  'banner',
-  'newsletterSignup',
-  'communityCarousel',
-  'video',
-  'mediaShowcase',
-] as const;
-
-const HOME_SECTION_TYPE_SET = new Set<HomeSection['type']>(HOME_SECTION_TYPES);
-
-const isHomeSectionType = (value: unknown): value is HomeSection['type'] => (
-  typeof value === 'string' && HOME_SECTION_TYPE_SET.has(value as HomeSection['type'])
-);
+    };
 
 const heroAlignmentSchema = z
   .object({
@@ -560,15 +526,6 @@ type SectionEntry = z.infer<typeof sectionSchema>;
 type HomeContentData = z.infer<typeof homeContentSchema>;
 type StructuredSectionEntry = { index: number; section: StructuredSection };
 type LegacySectionEntry = { index: number; section: LegacySection };
-
-const isHomeSection = (section: unknown): section is HomeSection => {
-  if (!section || typeof section !== 'object') {
-    return false;
-  }
-
-  const typeValue = (section as { type?: unknown }).type;
-  return isHomeSectionType(typeValue);
-};
 
 const heroMarkdownComponents: MarkdownComponents = {
     p: ({ children, ...props }) => (
@@ -1213,7 +1170,6 @@ const ClinicsBlock: React.FC<ClinicsBlockProps> = ({ data, fieldPath, fallbackCt
         return null;
     }
 
-    const { language } = useLanguage();
     const { clinicsTitle, clinicsBody, clinicsCtaHref, clinicsCtaLabel, clinicsImage } = data;
     const trimmedClinicsImage = clinicsImage?.trim() ?? '';
     const clinicsImageUrl = trimmedClinicsImage ? getCloudinaryUrl(trimmedClinicsImage) ?? trimmedClinicsImage : '';
@@ -1324,7 +1280,6 @@ const ClinicsBlock: React.FC<ClinicsBlockProps> = ({ data, fieldPath, fallbackCt
 interface GalleryRowsProps {
     rows?: GalleryRowContent[];
     fieldPath?: string;
-    fallbackAlt?: string;
 }
 
 const galleryLayoutMap: Record<NonNullable<GalleryRowContent['layout']>, string> = {
@@ -1333,7 +1288,7 @@ const galleryLayoutMap: Record<NonNullable<GalleryRowContent['layout']>, string>
     quarters: 'grid-cols-2 lg:grid-cols-4',
 };
 
-const GalleryRows: React.FC<GalleryRowsProps> = ({ rows, fieldPath, fallbackAlt }) => {
+const GalleryRows: React.FC<GalleryRowsProps> = ({ rows, fieldPath }) => {
     const sanitizedRows = rows
         ?.map((row) => {
             if (!row) {
@@ -1382,7 +1337,7 @@ const GalleryRows: React.FC<GalleryRowsProps> = ({ rows, fieldPath, fallbackAlt 
                                 const rawImageSrc = item.image?.trim() ?? '';
                                 const imageSrc = rawImageSrc ? getCloudinaryUrl(rawImageSrc) ?? rawImageSrc : '';
                                 const caption = item.caption?.trim();
-                                const altText = item.alt?.trim() ?? caption ?? fallbackAlt ?? 'Gallery image';
+                                const altText = item.alt?.trim() ?? caption ?? computedTitle;
                                 const hasContent = Boolean(imageSrc);
 
                                 if (!hasContent) {
@@ -1689,147 +1644,16 @@ const Home: React.FC = () => {
     setPageContent(null);
 
     const loadSections = async () => {
-      const applyParsedHomeContent = (
-        parsedData: HomeContentData,
-        localeUsed: Language,
-        fieldPathSource: ContentSource,
-      ) => {
-        if (!isMounted) {
-          return;
-        }
-
-        const hasSectionsArray = Array.isArray(parsedData?.sections);
-        const rawSections: SectionEntry[] = hasSectionsArray ? (parsedData.sections ?? []) : [];
-        const heroAlignmentData = parsedData?.heroAlignment;
-        let heroImagesData: HeroImagesGroup | undefined = parsedData?.heroImages ?? undefined;
-        const heroCtasData = parsedData?.heroCtas;
-        const heroHeadlineData = parsedData?.heroHeadline;
-        const heroSubheadlineData = parsedData?.heroSubheadline;
-
-        const heroValidation = validateHeroContent({
-          heroHeadline: heroHeadlineData,
-          heroImages: heroImagesData,
-          heroImageLeft: parsedData?.heroImageLeft ?? null,
-          heroImageRight: parsedData?.heroImageRight ?? null,
-          heroFallback: heroFallbackRaw,
-        });
-        heroImagesData = heroValidation.heroImages ?? heroImagesData;
-        const sections: HomeSection[] = hasSectionsArray
-          ? rawSections.reduce<HomeSection[]>((acc, section) => {
-              if (!isHomeSection(section)) {
-                return acc;
-              }
-
-              if (section.visible === false) {
-                return acc;
-              }
-
-              acc.push(section);
-              return acc;
-            }, [])
-          : [];
-
-        const shouldRenderLocal = hasSectionsArray && (sections.length > 0 || localeUsed !== language);
-
-        const structuredSectionEntries = rawSections.reduce<StructuredSectionEntry[]>((acc, section, index) => {
-          if (section && typeof section === 'object' && 'visible' in section && (section as { visible?: unknown }).visible === false) {
-            return acc;
-          }
-
-          const parsedSection = structuredSectionSchema.safeParse(section);
-          if (parsedSection.success) {
-            acc.push({ index, section: parsedSection.data });
-          }
-          return acc;
-        }, []);
-
-        const legacySectionEntries = rawSections.reduce<LegacySectionEntry[]>((acc, section, index) => {
-          if (section && typeof section === 'object' && 'visible' in section && (section as { visible?: unknown }).visible === false) {
-            return acc;
-          }
-
-          const parsedSection = legacySectionSchema.safeParse(section);
-          if (parsedSection.success) {
-            acc.push({ index, section: parsedSection.data });
-          }
-          return acc;
-        }, []);
-
-        const heroImageLeftCandidate = firstDefined([
-          heroImagesData?.heroImageLeft,
-          parsedData?.heroImageLeft,
-          heroFallbackRaw,
-        ]);
-        const heroImageRightCandidate = firstDefined([
-          heroImagesData?.heroImageRight,
-          parsedData?.heroImageRight,
-          heroFallbackRaw,
-        ]);
-        const heroImageLeftUrl = normalizeImagePath(heroImageLeftCandidate, localeUsed) ?? null;
-        const heroImageRightUrl = normalizeImagePath(heroImageRightCandidate, localeUsed) ?? null;
-
-        if (
-          import.meta.env.DEV
-          && !heroImageLeftUrl
-          && !heroImageRightUrl
-          && !hasWarnedMissingHeroImages
-        ) {
-          console.warn('Home hero images are not configured. Add hero image references or legacy URLs in the CMS.');
-          hasWarnedMissingHeroImages = true;
-        }
-
-        const baseContent = parsedData as PageContent & HomeContentData;
-        const pageData: HomePageContent = {
-          ...baseContent,
-          ...(heroHeadlineData !== undefined ? { heroHeadline: heroHeadlineData } : {}),
-          ...(heroSubheadlineData !== undefined ? { heroSubheadline: heroSubheadlineData } : {}),
-          heroAlignment: heroAlignmentData,
-          heroImages: heroImagesData,
-          heroCtas: heroCtasData,
-          heroImageLeftUrl,
-          heroImageRightUrl,
-          rawSections,
-          structuredSectionEntries,
-          legacySectionEntries,
-          localSections: sections,
-          hasSectionsArray,
-          shouldRenderLocalSections: shouldRenderLocal,
-          sections: legacySectionEntries.map((entry) => entry.section as PageSection),
-          resolvedLocale: localeUsed,
-          contentSource: fieldPathSource,
-        };
-
-        setPageContent(pageData);
-      };
+      let result;
 
       try {
-        const unified = await loadUnifiedPage<HomeContentData>('home', language);
-        if (unified) {
-          const unifiedParse = homeContentSchema.safeParse(unified.data);
-          if (!unifiedParse.success) {
-            console.error('Invalid unified home content structure', unifiedParse.error);
-          } else {
-            applyParsedHomeContent(unifiedParse.data, unified.locale, 'visual-editor');
-            return;
-          }
-        }
-      } catch (error) {
-        console.error('Failed to load unified home page content', error);
-      }
-
-      let result: LoadPageResult<MarkdownPageDocument<unknown>>;
-
-      try {
-        result = await loadPage<MarkdownPageDocument<unknown>>({
+        result = await loadPage({
           slug: 'home',
           locale: language,
-          loader: async ({ locale: currentLocale }) => {
-            const doc = await fetchVisualEditorMarkdown<unknown>(
-              `/content/pages/${currentLocale}/home.md`,
-              { cache: 'no-store' },
-            );
-            return doc as MarkdownPageDocument<unknown>;
-          },
+          loader: async ({ locale: currentLocale }) => fetchVisualEditorMarkdown<unknown>(
+            `/content/pages/${currentLocale}/home.md`,
+            { cache: 'no-store' },
+          ),
         });
       } catch (error) {
         console.error('Failed to load home sections', error);
@@ -1847,16 +1671,13 @@ const Home: React.FC = () => {
 
       if (!parsedResult.success && result.localeUsed !== 'en') {
         try {
-          result = await loadPage<MarkdownPageDocument<unknown>>({
+          result = await loadPage({
             slug: 'home',
             locale: 'en',
-            loader: async ({ locale: fallbackLocale }) => {
-              const doc = await fetchVisualEditorMarkdown<unknown>(
-                `/content/pages/${fallbackLocale}/home.md`,
-                { cache: 'no-store' },
-              );
-              return doc as MarkdownPageDocument<unknown>;
-            },
+            loader: async ({ locale: fallbackLocale }) => fetchVisualEditorMarkdown<unknown>(
+              `/content/pages/${fallbackLocale}/home.md`,
+              { cache: 'no-store' },
+            ),
           });
 
           if (!isMounted) {
@@ -1883,11 +1704,121 @@ const Home: React.FC = () => {
         return;
       }
 
-      applyParsedHomeContent(
-        parsedResult.data,
-        result.localeUsed,
-        result.source === 'visual-editor' ? 'visual-editor' : 'content',
-      );
+      const parsedData = parsedResult.data;
+      const hasSectionsArray = Array.isArray(parsedData?.sections);
+      const rawSections = hasSectionsArray ? parsedData.sections ?? [] : [];
+      const heroAlignmentData = parsedData?.heroAlignment;
+      let heroImagesData: HeroImagesGroup | undefined = parsedData?.heroImages ?? undefined;
+      const heroCtasData = parsedData?.heroCtas;
+      const heroHeadlineData = parsedData?.heroHeadline;
+      const heroSubheadlineData = parsedData?.heroSubheadline;
+
+      const heroValidation = validateHeroContent({
+        heroHeadline: heroHeadlineData,
+        heroImages: heroImagesData,
+        heroImageLeft: parsedData?.heroImageLeft ?? null,
+        heroImageRight: parsedData?.heroImageRight ?? null,
+        heroFallback: heroFallbackRaw,
+      });
+      heroImagesData = heroValidation.heroImages ?? heroImagesData;
+      const sections: HomeSection[] = hasSectionsArray
+        ? (rawSections.filter((section): section is HomeSection => {
+            if (!section || typeof section !== 'object') {
+              return false;
+            }
+
+            if ('visible' in section && (section as { visible?: unknown }).visible === false) {
+              return false;
+            }
+
+            const sectionType = (section as { type?: unknown }).type;
+
+            return sectionType === 'hero'
+              || sectionType === 'featureGrid'
+              || sectionType === 'mediaCopy'
+              || sectionType === 'mediaShowcase'
+              || sectionType === 'productGrid'
+              || sectionType === 'testimonials'
+              || sectionType === 'faq'
+              || sectionType === 'banner'
+              || sectionType === 'newsletterSignup'
+              || sectionType === 'communityCarousel'
+              || sectionType === 'video';
+          }))
+        : [];
+
+      const hasStructuredHeroSection = sections.some((section) => section.type === 'hero');
+      const shouldRenderLocal = hasSectionsArray && (sections.length > 0 || result.localeUsed !== language);
+
+      const structuredSectionEntries = rawSections.reduce<StructuredSectionEntry[]>((acc, section, index) => {
+        if (section && typeof section === 'object' && 'visible' in section && (section as { visible?: unknown }).visible === false) {
+          return acc;
+        }
+
+        const parsedSection = structuredSectionSchema.safeParse(section);
+        if (parsedSection.success) {
+          acc.push({ index, section: parsedSection.data });
+        }
+        return acc;
+      }, []);
+
+      const legacySectionEntries = rawSections.reduce<LegacySectionEntry[]>((acc, section, index) => {
+        if (section && typeof section === 'object' && 'visible' in section && (section as { visible?: unknown }).visible === false) {
+          return acc;
+        }
+
+        const parsedSection = legacySectionSchema.safeParse(section);
+        if (parsedSection.success) {
+          acc.push({ index, section: parsedSection.data });
+        }
+        return acc;
+      }, []);
+
+      const heroImageLeftCandidate = firstDefined([
+        heroImagesData?.heroImageLeft,
+        parsedData?.heroImageLeft,
+        heroFallbackRaw,
+      ]);
+      const heroImageRightCandidate = firstDefined([
+        heroImagesData?.heroImageRight,
+        parsedData?.heroImageRight,
+        heroFallbackRaw,
+      ]);
+      const heroImageLeftUrl = normalizeImagePath(heroImageLeftCandidate, result.localeUsed) ?? null;
+      const heroImageRightUrl = normalizeImagePath(heroImageRightCandidate, result.localeUsed) ?? null;
+
+      if (
+        import.meta.env.DEV
+        && !heroImageLeftUrl
+        && !heroImageRightUrl
+        && !hasWarnedMissingHeroImages
+      ) {
+        console.warn('Home hero images are not configured. Add hero image references or legacy URLs in the CMS.');
+        hasWarnedMissingHeroImages = true;
+      }
+
+      const baseContent = parsedData as PageContent & HomeContentData;
+      const pageData: HomePageContent = {
+        ...baseContent,
+        ...(heroHeadlineData !== undefined ? { heroHeadline: heroHeadlineData } : {}),
+        ...(heroSubheadlineData !== undefined ? { heroSubheadline: heroSubheadlineData } : {}),
+        heroAlignment: heroAlignmentData,
+        heroImages: heroImagesData,
+        heroCtas: heroCtasData,
+        heroImageLeftUrl,
+        heroImageRightUrl,
+        rawSections,
+        structuredSectionEntries,
+        legacySectionEntries,
+        localSections: sections,
+        hasSectionsArray,
+        shouldRenderLocalSections: shouldRenderLocal,
+        sections: legacySectionEntries.map((entry) => entry.section as PageSection),
+        resolvedLocale: result.localeUsed,
+        contentSource: result.source,
+      };
+
+      setPageContent(pageData);
     };
 
     loadSections().catch((error) => {
@@ -3275,9 +3206,6 @@ const Home: React.FC = () => {
         const body = sanitizeString(section.body ?? null);
         const mediaImage = sanitizeString(pickImage(section.image));
         const imageAlt = sanitizeString(section.imageAlt ?? null) ?? title ?? computedTitle;
-        const mediaTitleFieldPath = `${sectionFieldPath}.title`;
-        const mediaBodyFieldPath = `${sectionFieldPath}.body`;
-        const mediaImageFieldPath = `${sectionFieldPath}.image`;
         if (!title && !body && !mediaImage) {
           return null;
         }
@@ -3347,7 +3275,7 @@ const Home: React.FC = () => {
                     src={mediaImage}
                     alt={imageAlt}
                     className="h-full w-full object-cover"
-                    {...getVisualEditorAttributes(mediaImageFieldPath)}
+                    {...getVisualEditorAttributes(imageFieldPath)}
                   />
                   <div
                     className="pointer-events-none absolute inset-0 grid"
@@ -3505,44 +3433,33 @@ const Home: React.FC = () => {
         const testimonialSection = section as Extract<HomeSection, { type: 'testimonials' }>;
         const sectionTitle = sanitizeString(testimonialSection.title ?? null);
         const testimonialsList = (testimonialSection.testimonials ?? [])
-          .map<NormalizedTestimonial | null>((entry) => {
-            const relationRef = sanitizeString(entry?.testimonialRef ?? null) ?? undefined;
+          .map((entry) => {
+            const relationRef = sanitizeString(entry?.testimonialRef ?? null);
             const resolved = relationRef ? testimonialLibrary[relationRef] : undefined;
 
-            const text = sanitizeString(entry?.quote ?? resolved?.quote ?? null) ?? undefined;
-            if (!text) {
-              return null;
-            }
-
-            const author = sanitizeString(entry?.author ?? resolved?.name ?? null) ?? undefined;
-            const role = sanitizeString(entry?.role ?? resolved?.title ?? null) ?? undefined;
-            const avatarCandidate = sanitizeString(entry?.avatar ?? resolved?.avatar ?? null) ?? undefined;
-            const avatar = avatarCandidate ? getCloudinaryUrl(avatarCandidate) ?? avatarCandidate : undefined;
+            const text = sanitizeString(entry?.quote ?? resolved?.quote ?? null);
+            const author = sanitizeString(entry?.author ?? resolved?.name ?? null);
+            const role = sanitizeString(entry?.role ?? resolved?.title ?? null);
+            const avatar = sanitizeString(entry?.avatar ?? resolved?.avatar ?? null);
+            const avatarUrl = avatar ? getCloudinaryUrl(avatar) ?? avatar : undefined;
 
             return {
               text,
               author,
               role,
-              avatar,
+              avatar: avatarUrl,
               relationRef,
             };
           })
-          .filter((entry): entry is NormalizedTestimonial => Boolean(entry));
+          .filter((entry) => typeof entry.text === 'string' && entry.text.length > 0);
 
         const legacyQuotes = (testimonialSection.quotes ?? [])
-          .map<NormalizedTestimonial | null>((quote) => {
-            const text = sanitizeString(quote.text ?? null) ?? undefined;
-            if (!text) {
-              return null;
-            }
-
-            return {
-              text,
-              author: sanitizeString(quote.author ?? null) ?? undefined,
-              role: sanitizeString(quote.role ?? null) ?? undefined,
-            };
-          })
-          .filter((quote): quote is NormalizedTestimonial => Boolean(quote));
+          .map((quote) => ({
+            text: sanitizeString(quote.text ?? null),
+            author: sanitizeString(quote.author ?? null),
+            role: sanitizeString(quote.role ?? null),
+          }))
+          .filter((quote) => typeof quote.text === 'string' && quote.text.length > 0);
 
         const quotes = testimonialsList.length > 0 ? testimonialsList : legacyQuotes;
 
@@ -3785,31 +3702,43 @@ const Home: React.FC = () => {
       }
       case 'mediaShowcase': {
         const showcaseTitle = sanitizeString(section.title ?? null);
-        const normalizedItems = (section.items ?? [])
-          .map((item) => ({
+        const items = (section.items ?? []).map((item, itemIndex) => {
+          const fieldScope = `${sectionFieldPath}.items.${itemIndex}`;
+          const focalCandidate = (item as { imageFocal?: { x?: unknown; y?: unknown } | null }).imageFocal ?? null;
+          const imageFocal = focalCandidate && typeof focalCandidate === 'object'
+            ? {
+                x: typeof focalCandidate.x === 'number' ? focalCandidate.x : undefined,
+                y: typeof focalCandidate.y === 'number' ? focalCandidate.y : undefined,
+              }
+            : undefined;
+          return {
             eyebrow: sanitizeString(item.eyebrow ?? null) ?? undefined,
             title: sanitizeString(item.title ?? null) ?? undefined,
             body: sanitizeString(item.body ?? null) ?? undefined,
             image: sanitizeString(pickImage(item.image)) ?? undefined,
             imageAlt: sanitizeString(item.imageAlt ?? null) ?? undefined,
+            imageFocal,
+            fieldPath: fieldScope,
+            imageFieldPath: `${fieldScope}.image`,
+            eyebrowFieldPath: `${fieldScope}.eyebrow`,
+            titleFieldPath: `${fieldScope}.title`,
+            bodyFieldPath: `${fieldScope}.body`,
             ctaLabel: sanitizeString(item.ctaLabel ?? null) ?? undefined,
             ctaHref: sanitizeString(item.ctaHref ?? null) ?? undefined,
-          }))
-          .filter((item) => item.image || item.title || item.body || item.ctaHref || item.ctaLabel);
+            ctaLabelFieldPath: `${fieldScope}.ctaLabel`,
+            ctaHrefFieldPath: `${fieldScope}.ctaHref`,
+          };
+        }).filter((item) => item.image || item.title || item.body);
 
-        if (!showcaseTitle && normalizedItems.length === 0) {
+        if (items.length === 0) {
           return null;
         }
 
-        const mediaShowcaseSection = {
-          ...section,
-          type: 'mediaShowcase' as const,
-        } as MediaShowcaseSectionContent;
-
         return (
           <MediaShowcase
-            key={createKeyFromParts('section-media-showcase', [showcaseTitle, normalizedItems.map((item) => item.title ?? item.image ?? '').join('|')])}
-            section={mediaShowcaseSection}
+            key={createKeyFromParts('section-media-showcase', [showcaseTitle, items.map((item) => item.title ?? item.image ?? '').join('|')])}
+            title={showcaseTitle}
+            items={items}
             fieldPath={sectionFieldPath}
           />
         );
@@ -3980,11 +3909,7 @@ const Home: React.FC = () => {
             fallbackCtaLabel={t('home.ctaClinics')}
           />
           {renderedSections.length > 0 && renderedSections}
-          <GalleryRows
-            rows={galleryRowsData}
-            fieldPath={`${homeFieldPath}.galleryRows`}
-            fallbackAlt={computedTitle}
-          />
+          <GalleryRows rows={galleryRowsData} fieldPath={`${homeFieldPath}.galleryRows`} />
           <Bestsellers intro={bestsellersIntro} introFieldPath={`${homeFieldPath}.bestsellersIntro`} />
           <Reviews />
           <NewsletterSignup />

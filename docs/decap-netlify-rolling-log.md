@@ -324,3 +324,8 @@ This log records day-to-day investigations, fixes, and decisions that affect the
 - **What changed**: Confirmed the `scripts/postbuild.js` step now copies the corrected `/admin/config.yml` into `dist/admin/` and `site/admin/config.yml`, keeping all admin surfaces in sync.
 - **Impact & follow-up**: Eliminates drift between duplicated Decap configs; future updates only need to touch `admin/config.yml` before running the build pipeline.
 - **References**: Pending PR
+
+## 2025-10-07 — Restored legacy Home layout
+- **What changed**: Reverted `pages/Home.tsx` to the stable implementation used before the recent schema experiments so the hero, media rows, and testimonials render as designed.
+- **Impact & follow-up**: The homepage regains its expected structure while we reassess how to migrate to unified content without breaking layout. Future schema work should happen behind feature flags to avoid regressions.
+- **References**: Pending PR
