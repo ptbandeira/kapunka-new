@@ -309,3 +309,8 @@ This log records day-to-day investigations, fixes, and decisions that affect the
 - **What changed**: Updated `pages/Home.tsx` to prefer the unified `pages_v2` loader before falling back to legacy Markdown, reusing the shared schema parser so both Decap and the Visual Editor hydrate from the same JSON index.
 - **Impact & follow-up**: Home now pulls from the single authoritative content graph, eliminating drift between Visual Editor edits and runtime data. Monitor remaining legacy Markdown files and plan removals once all sections are migrated.
 - **References**: Pending PR
+
+## 2025-10-07 — Switched Decap media library to Netlify
+- **What changed**: Updated `admin/config.yml` so Decap CMS now uses Netlify’s media library instead of the placeholder Cloudinary setup that blocked uploads.
+- **Impact & follow-up**: Editors can resume uploading images without configuring Cloudinary credentials. Keep the previous Cloudinary helper code for frontend delivery; revisit once unified credentials are available.
+- **References**: Pending PR

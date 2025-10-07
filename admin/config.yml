@@ -1429,14 +1429,7 @@ collection_groups:
       - articles
       - videoEntries
 media_library:
-  name: cloudinary
-  config:
-    cloud_name: ${CLOUDINARY_CLOUD_NAME}
-    api_key: ${NETLIFY_ENV_CLOUDINARY_API_KEY}
-    default_transformations:
-      - - fetch_format: auto
-          quality: auto
-          dpr: auto
+  name: netlify
 collections:
   - name: site
     label: Site Settings
