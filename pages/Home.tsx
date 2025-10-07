@@ -37,6 +37,7 @@ import { getCloudinaryUrl, isAbsoluteUrl } from '../utils/imageUrl';
 import { filterVisible } from '../utils/contentVisibility';
 import Seo from '../src/components/Seo';
 import { loadPage, type LoadPageResult } from '../src/lib/content';
+import { loadUnifiedPage } from '../utils/unifiedPageLoader';
 
 interface ProductsResponse {
   items?: Product[];
@@ -560,7 +561,7 @@ type HomeContentData = z.infer<typeof homeContentSchema>;
 type StructuredSectionEntry = { index: number; section: StructuredSection };
 type LegacySectionEntry = { index: number; section: LegacySection };
 
-const isHomeSection = (section: SectionEntry): section is HomeSection => {
+const isHomeSection = (section: unknown): section is HomeSection => {
   if (!section || typeof section !== 'object') {
     return false;
   }
@@ -1688,6 +1689,134 @@ const Home: React.FC = () => {
     setPageContent(null);
 
     const loadSections = async () => {
+      const applyParsedHomeContent = (
+        parsedData: HomeContentData,
+        localeUsed: Language,
+        fieldPathSource: ContentSource,
+      ) => {
+        if (!isMounted) {
+          return;
+        }
+
+        const hasSectionsArray = Array.isArray(parsedData?.sections);
+        const rawSections: SectionEntry[] = hasSectionsArray ? (parsedData.sections ?? []) : [];
+        const heroAlignmentData = parsedData?.heroAlignment;
+        let heroImagesData: HeroImagesGroup | undefined = parsedData?.heroImages ?? undefined;
+        const heroCtasData = parsedData?.heroCtas;
+        const heroHeadlineData = parsedData?.heroHeadline;
+        const heroSubheadlineData = parsedData?.heroSubheadline;
+
+        const heroValidation = validateHeroContent({
+          heroHeadline: heroHeadlineData,
+          heroImages: heroImagesData,
+          heroImageLeft: parsedData?.heroImageLeft ?? null,
+          heroImageRight: parsedData?.heroImageRight ?? null,
+          heroFallback: heroFallbackRaw,
+        });
+        heroImagesData = heroValidation.heroImages ?? heroImagesData;
+        const sections: HomeSection[] = hasSectionsArray
+          ? rawSections.reduce<HomeSection[]>((acc, section) => {
+              if (!isHomeSection(section)) {
+                return acc;
+              }
+
+              if (section.visible === false) {
+                return acc;
+              }
+
+              acc.push(section);
+              return acc;
+            }, [])
+          : [];
+
+        const shouldRenderLocal = hasSectionsArray && (sections.length > 0 || localeUsed !== language);
+
+        const structuredSectionEntries = rawSections.reduce<StructuredSectionEntry[]>((acc, section, index) => {
+          if (section && typeof section === 'object' && 'visible' in section && (section as { visible?: unknown }).visible === false) {
+            return acc;
+          }
+
+          const parsedSection = structuredSectionSchema.safeParse(section);
+          if (parsedSection.success) {
+            acc.push({ index, section: parsedSection.data });
+          }
+          return acc;
+        }, []);
+
+        const legacySectionEntries = rawSections.reduce<LegacySectionEntry[]>((acc, section, index) => {
+          if (section && typeof section === 'object' && 'visible' in section && (section as { visible?: unknown }).visible === false) {
+            return acc;
+          }
+
+          const parsedSection = legacySectionSchema.safeParse(section);
+          if (parsedSection.success) {
+            acc.push({ index, section: parsedSection.data });
+          }
+          return acc;
+        }, []);
+
+        const heroImageLeftCandidate = firstDefined([
+          heroImagesData?.heroImageLeft,
+          parsedData?.heroImageLeft,
+          heroFallbackRaw,
+        ]);
+        const heroImageRightCandidate = firstDefined([
+          heroImagesData?.heroImageRight,
+          parsedData?.heroImageRight,
+          heroFallbackRaw,
+        ]);
+        const heroImageLeftUrl = normalizeImagePath(heroImageLeftCandidate, localeUsed) ?? null;
+        const heroImageRightUrl = normalizeImagePath(heroImageRightCandidate, localeUsed) ?? null;
+
+        if (
+          import.meta.env.DEV
+          && !heroImageLeftUrl
+          && !heroImageRightUrl
+          && !hasWarnedMissingHeroImages
+        ) {
+          console.warn('Home hero images are not configured. Add hero image references or legacy URLs in the CMS.');
+          hasWarnedMissingHeroImages = true;
+        }
+
+        const baseContent = parsedData as PageContent & HomeContentData;
+        const pageData: HomePageContent = {
+          ...baseContent,
+          ...(heroHeadlineData !== undefined ? { heroHeadline: heroHeadlineData } : {}),
+          ...(heroSubheadlineData !== undefined ? { heroSubheadline: heroSubheadlineData } : {}),
+          heroAlignment: heroAlignmentData,
+          heroImages: heroImagesData,
+          heroCtas: heroCtasData,
+          heroImageLeftUrl,
+          heroImageRightUrl,
+          rawSections,
+          structuredSectionEntries,
+          legacySectionEntries,
+          localSections: sections,
+          hasSectionsArray,
+          shouldRenderLocalSections: shouldRenderLocal,
+          sections: legacySectionEntries.map((entry) => entry.section as PageSection),
+          resolvedLocale: localeUsed,
+          contentSource: fieldPathSource,
+        };
+
+        setPageContent(pageData);
+      };
+
+      try {
+        const unified = await loadUnifiedPage<HomeContentData>('home', language);
+        if (unified) {
+          const unifiedParse = homeContentSchema.safeParse(unified.data);
+          if (!unifiedParse.success) {
+            console.error('Invalid unified home content structure', unifiedParse.error);
+          } else {
+            applyParsedHomeContent(unifiedParse.data, unified.locale, 'visual-editor');
+            return;
+          }
+        }
+      } catch (error) {
+        console.error('Failed to load unified home page content', error);
+      }
+
       let result: LoadPageResult<MarkdownPageDocument<unknown>>;
 
       try {
@@ -1754,99 +1883,11 @@ const Home: React.FC = () => {
         return;
       }
 
-      const parsedData = parsedResult.data;
-      const hasSectionsArray = Array.isArray(parsedData?.sections);
-      const rawSections: SectionEntry[] = hasSectionsArray ? (parsedData.sections ?? []) : [];
-      const heroAlignmentData = parsedData?.heroAlignment;
-      let heroImagesData: HeroImagesGroup | undefined = parsedData?.heroImages ?? undefined;
-      const heroCtasData = parsedData?.heroCtas;
-      const heroHeadlineData = parsedData?.heroHeadline;
-      const heroSubheadlineData = parsedData?.heroSubheadline;
-
-      const heroValidation = validateHeroContent({
-        heroHeadline: heroHeadlineData,
-        heroImages: heroImagesData,
-        heroImageLeft: parsedData?.heroImageLeft ?? null,
-        heroImageRight: parsedData?.heroImageRight ?? null,
-        heroFallback: heroFallbackRaw,
-      });
-      heroImagesData = heroValidation.heroImages ?? heroImagesData;
-      const sections: HomeSection[] = hasSectionsArray
-        ? rawSections.filter((section): section is HomeSection => isHomeSection(section) && section.visible !== false)
-        : [];
-
-      const hasStructuredHeroSection = sections.some((section) => section.type === 'hero');
-      const shouldRenderLocal = hasSectionsArray && (sections.length > 0 || result.localeUsed !== language);
-
-      const structuredSectionEntries = rawSections.reduce<StructuredSectionEntry[]>((acc, section, index) => {
-        if (section && typeof section === 'object' && 'visible' in section && (section as { visible?: unknown }).visible === false) {
-          return acc;
-        }
-
-        const parsedSection = structuredSectionSchema.safeParse(section);
-        if (parsedSection.success) {
-          acc.push({ index, section: parsedSection.data });
-        }
-        return acc;
-      }, []);
-
-      const legacySectionEntries = rawSections.reduce<LegacySectionEntry[]>((acc, section, index) => {
-        if (section && typeof section === 'object' && 'visible' in section && (section as { visible?: unknown }).visible === false) {
-          return acc;
-        }
-
-        const parsedSection = legacySectionSchema.safeParse(section);
-        if (parsedSection.success) {
-          acc.push({ index, section: parsedSection.data });
-        }
-        return acc;
-      }, []);
-
-      const heroImageLeftCandidate = firstDefined([
-        heroImagesData?.heroImageLeft,
-        parsedData?.heroImageLeft,
-        heroFallbackRaw,
-      ]);
-      const heroImageRightCandidate = firstDefined([
-        heroImagesData?.heroImageRight,
-        parsedData?.heroImageRight,
-        heroFallbackRaw,
-      ]);
-      const heroImageLeftUrl = normalizeImagePath(heroImageLeftCandidate, result.localeUsed) ?? null;
-      const heroImageRightUrl = normalizeImagePath(heroImageRightCandidate, result.localeUsed) ?? null;
-
-      if (
-        import.meta.env.DEV
-        && !heroImageLeftUrl
-        && !heroImageRightUrl
-        && !hasWarnedMissingHeroImages
-      ) {
-        console.warn('Home hero images are not configured. Add hero image references or legacy URLs in the CMS.');
-        hasWarnedMissingHeroImages = true;
-      }
-
-      const baseContent = parsedData as PageContent & HomeContentData;
-      const pageData: HomePageContent = {
-        ...baseContent,
-        ...(heroHeadlineData !== undefined ? { heroHeadline: heroHeadlineData } : {}),
-        ...(heroSubheadlineData !== undefined ? { heroSubheadline: heroSubheadlineData } : {}),
-        heroAlignment: heroAlignmentData,
-        heroImages: heroImagesData,
-        heroCtas: heroCtasData,
-        heroImageLeftUrl,
-        heroImageRightUrl,
-        rawSections,
-        structuredSectionEntries,
-        legacySectionEntries,
-        localSections: sections,
-        hasSectionsArray,
-        shouldRenderLocalSections: shouldRenderLocal,
-        sections: legacySectionEntries.map((entry) => entry.section as PageSection),
-        resolvedLocale: result.localeUsed,
-        contentSource: result.source,
-      };
-
-      setPageContent(pageData);
+      applyParsedHomeContent(
+        parsedResult.data,
+        result.localeUsed,
+        result.source === 'visual-editor' ? 'visual-editor' : 'content',
+      );
     };
 
     loadSections().catch((error) => {

@@ -304,3 +304,8 @@ This log records day-to-day investigations, fixes, and decisions that affect the
 - **What changed**: Tightened the Home page section filters to use explicit type guards, ensuring only builder-backed blocks enter the render pipeline, and coerced media showcase entries to the shared `MediaShowcaseSectionContent` shape so the Visual Editor annotations resolve correctly.
 - **Impact & follow-up**: TypeScript now compiles without treating legacy timeline blocks as hero data, and media showcases surface consistent bindings inside Stackbit. Confirm upcoming schema cleanup removes deprecated section variants so the guard list stays authoritative.
 - **References**: Pending PR
+
+## 2025-10-07 — Unified Home content source
+- **What changed**: Updated `pages/Home.tsx` to prefer the unified `pages_v2` loader before falling back to legacy Markdown, reusing the shared schema parser so both Decap and the Visual Editor hydrate from the same JSON index.
+- **Impact & follow-up**: Home now pulls from the single authoritative content graph, eliminating drift between Visual Editor edits and runtime data. Monitor remaining legacy Markdown files and plan removals once all sections are migrated.
+- **References**: Pending PR
