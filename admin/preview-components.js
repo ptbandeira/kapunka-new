@@ -98,6 +98,8 @@ const cachedCloudinarySettings = {
   transformations: null,
 };
 
+const previewImageCache = new Map();
+
 const resolveCloudinarySettings = () => {
   if (cachedCloudinarySettings.resolved) {
     return cachedCloudinarySettings;
@@ -176,16 +178,25 @@ const getPreviewImageSrc = (input) => {
   const sanitized = stripUploadPrefixes(trimmed);
   const { base, transformations } = resolveCloudinarySettings();
 
+  const cacheKey = `${base || ''}::${transformations || ''}::${sanitized}`;
+  if (previewImageCache.has(cacheKey)) {
+    return previewImageCache.get(cacheKey);
+  }
+
   if (!base) {
-    return sanitized || trimmed;
+    const fallback = sanitized || trimmed;
+    previewImageCache.set(cacheKey, fallback);
+    return fallback;
   }
 
   const segments = [base, transformations, sanitized]
     .filter((segment) => isNonEmptyString(segment));
 
-  return segments
+  const resolved = segments
     .map((segment, index) => (index === 0 ? segment.replace(/\/+$/, '') : segment.replace(/^\/+/, '').replace(/\/+$/, '')))
     .join('/');
+  previewImageCache.set(cacheKey, resolved);
+  return resolved;
 };
 
 function renderCtas(ctas) {

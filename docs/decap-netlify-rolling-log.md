@@ -15,6 +15,11 @@
 - **Impact & follow-up**: Editors get a calmer Page Builder with progressive disclosure, while advanced users can flip a toggle to access layout controls. Run `node scripts/audit-translations.mjs` in CI or locally to keep EN/PT/ES metadata aligned and extend the advanced-field list if new power settings appear.
 - **References**: Pending PR
 
+## 2025-10-07 — Modularized Decap config & added caching
+- **What changed**: Split the Decap YAML into `admin/config-modules/anchors.yaml` + `main.yaml`, introduced `scripts/build-decap-config.mjs` to stitch and validate the final `config.yml`, enforced lazy loading on heavy collections, and memoized Visual Editor markdown/preview images for faster editing.
+- **Impact & follow-up**: Config edits are now composable with validation catching duplicate collections or missing lazy flags before publish, while editors see quicker previews thanks to caching. Run `npm run cms:build` whenever modules change (automatically via `prebuild`) and clear caches with `clearVisualEditorMarkdownCache()` if you add new content at runtime.
+- **References**: Pending PR
+
 ## 2025-10-07 — Restored Cloudinary previews in Decap
 - **What changed**: Added a Cloudinary-aware image resolver inside `admin/preview-components.js` so preview thumbnails pull the CMS cloud name, strip legacy upload prefixes, and render full CDN URLs rather than broken relative paths.
 - **Impact & follow-up**: Editors now see the same media framing in the CMS as on the live site while keeping the API key sourced from the `NETLIFY_ENV_CLOUDINARY_API_KEY` Netlify environment variable instead of committing secrets. Confirm the env var remains set in each Netlify context and provide a local `.env` when running the CMS locally.

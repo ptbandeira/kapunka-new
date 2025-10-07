@@ -26,6 +26,12 @@ const VISUAL_EDITOR_PREFIXES = [
   '/site/content/',
 ];
 
+const markdownCache = new Map<string, VisualEditorMarkdownDocument<unknown>>();
+
+export const clearVisualEditorMarkdownCache = () => {
+  markdownCache.clear();
+};
+
 export type VisualEditorContentSource = 'visual-editor' | 'content';
 
 export interface VisualEditorMarkdownDocument<T> {
@@ -55,6 +61,11 @@ export const fetchVisualEditorMarkdown = async <T>(
   url: string,
   init?: RequestInit,
 ): Promise<VisualEditorMarkdownDocument<T>> => {
+  const allowCache = init?.cache !== 'no-store';
+  if (allowCache && markdownCache.has(url)) {
+    return markdownCache.get(url) as VisualEditorMarkdownDocument<T>;
+  }
+
   const candidates = buildCandidateUrls(url);
   let lastError: unknown;
 
@@ -69,11 +80,15 @@ export const fetchVisualEditorMarkdown = async <T>(
       const data = parseFrontMatter<T>(raw);
       const source: VisualEditorContentSource = candidate === url ? 'content' : 'visual-editor';
 
-      return {
+      const result: VisualEditorMarkdownDocument<T> = {
         data,
         source,
         raw,
       };
+      if (allowCache) {
+        markdownCache.set(url, result as VisualEditorMarkdownDocument<unknown>);
+      }
+      return result;
     } catch (error) {
       lastError = error;
       if (import.meta.env.DEV) {

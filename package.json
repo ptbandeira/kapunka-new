@@ -5,9 +5,11 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
+    "prebuild": "npm run cms:build",
     "build": "vite build && node scripts/postbuild.js",
     "preview": "vite preview",
-    "visual:prepare": "node scripts/prepare-visual-editor-content.js"
+    "visual:prepare": "node scripts/prepare-visual-editor-content.js",
+    "cms:build": "node scripts/build-decap-config.mjs"
   },
   "dependencies": {
     "framer-motion": "11.2.10",
