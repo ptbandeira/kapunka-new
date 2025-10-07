@@ -20,6 +20,11 @@
 - **Impact & follow-up**: Config edits are now composable with validation catching duplicate collections or missing lazy flags before publish, while editors see quicker previews thanks to caching. Run `npm run cms:build` whenever modules change (automatically via `prebuild`) and clear caches with `clearVisualEditorMarkdownCache()` if you add new content at runtime.
 - **References**: Pending PR
 
+## 2025-10-07 — Restored Home CMS bindings & hero alignment
+- **What changed**: Marked `sections` as non-i18n so Decap reads the actual Markdown sections, and adjusted `pages/Home.tsx` hero layout logic so left/right alignment respects the CMS settings even with full-bleed imagery.
+- **Impact & follow-up**: The Page Builder now lists the existing home sections instead of showing an empty array, and hero content aligns left/middle/right exactly as configured. Revisit other pages to confirm they no longer expose unnecessary locale tabs for shared sections.
+- **References**: Pending PR
+
 ## 2025-10-07 — Restored Cloudinary previews in Decap
 - **What changed**: Added a Cloudinary-aware image resolver inside `admin/preview-components.js` so preview thumbnails pull the CMS cloud name, strip legacy upload prefixes, and render full CDN URLs rather than broken relative paths.
 - **Impact & follow-up**: Editors now see the same media framing in the CMS as on the live site while keeping the API key sourced from the `NETLIFY_ENV_CLOUDINARY_API_KEY` Netlify environment variable instead of committing secrets. Confirm the env var remains set in each Netlify context and provide a local `.env` when running the CMS locally.

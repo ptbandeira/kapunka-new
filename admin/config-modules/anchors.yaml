@@ -814,7 +814,7 @@ sections_field: &sections_field
   label: "Sections"
   name: "sections"
   widget: "list"
-  i18n: true
+  i18n: false
   collapsed: true
   summary: "{{fields.type}} · {{fields.title | default(fields.heading) | default(fields.name) | default('Section')}}"
   hint: "Reorder or edit the content sections that compose this page."

@@ -1982,8 +1982,17 @@ const Home: React.FC = () => {
       : 'flex flex-col items-center text-center';
   const heroTextWrapperBaseClasses = shouldRenderInlineImage
     ? `${heroLayoutHint === 'image-left' ? 'order-1 lg:order-2' : 'order-1'} space-y-6 max-w-xl`
-    : 'space-y-6 max-w-3xl mx-auto';
-  const heroTextWrapperClasses = `${heroTextWrapperBaseClasses} ${heroTextAlignmentClass}`;
+    : 'space-y-6 max-w-3xl';
+  const heroTextWrapperAlignmentClass = shouldRenderInlineImage
+    ? ''
+    : heroTextPlacement === 'overlay'
+      ? heroAlignX === 'left'
+        ? 'mr-auto'
+        : heroAlignX === 'right'
+          ? 'ml-auto'
+          : 'mx-auto'
+      : 'mx-auto';
+  const heroTextWrapperClasses = `${heroTextWrapperBaseClasses} ${heroTextAlignmentClass} ${heroTextWrapperAlignmentClass}`.trim();
   const heroImageWrapperClasses = shouldRenderInlineImage
     ? `${heroLayoutHint === 'image-left' ? 'order-2 lg:order-1' : 'order-2'} w-full`
     : '';
