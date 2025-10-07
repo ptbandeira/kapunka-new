@@ -319,3 +319,8 @@ This log records day-to-day investigations, fixes, and decisions that affect the
 - **What changed**: Ran `npm run visual:prepare` and the full `npm run build` pipeline so the Visual Editor mirror under `.netlify/visual-editor/content/pages_v2/` now matches `content/pages_v2/index.json` byte-for-byte.
 - **Impact & follow-up**: The unified loader and Visual Editor both read the same `pages_v2` data, eliminating the stale cache that hid recent updates. Re-run the sync whenever content is edited outside the editor to keep caches aligned.
 - **References**: Pending PR
+
+## 2025-10-07 — Propagated admin config via postbuild
+- **What changed**: Confirmed the `scripts/postbuild.js` step now copies the corrected `/admin/config.yml` into `dist/admin/` and `site/admin/config.yml`, keeping all admin surfaces in sync.
+- **Impact & follow-up**: Eliminates drift between duplicated Decap configs; future updates only need to touch `admin/config.yml` before running the build pipeline.
+- **References**: Pending PR
