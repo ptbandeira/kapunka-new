@@ -1,0 +1,24 @@
+{
+  "title": "Media Copy · Ritual Story",
+  "sectionType": "mediaCopy",
+  "description": "Two-column storytelling block with imagery on the right and copy on the left. Ideal for highlighting routines or product rituals.",
+  "bestPractices": [
+    "Keep the body copy under 90 words so it stays scannable.",
+    "Pair high-contrast imagery that reinforces the ritual or hero ingredient.",
+    "Use the CTA to direct readers to the most relevant product or page."
+  ],
+  "content": {
+    "type": "mediaCopy",
+    "layout": "image-right",
+    "title": "From sourcing to skin",
+    "body": "Explain the transformation from Moroccan sourcing to clinical care in a single, tight paragraph. Connect the story to how someone will use the product today.",
+    "image": "shared/9bae3f87-12d5-43f4-a2a0-5cfc768e429d.jpg",
+    "imageAlt": "Hands warming argan care before application",
+    "ctaLabel": "Explore the ritual",
+    "ctaHref": "/method",
+    "imageFocal": {
+      "x": 0.52,
+      "y": 0.46
+    }
+  }
+}

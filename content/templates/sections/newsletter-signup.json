@@ -1,0 +1,20 @@
+{
+  "title": "Newsletter Signup · Centered",
+  "sectionType": "newsletterSignup",
+  "description": "Preconfigured signup panel with centered copy and a warm background, great for end-of-page conversions.",
+  "bestPractices": [
+    "Focus on the value of the newsletter in one sentence.",
+    "Set the background tone to match surrounding sections.",
+    "Use a verb-forward CTA so readers know what happens next."
+  ],
+  "content": {
+    "type": "newsletterSignup",
+    "title": "Join the Kapunka list",
+    "subtitle": "Monthly reflections on recovery rituals, ingredient spotlights, and clinic-only education.",
+    "placeholder": "Enter your email address",
+    "ctaLabel": "Subscribe",
+    "confirmation": "Thanks for joining — check your inbox for a welcome note.",
+    "background": "beige",
+    "alignment": "center"
+  }
+}

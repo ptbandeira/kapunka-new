@@ -4,6 +4,17 @@
   const LOCALE_CONTAINER_ID = 'cms-preview-locale-links';
   const SUPPORTED_LOCALES = ['en', 'pt', 'es'];
   const DEFAULT_LOCALE = 'en';
+  const LOCALE_LABELS = {
+    en: 'English',
+    pt: 'Portuguese',
+    es: 'Spanish',
+  };
+  const LOCALE_SHORT_LABELS = {
+    en: 'EN',
+    pt: 'PT',
+    es: 'ES',
+  };
+  const LOCALE_MODE_STORAGE_KEY = 'kapunka.cms.localeMode';
 
   function waitForCms() {
     if (!window.CMS || !(window.React || window.h)) {
@@ -14,6 +25,26 @@
     bootstrapCms(window.CMS).catch((error) => {
       console.error('Failed to initialize CMS previews', error);
     });
+  }
+
+  function loadStoredLocaleMode() {
+    try {
+      const stored = window.localStorage.getItem(LOCALE_MODE_STORAGE_KEY);
+      if (stored && (stored === 'all' || SUPPORTED_LOCALES.includes(stored))) {
+        return stored;
+      }
+    } catch (error) {
+      console.warn('Unable to read locale mode from storage', error);
+    }
+    return 'all';
+  }
+
+  function persistLocaleMode(mode) {
+    try {
+      window.localStorage.setItem(LOCALE_MODE_STORAGE_KEY, mode);
+    } catch (error) {
+      console.warn('Unable to persist locale mode', error);
+    }
   }
 
   async function bootstrapCms(CMS) {
@@ -43,6 +74,10 @@
     const localeState = {
       latestEntryLocale: null,
       refreshScheduled: false,
+    };
+    const localeModeState = {
+      mode: loadStoredLocaleMode(),
+      pendingApply: false,
     };
 
     function getLocaleFromPath(path) {
@@ -154,26 +189,189 @@
 
       const activeLocale = info.locale || localeState.latestEntryLocale || DEFAULT_LOCALE;
       container.style.display = 'flex';
+      container.style.flexDirection = 'column';
+      container.style.alignItems = 'flex-end';
+      container.style.gap = '4px';
       container.innerHTML = '';
 
-      SUPPORTED_LOCALES.forEach((locale, index) => {
+      const previewRow = document.createElement('div');
+      previewRow.style.display = 'flex';
+      previewRow.style.alignItems = 'center';
+      previewRow.style.gap = '6px';
+
+      const previewLabel = document.createElement('span');
+      previewLabel.textContent = 'Preview';
+      previewLabel.style.opacity = '0.65';
+      previewLabel.style.fontWeight = '600';
+      previewLabel.style.fontSize = '10px';
+      previewLabel.style.letterSpacing = '0.12em';
+      previewLabel.style.textTransform = 'uppercase';
+
+      previewRow.appendChild(previewLabel);
+
+      const previewControls = document.createElement('div');
+      previewControls.style.display = 'flex';
+      previewControls.style.alignItems = 'center';
+      previewControls.style.gap = '6px';
+
+      SUPPORTED_LOCALES.forEach((locale) => {
         const link = document.createElement('a');
         link.href = buildLocaleHash(info.base, info.params, locale);
-        link.textContent = locale.toUpperCase();
+        link.textContent = LOCALE_SHORT_LABELS[locale] || locale.toUpperCase();
         link.style.color = '#243b53';
-        link.style.opacity = locale === activeLocale ? '1' : '0.6';
+        link.style.opacity = locale === activeLocale ? '1' : '0.55';
         link.style.textDecoration = 'none';
         link.style.cursor = locale === activeLocale ? 'default' : 'pointer';
+        link.style.fontWeight = locale === activeLocale ? '600' : '500';
 
-        container.appendChild(link);
+        previewControls.appendChild(link);
+      });
 
-        if (index < SUPPORTED_LOCALES.length - 1) {
-          const separator = document.createElement('span');
-          separator.textContent = '|';
-          separator.style.opacity = '0.35';
-          container.appendChild(separator);
+      previewRow.appendChild(previewControls);
+      container.appendChild(previewRow);
+
+      renderLocaleModeControls(container);
+      scheduleLocaleModeApply();
+    }
+
+    function renderLocaleModeControls(container) {
+      if (!container) {
+        return;
+      }
+
+      const modeRow = document.createElement('div');
+      modeRow.className = 'cms-locale-mode-row';
+      modeRow.style.display = 'flex';
+      modeRow.style.alignItems = 'center';
+      modeRow.style.gap = '6px';
+
+      const modeLabel = document.createElement('span');
+      modeLabel.textContent = 'Edit';
+      modeLabel.style.opacity = '0.65';
+      modeLabel.style.fontWeight = '600';
+      modeLabel.style.fontSize = '10px';
+      modeLabel.style.letterSpacing = '0.12em';
+      modeLabel.style.textTransform = 'uppercase';
+
+      modeRow.appendChild(modeLabel);
+
+      const buttonGroup = document.createElement('div');
+      buttonGroup.style.display = 'flex';
+      buttonGroup.style.gap = '4px';
+
+      const modes = ['all', ...SUPPORTED_LOCALES];
+      modes.forEach((mode) => {
+        const button = document.createElement('button');
+        button.type = 'button';
+        button.dataset.mode = mode;
+        button.textContent = mode === 'all' ? 'ALL' : (LOCALE_SHORT_LABELS[mode] || mode.toUpperCase());
+        button.style.border = '1px solid #bcccdc';
+        button.style.borderRadius = '999px';
+        button.style.background = localeModeState.mode === mode ? '#243b53' : '#ffffff';
+        button.style.color = localeModeState.mode === mode ? '#f0f4f8' : '#243b53';
+        button.style.padding = '2px 8px';
+        button.style.fontSize = '10px';
+        button.style.fontWeight = '600';
+        button.style.letterSpacing = '0.08em';
+        button.style.cursor = 'pointer';
+        button.style.textTransform = 'uppercase';
+
+        if (localeModeState.mode !== mode) {
+          button.addEventListener('click', () => {
+            setLocaleMode(mode);
+          });
+        } else {
+          button.style.cursor = 'default';
+        }
+
+        buttonGroup.appendChild(button);
+      });
+
+      modeRow.appendChild(buttonGroup);
+      container.appendChild(modeRow);
+    }
+
+    function scheduleLocaleModeApply() {
+      if (localeModeState.pendingApply) {
+        return;
+      }
+
+      localeModeState.pendingApply = true;
+      window.requestAnimationFrame(() => {
+        localeModeState.pendingApply = false;
+        applyLocaleMode();
+      });
+    }
+
+    function getLocaleFromTabElement(tab) {
+      if (!tab || !tab.textContent) {
+        return null;
+      }
+
+      const label = tab.textContent.trim().toLowerCase();
+      return SUPPORTED_LOCALES.find((locale) => {
+        const full = (LOCALE_LABELS[locale] || '').toLowerCase();
+        const shortLabel = (LOCALE_SHORT_LABELS[locale] || '').toLowerCase();
+        return label.includes(full) || label === shortLabel;
+      }) || null;
+    }
+
+    function applyLocaleMode() {
+      const mode = localeModeState.mode;
+      const tablists = document.querySelectorAll('[role="tablist"]');
+
+      tablists.forEach((tablist) => {
+        const tabs = Array.from(tablist.querySelectorAll('[role="tab"]'));
+        const localeTabs = tabs
+          .map((tab) => ({ tab, locale: getLocaleFromTabElement(tab) }))
+          .filter((item) => Boolean(item.locale));
+
+        if (!localeTabs.length) {
+          return;
+        }
+
+        localeTabs.forEach(({ tab, locale }) => {
+          const panelId = tab.getAttribute('aria-controls');
+          const panel = panelId ? document.getElementById(panelId) : null;
+
+          if (mode !== 'all' && locale !== mode) {
+            tab.style.display = 'none';
+            if (panel) {
+              panel.style.display = 'none';
+            }
+          } else {
+            tab.style.display = '';
+            if (panel) {
+              panel.style.display = '';
+            }
+          }
+        });
+
+        if (mode !== 'all') {
+          const currentTab = localeTabs.find(({ tab }) => tab.getAttribute('aria-selected') === 'true' && tab.style.display !== 'none');
+          if (!currentTab) {
+            const fallback = localeTabs.find(({ locale }) => locale === mode) || localeTabs[0];
+            if (fallback) {
+              fallback.tab.click();
+            }
+          }
         }
       });
+    }
+
+    function setLocaleMode(mode) {
+      if (mode !== 'all' && !SUPPORTED_LOCALES.includes(mode)) {
+        return;
+      }
+
+      if (localeModeState.mode === mode) {
+        return;
+      }
+
+      localeModeState.mode = mode;
+      persistLocaleMode(mode);
+      scheduleLocaleModeApply();
+      scheduleLocaleRender();
     }
 
     function scheduleLocaleRender() {
@@ -227,6 +425,12 @@
 
     window.addEventListener('hashchange', scheduleLocaleRender);
     scheduleLocaleRender();
+    scheduleLocaleModeApply();
+
+    const localeTabObserver = new MutationObserver(() => {
+      scheduleLocaleModeApply();
+    });
+    localeTabObserver.observe(document.body, { childList: true, subtree: true });
 
     function toPlain(value, fallback) {
       if (value === undefined || value === null) {

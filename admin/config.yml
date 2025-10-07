@@ -11,9 +11,9 @@ localized_string_field: &localized_string_field
   editor:
     display: 'tabs'
   fields:
-    - { label: English, name: en, widget: string }
-    - { label: Portuguese, name: pt, widget: string }
-    - { label: Spanish, name: es, widget: string }
+    - { label: English, name: en, widget: string, hint: "Primary copy – translate first here." }
+    - { label: Portuguese, name: pt, widget: string, hint: "Optional – leave blank to reuse the English value." }
+    - { label: Spanish, name: es, widget: string, hint: "Optional – leave blank to reuse the English value." }
 
 localized_text_field: &localized_text_field
   widget: object
@@ -22,9 +22,9 @@ localized_text_field: &localized_text_field
   editor:
     display: 'tabs'
   fields:
-    - { label: English, name: en, widget: text }
-    - { label: Portuguese, name: pt, widget: text }
-    - { label: Spanish, name: es, widget: text }
+    - { label: English, name: en, widget: text, hint: "Primary copy – translate first here." }
+    - { label: Portuguese, name: pt, widget: text, hint: "Optional – leave blank to reuse the English value." }
+    - { label: Spanish, name: es, widget: text, hint: "Optional – leave blank to reuse the English value." }
 
 localized_markdown_field: &localized_markdown_field
   widget: object
@@ -33,9 +33,9 @@ localized_markdown_field: &localized_markdown_field
   editor:
     display: 'tabs'
   fields:
-    - { label: English, name: en, widget: markdown }
-    - { label: Portuguese, name: pt, widget: markdown }
-    - { label: Spanish, name: es, widget: markdown }
+    - { label: English, name: en, widget: markdown, hint: "Primary copy – translate first here." }
+    - { label: Portuguese, name: pt, widget: markdown, hint: "Optional – leave blank to reuse the English value." }
+    - { label: Spanish, name: es, widget: markdown, hint: "Optional – leave blank to reuse the English value." }
 
 localized_list_field: &localized_list_field
   widget: object
@@ -47,15 +47,55 @@ localized_list_field: &localized_list_field
     - label: English
       name: en
       widget: list
+      hint: "Primary set of items – translate first here."
       field: { label: Item, name: item, widget: string }
     - label: Portuguese
       name: pt
       widget: list
+      hint: "Optional – leave empty to mirror the English list."
       field: { label: Item, name: item, widget: string }
     - label: Spanish
       name: es
       widget: list
+      hint: "Optional – leave empty to mirror the English list."
       field: { label: Item, name: item, widget: string }
+
+duplicate_string_field: &duplicate_string_field
+  widget: string
+  required: false
+  i18n: duplicate
+
+duplicate_text_field: &duplicate_text_field
+  widget: text
+  required: false
+  i18n: duplicate
+
+duplicate_boolean_field: &duplicate_boolean_field
+  widget: boolean
+  required: false
+  default: false
+  i18n: duplicate
+
+duplicate_url_field: &duplicate_url_field
+  widget: string
+  required: false
+  i18n: duplicate
+  pattern:
+    - "^https?://|^/|^$"
+    - "Enter an internal path (starting with /) or an absolute URL."
+
+button_settings_fields: &button_settings_fields
+  - <<: *localized_string_field
+    label: "Button Label"
+    name: "label"
+    hint: "Localized CTA text (≤24 characters)."
+  - <<: *duplicate_url_field
+    label: "Destination URL"
+    name: "href"
+  - <<: *duplicate_boolean_field
+    label: "Open in new tab"
+    name: "openInNewTab"
+    hint: "Enable when linking to an external destination."
 
 status_field: &status_field
   label: "Editorial Status"
@@ -1083,7 +1123,7 @@ collection_groups:
   - label: "Site Settings"
     collections: [site, policies]
   - label: "Page Builder"
-    collections: [pages]
+    collections: [pages, sectionTemplates]
   - label: "Assets & Media"
     collections: [assets_images, mediaSets]
   - label: "Translations"
@@ -1357,30 +1397,20 @@ collections:
                 name: "subheadline"
                 required: false
                 hint: "Supporting message beneath the headline (≤200 characters)."
-              - label: "Primary CTA"
-                name: "primaryCta"
-                widget: "object"
-                collapsed: true
-                required: false
-                hint: "Main hero call-to-action button."
-                fields:
-                  - <<: *localized_string_field
-                    label: "Button Label"
-                    name: "label"
-                    hint: "Primary CTA button text (≤24 characters)."
-                  - { label: "Link URL", name: "href", widget: "string", required: false, hint: "Destination URL for the primary CTA." }
-              - label: "Secondary CTA"
-                name: "secondaryCta"
-                widget: "object"
-                collapsed: true
-                required: false
-                hint: "Optional secondary call-to-action."
-                fields:
-                  - <<: *localized_string_field
-                    label: "Button Label"
-                    name: "label"
-                    hint: "Secondary CTA button text (≤24 characters)."
-                  - { label: "Link URL", name: "href", widget: "string", required: false, hint: "Destination URL for the secondary CTA." }
+          - label: "Primary CTA"
+            name: "primaryCta"
+            widget: "object"
+            collapsed: true
+            required: false
+            hint: "Main hero call-to-action button."
+            fields: *button_settings_fields
+          - label: "Secondary CTA"
+            name: "secondaryCta"
+            widget: "object"
+            collapsed: true
+            required: false
+            hint: "Optional secondary call-to-action."
+            fields: *button_settings_fields
               - label: "Layout"
                 name: "layout"
                 widget: "object"
@@ -2076,6 +2106,46 @@ collections:
                       - { label: Portuguese, name: pt, widget: string, hint: "Portuguese link label (≤40 characters)." }
                       - { label: Spanish, name: es, widget: string, hint: "Spanish link label (≤40 characters)." }
 
+  - name: sectionTemplates
+    label: "Section Templates"
+    label_singular: "Section Template"
+    group: "Page Builder"
+    folder: "content/templates/sections"
+    create: true
+    slug: "{{slug}}"
+    summary: "{{title}}"
+    identifier_field: "title"
+    editor:
+      preview: false
+      add_to_top: true
+    fields:
+      - <<: *duplicate_string_field
+        label: "Template Title"
+        name: "title"
+        hint: "Name used inside the CMS template picker."
+      - { label: "Section Type", name: "sectionType", widget: "select", options: ["hero", "mediaCopy", "mediaShowcase", "communityCarousel", "newsletterSignup", "banner", "videoGallery", "featureGrid"], hint: "Matches the `type` value used in page sections." }
+      - <<: *duplicate_text_field
+        label: "Short Description"
+        name: "description"
+        hint: "Describe when to use this template so editors can choose quickly."
+      - label: "Best Practices"
+        name: "bestPractices"
+        widget: "list"
+        required: false
+        collapsed: true
+        summary: "{{fields.tip}}"
+        field:
+          <<: *duplicate_string_field
+          label: Tip
+          name: tip
+        hint: "Share editorial tips or reminders for consistent copy and imagery."
+      - label: "Starter Section JSON"
+        name: "content"
+        widget: "code"
+        output_code_only: true
+        default_language: "json"
+        i18n: duplicate
+        hint: "Copy this JSON into a new section block to preload the layout and sample copy."
   - name: "mediaSets"
     label: "Media Sets"
     group: "Assets & Media"

@@ -1,0 +1,43 @@
+{
+  "title": "Media Showcase · Three Highlights",
+  "sectionType": "mediaShowcase",
+  "description": "Use this to spotlight three stories or collections with supporting imagery and CTAs.",
+  "bestPractices": [
+    "Lead with a short eyebrow to orient the reader.",
+    "Keep the body copy to one or two punchy sentences.",
+    "Use contrasting imagery between cards so the grid feels dynamic."
+  ],
+  "content": {
+    "type": "mediaShowcase",
+    "title": "",
+    "items": [
+      {
+        "eyebrow": "From the blog",
+        "title": "Barrier care, simplified",
+        "body": "Share a quick insight or takeaway from a hero article.",
+        "image": "shared/342cecc0-3c00-4094-97d6-5c9d9da02330.jpg",
+        "imageAlt": "Steaming hammam with soft lighting",
+        "ctaLabel": "Read the story",
+        "ctaHref": "/learn"
+      },
+      {
+        "eyebrow": "For clinics",
+        "title": "Protocols that earn trust",
+        "body": "Explain why professionals rely on the range for post-procedure routines.",
+        "image": "shared/img_20200328_165521-copia-2-.jpg",
+        "imageAlt": "Practitioner applying treatment to a client",
+        "ctaLabel": "Review protocols",
+        "ctaHref": "/training"
+      },
+      {
+        "eyebrow": "Hero product",
+        "title": "Kapunka pure argan",
+        "body": "Highlight the hero SKU and what makes it distinct.",
+        "image": "shared/kapunka-in-the-wild.jpg",
+        "imageAlt": "Argan oil bottle on linen cloth",
+        "ctaLabel": "Shop now",
+        "ctaHref": "/shop"
+      }
+    ]
+  }
+}
