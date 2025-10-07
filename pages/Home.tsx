@@ -705,6 +705,53 @@ const sanitizeCmsUrl = (value?: string | null): string | undefined => {
   return undefined;
 };
 
+const SUPPORTED_LANGUAGES: Language[] = ['en', 'pt', 'es'];
+
+const resolveLocalizedString = (value: unknown, language: Language): string | undefined => {
+  if (typeof value === 'string') {
+    return sanitizeCmsString(value);
+  }
+
+  if (!value || typeof value !== 'object') {
+    return undefined;
+  }
+
+  const record = value as Record<string, unknown>;
+  const preference = [language, ...SUPPORTED_LANGUAGES];
+
+  for (const locale of preference) {
+    const candidate = record[locale];
+    if (typeof candidate === 'string') {
+      const sanitized = sanitizeCmsString(candidate);
+      if (sanitized) {
+        return sanitized;
+      }
+    }
+  }
+
+  return undefined;
+};
+
+const resolveHeroOverlayKeyword = (value?: string | null): string | undefined => {
+  const normalized = sanitizeCmsString(value);
+  if (!normalized) {
+    return undefined;
+  }
+
+  switch (normalized) {
+    case 'none':
+      return 'rgba(0,0,0,0)';
+    case 'light':
+      return 'rgba(0,0,0,0.25)';
+    case 'medium':
+      return 'rgba(0,0,0,0.45)';
+    case 'strong':
+      return 'rgba(0,0,0,0.65)';
+    default:
+      return normalized;
+  }
+};
+
 const isCmsCtaObject = (value: unknown): value is CmsCtaShape => {
   if (!value || typeof value !== 'object') {
     return false;
@@ -1707,11 +1754,78 @@ const Home: React.FC = () => {
       const parsedData = parsedResult.data;
       const hasSectionsArray = Array.isArray(parsedData?.sections);
       const rawSections = hasSectionsArray ? parsedData.sections ?? [] : [];
-      const heroAlignmentData = parsedData?.heroAlignment;
+      let heroAlignmentData = parsedData?.heroAlignment;
       let heroImagesData: HeroImagesGroup | undefined = parsedData?.heroImages ?? undefined;
-      const heroCtasData = parsedData?.heroCtas;
-      const heroHeadlineData = parsedData?.heroHeadline;
-      const heroSubheadlineData = parsedData?.heroSubheadline;
+      let heroCtasData = parsedData?.heroCtas;
+      let heroHeadlineData = parsedData?.heroHeadline;
+      let heroSubheadlineData = parsedData?.heroSubheadline;
+
+      const heroBlock = parsedData?.hero;
+      if (heroBlock && typeof heroBlock === 'object') {
+        const heroContent = (heroBlock as { content?: Record<string, unknown> }).content ?? null;
+        if (heroContent && typeof heroContent === 'object') {
+          heroHeadlineData = heroHeadlineData
+            ?? resolveLocalizedString(heroContent.headline, result.localeUsed)
+            ?? resolveLocalizedString(heroContent.title, result.localeUsed);
+          heroSubheadlineData = heroSubheadlineData
+            ?? resolveLocalizedString(heroContent.subheadline, result.localeUsed)
+            ?? resolveLocalizedString(heroContent.body, result.localeUsed);
+        }
+
+        if (!heroCtasData) {
+          const heroCtas = (heroBlock as { ctas?: Record<string, unknown> }).ctas ?? null;
+          if (heroCtas && typeof heroCtas === 'object') {
+            const resolveCta = (cta: unknown) => {
+              if (!cta || typeof cta !== 'object') {
+                return undefined;
+              }
+              const ctaRecord = cta as Record<string, unknown>;
+              const label = resolveLocalizedString(ctaRecord.label, result.localeUsed);
+              const href = resolveLocalizedString(ctaRecord.href, result.localeUsed);
+              if (!label && !href) {
+                return undefined;
+              }
+              return {
+                ...(label ? { label } : {}),
+                ...(href ? { href } : {}),
+              };
+            };
+
+            const primaryCta = resolveCta(heroCtas.primary ?? heroCtas.shop);
+            const secondaryCta = resolveCta(heroCtas.secondary ?? heroCtas.pro);
+
+            if (primaryCta || secondaryCta) {
+              heroCtasData = {
+                ...(primaryCta ? { ctaPrimary: primaryCta } : {}),
+                ...(secondaryCta ? { ctaSecondary: secondaryCta } : {}),
+              };
+            }
+          }
+        }
+
+        if (!heroAlignmentData) {
+          const heroLayout = (heroBlock as { layout?: Record<string, unknown> }).layout ?? null;
+          if (heroLayout && typeof heroLayout === 'object') {
+            const alignX = resolveLocalizedString(heroLayout.alignX, result.localeUsed);
+            const alignY = resolveLocalizedString(heroLayout.alignY, result.localeUsed);
+            const textPosition = resolveLocalizedString(heroLayout.textPosition, result.localeUsed);
+            const textAnchor = resolveLocalizedString(heroLayout.textAnchor, result.localeUsed);
+            const overlayKeyword = resolveLocalizedString(heroLayout.overlay, result.localeUsed);
+            const layoutHint = resolveLocalizedString(heroLayout.layoutHint, result.localeUsed);
+
+            heroAlignmentData = {
+              ...(alignX === 'left' || alignX === 'center' || alignX === 'right' ? { heroAlignX: alignX } : {}),
+              ...(alignY === 'top' || alignY === 'middle' || alignY === 'bottom' ? { heroAlignY: alignY } : {}),
+              ...(textPosition === 'overlay' || textPosition === 'below' ? { heroTextPosition: textPosition } : {}),
+              ...(textAnchor && HERO_TEXT_POSITION_MAP[textAnchor as HeroTextAnchor]
+                ? { heroTextAnchor: textAnchor as HeroTextAnchor }
+                : {}),
+              ...(layoutHint ? { heroLayoutHint: layoutHint } : {}),
+              ...(overlayKeyword ? { heroOverlay: resolveHeroOverlayKeyword(overlayKeyword) } : {}),
+            };
+          }
+        }
+      }
 
       const heroValidation = validateHeroContent({
         heroHeadline: heroHeadlineData,

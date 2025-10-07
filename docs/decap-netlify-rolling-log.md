@@ -339,3 +339,8 @@ This log records day-to-day investigations, fixes, and decisions that affect the
 - **What changed**: Restored `pages/Home.tsx` from commit 7871f64 (before the unified content experiments) so the hero, media showcase grid, carousel, newsletter, bestsellers, and testimonials render exactly like the reference design.
 - **Impact & follow-up**: The homepage now matches the original layout; future unified-content work must ship behind toggles to prevent layout regressions. Update the new schema to align with this implementation before reattempting migration.
 - **References**: Pending PR
+
+## 2025-10-07 — Adapted unified hero schema to legacy renderer
+- **What changed**: `pages/Home.tsx` now reads the new `hero.content`, `hero.ctas`, and `hero.layout` fields from `pages_v2` and maps them to the legacy hero alignment, overlay, and CTA props so the hero matches the intended design again.
+- **Impact & follow-up**: Restores left-aligned hero copy, dual CTAs, and overlay treatment without regressing the rest of the homepage. Continue validating other sections against the unified schema before re-enabling full migration.
+- **References**: Pending PR
