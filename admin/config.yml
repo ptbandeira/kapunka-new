@@ -1397,20 +1397,20 @@ collections:
                 name: "subheadline"
                 required: false
                 hint: "Supporting message beneath the headline (≤200 characters)."
-          - label: "Primary CTA"
-            name: "primaryCta"
-            widget: "object"
-            collapsed: true
-            required: false
-            hint: "Main hero call-to-action button."
-            fields: *button_settings_fields
-          - label: "Secondary CTA"
-            name: "secondaryCta"
-            widget: "object"
-            collapsed: true
-            required: false
-            hint: "Optional secondary call-to-action."
-            fields: *button_settings_fields
+              - label: "Primary CTA"
+                name: "primaryCta"
+                widget: "object"
+                collapsed: true
+                required: false
+                hint: "Main hero call-to-action button."
+                fields: *button_settings_fields
+              - label: "Secondary CTA"
+                name: "secondaryCta"
+                widget: "object"
+                collapsed: true
+                required: false
+                hint: "Optional secondary call-to-action."
+                fields: *button_settings_fields
               - label: "Layout"
                 name: "layout"
                 widget: "object"
