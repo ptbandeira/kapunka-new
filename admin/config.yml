@@ -1,7 +1,827 @@
----
-imports:
-  - ./modules/anchors.yaml
+# ===== Internationalization =====
+i18n:
+  structure: multiple_folders
+  locales: [en, pt, es]
+  default_locale: en
 
+localized_string_field: &localized_string_field
+  widget: object
+  i18n: true
+  required: false
+  editor:
+    display: 'tabs'
+  fields:
+    - { label: English, name: en, widget: string, hint: "Primary copy – translate first here." }
+    - { label: Portuguese, name: pt, widget: string, hint: "Optional – leave blank to reuse the English value." }
+    - { label: Spanish, name: es, widget: string, hint: "Optional – leave blank to reuse the English value." }
+
+localized_text_field: &localized_text_field
+  widget: object
+  i18n: true
+  required: false
+  editor:
+    display: 'tabs'
+  fields:
+    - { label: English, name: en, widget: text, hint: "Primary copy – translate first here." }
+    - { label: Portuguese, name: pt, widget: text, hint: "Optional – leave blank to reuse the English value." }
+    - { label: Spanish, name: es, widget: text, hint: "Optional – leave blank to reuse the English value." }
+
+localized_markdown_field: &localized_markdown_field
+  widget: object
+  i18n: true
+  required: false
+  editor:
+    display: 'tabs'
+  fields:
+    - { label: English, name: en, widget: markdown, hint: "Primary copy – translate first here." }
+    - { label: Portuguese, name: pt, widget: markdown, hint: "Optional – leave blank to reuse the English value." }
+    - { label: Spanish, name: es, widget: markdown, hint: "Optional – leave blank to reuse the English value." }
+
+localized_list_field: &localized_list_field
+  widget: object
+  i18n: true
+  required: false
+  editor:
+    display: 'tabs'
+  fields:
+    - label: English
+      name: en
+      widget: list
+      hint: "Primary set of items – translate first here."
+      field: { label: Item, name: item, widget: string }
+    - label: Portuguese
+      name: pt
+      widget: list
+      hint: "Optional – leave empty to mirror the English list."
+      field: { label: Item, name: item, widget: string }
+    - label: Spanish
+      name: es
+      widget: list
+      hint: "Optional – leave empty to mirror the English list."
+      field: { label: Item, name: item, widget: string }
+
+duplicate_string_field: &duplicate_string_field
+  widget: string
+  required: false
+  i18n: duplicate
+
+duplicate_text_field: &duplicate_text_field
+  widget: text
+  required: false
+  i18n: duplicate
+
+duplicate_boolean_field: &duplicate_boolean_field
+  widget: boolean
+  required: false
+  default: false
+  i18n: duplicate
+
+duplicate_url_field: &duplicate_url_field
+  widget: string
+  required: false
+  i18n: duplicate
+  pattern:
+    - "^https?://|^/|^$"
+    - "Enter an internal path (starting with /) or an absolute URL."
+
+button_settings_fields: &button_settings_fields
+  - <<: *localized_string_field
+    label: "Button Label"
+    name: "label"
+    hint: "Localized CTA text (≤24 characters)."
+  - <<: *duplicate_url_field
+    label: "Destination URL"
+    name: "href"
+  - <<: *duplicate_boolean_field
+    label: "Open in new tab"
+    name: "openInNewTab"
+    hint: "Enable when linking to an external destination."
+
+section_string_field: &section_string_field
+  widget: string
+  required: false
+
+section_text_field: &section_text_field
+  widget: text
+  required: false
+
+section_markdown_field: &section_markdown_field
+  widget: markdown
+  required: false
+
+section_list_string_field: &section_list_string_field
+  widget: list
+  required: false
+  field: { label: Item, name: item, widget: string }
+
+status_field: &status_field
+  label: "Editorial Status"
+  name: "status"
+  widget: "select"
+  options:
+    - { label: "Draft", value: "draft" }
+    - { label: "In Review", value: "in_review" }
+    - { label: "Scheduled", value: "scheduled" }
+    - { label: "Approved", value: "approved" }
+  default: "draft"
+  hint: "Track the current editorial state of this entry."
+
+schedule_fields: &schedule_fields
+  label: "Scheduling"
+  name: "scheduling"
+  widget: "object"
+  collapsed: true
+  required: false
+  hint: "Optional publish/unpublish timestamps for automated scheduling."
+  fields:
+    - { label: "Publish At", name: "publishAt", widget: "datetime", required: false }
+    - { label: "Unpublish At", name: "unpublishAt", widget: "datetime", required: false }
+
+visibility_field: &visibility_field
+  label: "Visible on site"
+  name: "visible"
+  widget: "boolean"
+  required: false
+  default: true
+  hint: "Uncheck to hide this item from the live site without deleting it."
+
+focal_point_field: &focal_point_field
+  label: "Focal Point"
+  name: "focal"
+  widget: "object"
+  collapsed: true
+  required: false
+  hint: "Adjust the image focus area. Values between 0 and 1 represent the relative horizontal and vertical point to keep in view."
+  fields:
+    - { label: "Horizontal (0–1)", name: "x", widget: "number", value_type: "float", min: 0, max: 1, step: 0.01, required: false }
+    - { label: "Vertical (0–1)", name: "y", widget: "number", value_type: "float", min: 0, max: 1, step: 0.01, required: false }
+
+product_knowledge_fields: &product_knowledge_fields
+  - <<: *localized_text_field
+    label: "What It Is"
+    name: "whatItIs"
+  - <<: *localized_text_field
+    label: "How It Works"
+    name: "howItWorks"
+  - <<: *localized_text_field
+    label: "Who It's For"
+    name: "whoItsFor"
+  - <<: *localized_text_field
+    label: "Scientific Backing"
+    name: "scientificBacking"
+  - <<: *localized_text_field
+    label: "Cultural & Traditional Context"
+    name: "culturalContext"
+
+product_faq_fields: &product_faq_fields
+  - <<: *localized_text_field
+    label: "Question"
+    name: "question"
+    hint: "FAQ prompt displayed on PDP."
+  - <<: *localized_text_field
+    label: "Answer"
+    name: "answer"
+    hint: "Short response (supports Markdown)."
+
+course_item_fields: &course_item_fields
+  - { label: ID, name: id, widget: string }
+  - *status_field
+  - *schedule_fields
+  - <<: *localized_string_field
+    label: "Title"
+    name: "title"
+    required: true
+  - { label: Image, name: imageUrl, widget: image, choose_url: true, hint: "Thumbnail used on the Academy page." }
+  - { label: Price, name: price, widget: number, value_type: float }
+  - { label: Enroll Link, name: enrollLink, widget: string, hint: "URL to course registration." }
+
+video_entry_fields: &video_entry_fields
+  - *status_field
+  - *schedule_fields
+  - { label: Title, name: title, widget: string, required: false }
+  - { label: Description, name: description, widget: text, required: false }
+  - { label: Video URL, name: videoUrl, widget: string, required: false }
+  - { label: Thumbnail, name: thumbnail, widget: image, choose_url: true, required: false }
+
+training_entry_fields: &training_entry_fields
+  - *status_field
+  - *schedule_fields
+  - { label: Course Title, name: courseTitle, widget: string, required: true }
+  - { label: Course Summary, name: courseSummary, widget: text, required: true }
+  - { label: Link URL, name: linkUrl, widget: string, required: false }
+
+product_item_fields: &product_item_fields
+  - { label: ID, name: id, widget: string }
+  - *status_field
+  - *schedule_fields
+  - <<: *localized_string_field
+    label: "Name"
+    name: "name"
+    required: true
+    hint: "Displayed product name for PDPs and cards."
+  - <<: *localized_string_field
+    label: "Name Add-on"
+    name: "titleAddition"
+    hint: "Optional text appended to the product title (≤30 characters)."
+  - <<: *localized_string_field
+    label: "Tagline"
+    name: "tagline"
+    hint: "Short positioning statement shown on product cards (≤80 characters)."
+  - <<: *localized_text_field
+    label: "Description"
+    name: "description"
+    hint: "Hero description for PDP hero and cart tooltip."
+  - <<: *localized_list_field
+    label: "Bundle Includes"
+    name: "bundleIncludes"
+    hint: "Outline the items contained in a bundle."
+  - { label: "Primary Image", name: "imageUrl", widget: "image", choose_url: true, hint: "Hero product image displayed on cards and PDP." }
+  - label: Sizes
+    name: sizes
+    widget: list
+    summary: "{{fields.size}} ml"
+    fields:
+      - { label: Option ID, name: id, widget: string }
+      - { label: Size (ml), name: size, widget: number }
+      - { label: Price, name: price, widget: number, value_type: float }
+  - <<: *localized_list_field
+    label: "Badges"
+    name: "badges"
+    hint: "Short selling points displayed as badges."
+  - <<: *localized_list_field
+    label: "Benefits"
+    name: "benefits"
+    hint: "Bulleted list summarising key results."
+  - <<: *localized_text_field
+    label: "How to Use"
+    name: "howToUse"
+    hint: "Step-by-step application guidance (supports Markdown)."
+  - <<: *localized_text_field
+    label: "Ingredients"
+    name: "ingredients"
+    hint: "Full INCI or ingredient description list."
+  - <<: *localized_text_field
+    label: "Origin & Purity Note"
+    name: "labTestedNote"
+    hint: "Highlight lab testing or sourcing credentials."
+  - label: Good to Know
+    name: goodToKnow
+    widget: object
+    collapsed: true
+    fields:
+      - <<: *localized_string_field
+        label: "Title"
+        name: "title"
+        hint: "Optional heading above the quick facts list."
+      - <<: *localized_list_field
+        label: "Items"
+        name: "items"
+        hint: "Short facts or usage notes."
+  - <<: *localized_list_field
+    label: "Multi-use Tips"
+    name: "multiUseTips"
+    hint: "Optional multi-use ideas shown on PDP."
+  - label: Knowledge Hub
+    name: knowledge
+    widget: object
+    collapsed: true
+    fields: *product_knowledge_fields
+  - label: FAQs
+    name: faqs
+    widget: list
+    summary: "{{fields.question.en}}"
+    fields: *product_faq_fields
+
+article_item_fields: &article_item_fields
+  - { label: ID, name: id, widget: string }
+  - { label: Slug, name: slug, widget: string }
+  - <<: *localized_string_field
+    label: "Title"
+    name: "title"
+    required: true
+    hint: "Displayed as the article headline."
+  - <<: *localized_text_field
+    label: "Preview"
+    name: "preview"
+    hint: "Short summary shown in the Learn hub (≤200 characters)."
+  - <<: *localized_markdown_field
+    label: "Content"
+    name: "content"
+    hint: "Full article body. Supports Markdown."
+  - { label: Category, name: category, widget: string, hint: "Used for filtering in the Learn hub." }
+  - { label: Featured Image, name: imageUrl, widget: image, choose_url: true, hint: "Preview image shown on the Learn hub and article hero." }
+  - { label: Related Product ID, name: relatedProductId, widget: string, required: false, hint: "Optional primary product ID to highlight." }
+  - label: Related Product IDs
+    name: relatedProductIds
+    widget: list
+    required: false
+    field: { label: Product ID, name: id, widget: string }
+  - label: FAQs
+    name: faqs
+    widget: list
+    required: false
+    summary: "{{fields.question.en}}"
+    fields: *product_faq_fields
+
+# ===== Shared Section Templates (anchors) =====
+hero_content_fields: &hero_content_fields
+  - <<: *localized_string_field
+    label: "Headline"
+    name: "headline"
+    hint: "Main hero message displayed in large type."
+  - <<: *localized_text_field
+    label: "Subheading"
+    name: "subheading"
+    hint: "Optional supporting sentence shown under the headline."
+  - label: "Primary Call-to-Action"
+    name: "primaryCta"
+    widget: "object"
+    collapsed: true
+    required: false
+    fields:
+      - <<: *localized_string_field
+        label: "Button Label"
+        name: "label"
+      - { label: "Link URL", name: "href", widget: "string", required: false, pattern: ["^(\\/|https?:\\/\\/).*$", "Enter an internal (/path) or absolute https:// URL."], hint: "Use internal routes (e.g. /shop) or full https:// links." }
+  - label: "Secondary Call-to-Action"
+    name: "secondaryCta"
+    widget: "object"
+    collapsed: true
+    required: false
+    fields:
+      - <<: *localized_string_field
+        label: "Button Label"
+        name: "label"
+      - { label: "Link URL", name: "href", widget: "string", required: false, pattern: ["^(\\/|https?:\\/\\/).*$", "Enter an internal (/path) or absolute https:// URL."], hint: "Optional supporting action." }
+  - label: "Hero Image"
+    name: "image"
+    widget: "object"
+    collapsed: true
+    required: false
+    fields:
+      - { label: "Image", name: "src", widget: "image", choose_url: true, required: false, hint: "Upload or pick an image from the media library." }
+      - <<: *localized_string_field
+        label: "Alt Text"
+        name: "alt"
+        hint: "Describe the visual for accessibility and SEO."
+      - <<: *focal_point_field
+        hint: "Optional focus point to control how the hero image crops responsively."
+  - label: "Text Anchor Override"
+    name: "position"
+    widget: "select"
+    required: false
+    options:
+      - { label: "Top left", value: "top-left" }
+      - { label: "Top center", value: "top-center" }
+      - { label: "Top right", value: "top-right" }
+      - { label: "Middle left", value: "middle-left" }
+      - { label: "Middle center", value: "middle-center" }
+      - { label: "Middle right", value: "middle-right" }
+      - { label: "Bottom left", value: "bottom-left" }
+      - { label: "Bottom center", value: "bottom-center" }
+      - { label: "Bottom right", value: "bottom-right" }
+    hint: "Fine-tune where the hero copy sits when overlaying imagery."
+
+media_copy_fields: &media_copy_fields
+  - <<: *localized_string_field
+    label: "Heading"
+    name: "heading"
+    hint: "Title displayed above the paragraph copy."
+  - <<: *localized_markdown_field
+    label: "Body"
+    name: "body"
+    hint: "Supports Markdown for emphasis, links, and line breaks."
+  - label: "Call-to-Action"
+    name: "cta"
+    widget: "object"
+    collapsed: true
+    required: false
+    fields:
+      - <<: *localized_string_field
+        label: "Button Label"
+        name: "label"
+      - { label: "Link URL", name: "href", widget: "string", required: false, pattern: ["^(\\/|https?:\\/\\/).*$", "Enter an internal (/path) or absolute https:// URL."], hint: "Link readers to relevant resources." }
+  - label: "Image"
+    name: "image"
+    widget: "object"
+    collapsed: true
+    required: false
+    fields:
+      - { label: "Image", name: "src", widget: "image", choose_url: true, required: false, hint: "Upload or pick an image from the media library." }
+      - <<: *localized_string_field
+        label: "Alt Text"
+        name: "alt"
+        hint: "Describe the image for screen readers."
+      - <<: *focal_point_field
+        hint: "Optional focus point to guide cropping when the layout uses object-fit cover."
+
+testimonial_fields: &testimonial_fields
+  - <<: *localized_markdown_field
+    label: "Quote"
+    name: "quote"
+    required: true
+    hint: "Testimonial text displayed inside quotation marks."
+  - <<: *localized_string_field
+    label: "Author"
+    name: "author"
+    hint: "Name of the customer, partner, or practitioner."
+  - <<: *localized_string_field
+    label: "Role or Context"
+    name: "role"
+    hint: "Clinic, title, or context shown under the author."
+  - label: "Avatar"
+    name: "avatar"
+    widget: "image"
+    choose_url: true
+    required: false
+    hint: "Optional headshot displayed with the testimonial."
+  - label: "Linked Testimonial"
+    name: "testimonialRef"
+    widget: "relation"
+    collection: "testimonials"
+    value_field: "fileRelativePath"
+    display_fields:
+      - name
+      - title
+    search_fields:
+      - name
+      - title
+      - quote
+    required: false
+    hint: "Reuse a saved testimonial entry. Leave empty to author custom copy in this section."
+
+hero_object: &hero_object
+  label: "Hero Content"
+  name: "content"
+  widget: "object"
+  summary: "{{fields.headline.en}}"
+  fields: *hero_content_fields
+
+media_copy_object: &media_copy_object
+  label: "Media & Copy"
+  name: "content"
+  widget: "object"
+  summary: "{{fields.heading.en}}"
+  fields: *media_copy_fields
+
+shared_sections: &shared_sections
+  - &section_mediaCopy
+    label: "Media + Copy"
+    name: "mediaCopy"
+    widget: "object"
+    collapsed: true
+    summary: "Media + Copy · {{fields.title | default('Untitled')}}"
+    fields:
+      - { name: "type", widget: "hidden", default: "mediaCopy" }
+      - *visibility_field
+      - { label: "Title", name: "title", widget: "string", required: false }
+      - { label: "Body", name: "body", widget: "text", required: false }
+      - label: "Layout"
+        name: "layout"
+        widget: "select"
+        required: false
+        options:
+          - { label: "Image right", value: "image-right" }
+          - { label: "Image left", value: "image-left" }
+          - { label: "Overlay", value: "overlay" }
+      - { label: "Image (upload or path)", name: "image", widget: "image", choose_url: true, required: false }
+      - { label: "Image URL", name: "imageUrl", widget: "string", required: false }
+      - { label: "Image Alt Text", name: "imageAlt", widget: "string", required: false }
+      - <<: *focal_point_field
+        name: "imageFocal"
+        label: "Image Focal Point"
+      - { label: "CTA Label", name: "ctaLabel", widget: "string", required: false }
+      - { label: "CTA Link", name: "ctaHref", widget: "string", required: false }
+  - &section_mediaShowcase
+    label: "Media Showcase"
+    name: "mediaShowcase"
+    widget: "object"
+    collapsed: true
+    summary: "Media Showcase · {{fields.title | default('Untitled')}}"
+    fields:
+      - { name: "type", widget: "hidden", default: "mediaShowcase" }
+      - *visibility_field
+      - { label: "Title", name: "title", widget: "string", required: false }
+      - label: "Items"
+        name: "items"
+        widget: "list"
+        collapsed: true
+        summary: "{{fields.title | default(fields.eyebrow) | default('Card')}}"
+        fields:
+          - { label: "Eyebrow", name: "eyebrow", widget: "string", required: false }
+          - { label: "Title", name: "title", widget: "string", required: false }
+          - { label: "Body", name: "body", widget: "text", required: false }
+          - { label: "Image (upload or path)", name: "image", widget: "image", choose_url: true, required: false }
+          - { label: "Image URL", name: "imageUrl", widget: "string", required: false }
+          - { label: "Image Alt Text", name: "imageAlt", widget: "string", required: false }
+          - <<: *focal_point_field
+            name: "imageFocal"
+            label: "Image Focal Point"
+          - { label: "CTA Label", name: "ctaLabel", widget: "string", required: false }
+          - { label: "CTA Link", name: "ctaHref", widget: "string", required: false }
+  - &section_featureGrid
+    label: "Feature Grid"
+    name: "featureGrid"
+    widget: "object"
+    collapsed: true
+    summary: "Feature Grid · {{fields.title | default('Untitled')}}"
+    fields:
+      - { name: "type", widget: "hidden", default: "featureGrid" }
+      - *visibility_field
+      - { label: "Title", name: "title", widget: "string", required: false }
+      - { label: "Columns", name: "columns", widget: "number", value_type: "int", min: 1, max: 4, required: false }
+      - label: "Items"
+        name: "items"
+        widget: "list"
+        collapsed: true
+        summary: "{{fields.label | default('Feature')}}"
+        fields:
+          - { label: "Label", name: "label", widget: "string", required: false }
+          - { label: "Description", name: "description", widget: "text", required: false }
+  - &section_productGrid
+    label: "Product Grid"
+    name: "productGrid"
+    widget: "object"
+    collapsed: true
+    summary: "Product Grid · {{fields.title | default('Untitled')}}"
+    fields:
+      - { name: "type", widget: "hidden", default: "productGrid" }
+      - *visibility_field
+      - { label: "Title", name: "title", widget: "string", required: false }
+      - { label: "Columns", name: "columns", widget: "number", value_type: "int", min: 1, max: 4, required: false }
+      - label: "Products"
+        name: "products"
+        widget: "list"
+        collapsed: true
+        summary: "{{fields.id | default('Product')}}"
+        hint: "Select the individual products to feature."
+        fields:
+          - label: "Product"
+            name: "id"
+            widget: "relation"
+            collection: "products"
+            file: "catalog"
+            path: "items"
+            search_fields:
+              - "name.en"
+              - "id"
+            display_fields:
+              - "name.en"
+            value_field: "id"
+            options_length: 20
+  - &section_testimonials
+    label: "Testimonials"
+    name: "testimonials"
+    widget: "object"
+    collapsed: true
+    summary: "Testimonials · {{fields.title | default('Selected entries')}}"
+    fields:
+      - { name: "type", widget: "hidden", default: "testimonials" }
+      - *visibility_field
+      - { label: "Section Title", name: "title", widget: "string", required: false }
+      - label: "Testimonials"
+        name: "testimonials"
+        widget: "list"
+        collapsed: true
+        summary: "{{fields.testimonialRef | default(fields.author) | default('Testimonial')}}"
+        fields:
+          - label: "Testimonial Reference"
+            name: "testimonialRef"
+            widget: "relation"
+            collection: "testimonials"
+            value_field: "fileRelativePath"
+            display_fields:
+              - name
+              - title
+            search_fields:
+              - name
+              - title
+              - quote
+            required: false
+          - { label: "Quote", name: "quote", widget: "text", required: false }
+          - { label: "Author", name: "author", widget: "string", required: false }
+          - { label: "Role", name: "role", widget: "string", required: false }
+  - &section_communityCarousel
+    label: "Community Carousel"
+    name: "communityCarousel"
+    widget: "object"
+    collapsed: true
+    summary: "Community Carousel · {{fields.title | default('Untitled')}}"
+    fields:
+      - { name: "type", widget: "hidden", default: "communityCarousel" }
+      - *visibility_field
+      - { label: "Title", name: "title", widget: "string", required: false }
+      - label: "Slides"
+        name: "slides"
+        widget: "list"
+        collapsed: true
+        summary: "{{fields.name | default(fields.alt) | default('Slide')}}"
+        fields:
+          - { label: "Image (upload or path)", name: "image", widget: "image", choose_url: true, required: false }
+          - <<: *focal_point_field
+            name: "imageFocal"
+            label: "Image Focal Point"
+          - { label: "Alt Text", name: "alt", widget: "string", required: false }
+          - { label: "Quote", name: "quote", widget: "text", required: false }
+          - { label: "Name", name: "name", widget: "string", required: false }
+          - { label: "Role or Context", name: "role", widget: "string", required: false }
+  - &section_newsletterSignup
+    label: "Newsletter Signup"
+    name: "newsletterSignup"
+    widget: "object"
+    collapsed: true
+    summary: "Newsletter Signup · {{fields.title | default('Signup')}}"
+    fields:
+      - { name: "type", widget: "hidden", default: "newsletterSignup" }
+      - *visibility_field
+      - { label: "Title", name: "title", widget: "string", required: false }
+      - { label: "Subtitle", name: "subtitle", widget: "text", required: false }
+      - { label: "Placeholder", name: "placeholder", widget: "string", required: false }
+      - { label: "CTA Label", name: "ctaLabel", widget: "string", required: false }
+      - { label: "Confirmation Message", name: "confirmation", widget: "text", required: false }
+      - label: "Background"
+        name: "background"
+        widget: "select"
+        required: false
+        options:
+          - { label: "Light", value: "light" }
+          - { label: "Beige", value: "beige" }
+          - { label: "Dark", value: "dark" }
+      - label: "Alignment"
+        name: "alignment"
+        widget: "select"
+        required: false
+        options:
+          - { label: "Left", value: "left" }
+          - { label: "Center", value: "center" }
+  - &section_banner
+    label: "Banner"
+    name: "banner"
+    widget: "object"
+    collapsed: true
+    summary: "Banner · {{fields.text | default('Banner')}}"
+    fields:
+      - { name: "type", widget: "hidden", default: "banner" }
+      - *visibility_field
+      - { label: "Text", name: "text", widget: "string", required: false }
+      - { label: "CTA Label", name: "cta", widget: "string", required: false }
+      - { label: "CTA Link", name: "url", widget: "string", required: false }
+  - &section_videoGallery
+    label: "Video Gallery"
+    name: "videoGallery"
+    widget: "object"
+    collapsed: true
+    summary: "Video Gallery · {{fields.title | default('Untitled')}}"
+    fields:
+      - { name: "type", widget: "hidden", default: "videoGallery" }
+      - *visibility_field
+      - { label: "Title", name: "title", widget: "string", required: false }
+      - { label: "Description", name: "description", widget: "text", required: false }
+      - label: "Entries"
+        name: "entries"
+        widget: "list"
+        collapsed: true
+        summary: "{{fields.title | default('Video')}}"
+        fields:
+          - { label: "Title", name: "title", widget: "string", required: false }
+          - { label: "Description", name: "description", widget: "text", required: false }
+          - { label: "Video URL", name: "videoUrl", widget: "string", required: false }
+          - { label: "Thumbnail", name: "thumbnail", widget: "image", choose_url: true, required: false }
+  - &section_trainingList
+    label: "Training List"
+    name: "trainingList"
+    widget: "object"
+    collapsed: true
+    summary: "Training List · {{fields.title | default('Untitled')}}"
+    fields:
+      - { name: "type", widget: "hidden", default: "trainingList" }
+      - *visibility_field
+      - { label: "Title", name: "title", widget: "string", required: false }
+      - { label: "Description", name: "description", widget: "text", required: false }
+      - label: "Entries"
+        name: "entries"
+        widget: "list"
+        collapsed: true
+        summary: "{{fields.courseTitle | default('Training')}}"
+        fields:
+          - { label: "Course Title", name: "courseTitle", widget: "string", required: false }
+          - { label: "Summary", name: "courseSummary", widget: "text", required: false }
+          - { label: "Link URL", name: "linkUrl", widget: "string", required: false }
+  - &section_timeline
+    label: "Timeline"
+    name: "timeline"
+    widget: "object"
+    collapsed: true
+    summary: "Timeline · {{fields.title | default('Timeline')}}"
+    fields:
+      - { name: "type", widget: "hidden", default: "timeline" }
+      - *visibility_field
+      - { label: "Title", name: "title", widget: "string", required: false }
+      - label: "Entries"
+        name: "entries"
+        widget: "list"
+        collapsed: true
+        summary: "{{fields.year | default(fields.title) | default('Entry')}}"
+        fields:
+          - { label: "Year", name: "year", widget: "string", required: false }
+          - { label: "Title", name: "title", widget: "string", required: false }
+          - { label: "Description", name: "description", widget: "markdown", required: false }
+  - &section_facts
+    label: "Fact Block"
+    name: "facts"
+    widget: "object"
+    collapsed: true
+    summary: "Fact Block · {{fields.title | default('Fact')}}"
+    fields:
+      - { name: "type", widget: "hidden", default: "facts" }
+      - *visibility_field
+      - { label: "Title", name: "title", widget: "string", required: false }
+      - { label: "Text", name: "text", widget: "text", required: false }
+  - &section_bullets
+    label: "Bulleted List"
+    name: "bullets"
+    widget: "object"
+    collapsed: true
+    summary: "Bulleted List · {{fields.title | default('List')}}"
+    fields:
+      - { name: "type", widget: "hidden", default: "bullets" }
+      - *visibility_field
+      - { label: "Title", name: "title", widget: "string", required: false }
+      - label: "Items"
+        name: "items"
+        widget: "list"
+        collapsed: true
+        summary: "{{.}}"
+        field: { label: "Bullet", name: "bullet", widget: "string" }
+  - &section_specialties
+    label: "Specialties"
+    name: "specialties"
+    widget: "object"
+    collapsed: true
+    summary: "Specialties · {{fields.title | default('Specialties')}}"
+    fields:
+      - { name: "type", widget: "hidden", default: "specialties" }
+      - *visibility_field
+      - { label: "Title", name: "title", widget: "string", required: false }
+      - label: "Specialties"
+        name: "items"
+        widget: "list"
+        collapsed: true
+        summary: "{{fields.title | default('Specialty')}}"
+        fields:
+          - { label: "Title", name: "title", widget: "string", required: false }
+          - label: "Bullets"
+            name: "bullets"
+            widget: "list"
+            collapsed: true
+            summary: "{{.}}"
+            field: { label: "Bullet", name: "bullet", widget: "string" }
+  - &section_faq
+    label: "FAQ"
+    name: "faq"
+    widget: "object"
+    collapsed: true
+    summary: "FAQ · {{fields.title | default('FAQ')}}"
+    fields:
+      - { name: "type", widget: "hidden", default: "faq" }
+      - *visibility_field
+      - { label: "Title", name: "title", widget: "string", required: false }
+      - label: "Items"
+        name: "items"
+        widget: "list"
+        collapsed: true
+        summary: "{{fields.question | default('Question')}}"
+        fields:
+          - { label: "Question", name: "question", widget: "string", required: false }
+          - { label: "Answer", name: "answer", widget: "markdown", required: false }
+section_library: &section_library
+  - *section_mediaCopy
+  - *section_mediaShowcase
+  - *section_featureGrid
+  - *section_productGrid
+  - *section_testimonials
+  - *section_communityCarousel
+  - *section_newsletterSignup
+  - *section_banner
+  - *section_videoGallery
+  - *section_trainingList
+  - *section_timeline
+  - *section_facts
+  - *section_bullets
+  - *section_specialties
+  - *section_faq
+sections_field: &sections_field
+  label: "Sections"
+  name: "sections"
+  widget: "list"
+  i18n: true
+  collapsed: true
+  summary: "{{fields.type}} · {{fields.title | default(fields.heading) | default(fields.name) | default('Section')}}"
+  hint: "Reorder or edit the content sections that compose this page."
+  types: *section_library
+
+
+# SINGLE SOURCE OF TRUTH for Decap CMS (production /admin). Do not edit site/admin/config.yml.
 backend:
   name: git-gateway
   branch: main
