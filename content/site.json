@@ -59,7 +59,7 @@
     ]
   },
   "seo": {
-    "favicon": "https://res.cloudinary.com/du6xl727e/image/upload/v1759615452/K_favicon_xmcmvw.png",
+    "favicon": "https://res.cloudinary.com/du6xl727e/image/upload/v1759837185/K_favicon_xmcmvw_fbcb86.png",
     "defaultTitle": {
       "en": "Kapunka Skincare",
       "pt": "Kapunka Skincare",
@@ -72,7 +72,7 @@
     }
   },
   "home": {
-    "heroImage": "https://images.pexels.com/photos/2825461/pexels-photo-2825461.jpeg?auto=compress&cs=tinysrgb&w=1920",
+    "heroImage": "https://res.cloudinary.com/du6xl727e/image/upload/v1759768424/pexels-reyna-2825461_qo3q1v.jpg",
     "featuredProductIds": [
       "pure-argan-oil",
       "kapunka-cicatrices",
