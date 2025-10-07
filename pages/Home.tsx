@@ -576,7 +576,8 @@ const HERO_CTA_ALIGNMENT_CLASSES: Record<HeroHorizontalAlignment, string> = {
   right: 'sm:justify-end',
 };
 
-const HERO_GRID_CONTAINER_CLASSES = 'grid grid-cols-3 grid-rows-3 w-full h-full p-6 sm:p-10';
+const HERO_GRID_CONTAINER_CLASSES =
+  'grid grid-cols-3 grid-rows-3 w-full h-full max-w-6xl mx-auto px-6 sm:px-10 py-16 md:py-20';
 
 const HERO_GRID_COLUMN_CLASSES: Record<HeroHorizontalAlignment, string> = {
   left: 'col-start-1 col-end-2',
@@ -966,10 +967,50 @@ const normalizeHeroTextAnchor = (value?: string | null): HeroTextAnchor | undefi
   return undefined;
 };
 
+const HERO_OVERLAY_PRESETS: Record<string, string> = {
+  none: 'rgba(0,0,0,0)',
+  off: 'rgba(0,0,0,0)',
+  transparent: 'rgba(0,0,0,0)',
+  light: 'rgba(0,0,0,0.24)',
+  soft: 'rgba(0,0,0,0.32)',
+  gentle: 'rgba(0,0,0,0.32)',
+  medium: 'rgba(0,0,0,0.48)',
+  balanced: 'rgba(0,0,0,0.48)',
+  dark: 'rgba(0,0,0,0.64)',
+  strong: 'rgba(0,0,0,0.64)',
+  heavy: 'rgba(0,0,0,0.72)',
+  deep: 'rgba(0,0,0,0.72)',
+  black: 'rgba(0,0,0,0.72)',
+  'scrim-dark': 'rgba(0,0,0,0.6)',
+  'scrim-light': 'rgba(255,255,255,0.35)',
+  white: 'rgba(255,255,255,0.4)',
+  bright: 'rgba(255,255,255,0.4)',
+};
+
 const resolveHeroOverlay = (value?: string | number | boolean | null): string | undefined => {
   if (typeof value === 'string') {
     const trimmed = value.trim();
-    return trimmed.length > 0 ? trimmed : undefined;
+    if (!trimmed) {
+      return undefined;
+    }
+
+    const normalized = trimmed.toLowerCase();
+    if (normalized in HERO_OVERLAY_PRESETS) {
+      return HERO_OVERLAY_PRESETS[normalized];
+    }
+
+    if (
+      trimmed.startsWith('#')
+      || /^rgba?\(/i.test(trimmed)
+      || /^hsla?\(/i.test(trimmed)
+      || normalized.startsWith('linear-gradient')
+      || normalized.startsWith('radial-gradient')
+      || normalized.startsWith('conic-gradient')
+    ) {
+      return trimmed;
+    }
+
+    return undefined;
   }
 
   if (typeof value === 'number') {
