@@ -314,3 +314,8 @@ This log records day-to-day investigations, fixes, and decisions that affect the
 - **What changed**: Updated `admin/config.yml` so Decap CMS now uses Netlify’s media library instead of the placeholder Cloudinary setup that blocked uploads.
 - **Impact & follow-up**: Editors can resume uploading images without configuring Cloudinary credentials. Keep the previous Cloudinary helper code for frontend delivery; revisit once unified credentials are available.
 - **References**: Pending PR
+
+## 2025-10-07 — Synced Visual Editor cache with canonical content
+- **What changed**: Ran `npm run visual:prepare` and the full `npm run build` pipeline so the Visual Editor mirror under `.netlify/visual-editor/content/pages_v2/` now matches `content/pages_v2/index.json` byte-for-byte.
+- **Impact & follow-up**: The unified loader and Visual Editor both read the same `pages_v2` data, eliminating the stale cache that hid recent updates. Re-run the sync whenever content is edited outside the editor to keep caches aligned.
+- **References**: Pending PR
