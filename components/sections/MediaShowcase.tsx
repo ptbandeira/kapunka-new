@@ -100,64 +100,52 @@ const MediaShowcase: React.FC<MediaShowcaseProps> = ({ section, fieldPath }) => 
   };
 
   return (
-    <section className="py-20 sm:py-28 bg-white" {...getVisualEditorAttributes(fieldPath)} data-sb-field-path={fieldPath}>
-      <div className="container mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
+    <section className="bg-white" {...getVisualEditorAttributes(fieldPath)} data-sb-field-path={fieldPath}>
+      <div className="container mx-auto px-0">
         {title?.trim() ? (
           <div
-            className="max-w-3xl mb-10"
+            className="px-6 sm:px-10 lg:px-16 mb-10"
             {...getVisualEditorAttributes(fieldPath ? `${fieldPath}.title` : undefined)}
           >
             <h2 className="text-3xl sm:text-4xl font-semibold text-stone-900 tracking-tight">{title}</h2>
           </div>
         ) : null}
-        <div className="grid auto-rows-[minmax(360px,1fr)] gap-6 md:auto-rows-[minmax(420px,1fr)] md:grid-cols-4">
+        <div className="grid grid-cols-1 md:grid-cols-2 md:grid-rows-2 gap-0">
           {items.map((item, index) => {
-            const layoutClasses = (() => {
-              if (index === 0) {
-                return 'md:col-span-2 md:row-span-2 lg:row-span-1';
-              }
-              if (index === 1) {
-                return 'md:col-span-2 md:row-span-2 lg:row-span-1';
-              }
-              if (index === 2) {
-                return 'md:col-span-4 lg:col-span-3 lg:row-span-1';
-              }
-              if (index === 3) {
-                return 'md:col-span-2 lg:col-span-1 lg:row-span-1';
-              }
-              return 'md:col-span-2';
-            })();
-
-            const contentAlignment = index === 3 ? 'items-end text-right' : 'items-start text-left';
-            const justify = index === 3 ? 'lg:items-end' : 'lg:items-start';
             const objectPosition = getObjectPositionFromFocal(item.imageFocal ?? undefined);
             const imageStyle = objectPosition ? { objectPosition } : undefined;
-            const articleClasses = [
-              'relative overflow-hidden bg-stone-900 text-white flex',
-              'rounded-3xl',
-              layoutClasses,
-            ].join(' ');
+            const baseClasses = [
+              'relative overflow-hidden text-white flex items-end justify-start',
+              'aspect-[4/3] md:aspect-auto md:h-[360px] lg:h-[420px]',
+            ];
+            const cellClasses = (() => {
+              switch (index) {
+                case 0:
+                  return [...baseClasses, 'md:border-r md:border-b border-white/10'];
+                case 1:
+                  return [...baseClasses, 'md:border-b border-white/10'];
+                case 2:
+                  return [...baseClasses, 'md:border-r border-white/10'];
+                default:
+                  return baseClasses;
+              }
+            })();
+
             return (
               <article
                 key={item.fieldPath ?? index}
-                className={articleClasses}
+                className={cellClasses.join(' ')}
                 {...getVisualEditorAttributes(item.fieldPath)}
                 data-sb-field-path={item.fieldPath}
               >
                 {item.imageUrl ? (
-                  <>
-                    <img
-                      src={item.imageUrl}
-                      alt={item.imageAlt}
-                      className="absolute inset-0 h-full w-full object-cover"
-                      style={imageStyle}
-                      {...getVisualEditorAttributes(item.imageFieldPath)}
-                    />
-                    <div
-                      className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/70 via-black/40 to-transparent"
-                      aria-hidden="true"
-                    />
-                  </>
+                  <img
+                    src={item.imageUrl}
+                    alt={item.imageAlt}
+                    className="absolute inset-0 h-full w-full object-cover"
+                    style={imageStyle}
+                    {...getVisualEditorAttributes(item.imageFieldPath)}
+                  />
                 ) : (
                   <div
                     className="absolute inset-0 flex items-center justify-center border border-dashed border-white/40"
@@ -166,50 +154,33 @@ const MediaShowcase: React.FC<MediaShowcaseProps> = ({ section, fieldPath }) => 
                     <span className="text-sm text-white/70">Add an image</span>
                   </div>
                 )}
-                <div className="relative z-10 flex h-full w-full">
-                  <div className={`flex flex-col justify-end gap-4 p-6 sm:p-8 lg:p-10 w-full ${contentAlignment} ${justify}`}>
-                    {item.eyebrow?.trim() ? (
-                      <span
-                        className="text-xs font-semibold uppercase tracking-[0.24em] text-white/80"
-                        {...getVisualEditorAttributes(item.eyebrowFieldPath)}
-                      >
-                        {item.eyebrow}
-                      </span>
-                    ) : null}
-                    {item.title?.trim() ? (
-                      <h3
-                        className="text-2xl sm:text-3xl font-semibold leading-snug"
-                        {...getVisualEditorAttributes(item.titleFieldPath)}
-                      >
-                        {item.title}
-                      </h3>
-                    ) : null}
-                    {item.label?.trim() ? (
-                      <span
-                        className="text-sm font-medium uppercase tracking-[0.16em] text-white/70"
-                        {...getVisualEditorAttributes(item.labelFieldPath)}
-                      >
-                        {item.label}
-                      </span>
-                    ) : null}
-                    {item.description?.trim() ? (
-                      <p
-                        className="text-sm sm:text-base text-white/85 max-w-md"
-                        {...getVisualEditorAttributes(item.descriptionFieldPath)}
-                      >
-                        {item.description}
-                      </p>
-                    ) : null}
-                    {item.body?.trim() ? (
-                      <p
-                        className="text-sm sm:text-base text-white/80 max-w-md"
-                        {...getVisualEditorAttributes(item.bodyFieldPath)}
-                      >
-                        {item.body}
-                      </p>
-                    ) : null}
-                    {renderCta(item)}
-                  </div>
+                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent" aria-hidden />
+                <div className="relative z-10 flex w-full flex-col gap-3 px-6 py-8 sm:px-8 sm:py-10">
+                  {item.eyebrow?.trim() ? (
+                    <span
+                      className="text-xs font-semibold uppercase tracking-[0.24em] text-white/70"
+                      {...getVisualEditorAttributes(item.eyebrowFieldPath)}
+                    >
+                      {item.eyebrow}
+                    </span>
+                  ) : null}
+                  {item.title?.trim() ? (
+                    <h3
+                      className="text-2xl font-semibold leading-snug"
+                      {...getVisualEditorAttributes(item.titleFieldPath)}
+                    >
+                      {item.title}
+                    </h3>
+                  ) : null}
+                  {item.body?.trim() ? (
+                    <p
+                      className="text-sm text-white/85 max-w-md"
+                      {...getVisualEditorAttributes(item.bodyFieldPath)}
+                    >
+                      {item.body}
+                    </p>
+                  ) : null}
+                  {renderCta(item)}
                 </div>
               </article>
             );

@@ -20,6 +20,11 @@
 - **Impact & follow-up**: Portuguese and Spanish pages no longer crash when the Visual Editor probes `/site/content` or `/.netlify/visual-editor` before landing on the canonical `/content` data. Keep an eye on the remaining markdown-dependent pages while migrating them to the unified loader.
 - **References**: Pending PR
 
+## 2025-10-08 — Refined hero media layout
+- **What changed**: Flattened the homepage hero’s side-by-side layout so supporting imagery stretches edge-to-edge and reworked the Media Showcase grid to match the art-direction reference (full-bleed mosaic, zero gutters, stacked copy overlay). Ran `npm run build` to confirm the updated layout compiles cleanly.
+- **Impact & follow-up**: The hero now mirrors the reference proportions with left-aligned copy, and the showcase montage beneath it reads as a continuous strip without padding. Keep monitoring other homepage sections for lingering legacy spacing.
+- **References**: Pending PR
+
 ## 2025-10-08 — Removed Visual Editor runtime hooks
 - **What changed**: Simplified the Stackbit integration to no-ops: stripped the React runtime patching in `index.tsx`, removed the annotation helpers/runtime detection, collapsed `useVisualEditorSync` to a static provider, and rewrote the Stackbit binding utilities to return empty attributes. Also slimmed the Markdown loader to fetch directly from `/content/**` with static fallbacks. Ran `npm run build` to confirm the CMS-only flow works.
 - **Impact & follow-up**: The app no longer loads or patches any Visual Editor code paths, cutting unnecessary runtime fetches and stabilising locale routing. Keep migrating the remaining markdown loaders to unified JSON as content allows.
