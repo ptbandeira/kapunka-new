@@ -14,6 +14,11 @@
 - **What changed**: Removed redundant nested Stackbit bindings from the `Bullets` and `Specialties` section components so list items expose a single editable target, and backfilled the unified home JSON with missing English/Portuguese/Spanish strings for the product and feature grids. Ran `npm run build` to confirm the shared sections still compile in the unified pipeline.
 - **Impact & follow-up**: Prevents duplicate field overlays in the Visual Editor and keeps the unified section components aligned with the new JSON source while ensuring each locale renders native copy. Continue auditing remaining section widgets before we retire the Markdown fallbacks across the other pages.
 - **References**: Pending PR
+
+## 2025-10-08 — Restored Netlify-style content mirrors for unified build
+- **What changed**: Updated `scripts/postbuild.js` to mirror `content/` into `site/content/` during the build so the Visual Editor fallback URLs (`/site/content/...`) resolve in production/static previews. Ran `npm run build` to verify the copy step executes.
+- **Impact & follow-up**: Portuguese and Spanish pages no longer crash when the Visual Editor tries the `/site/content` mirror before hitting `/content`. Keep an eye on other Netlify-specific fallbacks while migrating the remaining page loaders to unified JSON.
+- **References**: Pending PR
 ## 2025-10-07 — Simplified Decap editing UX
 - **What changed**: Added locale-specific editing toggles to `admin/cms.js` so editors can focus on a single language at a time, introduced smart fallback hints for localized fields, exposed new CTA toggle defaults, and published reusable section templates via the `sectionTemplates` collection with starter JSON blocks.
 - **Impact & follow-up**: Content designers can now work in English-first mode and reveal additional locales on demand while relying on ready-made section blueprints for frequent layouts. Gather feedback on additional templates that would speed up campaign builds and consider migrating legacy sections to the new CTA controls over time.

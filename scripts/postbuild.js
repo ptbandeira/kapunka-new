@@ -46,6 +46,7 @@ ensureDir(distDir);
 
 copyFolder('content', path.join('dist', 'content'));
 copyFolder('admin', path.join('dist', 'admin'));
+copyFolder('content', path.join('site', 'content'));
 prepareVisualEditorContent();
 console.log("Decap: using /admin/config.yml as single source of truth");
 copyFile(path.join('admin', 'config.yml'), path.join('site', 'admin', 'config.yml'));
