@@ -22,10 +22,6 @@ const parseFrontMatter = <T>(raw: string): T => {
 
 const markdownCache = new Map<string, VisualEditorMarkdownDocument<unknown>>();
 
-export const clearVisualEditorMarkdownCache = () => {
-  markdownCache.clear();
-};
-
 export type VisualEditorContentSource = 'visual-editor' | 'content';
 
 export interface VisualEditorMarkdownDocument<T> {

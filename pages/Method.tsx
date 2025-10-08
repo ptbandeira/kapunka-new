@@ -347,7 +347,7 @@ const Method: React.FC = () => {
                 className="mt-3 pl-4 space-y-2 text-stone-700"
                 {...getVisualEditorAttributes(`${sectionFieldPath}.items.${itemIndex}.bullets`)}
               >
-                {(item.bullets ?? []).map((bullet, bulletIndex) => (
+                {(item.bullets ?? []).map((bullet) => (
                   <li key={`${item.title ?? 'bullet'}-${bullet}`} className="list-disc">
                     {bullet}
                   </li>

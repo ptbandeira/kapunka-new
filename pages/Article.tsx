@@ -367,7 +367,7 @@ const ArticlePage: React.FC = () => {
                         <div className={relatedProducts.length > 1
                             ? 'mt-12 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10'
                             : 'mt-12 max-w-sm mx-auto'}>
-                            {relatedProducts.map((product, index) => {
+                            {relatedProducts.map((product) => {
                                 const productIndex = allProducts.findIndex((item) => item.id === product.id);
                                 const productFieldPath = productIndex >= 0 ? `products.items.${productIndex}` : undefined;
                                 return (

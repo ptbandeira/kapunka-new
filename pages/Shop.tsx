@@ -413,7 +413,7 @@ const Shop: React.FC = () => {
         </p>
       ) : (
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
-          {displayedProducts.map((product, index) => {
+          {displayedProducts.map((product) => {
             const productIndex = products.findIndex((item) => item.id === product.id);
             const productFieldPath = productIndex >= 0 ? `products.items.${productIndex}` : undefined;
             return (

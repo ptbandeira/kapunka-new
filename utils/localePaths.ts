@@ -2,16 +2,6 @@ import type { Language } from '../types';
 
 export const SUPPORTED_LANGUAGES: Language[] = ['en', 'pt', 'es'];
 
-export const getLocaleFromPath = (pathname: string): Language | undefined => {
-  const segments = pathname.split('/').filter(Boolean);
-  if (segments.length === 0) {
-    return undefined;
-  }
-
-  const potentialLocale = segments[0] as Language;
-  return SUPPORTED_LANGUAGES.includes(potentialLocale) ? potentialLocale : undefined;
-};
-
 export const removeLocaleFromPath = (pathname: string): string => {
   const segments = pathname.split('/').filter(Boolean);
 

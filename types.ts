@@ -90,13 +90,6 @@ export interface CartItem {
   quantity: number;
 }
 
-export interface Review {
-    id: string;
-    text: Translatable;
-    author: Translatable;
-    role: Translatable;
-}
-
 export interface Article {
     id: string;
     slug: string;
@@ -116,15 +109,6 @@ export interface Course {
     imageUrl: string;
     price: number;
     enrollLink: string;
-}
-
-export interface TestimonialEntry {
-    id?: string;
-    name?: string;
-    title?: string;
-    quote?: string;
-    avatar?: string;
-    language?: Language;
 }
 
 export interface PolicySection {

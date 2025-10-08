@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import { useLanguage } from '../contexts/LanguageContext';
 import { Facebook, Instagram, Linkedin, Youtube, Globe } from 'lucide-react';
 import { useSiteSettings } from '../contexts/SiteSettingsContext';
-import { getStackbitAttributes, getStackbitObjectId, getVisualEditorAttributes } from '../utils/stackbitBindings';
+import { getVisualEditorAttributes } from '../utils/stackbitBindings';
 import { buildLocalizedPath } from '../utils/localePaths';
 
 const FooterLink: React.FC<{
@@ -62,8 +62,6 @@ const Footer: React.FC = () => {
   const socialLinks = settings.footer?.socialLinks ?? [];
   const legalName = translate(settings.footer?.legalName ?? 'Kapunka Skincare');
   const brandName = translate(settings.brand?.name ?? 'KAPUNKA');
-  const footerTranslationsObjectId = getStackbitObjectId('translations.en.footer.tagline');
-  const socialLinksAttributes = getStackbitAttributes('site.footer.socialLinks');
 
   const socialIconMap: Record<string, React.ComponentType<{ size?: number }>> = {
     facebook: Facebook,
@@ -85,7 +83,6 @@ const Footer: React.FC = () => {
             <p
               className="text-sm text-stone-500"
               {...getVisualEditorAttributes(`translations.${language}.footer.tagline`)}
-              data-sb-object-id={footerTranslationsObjectId}
             >
               {t('footer.tagline')}
             </p>
@@ -93,12 +90,11 @@ const Footer: React.FC = () => {
               <h4
                 className="font-semibold mb-3 text-sm"
                 {...getVisualEditorAttributes(`translations.${language}.footer.followUs`)}
-                data-sb-object-id={footerTranslationsObjectId}
               >
                 {t('footer.followUs')}
               </h4>
               {socialLinks.length > 0 && (
-                <div className="flex space-x-4" {...socialLinksAttributes}>
+                <div className="flex space-x-4">
                   {socialLinks.map((link, index) => {
                     const iconKey = link.icon ? link.icon.toLowerCase() : '';
                     const Icon = socialIconMap[iconKey] ?? Globe;

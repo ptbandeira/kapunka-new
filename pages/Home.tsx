@@ -289,11 +289,6 @@ const extractCmsCtaHref = (value: CmsCtaLike, language: Language): string | unde
   return sanitizeCmsUrl(resolvedHref ?? null);
 };
 
-const extractCmsCta = (value: CmsCtaLike, language: Language): { label?: string; href?: string } => ({
-  label: extractCmsCtaLabel(value, language),
-  href: extractCmsCtaHref(value, language),
-});
-
 const sanitizeOptionalCmsString = (value: unknown, language: Language): string | undefined =>
   resolveLocalizedString(value, language);
 
@@ -602,33 +597,6 @@ const Home: React.FC = () => {
   const effectiveLocale: Language = SUPPORTED_LANGUAGES.includes(contentLocale as Language)
     ? (contentLocale as Language)
     : language;
-
-  const pickImage = (local?: string | { src?: string | null } | null) => {
-    let candidate: string | null = null;
-
-    if (typeof local === 'string') {
-      candidate = local;
-    } else if (local && typeof local === 'object') {
-      const source = 'src' in local ? local.src : undefined;
-      if (typeof source === 'string') {
-        candidate = source;
-      } else if (source) {
-        candidate = resolveLocalizedString(source, effectiveLocale) ?? null;
-      }
-    }
-
-    if (!candidate) {
-      return null;
-    }
-
-    const normalized = normalizeImagePath(candidate, effectiveLocale);
-    if (normalized) {
-      return normalized;
-    }
-
-    const trimmed = candidate.trim();
-    return trimmed.length > 0 ? trimmed : null;
-  };
 
   const homeFieldPath = pageContent
     ? pageContent.contentSource === 'visual-editor'

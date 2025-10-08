@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useMemo, useCallback } from 'react';
-import { useParams, Link } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { Plus } from 'lucide-react';
 
@@ -684,7 +684,7 @@ const ProductDetail: React.FC = () => {
                             {t('pdp.relatedProducts')}
                         </h2>
                         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
-                            {relatedProducts.map((p, index) => {
+                            {relatedProducts.map((p) => {
                                 const relatedIndex = allProducts.findIndex((productItem) => productItem.id === p.id);
                                 const relatedFieldPath = relatedIndex >= 0 ? `products.items.${relatedIndex}` : undefined;
                                 return (
