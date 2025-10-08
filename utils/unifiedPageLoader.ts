@@ -1,4 +1,5 @@
 import type { Language } from '../types';
+import { getVisualEditorMirrorPrefixes } from './visualEditorEnvironment';
 
 type LocalizedPrimitive = string | number | boolean;
 
@@ -49,12 +50,6 @@ const LANGUAGE_FALLBACKS: Record<Language, Language[]> = {
   es: ['es', 'en', 'pt'],
 };
 
-const UNIFIED_CANDIDATES: UnifiedCandidate[] = [
-  { url: '/.netlify/visual-editor/content/pages_v2/index.json', source: 'visual-editor' },
-  { url: '/site/content/pages_v2/index.json', source: 'visual-editor' },
-  { url: '/content/pages_v2/index.json', source: 'content' },
-];
-
 const STATIC_PAGES_INDEX_URL = (() => {
   try {
     return new URL('../content/pages_v2/index.json', import.meta.url).href;
@@ -63,9 +58,33 @@ const STATIC_PAGES_INDEX_URL = (() => {
   }
 })();
 
-if (STATIC_PAGES_INDEX_URL) {
-  UNIFIED_CANDIDATES.push({ url: STATIC_PAGES_INDEX_URL, source: 'content' });
-}
+const buildUnifiedCandidates = (): UnifiedCandidate[] => {
+  const prefixes = getVisualEditorMirrorPrefixes();
+  const seen = new Set<string>();
+  const candidates: UnifiedCandidate[] = [];
+
+  prefixes.forEach((prefix) => {
+    const url = `${prefix}pages_v2/index.json`;
+    if (seen.has(url)) {
+      return;
+    }
+    seen.add(url);
+    candidates.push({ url, source: 'visual-editor' });
+  });
+
+  const contentUrl = '/content/pages_v2/index.json';
+  if (!seen.has(contentUrl)) {
+    seen.add(contentUrl);
+    candidates.push({ url: contentUrl, source: 'content' });
+  }
+
+  if (STATIC_PAGES_INDEX_URL && !seen.has(STATIC_PAGES_INDEX_URL)) {
+    seen.add(STATIC_PAGES_INDEX_URL);
+    candidates.push({ url: STATIC_PAGES_INDEX_URL, source: 'content' });
+  }
+
+  return candidates;
+};
 
 const isLanguage = (value: string): value is Language => (
   value === 'en' || value === 'pt' || value === 'es'
@@ -497,7 +516,9 @@ export const loadUnifiedPage = async <TData = Record<string, unknown>>(
   pageId: string,
   language: Language,
 ): Promise<UnifiedPageContent<TData> | null> => {
-  for (const candidate of UNIFIED_CANDIDATES) {
+  const candidates = buildUnifiedCandidates();
+
+  for (const candidate of candidates) {
     try {
       const response = await fetch(candidate.url);
       if (!response.ok) {
