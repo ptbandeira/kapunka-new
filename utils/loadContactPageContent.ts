@@ -3,7 +3,7 @@ import { fetchVisualEditorMarkdown, type VisualEditorContentSource } from './fet
 import { loadUnifiedPage } from './unifiedPageLoader';
 import { loadPage } from '../src/lib/content';
 
-export interface ContactPageData {
+interface ContactPageData {
   metaTitle?: string;
   metaDescription?: string;
   heroTitle?: string;

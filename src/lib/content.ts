@@ -1,16 +1,16 @@
 import type { Language } from '../../types';
 
-export type PageLoader<TResult extends Record<string, unknown>> = (
+type PageLoader<TResult extends Record<string, unknown>> = (
   params: { slug: string; locale: Language },
 ) => Promise<TResult>;
 
-export interface LoadPageParams<TResult extends Record<string, unknown>> {
+interface LoadPageParams<TResult extends Record<string, unknown>> {
   slug: string;
   locale?: Language | null;
   loader: PageLoader<TResult>;
 }
 
-export type LoadPageResult<TResult extends Record<string, unknown>> = TResult & {
+type LoadPageResult<TResult extends Record<string, unknown>> = TResult & {
   localeUsed: Language;
 };
 

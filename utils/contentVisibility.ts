@@ -1,6 +1,6 @@
 import type { VisibilityFlag } from '../types';
 
-export const isVisible = <T extends VisibilityFlag>(
+const isVisible = <T extends VisibilityFlag>(
   candidate: T | null | undefined,
 ): candidate is T => Boolean(candidate) && candidate.visible !== false;
 

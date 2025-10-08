@@ -1,23 +1,23 @@
 import { fetchVisualEditorMarkdown } from './fetchVisualEditorMarkdown';
 
-export interface ModuleContent {
+interface ModuleContent {
   title?: string;
   duration?: string;
   description?: string;
   learningOutcomes?: string[];
 }
 
-export interface PricingContent {
+interface PricingContent {
   tuition?: string;
   paymentOptions?: string[];
 }
 
-export interface ModalitiesContent {
+interface ModalitiesContent {
   onlineHours?: string;
   practicalSessions?: string;
 }
 
-export interface CallToAction {
+interface CallToAction {
   label?: string;
   url?: string;
 }
@@ -34,7 +34,7 @@ export interface TrainingProgramContent {
   callToActions?: CallToAction[];
 }
 
-export const TRAINING_PROGRAM_FILE_PATH = '/content/pages/training/index.md';
+const TRAINING_PROGRAM_FILE_PATH = '/content/pages/training/index.md';
 export const TRAINING_PROGRAM_OBJECT_ID = 'TrainingProgramPage:content/pages/training/index.md';
 
 const isRecord = (value: unknown): value is Record<string, unknown> => Boolean(value) && typeof value === 'object';
@@ -95,7 +95,7 @@ const isCallToAction = (value: unknown): value is CallToAction => {
   );
 };
 
-export const isTrainingProgramContent = (value: unknown): value is TrainingProgramContent => {
+const isTrainingProgramContent = (value: unknown): value is TrainingProgramContent => {
   if (!isRecord(value)) {
     return false;
   }
