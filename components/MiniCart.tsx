@@ -7,7 +7,7 @@ import { useUI } from '../contexts/UIContext';
 import { useCart } from '../contexts/CartContext';
 import { useLanguage } from '../contexts/LanguageContext';
 import type { CartItem, Product } from '../types';
-import { fetchVisualEditorJson } from '../utils/fetchVisualEditorJson';
+import { fetchContentJson } from '../utils/fetchContentJson';
 import { useVisualEditorSync } from '../contexts/VisualEditorSyncContext';
 import { formatCurrency } from '../utils/currency';
 import { buildLocalizedPath } from '../utils/localePaths';
@@ -76,7 +76,7 @@ const MiniCart: React.FC = () => {
 
     const loadProducts = async () => {
       try {
-        const data = await fetchVisualEditorJson<ProductIndexResponse>('/content/products/index.json');
+        const data = await fetchContentJson<ProductIndexResponse>('/content/products/index.json');
         if (!isMounted) {
           return;
         }

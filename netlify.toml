@@ -10,9 +10,6 @@
 [functions]
   directory = "netlify/functions"
 
-[[plugins]]
-  package = "@netlify/plugin-visual-editor"
-
 [[redirects]]
   from = "/*"
   to = "/index.html"
@@ -24,6 +21,3 @@
   command = "npm run dev"
   targetPort = 5173
 
-[visual_editor]
-  devCommand = "npm run dev"
-  previewPort = 5173

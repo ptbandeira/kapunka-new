@@ -2,7 +2,7 @@ import React, { useEffect, useMemo, useState } from 'react';
 import { motion } from 'framer-motion';
 import type { TrainingCatalogContent, TrainingEntry } from '../types';
 import { useLanguage } from '../contexts/LanguageContext';
-import { fetchVisualEditorJson } from '../utils/fetchVisualEditorJson';
+import { fetchContentJson } from '../utils/fetchContentJson';
 import { useVisualEditorSync } from '../contexts/VisualEditorSyncContext';
 import { getVisualEditorAttributes } from '../utils/stackbitBindings';
 
@@ -15,7 +15,7 @@ interface TrainingListProps {
 
 const loadTrainingCatalog = async (): Promise<TrainingEntry[]> => {
   try {
-    const data = await fetchVisualEditorJson<TrainingCatalogContent>('/content/training.json');
+        const data = await fetchContentJson<TrainingCatalogContent>('/content/training.json');
     if (!data || !Array.isArray(data.trainings)) {
       return [];
     }

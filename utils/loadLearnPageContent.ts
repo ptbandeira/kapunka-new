@@ -1,5 +1,5 @@
 import type { Language } from '../types';
-import { fetchVisualEditorMarkdown, type VisualEditorContentSource } from './fetchVisualEditorMarkdown';
+import { fetchContentMarkdown } from './fetchContentMarkdown';
 import { loadUnifiedPage } from './unifiedPageLoader';
 import { loadPage } from '../src/lib/content';
 
@@ -20,7 +20,6 @@ interface LearnPageData {
 export interface LearnPageContentResult {
   data: LearnPageData;
   locale: Language;
-  source: VisualEditorContentSource;
 }
 
 export const loadLearnPageContent = async (
@@ -35,7 +34,7 @@ export const loadLearnPageContent = async (
     const result = await loadPage({
       slug: 'learn',
       locale: language,
-      loader: async ({ locale: currentLocale }) => fetchVisualEditorMarkdown<LearnPageData>(
+      loader: async ({ locale: currentLocale }) => fetchContentMarkdown<LearnPageData>(
         `/content/pages/${currentLocale}/learn.md`,
         { cache: 'no-store' },
       ),
@@ -44,7 +43,6 @@ export const loadLearnPageContent = async (
     return {
       data: result.data,
       locale: result.localeUsed,
-      source: result.source,
     };
   } catch (error) {
     console.warn('Learn page content fetch failed', error);

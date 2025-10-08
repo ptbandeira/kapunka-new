@@ -5,7 +5,7 @@ import { useSiteSettings } from '../contexts/SiteSettingsContext';
 import { getCloudinaryUrl } from '../utils/imageUrl';
 import SectionRenderer from '../components/SectionRenderer';
 import type { Language, PageContent, PageSection, TimelineEntry, TimelineSectionContent } from '../types';
-import { fetchVisualEditorMarkdown, type VisualEditorContentSource } from '../utils/fetchVisualEditorMarkdown';
+import { fetchContentMarkdown } from '../utils/fetchContentMarkdown';
 import { getVisualEditorAttributes } from '../utils/stackbitBindings';
 import { useVisualEditorSync } from '../contexts/VisualEditorSyncContext';
 import Seo from '../src/components/Seo';
@@ -169,13 +169,11 @@ interface AboutPageData extends Record<string, unknown> {
 interface AboutPageContentResult {
   data: AboutPageData;
   locale: Language;
-  source: VisualEditorContentSource;
 }
 
 interface StoryPageContentResult {
   data: PageContent;
   locale: Language;
-  source: VisualEditorContentSource;
 }
 
 const isAboutStoryBlock = (value: unknown): value is AboutStoryBlock => {
@@ -283,7 +281,7 @@ const About: React.FC = () => {
           result = await loadPage({
             slug: 'about',
             locale: language,
-            loader: async ({ locale: currentLocale }) => fetchVisualEditorMarkdown<AboutPageData>(
+            loader: async ({ locale: currentLocale }) => fetchContentMarkdown<AboutPageData>(
               `/content/pages/${currentLocale}/about.md`,
               { cache: 'no-store' },
             ),
@@ -307,7 +305,7 @@ const About: React.FC = () => {
             result = await loadPage({
               slug: 'about',
               locale: 'en',
-              loader: async ({ locale: fallbackLocale }) => fetchVisualEditorMarkdown<AboutPageData>(
+              loader: async ({ locale: fallbackLocale }) => fetchContentMarkdown<AboutPageData>(
                 `/content/pages/${fallbackLocale}/about.md`,
                 { cache: 'no-store' },
               ),
@@ -336,11 +334,10 @@ const About: React.FC = () => {
         }
 
         if (isMounted) {
-          setAboutContent({
-            data: payload,
-            locale: result.localeUsed,
-            source: result.source,
-          });
+        setAboutContent({
+          data: payload,
+          locale: result.localeUsed,
+        });
         }
       } catch (error) {
         console.error('Unhandled error while loading about page content', error);
@@ -381,7 +378,7 @@ const About: React.FC = () => {
         result = await loadPage({
           slug: 'story',
           locale: language,
-          loader: async ({ locale: currentLocale }) => fetchVisualEditorMarkdown<unknown>(
+          loader: async ({ locale: currentLocale }) => fetchContentMarkdown<unknown>(
             `/content/pages/${currentLocale}/story.md`,
             { cache: 'no-store' },
           ),
@@ -405,7 +402,7 @@ const About: React.FC = () => {
           result = await loadPage({
             slug: 'story',
             locale: 'en',
-            loader: async ({ locale: fallbackLocale }) => fetchVisualEditorMarkdown<unknown>(
+            loader: async ({ locale: fallbackLocale }) => fetchContentMarkdown<unknown>(
               `/content/pages/${fallbackLocale}/story.md`,
               { cache: 'no-store' },
             ),
@@ -437,7 +434,6 @@ const About: React.FC = () => {
         setStoryContent({
           data: payload,
           locale: result.localeUsed,
-          source: result.source,
         });
       }
     };
@@ -451,25 +447,15 @@ const About: React.FC = () => {
     };
   }, [aboutContent, aboutContentLoaded, language, contentVersion]);
 
-  const aboutFieldPath = useMemo(() => {
-    if (!aboutContent) {
-      return `pages.about_${language}`;
-    }
+  const aboutFieldPath = useMemo(
+    () => `pages.about_${aboutContent?.locale ?? language}`,
+    [aboutContent, language],
+  );
 
-    return aboutContent.source === 'visual-editor'
-      ? `site.content.${aboutContent.locale}.pages.about`
-      : `pages.about_${aboutContent.locale}`;
-  }, [aboutContent, language]);
-
-  const storyFieldPath = useMemo(() => {
-    if (!storyContent) {
-      return `pages.story_${language}`;
-    }
-
-    return storyContent.source === 'visual-editor'
-      ? `site.content.${storyContent.locale}.pages.story`
-      : `pages.story_${storyContent.locale}`;
-  }, [storyContent, language]);
+  const storyFieldPath = useMemo(
+    () => `pages.story_${storyContent?.locale ?? language}`,
+    [storyContent, language],
+  );
 
   const aboutStoryBlocks = aboutContent?.data.story?.filter((block) => {
         if (!block) {

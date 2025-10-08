@@ -4,7 +4,7 @@ import SectionRenderer from '../components/SectionRenderer';
 import { useLanguage } from '../contexts/LanguageContext';
 import { useVisualEditorSync } from '../contexts/VisualEditorSyncContext';
 import type { PageSection } from '../types';
-import { fetchVisualEditorMarkdown } from '../utils/fetchVisualEditorMarkdown';
+import { fetchContentMarkdown } from '../utils/fetchContentMarkdown';
 import { getVisualEditorAttributes } from '../utils/stackbitBindings';
 import Seo from '../src/components/Seo';
 import { filterVisible } from '../utils/contentVisibility';
@@ -177,7 +177,7 @@ const StoryManifestoPage: React.FC = () => {
 
       for (const locale of localesToTry) {
         try {
-          const response = await fetchVisualEditorMarkdown<unknown>(
+          const response = await fetchContentMarkdown<unknown>(
             `/content/pages/${locale}/story.md`,
             { cache: 'no-store' },
           );

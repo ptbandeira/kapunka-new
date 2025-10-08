@@ -1,5 +1,10 @@
 # Decap CMS & Netlify Rolling Log
 
+## 2025-10-09 — Retired Netlify Visual Editor integration
+- **What changed**: Removed the Netlify Visual Editor plugin, deleted the Stackbit config/metadata files, and stopped copying `.netlify/visual-editor/**` during postbuild. Replaced the legacy `fetchVisualEditorJson`/`fetchVisualEditorMarkdown` helpers with `fetchContentJson`/`fetchContentMarkdown`, simplified `loadUnifiedPage` to read only from `/content/pages_v2`, and updated every page loader to drop Visual Editor source flags.
+- **Impact & follow-up**: The app now fetches content exclusively from the canonical Decap JSON/Markdown files, eliminating the extra mirror and the runtime detection logic that had been causing 404s and locale instability. Monitor future CMS edits to ensure the simplified loaders continue to resolve localized fallbacks correctly.
+- **References**: Pending PR
+
 ## 2025-10-08 — Eliminated /.netlify 404s by aliasing Visual Editor mirrors
 - **What changed**: Added a production-safe mirror of `.netlify/visual-editor` under `dist/visual-editor`, taught the JSON loaders to prioritize that alias when the Visual Editor runtime is absent, and centralised the mirror prefix detection in `utils/visualEditorEnvironment.ts`.
 - **Impact & follow-up**: Removes the persistent 404s for `/.netlify/visual-editor/...` in production while preserving live editing by automatically preferring the real Visual Editor mirrors whenever the editor is active. Confirm future content loaders use the shared prefix helper to stay consistent.

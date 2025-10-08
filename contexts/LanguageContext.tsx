@@ -8,7 +8,7 @@ import React, {
   useEffect,
 } from 'react';
 import type { Language } from '../types';
-import { fetchVisualEditorJson } from '../utils/fetchVisualEditorJson';
+import { fetchContentJson } from '../utils/fetchContentJson';
 import { SUPPORTED_LANGUAGES, getLocaleFromPath } from '../utils/localePaths';
 import { useVisualEditorSync } from './VisualEditorSyncContext';
 
@@ -132,7 +132,7 @@ export const LanguageProvider: React.FC<{ children: React.ReactNode }> = ({ chil
       try {
         const responses = await Promise.all(
           translationEntries.map(async ([key]) => {
-            const data = await fetchVisualEditorJson<TranslationModule>(
+            const data = await fetchContentJson<TranslationModule>(
               `/content/translations/${key}.json`,
             );
             return [key, data] as [string, TranslationModule];

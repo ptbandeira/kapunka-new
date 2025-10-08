@@ -3,7 +3,7 @@ import { motion } from 'framer-motion';
 import { Play } from 'lucide-react';
 import type { VideoEntry, VideoLibraryContent } from '../types';
 import { useLanguage } from '../contexts/LanguageContext';
-import { fetchVisualEditorJson } from '../utils/fetchVisualEditorJson';
+import { fetchContentJson } from '../utils/fetchContentJson';
 import { useVisualEditorSync } from '../contexts/VisualEditorSyncContext';
 import { getVisualEditorAttributes } from '../utils/stackbitBindings';
 import { getCloudinaryUrl } from '../utils/imageUrl';
@@ -20,7 +20,7 @@ const placeholderThumbnailClasses =
 
 const loadVideoLibrary = async (): Promise<VideoEntry[]> => {
   try {
-    const data = await fetchVisualEditorJson<VideoLibraryContent>('/content/videos.json');
+    const data = await fetchContentJson<VideoLibraryContent>('/content/videos.json');
     if (!data || !Array.isArray(data.videos)) {
       return [];
     }

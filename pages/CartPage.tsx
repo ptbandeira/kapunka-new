@@ -6,7 +6,7 @@ import { Minus, Plus, Trash2 } from 'lucide-react';
 import { useCart } from '../contexts/CartContext';
 import { useLanguage } from '../contexts/LanguageContext';
 import type { CartItem, Product } from '../types';
-import { fetchVisualEditorJson } from '../utils/fetchVisualEditorJson';
+import { fetchContentJson } from '../utils/fetchContentJson';
 import { getVisualEditorAttributes } from '../utils/stackbitBindings';
 import { useVisualEditorSync } from '../contexts/VisualEditorSyncContext';
 import { formatCurrency } from '../utils/currency';
@@ -102,7 +102,7 @@ const CartPage: React.FC = () => {
         const loadProducts = async () => {
           setLoading(true);
           try {
-            const data = await fetchVisualEditorJson<ProductsResponse>('/content/products/index.json');
+            const data = await fetchContentJson<ProductsResponse>('/content/products/index.json');
             if (!isMounted) {
               return;
             }

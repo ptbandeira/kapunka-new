@@ -14,7 +14,7 @@ import {
   type LearnPageContentResult,
   type LearnPageCategory,
 } from '../utils/loadLearnPageContent';
-import { fetchVisualEditorJson } from '../utils/fetchVisualEditorJson';
+import { fetchContentJson } from '../utils/fetchContentJson';
 import { getVisualEditorAttributes } from '../utils/stackbitBindings';
 import { useVisualEditorSync } from '../contexts/VisualEditorSyncContext';
 import { getCloudinaryUrl } from '../utils/imageUrl';
@@ -74,7 +74,7 @@ const Learn: React.FC = () => {
     const loadArticles = async () => {
       setLoading(true);
       try {
-        const data = await fetchVisualEditorJson<ArticlesResponse>('/content/articles/index.json');
+        const data = await fetchContentJson<ArticlesResponse>('/content/articles/index.json');
         if (!isMounted) {
           return;
         }
@@ -108,14 +108,10 @@ const Learn: React.FC = () => {
     return {};
   }, [t]);
 
-  const learnFieldPath = useMemo(() => {
-    if (!pageContent) {
-      return `pages.learn_${language}`;
-    }
-    return pageContent.source === 'visual-editor'
-      ? `site.content.${pageContent.locale}.pages.learn`
-      : `pages.learn_${pageContent.locale}`;
-  }, [language, pageContent]);
+  const learnFieldPath = useMemo(
+    () => `pages.learn_${pageContent?.locale ?? language}`,
+    [language, pageContent],
+  );
 
   const baseCategories: Array<LearnPageCategory & { fieldPath?: string }> = useMemo(() => {
     const categoriesFromContent = pageContent?.data.categories ?? [];

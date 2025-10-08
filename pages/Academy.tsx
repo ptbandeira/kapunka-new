@@ -3,7 +3,7 @@ import { motion } from 'framer-motion';
 import { useLanguage } from '../contexts/LanguageContext';
 import CourseCard from '../components/CourseCard';
 import type { Course } from '../types';
-import { fetchVisualEditorJson } from '../utils/fetchVisualEditorJson';
+import { fetchContentJson } from '../utils/fetchContentJson';
 import { useVisualEditorSync } from '../contexts/VisualEditorSyncContext';
 import { getVisualEditorAttributes } from '../utils/stackbitBindings';
 import Seo from '../src/components/Seo';
@@ -24,7 +24,7 @@ const Academy: React.FC = () => {
         const loadCourses = async () => {
             setLoading(true);
             try {
-                const data = await fetchVisualEditorJson<CoursesResponse>('/content/courses.json');
+                const data = await fetchContentJson<CoursesResponse>('/content/courses.json');
                 if (!isMounted) {
                     return;
                 }

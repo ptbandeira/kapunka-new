@@ -6,7 +6,7 @@ import type { LucideIcon } from 'lucide-react';
 import ProductCard from '../components/ProductCard';
 import { useLanguage } from '../contexts/LanguageContext';
 import type { Product, ShopCategory, ShopCategoryLink, ShopContent } from '../types';
-import { fetchVisualEditorJson } from '../utils/fetchVisualEditorJson';
+import { fetchContentJson } from '../utils/fetchContentJson';
 import { getVisualEditorAttributes } from '../utils/stackbitBindings';
 import { useVisualEditorSync } from '../contexts/VisualEditorSyncContext';
 import { buildLocalizedPath } from '../utils/localePaths';
@@ -63,8 +63,8 @@ const Shop: React.FC = () => {
       setLoading(true);
       try {
         const [productData, shopData] = await Promise.all([
-          fetchVisualEditorJson<ProductsResponse>('/content/products/index.json'),
-          fetchVisualEditorJson<ShopContent>('/content/shop.json'),
+          fetchContentJson<ProductsResponse>('/content/products/index.json'),
+          fetchContentJson<ShopContent>('/content/shop.json'),
         ]);
 
         if (!isMounted) {

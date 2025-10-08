@@ -5,7 +5,7 @@ import { useLanguage } from '../../contexts/LanguageContext';
 import { useVisualEditorSync } from '../../contexts/VisualEditorSyncContext';
 import ProductCard from '../ProductCard';
 import { getVisualEditorAttributes } from '../../utils/stackbitBindings';
-import { fetchVisualEditorJson } from '../../utils/fetchVisualEditorJson';
+import { fetchContentJson } from '../../utils/fetchContentJson';
 import { getCloudinaryUrl } from '../../utils/imageUrl';
 import { buildLocalizedPath } from '../../utils/localePaths';
 import type { Product, ProductGridSectionContent, LocalizedNumber } from '../../types';
@@ -56,7 +56,7 @@ const ProductGrid: React.FC<ProductGridProps> = ({ section, fieldPath }) => {
 
     const loadProducts = async () => {
       try {
-        const data = await fetchVisualEditorJson<ProductsResponse>('/content/products/index.json');
+        const data = await fetchContentJson<ProductsResponse>('/content/products/index.json');
         if (!isMounted) {
           return;
         }

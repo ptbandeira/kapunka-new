@@ -1,5 +1,7 @@
 # AGENTS.md
 
+> **Update — Visual Editor retired (2025-10-09):** The Netlify Visual Editor and Stackbit configuration have been removed from the project. References below are preserved for historical context, but new work should target the canonical Decap content only. Ignore legacy requirements that mention `.netlify/visual-editor`, `stackbit.config.ts`, or Visual Editor data attributes.
+
 # I. Read Me First: Core Mandates
 
 ## Rolling Log Update Requirement

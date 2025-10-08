@@ -3,7 +3,7 @@ import { motion } from 'framer-motion';
 import SectionRenderer from '../components/SectionRenderer';
 import { useLanguage } from '../contexts/LanguageContext';
 import type { PageContent, PageSection } from '../types';
-import { fetchVisualEditorMarkdown } from '../utils/fetchVisualEditorMarkdown';
+import { fetchContentMarkdown } from '../utils/fetchContentMarkdown';
 import { getVisualEditorAttributes } from '../utils/stackbitBindings';
 import { useVisualEditorSync } from '../contexts/VisualEditorSyncContext';
 import { useSiteSettings } from '../contexts/SiteSettingsContext';
@@ -91,7 +91,7 @@ const Training: React.FC = () => {
         result = await loadPage({
           slug: 'training',
           locale: language,
-          loader: async ({ locale: currentLocale }) => fetchVisualEditorMarkdown<unknown>(
+          loader: async ({ locale: currentLocale }) => fetchContentMarkdown<unknown>(
             `/content/pages/${currentLocale}/training.md`,
             { cache: 'no-store' },
           ),
@@ -115,7 +115,7 @@ const Training: React.FC = () => {
           result = await loadPage({
             slug: 'training',
             locale: 'en',
-            loader: async ({ locale: fallbackLocale }) => fetchVisualEditorMarkdown<unknown>(
+            loader: async ({ locale: fallbackLocale }) => fetchContentMarkdown<unknown>(
               `/content/pages/${fallbackLocale}/training.md`,
               { cache: 'no-store' },
             ),

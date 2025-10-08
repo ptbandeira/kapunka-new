@@ -1,5 +1,4 @@
 import type { Language } from '../types';
-import { getVisualEditorMirrorPrefixes } from './visualEditorEnvironment';
 
 type LocalizedPrimitive = string | number | boolean;
 
@@ -39,11 +38,6 @@ interface UnifiedPageIndex {
   pages?: RawUnifiedPageRecord[];
 }
 
-interface UnifiedCandidate {
-  url: string;
-  source: 'visual-editor' | 'content';
-}
-
 const LANGUAGE_FALLBACKS: Record<Language, Language[]> = {
   en: ['en', 'pt', 'es'],
   pt: ['pt', 'en', 'es'],
@@ -58,32 +52,15 @@ const STATIC_PAGES_INDEX_URL = (() => {
   }
 })();
 
-const buildUnifiedCandidates = (): UnifiedCandidate[] => {
-  const prefixes = getVisualEditorMirrorPrefixes();
-  const seen = new Set<string>();
-  const candidates: UnifiedCandidate[] = [];
+const buildUnifiedCandidateUrls = (): string[] => {
+  const candidates = new Set<string>();
+  candidates.add('/content/pages_v2/index.json');
 
-  prefixes.forEach((prefix) => {
-    const url = `${prefix}pages_v2/index.json`;
-    if (seen.has(url)) {
-      return;
-    }
-    seen.add(url);
-    candidates.push({ url, source: 'visual-editor' });
-  });
-
-  const contentUrl = '/content/pages_v2/index.json';
-  if (!seen.has(contentUrl)) {
-    seen.add(contentUrl);
-    candidates.push({ url: contentUrl, source: 'content' });
+  if (STATIC_PAGES_INDEX_URL) {
+    candidates.add(STATIC_PAGES_INDEX_URL);
   }
 
-  if (STATIC_PAGES_INDEX_URL && !seen.has(STATIC_PAGES_INDEX_URL)) {
-    seen.add(STATIC_PAGES_INDEX_URL);
-    candidates.push({ url: STATIC_PAGES_INDEX_URL, source: 'content' });
-  }
-
-  return candidates;
+  return Array.from(candidates);
 };
 
 const isLanguage = (value: string): value is Language => (
@@ -509,18 +486,17 @@ const determineResolvedLocale = (
 interface UnifiedPageContent<TData> {
   data: TData;
   locale: Language;
-  source: 'visual-editor' | 'content';
 }
 
 export const loadUnifiedPage = async <TData = Record<string, unknown>>(
   pageId: string,
   language: Language,
 ): Promise<UnifiedPageContent<TData> | null> => {
-  const candidates = buildUnifiedCandidates();
+  const candidateUrls = buildUnifiedCandidateUrls();
 
-  for (const candidate of candidates) {
+  for (const candidateUrl of candidateUrls) {
     try {
-      const response = await fetch(candidate.url);
+      const response = await fetch(candidateUrl);
       if (!response.ok) {
         continue;
       }
@@ -563,10 +539,9 @@ export const loadUnifiedPage = async <TData = Record<string, unknown>>(
       return {
         data: data as TData,
         locale: resolvedLocale,
-        source: candidate.source,
       };
     } catch (error) {
-      console.warn('[pages_v2] Failed to load unified page candidate', candidate.url, error);
+      console.warn('[pages_v2] Failed to load unified page candidate', candidateUrl, error);
     }
   }
 

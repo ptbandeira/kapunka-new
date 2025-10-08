@@ -15,7 +15,7 @@ import {
   loadLearnPageContent,
   type LearnPageContentResult,
 } from '../utils/loadLearnPageContent';
-import { fetchVisualEditorJson } from '../utils/fetchVisualEditorJson';
+import { fetchContentJson } from '../utils/fetchContentJson';
 import { getVisualEditorAttributes } from '../utils/stackbitBindings';
 import { useVisualEditorSync } from '../contexts/VisualEditorSyncContext';
 import { buildLocalizedPath } from '../utils/localePaths';
@@ -71,7 +71,7 @@ const ArticlePage: React.FC = () => {
 
         const fetchArticleData = async () => {
             try {
-                const articlesData = await fetchVisualEditorJson<ArticlesResponse>('/content/articles/index.json');
+                        const articlesData = await fetchContentJson<ArticlesResponse>('/content/articles/index.json');
                 if (!isMounted) return;
 
                 const articleItems: Article[] = Array.isArray(articlesData.items) ? articlesData.items : [];
@@ -85,7 +85,7 @@ const ArticlePage: React.FC = () => {
 
                 if (productIds.length > 0) {
                     try {
-                        const productsData = await fetchVisualEditorJson<ProductsResponse>('/content/products/index.json');
+                        const productsData = await fetchContentJson<ProductsResponse>('/content/products/index.json');
                         if (!isMounted) return;
 
                         const productItems: Product[] = Array.isArray(productsData.items) ? productsData.items : [];
@@ -127,14 +127,10 @@ const ArticlePage: React.FC = () => {
         return () => { isMounted = false; };
     }, [slug, contentVersion]);
 
-    const learnFieldPath = useMemo(() => {
-        if (!learnContent) {
-            return `pages.learn_${language}`;
-        }
-        return learnContent.source === 'visual-editor'
-            ? `site.content.${learnContent.locale}.pages.learn`
-            : `pages.learn_${learnContent.locale}`;
-    }, [language, learnContent]);
+    const learnFieldPath = useMemo(
+        () => `pages.learn_${learnContent?.locale ?? language}`,
+        [language, learnContent],
+    );
 
     const learnCategories = useMemo(() => {
         const categories = new Map<string, { label: string; fieldPath?: string }>();

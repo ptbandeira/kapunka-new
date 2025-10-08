@@ -1,5 +1,5 @@
 import type { Language, PageSection } from '../types';
-import { fetchVisualEditorMarkdown, type VisualEditorContentSource } from './fetchVisualEditorMarkdown';
+import { fetchContentMarkdown } from './fetchContentMarkdown';
 import { loadUnifiedPage } from './unifiedPageLoader';
 import { loadPage } from '../src/lib/content';
 
@@ -29,7 +29,6 @@ interface ClinicsPageData {
 export interface ClinicsPageContentResult {
   data: ClinicsPageData;
   locale: Language;
-  source: VisualEditorContentSource;
 }
 
 export const loadClinicsPageContent = async (
@@ -44,7 +43,7 @@ export const loadClinicsPageContent = async (
     const result = await loadPage({
       slug: 'clinics',
       locale: language,
-      loader: async ({ locale: currentLocale }) => fetchVisualEditorMarkdown<ClinicsPageData>(
+      loader: async ({ locale: currentLocale }) => fetchContentMarkdown<ClinicsPageData>(
         `/content/pages/${currentLocale}/clinics.md`,
         { cache: 'no-store' },
       ),
@@ -53,7 +52,6 @@ export const loadClinicsPageContent = async (
     return {
       data: result.data,
       locale: result.localeUsed,
-      source: result.source,
     };
   } catch (error) {
     console.warn('Clinics page content fetch failed', error);

@@ -78,15 +78,10 @@ const Contact: React.FC = () => {
     };
   }, [language, contentVersion]);
 
-  const contactFieldPath = useMemo(() => {
-    if (!pageContent) {
-      return `pages.contact_${language}`;
-    }
-
-    return pageContent.source === 'visual-editor'
-      ? `site.content.${pageContent.locale}.pages.contact`
-      : `pages.contact_${pageContent.locale}`;
-  }, [language, pageContent]);
+  const contactFieldPath = useMemo(
+    () => `pages.contact_${pageContent?.locale ?? language}`,
+    [language, pageContent],
+  );
 
   const fallbackHeroTitle = t('contact.headerTitle');
   const fallbackHeroSubtitle = t('contact.headerSubtitle');

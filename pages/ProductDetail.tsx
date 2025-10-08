@@ -10,7 +10,7 @@ import SectionRenderer from '../components/SectionRenderer';
 import type { Product, ProductKnowledge, ProductTabsSectionContent } from '../types';
 import ProductCard from '../components/ProductCard';
 import Seo from '../src/components/Seo';
-import { fetchVisualEditorJson } from '../utils/fetchVisualEditorJson';
+import { fetchContentJson } from '../utils/fetchContentJson';
 import { getVisualEditorAttributes } from '../utils/stackbitBindings';
 import { formatCurrency } from '../utils/currency';
 import { useVisualEditorSync } from '../contexts/VisualEditorSyncContext';
@@ -51,7 +51,7 @@ const ProductDetail: React.FC = () => {
         const loadProducts = async () => {
             setLoading(true);
             try {
-                const data = await fetchVisualEditorJson<ProductsResponse>('/content/products/index.json');
+                const data = await fetchContentJson<ProductsResponse>('/content/products/index.json');
                 if (!isMounted) {
                     return;
                 }

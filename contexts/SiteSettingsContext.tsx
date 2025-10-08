@@ -1,7 +1,7 @@
 import React, { createContext, useContext, useEffect, useMemo, useState } from 'react';
 import type { SiteSettings } from '../types';
 import defaultSettings from '@/content/site.json';
-import { fetchVisualEditorJson } from '../utils/fetchVisualEditorJson';
+import { fetchContentJson } from '../utils/fetchContentJson';
 import { useVisualEditorSync } from './VisualEditorSyncContext';
 
 type SiteSettingsContextValue = {
@@ -22,7 +22,7 @@ export const SiteSettingsProvider: React.FC<{ children: React.ReactNode }> = ({ 
     const loadSettings = async () => {
       setIsLoading(true);
       try {
-        const data = await fetchVisualEditorJson<SiteSettings>('/content/site.json');
+        const data = await fetchContentJson<SiteSettings>('/content/site.json');
         if (!isMounted) {
           return;
         }

@@ -1,6 +1,6 @@
 import React, { useEffect, useMemo, useState } from 'react';
 import { motion } from 'framer-motion';
-import { fetchVisualEditorMarkdown } from '../utils/fetchVisualEditorMarkdown';
+import { fetchContentMarkdown } from '../utils/fetchContentMarkdown';
 import { useVisualEditorSync } from '../contexts/VisualEditorSyncContext';
 import { useSiteSettings } from '../contexts/SiteSettingsContext';
 import { useLanguage } from '../contexts/LanguageContext';
@@ -143,7 +143,7 @@ const ProductEducation: React.FC = () => {
 
     const loadContent = async () => {
       try {
-        const { data } = await fetchVisualEditorMarkdown<unknown>(PRODUCT_EDUCATION_PATH, { cache: 'no-store' });
+        const { data } = await fetchContentMarkdown<unknown>(PRODUCT_EDUCATION_PATH, { cache: 'no-store' });
         if (!isMounted) {
           return;
         }
