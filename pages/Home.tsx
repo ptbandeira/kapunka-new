@@ -153,6 +153,12 @@ const normalizeImagePath = (value: string | null | undefined, locale: string): s
     return cloudinaryUrl ?? normalizedContentPath;
   }
 
+  if (normalized.startsWith('shared/')) {
+    const sharedPath = `/content/uploads/${normalized}`;
+    const cloudinaryUrl = getCloudinaryUrl(sharedPath);
+    return cloudinaryUrl ?? sharedPath;
+  }
+
   const uploadsPath = normalized.startsWith('uploads/') ? normalized.slice('uploads/'.length) : normalized;
   const defaultPath = `/content/${locale}/uploads/${uploadsPath}`;
   const cloudinaryUrl = getCloudinaryUrl(defaultPath);

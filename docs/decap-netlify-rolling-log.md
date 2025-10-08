@@ -5,6 +5,10 @@
 - **Impact & follow-up**: The homepage now reflects edits made in `content/pages_v2/index.json` immediately, eliminating the drift between JSON and Markdown sources while trimming redundant rendering paths. Next steps are auditing remaining scripts that still copy legacy Markdown so we can retire those build steps.
 - **References**: Pending PR
 
+## 2025-10-08 — Patched unified homepage media grid regressions
+- **What changed**: Fixed the new `MediaShowcase` section renderer by restoring its layout classnames and teaching `normalizeImagePath` to resolve `shared/` assets to `/content/uploads/*`, so Cloudinary helpers stop outputting broken `/content/en/uploads/shared/*` paths. Verified the build via `npm run build`.
+- **Impact & follow-up**: The homepage now renders again instead of throwing `articleClasses is not defined`, and gallery items load their imagery rather than 404s. Keep tightening section components for any other Markdown-era assumptions before removing the legacy loaders from secondary pages.
+- **References**: Pending PR
 ## 2025-10-07 — Simplified Decap editing UX
 - **What changed**: Added locale-specific editing toggles to `admin/cms.js` so editors can focus on a single language at a time, introduced smart fallback hints for localized fields, exposed new CTA toggle defaults, and published reusable section templates via the `sectionTemplates` collection with starter JSON blocks.
 - **Impact & follow-up**: Content designers can now work in English-first mode and reveal additional locales on demand while relying on ready-made section blueprints for frequent layouts. Gather feedback on additional templates that would speed up campaign builds and consider migrating legacy sections to the new CTA controls over time.
