@@ -3826,13 +3826,13 @@ const Home: React.FC = () => {
           {heroBackgroundImage ? (
             <section
               className="relative flex min-h-[620px] items-center justify-start bg-cover bg-center"
-              style={{ backgroundImage: `url('${heroBackgroundImage}')` }}
+              style={{ backgroundImage: `url('${heroBackgroundImage}')`, backgroundPosition: 'center 32%' }}
               {...getVisualEditorAttributes('site.home.heroImage')}
             >
               <div className="absolute inset-0 bg-gradient-to-r from-black/85 via-black/65 to-black/15" />
               <div className="relative z-10 w-full">
-                <div className="mx-auto flex w-full max-w-6xl px-4 sm:px-6 lg:px-8">
-                  <div className="max-w-2xl space-y-8 text-white" {...getVisualEditorAttributes(`${homeFieldPath}.heroContent`)}>
+                <div className="mx-auto flex w-full max-w-6xl px-6 sm:px-10 lg:px-20">
+                  <div className="max-w-2xl space-y-8 text-white" style={{ marginLeft: 0 }} {...getVisualEditorAttributes(`${homeFieldPath}.heroContent`)}>
                     <h1
                       className="text-4xl sm:text-5xl md:text-6xl font-semibold tracking-tight"
                       {...getVisualEditorAttributes(`${homeFieldPath}.heroHeadline`)}
