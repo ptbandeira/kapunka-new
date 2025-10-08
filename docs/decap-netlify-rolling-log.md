@@ -1,5 +1,10 @@
 # Decap CMS & Netlify Rolling Log
 
+## 2025-10-10 — Removed legacy Visual Editor maintenance scripts
+- **What changed**: Deleted the unused `scripts/remove-image-ref.mjs` and `scripts/syncMetadataPages.js` helpers and scrubbed contributor docs of the obsolete metadata regeneration workflow now that the Visual Editor has been fully retired.
+- **Impact & follow-up**: Eliminates dead tooling that referenced `metadata.json` and `.netlify/visual-editor/**`, reducing confusion for contributors. Future schema changes only need updates under `content/**` plus the Decap config.
+- **References**: Pending PR
+
 ## 2025-10-09 — Retired Netlify Visual Editor integration
 - **What changed**: Removed the Netlify Visual Editor plugin, deleted the Stackbit config/metadata files, and stopped copying `.netlify/visual-editor/**` during postbuild. Replaced the legacy `fetchVisualEditorJson`/`fetchVisualEditorMarkdown` helpers with `fetchContentJson`/`fetchContentMarkdown`, simplified `loadUnifiedPage` to read only from `/content/pages_v2`, and updated every page loader to drop Visual Editor source flags.
 - **Impact & follow-up**: The app now fetches content exclusively from the canonical Decap JSON/Markdown files, eliminating the extra mirror and the runtime detection logic that had been causing 404s and locale instability. Monitor future CMS edits to ensure the simplified loaders continue to resolve localized fallbacks correctly.
