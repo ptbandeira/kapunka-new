@@ -1,11 +1,15 @@
 
 import React, { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import { AnimatePresence, motion } from 'framer-motion';
 import { useLanguage } from '../contexts/LanguageContext';
+import { buildLocalizedPath } from '../utils/localePaths';
 
 const CookieConsent: React.FC = () => {
   const [isVisible, setIsVisible] = useState(false);
-  const { t } = useLanguage();
+  const { t, language } = useLanguage();
+
+  const privacyPolicyPath = buildLocalizedPath('/policy/privacy', language);
 
   useEffect(() => {
     const consent = localStorage.getItem('cookie_consent');
@@ -39,7 +43,10 @@ const CookieConsent: React.FC = () => {
         >
           <div className="container mx-auto flex flex-col sm:flex-row items-center justify-between gap-4">
             <p className="text-sm text-stone-300">
-              {t('cookies.message')} <a href="#/policy/privacy" className="underline hover:text-white">{t('cookies.learnMore')}</a>
+              {t('cookies.message')}{' '}
+              <Link to={privacyPolicyPath} className="underline hover:text-white">
+                {t('cookies.learnMore')}
+              </Link>
             </p>
             <div className="flex items-center gap-3 flex-shrink-0">
               <button
