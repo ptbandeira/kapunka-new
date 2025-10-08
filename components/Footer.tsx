@@ -56,6 +56,8 @@ const FOOTER_SECTIONS: FooterSectionConfig[] = [
   },
 ];
 
+const footerTranslationsObjectId = 'translations_footer:content/translations/footer.json';
+
 const Footer: React.FC = () => {
   const { t, language, translate } = useLanguage();
   const { settings } = useSiteSettings();
