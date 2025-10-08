@@ -1,5 +1,10 @@
 # Decap CMS & Netlify Rolling Log
 
+## 2025-10-08 — Fixed locale routing regression
+- **What changed**: Updated `LocalizedLayout` in `App.tsx` to read the active locale from the pathname via `getLocaleFromPath`, short-circuit unsupported locale params, and stop the default-language branch from resetting translated routes back to `/`.
+- **Impact & follow-up**: Portuguese and Spanish URLs keep their `/pt` and `/es` prefixes, allowing localized copy to load without flashing to English or tripping the Visual Editor fetch probes. Audit remaining navigation links for hard-coded paths that may need `buildLocalizedPath`.
+- **References**: Pending PR
+
 ## 2025-10-08 — Home now loads unified page data only
 - **What changed**: Refactored `pages/Home.tsx` to fetch homepage content via `loadUnifiedPage('home')`, removed the legacy Markdown loader and bespoke section renderers, and leaned on `SectionRenderer` plus existing shared components for structured blocks. Follow-up pass dropped the old clinics/gallery/bestseller/review widgets so only unified sections render the page. Ran `npm run build` to confirm the unified pipeline compiles cleanly.
 - **Impact & follow-up**: The homepage now reflects edits made in `content/pages_v2/index.json` immediately, eliminating the drift between JSON and Markdown sources while trimming redundant rendering paths. Next steps are auditing remaining scripts that still copy legacy Markdown so we can retire those build steps.
