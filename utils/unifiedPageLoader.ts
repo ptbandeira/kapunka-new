@@ -55,6 +55,18 @@ const UNIFIED_CANDIDATES: UnifiedCandidate[] = [
   { url: '/content/pages_v2/index.json', source: 'content' },
 ];
 
+const STATIC_PAGES_INDEX_URL = (() => {
+  try {
+    return new URL('../content/pages_v2/index.json', import.meta.url).href;
+  } catch {
+    return undefined;
+  }
+})();
+
+if (STATIC_PAGES_INDEX_URL) {
+  UNIFIED_CANDIDATES.push({ url: STATIC_PAGES_INDEX_URL, source: 'content' });
+}
+
 const isLanguage = (value: string): value is Language => (
   value === 'en' || value === 'pt' || value === 'es'
 );

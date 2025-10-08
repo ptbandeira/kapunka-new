@@ -15,9 +15,9 @@
 - **Impact & follow-up**: Prevents duplicate field overlays in the Visual Editor and keeps the unified section components aligned with the new JSON source while ensuring each locale renders native copy. Continue auditing remaining section widgets before we retire the Markdown fallbacks across the other pages.
 - **References**: Pending PR
 
-## 2025-10-08 — Restored Netlify-style content mirrors for unified build
-- **What changed**: Updated `scripts/postbuild.js` to mirror `content/` into `site/content/` during the build so the Visual Editor fallback URLs (`/site/content/...`) resolve in production/static previews. Ran `npm run build` to verify the copy step executes.
-- **Impact & follow-up**: Portuguese and Spanish pages no longer crash when the Visual Editor tries the `/site/content` mirror before hitting `/content`. Keep an eye on other Netlify-specific fallbacks while migrating the remaining page loaders to unified JSON.
+## 2025-10-08 — Hardened Visual Editor fallbacks for static deploys
+- **What changed**: Updated `scripts/postbuild.js` to mirror `content/` into `site/content/`, copy both `site/` and `.netlify/visual-editor/` into `dist/`, and added static-asset fallbacks to `fetchVisualEditorJson` plus `loadUnifiedPage` (using `import.meta.url`) so hashed JSON assets resolve when network mirrors fail. Ran `npm run build` to verify the new copy steps and fallbacks execute.
+- **Impact & follow-up**: Portuguese and Spanish pages no longer crash when the Visual Editor probes `/site/content` or `/.netlify/visual-editor` before landing on the canonical `/content` data. Keep an eye on the remaining markdown-dependent pages while migrating them to the unified loader.
 - **References**: Pending PR
 ## 2025-10-07 — Simplified Decap editing UX
 - **What changed**: Added locale-specific editing toggles to `admin/cms.js` so editors can focus on a single language at a time, introduced smart fallback hints for localized fields, exposed new CTA toggle defaults, and published reusable section templates via the `sectionTemplates` collection with starter JSON blocks.

@@ -50,7 +50,19 @@ const buildMirrorCandidates = (contentUrl: string): string[] => {
 export const fetchVisualEditorJson = async <T>(url: string, init?: RequestInit): Promise<T> => {
   const candidateUrls: string[] = [];
   candidateUrls.push(...buildMirrorCandidates(url));
+  const mirrors = buildMirrorCandidates(url);
+  candidateUrls.push(...mirrors);
   candidateUrls.push(url);
+
+  if (url.startsWith(CONTENT_PREFIX)) {
+    const rawPath = url.slice(CONTENT_PREFIX.length).replace(/^\/+/, '');
+    try {
+      const staticAssetUrl = new URL(`../content/${rawPath}`, import.meta.url).href;
+      candidateUrls.push(staticAssetUrl);
+    } catch (error) {
+      console.warn('fetchVisualEditorJson: failed to resolve static asset URL', rawPath, error);
+    }
+  }
 
   let lastError: unknown;
 
@@ -74,4 +86,3 @@ export const fetchVisualEditorJson = async <T>(url: string, init?: RequestInit):
 
   throw new Error(`Unable to fetch JSON from ${url}`);
 };
-
