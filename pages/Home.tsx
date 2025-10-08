@@ -1,36 +1,22 @@
-import React, { useState, useEffect, useMemo } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import ReactMarkdown from 'react-markdown';
 import type { Components as MarkdownComponents } from 'react-markdown';
-import ProductCard from '../components/ProductCard';
 import SectionRenderer from '../components/SectionRenderer';
 import { usePrefersReducedMotion } from '../src/hooks/usePrefersReducedMotion';
 import { useLanguage } from '../contexts/LanguageContext';
 import { useSiteSettings } from '../contexts/SiteSettingsContext';
 import { useVisualEditorSync } from '../contexts/VisualEditorSyncContext';
 import type {
-  Product,
-  Review,
-  ClinicsBlockContent,
-  GalleryRowContent,
   PageContent,
   Language,
 } from '../types';
-import { fetchVisualEditorJson } from '../utils/fetchVisualEditorJson';
 import { getVisualEditorAttributes } from '../utils/stackbitBindings';
 import { buildLocalizedPath, SUPPORTED_LANGUAGES } from '../utils/localePaths';
 import { getCloudinaryUrl, isAbsoluteUrl } from '../utils/imageUrl';
 import Seo from '../src/components/Seo';
 import { loadUnifiedPage } from '../utils/unifiedPageLoader';
-
-interface ProductsResponse {
-  items?: Product[];
-}
-
-interface ReviewsResponse {
-  items?: Review[];
-}
 
 type CmsCtaShape = {
   label?: string | null;
@@ -127,15 +113,6 @@ const heroMarkdownComponents: MarkdownComponents = {
       {children}
     </strong>
   ),
-};
-
-const createKeyFromParts = (prefix: string, parts: Array<string | null | undefined>) => {
-  const key = parts
-    .map((part) => (typeof part === 'string' ? part.trim() : ''))
-    .filter((part) => part.length > 0)
-    .join('|');
-
-  return key.length > 0 ? `${prefix}-${key}` : prefix;
 };
 
 const normalizeImagePath = (value: string | null | undefined, locale: string): string | undefined => {
@@ -526,434 +503,6 @@ const validateHeroContent = ({
   }
 
   return { heroImages: normalizedHeroImages ?? undefined };
-};
-
-interface BestsellersProps {
-  intro?: string;
-  introFieldPath?: string;
-}
-
-const Bestsellers: React.FC<BestsellersProps> = ({ intro, introFieldPath }) => {
-  const { t, language } = useLanguage();
-  const [products, setProducts] = useState<Product[]>([]);
-  const { settings } = useSiteSettings();
-  const { contentVersion } = useVisualEditorSync();
-
-  useEffect(() => {
-    let isMounted = true;
-
-    const loadProducts = async () => {
-      try {
-        const data = await fetchVisualEditorJson<ProductsResponse>('/content/products/index.json');
-        if (!isMounted) {
-          return;
-        }
-        setProducts(Array.isArray(data.items) ? data.items : []);
-      } catch (error) {
-        if (isMounted) {
-          console.error('Failed to load bestseller products', error);
-          setProducts([]);
-        }
-      }
-    };
-
-    loadProducts().catch((error) => {
-      console.error('Unhandled error while loading bestseller products', error);
-    });
-
-    return () => {
-      isMounted = false;
-    };
-  }, [contentVersion]);
-
-  const featuredProductIds = useMemo(() => {
-    const ids = settings.home?.featuredProductIds ?? [];
-
-    return ids.filter((id): id is string => typeof id === 'string' && id.trim().length > 0);
-  }, [settings]);
-
-  const curatedProducts = useMemo(() => {
-    if (featuredProductIds.length === 0 || products.length === 0) {
-      return [];
-    }
-
-    const productMap = new Map(products.map((product) => [product.id, product]));
-    const uniqueIds = Array.from(new Set(featuredProductIds));
-
-    return uniqueIds
-      .map((id) => productMap.get(id))
-      .filter((product): product is Product => Boolean(product));
-  }, [products, featuredProductIds]);
-
-  const fallbackProducts = useMemo(() => products.slice(0, 3), [products]);
-
-  const featuredProducts = curatedProducts.length > 0 ? curatedProducts : fallbackProducts;
-
-  return (
-    <div className="py-16 sm:py-24 bg-stone-100">
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-        <motion.h2
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
-          className="text-3xl sm:text-4xl font-semibold text-center mb-12"
-          {...getVisualEditorAttributes(`translations.${language}.home.bestsellersTitle`)}
-        >
-          {t('home.bestsellersTitle')}
-        </motion.h2>
-        {intro && (
-          <motion.p
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6, delay: 0.1 }}
-            className="text-center text-stone-600 max-w-3xl mx-auto -mt-8 mb-12"
-            {...getVisualEditorAttributes(introFieldPath)}
-          >
-            {intro}
-          </motion.p>
-        )}
-        {featuredProducts.length > 0 ? (
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {featuredProducts.map((product, index) => {
-              const productIndex = products.findIndex((item) => item.id === product.id);
-              const productFieldPath = productIndex >= 0 ? `products.items.${productIndex}` : undefined;
-              return (
-                <ProductCard
-                  key={product.id}
-                  product={product}
-                  fieldPath={productFieldPath}
-                />
-              );
-            })}
-          </div>
-        ) : (
-          <p
-            className="text-center"
-            {...getVisualEditorAttributes(`translations.${language}.common.loadingBestsellers`)}
-          >
-            {t('common.loadingBestsellers')}
-          </p>
-        )}
-      </div>
-    </div>
-  );
-};
-
-interface ClinicsBlockProps {
-  data?: ClinicsBlockContent;
-  fieldPath?: string;
-  fallbackCtaHref: string;
-  fallbackCtaLabel: string;
-}
-
-const ClinicsBlock: React.FC<ClinicsBlockProps> = ({ data, fieldPath, fallbackCtaHref, fallbackCtaLabel }) => {
-  const { language } = useLanguage();
-  if (!data) {
-    return null;
-  }
-
-  const { clinicsTitle, clinicsBody, clinicsCtaHref, clinicsCtaLabel, clinicsImage } = data;
-  const trimmedClinicsImage = clinicsImage?.trim() ?? '';
-  const clinicsImageUrl = trimmedClinicsImage ? getCloudinaryUrl(trimmedClinicsImage) ?? trimmedClinicsImage : '';
-  const hasPrimaryContent = Boolean(
-    (clinicsTitle && clinicsTitle.trim().length > 0)
-    || (clinicsBody && clinicsBody.trim().length > 0)
-    || (clinicsCtaLabel && clinicsCtaLabel.trim().length > 0)
-    || (trimmedClinicsImage.length > 0),
-  );
-
-  if (!hasPrimaryContent) {
-    return null;
-  }
-
-  const effectiveHref = clinicsCtaHref?.trim().length ? clinicsCtaHref.trim() : fallbackCtaHref;
-  const ctaLabel = clinicsCtaLabel?.trim().length ? clinicsCtaLabel.trim() : fallbackCtaLabel;
-  const isInternalHref = effectiveHref.startsWith('/') || effectiveHref.startsWith('#/');
-  const internalPath = isInternalHref ? (effectiveHref.startsWith('#/') ? effectiveHref.slice(1) : effectiveHref) : undefined;
-  const hasImage = Boolean(clinicsImageUrl);
-
-  return (
-    <div className="py-16 sm:py-24 bg-white" {...getVisualEditorAttributes(fieldPath)}>
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-          <div className="space-y-6">
-            {clinicsTitle && (
-              <motion.h2
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.6 }}
-                className="text-3xl sm:text-4xl font-semibold text-stone-900"
-                {...getVisualEditorAttributes(fieldPath ? `${fieldPath}.clinicsTitle` : undefined)}
-              >
-                {clinicsTitle}
-              </motion.h2>
-            )}
-            {clinicsBody && (
-              <ReactMarkdown
-                className="text-stone-600 leading-relaxed prose prose-stone max-w-none"
-                {...getVisualEditorAttributes(fieldPath ? `${fieldPath}.clinicsBody` : undefined)}
-              >
-                {clinicsBody}
-              </ReactMarkdown>
-            )}
-            {ctaLabel && (
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.6, delay: 0.1 }}
-              >
-                {isInternalHref && internalPath ? (
-                  <Link
-                    to={buildLocalizedPath(internalPath.startsWith('/') ? internalPath : `/${internalPath}`, language)}
-                    className="inline-flex items-center px-6 py-3 bg-stone-900 text-white font-semibold rounded-md hover:bg-stone-700 transition-colors"
-                    {...getVisualEditorAttributes(fieldPath ? `${fieldPath}.clinicsCtaHref` : undefined)}
-                  >
-                    <span {...getVisualEditorAttributes(fieldPath ? `${fieldPath}.clinicsCtaLabel` : undefined)}>
-                      {ctaLabel}
-                    </span>
-                  </Link>
-                ) : (
-                  <a
-                    href={effectiveHref}
-                    className="inline-flex items-center px-6 py-3 bg-stone-900 text-white font-semibold rounded-md hover:bg-stone-700 transition-colors"
-                    target="_blank"
-                    rel="noreferrer"
-                    {...getVisualEditorAttributes(fieldPath ? `${fieldPath}.clinicsCtaHref` : undefined)}
-                  >
-                    <span {...getVisualEditorAttributes(fieldPath ? `${fieldPath}.clinicsCtaLabel` : undefined)}>
-                      {ctaLabel}
-                    </span>
-                  </a>
-                )}
-              </motion.div>
-            )}
-          </div>
-          {hasImage && (
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6, delay: 0.2 }}
-              className="w-full"
-            >
-              <img
-                src={clinicsImageUrl}
-                alt={clinicsTitle ?? clinicsBody ?? fallbackCtaLabel}
-                className="w-full rounded-lg shadow-lg object-cover"
-                {...getVisualEditorAttributes(fieldPath ? `${fieldPath}.clinicsImage` : undefined)}
-              />
-            </motion.div>
-          )}
-        </div>
-      </div>
-    </div>
-  );
-};
-
-interface GalleryRowsProps {
-  rows?: GalleryRowContent[];
-  fieldPath?: string;
-}
-
-const galleryLayoutMap: Record<NonNullable<GalleryRowContent['layout']>, string> = {
-  half: 'lg:grid-cols-2',
-  thirds: 'lg:grid-cols-3',
-  quarters: 'grid-cols-2 lg:grid-cols-4',
-};
-
-const GalleryRows: React.FC<GalleryRowsProps> = ({ rows, fieldPath }) => {
-  const sanitizedRows = rows
-    ?.map((row) => {
-      if (!row) {
-        return null;
-      }
-
-      const items = (row.items ?? []).filter((item) => Boolean(item?.image?.trim()));
-
-      if (items.length === 0) {
-        return null;
-      }
-
-      return { ...row, items };
-    })
-    .filter((row): row is GalleryRowContent & { items: NonNullable<GalleryRowContent['items']> } => Boolean(row)) ?? [];
-
-  if (sanitizedRows.length === 0) {
-    return null;
-  }
-
-  return (
-    <section className="py-12 md:py-16 bg-stone-50" {...getVisualEditorAttributes(fieldPath)}>
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8 space-y-10">
-        {sanitizedRows.map((row, rowIndex) => {
-          const rowFieldPath = fieldPath ? `${fieldPath}[${rowIndex}]` : undefined;
-          const layoutClass = row.layout ? galleryLayoutMap[row.layout] ?? 'lg:grid-cols-3' : 'lg:grid-cols-3';
-          const items = row.items ?? [];
-          const baseGridClass = row.layout === 'quarters' ? '' : 'grid-cols-1';
-          const gridClasses = ['grid', baseGridClass, layoutClass, 'gap-6'].filter(Boolean).join(' ');
-          const rowKey = createKeyFromParts('gallery-row', [
-            row.layout ?? undefined,
-            items.map((item) => item?.image ?? item?.caption ?? item?.alt ?? '').join('|'),
-          ]);
-
-          return (
-            <div
-              key={rowKey}
-              className={gridClasses}
-              {...getVisualEditorAttributes(rowFieldPath)}
-            >
-              {items.map((item, itemIndex) => {
-                if (!item) {
-                  return null;
-                }
-
-                const rawImageSrc = item.image?.trim() ?? '';
-                const imageSrc = rawImageSrc ? getCloudinaryUrl(rawImageSrc) ?? rawImageSrc : '';
-                const caption = item.caption?.trim();
-                const altText = item.alt?.trim() ?? caption ?? undefined;
-                const hasContent = Boolean(imageSrc);
-
-                if (!hasContent) {
-                  return null;
-                }
-
-                const itemFieldPath = rowFieldPath ? `${rowFieldPath}.items[${itemIndex}]` : undefined;
-                const galleryItemKey = createKeyFromParts('gallery-item', [imageSrc, caption, altText]);
-
-                return (
-                  <motion.figure
-                    key={galleryItemKey}
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.5, delay: itemIndex * 0.05 }}
-                    className="space-y-2"
-                    {...getVisualEditorAttributes(itemFieldPath)}
-                  >
-                    <img
-                      src={imageSrc}
-                      alt={altText ?? 'Gallery item'}
-                      className="w-full aspect-[4/3] object-cover rounded-lg shadow-md"
-                      {...getVisualEditorAttributes(itemFieldPath ? `${itemFieldPath}.image` : undefined)}
-                    />
-                    {caption && (
-                      <figcaption
-                        className="mt-2 text-sm text-stone-600"
-                        {...getVisualEditorAttributes(itemFieldPath ? `${itemFieldPath}.caption` : undefined)}
-                      >
-                        {caption}
-                      </figcaption>
-                    )}
-                  </motion.figure>
-                );
-              })}
-            </div>
-          );
-        })}
-      </div>
-    </section>
-  );
-};
-
-const Reviews: React.FC = () => {
-  const { t, language } = useLanguage();
-  const [reviews, setReviews] = useState<Review[]>([]);
-  const { contentVersion } = useVisualEditorSync();
-
-  useEffect(() => {
-    let isMounted = true;
-
-    const loadReviews = async () => {
-      try {
-        const data = await fetchVisualEditorJson<ReviewsResponse>('/content/reviews/index.json');
-        if (!isMounted) {
-          return;
-        }
-        const items = Array.isArray(data.items) ? data.items : [];
-        setReviews(items.slice(0, 3));
-      } catch (error) {
-        if (isMounted) {
-          console.error('Failed to load reviews', error);
-          setReviews([]);
-        }
-      }
-    };
-
-    loadReviews().catch((error) => {
-      console.error('Unhandled error while loading reviews', error);
-    });
-
-    return () => {
-      isMounted = false;
-    };
-  }, [contentVersion]);
-
-  return (
-    <div className="py-16 sm:py-24 bg-stone-50">
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-        <motion.h2
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
-          className="text-3xl sm:text-4xl font-semibold text-center mb-12"
-          {...getVisualEditorAttributes(`translations.${language}.home.reviewsTitle`)}
-        >
-          {t('home.reviewsTitle')}
-        </motion.h2>
-        {reviews.length > 0 ? (
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {reviews.map((review, index) => (
-              <motion.div
-                key={review.id ?? index}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.6, delay: index * 0.1 }}
-                className="p-8 bg-stone-100 rounded-lg text-center"
-                {...getVisualEditorAttributes(`reviews.items.${index}`)}
-              >
-                <p className="text-stone-700 italic">
-                  &ldquo;
-                  <span {...getVisualEditorAttributes(`reviews.items.${index}.quote`)}>{review.quote}</span>
-                  &rdquo;
-                </p>
-                <div className="mt-4">
-                  {review.author && (
-                    <p
-                      className="font-semibold text-stone-900"
-                      {...getVisualEditorAttributes(`reviews.items.${index}.author`)}
-                    >
-                      {review.author}
-                    </p>
-                  )}
-                  {review.role && (
-                    <p
-                      className="text-sm text-stone-500"
-                      {...getVisualEditorAttributes(`reviews.items.${index}.role`)}
-                    >
-                      {review.role}
-                    </p>
-                  )}
-                </div>
-              </motion.div>
-            ))}
-          </div>
-        ) : (
-          <p
-            className="text-center"
-            {...getVisualEditorAttributes(`translations.${language}.common.loadingReviews`)}
-          >
-            {t('common.loadingReviews')}
-          </p>
-        )}
-      </div>
-    </div>
-  );
 };
 
 const Home: React.FC = () => {
@@ -1442,9 +991,6 @@ const Home: React.FC = () => {
   const homeSectionsFieldPath = `${homeFieldPath}.sections`;
   const computedTitle = pageContent?.metaTitle ?? `Kapunka Skincare | ${t('home.metaTitle')}`;
   const computedDescription = pageContent?.metaDescription ?? t('home.metaDescription');
-  const clinicsBlockData = pageContent?.clinicsBlock;
-  const galleryRowsData = pageContent?.galleryRows;
-  const bestsellersIntro = sanitizeCmsString(pageContent?.bestsellersIntro ?? pageContent?.bestsellers?.intro);
   const brandIntroTitle = sanitizeCmsString(pageContent?.brandIntro?.title);
   const brandIntroText = sanitizeCmsString(pageContent?.brandIntro?.text);
 
@@ -1472,16 +1018,7 @@ const Home: React.FC = () => {
           )}
         </div>
       )}
-      <ClinicsBlock
-        data={clinicsBlockData}
-        fieldPath={`${homeFieldPath}.clinicsBlock`}
-        fallbackCtaHref="/for-clinics"
-        fallbackCtaLabel={t('home.ctaClinics')}
-      />
       <SectionRenderer sections={sections} fieldPath={homeSectionsFieldPath} />
-      <GalleryRows rows={galleryRowsData} fieldPath={`${homeFieldPath}.galleryRows`} />
-      <Bestsellers intro={bestsellersIntro} introFieldPath={`${homeFieldPath}.bestsellersIntro`} />
-      <Reviews />
     </div>
   );
 };
