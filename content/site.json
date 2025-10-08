@@ -12,7 +12,7 @@
     }
   },
   "clinics": {
-    "ctaLink": "https://kapunka.com/#/contact"
+    "ctaLink": "/contact"
   },
   "about": {
     "storyImage": "site/monica-argan-.jpg",

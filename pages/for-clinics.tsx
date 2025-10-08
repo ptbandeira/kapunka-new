@@ -1,4 +1,5 @@
 import React, { useEffect, useMemo, useState } from 'react';
+import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import SectionRenderer from '../components/SectionRenderer';
 import { useLanguage } from '../contexts/LanguageContext';
@@ -11,6 +12,7 @@ import {
   loadClinicsPageContent,
   type ClinicsPageContentResult,
 } from '../utils/loadClinicsPageContent';
+import { buildLocalizedPath } from '../utils/localePaths';
 import Seo from '../src/components/Seo';
 import type { PageSection } from '../types';
 
@@ -192,7 +194,9 @@ const ForClinics: React.FC = () => {
   });
   const heroEyebrow = heroEyebrowSource.value ? heroEyebrowSource : null;
 
-  const ctaLink = settings.clinics?.ctaLink ?? '#/contact';
+  const defaultLocalizedCtaLink = buildLocalizedPath('/contact', language);
+  const settingsCtaLink = sanitizeString(settings.clinics?.ctaLink);
+  const ctaLink = settingsCtaLink ?? defaultLocalizedCtaLink;
 
   const heroPrimaryCtaCandidates: CtaWithFieldPath[] = [];
 
@@ -254,6 +258,17 @@ const ForClinics: React.FC = () => {
     href: ctaLink,
     labelFieldPath: `${translationsFieldPath}.ctaButton`,
   });
+  const resolvedHeroPrimaryCtaHref = heroPrimaryCta.href || ctaLink;
+  const heroPrimaryCtaIsInternal = resolvedHeroPrimaryCtaHref.startsWith('#/')
+    || resolvedHeroPrimaryCtaHref.startsWith('/');
+  const heroPrimaryCtaTarget = heroPrimaryCtaIsInternal
+    ? buildLocalizedPath(
+      resolvedHeroPrimaryCtaHref.startsWith('#/')
+        ? resolvedHeroPrimaryCtaHref.slice(1)
+        : resolvedHeroPrimaryCtaHref,
+      language,
+    )
+    : resolvedHeroPrimaryCtaHref;
 
   const ctaTitleSource = resolveTextWithFieldPath([
     { value: pageContent?.data.ctaTitle, fieldPath: `${clinicsFieldPath}.ctaTitle` },
@@ -359,13 +374,23 @@ const ForClinics: React.FC = () => {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.2 }}
             >
-              <a
-                href={heroPrimaryCta.href || ctaLink}
-                className="inline-flex items-center justify-center rounded-full bg-stone-900 px-6 py-3 text-base font-semibold text-white transition hover:bg-stone-700 focus:outline-none focus-visible:ring-2 focus-visible:ring-stone-900 focus-visible:ring-offset-2"
-                {...getVisualEditorAttributes(heroPrimaryCtaFieldPath)}
-              >
-                {heroPrimaryCta.label}
-              </a>
+              {heroPrimaryCtaIsInternal ? (
+                <Link
+                  to={heroPrimaryCtaTarget}
+                  className="inline-flex items-center justify-center rounded-full bg-stone-900 px-6 py-3 text-base font-semibold text-white transition hover:bg-stone-700 focus:outline-none focus-visible:ring-2 focus-visible:ring-stone-900 focus-visible:ring-offset-2"
+                  {...getVisualEditorAttributes(heroPrimaryCtaFieldPath)}
+                >
+                  {heroPrimaryCta.label}
+                </Link>
+              ) : (
+                <a
+                  href={heroPrimaryCtaTarget}
+                  className="inline-flex items-center justify-center rounded-full bg-stone-900 px-6 py-3 text-base font-semibold text-white transition hover:bg-stone-700 focus:outline-none focus-visible:ring-2 focus-visible:ring-stone-900 focus-visible:ring-offset-2"
+                  {...getVisualEditorAttributes(heroPrimaryCtaFieldPath)}
+                >
+                  {heroPrimaryCta.label}
+                </a>
+              )}
             </motion.div>
           </div>
         </section>
@@ -401,13 +426,23 @@ const ForClinics: React.FC = () => {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5, delay: 0.2 }}
               >
-                <a
-                  href={heroPrimaryCta.href || ctaLink}
-                  className="inline-flex items-center justify-center rounded-full bg-white px-6 py-3 text-base font-semibold text-stone-900 transition hover:bg-stone-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-stone-900"
-                  {...getVisualEditorAttributes(heroPrimaryCtaFieldPath)}
-                >
-                  {heroPrimaryCta.label}
-                </a>
+                {heroPrimaryCtaIsInternal ? (
+                  <Link
+                    to={heroPrimaryCtaTarget}
+                    className="inline-flex items-center justify-center rounded-full bg-white px-6 py-3 text-base font-semibold text-stone-900 transition hover:bg-stone-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-stone-900"
+                    {...getVisualEditorAttributes(heroPrimaryCtaFieldPath)}
+                  >
+                    {heroPrimaryCta.label}
+                  </Link>
+                ) : (
+                  <a
+                    href={heroPrimaryCtaTarget}
+                    className="inline-flex items-center justify-center rounded-full bg-white px-6 py-3 text-base font-semibold text-stone-900 transition hover:bg-stone-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-stone-900"
+                    {...getVisualEditorAttributes(heroPrimaryCtaFieldPath)}
+                  >
+                    {heroPrimaryCta.label}
+                  </a>
+                )}
               </motion.div>
             </div>
           </section>
