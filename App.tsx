@@ -19,7 +19,12 @@ import CookieConsent from './components/CookieConsent';
 import { useSiteSettings } from './contexts/SiteSettingsContext';
 import { useLanguage } from './contexts/LanguageContext';
 import type { Language, LocalizedText } from './types';
-import { buildLocalizedPath, isSupportedLanguage, removeLocaleFromPath } from './utils/localePaths';
+import {
+  buildLocalizedPath,
+  getLocaleFromPath,
+  isSupportedLanguage,
+  removeLocaleFromPath,
+} from './utils/localePaths';
 import Seo from './src/components/Seo';
 
 const Home = lazy(() => import('./pages/Home'));
@@ -177,9 +182,19 @@ const LocalizedLayout: React.FC = () => {
   const location = useLocation();
   const navigate = useNavigate();
   const { language, setLanguage } = useLanguage();
+  const pathLocale = getLocaleFromPath(location.pathname);
+  const routeLocale = params.locale;
 
   useEffect(() => {
-    const currentLocale = params.locale;
+    if (routeLocale && !isSupportedLanguage(routeLocale)) {
+      const fallbackPath = removeLocaleFromPath(location.pathname);
+      navigate(`${fallbackPath}${location.search}${location.hash}`, { replace: true });
+      return;
+    }
+
+    const currentLocale = routeLocale && isSupportedLanguage(routeLocale)
+      ? routeLocale
+      : pathLocale;
 
     if (!currentLocale) {
       if (language !== DEFAULT_LANGUAGE) {
@@ -191,12 +206,6 @@ const LocalizedLayout: React.FC = () => {
 
         setLanguage(DEFAULT_LANGUAGE);
       }
-      return;
-    }
-
-    if (!isSupportedLanguage(currentLocale)) {
-      const fallbackPath = removeLocaleFromPath(location.pathname);
-      navigate(`${fallbackPath}${location.search}${location.hash}`, { replace: true });
       return;
     }
 
@@ -216,7 +225,16 @@ const LocalizedLayout: React.FC = () => {
     if (language !== currentLocale) {
       setLanguage(currentLocale as Language);
     }
-  }, [language, location.hash, location.pathname, location.search, navigate, params.locale, setLanguage]);
+  }, [
+    language,
+    location.hash,
+    location.pathname,
+    location.search,
+    navigate,
+    pathLocale,
+    routeLocale,
+    setLanguage,
+  ]);
 
   return <Outlet />;
 };
