@@ -977,24 +977,26 @@ const heroTextContent = (
       <Seo title={computedTitle} description={computedDescription} />
       {heroSection}
       {(brandIntroTitle || brandIntroText) && (
-        <div className="container mx-auto max-w-3xl px-4 py-16 md:py-24">
-          {brandIntroTitle && (
-            <h2
-              className="text-3xl sm:text-4xl font-semibold text-center"
-              {...getVisualEditorAttributes(`${homeFieldPath}.brandIntro.title`)}
-            >
-              {brandIntroTitle}
-            </h2>
-          )}
-          {brandIntroText && (
-            <p
-              className="mt-6 prose prose-stone max-w-none text-stone-700 text-center"
-              {...getVisualEditorAttributes(`${homeFieldPath}.brandIntro.text`)}
-            >
-              {brandIntroText}
-            </p>
-          )}
-        </div>
+        <section className="w-full px-4 sm:px-6 lg:px-10 xl:px-16 py-16 md:py-24">
+          <div className="mx-auto w-full max-w-5xl text-center">
+            {brandIntroTitle && (
+              <h2
+                className="text-3xl sm:text-4xl font-semibold"
+                {...getVisualEditorAttributes(`${homeFieldPath}.brandIntro.title`)}
+              >
+                {brandIntroTitle}
+              </h2>
+            )}
+            {brandIntroText && (
+              <p
+                className="mt-6 prose prose-stone max-w-none text-stone-700"
+                {...getVisualEditorAttributes(`${homeFieldPath}.brandIntro.text`)}
+              >
+                {brandIntroText}
+              </p>
+            )}
+          </div>
+        </section>
       )}
       <SectionRenderer sections={sections} fieldPath={homeSectionsFieldPath} />
     </div>

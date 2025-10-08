@@ -9,7 +9,7 @@ import React, {
 } from 'react';
 import type { Language } from '../types';
 import { fetchVisualEditorJson } from '../utils/fetchVisualEditorJson';
-import { SUPPORTED_LANGUAGES } from '../utils/localePaths';
+import { SUPPORTED_LANGUAGES, getLocaleFromPath } from '../utils/localePaths';
 import { useVisualEditorSync } from './VisualEditorSyncContext';
 
 type TranslationPrimitive = string | number | boolean | null;
@@ -31,6 +31,41 @@ const FALLBACK_LANGUAGE: Language = 'en';
 const normalizeLanguageCode = (code: string): Language | undefined => {
   const normalized = code.toLowerCase().split('-')[0];
   return SUPPORTED_LANGUAGES.find((lang) => lang === normalized);
+};
+
+const resolveInitialLanguage = (): Language => {
+  if (typeof window === 'undefined') {
+    return FALLBACK_LANGUAGE;
+  }
+
+  const localeFromPath = getLocaleFromPath(window.location.pathname);
+  if (localeFromPath) {
+    return localeFromPath;
+  }
+
+  try {
+    const storedLanguage = window.localStorage.getItem(LANGUAGE_STORAGE_KEY);
+    if (storedLanguage && SUPPORTED_LANGUAGES.includes(storedLanguage as Language)) {
+      return storedLanguage as Language;
+    }
+  } catch {
+    // ignore storage access errors; we'll fall back to navigator hints
+  }
+
+  const navigatorLanguages = Array.isArray(navigator.languages) && navigator.languages.length > 0
+    ? navigator.languages
+    : navigator.language
+      ? [navigator.language]
+      : [];
+
+  for (const langCode of navigatorLanguages) {
+    const matched = normalizeLanguageCode(langCode);
+    if (matched) {
+      return matched;
+    }
+  }
+
+  return FALLBACK_LANGUAGE;
 };
 
 const extractKeyFromPath = (filePath: string): string => {
@@ -81,7 +116,7 @@ interface LanguageContextType {
 export const LanguageContext = createContext<LanguageContextType | undefined>(undefined);
 
 export const LanguageProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
-  const [language, setLanguage] = useState<Language>('en');
+  const [language, setLanguage] = useState<Language>(resolveInitialLanguage);
   const [translations, setTranslations] = useState<Translations>(
     initialTranslations,
   );
@@ -115,35 +150,11 @@ export const LanguageProvider: React.FC<{ children: React.ReactNode }> = ({ chil
       return;
     }
 
-    const storedLanguage = window.localStorage.getItem(LANGUAGE_STORAGE_KEY);
-    if (storedLanguage && SUPPORTED_LANGUAGES.includes(storedLanguage as Language)) {
-      setLanguage(storedLanguage as Language);
-      return;
+    try {
+      window.localStorage.setItem(LANGUAGE_STORAGE_KEY, language);
+    } catch {
+      // ignore storage quota/access issues; language will remain in memory
     }
-
-    const navigatorLanguages = (navigator.languages && navigator.languages.length > 0)
-      ? navigator.languages
-      : navigator.language
-        ? [navigator.language]
-        : [];
-
-    for (const langCode of navigatorLanguages) {
-      const matched = normalizeLanguageCode(langCode);
-      if (matched) {
-        setLanguage(matched);
-        return;
-      }
-    }
-
-    setLanguage('en');
-  }, []);
-
-  useEffect(() => {
-    if (typeof window === 'undefined') {
-      return;
-    }
-
-    window.localStorage.setItem(LANGUAGE_STORAGE_KEY, language);
   }, [language]);
 
   const t = useCallback(<T = string>(key: string): T => {
