@@ -1,5 +1,10 @@
 # Decap CMS & Netlify Rolling Log
 
+## 2025-10-08 — Home now loads unified page data only
+- **What changed**: Refactored `pages/Home.tsx` to fetch homepage content via `loadUnifiedPage('home')`, removed the legacy Markdown loader and bespoke section renderers, and leaned on `SectionRenderer` plus existing shared components for structured blocks. Ran `npm run build` to confirm the unified pipeline compiles cleanly.
+- **Impact & follow-up**: The homepage now reflects edits made in `content/pages_v2/index.json` immediately, eliminating the drift between JSON and Markdown sources. Next steps are auditing remaining scripts that still copy legacy Markdown so we can retire those build steps.
+- **References**: Pending PR
+
 ## 2025-10-07 — Simplified Decap editing UX
 - **What changed**: Added locale-specific editing toggles to `admin/cms.js` so editors can focus on a single language at a time, introduced smart fallback hints for localized fields, exposed new CTA toggle defaults, and published reusable section templates via the `sectionTemplates` collection with starter JSON blocks.
 - **Impact & follow-up**: Content designers can now work in English-first mode and reveal additional locales on demand while relying on ready-made section blueprints for frequent layouts. Gather feedback on additional templates that would speed up campaign builds and consider migrating legacy sections to the new CTA controls over time.
