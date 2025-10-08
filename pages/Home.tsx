@@ -2037,9 +2037,6 @@ const Home: React.FC = () => {
   const heroBackgroundImage = heroLayoutHint === 'image-full'
     ? heroInlineImage ?? heroSrc
     : heroSrc ?? heroInlineImage;
-  const overlayStyle: React.CSSProperties = shouldRenderInlineImage && heroTextPlacement === 'overlay'
-    ? { background: 'linear-gradient(90deg, rgba(255,255,255,0.92) 0%, rgba(255,255,255,0.7) 100%)' }
-    : { background: heroOverlay };
   const heroPrefersLightText = !shouldRenderInlineImage && heroTextPlacement === 'overlay';
   const heroTextColorClass = heroPrefersLightText ? 'text-white' : 'text-stone-900';
   const heroPrimaryButtonClasses = heroPrefersLightText
@@ -2048,6 +2045,8 @@ const Home: React.FC = () => {
   const heroSecondaryButtonClasses = heroPrefersLightText
     ? 'px-8 py-3 border border-white/50 text-white font-semibold rounded-md hover:bg-white/10 transition-colors'
     : 'px-8 py-3 bg-white/70 backdrop-blur-sm text-stone-900 font-semibold rounded-md hover:bg-white transition-colors';
+  const heroOverlayPrimaryButtonClasses = 'inline-flex items-center justify-center px-7 py-3 rounded-md bg-white text-stone-900 font-semibold transition hover:bg-white/90';
+  const heroOverlaySecondaryButtonClasses = 'inline-flex items-center justify-center px-7 py-3 rounded-md border border-white/70 text-white font-semibold transition hover:bg-white/10';
   const heroImagesFieldPath = pageContent?.heroImages ? `${homeFieldPath}.heroImages` : undefined;
   const heroImageLeftFieldPath = heroImagesFieldPath ? `${heroImagesFieldPath}.heroImageLeft` : `${homeFieldPath}.heroImageLeft`;
   const heroImageRightFieldPath = heroImagesFieldPath ? `${heroImagesFieldPath}.heroImageRight` : `${homeFieldPath}.heroImageRight`;
@@ -3825,18 +3824,74 @@ const Home: React.FC = () => {
       ) : (
         <>
           {heroBackgroundImage ? (
-            <div
-              className="relative h-screen bg-cover bg-center"
+            <section
+              className="relative flex min-h-[620px] items-center justify-start bg-cover bg-center"
               style={{ backgroundImage: `url('${heroBackgroundImage}')` }}
               {...getVisualEditorAttributes('site.home.heroImage')}
             >
-              <div className="absolute inset-0" style={overlayStyle}></div>
-              {heroTextPlacement === 'overlay' && (
-                <div className={`relative h-full ${HERO_GRID_CONTAINER_CLASSES} ${heroMiddleNudge}`}>
-                  <div className={heroOverlayCellClasses}>{heroTextMotion}</div>
+              <div className="absolute inset-0 bg-gradient-to-r from-black/85 via-black/65 to-black/15" />
+              <div className="relative z-10 w-full">
+                <div className="mx-auto flex w-full max-w-6xl px-4 sm:px-6 lg:px-8">
+                  <div className="max-w-2xl space-y-8 text-white" {...getVisualEditorAttributes(`${homeFieldPath}.heroContent`)}>
+                    <h1
+                      className="text-4xl sm:text-5xl md:text-6xl font-semibold tracking-tight"
+                      {...getVisualEditorAttributes(`${homeFieldPath}.heroHeadline`)}
+                    >
+                      {heroHeadline}
+                    </h1>
+                    {heroSubheadline && (
+                      <div className="text-lg sm:text-xl text-white/85" {...getVisualEditorAttributes(`${homeFieldPath}.heroSubheadline`)}>
+                        <ReactMarkdown components={heroMarkdownComponents}>{heroSubheadline}</ReactMarkdown>
+                      </div>
+                    )}
+                    <div className="flex flex-col sm:flex-row gap-3 sm:gap-4">
+                      {heroPrimaryCta && (
+                        heroPrimaryCtaIsInternal ? (
+                          <Link
+                            to={heroPrimaryLinkTarget}
+                            className={heroOverlayPrimaryButtonClasses}
+                            {...getVisualEditorAttributes(heroPrimaryCtaHrefFieldPath)}
+                          >
+                            <span {...getVisualEditorAttributes(heroPrimaryCtaFieldPath)}>{heroPrimaryCta}</span>
+                          </Link>
+                        ) : (
+                          <a
+                            href={heroPrimaryLinkTarget}
+                            className={heroOverlayPrimaryButtonClasses}
+                            {...getVisualEditorAttributes(heroPrimaryCtaHrefFieldPath)}
+                            target={isExternalHttpUrl(heroPrimaryLinkTarget) ? '_blank' : undefined}
+                            rel={isExternalHttpUrl(heroPrimaryLinkTarget) ? 'noreferrer' : undefined}
+                          >
+                            <span {...getVisualEditorAttributes(heroPrimaryCtaFieldPath)}>{heroPrimaryCta}</span>
+                          </a>
+                        )
+                      )}
+                      {heroSecondaryCta && (
+                        heroSecondaryCtaIsInternal ? (
+                          <Link
+                            to={heroSecondaryLinkTarget}
+                            className={heroOverlaySecondaryButtonClasses}
+                            {...getVisualEditorAttributes(heroSecondaryCtaHrefFieldPath)}
+                          >
+                            <span {...getVisualEditorAttributes(heroSecondaryCtaFieldPath)}>{heroSecondaryCta}</span>
+                          </Link>
+                        ) : (
+                          <a
+                            href={heroSecondaryLinkTarget}
+                            className={heroOverlaySecondaryButtonClasses}
+                            {...getVisualEditorAttributes(heroSecondaryCtaHrefFieldPath)}
+                            target={isExternalHttpUrl(heroSecondaryLinkTarget) ? '_blank' : undefined}
+                            rel={isExternalHttpUrl(heroSecondaryLinkTarget) ? 'noreferrer' : undefined}
+                          >
+                            <span {...getVisualEditorAttributes(heroSecondaryCtaFieldPath)}>{heroSecondaryCta}</span>
+                          </a>
+                        )
+                      )}
+                    </div>
+                  </div>
                 </div>
-              )}
-            </div>
+              </div>
+            </section>
           ) : (
             <div
               className="relative h-screen bg-stone-900"

@@ -354,3 +354,8 @@ This log records day-to-day investigations, fixes, and decisions that affect the
 - **What changed**: Checked out the pre-unified `pages/Home.tsx` (commit 13f87fe) so the hero, media grid, carousel, newsletter, and testimonials match the original reference screenshot exactly.
 - **Impact & follow-up**: Restores the homepage experience while we re-evaluate the unified schema rollout. Ensure future refactors preserve this layout before merging.
 - **References**: Pending PR
+
+## 2025-10-07 — Rebuilt hero as full-bleed overlay
+- **What changed**: Tweaked `pages/Home.tsx` so the hero renders as a full-width background image with a left-aligned gradient overlay and updated CTA styling, matching the art direction you shared.
+- **Impact & follow-up**: The hero now mirrors the “Be thankful to your skin” layout with crisp text contrast and correct button treatments. Confirm imagery still resolves from the CMS and adjust translations if copy changes.
+- **References**: Pending PR
