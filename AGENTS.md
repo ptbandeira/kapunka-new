@@ -111,7 +111,7 @@ To ensure high-quality, non-breaking changes, the agent must employ detailed spe
 * Page content is consolidated inside `content/pages_v2/index.json`. Each entry represents a full page and must stay self-contained.
 * The `sections` arrays inside each page are mirrored by collapsible groups in the Netlify Visual Editor. Preserve these group boundaries when adding, reordering, or deleting blocks so editors retain predictable collapse behaviour.
 * Localised copy and metadata values are stored as objects keyed by locale (`en`, `pt`, `es`). Each locale renders as a tab in the editor; keep values as objects (not flattened strings) so editors can switch tabs without losing context. Always populate every locale key whenever you add a field.
-* When introducing new schema fields, update `metadata.json` and the Visual Editor mirror in a single commit to prevent drift.
+* The Visual Editor tooling (`metadata.json`, `.netlify/visual-editor/**`, Stackbit config) has been retired. New work should interact solely with the canonical Decap content under `/content/**`.
 
 ## C. Branch and Commit Conventions
 
