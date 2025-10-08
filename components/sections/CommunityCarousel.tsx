@@ -4,7 +4,7 @@ import type { FocalPoint } from '../../types';
 import { getVisualEditorAttributes } from '../../utils/stackbitBindings';
 import { getCloudinaryUrl, getObjectPositionFromFocal } from '../../utils/imageUrl';
 
-export interface CommunityCarouselSlideProps {
+interface CommunityCarouselSlideProps {
   image?: string;
   alt?: string;
   quote?: string;

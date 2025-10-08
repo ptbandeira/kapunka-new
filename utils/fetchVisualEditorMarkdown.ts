@@ -24,7 +24,7 @@ const markdownCache = new Map<string, VisualEditorMarkdownDocument<unknown>>();
 
 export type VisualEditorContentSource = 'visual-editor' | 'content';
 
-export interface VisualEditorMarkdownDocument<T> {
+interface VisualEditorMarkdownDocument<T> {
   data: T;
   source: VisualEditorContentSource;
   raw: string;

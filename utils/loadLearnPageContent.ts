@@ -8,7 +8,7 @@ export interface LearnPageCategory {
   label: string;
 }
 
-export interface LearnPageData {
+interface LearnPageData {
   metaTitle?: string;
   metaDescription?: string;
   heroTitle?: string;

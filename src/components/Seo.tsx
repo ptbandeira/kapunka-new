@@ -6,9 +6,9 @@ import { useSiteSettings } from '@/contexts/SiteSettingsContext';
 import { getCloudinaryUrl } from '@/utils/imageUrl';
 import type { Language } from '@/types';
 
-export type JsonLd = Record<string, unknown> | Record<string, unknown>[];
+type JsonLd = Record<string, unknown> | Record<string, unknown>[];
 
-export interface SeoProps {
+interface SeoProps {
   title?: string | null;
   description?: string | null;
   url?: string | null;

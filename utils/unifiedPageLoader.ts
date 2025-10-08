@@ -487,7 +487,7 @@ const determineResolvedLocale = (
   return first ?? language;
 };
 
-export interface UnifiedPageContent<TData> {
+interface UnifiedPageContent<TData> {
   data: TData;
   locale: Language;
   source: 'visual-editor' | 'content';

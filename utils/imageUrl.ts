@@ -11,9 +11,9 @@ const uploadPrefixPatterns = [
 
 const DEFAULT_TRANSFORMATIONS = ['f_auto', 'q_auto', 'dpr_auto'] as const;
 
-export type CloudinaryCropMode = 'fill' | 'fit' | 'limit' | 'scale' | 'thumb';
+type CloudinaryCropMode = 'fill' | 'fit' | 'limit' | 'scale' | 'thumb';
 
-export interface CloudinaryOptions {
+interface CloudinaryOptions {
   width?: number;
   height?: number;
   crop?: CloudinaryCropMode;
