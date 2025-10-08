@@ -52,3 +52,4 @@ console.log("Decap: using /admin/config.yml as single source of truth");
 copyFile(path.join('admin', 'config.yml'), path.join('site', 'admin', 'config.yml'));
 copyFolder('site', path.join('dist', 'site'));
 copyFolder(path.join('.netlify', 'visual-editor'), path.join('dist', '.netlify', 'visual-editor'));
+copyFolder(path.join('.netlify', 'visual-editor'), path.join('dist', 'visual-editor'));

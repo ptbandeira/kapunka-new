@@ -1,5 +1,10 @@
 # Decap CMS & Netlify Rolling Log
 
+## 2025-10-08 — Eliminated /.netlify 404s by aliasing Visual Editor mirrors
+- **What changed**: Added a production-safe mirror of `.netlify/visual-editor` under `dist/visual-editor`, taught the JSON loaders to prioritize that alias when the Visual Editor runtime is absent, and centralised the mirror prefix detection in `utils/visualEditorEnvironment.ts`.
+- **Impact & follow-up**: Removes the persistent 404s for `/.netlify/visual-editor/...` in production while preserving live editing by automatically preferring the real Visual Editor mirrors whenever the editor is active. Confirm future content loaders use the shared prefix helper to stay consistent.
+- **References**: Pending PR
+
 ## 2025-10-08 — Fixed locale routing regression
 - **What changed**: Updated `LocalizedLayout` in `App.tsx` to read the active locale from the pathname via `getLocaleFromPath`, short-circuit unsupported locale params, and stop the default-language branch from resetting translated routes back to `/`.
 - **Impact & follow-up**: Portuguese and Spanish URLs keep their `/pt` and `/es` prefixes, allowing localized copy to load without flashing to English or tripping the Visual Editor fetch probes. Audit remaining navigation links for hard-coded paths that may need `buildLocalizedPath`.
