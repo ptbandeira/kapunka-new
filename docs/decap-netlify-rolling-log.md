@@ -359,3 +359,8 @@ This log records day-to-day investigations, fixes, and decisions that affect the
 - **What changed**: Tweaked `pages/Home.tsx` so the hero renders as a full-width background image with a left-aligned gradient overlay and updated CTA styling, matching the art direction you shared.
 - **Impact & follow-up**: The hero now mirrors the “Be thankful to your skin” layout with crisp text contrast and correct button treatments. Confirm imagery still resolves from the CMS and adjust translations if copy changes.
 - **References**: Pending PR
+
+## 2025-10-08 — Aligned hero layout data across CMS sources
+- **What changed**: Updated `content/pages_v2/index.json` and the locale Markdown front matter to set `alignX: left`, `textAnchor: bottom-left`, `overlay: strong`, and `layoutHint: image-full`, then ran `npm run visual:prepare` and `npm run build` to sync the Visual Editor cache.
+- **Impact & follow-up**: The homepage hero now consistently positions copy on the left with the full hero image visible across builds. Continue editing hero alignment in `pages_v2` to keep all environments synchronized.
+- **References**: Pending PR
