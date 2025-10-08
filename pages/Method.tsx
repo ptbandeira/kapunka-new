@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
 import { useLanguage } from '../contexts/LanguageContext';
 import type { Language, VisibilityFlag } from '../types';
-import { fetchVisualEditorMarkdown } from '../utils/fetchVisualEditorMarkdown';
+import { fetchContentMarkdown } from '../utils/fetchContentMarkdown';
 import { getVisualEditorAttributes } from '../utils/stackbitBindings';
 import { useVisualEditorSync } from '../contexts/VisualEditorSyncContext';
 import { useSiteSettings } from '../contexts/SiteSettingsContext';
@@ -148,7 +148,7 @@ const Method: React.FC = () => {
         result = await loadPage({
           slug: 'method',
           locale: language,
-          loader: async ({ locale: currentLocale }) => fetchVisualEditorMarkdown<unknown>(
+          loader: async ({ locale: currentLocale }) => fetchContentMarkdown<unknown>(
             `/content/pages/${currentLocale}/method.md`,
             { cache: 'no-store' },
           ),
@@ -172,7 +172,7 @@ const Method: React.FC = () => {
           result = await loadPage({
             slug: 'method',
             locale: 'en',
-            loader: async ({ locale: fallbackLocale }) => fetchVisualEditorMarkdown<unknown>(
+            loader: async ({ locale: fallbackLocale }) => fetchContentMarkdown<unknown>(
               `/content/pages/${fallbackLocale}/method.md`,
               { cache: 'no-store' },
             ),

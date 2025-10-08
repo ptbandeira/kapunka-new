@@ -132,15 +132,10 @@ const ForClinics: React.FC = () => {
     };
   }, [language, contentVersion]);
 
-  const clinicsFieldPath = useMemo(() => {
-    if (!pageContent) {
-      return `pages.clinics_${language}`;
-    }
-
-    return pageContent.source === 'visual-editor'
-      ? `site.content.${pageContent.locale}.pages.clinics`
-      : `pages.clinics_${pageContent.locale}`;
-  }, [language, pageContent]);
+  const clinicsFieldPath = useMemo(
+    () => `pages.clinics_${pageContent?.locale ?? language}`,
+    [language, pageContent],
+  );
 
   const translationsFieldPath = `translations.${language}.clinics`;
 

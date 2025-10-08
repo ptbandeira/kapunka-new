@@ -4,7 +4,7 @@ import SectionRenderer from '../components/SectionRenderer';
 import Seo from '../src/components/Seo';
 import { useLanguage } from '../contexts/LanguageContext';
 import type { PageContent, PageSection } from '../types';
-import { fetchVisualEditorMarkdown } from '../utils/fetchVisualEditorMarkdown';
+import { fetchContentMarkdown } from '../utils/fetchContentMarkdown';
 import { getVisualEditorAttributes } from '../utils/stackbitBindings';
 import { useVisualEditorSync } from '../contexts/VisualEditorSyncContext';
 import { useSiteSettings } from '../contexts/SiteSettingsContext';
@@ -86,7 +86,7 @@ const Videos: React.FC = () => {
 
       for (const locale of localesToTry) {
         try {
-          const { data } = await fetchVisualEditorMarkdown<unknown>(
+          const { data } = await fetchContentMarkdown<unknown>(
             `/content/pages/${locale}/videos.md`,
             { cache: 'no-store' },
           );

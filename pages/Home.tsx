@@ -92,14 +92,11 @@ interface HomePageData extends PageContent {
   };
 }
 
-type ContentSource = 'content' | 'visual-editor';
-
 interface HomePageContent extends HomePageData {
   heroImageLeftUrl?: string | null;
   heroImageRightUrl?: string | null;
   heroImages?: HeroImagesGroup;
   resolvedLocale: Language;
-  contentSource: ContentSource;
 }
 
 const heroMarkdownComponents: MarkdownComponents = {
@@ -540,7 +537,7 @@ const Home: React.FC = () => {
           return;
         }
 
-        const { data, locale, source } = unified;
+        const { data, locale } = unified;
         const heroValidation = validateHeroContent({
           heroHeadline: data.heroHeadline,
           heroImages: data.heroImages ?? null,
@@ -574,7 +571,6 @@ const Home: React.FC = () => {
           heroImageLeftUrl,
           heroImageRightUrl,
           resolvedLocale: locale,
-          contentSource: source,
         });
       } catch (error) {
         console.error('Failed to load home page content', error);
@@ -598,11 +594,7 @@ const Home: React.FC = () => {
     ? (contentLocale as Language)
     : language;
 
-  const homeFieldPath = pageContent
-    ? pageContent.contentSource === 'visual-editor'
-      ? `site.content.${pageContent.resolvedLocale}.pages.home`
-      : `pages.home_${pageContent.resolvedLocale}`
-    : `pages.home_${language}`;
+  const homeFieldPath = `pages.home_${pageContent?.resolvedLocale ?? language}`;
   const heroHeadline = sanitizeCmsString(pageContent?.heroHeadline) ?? t('home.heroTitle');
   const heroSubheadline = sanitizeCmsString(pageContent?.heroSubheadline) ?? t('home.heroSubtitle');
   const heroPrimaryCtaCmsValue = pageContent?.heroCtas?.ctaPrimary;

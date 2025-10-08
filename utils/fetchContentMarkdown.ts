@@ -20,23 +20,20 @@ const parseFrontMatter = <T>(raw: string): T => {
   return {} as T;
 };
 
-const markdownCache = new Map<string, VisualEditorMarkdownDocument<unknown>>();
+const markdownCache = new Map<string, ContentMarkdownDocument<unknown>>();
 
-export type VisualEditorContentSource = 'visual-editor' | 'content';
-
-interface VisualEditorMarkdownDocument<T> {
+interface ContentMarkdownDocument<T> {
   data: T;
-  source: VisualEditorContentSource;
   raw: string;
 }
 
-export const fetchVisualEditorMarkdown = async <T>(
+export const fetchContentMarkdown = async <T>(
   url: string,
   init?: RequestInit,
-): Promise<VisualEditorMarkdownDocument<T>> => {
+): Promise<ContentMarkdownDocument<T>> => {
   const allowCache = init?.cache !== 'no-store';
   if (allowCache && markdownCache.has(url)) {
-    return markdownCache.get(url) as VisualEditorMarkdownDocument<T>;
+    return markdownCache.get(url) as ContentMarkdownDocument<T>;
   }
 
   const candidates: string[] = [url];
@@ -48,7 +45,7 @@ export const fetchVisualEditorMarkdown = async <T>(
       candidates.push(staticAssetUrl);
     } catch (error) {
       if (import.meta.env.DEV) {
-        console.warn('fetchVisualEditorMarkdown: failed to resolve static asset URL', relativePath, error);
+        console.warn('fetchContentMarkdown: failed to resolve static asset URL', relativePath, error);
       }
     }
   }
@@ -65,19 +62,15 @@ export const fetchVisualEditorMarkdown = async <T>(
       const raw = await response.text();
       const data = parseFrontMatter<T>(raw);
 
-      const result: VisualEditorMarkdownDocument<T> = {
-        data,
-        source: 'content',
-        raw,
-      };
+      const result: ContentMarkdownDocument<T> = { data, raw };
       if (allowCache) {
-        markdownCache.set(url, result as VisualEditorMarkdownDocument<unknown>);
+        markdownCache.set(url, result as ContentMarkdownDocument<unknown>);
       }
       return result;
     } catch (error) {
       lastError = error;
       if (import.meta.env.DEV) {
-        console.warn('fetchVisualEditorMarkdown: failed to fetch', candidate, error);
+        console.warn('fetchContentMarkdown: failed to fetch', candidate, error);
       }
     }
   }

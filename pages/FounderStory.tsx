@@ -1,6 +1,6 @@
 import React, { useEffect, useMemo, useState } from 'react';
 import { motion } from 'framer-motion';
-import { fetchVisualEditorMarkdown } from '../utils/fetchVisualEditorMarkdown';
+import { fetchContentMarkdown } from '../utils/fetchContentMarkdown';
 import { useVisualEditorSync } from '../contexts/VisualEditorSyncContext';
 import { useSiteSettings } from '../contexts/SiteSettingsContext';
 import { getCloudinaryUrl } from '../utils/imageUrl';
@@ -168,7 +168,7 @@ const FounderStory: React.FC = () => {
 
     const loadContent = async () => {
       try {
-        const { data } = await fetchVisualEditorMarkdown<unknown>(FOUNDER_STORY_PATH, { cache: 'no-store' });
+        const { data } = await fetchContentMarkdown<unknown>(FOUNDER_STORY_PATH, { cache: 'no-store' });
         if (!isMounted) {
           return;
         }

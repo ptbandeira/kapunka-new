@@ -1,4 +1,4 @@
-import { fetchVisualEditorMarkdown } from './fetchVisualEditorMarkdown';
+import { fetchContentMarkdown } from './fetchContentMarkdown';
 
 interface ModuleContent {
   title?: string;
@@ -145,7 +145,7 @@ const isTrainingProgramContent = (value: unknown): value is TrainingProgramConte
 };
 
 export const fetchTrainingProgramContent = async (): Promise<TrainingProgramContent | null> => {
-  const { data } = await fetchVisualEditorMarkdown<unknown>(TRAINING_PROGRAM_FILE_PATH, { cache: 'no-store' });
+  const { data } = await fetchContentMarkdown<unknown>(TRAINING_PROGRAM_FILE_PATH, { cache: 'no-store' });
 
   if (isTrainingProgramContent(data)) {
     return data;

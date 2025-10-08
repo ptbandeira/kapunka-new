@@ -8,7 +8,6 @@
     "prebuild": "npm run cms:build",
     "build": "vite build && node scripts/postbuild.js",
     "preview": "vite preview",
-    "visual:prepare": "node scripts/prepare-visual-editor-content.js",
     "cms:build": "node scripts/build-decap-config.mjs"
   },
   "dependencies": {
@@ -23,9 +22,6 @@
     "zod": "^3.23.8"
   },
   "devDependencies": {
-    "@netlify/plugin-visual-editor": "^1.4.1",
-    "@stackbit/cms-git": "^1.0.35",
-    "@stackbit/sdk": "^2.1.18",
     "@types/node": "^22.14.0",
     "@vitejs/plugin-react": "^5.0.0",
     "typescript": "~5.8.2",

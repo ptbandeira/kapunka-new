@@ -3,7 +3,7 @@ import { useParams, Link } from 'react-router-dom';
 import ReactMarkdown from 'react-markdown';
 import { useLanguage } from '../contexts/LanguageContext';
 import type { Policy, PolicySection } from '../types';
-import { fetchVisualEditorJson } from '../utils/fetchVisualEditorJson';
+import { fetchContentJson } from '../utils/fetchContentJson';
 import { getVisualEditorAttributes } from '../utils/stackbitBindings';
 import { useVisualEditorSync } from '../contexts/VisualEditorSyncContext';
 import { buildLocalizedPath } from '../utils/localePaths';
@@ -26,7 +26,7 @@ const PolicyPage: React.FC = () => {
         const loadPolicies = async () => {
             setLoading(true);
             try {
-                const data = await fetchVisualEditorJson<PoliciesResponse>('/content/policies.json');
+                const data = await fetchContentJson<PoliciesResponse>('/content/policies.json');
                 if (!isMounted) {
                     return;
                 }
