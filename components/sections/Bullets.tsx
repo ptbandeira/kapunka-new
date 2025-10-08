@@ -48,7 +48,7 @@ const Bullets: React.FC<BulletsProps> = ({ section, fieldPath }) => {
                   data-sb-field-path={item.fieldPath}
                 >
                   <span className="mt-1 inline-block h-2 w-2 rounded-full bg-stone-900" aria-hidden />
-                  <span {...getVisualEditorAttributes(item.fieldPath)}>{item.text}</span>
+                  <span>{item.text}</span>
                 </li>
               ))}
             </ul>

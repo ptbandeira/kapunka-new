@@ -78,7 +78,7 @@ const Specialties: React.FC<SpecialtiesProps> = ({ section, fieldPath }) => {
                       data-sb-field-path={bullet.fieldPath}
                     >
                       <span className="mt-1 inline-block h-1.5 w-1.5 rounded-full bg-stone-400" aria-hidden />
-                      <span {...getVisualEditorAttributes(bullet.fieldPath)}>{bullet.text}</span>
+                      <span>{bullet.text}</span>
                     </li>
                   ))}
                 </ul>

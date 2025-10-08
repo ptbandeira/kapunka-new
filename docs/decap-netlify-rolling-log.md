@@ -9,6 +9,11 @@
 - **What changed**: Fixed the new `MediaShowcase` section renderer by restoring its layout classnames and teaching `normalizeImagePath` to resolve `shared/` assets to `/content/uploads/*`, so Cloudinary helpers stop outputting broken `/content/en/uploads/shared/*` paths. Verified the build via `npm run build`.
 - **Impact & follow-up**: The homepage now renders again instead of throwing `articleClasses is not defined`, and gallery items load their imagery rather than 404s. Keep tightening section components for any other Markdown-era assumptions before removing the legacy loaders from secondary pages.
 - **References**: Pending PR
+
+## 2025-10-08 — Simplified section field bindings
+- **What changed**: Removed redundant nested Stackbit bindings from the `Bullets` and `Specialties` section components so list items expose a single editable target. Ran `npm run build` to confirm the shared sections still compile in the unified pipeline.
+- **Impact & follow-up**: Prevents duplicate field overlays in the Visual Editor and keeps the unified section components aligned with the new JSON source. Continue auditing remaining section widgets before we retire the Markdown fallbacks across the other pages.
+- **References**: Pending PR
 ## 2025-10-07 — Simplified Decap editing UX
 - **What changed**: Added locale-specific editing toggles to `admin/cms.js` so editors can focus on a single language at a time, introduced smart fallback hints for localized fields, exposed new CTA toggle defaults, and published reusable section templates via the `sectionTemplates` collection with starter JSON blocks.
 - **Impact & follow-up**: Content designers can now work in English-first mode and reveal additional locales on demand while relying on ready-made section blueprints for frequent layouts. Gather feedback on additional templates that would speed up campaign builds and consider migrating legacy sections to the new CTA controls over time.
