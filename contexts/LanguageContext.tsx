@@ -123,6 +123,11 @@ export const LanguageProvider: React.FC<{ children: React.ReactNode }> = ({ chil
   const { contentVersion } = useVisualEditorSync();
 
   useEffect(() => {
+    const initialLanguage = resolveInitialLanguage();
+    setLanguage((current) => (current === initialLanguage ? current : initialLanguage));
+  }, []);
+
+  useEffect(() => {
     const loadTranslations = async () => {
       try {
         const responses = await Promise.all(
@@ -231,7 +236,3 @@ export const useLanguage = (): LanguageContextType => {
   }
   return context;
 };
-  useEffect(() => {
-    const initialLanguage = resolveInitialLanguage();
-    setLanguage((current) => (current === initialLanguage ? current : initialLanguage));
-  }, []);
