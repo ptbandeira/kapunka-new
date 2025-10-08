@@ -132,8 +132,7 @@ const MediaShowcase: React.FC<MediaShowcaseProps> = ({ section, fieldPath }) => 
             const justify = index === 3 ? 'lg:items-end' : 'lg:items-start';
             const objectPosition = getObjectPositionFromFocal(item.imageFocal ?? undefined);
             const imageStyle = objectPosition ? { objectPosition } : undefined;
-
-          return (
+            return (
               <article
                 key={item.fieldPath ?? index}
                 className={`relative overflow-hidden bg-stone-900 text-white flex ${layoutClasses}`}

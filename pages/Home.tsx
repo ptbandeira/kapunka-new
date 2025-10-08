@@ -30,7 +30,7 @@ import { fetchVisualEditorJson } from '../utils/fetchVisualEditorJson';
 import { fetchVisualEditorMarkdown } from '../utils/fetchVisualEditorMarkdown';
 import { getVisualEditorAttributes } from '../utils/stackbitBindings';
 import { fetchTestimonialsByRefs } from '../utils/fetchTestimonialsByRefs';
-import { buildLocalizedPath } from '../utils/localePaths';
+import { buildLocalizedPath, SUPPORTED_LANGUAGES } from '../utils/localePaths';
 import { getCloudinaryUrl, isAbsoluteUrl } from '../utils/imageUrl';
 import Seo from '../src/components/Seo';
 
@@ -576,7 +576,8 @@ const HERO_CTA_ALIGNMENT_CLASSES: Record<HeroHorizontalAlignment, string> = {
   right: 'sm:justify-end',
 };
 
-const HERO_GRID_CONTAINER_CLASSES = 'grid grid-cols-3 grid-rows-3 w-full h-full p-6 sm:p-10';
+const HERO_GRID_CONTAINER_CLASSES =
+  'grid grid-cols-3 grid-rows-3 w-full h-full max-w-6xl mx-auto px-6 sm:px-10 py-16 md:py-20';
 
 const HERO_GRID_COLUMN_CLASSES: Record<HeroHorizontalAlignment, string> = {
   left: 'col-start-1 col-end-2',
@@ -683,6 +684,61 @@ const sanitizeCmsString = (value?: string | null): string | undefined => {
   return trimmed.length > 0 ? trimmed : undefined;
 };
 
+const resolveLocalizedString = (value: unknown, language: Language): string | undefined => {
+  if (typeof value === 'string') {
+    return sanitizeCmsString(value);
+  }
+
+  if (!value) {
+    return undefined;
+  }
+
+  if (Array.isArray(value)) {
+    for (const entry of value) {
+      if (typeof entry === 'string') {
+        const sanitizedEntry = sanitizeCmsString(entry);
+        if (sanitizedEntry) {
+          return sanitizedEntry;
+        }
+      }
+    }
+    return undefined;
+  }
+
+  if (typeof value !== 'object') {
+    return undefined;
+  }
+
+  const record = value as Record<string, unknown>;
+  const orderedLocales: Language[] = [];
+  const preferredLocales: Language[] = [language, 'en', ...SUPPORTED_LANGUAGES];
+
+  for (const locale of preferredLocales) {
+    if (!SUPPORTED_LANGUAGES.includes(locale as Language)) {
+      continue;
+    }
+    if (!orderedLocales.includes(locale as Language)) {
+      orderedLocales.push(locale as Language);
+    }
+  }
+
+  for (const locale of orderedLocales) {
+    const candidate = record[locale];
+    if (typeof candidate === 'string') {
+      const sanitizedCandidate = sanitizeCmsString(candidate);
+      if (sanitizedCandidate) {
+        return sanitizedCandidate;
+      }
+    }
+  }
+
+  const fallbackCandidate = Object.values(record).find(
+    (entry): entry is string => typeof entry === 'string' && Boolean(sanitizeCmsString(entry)),
+  );
+
+  return fallbackCandidate ? sanitizeCmsString(fallbackCandidate) : undefined;
+};
+
 const sanitizeCmsUrl = (value?: string | null): string | undefined => {
   const sanitized = sanitizeCmsString(value);
 
@@ -715,42 +771,34 @@ type CmsCtaLike = string | CmsCtaShape | null | undefined;
 
 type ContentSource = 'content' | 'visual-editor';
 
-const extractCmsCtaLabel = (value: CmsCtaLike): string | undefined => {
-  if (typeof value === 'string') {
-    return sanitizeCmsString(value);
-  }
+const extractCmsCtaLabel = (value: CmsCtaLike, language: Language): string | undefined => {
+  const rawLabel = typeof value === 'string'
+    ? value
+    : isCmsCtaObject(value)
+      ? value.label ?? null
+      : null;
 
-  if (isCmsCtaObject(value)) {
-    return sanitizeCmsString(value.label ?? null);
-  }
-
-  return undefined;
+  return resolveLocalizedString(rawLabel, language);
 };
 
-const extractCmsCtaHref = (value: CmsCtaLike): string | undefined => {
-  if (typeof value === 'string') {
-    return sanitizeCmsUrl(value);
-  }
+const extractCmsCtaHref = (value: CmsCtaLike, language: Language): string | undefined => {
+  const rawHref = typeof value === 'string'
+    ? value
+    : isCmsCtaObject(value)
+      ? value.href ?? null
+      : null;
 
-  if (isCmsCtaObject(value)) {
-    return sanitizeCmsUrl(value.href ?? null);
-  }
-
-  return undefined;
+  const resolvedHref = resolveLocalizedString(rawHref, language);
+  return sanitizeCmsUrl(resolvedHref ?? null);
 };
 
-const extractCmsCta = (value: CmsCtaLike): { label?: string; href?: string } => ({
-  label: extractCmsCtaLabel(value),
-  href: extractCmsCtaHref(value),
+const extractCmsCta = (value: CmsCtaLike, language: Language): { label?: string; href?: string } => ({
+  label: extractCmsCtaLabel(value, language),
+  href: extractCmsCtaHref(value, language),
 });
 
-const sanitizeOptionalCmsString = (value: unknown): string | undefined => {
-  if (typeof value === 'string') {
-    return sanitizeCmsString(value);
-  }
-
-  return undefined;
-};
+const sanitizeOptionalCmsString = (value: unknown, language: Language): string | undefined =>
+  resolveLocalizedString(value, language);
 
 const toCmsCtaLike = (value: unknown): CmsCtaLike => {
   if (typeof value === 'string' || isCmsCtaObject(value)) {
@@ -966,10 +1014,50 @@ const normalizeHeroTextAnchor = (value?: string | null): HeroTextAnchor | undefi
   return undefined;
 };
 
+const HERO_OVERLAY_PRESETS: Record<string, string> = {
+  none: 'rgba(0,0,0,0)',
+  off: 'rgba(0,0,0,0)',
+  transparent: 'rgba(0,0,0,0)',
+  light: 'rgba(0,0,0,0.24)',
+  soft: 'rgba(0,0,0,0.32)',
+  gentle: 'rgba(0,0,0,0.32)',
+  medium: 'rgba(0,0,0,0.48)',
+  balanced: 'rgba(0,0,0,0.48)',
+  dark: 'rgba(0,0,0,0.64)',
+  strong: 'rgba(0,0,0,0.64)',
+  heavy: 'rgba(0,0,0,0.72)',
+  deep: 'rgba(0,0,0,0.72)',
+  black: 'rgba(0,0,0,0.72)',
+  'scrim-dark': 'rgba(0,0,0,0.6)',
+  'scrim-light': 'rgba(255,255,255,0.35)',
+  white: 'rgba(255,255,255,0.4)',
+  bright: 'rgba(255,255,255,0.4)',
+};
+
 const resolveHeroOverlay = (value?: string | number | boolean | null): string | undefined => {
   if (typeof value === 'string') {
     const trimmed = value.trim();
-    return trimmed.length > 0 ? trimmed : undefined;
+    if (!trimmed) {
+      return undefined;
+    }
+
+    const normalized = trimmed.toLowerCase();
+    if (normalized in HERO_OVERLAY_PRESETS) {
+      return HERO_OVERLAY_PRESETS[normalized];
+    }
+
+    if (
+      trimmed.startsWith('#')
+      || /^rgba?\(/i.test(trimmed)
+      || /^hsla?\(/i.test(trimmed)
+      || normalized.startsWith('linear-gradient')
+      || normalized.startsWith('radial-gradient')
+      || normalized.startsWith('conic-gradient')
+    ) {
+      return trimmed;
+    }
+
+    return undefined;
   }
 
   if (typeof value === 'number') {
@@ -1736,17 +1824,21 @@ const Home: React.FC = () => {
           }, []);
 
           const heroImageLeftCandidate = firstDefined([
-            heroImagesData?.heroImageLeft,
-            parsedData?.heroImageLeft,
+            resolveLocalizedString(heroImagesData?.heroImageLeft ?? null, locale),
+            resolveLocalizedString(parsedData?.heroImageLeft ?? null, locale),
             heroFallbackRaw,
           ]);
           const heroImageRightCandidate = firstDefined([
-            heroImagesData?.heroImageRight,
-            parsedData?.heroImageRight,
+            resolveLocalizedString(heroImagesData?.heroImageRight ?? null, locale),
+            resolveLocalizedString(parsedData?.heroImageRight ?? null, locale),
             heroFallbackRaw,
           ]);
-          const heroImageLeftUrl = normalizeImagePath(heroImageLeftCandidate, locale) ?? null;
-          const heroImageRightUrl = normalizeImagePath(heroImageRightCandidate, locale) ?? null;
+          const heroImageLeftUrl = heroImageLeftCandidate
+            ? normalizeImagePath(heroImageLeftCandidate, locale) ?? heroImageLeftCandidate
+            : null;
+          const heroImageRightUrl = heroImageRightCandidate
+            ? normalizeImagePath(heroImageRightCandidate, locale) ?? heroImageRightCandidate
+            : null;
 
           if (
             import.meta.env.DEV
@@ -1802,8 +1894,11 @@ const Home: React.FC = () => {
     };
   }, [language, heroFallbackRaw, contentVersion]);
 
-  const sanitizeString = sanitizeCmsString;
+  const sanitizeString = (value: unknown): string | undefined => resolveLocalizedString(value, language);
   const contentLocale = pageContent?.resolvedLocale ?? language;
+  const effectiveLocale: Language = SUPPORTED_LANGUAGES.includes(contentLocale as Language)
+    ? (contentLocale as Language)
+    : language;
 
   const pickImage = (local?: string | { src?: string | null } | null) => {
     let candidate: string | null = null;
@@ -1812,14 +1907,18 @@ const Home: React.FC = () => {
       candidate = local;
     } else if (local && typeof local === 'object') {
       const source = 'src' in local ? local.src : undefined;
-      candidate = typeof source === 'string' ? source : null;
+      if (typeof source === 'string') {
+        candidate = source;
+      } else if (source) {
+        candidate = resolveLocalizedString(source, effectiveLocale) ?? null;
+      }
     }
 
     if (!candidate) {
       return null;
     }
 
-    const normalized = normalizeImagePath(candidate, contentLocale);
+    const normalized = normalizeImagePath(candidate, effectiveLocale);
     if (normalized) {
       return normalized;
     }
@@ -1838,28 +1937,28 @@ const Home: React.FC = () => {
   const heroPrimaryCtaCmsValue = pageContent?.heroCtas?.ctaPrimary;
   const heroSecondaryCtaCmsValue = pageContent?.heroCtas?.ctaSecondary;
   const heroPrimaryCtaLabel = firstDefined([
-    extractCmsCtaLabel(heroPrimaryCtaCmsValue),
-    sanitizeOptionalCmsString(pageContent?.heroPrimaryCta),
-    sanitizeOptionalCmsString(pageContent?.heroCtaPrimary),
-    sanitizeOptionalCmsString(pageContent?.ctaPrimary),
+    extractCmsCtaLabel(heroPrimaryCtaCmsValue, language),
+    sanitizeOptionalCmsString(pageContent?.heroPrimaryCta, language),
+    sanitizeOptionalCmsString(pageContent?.heroCtaPrimary, language),
+    sanitizeOptionalCmsString(pageContent?.ctaPrimary, language),
   ]) ?? t('home.ctaShop');
   const heroSecondaryCtaLabel = firstDefined([
-    extractCmsCtaLabel(heroSecondaryCtaCmsValue),
-    sanitizeOptionalCmsString(pageContent?.heroSecondaryCta),
-    sanitizeOptionalCmsString(pageContent?.heroCtaSecondary),
-    sanitizeOptionalCmsString(pageContent?.ctaSecondary),
+    extractCmsCtaLabel(heroSecondaryCtaCmsValue, language),
+    sanitizeOptionalCmsString(pageContent?.heroSecondaryCta, language),
+    sanitizeOptionalCmsString(pageContent?.heroCtaSecondary, language),
+    sanitizeOptionalCmsString(pageContent?.ctaSecondary, language),
   ]) ?? t('home.ctaClinics');
   const heroPrimaryCtaHref = firstDefined([
-    extractCmsCtaHref(heroPrimaryCtaCmsValue),
-    extractCmsCtaHref(toCmsCtaLike(pageContent?.heroPrimaryCta)),
-    extractCmsCtaHref(toCmsCtaLike(pageContent?.heroCtaPrimary)),
-    extractCmsCtaHref(toCmsCtaLike(pageContent?.ctaPrimary)),
+    extractCmsCtaHref(heroPrimaryCtaCmsValue, language),
+    extractCmsCtaHref(toCmsCtaLike(pageContent?.heroPrimaryCta), language),
+    extractCmsCtaHref(toCmsCtaLike(pageContent?.heroCtaPrimary), language),
+    extractCmsCtaHref(toCmsCtaLike(pageContent?.ctaPrimary), language),
   ]) ?? '/shop';
   const heroSecondaryCtaHref = firstDefined([
-    extractCmsCtaHref(heroSecondaryCtaCmsValue),
-    extractCmsCtaHref(toCmsCtaLike(pageContent?.heroSecondaryCta)),
-    extractCmsCtaHref(toCmsCtaLike(pageContent?.heroCtaSecondary)),
-    extractCmsCtaHref(toCmsCtaLike(pageContent?.ctaSecondary)),
+    extractCmsCtaHref(heroSecondaryCtaCmsValue, language),
+    extractCmsCtaHref(toCmsCtaLike(pageContent?.heroSecondaryCta), language),
+    extractCmsCtaHref(toCmsCtaLike(pageContent?.heroCtaSecondary), language),
+    extractCmsCtaHref(toCmsCtaLike(pageContent?.ctaSecondary), language),
   ]) ?? '/for-clinics';
   const heroPrimaryCta = heroPrimaryCtaLabel;
   const heroSecondaryCta = heroSecondaryCtaLabel;
@@ -1873,21 +1972,35 @@ const Home: React.FC = () => {
     pageContent?.heroAlignment?.heroLayoutHint ?? pageContent?.heroLayoutHint ?? (pageContent?.heroAlignment ? undefined : 'bgImage'),
   );
   const heroSrcCandidate = firstDefined([
-    pageContent?.heroImages?.heroImageLeft,
-    pageContent?.heroImageLeft,
+    resolveLocalizedString(pageContent?.heroImages?.heroImageLeft ?? null, effectiveLocale),
+    resolveLocalizedString(pageContent?.heroImageLeft ?? null, effectiveLocale),
     heroFallbackRaw,
   ]);
-  const heroSrc = sanitizeString(normalizeImagePath(heroSrcCandidate, contentLocale));
+  const heroSrc = heroSrcCandidate
+    ? normalizeImagePath(heroSrcCandidate, effectiveLocale) ?? heroSrcCandidate
+    : undefined;
   const heroImageLeftUrl = firstDefined([
     pageContent?.heroImageLeftUrl ?? undefined,
-    normalizeImagePath(pageContent?.heroImages?.heroImageLeft, contentLocale),
-    normalizeImagePath(pageContent?.heroImageLeft, contentLocale),
+    normalizeImagePath(
+      resolveLocalizedString(pageContent?.heroImages?.heroImageLeft ?? null, effectiveLocale) ?? null,
+      effectiveLocale,
+    ),
+    normalizeImagePath(
+      resolveLocalizedString(pageContent?.heroImageLeft ?? null, effectiveLocale) ?? null,
+      effectiveLocale,
+    ),
     heroSrc,
   ]);
   const heroImageRightUrl = firstDefined([
     pageContent?.heroImageRightUrl ?? undefined,
-    normalizeImagePath(pageContent?.heroImages?.heroImageRight, contentLocale),
-    normalizeImagePath(pageContent?.heroImageRight, contentLocale),
+    normalizeImagePath(
+      resolveLocalizedString(pageContent?.heroImages?.heroImageRight ?? null, effectiveLocale) ?? null,
+      effectiveLocale,
+    ),
+    normalizeImagePath(
+      resolveLocalizedString(pageContent?.heroImageRight ?? null, effectiveLocale) ?? null,
+      effectiveLocale,
+    ),
     heroSrc,
   ]);
   const heroImageLeft = sanitizeString(heroImageLeftUrl);
@@ -2218,8 +2331,8 @@ const Home: React.FC = () => {
 
         const primaryCtaSource = heroContentFields?.primaryCta ?? heroSection.ctaPrimary;
         const secondaryCtaSource = heroContentFields?.secondaryCta ?? heroSection.ctaSecondary;
-        const sectionPrimaryCta = extractCmsCta(primaryCtaSource);
-        const sectionSecondaryCta = extractCmsCta(secondaryCtaSource);
+        const sectionPrimaryCta = extractCmsCta(primaryCtaSource, language);
+        const sectionSecondaryCta = extractCmsCta(secondaryCtaSource, language);
         const primaryCta = sectionPrimaryCta.label ?? heroPrimaryCta;
         const primaryCtaHref = sectionPrimaryCta.href ?? heroPrimaryCtaHref;
         const secondaryCta = sectionSecondaryCta.label ?? heroSecondaryCta;
