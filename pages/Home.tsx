@@ -763,7 +763,7 @@ const Home: React.FC = () => {
           ? heroImageLeftFieldPath
           : heroImageRightFieldPath;
   const heroGridClasses = shouldRenderInlineImage
-    ? 'grid grid-cols-1 lg:grid-cols-2 gap-12 items-center'
+    ? 'grid grid-cols-1 lg:grid-cols-2 items-center gap-0'
     : heroTextPlacement === 'overlay'
       ? `flex flex-col ${HERO_HORIZONTAL_ALIGNMENT_CONTAINER_CLASSES[heroAlignX]}`
       : 'flex flex-col items-center text-center';
@@ -807,27 +807,31 @@ const Home: React.FC = () => {
   const heroSecondaryLinkTarget = heroSecondaryCtaIsInternal
     ? buildLocalizedPath(heroSecondaryCtaHref.startsWith('#/') ? heroSecondaryCtaHref.slice(1) : heroSecondaryCtaHref, language)
     : heroSecondaryCtaHref;
-  const heroInlineImageNode = shouldRenderInlineImage && heroInlineImage
+const heroInlineImageNode = shouldRenderInlineImage && heroInlineImage
     ? (
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
         transition={{ duration: 0.6, delay: 0.1 }}
-        className={heroImageWrapperClasses}
+        className={`${heroImageWrapperClasses} h-full w-full`}
       >
         <img
           src={heroInlineImage}
           alt={heroImageAlt}
-          className="w-full max-h-[540px] rounded-lg shadow-lg object-cover"
+          className="w-full max-h-[540px] object-cover"
           {...getVisualEditorAttributes(heroImageFieldPath)}
         />
       </motion.div>
     )
     : null;
-  const heroContainerMarginClass = heroTextPlacement === 'overlay' ? 'mx-0' : 'mx-auto';
-  const heroTextContent = (
-    <div className={`container ${heroContainerMarginClass} px-4 sm:px-6 lg:px-8 ${heroGridClasses}`}>
+const heroContainerMarginClass = heroTextPlacement === 'overlay' ? 'mx-0' : 'mx-auto';
+const heroContentOuterClasses = shouldRenderInlineImage
+  ? ['w-full', heroContainerMarginClass].filter(Boolean).join(' ')
+  : `container ${heroContainerMarginClass}`.trim();
+const heroContentPaddingClasses = shouldRenderInlineImage ? '' : 'px-4 sm:px-6 lg:px-8';
+const heroTextContent = (
+    <div className={`${heroContentOuterClasses} ${heroContentPaddingClasses} ${heroGridClasses}`.trim()}>
       <div className={heroTextWrapperClasses}>
         <h1
           className="text-4xl md:text-6xl font-semibold tracking-tight"
