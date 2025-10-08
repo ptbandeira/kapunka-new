@@ -364,3 +364,8 @@ This log records day-to-day investigations, fixes, and decisions that affect the
 - **What changed**: Updated `content/pages_v2/index.json` and the locale Markdown front matter to set `alignX: left`, `textAnchor: bottom-left`, `overlay: strong`, and `layoutHint: image-full`, then ran `npm run visual:prepare` and `npm run build` to sync the Visual Editor cache.
 - **Impact & follow-up**: The homepage hero now consistently positions copy on the left with the full hero image visible across builds. Continue editing hero alignment in `pages_v2` to keep all environments synchronized.
 - **References**: Pending PR
+
+## 2025-10-08 — Disabled legacy hero duplication
+- **What changed**: Updated `pages/Home.tsx` to skip rendering hero blocks from legacy section lists so the page relies solely on the new full-bleed hero implementation.
+- **Impact & follow-up**: Prevents legacy section data from overriding the hero layout, eliminating the conflicting render path while we continue the broader content-source cleanup.
+- **References**: Pending PR

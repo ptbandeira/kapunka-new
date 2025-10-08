@@ -2202,7 +2202,9 @@ const Home: React.FC = () => {
     </motion.div>
   );
 
-  const sections = Array.isArray(pageContent?.localSections) ? pageContent.localSections : [];
+  const sections = Array.isArray(pageContent?.localSections)
+    ? pageContent.localSections.filter((section) => section?.type !== 'hero')
+    : [];
   const homeSections = pageContent?.rawSections ?? [];
   const homeSectionsFieldPath = `${homeFieldPath}.sections`;
   const computedTitle = pageContent?.metaTitle ?? `Kapunka Skincare | ${t('home.metaTitle')}`;
@@ -2216,6 +2218,9 @@ const Home: React.FC = () => {
   const structuredSectionsByIndex = useMemo(() => {
     const map = new Map<number, StructuredSection>();
     pageContent?.structuredSectionEntries.forEach(({ index, section }) => {
+      if (section.type === 'hero') {
+        return;
+      }
       map.set(index, section);
     });
     return map;
