@@ -101,7 +101,7 @@ const MediaShowcase: React.FC<MediaShowcaseProps> = ({ section, fieldPath }) => 
 
   return (
     <section className="py-20 sm:py-28 bg-white" {...getVisualEditorAttributes(fieldPath)} data-sb-field-path={fieldPath}>
-      <div className="w-full mx-auto px-4 sm:px-6 lg:px-0">
+      <div className="container mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
         {title?.trim() ? (
           <div
             className="max-w-3xl mb-10"
@@ -110,7 +110,7 @@ const MediaShowcase: React.FC<MediaShowcaseProps> = ({ section, fieldPath }) => 
             <h2 className="text-3xl sm:text-4xl font-semibold text-stone-900 tracking-tight">{title}</h2>
           </div>
         ) : null}
-        <div className="grid auto-rows-[minmax(640px,1fr)] gap-y-0 md:grid-cols-4 md:gap-x-0">
+        <div className="grid auto-rows-[minmax(360px,1fr)] gap-6 md:auto-rows-[minmax(420px,1fr)] md:grid-cols-4">
           {items.map((item, index) => {
             const layoutClasses = (() => {
               if (index === 0) {
@@ -135,18 +135,24 @@ const MediaShowcase: React.FC<MediaShowcaseProps> = ({ section, fieldPath }) => 
             return (
               <article
                 key={item.fieldPath ?? index}
-                className={`relative overflow-hidden bg-stone-900 text-white flex ${layoutClasses}`}
+                className={articleClasses}
                 {...getVisualEditorAttributes(item.fieldPath)}
                 data-sb-field-path={item.fieldPath}
               >
                 {item.imageUrl ? (
-                  <img
-                    src={item.imageUrl}
-                    alt={item.imageAlt}
-                    className="absolute inset-0 h-full w-full object-cover"
-                    style={imageStyle}
-                    {...getVisualEditorAttributes(item.imageFieldPath)}
-                  />
+                  <>
+                    <img
+                      src={item.imageUrl}
+                      alt={item.imageAlt}
+                      className="absolute inset-0 h-full w-full object-cover"
+                      style={imageStyle}
+                      {...getVisualEditorAttributes(item.imageFieldPath)}
+                    />
+                    <div
+                      className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/70 via-black/40 to-transparent"
+                      aria-hidden="true"
+                    />
+                  </>
                 ) : (
                   <div
                     className="absolute inset-0 flex items-center justify-center border border-dashed border-white/40"
