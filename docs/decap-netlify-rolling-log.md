@@ -11,8 +11,8 @@
 - **References**: Pending PR
 
 ## 2025-10-08 — Simplified section field bindings
-- **What changed**: Removed redundant nested Stackbit bindings from the `Bullets` and `Specialties` section components so list items expose a single editable target. Ran `npm run build` to confirm the shared sections still compile in the unified pipeline.
-- **Impact & follow-up**: Prevents duplicate field overlays in the Visual Editor and keeps the unified section components aligned with the new JSON source. Continue auditing remaining section widgets before we retire the Markdown fallbacks across the other pages.
+- **What changed**: Removed redundant nested Stackbit bindings from the `Bullets` and `Specialties` section components so list items expose a single editable target, and backfilled the unified home JSON with missing English/Portuguese/Spanish strings for the product and feature grids. Ran `npm run build` to confirm the shared sections still compile in the unified pipeline.
+- **Impact & follow-up**: Prevents duplicate field overlays in the Visual Editor and keeps the unified section components aligned with the new JSON source while ensuring each locale renders native copy. Continue auditing remaining section widgets before we retire the Markdown fallbacks across the other pages.
 - **References**: Pending PR
 ## 2025-10-07 — Simplified Decap editing UX
 - **What changed**: Added locale-specific editing toggles to `admin/cms.js` so editors can focus on a single language at a time, introduced smart fallback hints for localized fields, exposed new CTA toggle defaults, and published reusable section templates via the `sectionTemplates` collection with starter JSON blocks.

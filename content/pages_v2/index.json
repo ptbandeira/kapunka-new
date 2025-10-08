@@ -1305,104 +1305,148 @@
           "items": [
             {
               "body": {
+                "en": "How a simple gesture of care became a therapeutic protocol.",
                 "pt": "De um gesto simples nasceu um protocolo terapêutico.",
                 "es": "De un gesto sencillo nació un protocolo terapéutico."
               },
               "ctaHref": {
+                "en": "/about",
                 "pt": "/about",
                 "es": "/about"
               },
               "ctaLabel": {
+                "en": "Our Story",
                 "pt": "Nossa história",
                 "es": "Nuestra historia"
               },
               "eyebrow": {
+                "en": "From the blog",
                 "pt": "Do blog",
                 "es": "Desde el blog"
               },
               "imageAlt": {
+                "en": "Hands applying argan oil in warm light",
                 "pt": "Mãos aplicando óleo de argan sob luz quente",
                 "es": "Manos aplicando aceite de argán con luz cálida"
               },
+              "label": {
+                "en": "Clinic-ready batching",
+                "pt": "Lotes prontos para clínica",
+                "es": "Lotes listos para clínica"
+              },
               "title": {
+                "en": "From gratitude to method",
                 "pt": "Da gratidão ao método",
                 "es": "De la gratitud al método"
               }
             },
             {
               "body": {
+                "en": "Used by dermatologists, medspas, and recovery clinics for over a decade.",
                 "pt": "Utilizado há mais de uma década por dermatologistas e clínicas de recuperação.",
                 "es": "Utilizado desde hace más de una década por dermatólogos y clínicas de recuperación."
               },
               "ctaHref": {
+                "en": "/clinics",
                 "pt": "/clinics",
                 "es": "/clinics"
               },
               "ctaLabel": {
+                "en": "Partner With Us",
                 "pt": "Parceria conosco",
                 "es": "Aliarte con nosotros"
               },
               "eyebrow": {
+                "en": "For clinics",
                 "pt": "Para clínicas",
                 "es": "Para clínicas"
               },
               "imageAlt": {
+                "en": "Practitioner massaging a client's face with argan care",
                 "pt": "Profissional massageando o rosto de uma cliente com cuidado de argan",
                 "es": "Profesional masajeando el rostro de una clienta con cuidado de argán"
               },
+              "label": {
+                "en": "Holistic sensorial care",
+                "pt": "Cuidado sensorial holístico",
+                "es": "Cuidado sensorial holístico"
+              },
               "title": {
+                "en": "Trusted by professionals",
                 "pt": "De confiança profissional",
                 "es": "De confianza profesional"
               }
             },
             {
               "body": {
+                "en": "From Moroccan cooperatives to hospital rooms.",
                 "pt": "Das cooperativas marroquinas às salas de hospital.",
                 "es": "De las cooperativas marroquíes a las salas hospitalarias."
               },
               "ctaHref": {
+                "en": "/method",
                 "pt": "/method",
                 "es": "/method"
               },
               "ctaLabel": {
+                "en": "Our Standards",
                 "pt": "Nossos padrões",
                 "es": "Nuestros estándares"
               },
               "eyebrow": {
+                "en": "Supply chain",
                 "pt": "Cadeia de fornecimento",
                 "es": "Cadena de suministro"
               },
               "imageAlt": {
+                "en": "Harvested argan fruit gathered in a woven basket",
                 "pt": "Frutos de argan recém-colhidos em um cesto de palha",
                 "es": "Frutos de argán recién cosechados en una cesta tejida"
               },
+              "label": {
+                "en": "Heritage sourcing",
+                "pt": "Histórias de retalho flexíveis",
+                "es": "Historias minoristas flexibles"
+              },
               "title": {
+                "en": "Heritage sourcing, clinical standards",
                 "pt": "Origem com herança, padrão clínico",
                 "es": "Origen con herencia, estándar clínico"
               }
             },
             {
               "body": {
+                "en": "Ancient wisdom, scientifically structured.",
                 "pt": "Sabedoria ancestral com estrutura científica.",
                 "es": "Sabiduría ancestral, estructura científica."
               },
               "ctaHref": {
+                "en": "/shop",
                 "pt": "/shop",
                 "es": "/shop"
               },
               "ctaLabel": {
+                "en": "Shop Rituals",
                 "pt": "Comprar rituais",
                 "es": "Comprar rituales"
               },
               "eyebrow": {
+                "en": "Rituals",
                 "pt": "Rituais",
                 "es": "Rituales"
               },
               "imageAlt": {
+                "en": "Steam-filled hammam room with a person resting",
                 "pt": "Sala de hammam com vapor e uma pessoa relaxando",
                 "es": "Sala de hammam llena de vapor con una persona descansando"
               },
+              "label": {
+                "en": "Sustainable partnerships",
+                "pt": "Parcerias sustentáveis",
+                "es": "Alianzas sostenibles"
+              },
               "title": {
+                "en": "From hammam rituals to modern recovery",
                 "pt": "Do hammam à recuperação moderna",
                 "es": "Del hammam a la recuperación moderna"
               }
@@ -1483,58 +1527,78 @@
           "items": [
             {
               "description": {
-                "en": "Skin-friendly, clean, cold-pressed."
+                "en": "Skin-friendly, clean, cold-pressed.",
+                "pt": "Amigável para a pele, puro e prensado a frio.",
+                "es": "Amables con la piel, puros y prensados en frío."
               },
               "label": {
-                "en": "Clinic-ready batching"
+                "en": "Clinic-ready batching",
+                "pt": "Lotes prontos para clínica",
+                "es": "Lotes listos para clínica"
               }
             },
             {
               "description": {
-                "en": "Low-residue textures and gentle aromas for sensitive skin."
+                "en": "Low-residue textures and gentle aromas for sensitive skin.",
+                "pt": "Texturas de baixa deposição e aromas suaves para pele sensível.",
+                "es": "Texturas de bajo residuo y aromas suaves para piel sensible."
               },
               "label": {
-                "en": "Holistic sensorial care"
+                "en": "Holistic sensorial care",
+                "pt": "Cuidado sensorial holístico",
+                "es": "Cuidado sensorial holístico"
               }
             },
             {
               "description": {
-                "en": "Starter sets and education for consistent home routines."
+                "en": "Starter sets and education for consistent home routines.",
+                "pt": "Conjuntos iniciais e formação para rotinas consistentes em casa.",
+                "es": "Sets iniciales y formación para rutinas consistentes en casa."
               },
               "label": {
-                "en": "Flexible retail stories"
+                "en": "Flexible retail stories",
+                "pt": "Histórias de retalho flexíveis",
+                "es": "Historias minoristas flexibles"
               }
             },
             {
               "description": {
-                "en": "Fair relationships across Morocco’s cooperatives."
+                "en": "Fair relationships across Morocco’s cooperatives.",
+                "pt": "Relações justas com as cooperativas de Marrocos.",
+                "es": "Relaciones justas con las cooperativas de Marruecos."
               },
               "label": {
-                "en": "Sustainable partnerships"
+                "en": "Sustainable partnerships",
+                "pt": "Parcerias sustentáveis",
+                "es": "Alianzas sostenibles"
               }
             }
           ],
           "products": [
             {
               "id": {
+                "en": "pure-argan-100",
                 "pt": "pure-argan-100",
                 "es": "pure-argan-100"
               }
             },
             {
               "id": {
+                "en": "scar-care",
                 "pt": "scar-care",
                 "es": "scar-care"
               }
             },
             {
               "id": {
+                "en": "ritual-pack",
                 "pt": "ritual-pack",
                 "es": "ritual-pack"
               }
             }
           ],
           "title": {
+            "en": "Essentials for daily rituals",
             "pt": "Essenciais para rituais diários",
             "es": "Esenciales para rituales diarios"
           },
