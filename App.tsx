@@ -19,8 +19,6 @@ import CookieConsent from './components/CookieConsent';
 import { useSiteSettings } from './contexts/SiteSettingsContext';
 import { useLanguage } from './contexts/LanguageContext';
 import type { Language, LocalizedText } from './types';
-import { ensureVisualEditorAnnotations } from './utils/visualEditorAnnotations';
-import { isVisualEditorRuntime } from './utils/visualEditorRuntime';
 import { buildLocalizedPath, isSupportedLanguage, removeLocaleFromPath } from './utils/localePaths';
 import Seo from './src/components/Seo';
 
@@ -253,14 +251,6 @@ const App: React.FC = () => {
   const defaultTitle = getLocalizedValue(settings.seo?.defaultTitle, language) ?? FALLBACK_TITLE;
   const defaultDescription =
     getLocalizedValue(settings.seo?.defaultDescription, language) ?? FALLBACK_DESCRIPTION;
-
-  useEffect(() => {
-    if (!isVisualEditorRuntime()) {
-      return;
-    }
-
-    ensureVisualEditorAnnotations();
-  }, []);
 
   return (
     <HelmetProvider>

@@ -19,6 +19,11 @@
 - **What changed**: Updated `scripts/postbuild.js` to mirror `content/` into `site/content/`, copy both `site/` and `.netlify/visual-editor/` into `dist/`, and added static-asset fallbacks to `fetchVisualEditorJson` plus `loadUnifiedPage` (using `import.meta.url`) so hashed JSON assets resolve when network mirrors fail. Ran `npm run build` to verify the new copy steps and fallbacks execute.
 - **Impact & follow-up**: Portuguese and Spanish pages no longer crash when the Visual Editor probes `/site/content` or `/.netlify/visual-editor` before landing on the canonical `/content` data. Keep an eye on the remaining markdown-dependent pages while migrating them to the unified loader.
 - **References**: Pending PR
+
+## 2025-10-08 — Removed Visual Editor runtime hooks
+- **What changed**: Simplified the Stackbit integration to no-ops: stripped the React runtime patching in `index.tsx`, removed the annotation helpers/runtime detection, collapsed `useVisualEditorSync` to a static provider, and rewrote the Stackbit binding utilities to return empty attributes. Also slimmed the Markdown loader to fetch directly from `/content/**` with static fallbacks. Ran `npm run build` to confirm the CMS-only flow works.
+- **Impact & follow-up**: The app no longer loads or patches any Visual Editor code paths, cutting unnecessary runtime fetches and stabilising locale routing. Keep migrating the remaining markdown loaders to unified JSON as content allows.
+- **References**: Pending PR
 ## 2025-10-07 — Simplified Decap editing UX
 - **What changed**: Added locale-specific editing toggles to `admin/cms.js` so editors can focus on a single language at a time, introduced smart fallback hints for localized fields, exposed new CTA toggle defaults, and published reusable section templates via the `sectionTemplates` collection with starter JSON blocks.
 - **Impact & follow-up**: Content designers can now work in English-first mode and reveal additional locales on demand while relying on ready-made section blueprints for frequent layouts. Gather feedback on additional templates that would speed up campaign builds and consider migrating legacy sections to the new CTA controls over time.

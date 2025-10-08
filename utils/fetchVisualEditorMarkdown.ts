@@ -20,12 +20,6 @@ const parseFrontMatter = <T>(raw: string): T => {
   return {} as T;
 };
 
-const CONTENT_PREFIX = '/content/';
-const VISUAL_EDITOR_PREFIXES = [
-  '/.netlify/visual-editor/content/',
-  '/site/content/',
-];
-
 const markdownCache = new Map<string, VisualEditorMarkdownDocument<unknown>>();
 
 export const clearVisualEditorMarkdownCache = () => {
@@ -40,23 +34,6 @@ export interface VisualEditorMarkdownDocument<T> {
   raw: string;
 }
 
-const buildCandidateUrls = (url: string): string[] => {
-  if (!url.startsWith(CONTENT_PREFIX)) {
-    return [url];
-  }
-
-  const relativePath = url.slice(CONTENT_PREFIX.length);
-  const normalized = relativePath.replace(/^\/+/, '');
-  const candidates = new Set<string>();
-
-  for (const prefix of VISUAL_EDITOR_PREFIXES) {
-    candidates.add(`${prefix}${normalized}`);
-  }
-
-  candidates.add(url);
-  return Array.from(candidates);
-};
-
 export const fetchVisualEditorMarkdown = async <T>(
   url: string,
   init?: RequestInit,
@@ -66,7 +43,20 @@ export const fetchVisualEditorMarkdown = async <T>(
     return markdownCache.get(url) as VisualEditorMarkdownDocument<T>;
   }
 
-  const candidates = buildCandidateUrls(url);
+  const candidates: string[] = [url];
+
+  if (url.startsWith('/content/')) {
+    const relativePath = url.slice('/content/'.length).replace(/^\/+/, '');
+    try {
+      const staticAssetUrl = new URL(`../content/${relativePath}`, import.meta.url).href;
+      candidates.push(staticAssetUrl);
+    } catch (error) {
+      if (import.meta.env.DEV) {
+        console.warn('fetchVisualEditorMarkdown: failed to resolve static asset URL', relativePath, error);
+      }
+    }
+  }
+
   let lastError: unknown;
 
   for (const candidate of candidates) {
@@ -78,11 +68,10 @@ export const fetchVisualEditorMarkdown = async <T>(
 
       const raw = await response.text();
       const data = parseFrontMatter<T>(raw);
-      const source: VisualEditorContentSource = candidate === url ? 'content' : 'visual-editor';
 
       const result: VisualEditorMarkdownDocument<T> = {
         data,
-        source,
+        source: 'content',
         raw,
       };
       if (allowCache) {
