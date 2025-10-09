@@ -19,6 +19,22 @@ View your app in AI Studio: https://ai.studio/apps/drive/1ROv6j-3REdmWuJaFL9bv6n
 3. Run the app:
    `npm run dev`
 
+## Diagnose deploy issues
+
+Use the build diagnostics runner to capture detailed error summaries when a Netlify/Vite build fails.
+
+If you're collaborating with the AI assistant and want it to inspect the build output for you, ask it to run the command and review the generated log. For example:
+
+> "Run `npm run diagnose:deploy` and tell me which files and lines are failing."
+
+The assistant (or you, when running it manually) will execute the command below.
+
+```bash
+npm run diagnose:deploy
+```
+
+The command proxies `npm run build`, saves the full log under `logs/deploy-diagnostics/`, and highlights any file/line pairs detected in the error output so you can jump straight to the failing code. When working asynchronously, share the most recent log path (e.g., `logs/deploy-diagnostics/build-<timestamp>.log`) so the assistant can dive deeper into the exact failure trace.
+
 ## Coding standards
 
 When committing changes, keep these safeguards in mind:
