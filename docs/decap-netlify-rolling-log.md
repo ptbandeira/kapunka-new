@@ -1,5 +1,15 @@
 # Decap CMS & Netlify Rolling Log
 
+## 2025-10-09 — Canonicalized clinics slug handling in runtime
+- **What changed**: Added a `resolveCmsHref` helper that strips locale prefixes and rewrites any `/clinics` aliases to `/for-clinics`, then wired it through the home hero, clinics page CTA, shop related links, and CMS-driven sections so localized CTAs always generate valid router paths.
+- **Impact & follow-up**: Portuguese and Spanish visitors no longer fall back to the homepage even if CMS content regresses to the old slug; the helper safeguards future content updates without requiring manual audits.
+- **References**: Pending PR
+
+## 2025-10-09 — Repointed localized clinics CTAs
+- **What changed**: Updated `content/pages_v2/index.json` and the English/Portuguese/Spanish home Markdown sources so every hero and media CTA now links to `/for-clinics` instead of the retired `/clinics` slug.
+- **Impact & follow-up**: Portuguese and Spanish visitors reach the dedicated Clinics landing page without bouncing back to the homepage; re-run the slug audit whenever new clinics-focused content is added.
+- **References**: Pending PR
+
 ## 2025-10-09 — Migrated Tailwind to the build pipeline
 - **What changed**: Installed Tailwind + PostCSS tooling, added a project-wide config that mirrors the previous CDN overrides, created entry CSS for the app/admin, and wired the Netlify prebuild step to emit `/public/styles/globals.css` for CMS previews instead of loading Tailwind from the CDN.
 - **Impact & follow-up**: Removes the runtime CDN dependency while keeping CMS previews styled with the same utility classes as production. Re-run `npm run tailwind:preview` whenever Tailwind directives change outside of `npm run build` to refresh the admin stylesheet.

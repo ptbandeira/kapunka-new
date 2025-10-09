@@ -1,7 +1,7 @@
 # Task Plan — Fix Localized Clinics CTA Slugs
 
 ## Background
-Portuguese and Spanish homepages still link to `/clinics`, but the React router only exposes the Clinics landing page at `/for-clinics`. When visitors click the hero or "Partner with us" CTAs, React Router fails to resolve `/pt/clinics` or `/es/clinics` and falls back to the root, making the localized pages appear broken.
+Portuguese and Spanish homepages were linking to `/clinics`, but the React router only exposes the Clinics landing page at `/for-clinics`. When visitors clicked the hero or "Partner with us" CTAs, React Router failed to resolve `/pt/clinics` or `/es/clinics` and fell back to the root, making the localized pages appear broken.
 
 ## Task Breakdown
 1. **Update page JSON:** Replace every `/clinics` reference in `content/pages_v2/index.json` hero and section CTA fields with `/for-clinics` so each locale uses the live slug.
@@ -13,3 +13,7 @@ Portuguese and Spanish homepages still link to `/clinics`, but the React router 
 - All localized CTAs navigate to `/for-clinics` without redirect loops.
 - `npm run build` succeeds with no new warnings.
 - Repository search shows no remaining `/clinics` links targeting the deprecated slug.
+
+## Completion Notes
+- Updated the unified home JSON and all localized markdown sources to point hero and section CTAs at `/for-clinics`.
+- Confirmed with `rg '/clinics' content` that no CMS-managed content still references the retired slug.

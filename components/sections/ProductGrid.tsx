@@ -9,6 +9,7 @@ import { fetchContentJson } from '../../utils/fetchContentJson';
 import { getCloudinaryUrl } from '../../utils/imageUrl';
 import { buildLocalizedPath } from '../../utils/localePaths';
 import type { Product, ProductGridSectionContent, LocalizedNumber } from '../../types';
+import { resolveCmsHref } from '../../utils/cmsLinks';
 
 interface ProductGridProps {
   section: ProductGridSectionContent;
@@ -34,16 +35,6 @@ const coerceNumber = (
 
   const parsed = Number(translated);
   return Number.isFinite(parsed) ? parsed : undefined;
-};
-
-const isInternalUrl = (href: string) => href.startsWith('/') || href.startsWith('#/');
-
-const normalizeInternal = (href: string) => {
-  if (href.startsWith('#/')) {
-    const normalized = href.slice(1);
-    return normalized.startsWith('/') ? normalized : `/${normalized}`;
-  }
-  return href.startsWith('/') ? href : `/${href}`;
 };
 
 const ProductGrid: React.FC<ProductGridProps> = ({ section, fieldPath }) => {
@@ -173,10 +164,12 @@ const ProductGrid: React.FC<ProductGridProps> = ({ section, fieldPath }) => {
       return null;
     }
 
-    if (isInternalUrl(item.ctaHref)) {
+    const { internalPath, externalUrl } = resolveCmsHref(item.ctaHref);
+
+    if (internalPath) {
       return (
         <Link
-          to={buildLocalizedPath(normalizeInternal(item.ctaHref), language)}
+          to={buildLocalizedPath(internalPath, language)}
           className="inline-flex items-center rounded-full border border-stone-900 px-4 py-2 text-sm font-medium text-stone-900 transition hover:bg-stone-900 hover:text-white"
           {...getVisualEditorAttributes(item.ctaHrefFieldPath)}
         >
@@ -187,7 +180,7 @@ const ProductGrid: React.FC<ProductGridProps> = ({ section, fieldPath }) => {
 
     return (
       <a
-        href={item.ctaHref}
+        href={externalUrl ?? item.ctaHref}
         className="inline-flex items-center rounded-full border border-stone-300 px-4 py-2 text-sm font-medium text-stone-600 transition hover:border-stone-500 hover:text-stone-900"
         target="_blank"
         rel="noreferrer"

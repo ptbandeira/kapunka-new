@@ -13,6 +13,7 @@ import {
   type ClinicsPageContentResult,
 } from '../utils/loadClinicsPageContent';
 import { buildLocalizedPath } from '../utils/localePaths';
+import { resolveCmsHref } from '../utils/cmsLinks';
 import Seo from '../src/components/Seo';
 import type { PageSection } from '../types';
 
@@ -259,16 +260,12 @@ const ForClinics: React.FC = () => {
     labelFieldPath: `${translationsFieldPath}.ctaButton`,
   });
   const resolvedHeroPrimaryCtaHref = heroPrimaryCta.href || ctaLink;
-  const heroPrimaryCtaIsInternal = resolvedHeroPrimaryCtaHref.startsWith('#/')
-    || resolvedHeroPrimaryCtaHref.startsWith('/');
-  const heroPrimaryCtaTarget = heroPrimaryCtaIsInternal
-    ? buildLocalizedPath(
-      resolvedHeroPrimaryCtaHref.startsWith('#/')
-        ? resolvedHeroPrimaryCtaHref.slice(1)
-        : resolvedHeroPrimaryCtaHref,
-      language,
-    )
-    : resolvedHeroPrimaryCtaHref;
+  const heroPrimaryHrefInfo = resolveCmsHref(resolvedHeroPrimaryCtaHref);
+  const heroPrimaryInternalPath = heroPrimaryHrefInfo.internalPath;
+  const heroPrimaryCtaIsInternal = Boolean(heroPrimaryInternalPath);
+  const heroPrimaryCtaTarget = heroPrimaryInternalPath
+    ? buildLocalizedPath(heroPrimaryInternalPath, language)
+    : heroPrimaryHrefInfo.externalUrl ?? resolvedHeroPrimaryCtaHref;
 
   const ctaTitleSource = resolveTextWithFieldPath([
     { value: pageContent?.data.ctaTitle, fieldPath: `${clinicsFieldPath}.ctaTitle` },
