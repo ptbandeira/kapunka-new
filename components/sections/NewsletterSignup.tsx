@@ -64,6 +64,9 @@ const NewsletterSignup: React.FC<NewsletterSignupProps> = ({ section, fieldPath 
   const formAlignment = alignment === 'left' ? 'sm:flex-row sm:justify-start' : 'sm:flex-row sm:justify-center';
   const containerWidth = alignment === 'left' ? 'max-w-3xl' : 'max-w-2xl';
 
+  const sanitizedFieldPath = fieldPath?.replace(/[^a-zA-Z0-9-_]/g, '_');
+  const inputId = sanitizedFieldPath ? `newsletter-email-${sanitizedFieldPath}` : 'newsletter-email';
+
   const inputClasses = isDark
     ? 'flex-grow px-4 py-3 rounded-md border border-white/40 bg-white/10 text-white placeholder:text-white/60 focus:outline-none focus:ring-2 focus:ring-white/60 focus:border-white/60 transition'
     : 'flex-grow px-4 py-3 rounded-md border border-stone-300 focus:outline-none focus:ring-2 focus:ring-stone-500 focus:border-stone-500 transition';
@@ -109,12 +112,18 @@ const NewsletterSignup: React.FC<NewsletterSignupProps> = ({ section, fieldPath 
               onSubmit={handleSubmit}
               className={`flex w-full flex-col gap-2 sm:max-w-xl ${formAlignment}`}
             >
+              <label htmlFor={inputId} className="sr-only">
+                {placeholder}
+              </label>
               <input
                 type="email"
+                id={inputId}
+                name="email"
                 value={email}
                 onChange={handleChange}
                 placeholder={placeholder}
                 required
+                autoComplete="email"
                 className={inputClasses}
                 {...getVisualEditorAttributes(fieldPath ? `${fieldPath}.placeholder` : undefined)}
               />
