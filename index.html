@@ -7,37 +7,6 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script>
-      tailwind.config = {
-        theme: {
-          extend: {
-            fontFamily: {
-              sans: ['Inter', 'sans-serif'],
-            },
-            keyframes: {
-              scroll: {
-                '0%': { transform: 'translateX(0)' },
-                '100%': { transform: 'translateX(-100%)' },
-              },
-              carouselScroll: {
-                '0%': { transform: 'translateX(0)' },
-                '100%': { transform: 'translateX(-50%)' },
-              },
-            },
-            animation: {
-              scroll: 'scroll 40s linear infinite',
-              'carousel-scroll': 'carouselScroll 40s linear infinite',
-            },
-          }
-        }
-      }
-    </script>
-    <style>
-      .prose ul > li::before {
-        background-color: #57534e; /* stone-600 */
-      }
-    </style>
     <script type="importmap">
 {
   "imports": {
