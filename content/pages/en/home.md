@@ -26,7 +26,7 @@ sections:
     body: Used by dermatologists, medspas, and recovery clinics for over a decade.
     imageAlt: Practitioner massaging a client's face with argan care
     ctaLabel: Partner With Us
-    ctaHref: /clinics
+    ctaHref: /for-clinics
     image: https://images.pexels.com/photos/3865548/pexels-photo-3865548.jpeg?auto=compress&cs=tinysrgb&w=1920
     imageFocal:
       x: 0.44
@@ -163,5 +163,5 @@ heroCtas:
     href: /shop
   ctaSecondary:
     label: For clinics & professionals
-    href: /clinics
+    href: /for-clinics
 ---

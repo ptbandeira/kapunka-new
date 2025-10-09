@@ -10,7 +10,7 @@ import React, {
 } from 'react';
 import type { Language } from '../types';
 import { fetchContentJson } from '../utils/fetchContentJson';
-import { SUPPORTED_LANGUAGES, getLocaleFromPath } from '../utils/localePaths';
+import { SUPPORTED_LANGUAGES, getLocaleFromLocation } from '../utils/localePaths';
 import { useVisualEditorSync } from './VisualEditorSyncContext';
 
 type TranslationPrimitive = string | number | boolean | null;
@@ -39,9 +39,9 @@ const resolveInitialLanguage = (): Language => {
     return FALLBACK_LANGUAGE;
   }
 
-  const localeFromPath = getLocaleFromPath(window.location.pathname);
-  if (localeFromPath) {
-    return localeFromPath;
+  const localeFromLocation = getLocaleFromLocation(window.location);
+  if (localeFromLocation) {
+    return localeFromLocation;
   }
 
   try {
