@@ -2,6 +2,9 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import App from './App';
 import { AppProvider } from './contexts/AppContext';
+import { initializeLogger } from './src/logger';
+
+initializeLogger();
 
 const rootElement = document.getElementById('root');
 if (!rootElement) {
