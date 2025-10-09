@@ -2,13 +2,17 @@ import React, { useEffect, useMemo, useState } from 'react';
 import { motion } from 'framer-motion';
 import { useLanguage } from '../contexts/LanguageContext';
 import { useSiteSettings } from '../contexts/SiteSettingsContext';
-import { fetchTrainingProgramContent, TRAINING_PROGRAM_OBJECT_ID, type TrainingProgramContent } from '../utils/trainingProgramContent';
+import {
+  fetchTrainingProgramContent,
+  getTrainingProgramObjectId,
+  type TrainingProgramContentResult,
+} from '../utils/trainingProgramContent';
 import { useVisualEditorSync } from '../contexts/VisualEditorSyncContext';
 import { getCloudinaryUrl } from '../utils/imageUrl';
 import Seo from '../src/components/Seo';
 
 const TrainingProgram: React.FC = () => {
-  const [content, setContent] = useState<TrainingProgramContent | null>(null);
+  const [contentState, setContentState] = useState<TrainingProgramContentResult | null>(null);
   const [error, setError] = useState<string | null>(null);
   const { t, language } = useLanguage();
   const { contentVersion } = useVisualEditorSync();
@@ -16,18 +20,18 @@ const TrainingProgram: React.FC = () => {
 
   useEffect(() => {
     let isMounted = true;
-    setContent(null);
+    setContentState(null);
     setError(null);
 
     const loadContent = async () => {
       try {
-        const programContent = await fetchTrainingProgramContent();
+        const programContent = await fetchTrainingProgramContent(language);
         if (!isMounted) {
           return;
         }
 
         if (programContent) {
-          setContent(programContent);
+          setContentState(programContent);
         } else {
           setError('Invalid training page content structure.');
         }
@@ -49,7 +53,10 @@ const TrainingProgram: React.FC = () => {
     return () => {
       isMounted = false;
     };
-  }, [contentVersion]);
+  }, [language, contentVersion]);
+
+  const content = contentState?.data ?? null;
+  const trainingProgramObjectId = getTrainingProgramObjectId(contentState?.filePath);
 
   const objectives = content?.objectives?.filter((item) => item.trim().length > 0) ?? [];
   const modules = content?.modules?.filter((module) => module && (module.title?.trim() || module.description?.trim())) ?? [];
@@ -69,7 +76,7 @@ const TrainingProgram: React.FC = () => {
   const formattedObjectives = useMemo(() => objectives, [objectives]);
 
   return (
-    <div className="bg-stone-50 text-stone-900" data-sb-object-id={TRAINING_PROGRAM_OBJECT_ID}>
+    <div className="bg-stone-50 text-stone-900" data-sb-object-id={trainingProgramObjectId}>
       <Seo
         title={pageTitle}
         description={metaDescription}

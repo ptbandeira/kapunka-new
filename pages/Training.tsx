@@ -8,7 +8,11 @@ import { getVisualEditorAttributes } from '../utils/stackbitBindings';
 import { useVisualEditorSync } from '../contexts/VisualEditorSyncContext';
 import { useSiteSettings } from '../contexts/SiteSettingsContext';
 import Seo from '../src/components/Seo';
-import { fetchTrainingProgramContent, TRAINING_PROGRAM_OBJECT_ID, type TrainingProgramContent } from '../utils/trainingProgramContent';
+import {
+  fetchTrainingProgramContent,
+  getTrainingProgramObjectId,
+  type TrainingProgramContentResult,
+} from '../utils/trainingProgramContent';
 import { loadPage } from '../src/lib/content';
 import { filterVisible } from '../utils/contentVisibility';
 
@@ -75,7 +79,7 @@ const isPageContent = (value: unknown): value is PageContent => {
 const Training: React.FC = () => {
   const { t, language } = useLanguage();
   const [pageContent, setPageContent] = useState<PageContent | null>(null);
-  const [programContent, setProgramContent] = useState<TrainingProgramContent | null>(null);
+  const [programContentState, setProgramContentState] = useState<TrainingProgramContentResult | null>(null);
   const [programError, setProgramError] = useState<string | null>(null);
   const { contentVersion } = useVisualEditorSync();
   const { settings: siteSettings } = useSiteSettings();
@@ -157,18 +161,18 @@ const Training: React.FC = () => {
 
   useEffect(() => {
     let isMounted = true;
-    setProgramContent(null);
+    setProgramContentState(null);
     setProgramError(null);
 
     const loadProgramContent = async () => {
       try {
-        const content = await fetchTrainingProgramContent();
+        const content = await fetchTrainingProgramContent(language);
         if (!isMounted) {
           return;
         }
 
         if (content) {
-          setProgramContent(content);
+          setProgramContentState(content);
         } else {
           setProgramError('Unable to load training program details.');
         }
@@ -190,7 +194,10 @@ const Training: React.FC = () => {
     return () => {
       isMounted = false;
     };
-  }, [contentVersion]);
+  }, [language, contentVersion]);
+
+  const programContent = programContentState?.data ?? null;
+  const trainingProgramObjectId = getTrainingProgramObjectId(programContentState?.filePath);
 
   const sections = pageContent?.visible === false
     ? []
@@ -285,7 +292,7 @@ const Training: React.FC = () => {
         locale={language}
       />
 
-      <header className="bg-stone-100 py-20 sm:py-28" data-sb-object-id={programContent ? TRAINING_PROGRAM_OBJECT_ID : undefined}>
+      <header className="bg-stone-100 py-20 sm:py-28" data-sb-object-id={programContent ? trainingProgramObjectId : undefined}>
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <motion.h1
             initial={{ opacity: 0, y: 20 }}
@@ -309,7 +316,7 @@ const Training: React.FC = () => {
       </header>
 
       {objectives.length > 0 ? (
-        <section className="py-16 sm:py-20" data-sb-object-id={TRAINING_PROGRAM_OBJECT_ID}>
+        <section className="py-16 sm:py-20" data-sb-object-id={trainingProgramObjectId}>
           <div className="container mx-auto px-4 sm:px-6 lg:px-8">
             <div className="mx-auto max-w-3xl rounded-3xl bg-white p-8 shadow-sm shadow-stone-100">
               <h2
@@ -332,7 +339,7 @@ const Training: React.FC = () => {
       ) : null}
 
       {modules.length > 0 ? (
-        <section className="bg-stone-50 py-16 sm:py-24" data-sb-object-id={TRAINING_PROGRAM_OBJECT_ID} data-sb-field-path="modules">
+        <section className="bg-stone-50 py-16 sm:py-24" data-sb-object-id={trainingProgramObjectId} data-sb-field-path="modules">
           <div className="container mx-auto px-4 sm:px-6 lg:px-8">
             <div className="mx-auto max-w-2xl text-center">
               <motion.h2
@@ -401,7 +408,7 @@ const Training: React.FC = () => {
       ) : null}
 
       {callToActions.length > 0 ? (
-        <section className="bg-stone-900 py-16 sm:py-24" data-sb-object-id={TRAINING_PROGRAM_OBJECT_ID} data-sb-field-path="callToActions">
+        <section className="bg-stone-900 py-16 sm:py-24" data-sb-object-id={trainingProgramObjectId} data-sb-field-path="callToActions">
           <div className="container mx-auto px-4 sm:px-6 lg:px-8 text-center text-stone-100">
             <motion.h2
               initial={{ opacity: 0, y: 16 }}

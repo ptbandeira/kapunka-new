@@ -2,10 +2,10 @@ import React, { useEffect, useMemo, useState } from 'react';
 import { motion } from 'framer-motion';
 import { useLanguage } from '../contexts/LanguageContext';
 import { useSiteSettings } from '../contexts/SiteSettingsContext';
-import { fetchContentMarkdown } from '../utils/fetchContentMarkdown';
 import { useVisualEditorSync } from '../contexts/VisualEditorSyncContext';
 import { getCloudinaryUrl } from '../utils/imageUrl';
 import Seo from '../src/components/Seo';
+import { loadLocalizedMarkdown, toVisualEditorObjectId } from '../utils/localizedContent';
 
 interface PillarContent {
   title?: string;
@@ -30,8 +30,6 @@ interface MethodContent {
   metaDescription?: string;
   headline?: string;
   subheadline?: string;
-  metaTitle?: string;
-  metaDescription?: string;
   philosophy?: string;
   pillars?: {
     prevention?: PillarContent;
@@ -47,8 +45,8 @@ interface MethodContent {
   media?: MethodMedia;
 }
 
-const METHOD_FILE_PATH = '/content/pages/method/index.md';
-const METHOD_OBJECT_ID = 'MethodKapunkaPage:content/pages/method/index.md';
+const METHOD_BASE_PATH = '/content/pages/method/index.md';
+const METHOD_DOCUMENT_TYPE = 'MethodKapunkaPage';
 
 const isRecord = (value: unknown): value is Record<string, unknown> => Boolean(value) && typeof value === 'object';
 
@@ -160,7 +158,7 @@ const isMethodContent = (value: unknown): value is MethodContent => {
 const PILLAR_ORDER = ['prevention', 'cicatrisation', 'deInflammation', 'recovery', 'emotionalSupport'] as const;
 
 const MethodKapunka: React.FC = () => {
-  const [content, setContent] = useState<MethodContent | null>(null);
+  const [contentState, setContentState] = useState<{ content: MethodContent; filePath: string } | null>(null);
   const [error, setError] = useState<string | null>(null);
   const { contentVersion } = useVisualEditorSync();
   const { t, language } = useLanguage();
@@ -168,25 +166,30 @@ const MethodKapunka: React.FC = () => {
 
   useEffect(() => {
     let isMounted = true;
-    setContent(null);
+    setContentState(null);
     setError(null);
 
     const loadContent = async () => {
       try {
-        const { data } = await fetchContentMarkdown<unknown>(METHOD_FILE_PATH, { cache: 'no-store' });
+        const result = await loadLocalizedMarkdown<MethodContent>({
+          slug: 'method-kapunka',
+          locale: language,
+          basePath: METHOD_BASE_PATH,
+          validate: isMethodContent,
+        });
+
         if (!isMounted) {
           return;
         }
 
-        if (isMethodContent(data)) {
-          setContent(data);
-        } else {
-          setError('Invalid Method Kapunka content structure.');
-        }
+        setContentState({ content: result.data, filePath: result.filePath });
+        setError(null);
       } catch (err) {
         if (!isMounted) {
           return;
         }
+        console.error('Failed to load Method Kapunka content', err);
+        setContentState(null);
         setError(err instanceof Error ? err.message : 'Failed to load Method Kapunka content.');
       }
     };
@@ -195,13 +198,21 @@ const MethodKapunka: React.FC = () => {
       if (!isMounted) {
         return;
       }
+      console.error('Unhandled error while loading Method Kapunka content', err);
+      setContentState(null);
       setError(err instanceof Error ? err.message : 'Failed to load Method Kapunka content.');
     });
 
     return () => {
       isMounted = false;
     };
-  }, [contentVersion]);
+  }, [language, contentVersion]);
+
+  const content = contentState?.content ?? null;
+  const methodObjectId = toVisualEditorObjectId(
+    METHOD_DOCUMENT_TYPE,
+    contentState?.filePath ?? METHOD_BASE_PATH,
+  );
 
   const philosophyParagraphs = useMemo(() => {
     if (!content?.philosophy) {
@@ -232,7 +243,7 @@ const MethodKapunka: React.FC = () => {
     : undefined;
 
   return (
-    <div className="bg-white text-stone-800" data-sb-object-id={METHOD_OBJECT_ID}>
+    <div className="bg-white text-stone-800" data-sb-object-id={methodObjectId}>
       <Seo
         title={pageTitle}
         description={metaDescription}
