@@ -21,7 +21,7 @@ import { useLanguage } from './contexts/LanguageContext';
 import type { Language, LocalizedText } from './types';
 import {
   buildLocalizedPath,
-  getLocaleFromPath,
+  getLocaleFromLocation,
   isSupportedLanguage,
   removeLocaleFromPath,
 } from './utils/localePaths';
@@ -182,7 +182,7 @@ const LocalizedLayout: React.FC = () => {
   const location = useLocation();
   const navigate = useNavigate();
   const { language, setLanguage } = useLanguage();
-  const pathLocale = getLocaleFromPath(location.pathname);
+  const locationLocale = getLocaleFromLocation({ pathname: location.pathname, hash: location.hash });
   const routeLocale = params.locale;
 
   useEffect(() => {
@@ -194,7 +194,7 @@ const LocalizedLayout: React.FC = () => {
 
     const currentLocale = routeLocale && isSupportedLanguage(routeLocale)
       ? routeLocale
-      : pathLocale;
+      : locationLocale;
 
     if (!currentLocale) {
       if (language !== DEFAULT_LANGUAGE) {
@@ -231,7 +231,7 @@ const LocalizedLayout: React.FC = () => {
     location.pathname,
     location.search,
     navigate,
-    pathLocale,
+    locationLocale,
     routeLocale,
     setLanguage,
   ]);

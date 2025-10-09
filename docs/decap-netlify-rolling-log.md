@@ -448,3 +448,8 @@ This log records day-to-day investigations, fixes, and decisions that affect the
 - **What changed**: Updated `pages/Home.tsx` to skip rendering hero blocks from legacy section lists so the page relies solely on the new full-bleed hero implementation.
 - **Impact & follow-up**: Prevents legacy section data from overriding the hero layout, eliminating the conflicting render path while we continue the broader content-source cleanup.
 - **References**: Pending PR
+
+## 2025-10-09 — Hardened locale detection for localized routes
+- **What changed**: Updated `utils/localePaths.ts`, `contexts/LanguageContext.tsx`, and `App.tsx` so locale detection reads from both the pathname and hash fragment, ensuring the language context initializes correctly even when editors access hashed preview URLs.
+- **Impact & follow-up**: Portuguese and Spanish pages now remain mounted after load because the router and language context agree on the active locale. No additional follow-up required beyond confirming future routing changes continue to use the shared helpers.
+- **References**: Pending PR
