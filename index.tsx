@@ -2,6 +2,11 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import App from './App';
 import { AppProvider } from './contexts/AppContext';
+import { init as initLogger } from './src/logger';
+
+if (import.meta.env.PROD) {
+  initLogger();
+}
 
 const rootElement = document.getElementById('root');
 if (!rootElement) {

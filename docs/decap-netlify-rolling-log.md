@@ -1,5 +1,15 @@
 # Decap CMS & Netlify Rolling Log
 
+## 2025-10-10 — Reworked client error logging pipeline
+- **What changed**: Replaced the initial logger with a production-gated `src/logger.js` module that hooks `window.onerror`/`window.onunhandledrejection`, posts JSON payloads via `sendBeacon`/`fetch`, and only runs when `ENABLE_LOGGER="true"`. Swapped the Netlify function to `log-error.mjs` so it enforces `Content-Type: application/json`, logs a single `[client-error]` line with a `receivedAt` timestamp, and returns `{ ok: true }` for valid requests.
+- **Impact & follow-up**: Keeps the logging pathway aligned with the Netlify runtime expectations and avoids double-parsing or TS build issues while leaving a clear audit trail in function logs. Confirm production deploys set `ENABLE_LOGGER=true` when ready to capture client failures.
+- **References**: Pending PR
+
+## 2025-10-10 — Added client error logging pipeline
+- **What changed**: Created a `log-error` Netlify Function that accepts JSON payloads from the browser and emits `[client-error]` entries, plus a guarded Vite client logger that posts fatal errors only when `ENABLE_LOGGER=true`.
+- **Impact & follow-up**: Enables on-demand tracing of production crashes directly from Netlify Function logs without bloating the bundle when the flag is disabled. Monitor log volume once enabled and consider batching if traffic grows.
+- **References**: Pending PR
+
 ## 2025-10-10 — Removed legacy Visual Editor maintenance scripts
 - **What changed**: Deleted the unused `scripts/remove-image-ref.mjs` and `scripts/syncMetadataPages.js` helpers and scrubbed contributor docs of the obsolete metadata regeneration workflow now that the Visual Editor has been fully retired.
 - **Impact & follow-up**: Eliminates dead tooling that referenced `metadata.json` and `.netlify/visual-editor/**`, reducing confusion for contributors. Future schema changes only need updates under `content/**` plus the Decap config.

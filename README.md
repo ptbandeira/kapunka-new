@@ -29,6 +29,12 @@ npm run diagnose:deploy
 
 The command proxies `npm run build`, saves the full log under `logs/deploy-diagnostics/`, and highlights any file/line pairs detected in the error output so you can jump straight to the failing code.
 
+## Enable production error logging
+
+1. In Netlify, set the `ENABLE_LOGGER` environment variable to `true` and redeploy so the Vite client bundle exposes the flag.
+2. Deploy the site as usual—this publishes the `log-error` serverless function that captures logs.
+3. After the deploy finishes, open your site in Netlify, go to **Functions → log-error → Logs**, and filter by `[client-error]` to inspect client-side crashes streamed from the browser.
+
 ## Coding standards
 
 When committing changes, keep these safeguards in mind:
