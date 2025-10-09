@@ -8,7 +8,8 @@
     "prebuild": "npm run cms:build",
     "build": "vite build && node scripts/postbuild.js",
     "preview": "vite preview",
-    "cms:build": "node scripts/build-decap-config.mjs"
+    "cms:build": "node scripts/build-decap-config.mjs",
+    "diagnose:deploy": "node scripts/run-deploy-diagnostics.mjs"
   },
   "dependencies": {
     "framer-motion": "11.2.10",
