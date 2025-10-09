@@ -106,19 +106,12 @@ To keep the editor experience predictable and efficient, every CMS enhancement m
 ### Single-File Page Model
 
 - Unified pages now live in `content/pages_v2/index.json`. Each object in the `pages` array represents one page, consolidating hero copy, metadata, and section blocks in a single location.
-- Keep the `sections` arrays intact. The Visual Editor maps these arrays to collapsible groups, so regrouping or flattening them breaks the editor's collapse/expand affordances.
+- Keep the `sections` arrays intact. The rendering pipeline expects these nested groups, so regrouping or flattening them breaks shared section components.
 - Every textual field is an object keyed by locale (`en`, `pt`, `es`). Populate all locales whenever you add fields, and keep translations synchronised to avoid mixed-language renders.
-- When you introduce or rename fields, mirror the change in `metadata.json` and regenerate the Visual Editor mirror so editors see the new schema immediately.
 
 ### Netlify Visual Editor Workflow *(legacy — Visual Editor retired 2025-10-09)*
 
-> The Netlify Visual Editor integration has been removed. The details below remain for historical reference only.
-- The project was previously wired for the **Netlify Visual Editor**. The integration relied on `netlify.toml` (see the `[visual_editor]` section), the page model map in `stackbit.config.js`, the editing schema in `metadata.json`, and the generated content mirror under `.netlify/visual-editor/content/`.
-- **Keep Decap CMS and the Visual Editor in sync.** Whenever you add, rename, or remove fields in `admin/config.yml`, mirror the same structure in the JSON documents under `/content` and regenerate/update `metadata.json` so on-page editing exposes the new fields.
-- Register every new route or page component in `stackbit.config.js`. If a page is missing from the config, the Visual Editor cannot open it for live editing.
-- Preserve the JSON shapes that components expect. If you must change a schema, migrate the existing entries in `/content` and ensure the Visual Editor mirror generated in `.netlify/visual-editor/content/` stays in sync.
-- Do not change the Visual Editor dev command or ports in `netlify.toml` unless you also update the Netlify dashboard configuration. Local Visual Editor sessions depend on `npm run dev` running on port `5173`.
-- Commit any Visual Editor metadata updates (`metadata.json`, additions under `.netlify/visual-editor/content/`, etc.) together with the related feature so the deployed site and editor stay aligned.
+> The Netlify Visual Editor integration has been removed. The details below remain for historical reference only. New work should target the canonical Decap content under `/content/**`, and you should not attempt to regenerate `metadata.json` or `.netlify/visual-editor` mirrors.
 
 ---
 
