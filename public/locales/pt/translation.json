@@ -1,0 +1,13 @@
+{
+  "loading": "Carregando...",
+  "unableToLoad": "Não foi possível carregar o conteúdo agora.",
+  "loadingProducts": "Carregando produtos...",
+  "loadingBestsellers": "Carregando mais vendidos...",
+  "loadingReviews": "Carregando avaliações...",
+  "loadingCourses": "Carregando cursos...",
+  "loadingProfessionals": "Carregando profissionais...",
+  "loadingArticle": "Carregando artigo...",
+  "loadingPolicies": "Carregando política...",
+  "loadingCart": "Carregando carrinho...",
+  "loadingProduct": "Carregando produto..."
+}
