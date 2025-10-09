@@ -6,6 +6,7 @@ import React, {
   useCallback,
   useMemo,
   useEffect,
+  useRef,
 } from 'react';
 import type { Language } from '../types';
 import { fetchContentJson } from '../utils/fetchContentJson';
@@ -116,39 +117,133 @@ interface LanguageContextType {
 export const LanguageContext = createContext<LanguageContextType | undefined>(undefined);
 
 export const LanguageProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
-  const [language, setLanguage] = useState<Language>(FALLBACK_LANGUAGE);
+  const [languageState, setLanguageState] = useState<Language>(FALLBACK_LANGUAGE);
   const [translations, setTranslations] = useState<Translations>(
     initialTranslations,
   );
+  const initializationCompletedRef = useRef(false);
+  const fallbackTimerRef = useRef<number | null>(null);
   const { contentVersion } = useVisualEditorSync();
 
-  useEffect(() => {
-    const initialLanguage = resolveInitialLanguage();
-    setLanguage((current) => (current === initialLanguage ? current : initialLanguage));
+  const clearFallbackTimer = useCallback(() => {
+    if (typeof window === 'undefined') {
+      return;
+    }
+
+    if (fallbackTimerRef.current !== null) {
+      window.clearTimeout(fallbackTimerRef.current);
+      fallbackTimerRef.current = null;
+    }
   }, []);
 
-  useEffect(() => {
-    const loadTranslations = async () => {
-      try {
-        const responses = await Promise.all(
-          translationEntries.map(async ([key]) => {
-            const data = await fetchContentJson<TranslationModule>(
-              `/content/translations/${key}.json`,
-            );
-            return [key, data] as [string, TranslationModule];
-          }),
-        );
+  const markInitialized = useCallback(() => {
+    initializationCompletedRef.current = true;
+    clearFallbackTimer();
+  }, [clearFallbackTimer]);
 
-        setTranslations(buildTranslations(responses));
+  const applyLanguage = useCallback((next: Language) => {
+    setLanguageState((current) => (current === next ? current : next));
+  }, []);
+
+  const setLanguage = useCallback((next: Language) => {
+    if (!SUPPORTED_LANGUAGES.includes(next)) {
+      console.warn(`Attempted to set unsupported language "${next}". Falling back to English.`);
+      applyLanguage(FALLBACK_LANGUAGE);
+      return;
+    }
+
+    try {
+      applyLanguage(next);
+    } catch (error) {
+      console.warn('Failed to change language; defaulting to English.', error);
+      applyLanguage(FALLBACK_LANGUAGE);
+    }
+  }, [applyLanguage]);
+
+  useEffect(() => {
+    let isMounted = true;
+
+    const initializeLanguage = () => {
+      try {
+        const initialLanguage = resolveInitialLanguage();
+        setLanguage(initialLanguage);
       } catch (error) {
-        console.error('Failed to load translations', error);
+        console.warn('Failed to resolve initial language; defaulting to English.', error);
+        setLanguage(FALLBACK_LANGUAGE);
       }
     };
 
+    initializeLanguage();
+
+    if (typeof window !== 'undefined') {
+      fallbackTimerRef.current = window.setTimeout(() => {
+        if (!isMounted || initializationCompletedRef.current) {
+          return;
+        }
+
+        console.warn('Language initialization timed out after 3 seconds. Rendering with English fallback.');
+        setLanguage(FALLBACK_LANGUAGE);
+        markInitialized();
+      }, 3000);
+    }
+
+    return () => {
+      isMounted = false;
+      clearFallbackTimer();
+    };
+  }, [clearFallbackTimer, markInitialized, setLanguage]);
+
+  useEffect(() => {
+    const loadTranslations = async () => {
+      const results = await Promise.allSettled(
+        translationEntries.map(async ([key]) => {
+          const data = await fetchContentJson<TranslationModule>(
+            `/content/translations/${key}.json`,
+          );
+          return [key, data] as [string, TranslationModule];
+        }),
+      );
+
+      const successfulEntries: Array<[string, TranslationModule]> = [];
+
+      results.forEach((result, index) => {
+        if (result.status === 'fulfilled') {
+          successfulEntries.push(result.value);
+          return;
+        }
+
+        const [key] = translationEntries[index];
+        console.warn(
+          `Failed to load translation file for "${key}". Using bundled fallback copy instead.`,
+          result.reason,
+        );
+      });
+
+      if (successfulEntries.length > 0) {
+        const updatedTranslations = buildTranslations(successfulEntries);
+
+        setTranslations((previous) => {
+          const next = { ...previous };
+
+          for (const lang of SUPPORTED_LANGUAGES) {
+            next[lang] = {
+              ...previous[lang],
+              ...updatedTranslations[lang],
+            };
+          }
+
+          return next;
+        });
+      }
+
+      markInitialized();
+    };
+
     loadTranslations().catch((error) => {
-      console.error('Unhandled error while loading translations', error);
+      console.warn('Unhandled error while loading translations. Falling back to bundled copies.', error);
+      markInitialized();
     });
-  }, [contentVersion]);
+  }, [contentVersion, markInitialized]);
 
   useEffect(() => {
     if (typeof window === 'undefined') {
@@ -156,11 +251,11 @@ export const LanguageProvider: React.FC<{ children: React.ReactNode }> = ({ chil
     }
 
     try {
-      window.localStorage.setItem(LANGUAGE_STORAGE_KEY, language);
+      window.localStorage.setItem(LANGUAGE_STORAGE_KEY, languageState);
     } catch {
       // ignore storage quota/access issues; language will remain in memory
     }
-  }, [language]);
+  }, [languageState]);
 
   const t = useCallback(<T = string>(key: string): T => {
     const keys = key.split('.');
@@ -179,37 +274,46 @@ export const LanguageProvider: React.FC<{ children: React.ReactNode }> = ({ chil
       return result;
     };
 
-    const localizedResult = resolveValue(language);
-    if (localizedResult !== undefined) {
+    const isEmptyString = (value: unknown): value is string => typeof value === 'string' && value.trim().length === 0;
+
+    const localizedResult = resolveValue(languageState);
+    if (localizedResult !== undefined && !isEmptyString(localizedResult)) {
       return localizedResult as T;
     }
 
-    if (language !== FALLBACK_LANGUAGE) {
+    if (languageState !== FALLBACK_LANGUAGE) {
       const fallbackResult = resolveValue(FALLBACK_LANGUAGE);
-      if (fallbackResult !== undefined) {
+      if (fallbackResult !== undefined && !isEmptyString(fallbackResult)) {
         return fallbackResult as T;
       }
     }
 
     return key as unknown as T;
-  }, [language, translations]);
+  }, [languageState, translations]);
 
   const translate = useCallback(<T,>(content: Partial<Record<Language, T>> | T): T => {
     if (isLocalizedRecord<T>(content)) {
-      const localizedValue = content[language];
+      const normalizeValue = (value: T | undefined): T | undefined => {
+        if (typeof value === 'string' && value.trim().length === 0) {
+          return undefined;
+        }
+        return value;
+      };
+
+      const localizedValue = normalizeValue(content[languageState]);
       if (localizedValue !== undefined) {
         return localizedValue;
       }
 
-      if (language !== FALLBACK_LANGUAGE) {
-        const fallbackValue = content[FALLBACK_LANGUAGE];
+      if (languageState !== FALLBACK_LANGUAGE) {
+        const fallbackValue = normalizeValue(content[FALLBACK_LANGUAGE]);
         if (fallbackValue !== undefined) {
           return fallbackValue;
         }
       }
 
       for (const candidate of SUPPORTED_LANGUAGES) {
-        const candidateValue = content[candidate];
+        const candidateValue = normalizeValue(content[candidate]);
         if (candidateValue !== undefined) {
           return candidateValue;
         }
@@ -217,10 +321,9 @@ export const LanguageProvider: React.FC<{ children: React.ReactNode }> = ({ chil
     }
 
     return content as T;
-  }, [language]);
+  }, [languageState]);
 
-
-  const value = useMemo(() => ({ language, setLanguage, t, translate }), [language, t, translate]);
+  const value = useMemo(() => ({ language: languageState, setLanguage, t, translate }), [languageState, setLanguage, t, translate]);
 
   return (
     <LanguageContext.Provider value={value}>
