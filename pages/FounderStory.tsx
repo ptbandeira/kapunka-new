@@ -1,11 +1,11 @@
 import React, { useEffect, useMemo, useState } from 'react';
 import { motion } from 'framer-motion';
-import { fetchContentMarkdown } from '../utils/fetchContentMarkdown';
 import { useVisualEditorSync } from '../contexts/VisualEditorSyncContext';
 import { useSiteSettings } from '../contexts/SiteSettingsContext';
 import { getCloudinaryUrl } from '../utils/imageUrl';
 import { useLanguage } from '../contexts/LanguageContext';
 import Seo from '../src/components/Seo';
+import { loadLocalizedMarkdown, toVisualEditorObjectId } from '../utils/localizedContent';
 
 interface MicroStory {
   quote?: string;
@@ -40,8 +40,6 @@ interface FounderStoryContent {
   metaDescription?: string;
   headline?: string;
   subheadline?: string;
-  metaTitle?: string;
-  metaDescription?: string;
   body?: string;
   microStories?: MicroStory[];
   keyMilestones?: Milestone[];
@@ -151,37 +149,42 @@ const isFounderStoryContent = (value: unknown): value is FounderStoryContent => 
   );
 };
 
-const FOUNDER_STORY_PATH = '/content/pages/about/index.md';
-const FOUNDER_STORY_OBJECT_ID = 'FoundersStoryPage:content/pages/about/index.md';
+const FOUNDER_STORY_BASE_PATH = '/content/pages/about/index.md';
+const FOUNDER_STORY_DOCUMENT_TYPE = 'FounderStoryPage';
 
 const FounderStory: React.FC = () => {
-  const [content, setContent] = useState<FounderStoryContent | null>(null);
+  const [contentState, setContentState] = useState<{ content: FounderStoryContent; filePath: string } | null>(null);
   const [error, setError] = useState<string | null>(null);
   const { contentVersion } = useVisualEditorSync();
   const { settings: siteSettings } = useSiteSettings();
-  const { t } = useLanguage();
+  const { t, language } = useLanguage();
 
   useEffect(() => {
     let isMounted = true;
-    setContent(null);
+    setContentState(null);
     setError(null);
 
     const loadContent = async () => {
       try {
-        const { data } = await fetchContentMarkdown<unknown>(FOUNDER_STORY_PATH, { cache: 'no-store' });
+        const result = await loadLocalizedMarkdown<FounderStoryContent>({
+          slug: 'founder-story',
+          locale: language,
+          basePath: FOUNDER_STORY_BASE_PATH,
+          validate: isFounderStoryContent,
+        });
+
         if (!isMounted) {
           return;
         }
 
-        if (isFounderStoryContent(data)) {
-          setContent(data);
-        } else {
-          setError('Invalid founder story content structure.');
-        }
+        setContentState({ content: result.data, filePath: result.filePath });
+        setError(null);
       } catch (err) {
         if (!isMounted) {
           return;
         }
+        console.error('Failed to load founder story content', err);
+        setContentState(null);
         setError(err instanceof Error ? err.message : 'Failed to load founder story content.');
       }
     };
@@ -190,13 +193,21 @@ const FounderStory: React.FC = () => {
       if (!isMounted) {
         return;
       }
+      console.error('Unhandled error while loading founder story content', err);
+      setContentState(null);
       setError(err instanceof Error ? err.message : 'Failed to load founder story content.');
     });
 
     return () => {
       isMounted = false;
     };
-  }, [contentVersion]);
+  }, [language, contentVersion]);
+
+  const content = contentState?.content ?? null;
+  const founderStoryObjectId = toVisualEditorObjectId(
+    FOUNDER_STORY_DOCUMENT_TYPE,
+    contentState?.filePath ?? FOUNDER_STORY_BASE_PATH,
+  );
 
   const heroImage = content?.images?.hero;
   const heroImageSrc = heroImage?.src?.trim() ?? '';
@@ -262,7 +273,7 @@ const FounderStory: React.FC = () => {
   const socialImage = socialImageSource ? getCloudinaryUrl(socialImageSource) ?? socialImageSource : undefined;
 
   return (
-    <div className="bg-stone-50 text-stone-800" data-sb-object-id={FOUNDER_STORY_OBJECT_ID}>
+    <div className="bg-stone-50 text-stone-800" data-sb-object-id={founderStoryObjectId}>
       <Seo
         title={pageTitle}
         description={pageDescription}

@@ -1,11 +1,11 @@
 import React, { useEffect, useMemo, useState } from 'react';
 import { motion } from 'framer-motion';
-import { fetchContentMarkdown } from '../utils/fetchContentMarkdown';
 import { useVisualEditorSync } from '../contexts/VisualEditorSyncContext';
 import { useSiteSettings } from '../contexts/SiteSettingsContext';
 import { useLanguage } from '../contexts/LanguageContext';
 import { getCloudinaryUrl } from '../utils/imageUrl';
 import Seo from '../src/components/Seo';
+import { loadLocalizedMarkdown, toVisualEditorObjectId } from '../utils/localizedContent';
 
 interface BenefitItem {
   title?: string;
@@ -28,8 +28,6 @@ interface ProductEducationContent {
   metaDescription?: string;
   headline?: string;
   subheadline?: string;
-  metaTitle?: string;
-  metaDescription?: string;
   composition?: string;
   certifications?: string[];
   benefits?: BenefitItem[];
@@ -37,8 +35,8 @@ interface ProductEducationContent {
   faqs?: FaqItem[];
 }
 
-const PRODUCT_EDUCATION_PATH = '/content/pages/product/index.md';
-const PRODUCT_EDUCATION_OBJECT_ID = 'ProductEducationPage:content/pages/product/index.md';
+const PRODUCT_EDUCATION_BASE_PATH = '/content/pages/product/index.md';
+const PRODUCT_EDUCATION_DOCUMENT_TYPE = 'ProductEducationPage';
 
 const isRecord = (value: unknown): value is Record<string, unknown> => Boolean(value) && typeof value === 'object';
 
@@ -130,7 +128,7 @@ const isProductEducationContent = (value: unknown): value is ProductEducationCon
 };
 
 const ProductEducation: React.FC = () => {
-  const [content, setContent] = useState<ProductEducationContent | null>(null);
+  const [contentState, setContentState] = useState<{ content: ProductEducationContent; filePath: string } | null>(null);
   const [error, setError] = useState<string | null>(null);
   const { t, language } = useLanguage();
   const { contentVersion } = useVisualEditorSync();
@@ -138,25 +136,30 @@ const ProductEducation: React.FC = () => {
 
   useEffect(() => {
     let isMounted = true;
-    setContent(null);
+    setContentState(null);
     setError(null);
 
     const loadContent = async () => {
       try {
-        const { data } = await fetchContentMarkdown<unknown>(PRODUCT_EDUCATION_PATH, { cache: 'no-store' });
+        const result = await loadLocalizedMarkdown<ProductEducationContent>({
+          slug: 'product-education',
+          locale: language,
+          basePath: PRODUCT_EDUCATION_BASE_PATH,
+          validate: isProductEducationContent,
+        });
+
         if (!isMounted) {
           return;
         }
 
-        if (isProductEducationContent(data)) {
-          setContent(data);
-        } else {
-          setError('Invalid product education content structure.');
-        }
+        setContentState({ content: result.data, filePath: result.filePath });
+        setError(null);
       } catch (err) {
         if (!isMounted) {
           return;
         }
+        console.error('Failed to load product education content', err);
+        setContentState(null);
         setError(err instanceof Error ? err.message : 'Failed to load product education content.');
       }
     };
@@ -165,13 +168,21 @@ const ProductEducation: React.FC = () => {
       if (!isMounted) {
         return;
       }
+      console.error('Unhandled error while loading product education content', err);
+      setContentState(null);
       setError(err instanceof Error ? err.message : 'Failed to load product education content.');
     });
 
     return () => {
       isMounted = false;
     };
-  }, [contentVersion]);
+  }, [language, contentVersion]);
+
+  const content = contentState?.content ?? null;
+  const productEducationObjectId = toVisualEditorObjectId(
+    PRODUCT_EDUCATION_DOCUMENT_TYPE,
+    contentState?.filePath ?? PRODUCT_EDUCATION_BASE_PATH,
+  );
 
   const benefits = content?.benefits?.filter((benefit) => benefit && (benefit.title?.trim() || benefit.description?.trim())) ?? [];
   const usageSteps = content?.usageInstructions?.filter((step) => step && (step.title?.trim() || step.guidance?.trim())) ?? [];
@@ -200,7 +211,7 @@ const ProductEducation: React.FC = () => {
   }, [content?.composition]);
 
   return (
-    <div className="bg-white text-stone-900" data-sb-object-id={PRODUCT_EDUCATION_OBJECT_ID}>
+    <div className="bg-white text-stone-900" data-sb-object-id={productEducationObjectId}>
       <Seo
         title={pageTitle}
         description={metaDescription}

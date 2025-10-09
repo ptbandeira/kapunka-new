@@ -379,6 +379,11 @@ This log records day-to-day investigations, fixes, and decisions that affect the
 - **Impact & follow-up**: The homepage regains its expected structure while we reassess how to migrate to unified content without breaking layout. Future schema work should happen behind feature flags to avoid regressions.
 - **References**: Pending PR
 
+## 2025-10-09 — Restored localized markdown loaders
+- **What changed**: Added a reusable `loadLocalizedMarkdown` helper and updated the Method Kapunka, Product Education, Founder Story, Training Program, and Training pages to request locale-specific Markdown with automatic English fallback. Dynamic `data-sb-object-id` values now reflect the resolved locale so Visual Editor bindings stay accurate.
+- **Impact & follow-up**: Spanish and Portuguese routes once again hydrate fresh content instead of sticking to the English copy. Keep migrating remaining Markdown-backed pages to the helper to prevent future localization drift.
+- **References**: Pending PR
+
 ## 2025-10-07 — Mapped unified hero data to legacy layout
 - **What changed**: Updated `pages/Home.tsx` to translate the new `hero` schema (localized headings, CTAs, layout hints) into the legacy rendering fields so the homepage hero and marquee blocks load again.
 - **Impact & follow-up**: Restores the full hero experience with overlay image, dual CTAs, and alignment controls matching the design in production. Continue aligning remaining sections before re-enabling unified-only loading.

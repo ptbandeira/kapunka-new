@@ -1,4 +1,5 @@
-import { fetchContentMarkdown } from './fetchContentMarkdown';
+import type { Language } from '../types';
+import { loadLocalizedMarkdown, toVisualEditorObjectId } from './localizedContent';
 
 interface ModuleContent {
   title?: string;
@@ -34,8 +35,21 @@ export interface TrainingProgramContent {
   callToActions?: CallToAction[];
 }
 
-const TRAINING_PROGRAM_FILE_PATH = '/content/pages/training/index.md';
-export const TRAINING_PROGRAM_OBJECT_ID = 'TrainingProgramPage:content/pages/training/index.md';
+export interface TrainingProgramContentResult {
+  data: TrainingProgramContent;
+  locale: Language;
+  filePath: string;
+}
+
+const TRAINING_PROGRAM_BASE_PATH = '/content/pages/training/index.md';
+const TRAINING_PROGRAM_DOCUMENT_TYPE = 'TrainingProgramPage';
+
+export const getTrainingProgramObjectId = (filePath?: string): string => (
+  toVisualEditorObjectId(
+    TRAINING_PROGRAM_DOCUMENT_TYPE,
+    filePath ?? TRAINING_PROGRAM_BASE_PATH,
+  )
+);
 
 const isRecord = (value: unknown): value is Record<string, unknown> => Boolean(value) && typeof value === 'object';
 
@@ -144,11 +158,24 @@ const isTrainingProgramContent = (value: unknown): value is TrainingProgramConte
   );
 };
 
-export const fetchTrainingProgramContent = async (): Promise<TrainingProgramContent | null> => {
-  const { data } = await fetchContentMarkdown<unknown>(TRAINING_PROGRAM_FILE_PATH, { cache: 'no-store' });
+export const fetchTrainingProgramContent = async (
+  language: Language,
+): Promise<TrainingProgramContentResult | null> => {
+  try {
+    const result = await loadLocalizedMarkdown<TrainingProgramContent>({
+      slug: 'training-program',
+      locale: language,
+      basePath: TRAINING_PROGRAM_BASE_PATH,
+      validate: isTrainingProgramContent,
+    });
 
-  if (isTrainingProgramContent(data)) {
-    return data;
+    return {
+      data: result.data,
+      locale: result.locale,
+      filePath: result.filePath,
+    };
+  } catch (error) {
+    console.warn('Training program content fetch failed', error);
   }
 
   return null;
