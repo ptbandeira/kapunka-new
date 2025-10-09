@@ -1,5 +1,10 @@
 # Decap CMS & Netlify Rolling Log
 
+## 2025-10-09 — Canonicalized clinics slug handling in runtime
+- **What changed**: Added a `resolveCmsHref` helper that strips locale prefixes and rewrites any `/clinics` aliases to `/for-clinics`, then wired it through the home hero, clinics page CTA, shop related links, and CMS-driven sections so localized CTAs always generate valid router paths.
+- **Impact & follow-up**: Portuguese and Spanish visitors no longer fall back to the homepage even if CMS content regresses to the old slug; the helper safeguards future content updates without requiring manual audits.
+- **References**: Pending PR
+
 ## 2025-10-09 — Repointed localized clinics CTAs
 - **What changed**: Updated `content/pages_v2/index.json` and the English/Portuguese/Spanish home Markdown sources so every hero and media CTA now links to `/for-clinics` instead of the retired `/clinics` slug.
 - **Impact & follow-up**: Portuguese and Spanish visitors reach the dedicated Clinics landing page without bouncing back to the homepage; re-run the slug audit whenever new clinics-focused content is added.

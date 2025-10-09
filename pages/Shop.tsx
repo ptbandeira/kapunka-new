@@ -10,6 +10,7 @@ import { fetchContentJson } from '../utils/fetchContentJson';
 import { getVisualEditorAttributes } from '../utils/stackbitBindings';
 import { useVisualEditorSync } from '../contexts/VisualEditorSyncContext';
 import { buildLocalizedPath } from '../utils/localePaths';
+import { resolveCmsHref } from '../utils/cmsLinks';
 import Seo from '../src/components/Seo';
 import { getCloudinaryUrl } from '../utils/imageUrl';
 
@@ -355,10 +356,12 @@ const Shop: React.FC = () => {
                 <div className="flex flex-wrap gap-2">
                   {activeCategory.links.map((link, linkIndex) => {
                     const Icon = linkIcons[link.type];
-                    const isInternalLink = Boolean(link.url?.startsWith('/') || link.url?.startsWith('#/'));
-                    const normalizedUrl = isInternalLink
-                      ? buildLocalizedPath(link.url?.startsWith('#/') ? link.url.slice(1) : link.url, language)
-                      : link.url;
+                    const hrefInfo = resolveCmsHref(link.url ?? '');
+                    const internalPath = hrefInfo.internalPath;
+                    const normalizedUrl = internalPath
+                      ? buildLocalizedPath(internalPath, language)
+                      : hrefInfo.externalUrl ?? link.url;
+                    const isInternalLink = Boolean(internalPath);
                     const commonProps = {
                       className: 'inline-flex items-center gap-2 px-3 py-2 bg-stone-100 text-stone-700 rounded-full text-sm font-medium hover:bg-stone-200 transition-colors',
                       ...getVisualEditorAttributes(

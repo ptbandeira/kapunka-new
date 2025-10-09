@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { useLanguage } from '../../contexts/LanguageContext';
 import { buildLocalizedPath } from '../../utils/localePaths';
 import { getVisualEditorAttributes } from '../../utils/stackbitBindings';
+import { resolveCmsHref } from '../../utils/cmsLinks';
 import type { BannerSectionContent } from '../../types';
 
 interface BannerProps {
@@ -22,16 +23,6 @@ const resolveVariant = (variant: string | undefined) => {
     default:
       return 'bg-stone-900 text-white';
   }
-};
-
-const isInternalUrl = (url: string) => url.startsWith('/') || url.startsWith('#/');
-
-const normalizeInternalUrl = (url: string) => {
-  if (url.startsWith('#/')) {
-    const normalized = url.slice(1);
-    return normalized.startsWith('/') ? normalized : `/${normalized}`;
-  }
-  return url.startsWith('/') ? url : `/${url}`;
 };
 
 const Banner: React.FC<BannerProps> = ({ section, fieldPath }) => {
@@ -58,10 +49,12 @@ const Banner: React.FC<BannerProps> = ({ section, fieldPath }) => {
       return null;
     }
 
-    if (isInternalUrl(url)) {
+    const { internalPath, externalUrl } = resolveCmsHref(url);
+
+    if (internalPath) {
       return (
         <Link
-          to={buildLocalizedPath(normalizeInternalUrl(url), language)}
+          to={buildLocalizedPath(internalPath, language)}
           className="inline-flex items-center rounded-full bg-white/90 px-4 py-2 text-sm font-medium text-stone-900 transition hover:bg-white"
           {...getVisualEditorAttributes(urlFieldPath)}
         >
@@ -72,7 +65,7 @@ const Banner: React.FC<BannerProps> = ({ section, fieldPath }) => {
 
     return (
       <a
-        href={url}
+        href={externalUrl ?? url}
         className="inline-flex items-center rounded-full bg-white/20 px-4 py-2 text-sm font-medium text-white transition hover:bg-white/30"
         target="_blank"
         rel="noreferrer"

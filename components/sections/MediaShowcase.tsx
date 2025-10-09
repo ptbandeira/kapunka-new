@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { useLanguage } from '../../contexts/LanguageContext';
 import { buildLocalizedPath } from '../../utils/localePaths';
 import { getVisualEditorAttributes } from '../../utils/stackbitBindings';
+import { resolveCmsHref } from '../../utils/cmsLinks';
 import { getCloudinaryUrl, getObjectPositionFromFocal } from '../../utils/imageUrl';
 import type { MediaShowcaseSectionContent } from '../../types';
 
@@ -10,16 +11,6 @@ interface MediaShowcaseProps {
   section: MediaShowcaseSectionContent;
   fieldPath?: string;
 }
-
-const isInternal = (href: string) => href.startsWith('/') || href.startsWith('#/');
-
-const normalizeInternal = (href: string) => {
-  if (href.startsWith('#/')) {
-    const normalized = href.slice(1);
-    return normalized.startsWith('/') ? normalized : `/${normalized}`;
-  }
-  return href.startsWith('/') ? href : `/${href}`;
-};
 
 const MediaShowcase: React.FC<MediaShowcaseProps> = ({ section, fieldPath }) => {
   const { translate, language } = useLanguage();
@@ -74,10 +65,12 @@ const MediaShowcase: React.FC<MediaShowcaseProps> = ({ section, fieldPath }) => 
       return null;
     }
 
-    if (isInternal(item.ctaHref)) {
+    const { internalPath, externalUrl } = resolveCmsHref(item.ctaHref);
+
+    if (internalPath) {
       return (
         <Link
-          to={buildLocalizedPath(normalizeInternal(item.ctaHref), language)}
+          to={buildLocalizedPath(internalPath, language)}
           className="inline-flex items-center rounded-full border border-white/60 bg-white/10 px-5 py-2 text-sm font-medium tracking-wide text-white transition hover:bg-white hover:text-stone-900"
           {...getVisualEditorAttributes(item.ctaHrefFieldPath)}
         >
@@ -88,7 +81,7 @@ const MediaShowcase: React.FC<MediaShowcaseProps> = ({ section, fieldPath }) => 
 
     return (
       <a
-        href={item.ctaHref}
+        href={externalUrl ?? item.ctaHref}
         className="inline-flex items-center rounded-full border border-white/60 bg-white/10 px-5 py-2 text-sm font-medium tracking-wide text-white transition hover:bg-white hover:text-stone-900"
         target="_blank"
         rel="noreferrer"
