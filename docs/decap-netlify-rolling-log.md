@@ -1,5 +1,10 @@
 # Decap CMS & Netlify Rolling Log
 
+## 2025-10-09 — Migrated Tailwind to the build pipeline
+- **What changed**: Installed Tailwind + PostCSS tooling, added a project-wide config that mirrors the previous CDN overrides, created entry CSS for the app/admin, and wired the Netlify prebuild step to emit `/public/styles/globals.css` for CMS previews instead of loading Tailwind from the CDN.
+- **Impact & follow-up**: Removes the runtime CDN dependency while keeping CMS previews styled with the same utility classes as production. Re-run `npm run tailwind:preview` whenever Tailwind directives change outside of `npm run build` to refresh the admin stylesheet.
+- **References**: Pending PR
+
 ## 2025-10-11 — Hardened runtime error telemetry
 - **What changed**: Replaced the ad-hoc `log-error` handler with an ESM Netlify Function that enforces `application/json` POST payloads and timestamps each `[client-error]` entry, rebuilt the guarded browser logger around `initLogger()`, and moved CMS analytics behind a `CMS_ANALYTICS_ENABLED` flag so production traffic never triggers Decap-only metrics.
 - **Impact & follow-up**: Keeps production noise out of the admin telemetry stream while giving ops a single Netlify Function log to inspect runtime crashes. Toggle `ENABLE_LOGGER` in Netlify when deeper debugging is required and watch for any backlog of cms analytics requests once re-enabled inside the admin bundle.
