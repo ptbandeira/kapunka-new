@@ -2,9 +2,11 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import App from './App';
 import { AppProvider } from './contexts/AppContext';
-import { initializeLogger } from './src/logger';
+import { initLogger } from './src/logger';
 
-initializeLogger();
+if (import.meta.env?.PROD) {
+  initLogger();
+}
 
 const rootElement = document.getElementById('root');
 if (!rootElement) {
@@ -17,5 +19,5 @@ root.render(
     <AppProvider>
       <App />
     </AppProvider>
-  </React.StrictMode>
+  </React.StrictMode>,
 );

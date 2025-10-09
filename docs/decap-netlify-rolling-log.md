@@ -1,5 +1,10 @@
 # Decap CMS & Netlify Rolling Log
 
+## 2025-10-11 — Hardened runtime error telemetry
+- **What changed**: Replaced the ad-hoc `log-error` handler with an ESM Netlify Function that enforces `application/json` POST payloads and timestamps each `[client-error]` entry, rebuilt the guarded browser logger around `initLogger()`, and moved CMS analytics behind a `CMS_ANALYTICS_ENABLED` flag so production traffic never triggers Decap-only metrics.
+- **Impact & follow-up**: Keeps production noise out of the admin telemetry stream while giving ops a single Netlify Function log to inspect runtime crashes. Toggle `ENABLE_LOGGER` in Netlify when deeper debugging is required and watch for any backlog of cms analytics requests once re-enabled inside the admin bundle.
+- **References**: Pending PR
+
 ## 2025-10-10 — Added client error logging pipeline
 - **What changed**: Created a `log-error` Netlify Function that accepts JSON payloads from the browser and emits `[client-error]` entries, plus a guarded Vite client logger that posts fatal errors only when `ENABLE_LOGGER=true`.
 - **Impact & follow-up**: Enables on-demand tracing of production crashes directly from Netlify Function logs without bloating the bundle when the flag is disabled. Monitor log volume once enabled and consider batching if traffic grows.

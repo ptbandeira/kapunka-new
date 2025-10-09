@@ -733,113 +733,139 @@
         .filter((item) => typeof item === 'string' && item.trim().length > 0);
     }
 
-    const ANALYTICS_ENDPOINT = '/.netlify/functions/cms-analytics';
-    const OFFLINE_QUEUE_KEY = 'cmsAnalyticsOfflineQueue';
+    const CMS_ANALYTICS_ENABLED =
+      typeof window !== 'undefined' && window.CMS_ANALYTICS_ENABLED === true;
 
-    function enqueueOffline(body) {
-      try {
-        const queue = JSON.parse(window.localStorage.getItem(OFFLINE_QUEUE_KEY) || '[]');
-        queue.push(body);
-        window.localStorage.setItem(OFFLINE_QUEUE_KEY, JSON.stringify(queue.slice(-50)));
-      } catch (error) {
-        console.warn('[cms-analytics] Unable to persist offline queue', error);
-      }
-    }
-
-    async function flushOfflineQueue() {
-      let queue;
-      try {
-        queue = JSON.parse(window.localStorage.getItem(OFFLINE_QUEUE_KEY) || '[]');
-      } catch (error) {
-        queue = [];
+    const cmsAnalytics = (() => {
+      if (!CMS_ANALYTICS_ENABLED) {
+        return {
+          track: () => {},
+          registerCmsListeners: () => {},
+          attachWindowErrorHandlers: () => {},
+        };
       }
 
-      if (!Array.isArray(queue) || queue.length === 0) {
-        return;
-      }
+      const ANALYTICS_ENDPOINT = '/.netlify/functions/cms-analytics';
 
-      const pending = [...queue];
-      window.localStorage.setItem(OFFLINE_QUEUE_KEY, '[]');
-
-      await Promise.all(pending.map((body) => fetch(ANALYTICS_ENDPOINT, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body,
-      }).catch((error) => {
-        console.warn('[cms-analytics] Failed to flush cached event', error);
-        enqueueOffline(body);
-      })));
-    }
-
-    if (typeof window !== 'undefined') {
-      window.addEventListener('online', () => {
-        flushOfflineQueue().catch((error) => {
-          console.warn('[cms-analytics] Failed to flush queue after reconnect', error);
-        });
-      });
-    }
-
-    function trackCmsEvent(eventType, data = {}, options = {}) {
-      const payload = {
-        eventType,
-        data,
-        source: 'decap-admin',
-        timestamp: new Date().toISOString(),
-      };
-
-      const body = JSON.stringify(payload);
-
-      if (typeof navigator !== 'undefined' && typeof navigator.sendBeacon === 'function' && options.fireAndForget !== false) {
+      const sendEvent = (payload) => {
         try {
-          const blob = new Blob([body], { type: 'application/json' });
-          const sent = navigator.sendBeacon(ANALYTICS_ENDPOINT, blob);
-          if (sent) {
-            return;
+          const body = JSON.stringify(payload);
+
+          if (typeof navigator !== 'undefined' && typeof navigator.sendBeacon === 'function') {
+            const blob = new Blob([body], { type: 'application/json' });
+            const sent = navigator.sendBeacon(ANALYTICS_ENDPOINT, blob);
+            if (sent) {
+              return;
+            }
+          }
+
+          if (typeof fetch === 'function') {
+            void fetch(ANALYTICS_ENDPOINT, {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body,
+            });
           }
         } catch (error) {
-          console.warn('[cms-analytics] sendBeacon failed', error);
+          console.warn('[cms-analytics] Failed to send analytics event', error);
         }
-      }
+      };
 
-      fetch(ANALYTICS_ENDPOINT, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body,
-      }).catch((error) => {
-        console.warn('[cms-analytics] Network request failed, queueing offline event', error);
-        enqueueOffline(body);
-      });
-    }
+      const extractEntryMetadata = (entry) => {
+        if (!entry) {
+          return {};
+        }
 
-    function extractEntryMetadata(entry) {
-      if (!entry) {
-        return {};
-      }
+        const slug = getEntrySlug(entry);
+        const path = typeof entry.get === 'function' ? entry.get('path') : entry.path;
+        return { slug, path };
+      };
 
-      const slug = getEntrySlug(entry);
-      const path = typeof entry.get === 'function' ? entry.get('path') : entry.path;
-      return { slug, path };
-    }
+      const extractEventMetadata = (event) => {
+        const collection = event?.collection || event?.collectionName || event?.data?.collectionName || event?.data?.collection;
+        const entry = event?.entry || event?.data?.entry;
+        const metadata = extractEntryMetadata(entry);
+        return {
+          collection: typeof collection === 'string' ? collection : collection?.get?.('name') || collection?.name || 'unknown',
+          ...metadata,
+        };
+      };
 
-    function extractEventMetadata(event) {
-      const collection = event?.collection || event?.collectionName || event?.data?.collectionName || event?.data?.collection;
-      const entry = event?.entry || event?.data?.entry;
-      const metadata = extractEntryMetadata(entry);
+      const track = (eventType, data = {}) => {
+        sendEvent({
+          eventType,
+          data,
+          source: 'decap-admin',
+          timestamp: new Date().toISOString(),
+        });
+      };
+
+      const registerCmsListeners = (CMSInstance) => {
+        if (!CMSInstance) {
+          return;
+        }
+
+        const analyticsEvents = [
+          { name: 'preSave', event: 'entry:preSave' },
+          { name: 'postSave', event: 'entry:postSave' },
+          { name: 'preDelete', event: 'entry:preDelete' },
+          { name: 'postDelete', event: 'entry:postDelete' },
+          { name: 'postPublish', event: 'entry:postPublish' },
+          { name: 'postUnpublish', event: 'entry:postUnpublish' },
+        ];
+
+        analyticsEvents.forEach(({ name, event }) => {
+          try {
+            CMSInstance.registerEventListener({
+              name,
+              handler: (payload = {}) => {
+                const meta = extractEventMetadata(payload);
+                track(event, meta);
+              },
+            });
+          } catch (listenerError) {
+            console.warn(`[cms-analytics] Failed to register ${name} listener`, listenerError);
+          }
+        });
+      };
+
+      const attachWindowErrorHandlers = () => {
+        if (typeof window === 'undefined') {
+          return;
+        }
+
+        window.addEventListener('error', (event) => {
+          const error = event.error || event.message || event;
+          track('cms:error', {
+            type: 'window:error',
+            message: error?.message || (typeof error === 'string' ? error : 'Unknown error'),
+            stack: error?.stack,
+            context: {
+              filename: event.filename,
+              lineno: event.lineno,
+              colno: event.colno,
+            },
+          });
+        });
+
+        window.addEventListener('unhandledrejection', (event) => {
+          const reason = event.reason;
+          track('cms:error', {
+            type: 'window:unhandledrejection',
+            message: reason?.message || (typeof reason === 'string' ? reason : 'Unhandled rejection'),
+            stack: reason?.stack,
+            context: {},
+          });
+        });
+      };
+
       return {
-        collection: typeof collection === 'string' ? collection : collection?.get?.('name') || collection?.name || 'unknown',
-        ...metadata,
+        track,
+        registerCmsListeners,
+        attachWindowErrorHandlers,
       };
-    }
+    })();
 
-    function handleCmsError(type, error, context = {}) {
-      const payload = {
-        type,
-        message: error?.message || (typeof error === 'string' ? error : 'Unknown error'),
-        stack: error?.stack,
-        context,
-      };
-      trackCmsEvent('cms:error', payload, { fireAndForget: false });
-    }
 
     function createSectionBadge(type, extraClassName) {
       return createElement(
@@ -1515,47 +1541,9 @@
       }
     }
 
-    trackCmsEvent('cms:booted', { version: CMS?.VERSION || 'unknown' });
-    flushOfflineQueue().catch((error) => {
-      console.warn('[cms-analytics] Initial queue flush failed', error);
-    });
-
-    const analyticsEvents = [
-      { name: 'preSave', event: 'entry:preSave' },
-      { name: 'postSave', event: 'entry:postSave' },
-      { name: 'preDelete', event: 'entry:preDelete' },
-      { name: 'postDelete', event: 'entry:postDelete' },
-      { name: 'postPublish', event: 'entry:postPublish' },
-      { name: 'postUnpublish', event: 'entry:postUnpublish' },
-    ];
-
-    analyticsEvents.forEach(({ name, event }) => {
-      try {
-        CMS.registerEventListener({
-          name,
-          handler: (payload = {}) => {
-            const meta = extractEventMetadata(payload);
-            trackCmsEvent(event, meta);
-          },
-        });
-      } catch (error) {
-        console.warn(`[cms-analytics] Failed to register ${name} listener`, error);
-      }
-    });
-
-    if (typeof window !== 'undefined') {
-      window.addEventListener('error', (event) => {
-        handleCmsError('window:error', event.error || event.message, {
-          filename: event.filename,
-          lineno: event.lineno,
-          colno: event.colno,
-        });
-      });
-
-      window.addEventListener('unhandledrejection', (event) => {
-        handleCmsError('window:unhandledrejection', event.reason, {});
-      });
-    }
+    cmsAnalytics.track('cms:booted', { version: CMS?.VERSION || 'unknown' });
+    cmsAnalytics.registerCmsListeners(CMS);
+    cmsAnalytics.attachWindowErrorHandlers();
 
     CMS.registerPreviewTemplate('pages', PagePreview);
     CMS.registerPreviewTemplate('products', ProductsPreview);
