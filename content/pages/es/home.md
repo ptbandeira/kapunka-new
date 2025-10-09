@@ -28,7 +28,7 @@ sections:
     imageAlt: "Profesional masajeando el rostro de una clienta con cuidado de arg\xE1\
       n"
     ctaLabel: Aliarte con nosotros
-    ctaHref: /clinics
+    ctaHref: /for-clinics
     image: https://images.pexels.com/photos/3865548/pexels-photo-3865548.jpeg?auto=compress&cs=tinysrgb&w=1920
     imageFocal:
       x: 0.44
@@ -173,5 +173,5 @@ heroCtas:
     href: /shop
   ctaSecondary:
     label: "Para cl\xEDnicas y profesionales"
-    href: /clinics
+    href: /for-clinics
 ---

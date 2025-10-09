@@ -992,9 +992,9 @@
               "es": "Para clínicas y profesionales"
             },
             "href": {
-              "en": "/clinics",
-              "pt": "/clinics",
-              "es": "/clinics"
+              "en": "/for-clinics",
+              "pt": "/for-clinics",
+              "es": "/for-clinics"
             }
           }
         },
@@ -1068,7 +1068,7 @@
                 "en": "Used by dermatologists, medspas, and recovery clinics for over a decade."
               },
               "ctaHref": {
-                "en": "/clinics"
+                "en": "/for-clinics"
               },
               "ctaLabel": {
                 "en": "Partner With Us"
@@ -1347,9 +1347,9 @@
                 "es": "Utilizado desde hace más de una década por dermatólogos y clínicas de recuperación."
               },
               "ctaHref": {
-                "en": "/clinics",
-                "pt": "/clinics",
-                "es": "/clinics"
+                "en": "/for-clinics",
+                "pt": "/for-clinics",
+                "es": "/for-clinics"
               },
               "ctaLabel": {
                 "en": "Partner With Us",
