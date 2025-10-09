@@ -11,7 +11,8 @@ export default defineConfig(({ mode }) => {
     define: {
       "process.env.API_KEY": JSON.stringify(env.GEMINI_API_KEY),
       "process.env.GEMINI_API_KEY": JSON.stringify(env.GEMINI_API_KEY),
-      "process.env.CLOUDINARY_BASE_URL": JSON.stringify(env.CLOUDINARY_BASE_URL)
+      "process.env.CLOUDINARY_BASE_URL": JSON.stringify(env.CLOUDINARY_BASE_URL),
+      "import.meta.env.ENABLE_LOGGER": JSON.stringify(env.ENABLE_LOGGER ?? "false")
     },
     resolve: {
       alias: {
