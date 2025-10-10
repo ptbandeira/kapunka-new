@@ -5,8 +5,9 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "prebuild": "npm run cms:build && npm run tailwind:preview",
+    "prebuild": "npm run cms:build && npm run tailwind:preview && npm run sync:content",
     "build": "vite build && node scripts/postbuild.js",
+    "sync:content": "node scripts/sync-static-content.mjs",
     "preview": "vite preview",
     "cms:build": "node scripts/build-decap-config.mjs",
     "tailwind:preview": "tailwindcss -c tailwind.config.js -i ./styles/globals.css -o ./public/styles/globals.css --minify",
