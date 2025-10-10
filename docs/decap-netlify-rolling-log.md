@@ -1,5 +1,10 @@
 # Decap CMS & Netlify Rolling Log
 
+## 2025-10-19 — Restored unified page previews in Decap
+- **What changed**: Re-enabled the preview pane for the unified page index and taught `admin/cms.js` to resolve localized fields/sections via the same transformation pipeline as `loadUnifiedPage`, so hero copy, CTAs, and additional fields now surface the correct locale in the CMS.
+- **Impact & follow-up**: Editors can review accurate EN/PT/ES renderings while editing without seeing fallback placeholders; monitor preview performance and extend the locale resolver if new section shapes introduce additional nested locales.
+- **References**: Pending PR
+
 ## 2025-10-13 — Relaxed required validation across Decap
 - **What changed**: Updated `scripts/build-decap-config.mjs` to automatically flag every widget as optional and loosen regex patterns so empty strings pass validation, then regenerated `admin/config.yml` via `npm run cms:build`.
 - **Impact & follow-up**: Editors can now save entries after modifying only a couple of fields without filling hundreds of placeholders; keep an eye on future schema additions to ensure the build script continues to enforce optional fields.
