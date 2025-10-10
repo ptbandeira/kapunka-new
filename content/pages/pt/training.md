@@ -11,4 +11,4 @@ sections:
     entries: []
 ---
 
-# TODO: Translate to Portuguese
+<!-- TODO: Translate to Portuguese -->

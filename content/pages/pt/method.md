@@ -78,4 +78,4 @@ sections:
           - After Sun
 ---
 
-# TODO: Translate to Portuguese
+<!-- TODO: Translate to Portuguese -->

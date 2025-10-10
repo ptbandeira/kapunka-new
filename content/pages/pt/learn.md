@@ -24,4 +24,4 @@ categories:
 sections: []
 ---
 
-# TODO: Translate to Portuguese
+<!-- TODO: Translate to Portuguese -->
