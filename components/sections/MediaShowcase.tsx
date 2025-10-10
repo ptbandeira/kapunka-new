@@ -1,6 +1,12 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { useLanguage } from '../../contexts/LanguageContext';
+imp          <Link
+          to={buildLocalizedPath(internalPath, language)}
+          className="inline-flex items-center rounded-full border border-white/60 bg-white/10 px-4 py-1.5 text-xs font-medium tracking-wide text-white transition hover:bg-white hover:text-stone-900"
+          {...getVisualEditorAttributes()}
+        >
+          <span {...getVisualEditorAttributes()}>{item.ctaLabel}</span>
+        </Link>seLanguage } from '../../contexts/LanguageContext';
 import { buildLocalizedPath } from '../../utils/localePaths';
 import { getVisualEditorAttributes } from '../../utils/stackbitBindings';
 import { resolveCmsHref } from '../../utils/cmsLinks';
@@ -71,7 +77,7 @@ const MediaShowcase: React.FC<MediaShowcaseProps> = ({ section, fieldPath }) => 
       return (
         <Link
           to={buildLocalizedPath(internalPath, language)}
-          className="inline-flex items-center rounded-full border border-white/60 bg-white/10 px-5 py-2 text-sm font-medium tracking-wide text-white transition hover:bg-white hover:text-stone-900"
+          className="inline-flex items-center rounded-full border border-white/60 bg-white/10 px-4 py-1.5 text-xs font-medium tracking-wide text-white transition hover:bg-white hover:text-stone-900"
           {...getVisualEditorAttributes(item.ctaHrefFieldPath)}
         >
           <span {...getVisualEditorAttributes(item.ctaLabelFieldPath)}>{item.ctaLabel}</span>
@@ -93,32 +99,36 @@ const MediaShowcase: React.FC<MediaShowcaseProps> = ({ section, fieldPath }) => 
   };
 
   return (
-    <section className="bg-white" {...getVisualEditorAttributes(fieldPath)} data-sb-field-path={fieldPath}>
-      <div className="container mx-auto px-0">
+    <section className="bg-white w-full" {...getVisualEditorAttributes(fieldPath)} data-sb-field-path={fieldPath}>
+      <div className="w-full">
         {title?.trim() ? (
           <div
-            className="px-6 sm:px-10 lg:px-16 mb-10"
+            className="container mx-auto px-6 sm:px-10 lg:px-16 mb-10"
             {...getVisualEditorAttributes(fieldPath ? `${fieldPath}.title` : undefined)}
           >
             <h2 className="text-3xl sm:text-4xl font-semibold text-stone-900 tracking-tight">{title}</h2>
           </div>
         ) : null}
-        <div className="grid grid-cols-1 md:grid-cols-2 md:grid-rows-2 gap-0">
+        <div className="flex flex-col md:flex-row flex-wrap">
           {items.map((item, index) => {
             const objectPosition = getObjectPositionFromFocal(item.imageFocal ?? undefined);
             const imageStyle = objectPosition ? { objectPosition } : undefined;
             const baseClasses = [
               'relative overflow-hidden text-white flex items-end justify-start',
-              'aspect-[4/3] md:aspect-auto md:h-[360px] lg:h-[420px]',
+              'aspect-[4/3] md:aspect-auto md:h-[360px] lg:h-[420px] w-full',
             ];
             const cellClasses = (() => {
+              const row1Height = 'md:h-[420px] lg:h-[480px]';
+              const row2Height = 'md:h-[360px] lg:h-[420px]';
               switch (index) {
                 case 0:
-                  return [...baseClasses, 'md:border-r md:border-b border-white/10'];
+                  return [...baseClasses, row1Height, 'md:w-1/2', 'border-white/10'];
                 case 1:
-                  return [...baseClasses, 'md:border-b border-white/10'];
+                  return [...baseClasses, row1Height, 'md:w-1/2', 'border-white/10'];
                 case 2:
-                  return [...baseClasses, 'md:border-r border-white/10'];
+                  return [...baseClasses, row2Height, 'md:w-3/4', 'border-white/10'];
+                case 3:
+                  return [...baseClasses, row2Height, 'md:w-1/4', 'border-white/10'];
                 default:
                   return baseClasses;
               }
@@ -128,7 +138,7 @@ const MediaShowcase: React.FC<MediaShowcaseProps> = ({ section, fieldPath }) => 
               <article
                 key={item.fieldPath ?? index}
                 className={cellClasses.join(' ')}
-                {...getVisualEditorAttributes(item.fieldPath)}
+                {...getVisualEditorAttributes()}
                 data-sb-field-path={item.fieldPath}
               >
                 {item.imageUrl ? (
@@ -142,7 +152,7 @@ const MediaShowcase: React.FC<MediaShowcaseProps> = ({ section, fieldPath }) => 
                 ) : (
                   <div
                     className="absolute inset-0 flex items-center justify-center border border-dashed border-white/40"
-                    {...getVisualEditorAttributes(item.imageFieldPath)}
+                    {...getVisualEditorAttributes()}
                   >
                     <span className="text-sm text-white/70">Add an image</span>
                   </div>
@@ -152,7 +162,7 @@ const MediaShowcase: React.FC<MediaShowcaseProps> = ({ section, fieldPath }) => 
                   {item.eyebrow?.trim() ? (
                     <span
                       className="text-xs font-semibold uppercase tracking-[0.24em] text-white/70"
-                      {...getVisualEditorAttributes(item.eyebrowFieldPath)}
+                      {...getVisualEditorAttributes()}
                     >
                       {item.eyebrow}
                     </span>
@@ -160,7 +170,7 @@ const MediaShowcase: React.FC<MediaShowcaseProps> = ({ section, fieldPath }) => 
                   {item.title?.trim() ? (
                     <h3
                       className="text-2xl font-semibold leading-snug"
-                      {...getVisualEditorAttributes(item.titleFieldPath)}
+                      {...getVisualEditorAttributes()}
                     >
                       {item.title}
                     </h3>
@@ -168,7 +178,7 @@ const MediaShowcase: React.FC<MediaShowcaseProps> = ({ section, fieldPath }) => 
                   {item.body?.trim() ? (
                     <p
                       className="text-sm text-white/85 max-w-md"
-                      {...getVisualEditorAttributes(item.bodyFieldPath)}
+                      {...getVisualEditorAttributes()}
                     >
                       {item.body}
                     </p>
