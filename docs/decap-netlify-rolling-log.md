@@ -1,5 +1,10 @@
 # Decap CMS & Netlify Rolling Log
 
+## 2025-10-12 — Synced content into Vite public assets
+- **What changed**: Added `scripts/sync-static-content.mjs` to mirror the canonical `content/` directory into `public/content` during `prebuild`, removed the redundant postbuild copies, and ignored the generated folder so Vite now ships the JSON bundle without an extra script.
+- **Impact & follow-up**: Netlify preview deploys consistently serve `/content/...` requests for localized pages because the assets live alongside the SPA output. Monitor future builds to ensure the sync keeps `site/content` populated for Visual Editor mirrors.
+- **References**: Pending PR
+
 ## 2025-10-09 — Canonicalized clinics slug handling in runtime
 - **What changed**: Added a `resolveCmsHref` helper that strips locale prefixes and rewrites any `/clinics` aliases to `/for-clinics`, then wired it through the home hero, clinics page CTA, shop related links, and CMS-driven sections so localized CTAs always generate valid router paths.
 - **Impact & follow-up**: Portuguese and Spanish visitors no longer fall back to the homepage even if CMS content regresses to the old slug; the helper safeguards future content updates without requiring manual audits.
