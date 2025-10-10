@@ -183,7 +183,7 @@ schedule_fields: &ref_5
   label: Scheduling
   name: scheduling
   widget: object
-  collapsed: true
+  collapsed: false
   required: false
   hint: Optional publish/unpublish timestamps for automated scheduling.
   fields:
@@ -206,7 +206,7 @@ focal_point_field:
   label: Focal Point
   name: focal
   widget: object
-  collapsed: true
+  collapsed: false
   required: false
   hint: >-
     Adjust the image focus area. Values between 0 and 1 represent the relative horizontal and vertical point to keep in
@@ -461,7 +461,7 @@ product_item_fields: &ref_49
   - label: Good to Know
     name: goodToKnow
     widget: object
-    collapsed: true
+    collapsed: false
     fields:
       - widget: object
         i18n: true
@@ -491,7 +491,7 @@ product_item_fields: &ref_49
   - label: Knowledge Hub
     name: knowledge
     widget: object
-    collapsed: true
+    collapsed: false
     fields: *ref_8
     required: false
   - label: FAQs
@@ -584,7 +584,7 @@ hero_content_fields: &ref_13
   - label: Primary Call-to-Action
     name: primaryCta
     widget: object
-    collapsed: true
+    collapsed: false
     required: false
     fields:
       - widget: object
@@ -602,7 +602,7 @@ hero_content_fields: &ref_13
   - label: Secondary Call-to-Action
     name: secondaryCta
     widget: object
-    collapsed: true
+    collapsed: false
     required: false
     fields:
       - widget: object
@@ -620,7 +620,7 @@ hero_content_fields: &ref_13
   - label: Hero Image
     name: image
     widget: object
-    collapsed: true
+    collapsed: false
     required: false
     fields:
       - label: Image
@@ -640,7 +640,7 @@ hero_content_fields: &ref_13
       - label: Focal Point
         name: focal
         widget: object
-        collapsed: true
+        collapsed: false
         required: false
         hint: Optional focus point to control how the hero image crops responsively.
         fields: *ref_12
@@ -688,7 +688,7 @@ media_copy_fields: &ref_14
   - label: Call-to-Action
     name: cta
     widget: object
-    collapsed: true
+    collapsed: false
     required: false
     fields:
       - widget: object
@@ -706,7 +706,7 @@ media_copy_fields: &ref_14
   - label: Image
     name: image
     widget: object
-    collapsed: true
+    collapsed: false
     required: false
     fields:
       - label: Image
@@ -726,7 +726,7 @@ media_copy_fields: &ref_14
       - label: Focal Point
         name: focal
         widget: object
-        collapsed: true
+        collapsed: false
         required: false
         hint: Optional focus point to guide cropping when the layout uses object-fit cover.
         fields: *ref_12
@@ -794,7 +794,7 @@ shared_sections:
     label: Media + Copy
     name: mediaCopy
     widget: object
-    collapsed: true
+    collapsed: false
     summary: Media + Copy · {{fields.title | default('Untitled')}}
     fields:
       - name: type
@@ -837,7 +837,7 @@ shared_sections:
       - label: Image Focal Point
         name: imageFocal
         widget: object
-        collapsed: true
+        collapsed: false
         required: false
         hint: >-
           Adjust the image focus area. Values between 0 and 1 represent the relative horizontal and vertical point to
@@ -856,7 +856,7 @@ shared_sections:
     label: Media Showcase
     name: mediaShowcase
     widget: object
-    collapsed: true
+    collapsed: false
     summary: Media Showcase · {{fields.title | default('Untitled')}}
     fields:
       - name: type
@@ -871,7 +871,7 @@ shared_sections:
       - label: Items
         name: items
         widget: list
-        collapsed: true
+        collapsed: false
         summary: '{{fields.title | default(fields.eyebrow) | default(''Card'')}}'
         fields:
           - label: Eyebrow
@@ -902,7 +902,7 @@ shared_sections:
           - label: Image Focal Point
             name: imageFocal
             widget: object
-            collapsed: true
+            collapsed: false
             required: false
             hint: >-
               Adjust the image focus area. Values between 0 and 1 represent the relative horizontal and vertical point
@@ -922,7 +922,7 @@ shared_sections:
     label: Feature Grid
     name: featureGrid
     widget: object
-    collapsed: true
+    collapsed: false
     summary: Feature Grid · {{fields.title | default('Untitled')}}
     fields:
       - name: type
@@ -944,7 +944,7 @@ shared_sections:
       - label: Items
         name: items
         widget: list
-        collapsed: true
+        collapsed: false
         summary: '{{fields.label | default(''Feature'')}}'
         fields:
           - label: Label
@@ -961,7 +961,7 @@ shared_sections:
     label: Product Grid
     name: productGrid
     widget: object
-    collapsed: true
+    collapsed: false
     summary: Product Grid · {{fields.title | default('Untitled')}}
     fields:
       - name: type
@@ -983,7 +983,7 @@ shared_sections:
       - label: Products
         name: products
         widget: list
-        collapsed: true
+        collapsed: false
         summary: '{{fields.id | default(''Product'')}}'
         hint: Select the individual products to feature.
         fields:
@@ -1007,7 +1007,7 @@ shared_sections:
     label: Testimonials
     name: testimonials
     widget: object
-    collapsed: true
+    collapsed: false
     summary: Testimonials · {{fields.title | default('Selected entries')}}
     fields:
       - name: type
@@ -1022,7 +1022,7 @@ shared_sections:
       - label: Testimonials
         name: testimonials
         widget: list
-        collapsed: true
+        collapsed: false
         summary: '{{fields.testimonialRef | default(fields.author) | default(''Testimonial'')}}'
         fields:
           - label: Testimonial Reference
@@ -1056,7 +1056,7 @@ shared_sections:
     label: Community Carousel
     name: communityCarousel
     widget: object
-    collapsed: true
+    collapsed: false
     summary: Community Carousel · {{fields.title | default('Untitled')}}
     fields:
       - name: type
@@ -1071,7 +1071,7 @@ shared_sections:
       - label: Slides
         name: slides
         widget: list
-        collapsed: true
+        collapsed: false
         summary: '{{fields.name | default(fields.alt) | default(''Slide'')}}'
         fields:
           - label: Image (upload or path)
@@ -1082,7 +1082,7 @@ shared_sections:
           - label: Image Focal Point
             name: imageFocal
             widget: object
-            collapsed: true
+            collapsed: false
             required: false
             hint: >-
               Adjust the image focus area. Values between 0 and 1 represent the relative horizontal and vertical point
@@ -1110,7 +1110,7 @@ shared_sections:
     label: Newsletter Signup
     name: newsletterSignup
     widget: object
-    collapsed: true
+    collapsed: false
     summary: Newsletter Signup · {{fields.title | default('Signup')}}
     fields:
       - name: type
@@ -1163,7 +1163,7 @@ shared_sections:
     label: Banner
     name: banner
     widget: object
-    collapsed: true
+    collapsed: false
     summary: Banner · {{fields.text | default('Banner')}}
     fields:
       - name: type
@@ -1188,7 +1188,7 @@ shared_sections:
     label: Video Gallery
     name: videoGallery
     widget: object
-    collapsed: true
+    collapsed: false
     summary: Video Gallery · {{fields.title | default('Untitled')}}
     fields:
       - name: type
@@ -1207,7 +1207,7 @@ shared_sections:
       - label: Entries
         name: entries
         widget: list
-        collapsed: true
+        collapsed: false
         summary: '{{fields.title | default(''Video'')}}'
         fields:
           - label: Title
@@ -1233,7 +1233,7 @@ shared_sections:
     label: Training List
     name: trainingList
     widget: object
-    collapsed: true
+    collapsed: false
     summary: Training List · {{fields.title | default('Untitled')}}
     fields:
       - name: type
@@ -1252,7 +1252,7 @@ shared_sections:
       - label: Entries
         name: entries
         widget: list
-        collapsed: true
+        collapsed: false
         summary: '{{fields.courseTitle | default(''Training'')}}'
         fields:
           - label: Course Title
@@ -1273,7 +1273,7 @@ shared_sections:
     label: Timeline
     name: timeline
     widget: object
-    collapsed: true
+    collapsed: false
     summary: Timeline · {{fields.title | default('Timeline')}}
     fields:
       - name: type
@@ -1288,7 +1288,7 @@ shared_sections:
       - label: Entries
         name: entries
         widget: list
-        collapsed: true
+        collapsed: false
         summary: '{{fields.year | default(fields.title) | default(''Entry'')}}'
         fields:
           - label: Year
@@ -1309,7 +1309,7 @@ shared_sections:
     label: Fact Block
     name: facts
     widget: object
-    collapsed: true
+    collapsed: false
     summary: Fact Block · {{fields.title | default('Fact')}}
     fields:
       - name: type
@@ -1330,7 +1330,7 @@ shared_sections:
     label: Bulleted List
     name: bullets
     widget: object
-    collapsed: true
+    collapsed: false
     summary: Bulleted List · {{fields.title | default('List')}}
     fields:
       - name: type
@@ -1345,7 +1345,7 @@ shared_sections:
       - label: Items
         name: items
         widget: list
-        collapsed: true
+        collapsed: false
         summary: '{{.}}'
         field:
           label: Bullet
@@ -1358,7 +1358,7 @@ shared_sections:
     label: Specialties
     name: specialties
     widget: object
-    collapsed: true
+    collapsed: false
     summary: Specialties · {{fields.title | default('Specialties')}}
     fields:
       - name: type
@@ -1373,7 +1373,7 @@ shared_sections:
       - label: Specialties
         name: items
         widget: list
-        collapsed: true
+        collapsed: false
         summary: '{{fields.title | default(''Specialty'')}}'
         fields:
           - label: Title
@@ -1383,7 +1383,7 @@ shared_sections:
           - label: Bullets
             name: bullets
             widget: list
-            collapsed: true
+            collapsed: false
             summary: '{{.}}'
             field:
               label: Bullet
@@ -1397,7 +1397,7 @@ shared_sections:
     label: FAQ
     name: faq
     widget: object
-    collapsed: true
+    collapsed: false
     summary: FAQ · {{fields.title | default('FAQ')}}
     fields:
       - name: type
@@ -1412,7 +1412,7 @@ shared_sections:
       - label: Items
         name: items
         widget: list
-        collapsed: true
+        collapsed: false
         summary: '{{fields.question | default(''Question'')}}'
         fields:
           - label: Question
@@ -1446,7 +1446,7 @@ sections_field:
   name: sections
   widget: list
   i18n: true
-  collapsed: true
+  collapsed: false
   summary: '{{fields.type}} · {{fields.title | default(fields.heading) | default(fields.name) | default(''Section'')}}'
   hint: Reorder or edit the content sections that compose this page.
   types: *ref_31
@@ -1933,7 +1933,7 @@ collections:
       - label: Focal Point
         name: focal
         widget: object
-        collapsed: true
+        collapsed: false
         required: false
         hint: Optional default focal point metadata shared across entries that reference this asset.
         fields: *ref_12
@@ -1954,7 +1954,7 @@ collections:
           - label: Pages
             name: pages
             widget: list
-            collapsed: true
+            collapsed: false
             summary: '{{fields.label}}'
             types:
               - label: Page
@@ -1984,7 +1984,7 @@ collections:
                   - label: Metadata
                     name: metadata
                     widget: object
-                    collapsed: true
+                    collapsed: false
                     fields:
                       - widget: object
                         i18n: true
@@ -2004,14 +2004,14 @@ collections:
                   - label: Hero
                     name: hero
                     widget: object
-                    collapsed: true
+                    collapsed: false
                     required: false
                     hint: Configure the large hero at the top of the page.
                     fields:
                       - label: Copy & Highlights
                         name: content
                         widget: object
-                        collapsed: true
+                        collapsed: false
                         required: false
                         fields:
                           - widget: object
@@ -2038,7 +2038,7 @@ collections:
                           - label: Highlights
                             name: highlights
                             widget: list
-                            collapsed: true
+                            collapsed: false
                             required: false
                             summary: '{{fields.text.en | default(''Highlight'')}}'
                             fields:
@@ -2052,13 +2052,13 @@ collections:
                       - label: Buttons
                         name: ctas
                         widget: object
-                        collapsed: true
+                        collapsed: false
                         required: false
                         fields:
                           - label: Primary Button
                             name: primary
                             widget: object
-                            collapsed: true
+                            collapsed: false
                             required: false
                             fields:
                               - widget: object
@@ -2078,7 +2078,7 @@ collections:
                           - label: Secondary Button
                             name: secondary
                             widget: object
-                            collapsed: true
+                            collapsed: false
                             required: false
                             fields:
                               - widget: object
@@ -2098,7 +2098,7 @@ collections:
                       - label: Layout (advanced)
                         name: layout
                         widget: object
-                        collapsed: true
+                        collapsed: false
                         required: false
                         hint: Optional alignment overrides that mirror the hero layout controls on the frontend.
                         fields:
@@ -2147,7 +2147,7 @@ collections:
                   - label: Sections
                     name: sections
                     widget: list
-                    collapsed: true
+                    collapsed: false
                     summary: '{{fields.type | upper}} · {{fields.title.en | default(fields.label.en) | default(''Section'')}}'
                     hint: Stack the same section blocks that appear on the live page.
                     types:
@@ -2201,7 +2201,7 @@ collections:
                           - label: Columns
                             name: columns
                             widget: object
-                            collapsed: true
+                            collapsed: false
                             required: false
                             fields:
                               - label: English
@@ -2219,7 +2219,7 @@ collections:
                           - label: Items
                             name: items
                             widget: list
-                            collapsed: true
+                            collapsed: false
                             summary: '{{fields.title.en | default(fields.label.en) | default(''Item'')}}'
                             fields:
                               - widget: object
@@ -2304,7 +2304,7 @@ collections:
                           - label: Columns
                             name: columns
                             widget: object
-                            collapsed: true
+                            collapsed: false
                             required: false
                             fields:
                               - label: English
@@ -2342,7 +2342,7 @@ collections:
                           - label: Product References
                             name: products
                             widget: list
-                            collapsed: true
+                            collapsed: false
                             required: false
                             summary: '{{fields.id.en | default(''Product'')}}'
                             fields:
@@ -2373,7 +2373,7 @@ collections:
                           - label: Columns
                             name: columns
                             widget: object
-                            collapsed: true
+                            collapsed: false
                             required: false
                             fields:
                               - label: English
@@ -2391,7 +2391,7 @@ collections:
                           - label: Items
                             name: items
                             widget: list
-                            collapsed: true
+                            collapsed: false
                             summary: '{{fields.title.en | default(fields.label.en) | default(''Item'')}}'
                             fields:
                               - widget: object
@@ -2447,7 +2447,7 @@ collections:
                           - label: Product References
                             name: products
                             widget: list
-                            collapsed: true
+                            collapsed: false
                             required: false
                             summary: '{{fields.id.en | default(''Product'')}}'
                             fields:
@@ -2478,7 +2478,7 @@ collections:
                           - label: Slides
                             name: slides
                             widget: list
-                            collapsed: true
+                            collapsed: false
                             summary: '{{fields.name.en | default(''Slide'')}}'
                             fields:
                               - label: Image
@@ -2654,7 +2654,7 @@ collections:
                   - label: Additional Fields
                     name: fields
                     widget: list
-                    collapsed: true
+                    collapsed: false
                     required: false
                     summary: '{{fields.key}}'
                     fields:
@@ -2720,7 +2720,7 @@ collections:
         name: bestPractices
         widget: list
         required: false
-        collapsed: true
+        collapsed: false
         summary: '{{fields.tip}}'
         field:
           widget: string
@@ -2770,7 +2770,7 @@ collections:
           - label: Focal Point
             name: focal
             widget: object
-            collapsed: true
+            collapsed: false
             required: false
             hint: Optional focal point (0–1) to reuse when rendering this media set image.
             fields: *ref_12
