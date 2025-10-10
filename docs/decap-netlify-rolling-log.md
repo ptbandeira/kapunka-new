@@ -483,3 +483,9 @@ This log records day-to-day investigations, fixes, and decisions that affect the
 - **What changed**: Replaced the Markdown-backed `pages` collection in `admin/config.yml` with a single-file collection that edits `content/pages_v2/index.json`. Modeled hero, section, and metadata widgets on the unified schema so editors update the live JSON source.
 - **Impact & follow-up**: CMS edits now write directly to the JSON index used by the app, eliminating drift with the legacy Markdown copies. Follow-up: migrate existing Markdown content into the JSON file and update preview bindings before removing fallback loaders.
 - **References**: Pending PR
+
+## 2025-10-11 — Patched Page Builder file schema
+- **What changed**: Updated `admin/config.yml` and `admin/config-modules/main.yaml` to register the JSON index as a single-file collection so Decap validates the Page Builder config.
+- **Impact & follow-up**: Restores CMS access to the unified page schema after the Markdown deprecation. Monitor previews and migration work while the JSON editor remains the canonical source.
+- **References**: Pending PR
+

@@ -1830,699 +1830,702 @@ collections:
     label_singular: Page
     group: Page Builder
     description: Edit Kapunka pages stored in a single JSON index.
-    file: content/pages_v2/index.json
-    format: json
-    i18n: false
-    editor:
-      preview: false
-    fields:
-      - label: Pages
-        name: pages
-        widget: list
-        collapsed: true
-        summary: '{{fields.label}}'
-        types:
-          - label: Page
-            name: page
-            widget: object
-            fields:
-              - label: Page ID
-                name: id
-                widget: string
-                hint: Unique identifier used by the application. Avoid renaming once linked.
-              - label: Admin Label
-                name: label
-                widget: string
-                hint: Display name shown within the CMS navigation.
-              - label: Slug
-                name: slug
-                widget: string
-                required: false
-                hint: Public URL path beginning with a forward slash.
-                pattern:
-                  - ^/.+$
-                  - Enter a path that begins with /.
-              - label: Page Type
-                name: type
-                widget: hidden
-                default: page
-              - label: Metadata
-                name: metadata
+    files:
+      - name: index
+        label: Page Index
+        file: content/pages_v2/index.json
+        format: json
+        i18n: false
+        editor:
+          preview: false
+        fields:
+          - label: Pages
+            name: pages
+            widget: list
+            collapsed: true
+            summary: '{{fields.label}}'
+            types:
+              - label: Page
+                name: page
                 widget: object
-                collapsed: true
                 fields:
-                  - widget: object
-                    i18n: true
-                    required: false
-                    editor: *ref_0
-                    fields: *ref_1
-                    label: Meta Title
-                    name: title
-                  - widget: object
-                    i18n: true
-                    required: false
-                    editor: *ref_3
-                    fields: *ref_4
-                    label: Meta Description
-                    name: description
-              - label: Hero
-                name: hero
-                widget: object
-                collapsed: true
-                required: false
-                fields:
-                  - label: Content
-                    name: content
-                    widget: object
-                    collapsed: true
-                    required: false
-                    fields:
-                      - widget: object
-                        i18n: true
-                        required: false
-                        editor: *ref_0
-                        fields: *ref_1
-                        label: Headline
-                        name: headline
-                      - widget: object
-                        i18n: true
-                        required: false
-                        editor: *ref_3
-                        fields: *ref_4
-                        label: Subheadline
-                        name: subheadline
-                      - widget: object
-                        i18n: true
-                        required: false
-                        editor: *ref_3
-                        fields: *ref_4
-                        label: Body
-                        name: body
-                      - label: Highlights
-                        name: highlights
-                        widget: list
-                        collapsed: true
-                        required: false
-                        summary: '{{fields.text.en | default(''Highlight'')}}'
-                        fields:
-                          - widget: object
-                            i18n: true
-                            required: false
-                            editor: *ref_3
-                            fields: *ref_4
-                            label: Highlight Text
-                            name: text
-                  - label: Calls to Action
-                    name: ctas
-                    widget: object
-                    collapsed: true
-                    required: false
-                    fields:
-                      - label: Primary CTA
-                        name: primary
-                        widget: object
-                        collapsed: true
-                        required: false
-                        fields:
-                          - widget: object
-                            i18n: true
-                            required: false
-                            editor: *ref_0
-                            fields: *ref_1
-                            label: Label
-                            name: label
-                          - widget: object
-                            i18n: true
-                            required: false
-                            editor: *ref_0
-                            fields: *ref_1
-                            label: Link
-                            name: href
-                      - label: Secondary CTA
-                        name: secondary
-                        widget: object
-                        collapsed: true
-                        required: false
-                        fields:
-                          - widget: object
-                            i18n: true
-                            required: false
-                            editor: *ref_0
-                            fields: *ref_1
-                            label: Label
-                            name: label
-                          - widget: object
-                            i18n: true
-                            required: false
-                            editor: *ref_0
-                            fields: *ref_1
-                            label: Link
-                            name: href
-                  - label: Layout
-                    name: layout
-                    widget: object
-                    collapsed: true
-                    required: false
-                    fields:
-                      - widget: object
-                        i18n: true
-                        required: false
-                        editor: *ref_0
-                        fields: *ref_1
-                        label: Horizontal Alignment
-                        name: alignX
-                      - widget: object
-                        i18n: true
-                        required: false
-                        editor: *ref_0
-                        fields: *ref_1
-                        label: Vertical Alignment
-                        name: alignY
-                      - widget: object
-                        i18n: true
-                        required: false
-                        editor: *ref_0
-                        fields: *ref_1
-                        label: Text Position
-                        name: textPosition
-                      - widget: object
-                        i18n: true
-                        required: false
-                        editor: *ref_0
-                        fields: *ref_1
-                        label: Text Anchor
-                        name: textAnchor
-                      - widget: object
-                        i18n: true
-                        required: false
-                        editor: *ref_0
-                        fields: *ref_1
-                        label: Overlay Strength
-                        name: overlay
-                      - widget: object
-                        i18n: true
-                        required: false
-                        editor: *ref_0
-                        fields: *ref_1
-                        label: Layout Hint
-                        name: layoutHint
-              - label: Sections
-                name: sections
-                widget: list
-                collapsed: true
-                summary: '{{fields.type | upper}} · {{fields.title.en | default(fields.label.en) | default(''Section'')}}'
-                types:
-                  - label: Media Copy
-                    name: mediaCopy
-                    widget: object
-                    fields:
-                      - name: type
-                        widget: hidden
-                        default: mediaCopy
-                      - widget: object
-                        i18n: true
-                        required: false
-                        editor: *ref_0
-                        fields: *ref_1
-                        label: Title
-                        name: title
-                      - widget: object
-                        i18n: true
-                        required: false
-                        editor: *ref_3
-                        fields: *ref_4
-                        label: Body
-                        name: body
-                      - widget: object
-                        i18n: true
-                        required: false
-                        editor: *ref_0
-                        fields: *ref_1
-                        label: Layout
-                        name: layout
-                  - label: Media Showcase
-                    name: mediaShowcase
-                    widget: object
-                    fields:
-                      - name: type
-                        widget: hidden
-                        default: mediaShowcase
-                      - widget: object
-                        i18n: true
-                        required: false
-                        editor: *ref_0
-                        fields: *ref_1
-                        label: Title
-                        name: title
-                      - label: Columns
-                        name: columns
-                        widget: object
-                        collapsed: true
-                        required: false
-                        fields:
-                          - label: English
-                            name: en
-                            widget: number
-                            required: false
-                          - label: Portuguese
-                            name: pt
-                            widget: number
-                            required: false
-                          - label: Spanish
-                            name: es
-                            widget: number
-                            required: false
-                      - label: Items
-                        name: items
-                        widget: list
-                        collapsed: true
-                        summary: '{{fields.title.en | default(fields.label.en) | default(''Item'')}}'
-                        fields:
-                          - widget: object
-                            i18n: true
-                            required: false
-                            editor: *ref_0
-                            fields: *ref_1
-                            label: Eyebrow
-                            name: eyebrow
-                          - widget: object
-                            i18n: true
-                            required: false
-                            editor: *ref_0
-                            fields: *ref_1
-                            label: Label
-                            name: label
-                          - widget: object
-                            i18n: true
-                            required: false
-                            editor: *ref_0
-                            fields: *ref_1
-                            label: Title
-                            name: title
-                          - widget: object
-                            i18n: true
-                            required: false
-                            editor: *ref_3
-                            fields: *ref_4
-                            label: Description
-                            name: description
-                          - widget: object
-                            i18n: true
-                            required: false
-                            editor: *ref_3
-                            fields: *ref_4
-                            label: Body
-                            name: body
-                          - widget: object
-                            i18n: true
-                            required: false
-                            editor: *ref_0
-                            fields: *ref_1
-                            label: CTA Label
-                            name: ctaLabel
-                          - widget: object
-                            i18n: true
-                            required: false
-                            editor: *ref_0
-                            fields: *ref_1
-                            label: CTA Link
-                            name: ctaHref
-                          - label: Image
-                            name: image
-                            widget: image
-                            required: false
-                            choose_url: true
-                          - widget: object
-                            i18n: true
-                            required: false
-                            editor: *ref_3
-                            fields: *ref_4
-                            label: Image Alt Text
-                            name: imageAlt
-                  - label: Feature Grid
-                    name: featureGrid
-                    widget: object
-                    fields:
-                      - name: type
-                        widget: hidden
-                        default: featureGrid
-                      - widget: object
-                        i18n: true
-                        required: false
-                        editor: *ref_0
-                        fields: *ref_1
-                        label: Title
-                        name: title
-                      - label: Columns
-                        name: columns
-                        widget: object
-                        collapsed: true
-                        required: false
-                        fields:
-                          - label: English
-                            name: en
-                            widget: number
-                            required: false
-                          - label: Portuguese
-                            name: pt
-                            widget: number
-                            required: false
-                          - label: Spanish
-                            name: es
-                            widget: number
-                            required: false
-                      - label: Items
-                        name: items
-                        widget: list
-                        summary: '{{fields.label.en | default(''Item'')}}'
-                        fields:
-                          - widget: object
-                            i18n: true
-                            required: false
-                            editor: *ref_0
-                            fields: *ref_1
-                            label: Label
-                            name: label
-                          - widget: object
-                            i18n: true
-                            required: false
-                            editor: *ref_3
-                            fields: *ref_4
-                            label: Description
-                            name: description
-                      - label: Product References
-                        name: products
-                        widget: list
-                        collapsed: true
-                        required: false
-                        summary: '{{fields.id.en | default(''Product'')}}'
-                        fields:
-                          - widget: object
-                            i18n: true
-                            required: false
-                            editor: *ref_0
-                            fields: *ref_1
-                            label: Product ID
-                            name: id
-                  - label: Product Grid
-                    name: productGrid
-                    widget: object
-                    fields:
-                      - name: type
-                        widget: hidden
-                        default: productGrid
-                      - widget: object
-                        i18n: true
-                        required: false
-                        editor: *ref_0
-                        fields: *ref_1
-                        label: Title
-                        name: title
-                      - label: Columns
-                        name: columns
-                        widget: object
-                        collapsed: true
-                        required: false
-                        fields:
-                          - label: English
-                            name: en
-                            widget: number
-                            required: false
-                          - label: Portuguese
-                            name: pt
-                            widget: number
-                            required: false
-                          - label: Spanish
-                            name: es
-                            widget: number
-                            required: false
-                      - label: Items
-                        name: items
-                        widget: list
-                        collapsed: true
-                        summary: '{{fields.title.en | default(fields.label.en) | default(''Item'')}}'
-                        fields:
-                          - widget: object
-                            i18n: true
-                            required: false
-                            editor: *ref_0
-                            fields: *ref_1
-                            label: Eyebrow
-                            name: eyebrow
-                          - widget: object
-                            i18n: true
-                            required: false
-                            editor: *ref_0
-                            fields: *ref_1
-                            label: Label
-                            name: label
-                          - widget: object
-                            i18n: true
-                            required: false
-                            editor: *ref_0
-                            fields: *ref_1
-                            label: Title
-                            name: title
-                          - widget: object
-                            i18n: true
-                            required: false
-                            editor: *ref_3
-                            fields: *ref_4
-                            label: Body
-                            name: body
-                          - widget: object
-                            i18n: true
-                            required: false
-                            editor: *ref_0
-                            fields: *ref_1
-                            label: CTA Label
-                            name: ctaLabel
-                          - widget: object
-                            i18n: true
-                            required: false
-                            editor: *ref_0
-                            fields: *ref_1
-                            label: CTA Link
-                            name: ctaHref
-                          - widget: object
-                            i18n: true
-                            required: false
-                            editor: *ref_3
-                            fields: *ref_4
-                            label: Image Alt Text
-                            name: imageAlt
-                      - label: Product References
-                        name: products
-                        widget: list
-                        collapsed: true
-                        required: false
-                        summary: '{{fields.id.en | default(''Product'')}}'
-                        fields:
-                          - widget: object
-                            i18n: true
-                            required: false
-                            editor: *ref_0
-                            fields: *ref_1
-                            label: Product ID
-                            name: id
-                  - label: Community Carousel
-                    name: communityCarousel
-                    widget: object
-                    fields:
-                      - name: type
-                        widget: hidden
-                        default: communityCarousel
-                      - widget: object
-                        i18n: true
-                        required: false
-                        editor: *ref_0
-                        fields: *ref_1
-                        label: Title
-                        name: title
-                      - label: Slides
-                        name: slides
-                        widget: list
-                        collapsed: true
-                        summary: '{{fields.name.en | default(''Slide'')}}'
-                        fields:
-                          - label: Image
-                            name: image
-                            widget: image
-                            required: false
-                            choose_url: true
-                          - widget: object
-                            i18n: true
-                            required: false
-                            editor: *ref_3
-                            fields: *ref_4
-                            label: Alt Text
-                            name: alt
-                          - widget: object
-                            i18n: true
-                            required: false
-                            editor: *ref_0
-                            fields: *ref_1
-                            label: Name
-                            name: name
-                          - widget: object
-                            i18n: true
-                            required: false
-                            editor: *ref_3
-                            fields: *ref_4
-                            label: Quote
-                            name: quote
-                          - widget: object
-                            i18n: true
-                            required: false
-                            editor: *ref_0
-                            fields: *ref_1
-                            label: Role
-                            name: role
-                  - label: Newsletter Signup
-                    name: newsletterSignup
-                    widget: object
-                    fields:
-                      - name: type
-                        widget: hidden
-                        default: newsletterSignup
-                      - widget: object
-                        i18n: true
-                        required: false
-                        editor: *ref_0
-                        fields: *ref_1
-                        label: Title
-                        name: title
-                      - widget: object
-                        i18n: true
-                        required: false
-                        editor: *ref_3
-                        fields: *ref_4
-                        label: Subtitle
-                        name: subtitle
-                      - widget: object
-                        i18n: true
-                        required: false
-                        editor: *ref_0
-                        fields: *ref_1
-                        label: Placeholder
-                        name: placeholder
-                      - widget: object
-                        i18n: true
-                        required: false
-                        editor: *ref_0
-                        fields: *ref_1
-                        label: Button Label
-                        name: ctaLabel
-                      - widget: object
-                        i18n: true
-                        required: false
-                        editor: *ref_3
-                        fields: *ref_4
-                        label: Confirmation Message
-                        name: confirmation
-                      - widget: object
-                        i18n: true
-                        required: false
-                        editor: *ref_0
-                        fields: *ref_1
-                        label: Alignment
-                        name: alignment
-                      - widget: object
-                        i18n: true
-                        required: false
-                        editor: *ref_0
-                        fields: *ref_1
-                        label: Background
-                        name: background
-                  - label: Testimonials
-                    name: testimonials
-                    widget: object
-                    fields:
-                      - name: type
-                        widget: hidden
-                        default: testimonials
-                      - widget: object
-                        i18n: true
-                        required: false
-                        editor: *ref_0
-                        fields: *ref_1
-                        label: Title
-                        name: title
-                      - label: Quotes
-                        name: quotes
-                        widget: list
-                        summary: '{{fields.author.en | default(''Quote'')}}'
-                        fields:
-                          - widget: object
-                            i18n: true
-                            required: false
-                            editor: *ref_0
-                            fields: *ref_1
-                            label: Author
-                            name: author
-                          - widget: object
-                            i18n: true
-                            required: false
-                            editor: *ref_0
-                            fields: *ref_1
-                            label: Role
-                            name: role
-                          - widget: object
-                            i18n: true
-                            required: false
-                            editor: *ref_3
-                            fields: *ref_4
-                            label: Quote
-                            name: text
-                  - label: Banner
-                    name: banner
-                    widget: object
-                    fields:
-                      - name: type
-                        widget: hidden
-                        default: banner
-                      - widget: object
-                        i18n: true
-                        required: false
-                        editor: *ref_0
-                        fields: *ref_1
-                        label: Text
-                        name: text
-                      - widget: object
-                        i18n: true
-                        required: false
-                        editor: *ref_0
-                        fields: *ref_1
-                        label: CTA Label
-                        name: cta
-                      - widget: object
-                        i18n: true
-                        required: false
-                        editor: *ref_0
-                        fields: *ref_1
-                        label: Link
-                        name: url
-              - label: Additional Fields
-                name: fields
-                widget: list
-                collapsed: true
-                required: false
-                summary: '{{fields.key}}'
-                fields:
-                  - label: Key
-                    name: key
+                  - label: Page ID
+                    name: id
                     widget: string
-                  - widget: object
-                    i18n: true
+                    hint: Unique identifier used by the application. Avoid renaming once linked.
+                  - label: Admin Label
+                    name: label
+                    widget: string
+                    hint: Display name shown within the CMS navigation.
+                  - label: Slug
+                    name: slug
+                    widget: string
                     required: false
-                    editor: *ref_3
-                    fields: *ref_4
-                    label: Value
-                    name: value
-                  - label: Type
+                    hint: Public URL path beginning with a forward slash.
+                    pattern:
+                      - ^/.+$
+                      - Enter a path that begins with /.
+                  - label: Page Type
                     name: type
                     widget: hidden
-                    default: field
+                    default: page
+                  - label: Metadata
+                    name: metadata
+                    widget: object
+                    collapsed: true
+                    fields:
+                      - widget: object
+                        i18n: true
+                        required: false
+                        editor: *ref_0
+                        fields: *ref_1
+                        label: Meta Title
+                        name: title
+                      - widget: object
+                        i18n: true
+                        required: false
+                        editor: *ref_3
+                        fields: *ref_4
+                        label: Meta Description
+                        name: description
+                  - label: Hero
+                    name: hero
+                    widget: object
+                    collapsed: true
+                    required: false
+                    fields:
+                      - label: Content
+                        name: content
+                        widget: object
+                        collapsed: true
+                        required: false
+                        fields:
+                          - widget: object
+                            i18n: true
+                            required: false
+                            editor: *ref_0
+                            fields: *ref_1
+                            label: Headline
+                            name: headline
+                          - widget: object
+                            i18n: true
+                            required: false
+                            editor: *ref_3
+                            fields: *ref_4
+                            label: Subheadline
+                            name: subheadline
+                          - widget: object
+                            i18n: true
+                            required: false
+                            editor: *ref_3
+                            fields: *ref_4
+                            label: Body
+                            name: body
+                          - label: Highlights
+                            name: highlights
+                            widget: list
+                            collapsed: true
+                            required: false
+                            summary: '{{fields.text.en | default(''Highlight'')}}'
+                            fields:
+                              - widget: object
+                                i18n: true
+                                required: false
+                                editor: *ref_3
+                                fields: *ref_4
+                                label: Highlight Text
+                                name: text
+                      - label: Calls to Action
+                        name: ctas
+                        widget: object
+                        collapsed: true
+                        required: false
+                        fields:
+                          - label: Primary CTA
+                            name: primary
+                            widget: object
+                            collapsed: true
+                            required: false
+                            fields:
+                              - widget: object
+                                i18n: true
+                                required: false
+                                editor: *ref_0
+                                fields: *ref_1
+                                label: Label
+                                name: label
+                              - widget: object
+                                i18n: true
+                                required: false
+                                editor: *ref_0
+                                fields: *ref_1
+                                label: Link
+                                name: href
+                          - label: Secondary CTA
+                            name: secondary
+                            widget: object
+                            collapsed: true
+                            required: false
+                            fields:
+                              - widget: object
+                                i18n: true
+                                required: false
+                                editor: *ref_0
+                                fields: *ref_1
+                                label: Label
+                                name: label
+                              - widget: object
+                                i18n: true
+                                required: false
+                                editor: *ref_0
+                                fields: *ref_1
+                                label: Link
+                                name: href
+                      - label: Layout
+                        name: layout
+                        widget: object
+                        collapsed: true
+                        required: false
+                        fields:
+                          - widget: object
+                            i18n: true
+                            required: false
+                            editor: *ref_0
+                            fields: *ref_1
+                            label: Horizontal Alignment
+                            name: alignX
+                          - widget: object
+                            i18n: true
+                            required: false
+                            editor: *ref_0
+                            fields: *ref_1
+                            label: Vertical Alignment
+                            name: alignY
+                          - widget: object
+                            i18n: true
+                            required: false
+                            editor: *ref_0
+                            fields: *ref_1
+                            label: Text Position
+                            name: textPosition
+                          - widget: object
+                            i18n: true
+                            required: false
+                            editor: *ref_0
+                            fields: *ref_1
+                            label: Text Anchor
+                            name: textAnchor
+                          - widget: object
+                            i18n: true
+                            required: false
+                            editor: *ref_0
+                            fields: *ref_1
+                            label: Overlay Strength
+                            name: overlay
+                          - widget: object
+                            i18n: true
+                            required: false
+                            editor: *ref_0
+                            fields: *ref_1
+                            label: Layout Hint
+                            name: layoutHint
+                  - label: Sections
+                    name: sections
+                    widget: list
+                    collapsed: true
+                    summary: '{{fields.type | upper}} · {{fields.title.en | default(fields.label.en) | default(''Section'')}}'
+                    types:
+                      - label: Media Copy
+                        name: mediaCopy
+                        widget: object
+                        fields:
+                          - name: type
+                            widget: hidden
+                            default: mediaCopy
+                          - widget: object
+                            i18n: true
+                            required: false
+                            editor: *ref_0
+                            fields: *ref_1
+                            label: Title
+                            name: title
+                          - widget: object
+                            i18n: true
+                            required: false
+                            editor: *ref_3
+                            fields: *ref_4
+                            label: Body
+                            name: body
+                          - widget: object
+                            i18n: true
+                            required: false
+                            editor: *ref_0
+                            fields: *ref_1
+                            label: Layout
+                            name: layout
+                      - label: Media Showcase
+                        name: mediaShowcase
+                        widget: object
+                        fields:
+                          - name: type
+                            widget: hidden
+                            default: mediaShowcase
+                          - widget: object
+                            i18n: true
+                            required: false
+                            editor: *ref_0
+                            fields: *ref_1
+                            label: Title
+                            name: title
+                          - label: Columns
+                            name: columns
+                            widget: object
+                            collapsed: true
+                            required: false
+                            fields:
+                              - label: English
+                                name: en
+                                widget: number
+                                required: false
+                              - label: Portuguese
+                                name: pt
+                                widget: number
+                                required: false
+                              - label: Spanish
+                                name: es
+                                widget: number
+                                required: false
+                          - label: Items
+                            name: items
+                            widget: list
+                            collapsed: true
+                            summary: '{{fields.title.en | default(fields.label.en) | default(''Item'')}}'
+                            fields:
+                              - widget: object
+                                i18n: true
+                                required: false
+                                editor: *ref_0
+                                fields: *ref_1
+                                label: Eyebrow
+                                name: eyebrow
+                              - widget: object
+                                i18n: true
+                                required: false
+                                editor: *ref_0
+                                fields: *ref_1
+                                label: Label
+                                name: label
+                              - widget: object
+                                i18n: true
+                                required: false
+                                editor: *ref_0
+                                fields: *ref_1
+                                label: Title
+                                name: title
+                              - widget: object
+                                i18n: true
+                                required: false
+                                editor: *ref_3
+                                fields: *ref_4
+                                label: Description
+                                name: description
+                              - widget: object
+                                i18n: true
+                                required: false
+                                editor: *ref_3
+                                fields: *ref_4
+                                label: Body
+                                name: body
+                              - widget: object
+                                i18n: true
+                                required: false
+                                editor: *ref_0
+                                fields: *ref_1
+                                label: CTA Label
+                                name: ctaLabel
+                              - widget: object
+                                i18n: true
+                                required: false
+                                editor: *ref_0
+                                fields: *ref_1
+                                label: CTA Link
+                                name: ctaHref
+                              - label: Image
+                                name: image
+                                widget: image
+                                required: false
+                                choose_url: true
+                              - widget: object
+                                i18n: true
+                                required: false
+                                editor: *ref_3
+                                fields: *ref_4
+                                label: Image Alt Text
+                                name: imageAlt
+                      - label: Feature Grid
+                        name: featureGrid
+                        widget: object
+                        fields:
+                          - name: type
+                            widget: hidden
+                            default: featureGrid
+                          - widget: object
+                            i18n: true
+                            required: false
+                            editor: *ref_0
+                            fields: *ref_1
+                            label: Title
+                            name: title
+                          - label: Columns
+                            name: columns
+                            widget: object
+                            collapsed: true
+                            required: false
+                            fields:
+                              - label: English
+                                name: en
+                                widget: number
+                                required: false
+                              - label: Portuguese
+                                name: pt
+                                widget: number
+                                required: false
+                              - label: Spanish
+                                name: es
+                                widget: number
+                                required: false
+                          - label: Items
+                            name: items
+                            widget: list
+                            summary: '{{fields.label.en | default(''Item'')}}'
+                            fields:
+                              - widget: object
+                                i18n: true
+                                required: false
+                                editor: *ref_0
+                                fields: *ref_1
+                                label: Label
+                                name: label
+                              - widget: object
+                                i18n: true
+                                required: false
+                                editor: *ref_3
+                                fields: *ref_4
+                                label: Description
+                                name: description
+                          - label: Product References
+                            name: products
+                            widget: list
+                            collapsed: true
+                            required: false
+                            summary: '{{fields.id.en | default(''Product'')}}'
+                            fields:
+                              - widget: object
+                                i18n: true
+                                required: false
+                                editor: *ref_0
+                                fields: *ref_1
+                                label: Product ID
+                                name: id
+                      - label: Product Grid
+                        name: productGrid
+                        widget: object
+                        fields:
+                          - name: type
+                            widget: hidden
+                            default: productGrid
+                          - widget: object
+                            i18n: true
+                            required: false
+                            editor: *ref_0
+                            fields: *ref_1
+                            label: Title
+                            name: title
+                          - label: Columns
+                            name: columns
+                            widget: object
+                            collapsed: true
+                            required: false
+                            fields:
+                              - label: English
+                                name: en
+                                widget: number
+                                required: false
+                              - label: Portuguese
+                                name: pt
+                                widget: number
+                                required: false
+                              - label: Spanish
+                                name: es
+                                widget: number
+                                required: false
+                          - label: Items
+                            name: items
+                            widget: list
+                            collapsed: true
+                            summary: '{{fields.title.en | default(fields.label.en) | default(''Item'')}}'
+                            fields:
+                              - widget: object
+                                i18n: true
+                                required: false
+                                editor: *ref_0
+                                fields: *ref_1
+                                label: Eyebrow
+                                name: eyebrow
+                              - widget: object
+                                i18n: true
+                                required: false
+                                editor: *ref_0
+                                fields: *ref_1
+                                label: Label
+                                name: label
+                              - widget: object
+                                i18n: true
+                                required: false
+                                editor: *ref_0
+                                fields: *ref_1
+                                label: Title
+                                name: title
+                              - widget: object
+                                i18n: true
+                                required: false
+                                editor: *ref_3
+                                fields: *ref_4
+                                label: Body
+                                name: body
+                              - widget: object
+                                i18n: true
+                                required: false
+                                editor: *ref_0
+                                fields: *ref_1
+                                label: CTA Label
+                                name: ctaLabel
+                              - widget: object
+                                i18n: true
+                                required: false
+                                editor: *ref_0
+                                fields: *ref_1
+                                label: CTA Link
+                                name: ctaHref
+                              - widget: object
+                                i18n: true
+                                required: false
+                                editor: *ref_3
+                                fields: *ref_4
+                                label: Image Alt Text
+                                name: imageAlt
+                          - label: Product References
+                            name: products
+                            widget: list
+                            collapsed: true
+                            required: false
+                            summary: '{{fields.id.en | default(''Product'')}}'
+                            fields:
+                              - widget: object
+                                i18n: true
+                                required: false
+                                editor: *ref_0
+                                fields: *ref_1
+                                label: Product ID
+                                name: id
+                      - label: Community Carousel
+                        name: communityCarousel
+                        widget: object
+                        fields:
+                          - name: type
+                            widget: hidden
+                            default: communityCarousel
+                          - widget: object
+                            i18n: true
+                            required: false
+                            editor: *ref_0
+                            fields: *ref_1
+                            label: Title
+                            name: title
+                          - label: Slides
+                            name: slides
+                            widget: list
+                            collapsed: true
+                            summary: '{{fields.name.en | default(''Slide'')}}'
+                            fields:
+                              - label: Image
+                                name: image
+                                widget: image
+                                required: false
+                                choose_url: true
+                              - widget: object
+                                i18n: true
+                                required: false
+                                editor: *ref_3
+                                fields: *ref_4
+                                label: Alt Text
+                                name: alt
+                              - widget: object
+                                i18n: true
+                                required: false
+                                editor: *ref_0
+                                fields: *ref_1
+                                label: Name
+                                name: name
+                              - widget: object
+                                i18n: true
+                                required: false
+                                editor: *ref_3
+                                fields: *ref_4
+                                label: Quote
+                                name: quote
+                              - widget: object
+                                i18n: true
+                                required: false
+                                editor: *ref_0
+                                fields: *ref_1
+                                label: Role
+                                name: role
+                      - label: Newsletter Signup
+                        name: newsletterSignup
+                        widget: object
+                        fields:
+                          - name: type
+                            widget: hidden
+                            default: newsletterSignup
+                          - widget: object
+                            i18n: true
+                            required: false
+                            editor: *ref_0
+                            fields: *ref_1
+                            label: Title
+                            name: title
+                          - widget: object
+                            i18n: true
+                            required: false
+                            editor: *ref_3
+                            fields: *ref_4
+                            label: Subtitle
+                            name: subtitle
+                          - widget: object
+                            i18n: true
+                            required: false
+                            editor: *ref_0
+                            fields: *ref_1
+                            label: Placeholder
+                            name: placeholder
+                          - widget: object
+                            i18n: true
+                            required: false
+                            editor: *ref_0
+                            fields: *ref_1
+                            label: Button Label
+                            name: ctaLabel
+                          - widget: object
+                            i18n: true
+                            required: false
+                            editor: *ref_3
+                            fields: *ref_4
+                            label: Confirmation Message
+                            name: confirmation
+                          - widget: object
+                            i18n: true
+                            required: false
+                            editor: *ref_0
+                            fields: *ref_1
+                            label: Alignment
+                            name: alignment
+                          - widget: object
+                            i18n: true
+                            required: false
+                            editor: *ref_0
+                            fields: *ref_1
+                            label: Background
+                            name: background
+                      - label: Testimonials
+                        name: testimonials
+                        widget: object
+                        fields:
+                          - name: type
+                            widget: hidden
+                            default: testimonials
+                          - widget: object
+                            i18n: true
+                            required: false
+                            editor: *ref_0
+                            fields: *ref_1
+                            label: Title
+                            name: title
+                          - label: Quotes
+                            name: quotes
+                            widget: list
+                            summary: '{{fields.author.en | default(''Quote'')}}'
+                            fields:
+                              - widget: object
+                                i18n: true
+                                required: false
+                                editor: *ref_0
+                                fields: *ref_1
+                                label: Author
+                                name: author
+                              - widget: object
+                                i18n: true
+                                required: false
+                                editor: *ref_0
+                                fields: *ref_1
+                                label: Role
+                                name: role
+                              - widget: object
+                                i18n: true
+                                required: false
+                                editor: *ref_3
+                                fields: *ref_4
+                                label: Quote
+                                name: text
+                      - label: Banner
+                        name: banner
+                        widget: object
+                        fields:
+                          - name: type
+                            widget: hidden
+                            default: banner
+                          - widget: object
+                            i18n: true
+                            required: false
+                            editor: *ref_0
+                            fields: *ref_1
+                            label: Text
+                            name: text
+                          - widget: object
+                            i18n: true
+                            required: false
+                            editor: *ref_0
+                            fields: *ref_1
+                            label: CTA Label
+                            name: cta
+                          - widget: object
+                            i18n: true
+                            required: false
+                            editor: *ref_0
+                            fields: *ref_1
+                            label: Link
+                            name: url
+                  - label: Additional Fields
+                    name: fields
+                    widget: list
+                    collapsed: true
+                    required: false
+                    summary: '{{fields.key}}'
+                    fields:
+                      - label: Key
+                        name: key
+                        widget: string
+                      - widget: object
+                        i18n: true
+                        required: false
+                        editor: *ref_3
+                        fields: *ref_4
+                        label: Value
+                        name: value
+                      - label: Type
+                        name: type
+                        widget: hidden
+                        default: field
     load_strategy: lazy
   - name: sectionTemplates
     label: Section Templates
