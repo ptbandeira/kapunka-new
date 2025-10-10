@@ -279,7 +279,7 @@ collections:
                 fields:
                   - { label: "Page ID", name: "id", widget: "string", hint: "Unique identifier used by the application. Avoid renaming once linked." }
                   - { label: "Admin Label", name: "label", widget: "string", hint: "Display name shown within the CMS navigation." }
-                  - { label: "Slug", name: "slug", widget: "string", required: false, hint: "Public URL path beginning with a forward slash.", pattern: ['^/.+$', 'Enter a path that begins with /.'] }
+                  - { label: "Slug", name: "slug", widget: "string", required: false, hint: "Public URL path beginning with a forward slash." }
                   - { label: "Page Type", name: "type", widget: "hidden", default: "page" }
                   - label: Metadata
                     name: metadata
@@ -297,8 +297,9 @@ collections:
                     widget: object
                     collapsed: true
                     required: false
+                    hint: Configure the large hero at the top of the page.
                     fields:
-                      - label: Content
+                      - label: Copy & Highlights
                         name: content
                         widget: object
                         collapsed: true
@@ -323,13 +324,13 @@ collections:
                               - <<: *localized_text_field
                                 label: "Highlight Text"
                                 name: "text"
-                      - label: Calls to Action
+                      - label: Buttons
                         name: ctas
                         widget: object
                         collapsed: true
                         required: false
                         fields:
-                          - label: Primary CTA
+                          - label: Primary Button
                             name: primary
                             widget: object
                             collapsed: true
@@ -341,7 +342,7 @@ collections:
                               - <<: *localized_string_field
                                 label: "Link"
                                 name: "href"
-                          - label: Secondary CTA
+                          - label: Secondary Button
                             name: secondary
                             widget: object
                             collapsed: true
@@ -353,11 +354,12 @@ collections:
                               - <<: *localized_string_field
                                 label: "Link"
                                 name: "href"
-                      - label: Layout
+                      - label: Layout (advanced)
                         name: layout
                         widget: object
                         collapsed: true
                         required: false
+                        hint: Optional alignment overrides that mirror the hero layout controls on the frontend.
                         fields:
                           - <<: *localized_string_field
                             label: "Horizontal Alignment"
@@ -382,10 +384,12 @@ collections:
                     widget: list
                     collapsed: true
                     summary: "{{fields.type | upper}} · {{fields.title.en | default(fields.label.en) | default('Section')}}"
+                    hint: "Stack the same section blocks that appear on the live page."
                     types:
-                      - label: Media Copy
+                      - label: Media + Copy
                         name: mediaCopy
                         widget: object
+                        hint: "Split layout with text and media, matching the Media Copy component."
                         fields:
                           - { name: "type", widget: "hidden", default: "mediaCopy" }
                           - <<: *localized_string_field
@@ -400,6 +404,7 @@ collections:
                       - label: Media Showcase
                         name: mediaShowcase
                         widget: object
+                        hint: "Carousel-style media cards pulled into a grid."
                         fields:
                           - { name: "type", widget: "hidden", default: "mediaShowcase" }
                           - <<: *localized_string_field
@@ -448,6 +453,7 @@ collections:
                       - label: Feature Grid
                         name: featureGrid
                         widget: object
+                        hint: "Icon and copy grid used for value propositions."
                         fields:
                           - { name: "type", widget: "hidden", default: "featureGrid" }
                           - <<: *localized_string_field
@@ -486,6 +492,7 @@ collections:
                       - label: Product Grid
                         name: productGrid
                         widget: object
+                        hint: "Product gallery with optional highlight cards, matching the shop grid layout."
                         fields:
                           - { name: "type", widget: "hidden", default: "productGrid" }
                           - <<: *localized_string_field
@@ -540,6 +547,7 @@ collections:
                       - label: Community Carousel
                         name: communityCarousel
                         widget: object
+                        hint: "Looping community carousel with imagery and rotating quotes."
                         fields:
                           - { name: "type", widget: "hidden", default: "communityCarousel" }
                           - <<: *localized_string_field
@@ -567,6 +575,7 @@ collections:
                       - label: Newsletter Signup
                         name: newsletterSignup
                         widget: object
+                        hint: "Email capture panel that mirrors the newsletter card on the site."
                         fields:
                           - { name: "type", widget: "hidden", default: "newsletterSignup" }
                           - <<: *localized_string_field
@@ -593,6 +602,7 @@ collections:
                       - label: Testimonials
                         name: testimonials
                         widget: object
+                        hint: "Quote carousel used for social proof."
                         fields:
                           - { name: "type", widget: "hidden", default: "testimonials" }
                           - <<: *localized_string_field
@@ -615,6 +625,7 @@ collections:
                       - label: Banner
                         name: banner
                         widget: object
+                        hint: "Single-line promo banner rendered above or between sections."
                         fields:
                           - { name: "type", widget: "hidden", default: "banner" }
                           - <<: *localized_string_field
