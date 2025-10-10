@@ -2,14 +2,57 @@ import type { Language } from '../types';
 
 export const SUPPORTED_LANGUAGES: Language[] = ['en', 'pt', 'es'];
 
-export const getLocaleFromPath = (pathname: string): Language | undefined => {
-  const segments = pathname.split('/').filter(Boolean);
+const normalizeSegments = (raw: string | null | undefined): string[] => {
+  if (!raw) {
+    return [];
+  }
+
+  return raw
+    .split('/')
+    .map((segment) => segment.trim())
+    .filter(Boolean);
+};
+
+const getLocaleFromSegments = (segments: string[]): Language | undefined => {
   if (segments.length === 0) {
     return undefined;
   }
 
-  const potentialLocale = segments[0] as Language;
-  return SUPPORTED_LANGUAGES.includes(potentialLocale) ? potentialLocale : undefined;
+  const potentialLocale = segments[0]?.toLowerCase();
+  if (!potentialLocale) {
+    return undefined;
+  }
+
+  return SUPPORTED_LANGUAGES.find((locale) => locale === potentialLocale) as Language | undefined;
+};
+
+export const getLocaleFromPath = (pathname: string): Language | undefined => {
+  const segments = normalizeSegments(pathname);
+  return getLocaleFromSegments(segments);
+};
+
+export const getLocaleFromHash = (hash: string): Language | undefined => {
+  const normalizedHash = hash.startsWith('#') ? hash.slice(1) : hash;
+  const segments = normalizeSegments(normalizedHash);
+  return getLocaleFromSegments(segments);
+};
+
+interface LocationLike {
+  pathname?: string | null;
+  hash?: string | null;
+}
+
+export const getLocaleFromLocation = (value: LocationLike): Language | undefined => {
+  const fromPath = value.pathname ? getLocaleFromPath(value.pathname) : undefined;
+  if (fromPath) {
+    return fromPath;
+  }
+
+  if (value.hash) {
+    return getLocaleFromHash(value.hash);
+  }
+
+  return undefined;
 };
 
 export const removeLocaleFromPath = (pathname: string): string => {

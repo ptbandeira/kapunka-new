@@ -10,7 +10,7 @@ import React, {
 } from 'react';
 import type { Language } from '../types';
 import { fetchContentJson } from '../utils/fetchContentJson';
-import { SUPPORTED_LANGUAGES, getLocaleFromPath } from '../utils/localePaths';
+import { SUPPORTED_LANGUAGES, getLocaleFromLocation } from '../utils/localePaths';
 import { useVisualEditorSync } from './VisualEditorSyncContext';
 
 type TranslationPrimitive = string | number | boolean | null;
@@ -39,9 +39,14 @@ const resolveInitialLanguage = (): Language => {
     return FALLBACK_LANGUAGE;
   }
 
-  const localeFromPath = getLocaleFromPath(window.location.pathname);
-  if (localeFromPath) {
-    return localeFromPath;
+  const bootstrapLanguage = window.__INITIAL_LANGUAGE__;
+  if (bootstrapLanguage && SUPPORTED_LANGUAGES.includes(bootstrapLanguage)) {
+    return bootstrapLanguage;
+  }
+
+  const localeFromLocation = getLocaleFromLocation(window.location);
+  if (localeFromLocation) {
+    return localeFromLocation;
   }
 
   try {
@@ -143,6 +148,9 @@ export const LanguageProvider: React.FC<{ children: React.ReactNode }> = ({ chil
 
   const applyLanguage = useCallback((next: Language) => {
     setLanguageState((current) => (current === next ? current : next));
+    if (typeof window !== 'undefined') {
+      window.__INITIAL_LANGUAGE__ = next;
+    }
   }, []);
 
   const setLanguage = useCallback((next: Language) => {

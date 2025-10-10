@@ -17,6 +17,7 @@ import { buildLocalizedPath, SUPPORTED_LANGUAGES } from '../utils/localePaths';
 import { getCloudinaryUrl, isAbsoluteUrl } from '../utils/imageUrl';
 import Seo from '../src/components/Seo';
 import { loadUnifiedPage } from '../utils/unifiedPageLoader';
+import { resolveCmsHref } from '../utils/cmsLinks';
 
 type CmsCtaShape = {
   label?: string | null;
@@ -759,14 +760,18 @@ const Home: React.FC = () => {
   const heroSecondaryCtaHrefFieldPath = pageContent?.heroCtas && isCmsCtaObject(heroSecondaryCtaCmsValue)
     ? `${homeFieldPath}.heroCtas.ctaSecondary.href`
     : undefined;
-  const heroPrimaryCtaIsInternal = !!heroPrimaryCtaHref && (heroPrimaryCtaHref.startsWith('#/') || heroPrimaryCtaHref.startsWith('/'));
-  const heroSecondaryCtaIsInternal = !!heroSecondaryCtaHref && (heroSecondaryCtaHref.startsWith('#/') || heroSecondaryCtaHref.startsWith('/'));
-  const heroPrimaryLinkTarget = heroPrimaryCtaIsInternal
-    ? buildLocalizedPath(heroPrimaryCtaHref.startsWith('#/') ? heroPrimaryCtaHref.slice(1) : heroPrimaryCtaHref, language)
-    : heroPrimaryCtaHref;
-  const heroSecondaryLinkTarget = heroSecondaryCtaIsInternal
-    ? buildLocalizedPath(heroSecondaryCtaHref.startsWith('#/') ? heroSecondaryCtaHref.slice(1) : heroSecondaryCtaHref, language)
-    : heroSecondaryCtaHref;
+  const heroPrimaryHrefInfo = resolveCmsHref(heroPrimaryCtaHref ?? null);
+  const heroSecondaryHrefInfo = resolveCmsHref(heroSecondaryCtaHref ?? null);
+  const heroPrimaryInternalPath = heroPrimaryHrefInfo.internalPath;
+  const heroSecondaryInternalPath = heroSecondaryHrefInfo.internalPath;
+  const heroPrimaryCtaIsInternal = Boolean(heroPrimaryInternalPath);
+  const heroSecondaryCtaIsInternal = Boolean(heroSecondaryInternalPath);
+  const heroPrimaryLinkTarget = heroPrimaryInternalPath
+    ? buildLocalizedPath(heroPrimaryInternalPath, language)
+    : heroPrimaryHrefInfo.externalUrl ?? heroPrimaryCtaHref;
+  const heroSecondaryLinkTarget = heroSecondaryInternalPath
+    ? buildLocalizedPath(heroSecondaryInternalPath, language)
+    : heroSecondaryHrefInfo.externalUrl ?? heroSecondaryCtaHref;
 const heroInlineImageNode = shouldRenderInlineImage && heroInlineImage
     ? (
       <motion.div

@@ -2,6 +2,12 @@ import type { ReactNode } from 'react';
 
 export type Language = 'en' | 'pt' | 'es';
 
+declare global {
+  interface Window {
+    __INITIAL_LANGUAGE__?: Language;
+  }
+}
+
 export interface VisibilityFlag {
   visible?: boolean;
 }

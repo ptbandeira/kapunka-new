@@ -27,7 +27,7 @@ sections:
       \ de recupera\xE7\xE3o."
     imageAlt: Profissional massageando o rosto de uma cliente com cuidado de argan
     ctaLabel: Parceria conosco
-    ctaHref: /clinics
+    ctaHref: /for-clinics
     image: https://images.pexels.com/photos/3865548/pexels-photo-3865548.jpeg?auto=compress&cs=tinysrgb&w=1920
     imageFocal:
       x: 0.44
@@ -171,5 +171,5 @@ heroCtas:
     href: /shop
   ctaSecondary:
     label: "Para cl\xEDnicas e profissionais"
-    href: /clinics
+    href: /for-clinics
 ---

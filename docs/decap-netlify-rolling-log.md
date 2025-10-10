@@ -1,5 +1,15 @@
 # Decap CMS & Netlify Rolling Log
 
+## 2025-10-09 — Canonicalized clinics slug handling in runtime
+- **What changed**: Added a `resolveCmsHref` helper that strips locale prefixes and rewrites any `/clinics` aliases to `/for-clinics`, then wired it through the home hero, clinics page CTA, shop related links, and CMS-driven sections so localized CTAs always generate valid router paths.
+- **Impact & follow-up**: Portuguese and Spanish visitors no longer fall back to the homepage even if CMS content regresses to the old slug; the helper safeguards future content updates without requiring manual audits.
+- **References**: Pending PR
+
+## 2025-10-09 — Repointed localized clinics CTAs
+- **What changed**: Updated `content/pages_v2/index.json` and the English/Portuguese/Spanish home Markdown sources so every hero and media CTA now links to `/for-clinics` instead of the retired `/clinics` slug.
+- **Impact & follow-up**: Portuguese and Spanish visitors reach the dedicated Clinics landing page without bouncing back to the homepage; re-run the slug audit whenever new clinics-focused content is added.
+- **References**: Pending PR
+
 ## 2025-10-09 — Migrated Tailwind to the build pipeline
 - **What changed**: Installed Tailwind + PostCSS tooling, added a project-wide config that mirrors the previous CDN overrides, created entry CSS for the app/admin, and wired the Netlify prebuild step to emit `/public/styles/globals.css` for CMS previews instead of loading Tailwind from the CDN.
 - **Impact & follow-up**: Removes the runtime CDN dependency while keeping CMS previews styled with the same utility classes as production. Re-run `npm run tailwind:preview` whenever Tailwind directives change outside of `npm run build` to refresh the admin stylesheet.
@@ -437,4 +447,9 @@ This log records day-to-day investigations, fixes, and decisions that affect the
 ## 2025-10-08 — Disabled legacy hero duplication
 - **What changed**: Updated `pages/Home.tsx` to skip rendering hero blocks from legacy section lists so the page relies solely on the new full-bleed hero implementation.
 - **Impact & follow-up**: Prevents legacy section data from overriding the hero layout, eliminating the conflicting render path while we continue the broader content-source cleanup.
+- **References**: Pending PR
+
+## 2025-10-09 — Hardened locale detection for localized routes
+- **What changed**: Updated `utils/localePaths.ts`, `contexts/LanguageContext.tsx`, and `App.tsx` so locale detection reads from both the pathname and hash fragment, ensuring the language context initializes correctly even when editors access hashed preview URLs.
+- **Impact & follow-up**: Portuguese and Spanish pages now remain mounted after load because the router and language context agree on the active locale. No additional follow-up required beyond confirming future routing changes continue to use the shared helpers.
 - **References**: Pending PR
