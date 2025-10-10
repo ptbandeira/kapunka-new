@@ -1038,20 +1038,12 @@
               "body": {
                 "en": "How a simple gesture of care became a therapeutic protocol."
               },
-              "ctaHref": {
-                "en": "/about"
-              },
               "ctaLabel": {
                 "en": "Our Story"
-              },
-              "description": {
-                "pt": "Amigável para a pele, puro e prensado a frio.",
-                "es": "Amables con la piel, puros y prensados en frío."
               },
               "eyebrow": {
                 "en": "From the blog"
               },
-              "image": "shared/9bae3f87-12d5-43f4-a2a0-5cfc768e429d.jpg",
               "imageAlt": {
                 "en": "Hands applying argan oil in warm light"
               },
@@ -1061,26 +1053,26 @@
               },
               "title": {
                 "en": "From gratitude to method"
+              },
+              "image": "https://res.cloudinary.com/du6xl727e/image/upload/v1759614473/A_Woman_Picks_Fruit_from_an_Argan_Tree_1_ebojnj.jpg",
+              "ctaHref": {
+                "en": "/about"
+              },
+              "description": {
+                "pt": "Amigável para a pele, puro e prensado a frio.",
+                "es": "Amables con la piel, puros y prensados en frío."
               }
             },
             {
               "body": {
                 "en": "Used by dermatologists, medspas, and recovery clinics for over a decade."
               },
-              "ctaHref": {
-                "en": "/for-clinics"
-              },
               "ctaLabel": {
                 "en": "Partner With Us"
-              },
-              "description": {
-                "pt": "Texturas de baixa deposição e aromas suaves para pele sensível.",
-                "es": "Texturas de bajo residuo y aromas suaves para piel sensible."
               },
               "eyebrow": {
                 "en": "For clinics"
               },
-              "image": "https://images.pexels.com/photos/3865548/pexels-photo-3865548.jpeg?auto=compress&cs=tinysrgb&w=1920",
               "imageAlt": {
                 "en": "Practitioner massaging a client's face with argan care"
               },
@@ -1090,26 +1082,26 @@
               },
               "title": {
                 "en": "Trusted by professionals"
+              },
+              "image": "https://images.pexels.com/photos/3865548/pexels-photo-3865548.jpeg?auto=compress&cs=tinysrgb&w=1920",
+              "ctaHref": {
+                "en": "/for-clinics"
+              },
+              "description": {
+                "pt": "Texturas de baixa deposição e aromas suaves para pele sensível.",
+                "es": "Texturas de bajo residuo y aromas suaves para piel sensible."
               }
             },
             {
               "body": {
                 "en": "From Moroccan cooperatives to hospital rooms."
               },
-              "ctaHref": {
-                "en": "/method"
-              },
               "ctaLabel": {
                 "en": "Our Standards"
-              },
-              "description": {
-                "pt": "Conjuntos iniciais e formação para rotinas consistentes em casa.",
-                "es": "Sets iniciales y formación para rutinas constantes en casa."
               },
               "eyebrow": {
                 "en": "Supply chain"
               },
-              "image": "shared/a-woman-picks-fruit-from-an-argan-tree-1-.jpg",
               "imageAlt": {
                 "en": "Harvested argan fruit gathered in a woven basket"
               },
@@ -1119,26 +1111,26 @@
               },
               "title": {
                 "en": "Heritage sourcing, clinical standards"
+              },
+              "image": "shared/a-woman-picks-fruit-from-an-argan-tree-1-.jpg",
+              "ctaHref": {
+                "en": "/method"
+              },
+              "description": {
+                "pt": "Conjuntos iniciais e formação para rotinas consistentes em casa.",
+                "es": "Sets iniciales y formación para rutinas constantes en casa."
               }
             },
             {
               "body": {
                 "en": "Ancient wisdom, scientifically structured."
               },
-              "ctaHref": {
-                "en": "/shop"
-              },
               "ctaLabel": {
                 "en": "Shop Rituals"
-              },
-              "description": {
-                "pt": "Relações justas com as cooperativas de Marrocos.",
-                "es": "Relaciones justas con las cooperativas de Marruecos."
               },
               "eyebrow": {
                 "en": "Rituals"
               },
-              "image": "shared/342cecc0-3c00-4094-97d6-5c9d9da02330.jpg",
               "imageAlt": {
                 "en": "Steam-filled hammam room with a person resting"
               },
@@ -1148,6 +1140,14 @@
               },
               "title": {
                 "en": "From hammam rituals to modern recovery"
+              },
+              "image": "shared/342cecc0-3c00-4094-97d6-5c9d9da02330.jpg",
+              "ctaHref": {
+                "en": "/shop"
+              },
+              "description": {
+                "pt": "Relações justas com as cooperativas de Marrocos.",
+                "es": "Relaciones justas con las cooperativas de Marruecos."
               }
             }
           ],
