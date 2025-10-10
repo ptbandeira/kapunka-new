@@ -10,14 +10,19 @@
 [functions]
   directory = "netlify/functions"
 
+# allow content and assets to resolve normally
+[[redirects]]
+  from = "/content/*"
+  to = "/content/:splat"
+  status = 200
+
+# SPA fallback: rewrite only unknown routes to index.html
 [[redirects]]
   from = "/*"
   to = "/index.html"
   status = 200
-  force = true
 
 [dev]
   framework = "#custom"
   command = "npm run dev"
   targetPort = 5173
-

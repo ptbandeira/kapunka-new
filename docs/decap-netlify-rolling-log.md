@@ -453,3 +453,8 @@ This log records day-to-day investigations, fixes, and decisions that affect the
 - **What changed**: Updated `utils/localePaths.ts`, `contexts/LanguageContext.tsx`, and `App.tsx` so locale detection reads from both the pathname and hash fragment, ensuring the language context initializes correctly even when editors access hashed preview URLs.
 - **Impact & follow-up**: Portuguese and Spanish pages now remain mounted after load because the router and language context agree on the active locale. No additional follow-up required beyond confirming future routing changes continue to use the shared helpers.
 - **References**: Pending PR
+
+## 2025-10-10 — Adjusted Netlify redirects for content assets
+- **What changed**: Updated `netlify.toml` to allow `/content/*` requests to resolve to their static files and limited the SPA fallback to unknown routes.
+- **Impact & follow-up**: Enables JSON and other Decap-managed assets to be fetched directly without forcing the single-page app rewrite. Monitor future redirect additions to ensure content paths remain exempt.
+- **References**: Pending PR
