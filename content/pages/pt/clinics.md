@@ -182,4 +182,4 @@ intro:
     build retail revenue.
 ---
 
-# TODO: Translate to Portuguese
+<!-- TODO: Translate to Portuguese -->

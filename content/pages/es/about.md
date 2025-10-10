@@ -21,4 +21,4 @@ sections:
     image: https://images.pexels.com/photos/8714552/pexels-photo-8714552.jpeg?auto=compress&cs=tinysrgb&w=1920
 ---
 
-# TODO: Translate to Spanish
+<!-- TODO: Translate to Spanish -->

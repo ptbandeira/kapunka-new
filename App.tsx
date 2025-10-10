@@ -245,11 +245,11 @@ const AppRoutes: React.FC = () => {
   return (
     <AnimatePresence mode="wait">
       <Routes location={location} key={location.pathname}>
-        <Route path="/:locale(en|pt|es)" element={<LocalizedLayout />}>
-          {renderRoutes(routeDefinitions)}
-        </Route>
         <Route path="/" element={<LocalizedLayout />}>
           {renderRoutes(routeDefinitions)}
+          <Route path=":locale" element={<LocalizedLayout />}>
+            {renderRoutes(routeDefinitions)}
+          </Route>
         </Route>
         <Route path="*" element={<Navigate to="/" replace />} />
       </Routes>
