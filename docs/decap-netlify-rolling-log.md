@@ -473,3 +473,8 @@ This log records day-to-day investigations, fixes, and decisions that affect the
 - **What changed**: Replaced the regex route guard in `App.tsx` with nested locale routes so `/pt/*` and `/es/*` resolve through `LocalizedLayout`, letting the layout handle language validation internally.
 - **Impact & follow-up**: Portuguese and Spanish URLs render their pages again instead of falling through to the English redirect. Keep future locale routing updates within `LocalizedLayout` so the language context stays authoritative.
 - **References**: Pending PR
+
+## 2025-10-11 — Resolved English locale fallback loop
+- **What changed**: Simplified the `LocalizedLayout` effect in `App.tsx` so navigating from `/pt/*` or `/es/*` back to English clears the language state without forcing another locale-prefixed redirect.
+- **Impact & follow-up**: Visitors can freely return to English pages after viewing localized content, preventing the SPA router from trapping them on localized URLs. Re-test the language switcher whenever adjusting locale detection.
+- **References**: Pending PR

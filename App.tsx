@@ -20,7 +20,6 @@ import { useSiteSettings } from './contexts/SiteSettingsContext';
 import { useLanguage } from './contexts/LanguageContext';
 import type { Language, LocalizedText } from './types';
 import {
-  buildLocalizedPath,
   getLocaleFromLocation,
   isSupportedLanguage,
   removeLocaleFromPath,
@@ -198,12 +197,6 @@ const LocalizedLayout: React.FC = () => {
 
     if (!currentLocale) {
       if (language !== DEFAULT_LANGUAGE) {
-        const targetPath = buildLocalizedPath(location.pathname, language);
-        if (targetPath !== location.pathname) {
-          navigate(`${targetPath}${location.search}${location.hash}`, { replace: true });
-          return;
-        }
-
         setLanguage(DEFAULT_LANGUAGE);
       }
       return;
