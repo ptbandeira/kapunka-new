@@ -44,23 +44,8 @@ const LANGUAGE_FALLBACKS: Record<Language, Language[]> = {
   es: ['es', 'en', 'pt'],
 };
 
-const STATIC_PAGES_INDEX_URL = (() => {
-  try {
-    return new URL('../content/pages_v2/index.json', import.meta.url).href;
-  } catch {
-    return undefined;
-  }
-})();
-
 const buildUnifiedCandidateUrls = (): string[] => {
-  const candidates = new Set<string>();
-  candidates.add('/content/pages_v2/index.json');
-
-  if (STATIC_PAGES_INDEX_URL) {
-    candidates.add(STATIC_PAGES_INDEX_URL);
-  }
-
-  return Array.from(candidates);
+  return ['/content/pages_v2/index.json'];
 };
 
 const isLanguage = (value: string): value is Language => (
