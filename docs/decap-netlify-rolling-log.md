@@ -1,5 +1,10 @@
 # Decap CMS & Netlify Rolling Log
 
+## 2025-10-12 — Simplified Page Builder editing flow
+- **What changed**: Reworked `admin/config-modules/anchors.yaml`, `admin/config-modules/main.yaml`, and the generated `admin/config.yml` to remove required flags and strict URL patterns from the page builder, rename hero controls to match the live hero layout, and add guidance hints for each section block so editors see the site structure reflected in the CMS.
+- **Impact & follow-up**: Reviewers can save drafts without filling every field, and the reorganized form mirrors the frontend hierarchy, making it easier to understand what each control affects. Follow up by auditing lesser-used section templates to extend the same labeling pass if they resurface.
+- **References**: Pending PR
+
 ## 2025-10-12 — Hid TODO placeholders on localized pages
 - **What changed**: Replaced the visible `# TODO: Translate …` headings in the Portuguese and Spanish Markdown sources with HTML comments so visitors no longer see placeholder copy while localization is in progress.
 - **Impact & follow-up**: Localized routes keep rendering English fallback content without exposing internal TODO markers; translators can still find the comments when updating the files. No additional action required beyond translating the Markdown when ready.

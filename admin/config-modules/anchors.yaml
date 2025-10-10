@@ -80,9 +80,6 @@ duplicate_url_field: &duplicate_url_field
   widget: string
   required: false
   i18n: duplicate
-  pattern:
-    - "^https?://|^/|^$"
-    - "Enter an internal path (starting with /) or an absolute URL."
 
 button_settings_fields: &button_settings_fields
   - <<: *localized_string_field
@@ -190,7 +187,7 @@ course_item_fields: &course_item_fields
   - <<: *localized_string_field
     label: "Title"
     name: "title"
-    required: true
+    required: false
   - { label: Image, name: imageUrl, widget: image, choose_url: true, hint: "Thumbnail used on the Academy page." }
   - { label: Price, name: price, widget: number, value_type: float }
   - { label: Enroll Link, name: enrollLink, widget: string, hint: "URL to course registration." }
@@ -206,8 +203,8 @@ video_entry_fields: &video_entry_fields
 training_entry_fields: &training_entry_fields
   - *status_field
   - *schedule_fields
-  - { label: Course Title, name: courseTitle, widget: string, required: true }
-  - { label: Course Summary, name: courseSummary, widget: text, required: true }
+  - { label: Course Title, name: courseTitle, widget: string, required: false }
+  - { label: Course Summary, name: courseSummary, widget: text, required: false }
   - { label: Link URL, name: linkUrl, widget: string, required: false }
 
 product_item_fields: &product_item_fields
@@ -217,7 +214,7 @@ product_item_fields: &product_item_fields
   - <<: *localized_string_field
     label: "Name"
     name: "name"
-    required: true
+    required: false
     hint: "Displayed product name for PDPs and cards."
   - <<: *localized_string_field
     label: "Name Add-on"
@@ -298,7 +295,7 @@ article_item_fields: &article_item_fields
   - <<: *localized_string_field
     label: "Title"
     name: "title"
-    required: true
+    required: false
     hint: "Displayed as the article headline."
   - <<: *localized_text_field
     label: "Preview"
@@ -342,7 +339,7 @@ hero_content_fields: &hero_content_fields
       - <<: *localized_string_field
         label: "Button Label"
         name: "label"
-      - { label: "Link URL", name: "href", widget: "string", required: false, pattern: ["^(\\/|https?:\\/\\/).*$", "Enter an internal (/path) or absolute https:// URL."], hint: "Use internal routes (e.g. /shop) or full https:// links." }
+      - { label: "Link URL", name: "href", widget: "string", required: false, hint: "Use internal routes (e.g. /shop) or full https:// links." }
   - label: "Secondary Call-to-Action"
     name: "secondaryCta"
     widget: "object"
@@ -352,7 +349,7 @@ hero_content_fields: &hero_content_fields
       - <<: *localized_string_field
         label: "Button Label"
         name: "label"
-      - { label: "Link URL", name: "href", widget: "string", required: false, pattern: ["^(\\/|https?:\\/\\/).*$", "Enter an internal (/path) or absolute https:// URL."], hint: "Optional supporting action." }
+      - { label: "Link URL", name: "href", widget: "string", required: false, hint: "Optional supporting action." }
   - label: "Hero Image"
     name: "image"
     widget: "object"
@@ -400,7 +397,7 @@ media_copy_fields: &media_copy_fields
       - <<: *localized_string_field
         label: "Button Label"
         name: "label"
-      - { label: "Link URL", name: "href", widget: "string", required: false, pattern: ["^(\\/|https?:\\/\\/).*$", "Enter an internal (/path) or absolute https:// URL."], hint: "Link readers to relevant resources." }
+      - { label: "Link URL", name: "href", widget: "string", required: false, hint: "Link readers to relevant resources." }
   - label: "Image"
     name: "image"
     widget: "object"
@@ -419,7 +416,7 @@ testimonial_fields: &testimonial_fields
   - <<: *localized_markdown_field
     label: "Quote"
     name: "quote"
-    required: true
+    required: false
     hint: "Testimonial text displayed inside quotation marks."
   - <<: *localized_string_field
     label: "Author"

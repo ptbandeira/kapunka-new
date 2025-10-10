@@ -28,9 +28,9 @@ localized_text_field:
   widget: object
   i18n: true
   required: false
-  editor: &ref_3
+  editor: &ref_2
     display: tabs
-  fields: &ref_4
+  fields: &ref_3
     - label: English
       name: en
       widget: text
@@ -47,9 +47,9 @@ localized_markdown_field:
   widget: object
   i18n: true
   required: false
-  editor: &ref_11
+  editor: &ref_10
     display: tabs
-  fields: &ref_12
+  fields: &ref_11
     - label: English
       name: en
       widget: markdown
@@ -66,9 +66,9 @@ localized_list_field:
   widget: object
   i18n: true
   required: false
-  editor: &ref_7
+  editor: &ref_6
     display: tabs
-  fields: &ref_8
+  fields: &ref_7
     - label: English
       name: en
       widget: list
@@ -110,9 +110,6 @@ duplicate_url_field:
   widget: string
   required: false
   i18n: duplicate
-  pattern: &ref_2
-    - ^https?://|^/|^$
-    - Enter an internal path (starting with /) or an absolute URL.
 button_settings_fields:
   - widget: object
     i18n: true
@@ -125,7 +122,6 @@ button_settings_fields:
   - widget: string
     required: false
     i18n: duplicate
-    pattern: *ref_2
     label: Destination URL
     name: href
   - widget: boolean
@@ -151,7 +147,7 @@ section_list_string_field:
     label: Item
     name: item
     widget: string
-status_field: &ref_5
+status_field: &ref_4
   label: Editorial Status
   name: status
   widget: select
@@ -166,7 +162,7 @@ status_field: &ref_5
       value: approved
   default: draft
   hint: Track the current editorial state of this entry.
-schedule_fields: &ref_6
+schedule_fields: &ref_5
   label: Scheduling
   name: scheduling
   widget: object
@@ -182,7 +178,7 @@ schedule_fields: &ref_6
       name: unpublishAt
       widget: datetime
       required: false
-visibility_field: &ref_16
+visibility_field: &ref_15
   label: Visible on site
   name: visible
   widget: boolean
@@ -198,7 +194,7 @@ focal_point_field:
   hint: >-
     Adjust the image focus area. Values between 0 and 1 represent the relative horizontal and vertical point to keep in
     view.
-  fields: &ref_13
+  fields: &ref_12
     - label: Horizontal (0–1)
       name: x
       widget: number
@@ -215,68 +211,68 @@ focal_point_field:
       max: 1
       step: 0.01
       required: false
-product_knowledge_fields: &ref_9
+product_knowledge_fields: &ref_8
   - widget: object
     i18n: true
     required: false
-    editor: *ref_3
-    fields: *ref_4
+    editor: *ref_2
+    fields: *ref_3
     label: What It Is
     name: whatItIs
   - widget: object
     i18n: true
     required: false
-    editor: *ref_3
-    fields: *ref_4
+    editor: *ref_2
+    fields: *ref_3
     label: How It Works
     name: howItWorks
   - widget: object
     i18n: true
     required: false
-    editor: *ref_3
-    fields: *ref_4
+    editor: *ref_2
+    fields: *ref_3
     label: Who It's For
     name: whoItsFor
   - widget: object
     i18n: true
     required: false
-    editor: *ref_3
-    fields: *ref_4
+    editor: *ref_2
+    fields: *ref_3
     label: Scientific Backing
     name: scientificBacking
   - widget: object
     i18n: true
     required: false
-    editor: *ref_3
-    fields: *ref_4
+    editor: *ref_2
+    fields: *ref_3
     label: Cultural & Traditional Context
     name: culturalContext
-product_faq_fields: &ref_10
+product_faq_fields: &ref_9
   - widget: object
     i18n: true
     required: false
-    editor: *ref_3
-    fields: *ref_4
+    editor: *ref_2
+    fields: *ref_3
     label: Question
     name: question
     hint: FAQ prompt displayed on PDP.
   - widget: object
     i18n: true
     required: false
-    editor: *ref_3
-    fields: *ref_4
+    editor: *ref_2
+    fields: *ref_3
     label: Answer
     name: answer
     hint: Short response (supports Markdown).
-course_item_fields: &ref_52
+course_item_fields: &ref_51
   - label: ID
     name: id
     widget: string
+  - *ref_4
   - *ref_5
-  - *ref_6
   - widget: object
     i18n: true
-    required: true
+    required: false
     editor: *ref_0
     fields: *ref_1
     label: Title
@@ -294,9 +290,9 @@ course_item_fields: &ref_52
     name: enrollLink
     widget: string
     hint: URL to course registration.
-video_entry_fields: &ref_53
+video_entry_fields: &ref_52
+  - *ref_4
   - *ref_5
-  - *ref_6
   - label: Title
     name: title
     widget: string
@@ -314,30 +310,30 @@ video_entry_fields: &ref_53
     widget: image
     choose_url: true
     required: false
-training_entry_fields: &ref_54
+training_entry_fields: &ref_53
+  - *ref_4
   - *ref_5
-  - *ref_6
   - label: Course Title
     name: courseTitle
     widget: string
-    required: true
+    required: false
   - label: Course Summary
     name: courseSummary
     widget: text
-    required: true
+    required: false
   - label: Link URL
     name: linkUrl
     widget: string
     required: false
-product_item_fields: &ref_50
+product_item_fields: &ref_49
   - label: ID
     name: id
     widget: string
+  - *ref_4
   - *ref_5
-  - *ref_6
   - widget: object
     i18n: true
-    required: true
+    required: false
     editor: *ref_0
     fields: *ref_1
     label: Name
@@ -362,16 +358,16 @@ product_item_fields: &ref_50
   - widget: object
     i18n: true
     required: false
-    editor: *ref_3
-    fields: *ref_4
+    editor: *ref_2
+    fields: *ref_3
     label: Description
     name: description
     hint: Hero description for PDP hero and cart tooltip.
   - widget: object
     i18n: true
     required: false
-    editor: *ref_7
-    fields: *ref_8
+    editor: *ref_6
+    fields: *ref_7
     label: Bundle Includes
     name: bundleIncludes
     hint: Outline the items contained in a bundle.
@@ -398,40 +394,40 @@ product_item_fields: &ref_50
   - widget: object
     i18n: true
     required: false
-    editor: *ref_7
-    fields: *ref_8
+    editor: *ref_6
+    fields: *ref_7
     label: Badges
     name: badges
     hint: Short selling points displayed as badges.
   - widget: object
     i18n: true
     required: false
-    editor: *ref_7
-    fields: *ref_8
+    editor: *ref_6
+    fields: *ref_7
     label: Benefits
     name: benefits
     hint: Bulleted list summarising key results.
   - widget: object
     i18n: true
     required: false
-    editor: *ref_3
-    fields: *ref_4
+    editor: *ref_2
+    fields: *ref_3
     label: How to Use
     name: howToUse
     hint: Step-by-step application guidance (supports Markdown).
   - widget: object
     i18n: true
     required: false
-    editor: *ref_3
-    fields: *ref_4
+    editor: *ref_2
+    fields: *ref_3
     label: Ingredients
     name: ingredients
     hint: Full INCI or ingredient description list.
   - widget: object
     i18n: true
     required: false
-    editor: *ref_3
-    fields: *ref_4
+    editor: *ref_2
+    fields: *ref_3
     label: Origin & Purity Note
     name: labTestedNote
     hint: Highlight lab testing or sourcing credentials.
@@ -451,16 +447,16 @@ product_item_fields: &ref_50
       - widget: object
         i18n: true
         required: false
-        editor: *ref_7
-        fields: *ref_8
+        editor: *ref_6
+        fields: *ref_7
         label: Items
         name: items
         hint: Short facts or usage notes.
   - widget: object
     i18n: true
     required: false
-    editor: *ref_7
-    fields: *ref_8
+    editor: *ref_6
+    fields: *ref_7
     label: Multi-use Tips
     name: multiUseTips
     hint: Optional multi-use ideas shown on PDP.
@@ -468,13 +464,13 @@ product_item_fields: &ref_50
     name: knowledge
     widget: object
     collapsed: true
-    fields: *ref_9
+    fields: *ref_8
   - label: FAQs
     name: faqs
     widget: list
     summary: '{{fields.question.en}}'
-    fields: *ref_10
-article_item_fields: &ref_51
+    fields: *ref_9
+article_item_fields: &ref_50
   - label: ID
     name: id
     widget: string
@@ -483,7 +479,7 @@ article_item_fields: &ref_51
     widget: string
   - widget: object
     i18n: true
-    required: true
+    required: false
     editor: *ref_0
     fields: *ref_1
     label: Title
@@ -492,16 +488,16 @@ article_item_fields: &ref_51
   - widget: object
     i18n: true
     required: false
-    editor: *ref_3
-    fields: *ref_4
+    editor: *ref_2
+    fields: *ref_3
     label: Preview
     name: preview
     hint: Short summary shown in the Learn hub (≤200 characters).
   - widget: object
     i18n: true
     required: false
-    editor: *ref_11
-    fields: *ref_12
+    editor: *ref_10
+    fields: *ref_11
     label: Content
     name: content
     hint: Full article body. Supports Markdown.
@@ -532,8 +528,8 @@ article_item_fields: &ref_51
     widget: list
     required: false
     summary: '{{fields.question.en}}'
-    fields: *ref_10
-hero_content_fields: &ref_14
+    fields: *ref_9
+hero_content_fields: &ref_13
   - widget: object
     i18n: true
     required: false
@@ -545,8 +541,8 @@ hero_content_fields: &ref_14
   - widget: object
     i18n: true
     required: false
-    editor: *ref_3
-    fields: *ref_4
+    editor: *ref_2
+    fields: *ref_3
     label: Subheading
     name: subheading
     hint: Optional supporting sentence shown under the headline.
@@ -567,9 +563,6 @@ hero_content_fields: &ref_14
         name: href
         widget: string
         required: false
-        pattern:
-          - ^(\/|https?:\/\/).*$
-          - Enter an internal (/path) or absolute https:// URL.
         hint: Use internal routes (e.g. /shop) or full https:// links.
   - label: Secondary Call-to-Action
     name: secondaryCta
@@ -588,9 +581,6 @@ hero_content_fields: &ref_14
         name: href
         widget: string
         required: false
-        pattern:
-          - ^(\/|https?:\/\/).*$
-          - Enter an internal (/path) or absolute https:// URL.
         hint: Optional supporting action.
   - label: Hero Image
     name: image
@@ -618,7 +608,7 @@ hero_content_fields: &ref_14
         collapsed: true
         required: false
         hint: Optional focus point to control how the hero image crops responsively.
-        fields: *ref_13
+        fields: *ref_12
   - label: Text Anchor Override
     name: position
     widget: select
@@ -643,7 +633,7 @@ hero_content_fields: &ref_14
       - label: Bottom right
         value: bottom-right
     hint: Fine-tune where the hero copy sits when overlaying imagery.
-media_copy_fields: &ref_15
+media_copy_fields: &ref_14
   - widget: object
     i18n: true
     required: false
@@ -655,8 +645,8 @@ media_copy_fields: &ref_15
   - widget: object
     i18n: true
     required: false
-    editor: *ref_11
-    fields: *ref_12
+    editor: *ref_10
+    fields: *ref_11
     label: Body
     name: body
     hint: Supports Markdown for emphasis, links, and line breaks.
@@ -677,9 +667,6 @@ media_copy_fields: &ref_15
         name: href
         widget: string
         required: false
-        pattern:
-          - ^(\/|https?:\/\/).*$
-          - Enter an internal (/path) or absolute https:// URL.
         hint: Link readers to relevant resources.
   - label: Image
     name: image
@@ -707,13 +694,13 @@ media_copy_fields: &ref_15
         collapsed: true
         required: false
         hint: Optional focus point to guide cropping when the layout uses object-fit cover.
-        fields: *ref_13
+        fields: *ref_12
 testimonial_fields:
   - widget: object
     i18n: true
-    required: true
-    editor: *ref_11
-    fields: *ref_12
+    required: false
+    editor: *ref_10
+    fields: *ref_11
     label: Quote
     name: quote
     hint: Testimonial text displayed inside quotation marks.
@@ -758,15 +745,15 @@ hero_object:
   name: content
   widget: object
   summary: '{{fields.headline.en}}'
-  fields: *ref_14
+  fields: *ref_13
 media_copy_object:
   label: Media & Copy
   name: content
   widget: object
   summary: '{{fields.heading.en}}'
-  fields: *ref_15
+  fields: *ref_14
 shared_sections:
-  - &ref_17
+  - &ref_16
     label: Media + Copy
     name: mediaCopy
     widget: object
@@ -776,7 +763,7 @@ shared_sections:
       - name: type
         widget: hidden
         default: mediaCopy
-      - *ref_16
+      - *ref_15
       - label: Title
         name: title
         widget: string
@@ -817,7 +804,7 @@ shared_sections:
         hint: >-
           Adjust the image focus area. Values between 0 and 1 represent the relative horizontal and vertical point to
           keep in view.
-        fields: *ref_13
+        fields: *ref_12
       - label: CTA Label
         name: ctaLabel
         widget: string
@@ -826,7 +813,7 @@ shared_sections:
         name: ctaHref
         widget: string
         required: false
-  - &ref_18
+  - &ref_17
     label: Media Showcase
     name: mediaShowcase
     widget: object
@@ -836,7 +823,7 @@ shared_sections:
       - name: type
         widget: hidden
         default: mediaShowcase
-      - *ref_16
+      - *ref_15
       - label: Title
         name: title
         widget: string
@@ -880,7 +867,7 @@ shared_sections:
             hint: >-
               Adjust the image focus area. Values between 0 and 1 represent the relative horizontal and vertical point
               to keep in view.
-            fields: *ref_13
+            fields: *ref_12
           - label: CTA Label
             name: ctaLabel
             widget: string
@@ -889,7 +876,7 @@ shared_sections:
             name: ctaHref
             widget: string
             required: false
-  - &ref_19
+  - &ref_18
     label: Feature Grid
     name: featureGrid
     widget: object
@@ -899,7 +886,7 @@ shared_sections:
       - name: type
         widget: hidden
         default: featureGrid
-      - *ref_16
+      - *ref_15
       - label: Title
         name: title
         widget: string
@@ -925,7 +912,7 @@ shared_sections:
             name: description
             widget: text
             required: false
-  - &ref_20
+  - &ref_19
     label: Product Grid
     name: productGrid
     widget: object
@@ -935,7 +922,7 @@ shared_sections:
       - name: type
         widget: hidden
         default: productGrid
-      - *ref_16
+      - *ref_15
       - label: Title
         name: title
         widget: string
@@ -967,7 +954,7 @@ shared_sections:
               - name.en
             value_field: id
             options_length: 20
-  - &ref_21
+  - &ref_20
     label: Testimonials
     name: testimonials
     widget: object
@@ -977,7 +964,7 @@ shared_sections:
       - name: type
         widget: hidden
         default: testimonials
-      - *ref_16
+      - *ref_15
       - label: Section Title
         name: title
         widget: string
@@ -1013,7 +1000,7 @@ shared_sections:
             name: role
             widget: string
             required: false
-  - &ref_22
+  - &ref_21
     label: Community Carousel
     name: communityCarousel
     widget: object
@@ -1023,7 +1010,7 @@ shared_sections:
       - name: type
         widget: hidden
         default: communityCarousel
-      - *ref_16
+      - *ref_15
       - label: Title
         name: title
         widget: string
@@ -1047,7 +1034,7 @@ shared_sections:
             hint: >-
               Adjust the image focus area. Values between 0 and 1 represent the relative horizontal and vertical point
               to keep in view.
-            fields: *ref_13
+            fields: *ref_12
           - label: Alt Text
             name: alt
             widget: string
@@ -1064,7 +1051,7 @@ shared_sections:
             name: role
             widget: string
             required: false
-  - &ref_23
+  - &ref_22
     label: Newsletter Signup
     name: newsletterSignup
     widget: object
@@ -1074,7 +1061,7 @@ shared_sections:
       - name: type
         widget: hidden
         default: newsletterSignup
-      - *ref_16
+      - *ref_15
       - label: Title
         name: title
         widget: string
@@ -1115,7 +1102,7 @@ shared_sections:
             value: left
           - label: Center
             value: center
-  - &ref_24
+  - &ref_23
     label: Banner
     name: banner
     widget: object
@@ -1125,7 +1112,7 @@ shared_sections:
       - name: type
         widget: hidden
         default: banner
-      - *ref_16
+      - *ref_15
       - label: Text
         name: text
         widget: string
@@ -1138,7 +1125,7 @@ shared_sections:
         name: url
         widget: string
         required: false
-  - &ref_25
+  - &ref_24
     label: Video Gallery
     name: videoGallery
     widget: object
@@ -1148,7 +1135,7 @@ shared_sections:
       - name: type
         widget: hidden
         default: videoGallery
-      - *ref_16
+      - *ref_15
       - label: Title
         name: title
         widget: string
@@ -1180,7 +1167,7 @@ shared_sections:
             widget: image
             choose_url: true
             required: false
-  - &ref_26
+  - &ref_25
     label: Training List
     name: trainingList
     widget: object
@@ -1190,7 +1177,7 @@ shared_sections:
       - name: type
         widget: hidden
         default: trainingList
-      - *ref_16
+      - *ref_15
       - label: Title
         name: title
         widget: string
@@ -1217,7 +1204,7 @@ shared_sections:
             name: linkUrl
             widget: string
             required: false
-  - &ref_27
+  - &ref_26
     label: Timeline
     name: timeline
     widget: object
@@ -1227,7 +1214,7 @@ shared_sections:
       - name: type
         widget: hidden
         default: timeline
-      - *ref_16
+      - *ref_15
       - label: Title
         name: title
         widget: string
@@ -1250,7 +1237,7 @@ shared_sections:
             name: description
             widget: markdown
             required: false
-  - &ref_28
+  - &ref_27
     label: Fact Block
     name: facts
     widget: object
@@ -1260,7 +1247,7 @@ shared_sections:
       - name: type
         widget: hidden
         default: facts
-      - *ref_16
+      - *ref_15
       - label: Title
         name: title
         widget: string
@@ -1269,7 +1256,7 @@ shared_sections:
         name: text
         widget: text
         required: false
-  - &ref_29
+  - &ref_28
     label: Bulleted List
     name: bullets
     widget: object
@@ -1279,7 +1266,7 @@ shared_sections:
       - name: type
         widget: hidden
         default: bullets
-      - *ref_16
+      - *ref_15
       - label: Title
         name: title
         widget: string
@@ -1293,7 +1280,7 @@ shared_sections:
           label: Bullet
           name: bullet
           widget: string
-  - &ref_30
+  - &ref_29
     label: Specialties
     name: specialties
     widget: object
@@ -1303,7 +1290,7 @@ shared_sections:
       - name: type
         widget: hidden
         default: specialties
-      - *ref_16
+      - *ref_15
       - label: Title
         name: title
         widget: string
@@ -1327,7 +1314,7 @@ shared_sections:
               label: Bullet
               name: bullet
               widget: string
-  - &ref_31
+  - &ref_30
     label: FAQ
     name: faq
     widget: object
@@ -1337,7 +1324,7 @@ shared_sections:
       - name: type
         widget: hidden
         default: faq
-      - *ref_16
+      - *ref_15
       - label: Title
         name: title
         widget: string
@@ -1356,7 +1343,8 @@ shared_sections:
             name: answer
             widget: markdown
             required: false
-section_library: &ref_32
+section_library: &ref_31
+  - *ref_16
   - *ref_17
   - *ref_18
   - *ref_19
@@ -1371,7 +1359,6 @@ section_library: &ref_32
   - *ref_28
   - *ref_29
   - *ref_30
-  - *ref_31
 sections_field:
   label: Sections
   name: sections
@@ -1380,7 +1367,7 @@ sections_field:
   collapsed: true
   summary: '{{fields.type}} · {{fields.title | default(fields.heading) | default(fields.name) | default(''Section'')}}'
   hint: Reorder or edit the content sections that compose this page.
-  types: *ref_32
+  types: *ref_31
 backend:
   name: git-gateway
   branch: main
@@ -1824,7 +1811,7 @@ collections:
         collapsed: true
         required: false
         hint: Optional default focal point metadata shared across entries that reference this asset.
-        fields: *ref_13
+        fields: *ref_12
   - name: pages
     label: Page Builder
     label_singular: Page
@@ -1862,9 +1849,6 @@ collections:
                     widget: string
                     required: false
                     hint: Public URL path beginning with a forward slash.
-                    pattern:
-                      - ^/.+$
-                      - Enter a path that begins with /.
                   - label: Page Type
                     name: type
                     widget: hidden
@@ -1884,8 +1868,8 @@ collections:
                       - widget: object
                         i18n: true
                         required: false
-                        editor: *ref_3
-                        fields: *ref_4
+                        editor: *ref_2
+                        fields: *ref_3
                         label: Meta Description
                         name: description
                   - label: Hero
@@ -1893,8 +1877,9 @@ collections:
                     widget: object
                     collapsed: true
                     required: false
+                    hint: Configure the large hero at the top of the page.
                     fields:
-                      - label: Content
+                      - label: Copy & Highlights
                         name: content
                         widget: object
                         collapsed: true
@@ -1910,15 +1895,15 @@ collections:
                           - widget: object
                             i18n: true
                             required: false
-                            editor: *ref_3
-                            fields: *ref_4
+                            editor: *ref_2
+                            fields: *ref_3
                             label: Subheadline
                             name: subheadline
                           - widget: object
                             i18n: true
                             required: false
-                            editor: *ref_3
-                            fields: *ref_4
+                            editor: *ref_2
+                            fields: *ref_3
                             label: Body
                             name: body
                           - label: Highlights
@@ -1931,17 +1916,17 @@ collections:
                               - widget: object
                                 i18n: true
                                 required: false
-                                editor: *ref_3
-                                fields: *ref_4
+                                editor: *ref_2
+                                fields: *ref_3
                                 label: Highlight Text
                                 name: text
-                      - label: Calls to Action
+                      - label: Buttons
                         name: ctas
                         widget: object
                         collapsed: true
                         required: false
                         fields:
-                          - label: Primary CTA
+                          - label: Primary Button
                             name: primary
                             widget: object
                             collapsed: true
@@ -1961,7 +1946,7 @@ collections:
                                 fields: *ref_1
                                 label: Link
                                 name: href
-                          - label: Secondary CTA
+                          - label: Secondary Button
                             name: secondary
                             widget: object
                             collapsed: true
@@ -1981,11 +1966,12 @@ collections:
                                 fields: *ref_1
                                 label: Link
                                 name: href
-                      - label: Layout
+                      - label: Layout (advanced)
                         name: layout
                         widget: object
                         collapsed: true
                         required: false
+                        hint: Optional alignment overrides that mirror the hero layout controls on the frontend.
                         fields:
                           - widget: object
                             i18n: true
@@ -2034,10 +2020,12 @@ collections:
                     widget: list
                     collapsed: true
                     summary: '{{fields.type | upper}} · {{fields.title.en | default(fields.label.en) | default(''Section'')}}'
+                    hint: Stack the same section blocks that appear on the live page.
                     types:
-                      - label: Media Copy
+                      - label: Media + Copy
                         name: mediaCopy
                         widget: object
+                        hint: Split layout with text and media, matching the Media Copy component.
                         fields:
                           - name: type
                             widget: hidden
@@ -2052,8 +2040,8 @@ collections:
                           - widget: object
                             i18n: true
                             required: false
-                            editor: *ref_3
-                            fields: *ref_4
+                            editor: *ref_2
+                            fields: *ref_3
                             label: Body
                             name: body
                           - widget: object
@@ -2066,6 +2054,7 @@ collections:
                       - label: Media Showcase
                         name: mediaShowcase
                         widget: object
+                        hint: Carousel-style media cards pulled into a grid.
                         fields:
                           - name: type
                             widget: hidden
@@ -2125,15 +2114,15 @@ collections:
                               - widget: object
                                 i18n: true
                                 required: false
-                                editor: *ref_3
-                                fields: *ref_4
+                                editor: *ref_2
+                                fields: *ref_3
                                 label: Description
                                 name: description
                               - widget: object
                                 i18n: true
                                 required: false
-                                editor: *ref_3
-                                fields: *ref_4
+                                editor: *ref_2
+                                fields: *ref_3
                                 label: Body
                                 name: body
                               - widget: object
@@ -2158,13 +2147,14 @@ collections:
                               - widget: object
                                 i18n: true
                                 required: false
-                                editor: *ref_3
-                                fields: *ref_4
+                                editor: *ref_2
+                                fields: *ref_3
                                 label: Image Alt Text
                                 name: imageAlt
                       - label: Feature Grid
                         name: featureGrid
                         widget: object
+                        hint: Icon and copy grid used for value propositions.
                         fields:
                           - name: type
                             widget: hidden
@@ -2209,8 +2199,8 @@ collections:
                               - widget: object
                                 i18n: true
                                 required: false
-                                editor: *ref_3
-                                fields: *ref_4
+                                editor: *ref_2
+                                fields: *ref_3
                                 label: Description
                                 name: description
                           - label: Product References
@@ -2230,6 +2220,7 @@ collections:
                       - label: Product Grid
                         name: productGrid
                         widget: object
+                        hint: Product gallery with optional highlight cards, matching the shop grid layout.
                         fields:
                           - name: type
                             widget: hidden
@@ -2289,8 +2280,8 @@ collections:
                               - widget: object
                                 i18n: true
                                 required: false
-                                editor: *ref_3
-                                fields: *ref_4
+                                editor: *ref_2
+                                fields: *ref_3
                                 label: Body
                                 name: body
                               - widget: object
@@ -2310,8 +2301,8 @@ collections:
                               - widget: object
                                 i18n: true
                                 required: false
-                                editor: *ref_3
-                                fields: *ref_4
+                                editor: *ref_2
+                                fields: *ref_3
                                 label: Image Alt Text
                                 name: imageAlt
                           - label: Product References
@@ -2331,6 +2322,7 @@ collections:
                       - label: Community Carousel
                         name: communityCarousel
                         widget: object
+                        hint: Looping community carousel with imagery and rotating quotes.
                         fields:
                           - name: type
                             widget: hidden
@@ -2356,8 +2348,8 @@ collections:
                               - widget: object
                                 i18n: true
                                 required: false
-                                editor: *ref_3
-                                fields: *ref_4
+                                editor: *ref_2
+                                fields: *ref_3
                                 label: Alt Text
                                 name: alt
                               - widget: object
@@ -2370,8 +2362,8 @@ collections:
                               - widget: object
                                 i18n: true
                                 required: false
-                                editor: *ref_3
-                                fields: *ref_4
+                                editor: *ref_2
+                                fields: *ref_3
                                 label: Quote
                                 name: quote
                               - widget: object
@@ -2384,6 +2376,7 @@ collections:
                       - label: Newsletter Signup
                         name: newsletterSignup
                         widget: object
+                        hint: Email capture panel that mirrors the newsletter card on the site.
                         fields:
                           - name: type
                             widget: hidden
@@ -2398,8 +2391,8 @@ collections:
                           - widget: object
                             i18n: true
                             required: false
-                            editor: *ref_3
-                            fields: *ref_4
+                            editor: *ref_2
+                            fields: *ref_3
                             label: Subtitle
                             name: subtitle
                           - widget: object
@@ -2419,8 +2412,8 @@ collections:
                           - widget: object
                             i18n: true
                             required: false
-                            editor: *ref_3
-                            fields: *ref_4
+                            editor: *ref_2
+                            fields: *ref_3
                             label: Confirmation Message
                             name: confirmation
                           - widget: object
@@ -2440,6 +2433,7 @@ collections:
                       - label: Testimonials
                         name: testimonials
                         widget: object
+                        hint: Quote carousel used for social proof.
                         fields:
                           - name: type
                             widget: hidden
@@ -2473,13 +2467,14 @@ collections:
                               - widget: object
                                 i18n: true
                                 required: false
-                                editor: *ref_3
-                                fields: *ref_4
+                                editor: *ref_2
+                                fields: *ref_3
                                 label: Quote
                                 name: text
                       - label: Banner
                         name: banner
                         widget: object
+                        hint: Single-line promo banner rendered above or between sections.
                         fields:
                           - name: type
                             widget: hidden
@@ -2518,8 +2513,8 @@ collections:
                       - widget: object
                         i18n: true
                         required: false
-                        editor: *ref_3
-                        fields: *ref_4
+                        editor: *ref_2
+                        fields: *ref_3
                         label: Value
                         name: value
                       - label: Type
@@ -2619,7 +2614,7 @@ collections:
             collapsed: true
             required: false
             hint: Optional focal point (0–1) to reuse when rendering this media set image.
-            fields: *ref_13
+            fields: *ref_12
   - name: translations
     label: Translations
     group: Translations
@@ -2632,7 +2627,7 @@ collections:
           - label: English
             name: en
             widget: object
-            fields: &ref_33
+            fields: &ref_32
               - label: Shop Link
                 name: shop
                 widget: string
@@ -2680,11 +2675,11 @@ collections:
           - label: Portuguese
             name: pt
             widget: object
-            fields: *ref_33
+            fields: *ref_32
           - label: Spanish
             name: es
             widget: object
-            fields: *ref_33
+            fields: *ref_32
       - name: common
         label: Loading States
         file: content/translations/common.json
@@ -2693,7 +2688,7 @@ collections:
           - label: English
             name: en
             widget: object
-            fields: &ref_34
+            fields: &ref_33
               - label: Loading
                 name: loading
                 widget: string
@@ -2737,11 +2732,11 @@ collections:
           - label: Portuguese
             name: pt
             widget: object
-            fields: *ref_34
+            fields: *ref_33
           - label: Spanish
             name: es
             widget: object
-            fields: *ref_34
+            fields: *ref_33
       - name: footer
         label: Footer
         file: content/translations/footer.json
@@ -2750,7 +2745,7 @@ collections:
           - label: English
             name: en
             widget: object
-            fields: &ref_35
+            fields: &ref_34
               - label: Tagline
                 name: tagline
                 widget: string
@@ -2806,11 +2801,11 @@ collections:
           - label: Portuguese
             name: pt
             widget: object
-            fields: *ref_35
+            fields: *ref_34
           - label: Spanish
             name: es
             widget: object
-            fields: *ref_35
+            fields: *ref_34
       - name: cookies
         label: Cookies Banner
         file: content/translations/cookies.json
@@ -2819,7 +2814,7 @@ collections:
           - label: English
             name: en
             widget: object
-            fields: &ref_36
+            fields: &ref_35
               - label: Message
                 name: message
                 widget: text
@@ -2839,11 +2834,11 @@ collections:
           - label: Portuguese
             name: pt
             widget: object
-            fields: *ref_36
+            fields: *ref_35
           - label: Spanish
             name: es
             widget: object
-            fields: *ref_36
+            fields: *ref_35
       - name: policy
         label: Policy Pages
         file: content/translations/policy.json
@@ -2852,7 +2847,7 @@ collections:
           - label: English
             name: en
             widget: object
-            fields: &ref_37
+            fields: &ref_36
               - label: Loading Copy
                 name: loading
                 widget: string
@@ -2868,11 +2863,11 @@ collections:
           - label: Portuguese
             name: pt
             widget: object
-            fields: *ref_37
+            fields: *ref_36
           - label: Spanish
             name: es
             widget: object
-            fields: *ref_37
+            fields: *ref_36
       - name: article
         label: Article Page
         file: content/translations/article.json
@@ -2881,7 +2876,7 @@ collections:
           - label: English
             name: en
             widget: object
-            fields: &ref_38
+            fields: &ref_37
               - label: Featured Product Label
                 name: featuredProduct
                 widget: string
@@ -2905,11 +2900,11 @@ collections:
           - label: Portuguese
             name: pt
             widget: object
-            fields: *ref_38
+            fields: *ref_37
           - label: Spanish
             name: es
             widget: object
-            fields: *ref_38
+            fields: *ref_37
       - name: academy
         label: Academy Page
         file: content/translations/academy.json
@@ -2918,7 +2913,7 @@ collections:
           - label: English
             name: en
             widget: object
-            fields: &ref_39
+            fields: &ref_38
               - label: Header Title
                 name: headerTitle
                 widget: string
@@ -2934,11 +2929,11 @@ collections:
           - label: Portuguese
             name: pt
             widget: object
-            fields: *ref_39
+            fields: *ref_38
           - label: Spanish
             name: es
             widget: object
-            fields: *ref_39
+            fields: *ref_38
       - name: cart
         label: Cart & Checkout
         file: content/translations/cart.json
@@ -2947,7 +2942,7 @@ collections:
           - label: English
             name: en
             widget: object
-            fields: &ref_40
+            fields: &ref_39
               - label: Cart Title
                 name: title
                 widget: string
@@ -2990,11 +2985,11 @@ collections:
           - label: Portuguese
             name: pt
             widget: object
-            fields: *ref_40
+            fields: *ref_39
           - label: Spanish
             name: es
             widget: object
-            fields: *ref_40
+            fields: *ref_39
       - name: shop
         label: Shop Page
         file: content/translations/shop.json
@@ -3003,7 +2998,7 @@ collections:
           - label: English
             name: en
             widget: object
-            fields: &ref_41
+            fields: &ref_40
               - label: Page Title
                 name: title
                 widget: string
@@ -3043,11 +3038,11 @@ collections:
           - label: Portuguese
             name: pt
             widget: object
-            fields: *ref_41
+            fields: *ref_40
           - label: Spanish
             name: es
             widget: object
-            fields: *ref_41
+            fields: *ref_40
       - name: pdp
         label: Product Detail Page
         file: content/translations/pdp.json
@@ -3056,7 +3051,7 @@ collections:
           - label: English
             name: en
             widget: object
-            fields: &ref_42
+            fields: &ref_41
               - label: Not Found Copy
                 name: notFound
                 widget: string
@@ -3130,11 +3125,11 @@ collections:
           - label: Portuguese
             name: pt
             widget: object
-            fields: *ref_42
+            fields: *ref_41
           - label: Spanish
             name: es
             widget: object
-            fields: *ref_42
+            fields: *ref_41
       - name: home
         label: Home Page
         file: content/translations/home.json
@@ -3143,7 +3138,7 @@ collections:
           - label: English
             name: en
             widget: object
-            fields: &ref_43
+            fields: &ref_42
               - label: Meta Title
                 name: metaTitle
                 widget: string
@@ -3294,11 +3289,11 @@ collections:
           - label: Portuguese
             name: pt
             widget: object
-            fields: *ref_43
+            fields: *ref_42
           - label: Spanish
             name: es
             widget: object
-            fields: *ref_43
+            fields: *ref_42
       - name: learn
         label: Learn Page
         file: content/translations/learn.json
@@ -3307,7 +3302,7 @@ collections:
           - label: English
             name: en
             widget: object
-            fields: &ref_44
+            fields: &ref_43
               - label: Meta Title
                 name: metaTitle
                 widget: string
@@ -3348,11 +3343,11 @@ collections:
           - label: Portuguese
             name: pt
             widget: object
-            fields: *ref_44
+            fields: *ref_43
           - label: Spanish
             name: es
             widget: object
-            fields: *ref_44
+            fields: *ref_43
       - name: videos
         label: Videos Page
         file: content/translations/videos.json
@@ -3361,7 +3356,7 @@ collections:
           - label: English
             name: en
             widget: object
-            fields: &ref_45
+            fields: &ref_44
               - label: Meta Title
                 name: metaTitle
                 widget: string
@@ -3383,11 +3378,11 @@ collections:
           - label: Portuguese
             name: pt
             widget: object
-            fields: *ref_45
+            fields: *ref_44
           - label: Spanish
             name: es
             widget: object
-            fields: *ref_45
+            fields: *ref_44
       - name: training
         label: Training Page
         file: content/translations/training.json
@@ -3396,7 +3391,7 @@ collections:
           - label: English
             name: en
             widget: object
-            fields: &ref_46
+            fields: &ref_45
               - label: Meta Title
                 name: metaTitle
                 widget: string
@@ -3418,11 +3413,11 @@ collections:
           - label: Portuguese
             name: pt
             widget: object
-            fields: *ref_46
+            fields: *ref_45
           - label: Spanish
             name: es
             widget: object
-            fields: *ref_46
+            fields: *ref_45
       - name: about
         label: About Page
         file: content/translations/about.json
@@ -3431,7 +3426,7 @@ collections:
           - label: English
             name: en
             widget: object
-            fields: &ref_47
+            fields: &ref_46
               - label: Section Title
                 name: title
                 widget: string
@@ -3468,11 +3463,11 @@ collections:
           - label: Portuguese
             name: pt
             widget: object
-            fields: *ref_47
+            fields: *ref_46
           - label: Spanish
             name: es
             widget: object
-            fields: *ref_47
+            fields: *ref_46
       - name: contact
         label: Contact Page
         file: content/translations/contact.json
@@ -3481,7 +3476,7 @@ collections:
           - label: English
             name: en
             widget: object
-            fields: &ref_48
+            fields: &ref_47
               - label: Page Title
                 name: title
                 widget: string
@@ -3540,11 +3535,11 @@ collections:
           - label: Portuguese
             name: pt
             widget: object
-            fields: *ref_48
+            fields: *ref_47
           - label: Spanish
             name: es
             widget: object
-            fields: *ref_48
+            fields: *ref_47
       - name: clinics
         label: Clinics Page
         file: content/translations/clinics.json
@@ -3553,7 +3548,7 @@ collections:
           - label: English
             name: en
             widget: object
-            fields: &ref_49
+            fields: &ref_48
               - label: Page Title
                 name: title
                 widget: string
@@ -3694,11 +3689,11 @@ collections:
           - label: Portuguese
             name: pt
             widget: object
-            fields: *ref_49
+            fields: *ref_48
           - label: Spanish
             name: es
             widget: object
-            fields: *ref_49
+            fields: *ref_48
     load_strategy: lazy
   - name: products
     label: Products
@@ -3718,7 +3713,7 @@ collections:
             name: items
             widget: list
             summary: '{{fields.name.en}}'
-            fields: *ref_50
+            fields: *ref_49
   - name: articles
     label: Blog Posts
     group: Blog Posts
@@ -3737,7 +3732,7 @@ collections:
             name: items
             widget: list
             summary: '{{fields.title.en}}'
-            fields: *ref_51
+            fields: *ref_50
   - name: reviews
     label: Product Reviews
     group: Products
@@ -3836,7 +3831,7 @@ collections:
             name: courses
             widget: list
             summary: '{{fields.title.en}}'
-            fields: *ref_52
+            fields: *ref_51
   - name: videoEntries
     label: Video Library
     group: Blog Posts
@@ -3853,7 +3848,7 @@ collections:
             name: videos
             widget: list
             summary: '{{fields.title}}'
-            fields: *ref_53
+            fields: *ref_52
   - name: trainingEntries
     label: Training Library
     group: Products
@@ -3871,7 +3866,7 @@ collections:
             widget: list
             summary: '{{fields.courseTitle}}'
             min: 1
-            fields: *ref_54
+            fields: *ref_53
   - name: policies
     label: Policies
     group: Site Settings
