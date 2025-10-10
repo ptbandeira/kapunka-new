@@ -14,25 +14,6 @@ const addIndexFallback = (candidates: Set<string>, basePath: string): void => {
   }
 };
 
-const addStaticAssetCandidates = (candidates: Set<string>, relativePath: string): void => {
-  try {
-    const staticAssetUrl = new URL(`../content/${relativePath}`, import.meta.url).href;
-    candidates.add(staticAssetUrl);
-
-    if (relativePath.endsWith(INDEX_SUFFIX)) {
-      const withoutIndex = relativePath.slice(0, -INDEX_SUFFIX.length);
-      if (withoutIndex) {
-        const staticIndexFallback = new URL(`../content/${withoutIndex}.json`, import.meta.url).href;
-        candidates.add(staticIndexFallback);
-      }
-    }
-  } catch (error) {
-    if (import.meta.env.DEV) {
-      console.warn('fetchContentJson: failed to resolve static asset URL', relativePath, error);
-    }
-  }
-};
-
 export const fetchContentJson = async <T>(url: string, init?: RequestInit): Promise<T> => {
   const candidates = new Set<string>();
   candidates.add(url);
@@ -41,7 +22,6 @@ export const fetchContentJson = async <T>(url: string, init?: RequestInit): Prom
     const relativePath = normalizeRelativePath(url.slice(CONTENT_PREFIX.length));
     if (relativePath) {
       addIndexFallback(candidates, relativePath);
-      addStaticAssetCandidates(candidates, relativePath);
     }
   }
 
