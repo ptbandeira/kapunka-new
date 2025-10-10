@@ -1,5 +1,10 @@
 # Decap CMS & Netlify Rolling Log
 
+## 2025-10-13 — Relaxed required validation across Decap
+- **What changed**: Updated `scripts/build-decap-config.mjs` to automatically flag every widget as optional and loosen regex patterns so empty strings pass validation, then regenerated `admin/config.yml` via `npm run cms:build`.
+- **Impact & follow-up**: Editors can now save entries after modifying only a couple of fields without filling hundreds of placeholders; keep an eye on future schema additions to ensure the build script continues to enforce optional fields.
+- **References**: Pending PR
+
 ## 2025-10-12 — Simplified Page Builder editing flow
 - **What changed**: Reworked `admin/config-modules/anchors.yaml`, `admin/config-modules/main.yaml`, and the generated `admin/config.yml` to remove required flags and strict URL patterns from the page builder, rename hero controls to match the live hero layout, and add guidance hints for each section block so editors see the site structure reflected in the CMS.
 - **Impact & follow-up**: Reviewers can save drafts without filling every field, and the reorganized form mirrors the frontend hierarchy, making it easier to understand what each control affects. Follow up by auditing lesser-used section templates to extend the same labeling pass if they resurface.

@@ -16,14 +16,17 @@ localized_string_field:
       name: en
       widget: string
       hint: Primary copy – translate first here.
+      required: false
     - label: Portuguese
       name: pt
       widget: string
       hint: Optional – leave blank to reuse the English value.
+      required: false
     - label: Spanish
       name: es
       widget: string
       hint: Optional – leave blank to reuse the English value.
+      required: false
 localized_text_field:
   widget: object
   i18n: true
@@ -35,14 +38,17 @@ localized_text_field:
       name: en
       widget: text
       hint: Primary copy – translate first here.
+      required: false
     - label: Portuguese
       name: pt
       widget: text
       hint: Optional – leave blank to reuse the English value.
+      required: false
     - label: Spanish
       name: es
       widget: text
       hint: Optional – leave blank to reuse the English value.
+      required: false
 localized_markdown_field:
   widget: object
   i18n: true
@@ -54,14 +60,17 @@ localized_markdown_field:
       name: en
       widget: markdown
       hint: Primary copy – translate first here.
+      required: false
     - label: Portuguese
       name: pt
       widget: markdown
       hint: Optional – leave blank to reuse the English value.
+      required: false
     - label: Spanish
       name: es
       widget: markdown
       hint: Optional – leave blank to reuse the English value.
+      required: false
 localized_list_field:
   widget: object
   i18n: true
@@ -77,6 +86,8 @@ localized_list_field:
         label: Item
         name: item
         widget: string
+        required: false
+      required: false
     - label: Portuguese
       name: pt
       widget: list
@@ -85,6 +96,8 @@ localized_list_field:
         label: Item
         name: item
         widget: string
+        required: false
+      required: false
     - label: Spanish
       name: es
       widget: list
@@ -93,6 +106,8 @@ localized_list_field:
         label: Item
         name: item
         widget: string
+        required: false
+      required: false
 duplicate_string_field:
   widget: string
   required: false
@@ -147,6 +162,7 @@ section_list_string_field:
     label: Item
     name: item
     widget: string
+    required: false
 status_field: &ref_4
   label: Editorial Status
   name: status
@@ -162,6 +178,7 @@ status_field: &ref_4
       value: approved
   default: draft
   hint: Track the current editorial state of this entry.
+  required: false
 schedule_fields: &ref_5
   label: Scheduling
   name: scheduling
@@ -268,6 +285,7 @@ course_item_fields: &ref_51
   - label: ID
     name: id
     widget: string
+    required: false
   - *ref_4
   - *ref_5
   - widget: object
@@ -282,14 +300,17 @@ course_item_fields: &ref_51
     widget: image
     choose_url: true
     hint: Thumbnail used on the Academy page.
+    required: false
   - label: Price
     name: price
     widget: number
     value_type: float
+    required: false
   - label: Enroll Link
     name: enrollLink
     widget: string
     hint: URL to course registration.
+    required: false
 video_entry_fields: &ref_52
   - *ref_4
   - *ref_5
@@ -329,6 +350,7 @@ product_item_fields: &ref_49
   - label: ID
     name: id
     widget: string
+    required: false
   - *ref_4
   - *ref_5
   - widget: object
@@ -376,6 +398,7 @@ product_item_fields: &ref_49
     widget: image
     choose_url: true
     hint: Hero product image displayed on cards and PDP.
+    required: false
   - label: Sizes
     name: sizes
     widget: list
@@ -384,13 +407,17 @@ product_item_fields: &ref_49
       - label: Option ID
         name: id
         widget: string
+        required: false
       - label: Size (ml)
         name: size
         widget: number
+        required: false
       - label: Price
         name: price
         widget: number
         value_type: float
+        required: false
+    required: false
   - widget: object
     i18n: true
     required: false
@@ -452,6 +479,7 @@ product_item_fields: &ref_49
         label: Items
         name: items
         hint: Short facts or usage notes.
+    required: false
   - widget: object
     i18n: true
     required: false
@@ -465,18 +493,22 @@ product_item_fields: &ref_49
     widget: object
     collapsed: true
     fields: *ref_8
+    required: false
   - label: FAQs
     name: faqs
     widget: list
     summary: '{{fields.question.en}}'
     fields: *ref_9
+    required: false
 article_item_fields: &ref_50
   - label: ID
     name: id
     widget: string
+    required: false
   - label: Slug
     name: slug
     widget: string
+    required: false
   - widget: object
     i18n: true
     required: false
@@ -505,11 +537,13 @@ article_item_fields: &ref_50
     name: category
     widget: string
     hint: Used for filtering in the Learn hub.
+    required: false
   - label: Featured Image
     name: imageUrl
     widget: image
     choose_url: true
     hint: Preview image shown on the Learn hub and article hero.
+    required: false
   - label: Related Product ID
     name: relatedProductId
     widget: string
@@ -523,6 +557,7 @@ article_item_fields: &ref_50
       label: Product ID
       name: id
       widget: string
+      required: false
   - label: FAQs
     name: faqs
     widget: list
@@ -746,12 +781,14 @@ hero_object:
   widget: object
   summary: '{{fields.headline.en}}'
   fields: *ref_13
+  required: false
 media_copy_object:
   label: Media & Copy
   name: content
   widget: object
   summary: '{{fields.heading.en}}'
   fields: *ref_14
+  required: false
 shared_sections:
   - &ref_16
     label: Media + Copy
@@ -763,6 +800,7 @@ shared_sections:
       - name: type
         widget: hidden
         default: mediaCopy
+        required: false
       - *ref_15
       - label: Title
         name: title
@@ -813,6 +851,7 @@ shared_sections:
         name: ctaHref
         widget: string
         required: false
+    required: false
   - &ref_17
     label: Media Showcase
     name: mediaShowcase
@@ -823,6 +862,7 @@ shared_sections:
       - name: type
         widget: hidden
         default: mediaShowcase
+        required: false
       - *ref_15
       - label: Title
         name: title
@@ -876,6 +916,8 @@ shared_sections:
             name: ctaHref
             widget: string
             required: false
+        required: false
+    required: false
   - &ref_18
     label: Feature Grid
     name: featureGrid
@@ -886,6 +928,7 @@ shared_sections:
       - name: type
         widget: hidden
         default: featureGrid
+        required: false
       - *ref_15
       - label: Title
         name: title
@@ -912,6 +955,8 @@ shared_sections:
             name: description
             widget: text
             required: false
+        required: false
+    required: false
   - &ref_19
     label: Product Grid
     name: productGrid
@@ -922,6 +967,7 @@ shared_sections:
       - name: type
         widget: hidden
         default: productGrid
+        required: false
       - *ref_15
       - label: Title
         name: title
@@ -954,6 +1000,9 @@ shared_sections:
               - name.en
             value_field: id
             options_length: 20
+            required: false
+        required: false
+    required: false
   - &ref_20
     label: Testimonials
     name: testimonials
@@ -964,6 +1013,7 @@ shared_sections:
       - name: type
         widget: hidden
         default: testimonials
+        required: false
       - *ref_15
       - label: Section Title
         name: title
@@ -1000,6 +1050,8 @@ shared_sections:
             name: role
             widget: string
             required: false
+        required: false
+    required: false
   - &ref_21
     label: Community Carousel
     name: communityCarousel
@@ -1010,6 +1062,7 @@ shared_sections:
       - name: type
         widget: hidden
         default: communityCarousel
+        required: false
       - *ref_15
       - label: Title
         name: title
@@ -1051,6 +1104,8 @@ shared_sections:
             name: role
             widget: string
             required: false
+        required: false
+    required: false
   - &ref_22
     label: Newsletter Signup
     name: newsletterSignup
@@ -1061,6 +1116,7 @@ shared_sections:
       - name: type
         widget: hidden
         default: newsletterSignup
+        required: false
       - *ref_15
       - label: Title
         name: title
@@ -1102,6 +1158,7 @@ shared_sections:
             value: left
           - label: Center
             value: center
+    required: false
   - &ref_23
     label: Banner
     name: banner
@@ -1112,6 +1169,7 @@ shared_sections:
       - name: type
         widget: hidden
         default: banner
+        required: false
       - *ref_15
       - label: Text
         name: text
@@ -1125,6 +1183,7 @@ shared_sections:
         name: url
         widget: string
         required: false
+    required: false
   - &ref_24
     label: Video Gallery
     name: videoGallery
@@ -1135,6 +1194,7 @@ shared_sections:
       - name: type
         widget: hidden
         default: videoGallery
+        required: false
       - *ref_15
       - label: Title
         name: title
@@ -1167,6 +1227,8 @@ shared_sections:
             widget: image
             choose_url: true
             required: false
+        required: false
+    required: false
   - &ref_25
     label: Training List
     name: trainingList
@@ -1177,6 +1239,7 @@ shared_sections:
       - name: type
         widget: hidden
         default: trainingList
+        required: false
       - *ref_15
       - label: Title
         name: title
@@ -1204,6 +1267,8 @@ shared_sections:
             name: linkUrl
             widget: string
             required: false
+        required: false
+    required: false
   - &ref_26
     label: Timeline
     name: timeline
@@ -1214,6 +1279,7 @@ shared_sections:
       - name: type
         widget: hidden
         default: timeline
+        required: false
       - *ref_15
       - label: Title
         name: title
@@ -1237,6 +1303,8 @@ shared_sections:
             name: description
             widget: markdown
             required: false
+        required: false
+    required: false
   - &ref_27
     label: Fact Block
     name: facts
@@ -1247,6 +1315,7 @@ shared_sections:
       - name: type
         widget: hidden
         default: facts
+        required: false
       - *ref_15
       - label: Title
         name: title
@@ -1256,6 +1325,7 @@ shared_sections:
         name: text
         widget: text
         required: false
+    required: false
   - &ref_28
     label: Bulleted List
     name: bullets
@@ -1266,6 +1336,7 @@ shared_sections:
       - name: type
         widget: hidden
         default: bullets
+        required: false
       - *ref_15
       - label: Title
         name: title
@@ -1280,6 +1351,9 @@ shared_sections:
           label: Bullet
           name: bullet
           widget: string
+          required: false
+        required: false
+    required: false
   - &ref_29
     label: Specialties
     name: specialties
@@ -1290,6 +1364,7 @@ shared_sections:
       - name: type
         widget: hidden
         default: specialties
+        required: false
       - *ref_15
       - label: Title
         name: title
@@ -1314,6 +1389,10 @@ shared_sections:
               label: Bullet
               name: bullet
               widget: string
+              required: false
+            required: false
+        required: false
+    required: false
   - &ref_30
     label: FAQ
     name: faq
@@ -1324,6 +1403,7 @@ shared_sections:
       - name: type
         widget: hidden
         default: faq
+        required: false
       - *ref_15
       - label: Title
         name: title
@@ -1343,6 +1423,8 @@ shared_sections:
             name: answer
             widget: markdown
             required: false
+        required: false
+    required: false
 section_library: &ref_31
   - *ref_16
   - *ref_17
@@ -1368,6 +1450,7 @@ sections_field:
   summary: '{{fields.type}} · {{fields.title | default(fields.heading) | default(fields.name) | default(''Section'')}}'
   hint: Reorder or edit the content sections that compose this page.
   types: *ref_31
+  required: false
 backend:
   name: git-gateway
   branch: main
@@ -1383,6 +1466,7 @@ editorial:
   dashboard:
     widgets:
       - widget: dashboard
+        required: false
 local_backend: true
 media_folder: /uploads
 public_folder: /uploads
@@ -1450,23 +1534,28 @@ collections:
                     name: en
                     widget: string
                     pattern:
-                      - ^.{1,40}$
+                      - ^(?:.{1,40}|)$
                       - Enter 1–40 characters.
                     hint: English brand name shown in the site chrome.
+                    required: false
                   - label: Portuguese Name
                     name: pt
                     widget: string
                     pattern:
-                      - ^.{1,40}$
+                      - ^(?:.{1,40}|)$
                       - Enter 1–40 characters.
                     hint: Portuguese brand name used across localized navigation.
+                    required: false
                   - label: Spanish Name
                     name: es
                     widget: string
                     pattern:
-                      - ^.{1,40}$
+                      - ^(?:.{1,40}|)$
                       - Enter 1–40 characters.
                     hint: Spanish brand name displayed in localized UI.
+                    required: false
+                required: false
+            required: false
           - label: Home
             name: home
             widget: object
@@ -1476,6 +1565,7 @@ collections:
                 widget: image
                 choose_url: true
                 hint: Homepage hero background image. Upload high-quality assets at least 2000px wide.
+                required: false
               - label: Featured Bestsellers
                 name: featuredProductIds
                 widget: relation
@@ -1492,6 +1582,7 @@ collections:
                 multiple: true
                 required: false
                 hint: Optional featured product IDs shown on the homepage carousel. Select up to 6 items.
+            required: false
           - label: Contact
             name: contact
             widget: object
@@ -1500,23 +1591,27 @@ collections:
                 name: email
                 widget: string
                 pattern:
-                  - ^[^\s@]+@[^\s@]+\.[^\s@]+$
+                  - ^(?:[^\s@]+@[^\s@]+\.[^\s@]+|)$
                   - Enter a valid email address (e.g. hello@example.com).
                 hint: Primary inbox for contact inquiries.
+                required: false
               - label: Phone Number
                 name: phone
                 widget: string
                 pattern:
-                  - ^[+\d()\s-]{4,25}$
+                  - ^(?:[+\d()\s-]{4,25}|)$
                   - Use digits, spaces, parentheses, or dashes (4–25 characters).
                 hint: Customer service phone number including country/area code.
+                required: false
               - label: WhatsApp Link
                 name: whatsapp
                 widget: string
                 pattern:
-                  - ^https://wa\.me/\d{6,15}$
+                  - ^(?:https://wa\.me/\d{6,15}|)$
                   - Use the WhatsApp short link format (https://wa.me/##########).
                 hint: Direct WhatsApp link for quick chat support.
+                required: false
+            required: false
           - label: About Page Imagery
             name: about
             widget: object
@@ -1526,6 +1621,7 @@ collections:
                 widget: image
                 choose_url: true
                 hint: Recommended minimum 2000×1300 JPG or WEBP to preserve the hero layout.
+                required: false
               - label: Brand Story Alt Text
                 name: storyAlt
                 widget: object
@@ -1556,11 +1652,13 @@ collections:
                       - ^.{0,120}$
                       - Keep under 120 characters.
                     hint: Spanish description for accessibility.
+                required: false
               - label: Argan Sourcing Image
                 name: sourcingImage
                 widget: image
                 choose_url: true
                 hint: Recommended minimum 2000×1300 JPG or WEBP to preserve the secondary layout.
+                required: false
               - label: Argan Sourcing Alt Text
                 name: sourcingAlt
                 widget: object
@@ -1591,6 +1689,8 @@ collections:
                       - ^.{0,120}$
                       - Keep under 120 characters.
                     hint: Spanish sourcing image description.
+                required: false
+            required: false
           - label: For Clinics
             name: clinics
             widget: object
@@ -1600,9 +1700,10 @@ collections:
                 widget: string
                 hint: HTTPS link used for the For Clinics CTA button (max 200 characters).
                 pattern:
-                  - ^https://
+                  - ^(?:https://|)$
                   - Please enter a secure HTTPS link.
                 required: false
+            required: false
           - label: Footer
             name: footer
             widget: object
@@ -1617,23 +1718,27 @@ collections:
                     name: en
                     widget: string
                     pattern:
-                      - ^.{1,80}$
+                      - ^(?:.{1,80}|)$
                       - Enter 1–80 characters.
                     hint: English legal entity text.
+                    required: false
                   - label: Portuguese Legal Name
                     name: pt
                     widget: string
                     pattern:
-                      - ^.{1,80}$
+                      - ^(?:.{1,80}|)$
                       - Enter 1–80 characters.
                     hint: Portuguese legal entity text.
+                    required: false
                   - label: Spanish Legal Name
                     name: es
                     widget: string
                     pattern:
-                      - ^.{1,80}$
+                      - ^(?:.{1,80}|)$
                       - Enter 1–80 characters.
                     hint: Spanish legal entity text.
+                    required: false
+                required: false
               - label: Social Links
                 name: socialLinks
                 widget: list
@@ -1643,9 +1748,10 @@ collections:
                     name: id
                     widget: string
                     pattern:
-                      - ^[a-z0-9_-]+$
+                      - ^(?:[a-z0-9_-]+|)$
                       - Use lowercase letters, numbers, dashes, or underscores.
                     hint: Stable identifier referenced in the code (lowercase, no spaces).
+                    required: false
                   - label: Label
                     name: label
                     widget: object
@@ -1656,30 +1762,35 @@ collections:
                         name: en
                         widget: string
                         pattern:
-                          - ^.{1,24}$
+                          - ^(?:.{1,24}|)$
                           - Enter 1–24 characters.
                         hint: English link label shown to visitors.
+                        required: false
                       - label: Portuguese Label
                         name: pt
                         widget: string
                         pattern:
-                          - ^.{1,24}$
+                          - ^(?:.{1,24}|)$
                           - Enter 1–24 characters.
                         hint: Portuguese link label.
+                        required: false
                       - label: Spanish Label
                         name: es
                         widget: string
                         pattern:
-                          - ^.{1,24}$
+                          - ^(?:.{1,24}|)$
                           - Enter 1–24 characters.
                         hint: Spanish link label.
+                        required: false
+                    required: false
                   - label: URL
                     name: url
                     widget: string
                     pattern:
-                      - ^(https?://|/)\S+$
+                      - ^(?:(https?://|/)\S+|)$
                       - Use an absolute https:// URL or internal /path.
                     hint: Full URL to the social destination (https:// or internal /path).
+                    required: false
                   - label: Icon
                     name: icon
                     widget: select
@@ -1695,6 +1806,9 @@ collections:
                       - label: Globe
                         value: globe
                     hint: Choose which icon to display with the social link.
+                    required: false
+                required: false
+            required: false
           - label: SEO Defaults
             name: seo
             widget: object
@@ -1715,23 +1829,27 @@ collections:
                     name: en
                     widget: string
                     pattern:
-                      - ^.{1,60}$
+                      - ^(?:.{1,60}|)$
                       - Enter 1–60 characters.
                     hint: Default English SEO title.
+                    required: false
                   - label: Portuguese Title
                     name: pt
                     widget: string
                     pattern:
-                      - ^.{1,60}$
+                      - ^(?:.{1,60}|)$
                       - Enter 1–60 characters.
                     hint: Default Portuguese SEO title.
+                    required: false
                   - label: Spanish Title
                     name: es
                     widget: string
                     pattern:
-                      - ^.{1,60}$
+                      - ^(?:.{1,60}|)$
                       - Enter 1–60 characters.
                     hint: Default Spanish SEO title.
+                    required: false
+                required: false
               - label: Default Description
                 name: defaultDescription
                 widget: object
@@ -1742,23 +1860,28 @@ collections:
                     name: en
                     widget: text
                     pattern:
-                      - ^.{1,160}$
+                      - ^(?:.{1,160}|)$
                       - Enter 1–160 characters.
                     hint: Default English meta description.
+                    required: false
                   - label: Portuguese Description
                     name: pt
                     widget: text
                     pattern:
-                      - ^.{1,160}$
+                      - ^(?:.{1,160}|)$
                       - Enter 1–160 characters.
                     hint: Default Portuguese meta description.
+                    required: false
                   - label: Spanish Description
                     name: es
                     widget: text
                     pattern:
-                      - ^.{1,160}$
+                      - ^(?:.{1,160}|)$
                       - Enter 1–160 characters.
                     hint: Default Spanish meta description.
+                    required: false
+                required: false
+            required: false
   - name: assets_images
     label: Image Library
     label_singular: Image
@@ -1785,11 +1908,13 @@ collections:
         name: title
         widget: string
         hint: Internal name for the asset (≤60 characters).
+        required: false
       - label: Image
         name: image
         widget: image
         choose_url: false
         hint: Upload the source file for this asset.
+        required: false
       - label: Alt text
         name: alt
         widget: string
@@ -1840,10 +1965,12 @@ collections:
                     name: id
                     widget: string
                     hint: Unique identifier used by the application. Avoid renaming once linked.
+                    required: false
                   - label: Admin Label
                     name: label
                     widget: string
                     hint: Display name shown within the CMS navigation.
+                    required: false
                   - label: Slug
                     name: slug
                     widget: string
@@ -1853,6 +1980,7 @@ collections:
                     name: type
                     widget: hidden
                     default: page
+                    required: false
                   - label: Metadata
                     name: metadata
                     widget: object
@@ -1872,6 +2000,7 @@ collections:
                         fields: *ref_3
                         label: Meta Description
                         name: description
+                    required: false
                   - label: Hero
                     name: hero
                     widget: object
@@ -2030,6 +2159,7 @@ collections:
                           - name: type
                             widget: hidden
                             default: mediaCopy
+                            required: false
                           - widget: object
                             i18n: true
                             required: false
@@ -2051,6 +2181,7 @@ collections:
                             fields: *ref_1
                             label: Layout
                             name: layout
+                        required: false
                       - label: Media Showcase
                         name: mediaShowcase
                         widget: object
@@ -2059,6 +2190,7 @@ collections:
                           - name: type
                             widget: hidden
                             default: mediaShowcase
+                            required: false
                           - widget: object
                             i18n: true
                             required: false
@@ -2151,6 +2283,8 @@ collections:
                                 fields: *ref_3
                                 label: Image Alt Text
                                 name: imageAlt
+                            required: false
+                        required: false
                       - label: Feature Grid
                         name: featureGrid
                         widget: object
@@ -2159,6 +2293,7 @@ collections:
                           - name: type
                             widget: hidden
                             default: featureGrid
+                            required: false
                           - widget: object
                             i18n: true
                             required: false
@@ -2203,6 +2338,7 @@ collections:
                                 fields: *ref_3
                                 label: Description
                                 name: description
+                            required: false
                           - label: Product References
                             name: products
                             widget: list
@@ -2217,6 +2353,7 @@ collections:
                                 fields: *ref_1
                                 label: Product ID
                                 name: id
+                        required: false
                       - label: Product Grid
                         name: productGrid
                         widget: object
@@ -2225,6 +2362,7 @@ collections:
                           - name: type
                             widget: hidden
                             default: productGrid
+                            required: false
                           - widget: object
                             i18n: true
                             required: false
@@ -2305,6 +2443,7 @@ collections:
                                 fields: *ref_3
                                 label: Image Alt Text
                                 name: imageAlt
+                            required: false
                           - label: Product References
                             name: products
                             widget: list
@@ -2319,6 +2458,7 @@ collections:
                                 fields: *ref_1
                                 label: Product ID
                                 name: id
+                        required: false
                       - label: Community Carousel
                         name: communityCarousel
                         widget: object
@@ -2327,6 +2467,7 @@ collections:
                           - name: type
                             widget: hidden
                             default: communityCarousel
+                            required: false
                           - widget: object
                             i18n: true
                             required: false
@@ -2373,6 +2514,8 @@ collections:
                                 fields: *ref_1
                                 label: Role
                                 name: role
+                            required: false
+                        required: false
                       - label: Newsletter Signup
                         name: newsletterSignup
                         widget: object
@@ -2381,6 +2524,7 @@ collections:
                           - name: type
                             widget: hidden
                             default: newsletterSignup
+                            required: false
                           - widget: object
                             i18n: true
                             required: false
@@ -2430,6 +2574,7 @@ collections:
                             fields: *ref_1
                             label: Background
                             name: background
+                        required: false
                       - label: Testimonials
                         name: testimonials
                         widget: object
@@ -2438,6 +2583,7 @@ collections:
                           - name: type
                             widget: hidden
                             default: testimonials
+                            required: false
                           - widget: object
                             i18n: true
                             required: false
@@ -2471,6 +2617,8 @@ collections:
                                 fields: *ref_3
                                 label: Quote
                                 name: text
+                            required: false
+                        required: false
                       - label: Banner
                         name: banner
                         widget: object
@@ -2479,6 +2627,7 @@ collections:
                           - name: type
                             widget: hidden
                             default: banner
+                            required: false
                           - widget: object
                             i18n: true
                             required: false
@@ -2500,6 +2649,8 @@ collections:
                             fields: *ref_1
                             label: Link
                             name: url
+                        required: false
+                    required: false
                   - label: Additional Fields
                     name: fields
                     widget: list
@@ -2510,6 +2661,7 @@ collections:
                       - label: Key
                         name: key
                         widget: string
+                        required: false
                       - widget: object
                         i18n: true
                         required: false
@@ -2521,6 +2673,9 @@ collections:
                         name: type
                         widget: hidden
                         default: field
+                        required: false
+                required: false
+            required: false
     load_strategy: lazy
   - name: sectionTemplates
     label: Section Templates
@@ -2554,6 +2709,7 @@ collections:
           - videoGallery
           - featureGrid
         hint: Matches the `type` value used in page sections.
+        required: false
       - widget: text
         required: false
         i18n: duplicate
@@ -2580,6 +2736,7 @@ collections:
         default_language: json
         i18n: duplicate
         hint: Copy this JSON into a new section block to preload the layout and sample copy.
+        required: false
     load_strategy: lazy
   - name: mediaSets
     label: Media Sets
@@ -2593,6 +2750,7 @@ collections:
         name: title
         widget: string
         hint: Internal media set name (≤80 characters).
+        required: false
       - label: Images
         name: images
         widget: list
@@ -2603,6 +2761,7 @@ collections:
             name: src
             widget: image
             hint: Upload the image file for this media set item.
+            required: false
           - label: Caption (optional)
             name: caption
             widget: string
@@ -2615,6 +2774,7 @@ collections:
             required: false
             hint: Optional focal point (0–1) to reuse when rendering this media set image.
             fields: *ref_12
+        required: false
   - name: translations
     label: Translations
     group: Translations
@@ -2632,54 +2792,68 @@ collections:
                 name: shop
                 widget: string
                 hint: Header navigation label for the Shop link (≤16 characters).
+                required: false
               - label: Learn Link
                 name: learn
                 widget: string
                 hint: Header navigation label for the Learn link (≤16 characters).
+                required: false
               - label: For Professionals Link
                 name: forProfessionals
                 widget: string
                 hint: Header navigation label for the For Professionals link (≤20 characters).
+                required: false
               - label: Story Link
                 name: manifesto
                 widget: string
                 hint: Dropdown label for the Story & Manifesto page (≤24 characters).
+                required: false
               - label: Videos Link
                 name: videos
                 widget: string
                 hint: Dropdown label for Videos (≤20 characters).
+                required: false
               - label: Product Education Link
                 name: productEducation
                 widget: string
                 hint: Dropdown label for Product Education (≤24 characters).
+                required: false
               - label: Method Link
                 name: method
                 widget: string
                 hint: Dropdown label for Method (≤20 characters).
+                required: false
               - label: Training Link
                 name: training
                 widget: string
                 hint: Dropdown label for Training (≤20 characters).
+                required: false
               - label: Clinics Link
                 name: clinics
                 widget: string
                 hint: Dropdown label for the Clinics page (≤20 characters).
+                required: false
               - label: About Link
                 name: about
                 widget: string
                 hint: Header navigation label for About (≤16 characters).
+                required: false
               - label: Contact Link
                 name: contact
                 widget: string
                 hint: Header navigation label for Contact (≤16 characters).
+                required: false
+            required: false
           - label: Portuguese
             name: pt
             widget: object
             fields: *ref_32
+            required: false
           - label: Spanish
             name: es
             widget: object
             fields: *ref_32
+            required: false
       - name: common
         label: Loading States
         file: content/translations/common.json
@@ -2693,50 +2867,63 @@ collections:
                 name: loading
                 widget: string
                 hint: Generic loading state copy (≤40 characters).
+                required: false
               - label: Loading Products
                 name: loadingProducts
                 widget: string
                 hint: Loading message for product lists (≤40 characters).
+                required: false
               - label: Loading Bestsellers
                 name: loadingBestsellers
                 widget: string
                 hint: Loading message for bestsellers (≤40 characters).
+                required: false
               - label: Loading Reviews
                 name: loadingReviews
                 widget: string
                 hint: Loading message for reviews (≤40 characters).
+                required: false
               - label: Loading Courses
                 name: loadingCourses
                 widget: string
                 hint: Loading message for courses (≤40 characters).
+                required: false
               - label: Loading Professionals
                 name: loadingProfessionals
                 widget: string
                 hint: Loading message for professionals list (≤40 characters).
+                required: false
               - label: Loading Article
                 name: loadingArticle
                 widget: string
                 hint: Loading message for article pages (≤40 characters).
+                required: false
               - label: Loading Policies
                 name: loadingPolicies
                 widget: string
                 hint: Loading message for policies list (≤40 characters).
+                required: false
               - label: Loading Cart
                 name: loadingCart
                 widget: string
                 hint: Loading message for the cart (≤40 characters).
+                required: false
               - label: Loading Product
                 name: loadingProduct
                 widget: string
                 hint: Loading message for a single product (≤40 characters).
+                required: false
+            required: false
           - label: Portuguese
             name: pt
             widget: object
             fields: *ref_33
+            required: false
           - label: Spanish
             name: es
             widget: object
             fields: *ref_33
+            required: false
       - name: footer
         label: Footer
         file: content/translations/footer.json
@@ -2750,62 +2937,78 @@ collections:
                 name: tagline
                 widget: string
                 hint: Footer brand statement (≤80 characters).
+                required: false
               - label: Follow Us
                 name: followUs
                 widget: string
                 hint: Label above social links (≤30 characters).
+                required: false
               - label: Shop
                 name: shop
                 widget: string
                 hint: Shop navigation label in footer (≤20 characters).
+                required: false
               - label: All Products
                 name: allProducts
                 widget: string
                 hint: Footer link label for all products (≤20 characters).
+                required: false
               - label: Guides
                 name: guides
                 widget: string
                 hint: Footer link label for guides (≤20 characters).
+                required: false
               - label: About
                 name: about
                 widget: string
                 hint: Footer link label for About (≤20 characters).
+                required: false
               - label: Our Story
                 name: ourStory
                 widget: string
                 hint: Footer link label for the story page (≤24 characters).
+                required: false
               - label: Contact
                 name: contact
                 widget: string
                 hint: Footer link label for contact (≤20 characters).
+                required: false
               - label: Policies
                 name: policies
                 widget: string
                 hint: Footer heading for policies links (≤20 characters).
+                required: false
               - label: Shipping Policy
                 name: shipping
                 widget: string
                 hint: Footer link label for shipping policy (≤24 characters).
+                required: false
               - label: Return Policy
                 name: returns
                 widget: string
                 hint: Footer link label for return policy (≤24 characters).
+                required: false
               - label: Privacy Policy
                 name: privacy
                 widget: string
                 hint: Footer link label for privacy policy (≤24 characters).
+                required: false
               - label: Terms of Service
                 name: terms
                 widget: string
                 hint: Footer link label for terms of service (≤24 characters).
+                required: false
+            required: false
           - label: Portuguese
             name: pt
             widget: object
             fields: *ref_34
+            required: false
           - label: Spanish
             name: es
             widget: object
             fields: *ref_34
+            required: false
       - name: cookies
         label: Cookies Banner
         file: content/translations/cookies.json
@@ -2819,26 +3022,33 @@ collections:
                 name: message
                 widget: text
                 hint: Cookies banner body copy (≤240 characters).
+                required: false
               - label: Learn More Label
                 name: learnMore
                 widget: string
                 hint: Link text directing users to learn more (≤24 characters).
+                required: false
               - label: Decline Label
                 name: decline
                 widget: string
                 hint: Button label to decline cookies (≤16 characters).
+                required: false
               - label: Accept Label
                 name: accept
                 widget: string
                 hint: Button label to accept cookies (≤16 characters).
+                required: false
+            required: false
           - label: Portuguese
             name: pt
             widget: object
             fields: *ref_35
+            required: false
           - label: Spanish
             name: es
             widget: object
             fields: *ref_35
+            required: false
       - name: policy
         label: Policy Pages
         file: content/translations/policy.json
@@ -2852,22 +3062,28 @@ collections:
                 name: loading
                 widget: string
                 hint: Loading message shown while policies load (≤60 characters).
+                required: false
               - label: Not Found Copy
                 name: notFound
                 widget: string
                 hint: Fallback message when a policy is missing (≤120 characters).
+                required: false
               - label: Contact Prompt
                 name: contactPrompt
                 widget: text
                 hint: Follow-up guidance shown on missing policy pages (≤240 characters).
+                required: false
+            required: false
           - label: Portuguese
             name: pt
             widget: object
             fields: *ref_36
+            required: false
           - label: Spanish
             name: es
             widget: object
             fields: *ref_36
+            required: false
       - name: article
         label: Article Page
         file: content/translations/article.json
@@ -2881,30 +3097,38 @@ collections:
                 name: featuredProduct
                 widget: string
                 hint: Label shown above the featured product module (≤40 characters).
+                required: false
               - label: FAQ Title
                 name: faqTitle
                 widget: string
                 hint: Headline above the article FAQ section (≤60 characters).
+                required: false
               - label: Back to Library Label
                 name: backToLibrary
                 widget: string
                 hint: Button text that returns to the article library (≤32 characters).
+                required: false
               - label: Not Found Copy
                 name: notFound
                 widget: string
                 hint: Message shown when the article is missing (≤120 characters).
+                required: false
               - label: Loading Copy
                 name: loading
                 widget: string
                 hint: Loading text displayed while the article loads (≤60 characters).
+                required: false
+            required: false
           - label: Portuguese
             name: pt
             widget: object
             fields: *ref_37
+            required: false
           - label: Spanish
             name: es
             widget: object
             fields: *ref_37
+            required: false
       - name: academy
         label: Academy Page
         file: content/translations/academy.json
@@ -2917,23 +3141,30 @@ collections:
               - label: Header Title
                 name: headerTitle
                 widget: string
+                required: false
               - label: Header Subtitle
                 name: headerSubtitle
                 widget: text
+                required: false
               - label: Courses Title
                 name: coursesTitle
                 widget: string
+                required: false
               - label: Enroll Button
                 name: enrollNow
                 widget: string
+                required: false
+            required: false
           - label: Portuguese
             name: pt
             widget: object
             fields: *ref_38
+            required: false
           - label: Spanish
             name: es
             widget: object
             fields: *ref_38
+            required: false
       - name: cart
         label: Cart & Checkout
         file: content/translations/cart.json
@@ -2946,50 +3177,66 @@ collections:
               - label: Cart Title
                 name: title
                 widget: string
+                required: false
               - label: Subtotal Label
                 name: subtotal
                 widget: string
+                required: false
               - label: Shipping Note
                 name: shippingNote
                 widget: text
+                required: false
               - label: View Cart Button
                 name: viewCart
                 widget: string
+                required: false
               - label: Empty Cart Copy
                 name: empty
                 widget: string
+                required: false
               - label: Continue Shopping Button
                 name: continueShopping
                 widget: string
+                required: false
               - label: Page Title
                 name: pageTitle
                 widget: string
+                required: false
               - label: Summary Heading
                 name: summary
                 widget: string
+                required: false
               - label: Shipping Label
                 name: shipping
                 widget: string
+                required: false
               - label: Shipping Calculated Copy
                 name: shippingCalculated
                 widget: string
+                required: false
               - label: Total Label
                 name: total
                 widget: string
+                required: false
               - label: Checkout Button
                 name: checkout
                 widget: string
+                required: false
               - label: Checkout Redirect Copy
                 name: checkoutRedirect
                 widget: text
+                required: false
+            required: false
           - label: Portuguese
             name: pt
             widget: object
             fields: *ref_39
+            required: false
           - label: Spanish
             name: es
             widget: object
             fields: *ref_39
+            required: false
       - name: shop
         label: Shop Page
         file: content/translations/shop.json
@@ -3002,47 +3249,62 @@ collections:
               - label: Page Title
                 name: title
                 widget: string
+                required: false
               - label: Meta Description
                 name: metaDescription
                 widget: text
+                required: false
               - label: Subtitle
                 name: subtitle
                 widget: text
+                required: false
               - label: Sort Featured
                 name: sortFeatured
                 widget: string
+                required: false
               - label: Sort Price Ascending
                 name: sortPriceAsc
                 widget: string
+                required: false
               - label: Sort Price Descending
                 name: sortPriceDesc
                 widget: string
+                required: false
               - label: Sort Name Ascending
                 name: sortNameAsc
                 widget: string
+                required: false
               - label: Sort Name Descending
                 name: sortNameDesc
                 widget: string
+                required: false
               - label: Sort Dropdown Label
                 name: sortLabel
                 widget: string
+                required: false
               - label: Category Filter Label
                 name: categoryFilterLabel
                 widget: string
+                required: false
               - label: Related Resources Heading
                 name: relatedResources
                 widget: string
+                required: false
               - label: No Products Copy
                 name: noProducts
                 widget: string
+                required: false
+            required: false
           - label: Portuguese
             name: pt
             widget: object
             fields: *ref_40
+            required: false
           - label: Spanish
             name: es
             widget: object
             fields: *ref_40
+            required: false
       - name: pdp
         label: Product Detail Page
         file: content/translations/pdp.json
@@ -3055,12 +3317,15 @@ collections:
               - label: Not Found Copy
                 name: notFound
                 widget: string
+                required: false
               - label: Size Label
                 name: size
                 widget: string
+                required: false
               - label: Add to Cart Button
                 name: addToCart
                 widget: string
+                required: false
               - label: Tabs
                 name: tabs
                 widget: object
@@ -3068,21 +3333,28 @@ collections:
                   - label: Benefits Tab
                     name: benefits
                     widget: string
+                    required: false
                   - label: How To Use Tab
                     name: howToUse
                     widget: string
+                    required: false
                   - label: Ingredients Tab
                     name: ingredients
                     widget: string
+                    required: false
                   - label: Origin & Purity Tab
                     name: labTested
                     widget: string
+                    required: false
+                required: false
               - label: Bundle Includes Heading
                 name: bundleIncludes
                 widget: string
+                required: false
               - label: Related Products Heading
                 name: relatedProducts
                 widget: string
+                required: false
               - label: Knowledge Section
                 name: knowledge
                 widget: object
@@ -3090,9 +3362,11 @@ collections:
                   - label: Section Title
                     name: title
                     widget: string
+                    required: false
                   - label: Section Subtitle
                     name: subtitle
                     widget: text
+                    required: false
                   - label: Sub-sections
                     name: sections
                     widget: object
@@ -3100,18 +3374,25 @@ collections:
                       - label: What It Is
                         name: whatItIs
                         widget: string
+                        required: false
                       - label: How It Works
                         name: howItWorks
                         widget: string
+                        required: false
                       - label: Who It's For
                         name: whoItsFor
                         widget: string
+                        required: false
                       - label: Scientific Backing
                         name: scientificBacking
                         widget: string
+                        required: false
                       - label: Cultural Context
                         name: culturalContext
                         widget: string
+                        required: false
+                    required: false
+                required: false
               - label: FAQ Section
                 name: faq
                 widget: object
@@ -3119,17 +3400,23 @@ collections:
                   - label: FAQ Title
                     name: title
                     widget: string
+                    required: false
                   - label: FAQ Subtitle
                     name: subtitle
                     widget: text
+                    required: false
+                required: false
+            required: false
           - label: Portuguese
             name: pt
             widget: object
             fields: *ref_41
+            required: false
           - label: Spanish
             name: es
             widget: object
             fields: *ref_41
+            required: false
       - name: home
         label: Home Page
         file: content/translations/home.json
@@ -3142,9 +3429,11 @@ collections:
               - label: Meta Title
                 name: metaTitle
                 widget: string
+                required: false
               - label: Meta Description
                 name: metaDescription
                 widget: text
+                required: false
               - label: Meta Tags
                 name: meta
                 widget: object
@@ -3152,15 +3441,20 @@ collections:
                   - label: Title
                     name: title
                     widget: string
+                    required: false
                   - label: Description
                     name: description
                     widget: text
+                    required: false
+                required: false
               - label: Hero Title
                 name: heroTitle
                 widget: string
+                required: false
               - label: Hero Subtitle
                 name: heroSubtitle
                 widget: text
+                required: false
               - label: Hero Section
                 name: hero
                 widget: object
@@ -3168,24 +3462,32 @@ collections:
                   - label: Title
                     name: title
                     widget: string
+                    required: false
                   - label: Subtitle
                     name: subtitle
                     widget: text
+                    required: false
                   - label: Primary CTA
                     name: ctaPrimary
                     widget: string
+                    required: false
                   - label: Secondary CTA
                     name: ctaSecondary
                     widget: string
+                    required: false
+                required: false
               - label: Shop CTA
                 name: ctaShop
                 widget: string
+                required: false
               - label: Clinics CTA
                 name: ctaClinics
                 widget: string
+                required: false
               - label: Bestsellers Title
                 name: bestsellersTitle
                 widget: string
+                required: false
               - label: Bestsellers Section
                 name: bestsellers
                 widget: object
@@ -3193,6 +3495,7 @@ collections:
                   - label: Intro Copy
                     name: intro
                     widget: text
+                    required: false
                   - label: Cards
                     name: cards
                     widget: list
@@ -3201,21 +3504,29 @@ collections:
                       - label: Product Slug
                         name: slug
                         widget: string
+                        required: false
                       - label: Blurb
                         name: blurb
                         widget: string
+                        required: false
+                    required: false
+                required: false
               - label: Value Proposition 1
                 name: value1
                 widget: string
+                required: false
               - label: Value Proposition 2
                 name: value2
                 widget: string
+                required: false
               - label: Value Proposition 3
                 name: value3
                 widget: string
+                required: false
               - label: Value Proposition 4
                 name: value4
                 widget: string
+                required: false
               - label: Value Props Grid
                 name: valueProps
                 widget: list
@@ -3224,12 +3535,16 @@ collections:
                   - label: Title
                     name: title
                     widget: string
+                    required: false
                   - label: Subtitle
                     name: subtitle
                     widget: string
+                    required: false
+                required: false
               - label: Reviews Title
                 name: reviewsTitle
                 widget: string
+                required: false
               - label: Clinics Highlight
                 name: clinics
                 widget: object
@@ -3237,12 +3552,16 @@ collections:
                   - label: Title
                     name: title
                     widget: string
+                    required: false
                   - label: Copy
                     name: copy
                     widget: text
+                    required: false
                   - label: CTA Label
                     name: cta
                     widget: string
+                    required: false
+                required: false
               - label: Social Proof
                 name: socialProof
                 widget: object
@@ -3250,6 +3569,8 @@ collections:
                   - label: Line
                     name: line
                     widget: string
+                    required: false
+                required: false
               - label: Learn Section
                 name: learn
                 widget: object
@@ -3257,12 +3578,16 @@ collections:
                   - label: Teaser
                     name: teaser
                     widget: string
+                    required: false
+                required: false
               - label: Newsletter Title
                 name: newsletterTitle
                 widget: string
+                required: false
               - label: Newsletter Subtitle
                 name: newsletterSubtitle
                 widget: text
+                required: false
               - label: Newsletter Pitch
                 name: newsletter
                 widget: object
@@ -3270,15 +3595,20 @@ collections:
                   - label: Pitch
                     name: pitch
                     widget: text
+                    required: false
+                required: false
               - label: Newsletter Success Copy
                 name: newsletterThanks
                 widget: string
+                required: false
               - label: Newsletter Placeholder
                 name: newsletterPlaceholder
                 widget: string
+                required: false
               - label: Newsletter Submit Label
                 name: newsletterSubmit
                 widget: string
+                required: false
               - label: Footer Callout
                 name: footer
                 widget: object
@@ -3286,14 +3616,19 @@ collections:
                   - label: Compliance Note
                     name: complianceNote
                     widget: text
+                    required: false
+                required: false
+            required: false
           - label: Portuguese
             name: pt
             widget: object
             fields: *ref_42
+            required: false
           - label: Spanish
             name: es
             widget: object
             fields: *ref_42
+            required: false
       - name: learn
         label: Learn Page
         file: content/translations/learn.json
@@ -3306,15 +3641,19 @@ collections:
               - label: Meta Title
                 name: metaTitle
                 widget: string
+                required: false
               - label: Meta Description
                 name: metaDescription
                 widget: text
+                required: false
               - label: Page Title
                 name: title
                 widget: string
+                required: false
               - label: Subtitle
                 name: subtitle
                 widget: text
+                required: false
               - label: Categories
                 name: categories
                 widget: object
@@ -3322,32 +3661,43 @@ collections:
                   - label: All Topics
                     name: all
                     widget: string
+                    required: false
                   - label: Argan Oil
                     name: argan-oil
                     widget: string
+                    required: false
                   - label: Uses & Applications
                     name: uses-applications
                     widget: string
+                    required: false
                   - label: Post-Procedure
                     name: post-procedure
                     widget: string
+                    required: false
                   - label: Skin Barrier
                     name: skin-barrier
                     widget: string
+                    required: false
                   - label: Baby Care
                     name: baby
                     widget: string
+                    required: false
                   - label: Scars & Recovery
                     name: scars
                     widget: string
+                    required: false
+                required: false
+            required: false
           - label: Portuguese
             name: pt
             widget: object
             fields: *ref_43
+            required: false
           - label: Spanish
             name: es
             widget: object
             fields: *ref_43
+            required: false
       - name: videos
         label: Videos Page
         file: content/translations/videos.json
@@ -3360,29 +3710,38 @@ collections:
               - label: Meta Title
                 name: metaTitle
                 widget: string
+                required: false
               - label: Meta Description
                 name: metaDescription
                 widget: text
+                required: false
               - label: Page Title
                 name: title
                 widget: string
+                required: false
               - label: Subtitle
                 name: subtitle
                 widget: text
+                required: false
               - label: Empty State Copy
                 name: emptyState
                 widget: text
+                required: false
               - label: Watch Label
                 name: watchLabel
                 widget: string
+                required: false
+            required: false
           - label: Portuguese
             name: pt
             widget: object
             fields: *ref_44
+            required: false
           - label: Spanish
             name: es
             widget: object
             fields: *ref_44
+            required: false
       - name: training
         label: Training Page
         file: content/translations/training.json
@@ -3395,29 +3754,38 @@ collections:
               - label: Meta Title
                 name: metaTitle
                 widget: string
+                required: false
               - label: Meta Description
                 name: metaDescription
                 widget: text
+                required: false
               - label: Page Title
                 name: title
                 widget: string
+                required: false
               - label: Subtitle
                 name: subtitle
                 widget: text
+                required: false
               - label: Empty State Copy
                 name: emptyState
                 widget: text
+                required: false
               - label: Learn More Label
                 name: learnMore
                 widget: string
+                required: false
+            required: false
           - label: Portuguese
             name: pt
             widget: object
             fields: *ref_45
+            required: false
           - label: Spanish
             name: es
             widget: object
             fields: *ref_45
+            required: false
       - name: about
         label: About Page
         file: content/translations/about.json
@@ -3430,44 +3798,58 @@ collections:
               - label: Section Title
                 name: title
                 widget: string
+                required: false
               - label: Meta Description
                 name: metaDescription
                 widget: text
+                required: false
               - label: Header Title
                 name: headerTitle
                 widget: string
+                required: false
               - label: Header Subtitle
                 name: headerSubtitle
                 widget: text
+                required: false
               - label: Story Title
                 name: storyTitle
                 widget: string
+                required: false
               - label: Story Paragraph 1
                 name: storyText1
                 widget: text
+                required: false
               - label: Story Paragraph 2
                 name: storyText2
                 widget: text
+                required: false
               - label: Sourcing Title
                 name: sourcingTitle
                 widget: string
+                required: false
               - label: Sourcing Paragraph 1
                 name: sourcingText1
                 widget: text
+                required: false
               - label: Sourcing Paragraph 2
                 name: sourcingText2
                 widget: text
+                required: false
               - label: Sourcing Image Alt
                 name: sourcingImageAlt
                 widget: string
+                required: false
+            required: false
           - label: Portuguese
             name: pt
             widget: object
             fields: *ref_46
+            required: false
           - label: Spanish
             name: es
             widget: object
             fields: *ref_46
+            required: false
       - name: contact
         label: Contact Page
         file: content/translations/contact.json
@@ -3480,18 +3862,23 @@ collections:
               - label: Page Title
                 name: title
                 widget: string
+                required: false
               - label: Meta Description
                 name: metaDescription
                 widget: text
+                required: false
               - label: Header Title
                 name: headerTitle
                 widget: string
+                required: false
               - label: Header Subtitle
                 name: headerSubtitle
                 widget: text
+                required: false
               - label: Form Title
                 name: formTitle
                 widget: string
+                required: false
               - label: Form Labels
                 name: form
                 widget: object
@@ -3499,47 +3886,63 @@ collections:
                   - label: Name Field
                     name: name
                     widget: string
+                    required: false
                   - label: Email Field
                     name: email
                     widget: string
+                    required: false
                   - label: Message Field
                     name: message
                     widget: string
+                    required: false
                   - label: Sending State
                     name: sending
                     widget: string
+                    required: false
                   - label: Submit Button
                     name: submit
                     widget: string
+                    required: false
                   - label: Success Message
                     name: success
                     widget: text
+                    required: false
                   - label: Error Message
                     name: error
                     widget: text
+                    required: false
+                required: false
               - label: Info Title
                 name: infoTitle
                 widget: string
+                required: false
               - label: Email Heading
                 name: emailTitle
                 widget: string
+                required: false
               - label: Phone Heading
                 name: phoneTitle
                 widget: string
+                required: false
               - label: WhatsApp Heading
                 name: whatsappTitle
                 widget: string
+                required: false
               - label: WhatsApp Action
                 name: whatsappAction
                 widget: string
+                required: false
+            required: false
           - label: Portuguese
             name: pt
             widget: object
             fields: *ref_47
+            required: false
           - label: Spanish
             name: es
             widget: object
             fields: *ref_47
+            required: false
       - name: clinics
         label: Clinics Page
         file: content/translations/clinics.json
@@ -3552,24 +3955,31 @@ collections:
               - label: Page Title
                 name: title
                 widget: string
+                required: false
               - label: Meta Description
                 name: metaDescription
                 widget: text
+                required: false
               - label: Header Title
                 name: headerTitle
                 widget: string
+                required: false
               - label: Header Subtitle
                 name: headerSubtitle
                 widget: text
+                required: false
               - label: Section 1 Title
                 name: section1Title
                 widget: string
+                required: false
               - label: Section 1 Paragraph 1
                 name: section1Text1
                 widget: text
+                required: false
               - label: Section 1 Paragraph 2
                 name: section1Text2
                 widget: text
+                required: false
               - label: Protocol Section
                 name: protocolSection
                 widget: object
@@ -3577,9 +3987,11 @@ collections:
                   - label: Title
                     name: title
                     widget: string
+                    required: false
                   - label: Subtitle
                     name: subtitle
                     widget: text
+                    required: false
                   - label: Cards
                     name: cards
                     widget: list
@@ -3588,9 +4000,11 @@ collections:
                       - label: Card Title
                         name: title
                         widget: string
+                        required: false
                       - label: Focus Copy
                         name: focus
                         widget: text
+                        required: false
                       - label: Steps
                         name: steps
                         widget: list
@@ -3598,9 +4012,14 @@ collections:
                           label: Step
                           name: step
                           widget: text
+                          required: false
+                        required: false
                       - label: Evidence
                         name: evidence
                         widget: text
+                        required: false
+                    required: false
+                required: false
               - label: References Section
                 name: referencesSection
                 widget: object
@@ -3608,9 +4027,11 @@ collections:
                   - label: Title
                     name: title
                     widget: string
+                    required: false
                   - label: Studies Title
                     name: studiesTitle
                     widget: string
+                    required: false
                   - label: Studies
                     name: studies
                     widget: list
@@ -3619,12 +4040,16 @@ collections:
                       - label: Study Title
                         name: title
                         widget: string
+                        required: false
                       - label: Study Details
                         name: details
                         widget: text
+                        required: false
+                    required: false
                   - label: Testimonials Title
                     name: testimonialsTitle
                     widget: string
+                    required: false
                   - label: Testimonials
                     name: testimonials
                     widget: list
@@ -3633,12 +4058,17 @@ collections:
                       - label: Quote
                         name: quote
                         widget: text
+                        required: false
                       - label: Name
                         name: name
                         widget: string
+                        required: false
                       - label: Credentials
                         name: credentials
                         widget: string
+                        required: false
+                    required: false
+                required: false
               - label: Keyword Section
                 name: keywordSection
                 widget: object
@@ -3646,9 +4076,11 @@ collections:
                   - label: Title
                     name: title
                     widget: string
+                    required: false
                   - label: Subtitle
                     name: subtitle
                     widget: text
+                    required: false
                   - label: Keywords
                     name: keywords
                     widget: list
@@ -3656,6 +4088,9 @@ collections:
                       label: Keyword
                       name: keyword
                       widget: string
+                      required: false
+                    required: false
+                required: false
               - label: FAQ Section
                 name: faqSection
                 widget: object
@@ -3663,9 +4098,11 @@ collections:
                   - label: Title
                     name: title
                     widget: string
+                    required: false
                   - label: Subtitle
                     name: subtitle
                     widget: text
+                    required: false
                   - label: Items
                     name: items
                     widget: list
@@ -3674,26 +4111,36 @@ collections:
                       - label: Question
                         name: question
                         widget: string
+                        required: false
                       - label: Answer
                         name: answer
                         widget: text
+                        required: false
+                    required: false
+                required: false
               - label: CTA Title
                 name: ctaTitle
                 widget: string
+                required: false
               - label: CTA Subtitle
                 name: ctaSubtitle
                 widget: text
+                required: false
               - label: CTA Button
                 name: ctaButton
                 widget: string
+                required: false
+            required: false
           - label: Portuguese
             name: pt
             widget: object
             fields: *ref_48
+            required: false
           - label: Spanish
             name: es
             widget: object
             fields: *ref_48
+            required: false
     load_strategy: lazy
   - name: products
     label: Products
@@ -3714,6 +4161,7 @@ collections:
             widget: list
             summary: '{{fields.name.en}}'
             fields: *ref_49
+            required: false
   - name: articles
     label: Blog Posts
     group: Blog Posts
@@ -3733,6 +4181,7 @@ collections:
             widget: list
             summary: '{{fields.title.en}}'
             fields: *ref_50
+            required: false
   - name: reviews
     label: Product Reviews
     group: Products
@@ -3750,6 +4199,7 @@ collections:
               - label: ID
                 name: id
                 widget: string
+                required: false
               - label: Quote
                 name: text
                 widget: object
@@ -3757,12 +4207,16 @@ collections:
                   - label: English
                     name: en
                     widget: text
+                    required: false
                   - label: Portuguese
                     name: pt
                     widget: text
+                    required: false
                   - label: Spanish
                     name: es
                     widget: text
+                    required: false
+                required: false
               - label: Author
                 name: author
                 widget: object
@@ -3770,12 +4224,17 @@ collections:
                   - label: English
                     name: en
                     widget: string
+                    required: false
                   - label: Portuguese
                     name: pt
                     widget: string
+                    required: false
                   - label: Spanish
                     name: es
                     widget: string
+                    required: false
+                required: false
+            required: false
   - name: testimonials
     label: Clinical Testimonials
     group: Products
@@ -3792,6 +4251,7 @@ collections:
       - label: Name
         name: name
         widget: string
+        required: false
       - label: Title or Credentials
         name: title
         widget: string
@@ -3799,6 +4259,7 @@ collections:
       - label: Quote
         name: quote
         widget: text
+        required: false
       - label: Avatar
         name: avatar
         widget: image
@@ -3815,6 +4276,7 @@ collections:
           - label: Spanish
             value: es
         default: en
+        required: false
   - name: courses
     label: Courses
     group: Products
@@ -3832,6 +4294,7 @@ collections:
             widget: list
             summary: '{{fields.title.en}}'
             fields: *ref_51
+            required: false
   - name: videoEntries
     label: Video Library
     group: Blog Posts
@@ -3849,6 +4312,7 @@ collections:
             widget: list
             summary: '{{fields.title}}'
             fields: *ref_52
+            required: false
   - name: trainingEntries
     label: Training Library
     group: Products
@@ -3867,6 +4331,7 @@ collections:
             summary: '{{fields.courseTitle}}'
             min: 1
             fields: *ref_53
+            required: false
   - name: policies
     label: Policies
     group: Site Settings
@@ -3886,6 +4351,7 @@ collections:
               - label: ID
                 name: id
                 widget: string
+                required: false
               - label: Title
                 name: title
                 widget: object
@@ -3893,12 +4359,16 @@ collections:
                   - label: English
                     name: en
                     widget: string
+                    required: false
                   - label: Portuguese
                     name: pt
                     widget: string
+                    required: false
                   - label: Spanish
                     name: es
                     widget: string
+                    required: false
+                required: false
               - label: Content
                 name: content
                 widget: object
@@ -3906,10 +4376,15 @@ collections:
                   - label: English
                     name: en
                     widget: markdown
+                    required: false
                   - label: Portuguese
                     name: pt
                     widget: markdown
+                    required: false
                   - label: Spanish
                     name: es
                     widget: markdown
+                    required: false
+                required: false
+            required: false
     load_strategy: lazy
