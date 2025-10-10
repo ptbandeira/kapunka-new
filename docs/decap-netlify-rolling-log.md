@@ -1,5 +1,10 @@
 # Decap CMS & Netlify Rolling Log
 
+## 2025-10-12 — Hid TODO placeholders on localized pages
+- **What changed**: Replaced the visible `# TODO: Translate …` headings in the Portuguese and Spanish Markdown sources with HTML comments so visitors no longer see placeholder copy while localization is in progress.
+- **Impact & follow-up**: Localized routes keep rendering English fallback content without exposing internal TODO markers; translators can still find the comments when updating the files. No additional action required beyond translating the Markdown when ready.
+- **References**: Pending PR
+
 ## 2025-10-12 — Synced content into Vite public assets
 - **What changed**: Added `scripts/sync-static-content.mjs` to mirror the canonical `content/` directory into `public/content` during `prebuild`, removed the redundant postbuild copies, and ignored the generated folder so Vite now ships the JSON bundle without an extra script.
 - **Impact & follow-up**: Netlify preview deploys consistently serve `/content/...` requests for localized pages because the assets live alongside the SPA output. Monitor future builds to ensure the sync keeps `site/content` populated for Visual Editor mirrors.

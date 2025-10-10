@@ -82,4 +82,4 @@ sections:
         image: ''
 ---
 
-# TODO: Translate to Portuguese
+<!-- TODO: Translate to Portuguese -->
