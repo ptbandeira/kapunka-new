@@ -72,6 +72,50 @@ function applyPerformanceDefaults(config) {
   });
 }
 
+function relaxFieldValidation(config) {
+  function allowOptional(node) {
+    if (Array.isArray(node)) {
+      node.forEach(allowOptional);
+      return;
+    }
+
+    if (!node || typeof node !== 'object') {
+      return;
+    }
+
+    if (typeof node.widget === 'string') {
+      node.required = false;
+
+      if (Array.isArray(node.pattern) && typeof node.pattern[0] === 'string') {
+        const [patternValue] = node.pattern;
+        try {
+          const pattern = new RegExp(patternValue);
+          if (!pattern.test('')) {
+            const startsAnchored = patternValue.startsWith('^');
+            const endsAnchored = patternValue.endsWith('$');
+            const bodyStart = startsAnchored ? 1 : 0;
+            const bodyEnd = endsAnchored ? patternValue.length - 1 : patternValue.length;
+            const body = patternValue.slice(bodyStart, bodyEnd);
+            node.pattern[0] = `^(?:${body}|)$`;
+          }
+        } catch (error) {
+          console.warn(`Unable to relax pattern "${patternValue}": ${error.message}`);
+        }
+      }
+    }
+
+    Object.values(node).forEach((value) => {
+      if (Array.isArray(value)) {
+        value.forEach(allowOptional);
+      } else if (value && typeof value === 'object') {
+        allowOptional(value);
+      }
+    });
+  }
+
+  allowOptional(config);
+}
+
 function mergeModules() {
   const anchorsRaw = readFile(ANCHORS_PATH);
   const mainRaw = readFile(MAIN_PATH);
@@ -79,6 +123,7 @@ function mergeModules() {
 
   const config = yaml.load(mergedRaw, { json: true }) || {};
 
+  relaxFieldValidation(config);
   applyPerformanceDefaults(config);
   validateConfig(config);
 
