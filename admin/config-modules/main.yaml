@@ -258,383 +258,386 @@ collections:
     label: Page Builder
     label_singular: Page
     group: "Page Builder"
-    description: "Edit Kapunka pages with reusable, reorderable sections."
+    description: "Edit Kapunka pages stored in a single JSON index."
     files:
-      - &home_page
-        name: home
-        label: Home Page
-        file: content/pages/{{locale}}/home.md
-        format: frontmatter
-        media_folder: "content/uploads/home"
-        public_folder: "/content/uploads/home"
-        i18n: true
-        editor: { preview: true, display: 'tabs' }
-        description: "Hero and storytelling blocks presented in live page order."
-        preview_path: "/"
-        fields:
-          - { label: "Page Type", name: "type", widget: "hidden", default: "HomePage" }
-          - { label: "Meta Title", name: "metaTitle", widget: "string", hint: "SEO title shown in browser tabs (≤60 characters)." }
-          - { label: "Meta Description", name: "metaDescription", widget: "text", hint: "Short SEO description (≤160 characters)." }
-          - { label: "Hero Headline", name: "heroHeadline", widget: "string", required: false, hint: "Primary hero statement (≤80 characters)." }
-          - { label: "Hero Subheadline", name: "heroSubheadline", widget: "text", required: false, hint: "Supporting message beneath the headline (≤200 characters)." }
-          - label: "Hero Alignment & Layout"
-            name: "heroAlignment"
-            widget: "object"
-            collapsed: true
-            required: false
-            hint: "Controls how hero copy sits on the page."
-            fields:
-              - { label: "Horizontal Alignment", name: "heroAlignX", widget: "select", options: [{ label: "Left", value: "left" }, { label: "Center", value: "center" }, { label: "Right", value: "right" }], required: false }
-              - { label: "Vertical Alignment", name: "heroAlignY", widget: "select", options: [{ label: "Top", value: "top" }, { label: "Middle", value: "middle" }, { label: "Bottom", value: "bottom" }], required: false }
-              - { label: "Text Display", name: "heroTextPosition", widget: "select", options: [{ label: "Overlay (on top of media)", value: "overlay" }, { label: "Below media", value: "below" }], required: false }
-              - { label: "Overlay Anchor", name: "heroTextAnchor", widget: "select", required: false, options: [{ label: "Top left", value: "top-left" }, { label: "Top center", value: "top-center" }, { label: "Top right", value: "top-right" }, { label: "Middle left", value: "middle-left" }, { label: "Middle center", value: "middle-center" }, { label: "Middle right", value: "middle-right" }, { label: "Bottom left", value: "bottom-left" }, { label: "Bottom center", value: "bottom-center" }, { label: "Bottom right", value: "bottom-right" }] }
-              - { label: "Overlay Strength", name: "heroOverlay", widget: "select", required: false, options: [{ label: "None", value: "none" }, { label: "Light", value: "light" }, { label: "Medium", value: "medium" }, { label: "Strong", value: "strong" }] }
-              - { label: "Layout Hint", name: "heroLayoutHint", widget: "select", required: false, options: [{ label: "Background image", value: "bg" }, { label: "Static background image", value: "bgImage" }, { label: "Split · image left", value: "image-left" }, { label: "Split · image right", value: "image-right" }, { label: "Full-bleed image", value: "image-full" }, { label: "Text over media", value: "text-over-media" }, { label: "Side-by-side", value: "side-by-side" }] }
-          - label: "Hero CTAs"
-            name: "heroCtas"
-            widget: "object"
-            collapsed: true
-            required: false
-            hint: "Primary and secondary hero buttons."
-            fields:
-              - label: "Primary CTA"
-                name: "ctaPrimary"
-                widget: "object"
-                collapsed: true
-                required: false
-                fields:
-                  - { label: "Label", name: "label", widget: "string", required: false }
-                  - { label: "Link URL", name: "href", widget: "string", required: false }
-              - label: "Secondary CTA"
-                name: "ctaSecondary"
-                widget: "object"
-                collapsed: true
-                required: false
-                fields:
-                  - { label: "Label", name: "label", widget: "string", required: false }
-                  - { label: "Link URL", name: "href", widget: "string", required: false }
-          - label: "Sections"
-            name: "sections"
-            widget: "list"
-            collapsed: true
-            summary: "{{fields.type}} · {{fields.title | default(fields.heading) | default(fields.name) | default('Section')}}"
-            hint: "Scroll, reorder, duplicate, or add sections in page order."
-            types: *section_library
-      - &learn_page
-        name: learn
-        label: Learn Page
-        file: content/pages/{{locale}}/learn.md
-        format: frontmatter
-        media_folder: "content/uploads/learn"
-        public_folder: "/content/uploads/learn"
-        i18n: true
-        editor: { preview: true, display: 'tabs' }
-        description: "Optional storytelling sections surrounding the Learn hub."
-        preview_path: "/learn"
-        fields:
-          - { label: "Page Type", name: "type", widget: "hidden", default: "LearnPage" }
-          - { label: "Meta Title", name: "metaTitle", widget: "string", hint: "SEO title shown in browser tabs (≤60 characters)." }
-          - { label: "Meta Description", name: "metaDescription", widget: "text", hint: "Short SEO description that introduces the Learn hub." }
-          - { label: "Hero Title", name: "heroTitle", widget: "string", required: false, hint: "Main Learn hero heading (≤80 characters)." }
-          - { label: "Hero Subtitle", name: "heroSubtitle", widget: "text", required: false, hint: "Supporting sentence under the hero title (≤200 characters)." }
-          - label: "Categories"
-            name: "categories"
-            widget: "list"
-            collapsed: true
-            summary: "{{fields.label | default(fields.id) | default('Category')}}"
-            hint: "Configure the categories displayed in the Learn navigation."
-            fields:
-              - { label: "Category ID", name: "id", widget: "string", hint: "Unique identifier used to match Learn articles.", required: true }
-              - { label: "Label", name: "label", widget: "string", hint: "Label shown in the navigation (≤30 characters).", required: true }
-          - *sections_field
-      - &method_page
-        name: method
-        label: Method Page
-        file: content/pages/{{locale}}/method.md
-        format: frontmatter
-        media_folder: "content/uploads/method"
-        public_folder: "/content/uploads/method"
-        i18n: true
-        editor: { preview: true, display: 'tabs' }
-        description: "Clinical method overview plus supporting content blocks."
-        preview_path: "/method"
-        fields:
-          - { label: "Page Type", name: "type", widget: "hidden", default: "MethodPage" }
-          - { label: "Meta Title", name: "metaTitle", widget: "string", hint: "SEO title for the Method page (≤60 characters)." }
-          - { label: "Meta Description", name: "metaDescription", widget: "text", hint: "Short summary for search engines." }
-          - { label: "Hero Title", name: "heroTitle", widget: "string", required: false, hint: "Method hero heading (≤80 characters)." }
-          - { label: "Hero Subtitle", name: "heroSubtitle", widget: "text", required: false, hint: "Supporting copy summarizing the method (≤200 characters)." }
-          - label: "Clinical Notes"
-            name: "clinicalNotes"
-            widget: "list"
-            collapsed: true
-            summary: "{{fields.title | default('Note')}}"
-            hint: "Structured protocol notes displayed in the Method overview."
-            fields:
-              - { label: "Title", name: "title", widget: "string", required: false, hint: "Note headline (≤60 characters)." }
-              - label: "Bullets"
-                name: "bullets"
-                widget: "list"
-                collapsed: true
-                summary: "{{.}}"
-                field: { label: "Bullet", name: "bullet", widget: "string" }
-          - *sections_field
-      - &clinics_page
-        name: clinics
-        label: For Clinics Page
-        file: content/pages/{{locale}}/clinics.md
-        format: frontmatter
-        media_folder: "content/uploads/clinics"
-        public_folder: "/content/uploads/clinics"
-        i18n: true
-        editor: { preview: true, display: 'tabs' }
-        description: "Clinic partnership story arranged top-to-bottom."
-        preview_path: "/for-clinics"
-        fields:
-          - { label: "Page Type", name: "type", widget: "hidden", default: "ClinicsPage" }
-          - { label: "Meta Title", name: "metaTitle", widget: "string", hint: "SEO title for the clinics page (≤60 characters)." }
-          - { label: "Meta Description", name: "metaDescription", widget: "text", hint: "Short summary for search engines." }
-          - { label: "Hero Title", name: "heroTitle", widget: "string", required: false, hint: "Primary hero heading (≤80 characters)." }
-          - { label: "Hero Subtitle", name: "heroSubtitle", widget: "text", required: false, hint: "Supporting hero paragraph (≤200 characters)." }
-          - { label: "Header Title", name: "headerTitle", widget: "string", required: false, hint: "Secondary heading reinforcing the program." }
-          - { label: "Header Subtitle", name: "headerSubtitle", widget: "text", required: false, hint: "Optional secondary paragraph for the hero." }
-          - { label: "Intro Title", name: "section1Title", widget: "string", required: false, hint: "Intro section heading (≤80 characters)." }
-          - { label: "Intro Paragraph 1", name: "section1Text1", widget: "text", required: false }
-          - { label: "Intro Paragraph 2", name: "section1Text2", widget: "text", required: false }
-          - label: "Protocol Section"
-            name: "protocolSection"
-            widget: "object"
-            collapsed: true
-            hint: "Details outlining the clinic protocol steps."
-            fields:
-              - { label: "Title", name: "title", widget: "string", required: false }
-              - { label: "Subtitle", name: "subtitle", widget: "text", required: false }
-              - label: "Cards"
-                name: "cards"
-                widget: "list"
-                collapsed: true
-                summary: "{{fields.title | default('Card')}}"
-                fields:
-                  - { label: "Card Title", name: "title", widget: "string", required: false }
-                  - { label: "Focus", name: "focus", widget: "text", required: false }
-                  - label: "Steps"
-                    name: "steps"
-                    widget: "list"
-                    collapsed: true
-                    summary: "{{.}}"
-                    field: { label: "Step", name: "step", widget: "string" }
-                  - { label: "Evidence", name: "evidence", widget: "text", required: false }
-          - label: "References Section"
-            name: "referencesSection"
-            widget: "object"
-            collapsed: true
-            hint: "Published research and testimonial references."
-            fields:
-              - { label: "Title", name: "title", widget: "string", required: false }
-              - { label: "Studies Title", name: "studiesTitle", widget: "string", required: false }
-              - label: "Studies"
-                name: "studies"
-                widget: "list"
-                collapsed: true
-                summary: "{{fields.title | default('Study')}}"
-                fields:
-                  - { label: "Study Title", name: "title", widget: "string", required: false }
-                  - { label: "Study Details", name: "details", widget: "text", required: false }
-              - { label: "Testimonials Title", name: "testimonialsTitle", widget: "string", required: false }
-              - label: "Selected Testimonials"
-                name: "testimonialRefs"
-                widget: "list"
-                collapsed: true
-                summary: "{{.}}"
-                field: { label: "Testimonial Path", name: "testimonialRef", widget: "string" }
-              - label: "Custom Testimonials"
-                name: "testimonials"
-                widget: "list"
-                collapsed: true
-                summary: "{{fields.author | default('Testimonial')}}"
-                fields:
-                  - { label: "Quote", name: "quote", widget: "text", required: false }
-                  - { label: "Author", name: "author", widget: "string", required: false }
-                  - { label: "Role", name: "role", widget: "string", required: false }
-          - label: "Keyword Section"
-            name: "keywordSection"
-            widget: "object"
-            collapsed: true
-            fields:
-              - { label: "Title", name: "title", widget: "string", required: false }
-              - { label: "Subtitle", name: "subtitle", widget: "text", required: false }
-              - label: "Keywords"
-                name: "keywords"
-                widget: "list"
-                collapsed: true
-                summary: "{{.}}"
-                field: { label: "Keyword", name: "keyword", widget: "string" }
-          - label: "FAQ Section"
-            name: "faqSection"
-            widget: "object"
-            collapsed: true
-            fields:
-              - { label: "Title", name: "title", widget: "string", required: false }
-              - { label: "Subtitle", name: "subtitle", widget: "text", required: false }
-              - label: "Items"
-                name: "items"
-                widget: "list"
-                collapsed: true
-                summary: "{{fields.question | default('Question')}}"
-                fields:
-                  - { label: "Question", name: "question", widget: "string", required: false }
-                  - { label: "Answer", name: "answer", widget: "text", required: false }
-          - { label: "CTA Title", name: "ctaTitle", widget: "string", required: false }
-          - { label: "CTA Subtitle", name: "ctaSubtitle", widget: "text", required: false }
-          - { label: "CTA Button Label", name: "ctaButton", widget: "string", required: false }
-          - *sections_field
-      - &about_page
-        name: about
-        label: About Page
-        file: content/pages/{{locale}}/about.md
-        format: frontmatter
-        media_folder: "content/uploads/about"
-        public_folder: "/content/uploads/about"
-        i18n: true
-        editor: { preview: true, display: 'tabs' }
-        description: "Brand story sections in live page sequence."
-        preview_path: "/about"
-        fields:
-          - { label: "Page Type", name: "type", widget: "hidden", default: "AboutPage" }
-          - { label: "Meta Title", name: "metaTitle", widget: "string", hint: "SEO title for the About page (≤60 characters)." }
-          - { label: "Meta Description", name: "metaDescription", widget: "text", hint: "Short summary for search engines." }
-          - *sections_field
-      - &story_page
-        name: story
-        label: Story & Manifesto Page
-        file: content/pages/{{locale}}/story.md
-        format: frontmatter
-        media_folder: "content/uploads/story"
-        public_folder: "/content/uploads/story"
-        i18n: true
-        editor: { preview: true, display: 'tabs' }
-        description: "Brand manifesto narrative, value pillars, and optional supporting sections."
-        preview_path: "/story"
-        fields:
-          - { label: "Page Type", name: "type", widget: "hidden", default: "StoryPage" }
-          - { label: "Meta Title", name: "metaTitle", widget: "string", hint: "SEO title for the manifesto page (≤60 characters)." }
-          - { label: "Meta Description", name: "metaDescription", widget: "text", hint: "Short summary for search engines." }
-          - { label: "Hero Title", name: "heroTitle", widget: "string", required: false, hint: "Manifesto hero heading (≤80 characters)." }
-          - { label: "Hero Subtitle", name: "heroSubtitle", widget: "text", required: false, hint: "Supporting hero line (≤200 characters)." }
-          - { label: "Manifesto Introduction", name: "manifestoIntro", widget: "markdown", required: false, hint: "Opening narrative that frames the manifesto." }
-          - label: "Manifesto Statements"
-            name: "manifestoStatements"
-            widget: "list"
-            collapsed: true
-            summary: "{{fields.heading | default('Statement')}}"
-            fields:
-              - { label: "Heading", name: "heading", widget: "string", required: false }
-              - { label: "Highlight", name: "highlight", widget: "string", required: false }
-              - { label: "Body", name: "body", widget: "markdown", required: false }
-          - label: "Values"
-            name: "values"
-            widget: "list"
-            collapsed: true
-            summary: "{{fields.title | default('Value')}}"
-            fields:
-              - { label: "Title", name: "title", widget: "string", required: false }
-              - { label: "Description", name: "description", widget: "text", required: false }
-          - label: "Closing"
-            name: "closing"
-            widget: "object"
-            collapsed: true
-            required: false
-            fields:
-              - { label: "Heading", name: "heading", widget: "string", required: false }
-              - { label: "Body", name: "body", widget: "markdown", required: false }
-          - *sections_field
-      - &contact_page
-        name: contact
-        label: Contact Page
-        file: content/pages/{{locale}}/contact.md
-        format: frontmatter
-        media_folder: "content/uploads/contact"
-        public_folder: "/content/uploads/contact"
-        i18n: true
-        editor: { preview: true, display: 'tabs' }
-        description: "Contact introductions and optional follow-up sections."
-        preview_path: "/contact"
-        fields:
-          - { label: "Page Type", name: "type", widget: "hidden", default: "ContactPage" }
-          - { label: "Meta Title", name: "metaTitle", widget: "string", hint: "SEO title for the contact page (≤60 characters)." }
-          - { label: "Meta Description", name: "metaDescription", widget: "text", hint: "Short description inviting people to reach out." }
-          - *sections_field
-      - name: shop
-        label: Shop Page
-        file: content/shop.json
+      - name: index
+        label: Page Index
+        file: content/pages_v2/index.json
         format: json
+        i18n: false
         editor: { preview: false }
-        description: "Curate shop collections, copy, and cross-links."
-        preview_path: "/shop"
         fields:
-          - { name: type, widget: hidden, default: shop }
-          - label: Collections
-            name: categories
+          - label: Pages
+            name: pages
             widget: list
             collapsed: true
-            summary: "{{fields.title.en}}"
-            hint: "Configure each shop collection shown on the Shop page."
-            fields:
-              - { label: ID, name: id, widget: string, hint: "Unique identifier used in the shop layout. Use lowercase and dashes." }
-              - label: Title
-                name: title
+            summary: "{{fields.label}}"
+            types:
+              - label: Page
+                name: page
                 widget: object
                 fields:
-                  - { label: English, name: en, widget: string, hint: "English collection title (≤60 characters)." }
-                  - { label: Portuguese, name: pt, widget: string, hint: "Portuguese collection title (≤60 characters)." }
-                  - { label: Spanish, name: es, widget: string, hint: "Spanish collection title (≤60 characters)." }
-              - label: Introductory Copy
-                name: intro
-                widget: object
-                fields:
-                  - { label: English, name: en, widget: text, hint: "English intro paragraph for the collection (≤400 characters)." }
-                  - { label: Portuguese, name: pt, widget: text, hint: "Portuguese intro paragraph for the collection (≤400 characters)." }
-                  - { label: Spanish, name: es, widget: text, hint: "Spanish intro paragraph for the collection (≤400 characters)." }
-              - label: Product IDs
-                name: productIds
-                widget: relation
-                multiple: true
-                collection: products
-                file: catalog
-                path: items
-                search_fields:
-                  - name.en
-                  - id
-                display_fields:
-                  - name.en
-                value_field: id
-                options_length: 20
-                hint: "Select the products that appear in this collection. Choose up to 12 items."
-              - label: Related Links
-                name: links
-                widget: list
-                collapsed: true
-                summary: "{{fields.label.en}}"
-                hint: "Optional links to highlight related products or content."
-                fields:
-                  - { label: ID, name: id, widget: string, hint: "Unique identifier for the related link." }
-                  - label: Type
-                    name: type
-                    widget: select
-                    options:
-                      - { label: "Product", value: "product" }
-                      - { label: "Learn Article", value: "article" }
-                      - { label: "Clinic Use-Case", value: "clinics" }
-                    hint: "Determine how the link should be treated in the UI."
-                  - { label: URL, name: url, widget: string, hint: "Destination URL for the related link (https:// or /path)." }
-                  - label: Link Label
-                    name: label
+                  - { label: "Page ID", name: "id", widget: "string", hint: "Unique identifier used by the application. Avoid renaming once linked." }
+                  - { label: "Admin Label", name: "label", widget: "string", hint: "Display name shown within the CMS navigation." }
+                  - { label: "Slug", name: "slug", widget: "string", required: false, hint: "Public URL path beginning with a forward slash.", pattern: ['^/.+$', 'Enter a path that begins with /.'] }
+                  - { label: "Page Type", name: "type", widget: "hidden", default: "page" }
+                  - label: Metadata
+                    name: metadata
                     widget: object
+                    collapsed: true
                     fields:
-                      - { label: English, name: en, widget: string, hint: "English link label (≤40 characters)." }
-                      - { label: Portuguese, name: pt, widget: string, hint: "Portuguese link label (≤40 characters)." }
-                      - { label: Spanish, name: es, widget: string, hint: "Spanish link label (≤40 characters)." }
-
+                      - <<: *localized_string_field
+                        label: "Meta Title"
+                        name: "title"
+                      - <<: *localized_text_field
+                        label: "Meta Description"
+                        name: "description"
+                  - label: Hero
+                    name: hero
+                    widget: object
+                    collapsed: true
+                    required: false
+                    fields:
+                      - label: Content
+                        name: content
+                        widget: object
+                        collapsed: true
+                        required: false
+                        fields:
+                          - <<: *localized_string_field
+                            label: "Headline"
+                            name: "headline"
+                          - <<: *localized_text_field
+                            label: "Subheadline"
+                            name: "subheadline"
+                          - <<: *localized_text_field
+                            label: "Body"
+                            name: "body"
+                          - label: Highlights
+                            name: highlights
+                            widget: list
+                            collapsed: true
+                            required: false
+                            summary: "{{fields.text.en | default('Highlight')}}"
+                            fields:
+                              - <<: *localized_text_field
+                                label: "Highlight Text"
+                                name: "text"
+                      - label: Calls to Action
+                        name: ctas
+                        widget: object
+                        collapsed: true
+                        required: false
+                        fields:
+                          - label: Primary CTA
+                            name: primary
+                            widget: object
+                            collapsed: true
+                            required: false
+                            fields:
+                              - <<: *localized_string_field
+                                label: "Label"
+                                name: "label"
+                              - <<: *localized_string_field
+                                label: "Link"
+                                name: "href"
+                          - label: Secondary CTA
+                            name: secondary
+                            widget: object
+                            collapsed: true
+                            required: false
+                            fields:
+                              - <<: *localized_string_field
+                                label: "Label"
+                                name: "label"
+                              - <<: *localized_string_field
+                                label: "Link"
+                                name: "href"
+                      - label: Layout
+                        name: layout
+                        widget: object
+                        collapsed: true
+                        required: false
+                        fields:
+                          - <<: *localized_string_field
+                            label: "Horizontal Alignment"
+                            name: "alignX"
+                          - <<: *localized_string_field
+                            label: "Vertical Alignment"
+                            name: "alignY"
+                          - <<: *localized_string_field
+                            label: "Text Position"
+                            name: "textPosition"
+                          - <<: *localized_string_field
+                            label: "Text Anchor"
+                            name: "textAnchor"
+                          - <<: *localized_string_field
+                            label: "Overlay Strength"
+                            name: "overlay"
+                          - <<: *localized_string_field
+                            label: "Layout Hint"
+                            name: "layoutHint"
+                  - label: Sections
+                    name: sections
+                    widget: list
+                    collapsed: true
+                    summary: "{{fields.type | upper}} · {{fields.title.en | default(fields.label.en) | default('Section')}}"
+                    types:
+                      - label: Media Copy
+                        name: mediaCopy
+                        widget: object
+                        fields:
+                          - { name: "type", widget: "hidden", default: "mediaCopy" }
+                          - <<: *localized_string_field
+                            label: "Title"
+                            name: "title"
+                          - <<: *localized_text_field
+                            label: "Body"
+                            name: "body"
+                          - <<: *localized_string_field
+                            label: "Layout"
+                            name: "layout"
+                      - label: Media Showcase
+                        name: mediaShowcase
+                        widget: object
+                        fields:
+                          - { name: "type", widget: "hidden", default: "mediaShowcase" }
+                          - <<: *localized_string_field
+                            label: "Title"
+                            name: "title"
+                          - label: Columns
+                            name: columns
+                            widget: object
+                            collapsed: true
+                            required: false
+                            fields:
+                              - { label: English, name: en, widget: number, required: false }
+                              - { label: Portuguese, name: pt, widget: number, required: false }
+                              - { label: Spanish, name: es, widget: number, required: false }
+                          - label: Items
+                            name: items
+                            widget: list
+                            collapsed: true
+                            summary: "{{fields.title.en | default(fields.label.en) | default('Item')}}"
+                            fields:
+                              - <<: *localized_string_field
+                                label: "Eyebrow"
+                                name: "eyebrow"
+                              - <<: *localized_string_field
+                                label: "Label"
+                                name: "label"
+                              - <<: *localized_string_field
+                                label: "Title"
+                                name: "title"
+                              - <<: *localized_text_field
+                                label: "Description"
+                                name: "description"
+                              - <<: *localized_text_field
+                                label: "Body"
+                                name: "body"
+                              - <<: *localized_string_field
+                                label: "CTA Label"
+                                name: "ctaLabel"
+                              - <<: *localized_string_field
+                                label: "CTA Link"
+                                name: "ctaHref"
+                              - { label: "Image", name: "image", widget: "image", required: false, choose_url: true }
+                              - <<: *localized_text_field
+                                label: "Image Alt Text"
+                                name: "imageAlt"
+                      - label: Feature Grid
+                        name: featureGrid
+                        widget: object
+                        fields:
+                          - { name: "type", widget: "hidden", default: "featureGrid" }
+                          - <<: *localized_string_field
+                            label: "Title"
+                            name: "title"
+                          - label: Columns
+                            name: columns
+                            widget: object
+                            collapsed: true
+                            required: false
+                            fields:
+                              - { label: English, name: en, widget: number, required: false }
+                              - { label: Portuguese, name: pt, widget: number, required: false }
+                              - { label: Spanish, name: es, widget: number, required: false }
+                          - label: Items
+                            name: items
+                            widget: list
+                            summary: "{{fields.label.en | default('Item')}}"
+                            fields:
+                              - <<: *localized_string_field
+                                label: "Label"
+                                name: "label"
+                              - <<: *localized_text_field
+                                label: "Description"
+                                name: "description"
+                          - label: Product References
+                            name: products
+                            widget: list
+                            collapsed: true
+                            required: false
+                            summary: "{{fields.id.en | default('Product')}}"
+                            fields:
+                              - <<: *localized_string_field
+                                label: "Product ID"
+                                name: "id"
+                      - label: Product Grid
+                        name: productGrid
+                        widget: object
+                        fields:
+                          - { name: "type", widget: "hidden", default: "productGrid" }
+                          - <<: *localized_string_field
+                            label: "Title"
+                            name: "title"
+                          - label: Columns
+                            name: columns
+                            widget: object
+                            collapsed: true
+                            required: false
+                            fields:
+                              - { label: English, name: en, widget: number, required: false }
+                              - { label: Portuguese, name: pt, widget: number, required: false }
+                              - { label: Spanish, name: es, widget: number, required: false }
+                          - label: Items
+                            name: items
+                            widget: list
+                            collapsed: true
+                            summary: "{{fields.title.en | default(fields.label.en) | default('Item')}}"
+                            fields:
+                              - <<: *localized_string_field
+                                label: "Eyebrow"
+                                name: "eyebrow"
+                              - <<: *localized_string_field
+                                label: "Label"
+                                name: "label"
+                              - <<: *localized_string_field
+                                label: "Title"
+                                name: "title"
+                              - <<: *localized_text_field
+                                label: "Body"
+                                name: "body"
+                              - <<: *localized_string_field
+                                label: "CTA Label"
+                                name: "ctaLabel"
+                              - <<: *localized_string_field
+                                label: "CTA Link"
+                                name: "ctaHref"
+                              - <<: *localized_text_field
+                                label: "Image Alt Text"
+                                name: "imageAlt"
+                          - label: Product References
+                            name: products
+                            widget: list
+                            collapsed: true
+                            required: false
+                            summary: "{{fields.id.en | default('Product')}}"
+                            fields:
+                              - <<: *localized_string_field
+                                label: "Product ID"
+                                name: "id"
+                      - label: Community Carousel
+                        name: communityCarousel
+                        widget: object
+                        fields:
+                          - { name: "type", widget: "hidden", default: "communityCarousel" }
+                          - <<: *localized_string_field
+                            label: "Title"
+                            name: "title"
+                          - label: Slides
+                            name: slides
+                            widget: list
+                            collapsed: true
+                            summary: "{{fields.name.en | default('Slide')}}"
+                            fields:
+                              - { label: "Image", name: "image", widget: "image", required: false, choose_url: true }
+                              - <<: *localized_text_field
+                                label: "Alt Text"
+                                name: "alt"
+                              - <<: *localized_string_field
+                                label: "Name"
+                                name: "name"
+                              - <<: *localized_text_field
+                                label: "Quote"
+                                name: "quote"
+                              - <<: *localized_string_field
+                                label: "Role"
+                                name: "role"
+                      - label: Newsletter Signup
+                        name: newsletterSignup
+                        widget: object
+                        fields:
+                          - { name: "type", widget: "hidden", default: "newsletterSignup" }
+                          - <<: *localized_string_field
+                            label: "Title"
+                            name: "title"
+                          - <<: *localized_text_field
+                            label: "Subtitle"
+                            name: "subtitle"
+                          - <<: *localized_string_field
+                            label: "Placeholder"
+                            name: "placeholder"
+                          - <<: *localized_string_field
+                            label: "Button Label"
+                            name: "ctaLabel"
+                          - <<: *localized_text_field
+                            label: "Confirmation Message"
+                            name: "confirmation"
+                          - <<: *localized_string_field
+                            label: "Alignment"
+                            name: "alignment"
+                          - <<: *localized_string_field
+                            label: "Background"
+                            name: "background"
+                      - label: Testimonials
+                        name: testimonials
+                        widget: object
+                        fields:
+                          - { name: "type", widget: "hidden", default: "testimonials" }
+                          - <<: *localized_string_field
+                            label: "Title"
+                            name: "title"
+                          - label: Quotes
+                            name: quotes
+                            widget: list
+                            summary: "{{fields.author.en | default('Quote')}}"
+                            fields:
+                              - <<: *localized_string_field
+                                label: "Author"
+                                name: "author"
+                              - <<: *localized_string_field
+                                label: "Role"
+                                name: "role"
+                              - <<: *localized_text_field
+                                label: "Quote"
+                                name: "text"
+                      - label: Banner
+                        name: banner
+                        widget: object
+                        fields:
+                          - { name: "type", widget: "hidden", default: "banner" }
+                          - <<: *localized_string_field
+                            label: "Text"
+                            name: "text"
+                          - <<: *localized_string_field
+                            label: "CTA Label"
+                            name: "cta"
+                          - <<: *localized_string_field
+                            label: "Link"
+                            name: "url"
+                  - label: Additional Fields
+                    name: fields
+                    widget: list
+                    collapsed: true
+                    required: false
+                    summary: "{{fields.key}}"
+                    fields:
+                      - { label: "Key", name: "key", widget: "string" }
+                      - <<: *localized_text_field
+                        label: "Value"
+                        name: "value"
+                      - { label: "Type", name: "type", widget: "hidden", default: "field" }
   - name: sectionTemplates
     label: "Section Templates"
     label_singular: "Section Template"
