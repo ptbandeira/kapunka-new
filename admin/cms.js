@@ -3,6 +3,11 @@
 
   const LOCALE_CONTAINER_ID = 'cms-preview-locale-links';
   const SUPPORTED_LOCALES = ['en', 'pt', 'es'];
+  const LOCALE_FALLBACKS = {
+    en: ['en', 'pt', 'es'],
+    pt: ['pt', 'en', 'es'],
+    es: ['es', 'en', 'pt'],
+  };
   const DEFAULT_LOCALE = 'en';
   const LOCALE_LABELS = {
     en: 'English',
@@ -665,7 +670,25 @@
         return fallback;
       }
 
-      const value = entry.getIn(path);
+      if (!Array.isArray(path) || path.length === 0) {
+        return fallback;
+      }
+
+      let value = entry.getIn(path);
+
+      if (value === undefined && path[0] === 'data') {
+        const info = parseHashInfo();
+        if (info && info.collection === 'pages') {
+          const activeLocale = getActivePreviewLocale();
+          const previewData = getPagePreviewData(entry, activeLocale);
+          value = getNestedPreviewValue(previewData, path.slice(1));
+        }
+
+        if (value === undefined) {
+          value = extractFieldFromList(entry, path.slice(1));
+        }
+      }
+
       return value === undefined ? fallback : toPlain(value, fallback);
     }
 
@@ -731,6 +754,526 @@
           return '';
         })
         .filter((item) => typeof item === 'string' && item.trim().length > 0);
+    }
+
+    function isSupportedLocale(locale) {
+      return typeof locale === 'string' && SUPPORTED_LOCALES.includes(locale);
+    }
+
+    function getLocalePreference(locale) {
+      const preference = LOCALE_FALLBACKS[locale];
+      if (preference) {
+        return preference;
+      }
+
+      const seen = new Set();
+      const result = [];
+      [locale, DEFAULT_LOCALE, ...SUPPORTED_LOCALES].forEach((candidate) => {
+        if (isSupportedLocale(candidate) && !seen.has(candidate)) {
+          seen.add(candidate);
+          result.push(candidate);
+        }
+      });
+
+      return result.length > 0 ? result : SUPPORTED_LOCALES.slice();
+    }
+
+    function getActivePreviewLocale() {
+      const info = parseHashInfo();
+      if (info && info.locale && isSupportedLocale(info.locale)) {
+        return info.locale;
+      }
+
+      if (isSupportedLocale(localeState.latestEntryLocale)) {
+        return localeState.latestEntryLocale;
+      }
+
+      return DEFAULT_LOCALE;
+    }
+
+    function isPlainObject(value) {
+      return typeof value === 'object' && value !== null && !Array.isArray(value);
+    }
+
+    function isLocalizedMapValue(value) {
+      if (!isPlainObject(value)) {
+        return false;
+      }
+
+      const keys = Object.keys(value);
+      if (keys.length === 0) {
+        return false;
+      }
+
+      return keys.every((key) => isSupportedLocale(key));
+    }
+
+    function normalizeLocalizedCandidate(value) {
+      if (value == null) {
+        return null;
+      }
+
+      if (typeof value === 'string') {
+        const trimmed = value.trim();
+        return trimmed.length > 0 ? trimmed : null;
+      }
+
+      if (typeof value === 'number' || typeof value === 'boolean') {
+        return value;
+      }
+
+      if (Array.isArray(value)) {
+        return value.length > 0 ? value : null;
+      }
+
+      if (isPlainObject(value)) {
+        return Object.keys(value).length > 0 ? value : null;
+      }
+
+      return null;
+    }
+
+    function getLocalizedPrimitiveFromMap(map, language) {
+      if (!isLocalizedMapValue(map)) {
+        return null;
+      }
+
+      const preference = getLocalePreference(language);
+      for (const locale of preference) {
+        const normalized = normalizeLocalizedCandidate(map[locale]);
+        if (normalized !== null) {
+          return { value: normalized, locale };
+        }
+      }
+
+      for (const [locale, candidate] of Object.entries(map)) {
+        if (!isSupportedLocale(locale)) {
+          continue;
+        }
+        const normalized = normalizeLocalizedCandidate(candidate);
+        if (normalized !== null) {
+          return { value: normalized, locale };
+        }
+      }
+
+      return null;
+    }
+
+    function ensureContainer(parent, key, nextSegmentIsIndex) {
+      if (Array.isArray(parent)) {
+        const index = Number(key);
+        if (!Number.isFinite(index)) {
+          return undefined;
+        }
+        if (!parent[index]) {
+          parent[index] = nextSegmentIsIndex ? [] : {};
+        }
+        if (typeof parent[index] !== 'object' || parent[index] === null) {
+          parent[index] = nextSegmentIsIndex ? [] : {};
+        }
+        return parent[index];
+      }
+
+      if (!(key in parent)) {
+        parent[key] = nextSegmentIsIndex ? [] : {};
+        return parent[key];
+      }
+
+      const existing = parent[key];
+      if (typeof existing !== 'object' || existing === null) {
+        parent[key] = nextSegmentIsIndex ? [] : {};
+        return parent[key];
+      }
+
+      return existing;
+    }
+
+    function setNestedValue(target, keyPath, value) {
+      if (typeof keyPath !== 'string' || keyPath.length === 0) {
+        return;
+      }
+
+      const segments = keyPath.split('.');
+      if (segments.length === 0) {
+        return;
+      }
+
+      let current = target;
+      for (let index = 0; index < segments.length - 1; index += 1) {
+        const segment = segments[index];
+        const nextSegment = segments[index + 1];
+        const nextIsIndex = nextSegment != null && /^\d+$/.test(nextSegment);
+        const container = ensureContainer(current, segment, nextIsIndex);
+        if (!container) {
+          return;
+        }
+        current = container;
+      }
+
+      const lastSegment = segments[segments.length - 1];
+      if (Array.isArray(current)) {
+        const arrayIndex = Number(lastSegment);
+        if (!Number.isFinite(arrayIndex)) {
+          return;
+        }
+        current[arrayIndex] = value;
+        return;
+      }
+
+      current[lastSegment] = value;
+    }
+
+    function getNestedPreviewValue(source, segments) {
+      if (!segments || segments.length === 0) {
+        return source;
+      }
+
+      let current = source;
+      for (const segment of segments) {
+        if (current == null) {
+          return undefined;
+        }
+        if (Array.isArray(current)) {
+          const index = Number(segment);
+          if (!Number.isFinite(index)) {
+            return undefined;
+          }
+          current = current[index];
+          continue;
+        }
+        current = current[segment];
+      }
+      return current;
+    }
+
+    function resolvePreviewValue(value, language, localesUsed) {
+      const plain = toPlain(value, undefined);
+      if (plain === undefined || plain === null) {
+        return undefined;
+      }
+
+      if (Array.isArray(plain)) {
+        const resolvedArray = [];
+        plain.forEach((item) => {
+          const resolved = resolvePreviewValue(item, language, localesUsed);
+          if (resolved !== undefined) {
+            resolvedArray.push(resolved);
+          }
+        });
+        return resolvedArray;
+      }
+
+      if (isLocalizedMapValue(plain)) {
+        const localized = getLocalizedPrimitiveFromMap(plain, language);
+        if (!localized) {
+          return undefined;
+        }
+        localesUsed.add(localized.locale);
+        return resolvePreviewValue(localized.value, language, localesUsed);
+      }
+
+      if (isPlainObject(plain)) {
+        const result = {};
+        let hasValue = false;
+        Object.entries(plain).forEach(([key, nested]) => {
+          const resolved = resolvePreviewValue(nested, language, localesUsed);
+          if (resolved !== undefined) {
+            result[key] = resolved;
+            hasValue = true;
+          }
+        });
+        return hasValue ? result : undefined;
+      }
+
+      if (typeof plain === 'string') {
+        const trimmed = plain.trim();
+        return trimmed.length > 0 ? trimmed : undefined;
+      }
+
+      return plain;
+    }
+
+    function resolvePreviewSection(section, language, localesUsed) {
+      const plain = toPlain(section, null);
+      if (!isPlainObject(plain)) {
+        return null;
+      }
+
+      const resolved = {};
+      Object.entries(plain).forEach(([key, value]) => {
+        if (key === 'type') {
+          if (typeof value === 'string' && value.length > 0) {
+            resolved.type = value;
+          }
+          return;
+        }
+
+        const converted = resolvePreviewValue(value, language, localesUsed);
+        if (converted !== undefined) {
+          resolved[key] = converted;
+        }
+      });
+
+      if (typeof resolved.type !== 'string' || resolved.type.length === 0) {
+        return null;
+      }
+
+      if (resolved.visible === false) {
+        return null;
+      }
+
+      return resolved;
+    }
+
+    function applyPreviewMetadata(metadata, target, language, localesUsed) {
+      const plain = toPlain(metadata, null);
+      if (!isPlainObject(plain)) {
+        return;
+      }
+
+      const title = getLocalizedPrimitiveFromMap(toPlain(plain.title, null), language);
+      if (title) {
+        target.metaTitle = title.value;
+        localesUsed.add(title.locale);
+      }
+
+      const description = getLocalizedPrimitiveFromMap(toPlain(plain.description, null), language);
+      if (description) {
+        target.metaDescription = description.value;
+        localesUsed.add(description.locale);
+      }
+    }
+
+    function applyPreviewHero(hero, target, language, localesUsed) {
+      if (!hero) {
+        return;
+      }
+
+      const resolved = resolvePreviewValue(hero, language, localesUsed);
+      if (resolved === undefined) {
+        return;
+      }
+
+      if (!isPlainObject(resolved)) {
+        target.hero = resolved;
+        return;
+      }
+
+      target.hero = resolved;
+
+      const content = isPlainObject(resolved.content) ? resolved.content : null;
+      const alignment = isPlainObject(resolved.alignment) ? resolved.alignment : null;
+      const layout = isPlainObject(resolved.layout) ? resolved.layout : null;
+      const ctas = isPlainObject(resolved.ctas) ? resolved.ctas : null;
+
+      const assignFromSources = (keys, sources, targetPath) => {
+        for (const source of sources) {
+          if (!source) {
+            continue;
+          }
+          for (const key of keys) {
+            const value = source[key];
+            if (typeof value === 'string' && value.length > 0) {
+              setNestedValue(target, targetPath, value);
+              return;
+            }
+          }
+        }
+      };
+
+      const assignCta = (sources, targetBase) => {
+        for (const source of sources) {
+          if (!isPlainObject(source)) {
+            continue;
+          }
+          const { label, href } = source;
+          if (typeof label === 'string' && label.length > 0) {
+            setNestedValue(target, `${targetBase}.label`, label);
+          }
+          if (typeof href === 'string' && href.length > 0) {
+            setNestedValue(target, `${targetBase}.href`, href);
+          }
+          if ((typeof label === 'string' && label.length > 0) || (typeof href === 'string' && href.length > 0)) {
+            return;
+          }
+        }
+      };
+
+      const extractCta = (value) => (isPlainObject(value) ? value : null);
+
+      assignFromSources(['headline'], [content, resolved], 'heroHeadline');
+      assignFromSources(['headline', 'title'], [content, resolved], 'heroTitle');
+      assignFromSources(['subheadline'], [content, resolved], 'heroSubheadline');
+      assignFromSources(['body', 'subtitle'], [content, resolved], 'heroSubtitle');
+      assignFromSources(['eyebrow'], [content], 'heroEyebrow');
+
+      assignCta([
+        extractCta(ctas && ctas.primary),
+        extractCta(resolved.ctaPrimary),
+      ], 'heroCtas.ctaPrimary');
+
+      assignCta([
+        extractCta(ctas && ctas.secondary),
+        extractCta(resolved.ctaSecondary),
+      ], 'heroCtas.ctaSecondary');
+
+      const assignPrimitive = (keys, sources, targetPath) => {
+        for (const source of sources) {
+          if (!source) {
+            continue;
+          }
+          for (const key of keys) {
+            const value = source[key];
+            if (
+              typeof value === 'string'
+              || typeof value === 'number'
+              || typeof value === 'boolean'
+            ) {
+              setNestedValue(target, targetPath, value);
+              return;
+            }
+          }
+        }
+      };
+
+      assignPrimitive(['alignX', 'heroAlignX'], [layout, alignment], 'heroAlignment.heroAlignX');
+      assignPrimitive(['alignY', 'heroAlignY'], [layout, alignment], 'heroAlignment.heroAlignY');
+      assignPrimitive(['textPosition', 'heroTextPosition'], [layout, alignment], 'heroAlignment.heroTextPosition');
+      assignPrimitive(['textAnchor', 'heroTextAnchor'], [layout, alignment], 'heroAlignment.heroTextAnchor');
+      assignPrimitive(['overlay', 'heroOverlay'], [layout, alignment], 'heroAlignment.heroOverlay');
+      assignPrimitive(['layoutHint', 'heroLayoutHint'], [layout, alignment], 'heroAlignment.heroLayoutHint');
+
+      assignPrimitive(['sub1'], [resolved], 'heroSub1');
+      assignPrimitive(['sub2'], [resolved], 'heroSub2');
+    }
+
+    function applyPreviewFields(fields, target, language, localesUsed) {
+      const list = asArray(fields);
+      list.forEach((entry) => {
+        const plain = toPlain(entry, null);
+        if (!plain || typeof plain.key !== 'string') {
+          return;
+        }
+        if (plain.visible === false) {
+          return;
+        }
+        const localized = getLocalizedPrimitiveFromMap(toPlain(plain.value, null), language);
+        if (!localized) {
+          return;
+        }
+        localesUsed.add(localized.locale);
+        setNestedValue(target, plain.key, localized.value);
+      });
+    }
+
+    function determinePreviewLocale(localesUsed, language) {
+      if (!(localesUsed instanceof Set) || localesUsed.size === 0) {
+        return language;
+      }
+
+      const preference = getLocalePreference(language);
+      for (const locale of preference) {
+        if (localesUsed.has(locale)) {
+          return locale;
+        }
+      }
+
+      const iterator = localesUsed.values();
+      const first = iterator.next();
+      if (first && isSupportedLocale(first.value)) {
+        return first.value;
+      }
+
+      return language;
+    }
+
+    let cachedPreviewEntry = null;
+    let cachedPreviewLocale = null;
+    let cachedPreviewData = null;
+
+    function buildPagePreviewData(entry, language) {
+      const rawData = entry && typeof entry.get === 'function' ? toPlain(entry.get('data'), null) : null;
+      if (!isPlainObject(rawData)) {
+        return {};
+      }
+
+      const localesUsed = new Set();
+      const resolved = {};
+
+      applyPreviewMetadata(rawData.metadata, resolved, language, localesUsed);
+      applyPreviewHero(rawData.hero, resolved, language, localesUsed);
+      applyPreviewFields(rawData.fields, resolved, language, localesUsed);
+
+      if (Array.isArray(rawData.sections)) {
+        const sections = rawData.sections
+          .map((section) => resolvePreviewSection(section, language, localesUsed))
+          .filter((section) => section !== null);
+        if (sections.length > 0) {
+          resolved.sections = sections;
+        }
+      }
+
+      Object.entries(rawData).forEach(([key, value]) => {
+        if (key === 'metadata' || key === 'hero' || key === 'fields' || key === 'sections') {
+          return;
+        }
+        const converted = resolvePreviewValue(value, language, localesUsed);
+        if (converted !== undefined) {
+          resolved[key] = converted;
+        }
+      });
+
+      const resolvedLocale = determinePreviewLocale(localesUsed, language);
+      if (isSupportedLocale(resolvedLocale) && localeState.latestEntryLocale !== resolvedLocale) {
+        localeState.latestEntryLocale = resolvedLocale;
+        scheduleLocaleRender();
+      }
+
+      return resolved;
+    }
+
+    function getPagePreviewData(entry, language) {
+      if (entry === cachedPreviewEntry && language === cachedPreviewLocale && cachedPreviewData) {
+        return cachedPreviewData;
+      }
+
+      const data = buildPagePreviewData(entry, language);
+      cachedPreviewEntry = entry;
+      cachedPreviewLocale = language;
+      cachedPreviewData = data;
+      return data;
+    }
+
+    function extractFieldFromList(entry, segments) {
+      if (!entry || typeof entry.getIn !== 'function' || !Array.isArray(segments) || segments.length === 0) {
+        return undefined;
+      }
+
+      const [key, ...rest] = segments;
+      if (typeof key !== 'string') {
+        return undefined;
+      }
+
+      const fields = asArray(entry.getIn(['data', 'fields'], []));
+      if (!fields.length) {
+        return undefined;
+      }
+
+      const match = fields.find((field) => {
+        const plain = toPlain(field, null);
+        return plain && plain.key === key;
+      });
+
+      if (!match) {
+        return undefined;
+      }
+
+      let value = toPlain(match.value, undefined);
+      if (rest.length > 0) {
+        value = getNestedPreviewValue(value, rest);
+      }
+
+      return value;
     }
 
     const CMS_ANALYTICS_ENABLED =

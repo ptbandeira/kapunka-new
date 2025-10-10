@@ -265,7 +265,7 @@ collections:
         file: content/pages_v2/index.json
         format: json
         i18n: false
-        editor: { preview: false }
+        editor: { preview: true }
         fields:
           - label: Pages
             name: pages
