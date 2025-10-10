@@ -12,4 +12,4 @@ sections:
     image: contact/argan-fields.jpg
 ---
 
-# TODO: Translate to Portuguese
+<!-- TODO: Translate to Portuguese -->

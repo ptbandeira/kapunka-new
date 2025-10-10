@@ -20,7 +20,6 @@ import { useSiteSettings } from './contexts/SiteSettingsContext';
 import { useLanguage } from './contexts/LanguageContext';
 import type { Language, LocalizedText } from './types';
 import {
-  buildLocalizedPath,
   getLocaleFromLocation,
   isSupportedLanguage,
   removeLocaleFromPath,
@@ -198,12 +197,6 @@ const LocalizedLayout: React.FC = () => {
 
     if (!currentLocale) {
       if (language !== DEFAULT_LANGUAGE) {
-        const targetPath = buildLocalizedPath(location.pathname, language);
-        if (targetPath !== location.pathname) {
-          navigate(`${targetPath}${location.search}${location.hash}`, { replace: true });
-          return;
-        }
-
         setLanguage(DEFAULT_LANGUAGE);
       }
       return;
@@ -245,11 +238,11 @@ const AppRoutes: React.FC = () => {
   return (
     <AnimatePresence mode="wait">
       <Routes location={location} key={location.pathname}>
-        <Route path="/:locale(en|pt|es)" element={<LocalizedLayout />}>
-          {renderRoutes(routeDefinitions)}
-        </Route>
         <Route path="/" element={<LocalizedLayout />}>
           {renderRoutes(routeDefinitions)}
+          <Route path=":locale" element={<LocalizedLayout />}>
+            {renderRoutes(routeDefinitions)}
+          </Route>
         </Route>
         <Route path="*" element={<Navigate to="/" replace />} />
       </Routes>

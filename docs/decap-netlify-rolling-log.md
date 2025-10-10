@@ -1,5 +1,10 @@
 # Decap CMS & Netlify Rolling Log
 
+## 2025-10-12 — Hid TODO placeholders on localized pages
+- **What changed**: Replaced the visible `# TODO: Translate …` headings in the Portuguese and Spanish Markdown sources with HTML comments so visitors no longer see placeholder copy while localization is in progress.
+- **Impact & follow-up**: Localized routes keep rendering English fallback content without exposing internal TODO markers; translators can still find the comments when updating the files. No additional action required beyond translating the Markdown when ready.
+- **References**: Pending PR
+
 ## 2025-10-12 — Synced content into Vite public assets
 - **What changed**: Added `scripts/sync-static-content.mjs` to mirror the canonical `content/` directory into `public/content` during `prebuild`, removed the redundant postbuild copies, and ignored the generated folder so Vite now ships the JSON bundle without an extra script.
 - **Impact & follow-up**: Netlify preview deploys consistently serve `/content/...` requests for localized pages because the assets live alongside the SPA output. Monitor future builds to ensure the sync keeps `site/content` populated for Visual Editor mirrors.
@@ -462,4 +467,14 @@ This log records day-to-day investigations, fixes, and decisions that affect the
 ## 2025-10-10 — Adjusted Netlify redirects for content assets
 - **What changed**: Updated `netlify.toml` to allow `/content/*` requests to resolve to their static files and limited the SPA fallback to unknown routes.
 - **Impact & follow-up**: Enables JSON and other Decap-managed assets to be fetched directly without forcing the single-page app rewrite. Monitor future redirect additions to ensure content paths remain exempt.
+- **References**: Pending PR
+
+## 2025-10-11 — Restored localized route matching
+- **What changed**: Replaced the regex route guard in `App.tsx` with nested locale routes so `/pt/*` and `/es/*` resolve through `LocalizedLayout`, letting the layout handle language validation internally.
+- **Impact & follow-up**: Portuguese and Spanish URLs render their pages again instead of falling through to the English redirect. Keep future locale routing updates within `LocalizedLayout` so the language context stays authoritative.
+- **References**: Pending PR
+
+## 2025-10-11 — Resolved English locale fallback loop
+- **What changed**: Simplified the `LocalizedLayout` effect in `App.tsx` so navigating from `/pt/*` or `/es/*` back to English clears the language state without forcing another locale-prefixed redirect.
+- **Impact & follow-up**: Visitors can freely return to English pages after viewing localized content, preventing the SPA router from trapping them on localized URLs. Re-test the language switcher whenever adjusting locale detection.
 - **References**: Pending PR
