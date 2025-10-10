@@ -468,3 +468,8 @@ This log records day-to-day investigations, fixes, and decisions that affect the
 - **What changed**: Updated `netlify.toml` to allow `/content/*` requests to resolve to their static files and limited the SPA fallback to unknown routes.
 - **Impact & follow-up**: Enables JSON and other Decap-managed assets to be fetched directly without forcing the single-page app rewrite. Monitor future redirect additions to ensure content paths remain exempt.
 - **References**: Pending PR
+
+## 2025-10-11 — Restored localized route matching
+- **What changed**: Replaced the regex route guard in `App.tsx` with nested locale routes so `/pt/*` and `/es/*` resolve through `LocalizedLayout`, letting the layout handle language validation internally.
+- **Impact & follow-up**: Portuguese and Spanish URLs render their pages again instead of falling through to the English redirect. Keep future locale routing updates within `LocalizedLayout` so the language context stays authoritative.
+- **References**: Pending PR
