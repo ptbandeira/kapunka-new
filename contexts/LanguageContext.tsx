@@ -39,6 +39,11 @@ const resolveInitialLanguage = (): Language => {
     return FALLBACK_LANGUAGE;
   }
 
+  const bootstrapLanguage = window.__INITIAL_LANGUAGE__;
+  if (bootstrapLanguage && SUPPORTED_LANGUAGES.includes(bootstrapLanguage)) {
+    return bootstrapLanguage;
+  }
+
   const localeFromLocation = getLocaleFromLocation(window.location);
   if (localeFromLocation) {
     return localeFromLocation;
@@ -143,6 +148,9 @@ export const LanguageProvider: React.FC<{ children: React.ReactNode }> = ({ chil
 
   const applyLanguage = useCallback((next: Language) => {
     setLanguageState((current) => (current === next ? current : next));
+    if (typeof window !== 'undefined') {
+      window.__INITIAL_LANGUAGE__ = next;
+    }
   }, []);
 
   const setLanguage = useCallback((next: Language) => {
