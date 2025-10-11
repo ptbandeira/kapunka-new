@@ -1,0 +1,170 @@
+name: page
+label: Page
+fields:
+  - label: Content
+    name: content
+    widget: object
+    collapsed: false
+    fields:
+      - widget: object
+        i18n: true
+        required: false
+        editor: 
+          display: tabs
+        fields: 
+          - label: English
+            name: en
+            widget: object
+            fields:
+              - label: Title
+                name: title
+                widget: string
+              - label: Description
+                name: description
+                widget: text
+              - label: Body
+                name: body
+                widget: markdown
+          - label: Portuguese
+            name: pt
+            widget: object
+            fields:
+              - label: Title
+                name: title
+                widget: string
+              - label: Description
+                name: description
+                widget: text
+              - label: Body
+                name: body
+                widget: markdown
+          - label: Spanish
+            name: es
+            widget: object
+            fields:
+              - label: Title
+                name: title
+                widget: string
+              - label: Description
+                name: description
+                widget: text
+              - label: Body
+                name: body
+                widget: markdown
+
+  - label: Visual Settings
+    name: visualSettings
+    widget: object
+    collapsed: false
+    fields:
+      - label: Layout
+        name: layout
+        widget: select
+        options:
+          - label: Default
+            value: default
+          - label: Full Width
+            value: full
+          - label: Narrow
+            value: narrow
+      - label: Spacing
+        name: spacing
+        widget: select
+        options:
+          - label: Compact
+            value: compact
+          - label: Normal
+            value: normal
+          - label: Spacious
+            value: spacious
+      - label: Background
+        name: background
+        widget: select
+        options:
+          - label: None
+            value: none
+          - label: Light
+            value: light
+          - label: Dark
+            value: dark
+          - label: Accent
+            value: accent
+      - label: Hero Image
+        name: heroImage
+        widget: object
+        fields:
+          - label: Image
+            name: src
+            widget: image
+            choose_url: true
+          - label: Focal Point
+            name: focal
+            widget: object
+            fields:
+              - label: X
+                name: x
+                widget: number
+                min: 0
+                max: 1
+                step: 0.1
+              - label: Y
+                name: y
+                widget: number
+                min: 0
+                max: 1
+                step: 0.1
+
+  - label: Advanced Settings
+    name: advanced
+    widget: object
+    collapsed: true
+    fields:
+      - label: SEO
+        name: seo
+        widget: object
+        fields:
+          - widget: object
+            i18n: true
+            editor:
+              display: tabs
+            fields:
+              - label: English
+                name: en
+                widget: object
+                fields:
+                  - label: Meta Title
+                    name: title
+                    widget: string
+                  - label: Meta Description
+                    name: description
+                    widget: text
+              - label: Portuguese
+                name: pt
+                widget: object
+                fields:
+                  - label: Meta Title
+                    name: title
+                    widget: string
+                  - label: Meta Description
+                    name: description
+                    widget: text
+              - label: Spanish
+                name: es
+                widget: object
+                fields:
+                  - label: Meta Title
+                    name: title
+                    widget: string
+                  - label: Meta Description
+                    name: description
+                    widget: text
+      - label: URL Path
+        name: path
+        widget: string
+      - label: Published
+        name: published
+        widget: boolean
+        default: true
+      - label: Publication Date
+        name: publishDate
+        widget: datetime

@@ -6,10 +6,43 @@
   <title>Content Manager</title>
   <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
   <script>window.CMS_ANALYTICS_ENABLED = true;</script>
+  <style>
+    .nc-collectionPage-sidebarLink,
+    .nc-collectionPage-topToolbar,
+    .nc-entryEditor-sidebarHeader {
+      background: var(--background-main) !important;
+    }
+    
+    .nc-collectionPage-sidebar {
+      background: var(--background-alt) !important;
+    }
+
+    .nc-entryEditor-sidebar {
+      min-width: 300px;
+      max-width: 500px;
+    }
+
+    .nc-collectionPage-gridList {
+      padding: 20px !important;
+    }
+
+    .nc-app-header {
+      background: var(--background-dark) !important;
+    }
+
+    :root {
+      --background-main: #ffffff;
+      --background-alt: #f5f5f5;
+      --background-dark: #1a1a1a;
+    }
+  </style>
 </head>
 <body>
   <div id="nc-root"></div>
   <script src="https://unpkg.com/decap-cms@^3.0.0/dist/decap-cms.js"></script>
+  <script>
+    CMS.registerPreviewStyle('/admin/preview.css');
+  </script>
   <script type="module" src="cms.js"></script>
 </body>
 </html>
