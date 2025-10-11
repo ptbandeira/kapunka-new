@@ -281,9 +281,7 @@ collections:
                   - { label: "Admin Label", name: "label", widget: "string", hint: "Display name shown within the CMS navigation." }
                   - { label: "Slug", name: "slug", widget: "string", required: false, hint: "Public URL path beginning with a forward slash." }
                   - { label: "Page Type", name: "type", widget: "hidden", default: "page" }
-                  - *content_fields
-                  - *visual_fields
-                  - *advanced_fields
+                  - label: "Metadata"
                     name: metadata
                     widget: object
                     collapsed: true
@@ -294,6 +292,9 @@ collections:
                       - <<: *localized_text_field
                         label: "Meta Description"
                         name: "description"
+                  - *content_fields
+                  - *visual_fields
+                  - *advanced_fields
                   - label: Hero
                     name: hero
                     widget: object

@@ -1,169 +1,4531 @@
-backend:
-  name: git-gateway
-  branch: main
-
-local_backend: true
-
-media_folder: "content/uploads"
-public_folder: "/uploads"
-
-editor:
-  preview: true
-
 i18n:
   structure: multiple_folders
-  locales: [en, pt, es]
+  locales:
+    - en
+    - pt
+    - es
   default_locale: en
-
-collections:
-  - name: "pages"
-    label: "Pages"
-    folder: "content/pages"
-    create: true
-    extension: json
-    format: json
+localized_string_field:
+  widget: object
+  i18n: true
+  required: false
+  editor: &ref_0
+    display: tabs
+  fields: &ref_1
+    - label: English
+      name: en
+      widget: string
+      hint: Primary copy – translate first here.
+      required: false
+    - label: Portuguese
+      name: pt
+      widget: string
+      hint: Optional – leave blank to reuse the English value.
+      required: false
+    - label: Spanish
+      name: es
+      widget: string
+      hint: Optional – leave blank to reuse the English value.
+      required: false
+localized_text_field:
+  widget: object
+  i18n: true
+  required: false
+  editor: &ref_2
+    display: tabs
+  fields: &ref_3
+    - label: English
+      name: en
+      widget: text
+      hint: Primary copy – translate first here.
+      required: false
+    - label: Portuguese
+      name: pt
+      widget: text
+      hint: Optional – leave blank to reuse the English value.
+      required: false
+    - label: Spanish
+      name: es
+      widget: text
+      hint: Optional – leave blank to reuse the English value.
+      required: false
+localized_markdown_field:
+  widget: object
+  i18n: true
+  required: false
+  editor: &ref_10
+    display: tabs
+  fields: &ref_11
+    - label: English
+      name: en
+      widget: markdown
+      hint: Primary copy – translate first here.
+      required: false
+    - label: Portuguese
+      name: pt
+      widget: markdown
+      hint: Optional – leave blank to reuse the English value.
+      required: false
+    - label: Spanish
+      name: es
+      widget: markdown
+      hint: Optional – leave blank to reuse the English value.
+      required: false
+localized_list_field:
+  widget: object
+  i18n: true
+  required: false
+  editor: &ref_6
+    display: tabs
+  fields: &ref_7
+    - label: English
+      name: en
+      widget: list
+      hint: Primary set of items – translate first here.
+      field:
+        label: Item
+        name: item
+        widget: string
+        required: false
+      required: false
+    - label: Portuguese
+      name: pt
+      widget: list
+      hint: Optional – leave empty to mirror the English list.
+      field:
+        label: Item
+        name: item
+        widget: string
+        required: false
+      required: false
+    - label: Spanish
+      name: es
+      widget: list
+      hint: Optional – leave empty to mirror the English list.
+      field:
+        label: Item
+        name: item
+        widget: string
+        required: false
+      required: false
+duplicate_string_field:
+  widget: string
+  required: false
+  i18n: duplicate
+duplicate_text_field:
+  widget: text
+  required: false
+  i18n: duplicate
+duplicate_boolean_field:
+  widget: boolean
+  required: false
+  default: false
+  i18n: duplicate
+duplicate_url_field:
+  widget: string
+  required: false
+  i18n: duplicate
+button_settings_fields: &ref_32
+  - widget: object
     i18n: true
-    editor:
-      preview: true
+    required: false
+    editor: *ref_0
+    fields: *ref_1
+    label: Button Label
+    name: label
+    hint: Localized CTA text (≤24 characters).
+  - widget: string
+    required: false
+    i18n: duplicate
+    label: Destination URL
+    name: href
+  - widget: boolean
+    required: false
+    default: false
+    i18n: duplicate
+    label: Open in new tab
+    name: openInNewTab
+    hint: Enable when linking to an external destination.
+section_string_field:
+  widget: string
+  required: false
+section_text_field:
+  widget: text
+  required: false
+section_markdown_field:
+  widget: markdown
+  required: false
+section_list_string_field:
+  widget: list
+  required: false
+  field:
+    label: Item
+    name: item
+    widget: string
+    required: false
+status_field: &ref_4
+  label: Editorial Status
+  name: status
+  widget: select
+  options:
+    - label: Draft
+      value: draft
+    - label: In Review
+      value: in_review
+    - label: Scheduled
+      value: scheduled
+    - label: Approved
+      value: approved
+  default: draft
+  hint: Track the current editorial state of this entry.
+  required: false
+schedule_fields: &ref_5
+  label: Scheduling
+  name: scheduling
+  widget: object
+  collapsed: true
+  required: false
+  hint: Optional publish/unpublish timestamps for automated scheduling.
+  fields:
+    - label: Publish At
+      name: publishAt
+      widget: datetime
+      required: false
+    - label: Unpublish At
+      name: unpublishAt
+      widget: datetime
+      required: false
+visibility_field: &ref_15
+  label: Visible on site
+  name: visible
+  widget: boolean
+  required: false
+  default: true
+  hint: Uncheck to hide this item from the live site without deleting it.
+focal_point_field:
+  label: Focal Point
+  name: focal
+  widget: object
+  collapsed: true
+  required: false
+  hint: >-
+    Adjust the image focus area. Values between 0 and 1 represent the relative horizontal and vertical point to keep in
+    view.
+  fields: &ref_12
+    - label: Horizontal (0–1)
+      name: x
+      widget: number
+      value_type: float
+      min: 0
+      max: 1
+      step: 0.01
+      required: false
+    - label: Vertical (0–1)
+      name: 'y'
+      widget: number
+      value_type: float
+      min: 0
+      max: 1
+      step: 0.01
+      required: false
+product_knowledge_fields: &ref_8
+  - widget: object
+    i18n: true
+    required: false
+    editor: *ref_2
+    fields: *ref_3
+    label: What It Is
+    name: whatItIs
+  - widget: object
+    i18n: true
+    required: false
+    editor: *ref_2
+    fields: *ref_3
+    label: How It Works
+    name: howItWorks
+  - widget: object
+    i18n: true
+    required: false
+    editor: *ref_2
+    fields: *ref_3
+    label: Who It's For
+    name: whoItsFor
+  - widget: object
+    i18n: true
+    required: false
+    editor: *ref_2
+    fields: *ref_3
+    label: Scientific Backing
+    name: scientificBacking
+  - widget: object
+    i18n: true
+    required: false
+    editor: *ref_2
+    fields: *ref_3
+    label: Cultural & Traditional Context
+    name: culturalContext
+product_faq_fields: &ref_9
+  - widget: object
+    i18n: true
+    required: false
+    editor: *ref_2
+    fields: *ref_3
+    label: Question
+    name: question
+    hint: FAQ prompt displayed on PDP.
+  - widget: object
+    i18n: true
+    required: false
+    editor: *ref_2
+    fields: *ref_3
+    label: Answer
+    name: answer
+    hint: Short response (supports Markdown).
+course_item_fields: &ref_56
+  - label: ID
+    name: id
+    widget: string
+    required: false
+  - *ref_4
+  - *ref_5
+  - widget: object
+    i18n: true
+    required: false
+    editor: *ref_0
+    fields: *ref_1
+    label: Title
+    name: title
+  - label: Image
+    name: imageUrl
+    widget: image
+    choose_url: true
+    hint: Thumbnail used on the Academy page.
+    required: false
+  - label: Price
+    name: price
+    widget: number
+    value_type: float
+    required: false
+  - label: Enroll Link
+    name: enrollLink
+    widget: string
+    hint: URL to course registration.
+    required: false
+video_entry_fields: &ref_57
+  - *ref_4
+  - *ref_5
+  - label: Title
+    name: title
+    widget: string
+    required: false
+  - label: Description
+    name: description
+    widget: text
+    required: false
+  - label: Video URL
+    name: videoUrl
+    widget: string
+    required: false
+  - label: Thumbnail
+    name: thumbnail
+    widget: image
+    choose_url: true
+    required: false
+training_entry_fields: &ref_58
+  - *ref_4
+  - *ref_5
+  - label: Course Title
+    name: courseTitle
+    widget: string
+    required: false
+  - label: Course Summary
+    name: courseSummary
+    widget: text
+    required: false
+  - label: Link URL
+    name: linkUrl
+    widget: string
+    required: false
+product_item_fields: &ref_54
+  - label: ID
+    name: id
+    widget: string
+    required: false
+  - *ref_4
+  - *ref_5
+  - widget: object
+    i18n: true
+    required: false
+    editor: *ref_0
+    fields: *ref_1
+    label: Name
+    name: name
+    hint: Displayed product name for PDPs and cards.
+  - widget: object
+    i18n: true
+    required: false
+    editor: *ref_0
+    fields: *ref_1
+    label: Name Add-on
+    name: titleAddition
+    hint: Optional text appended to the product title (≤30 characters).
+  - widget: object
+    i18n: true
+    required: false
+    editor: *ref_0
+    fields: *ref_1
+    label: Tagline
+    name: tagline
+    hint: Short positioning statement shown on product cards (≤80 characters).
+  - widget: object
+    i18n: true
+    required: false
+    editor: *ref_2
+    fields: *ref_3
+    label: Description
+    name: description
+    hint: Hero description for PDP hero and cart tooltip.
+  - widget: object
+    i18n: true
+    required: false
+    editor: *ref_6
+    fields: *ref_7
+    label: Bundle Includes
+    name: bundleIncludes
+    hint: Outline the items contained in a bundle.
+  - label: Primary Image
+    name: imageUrl
+    widget: image
+    choose_url: true
+    hint: Hero product image displayed on cards and PDP.
+    required: false
+  - label: Sizes
+    name: sizes
+    widget: list
+    summary: '{{fields.size}} ml'
     fields:
-      - label: Visual Settings
-        name: visual
-        widget: object
-        collapsed: false
-        fields:
-          - label: Layout
-            name: layout
-            widget: select
-            options:
-              - { label: "Default", value: "default" }
-              - { label: "Full Width", value: "full" }
-              - { label: "Narrow", value: "narrow" }
-          - label: Spacing
-            name: spacing
-            widget: select
-            options:
-              - { label: "Compact", value: "compact" }
-              - { label: "Normal", value: "normal" }
-              - { label: "Spacious", value: "spacious" }
-          - label: Background
-            name: background
-            widget: select
-            options:
-              - { label: "None", value: "none" }
-              - { label: "Light", value: "light" }
-              - { label: "Dark", value: "dark" }
-              - { label: "Accent", value: "accent" }
-          - label: Hero Settings
-            name: hero
-            widget: object
-            fields:
-              - label: Image
-                name: image
-                widget: object
-                fields:
-                  - label: Source
-                    name: src
-                    widget: image
-                  - label: Focal Point
-                    name: focal
-                    widget: object
-                    fields:
-                      - label: X Position
-                        name: x
-                        widget: number
-                        min: 0
-                        max: 1
-                        step: 0.1
-                      - label: Y Position
-                        name: y
-                        widget: number
-                        min: 0
-                        max: 1
-                        step: 0.1
-              - label: Text Position
-                name: textPosition
-                widget: select
-                options:
-                  - { label: "Left", value: "left" }
-                  - { label: "Center", value: "center" }
-                  - { label: "Right", value: "right" }
-
-      - label: Content
-        name: content
-        widget: object
+      - label: Option ID
+        name: id
+        widget: string
+        required: false
+      - label: Size (ml)
+        name: size
+        widget: number
+        required: false
+      - label: Price
+        name: price
+        widget: number
+        value_type: float
+        required: false
+    required: false
+  - widget: object
+    i18n: true
+    required: false
+    editor: *ref_6
+    fields: *ref_7
+    label: Badges
+    name: badges
+    hint: Short selling points displayed as badges.
+  - widget: object
+    i18n: true
+    required: false
+    editor: *ref_6
+    fields: *ref_7
+    label: Benefits
+    name: benefits
+    hint: Bulleted list summarising key results.
+  - widget: object
+    i18n: true
+    required: false
+    editor: *ref_2
+    fields: *ref_3
+    label: How to Use
+    name: howToUse
+    hint: Step-by-step application guidance (supports Markdown).
+  - widget: object
+    i18n: true
+    required: false
+    editor: *ref_2
+    fields: *ref_3
+    label: Ingredients
+    name: ingredients
+    hint: Full INCI or ingredient description list.
+  - widget: object
+    i18n: true
+    required: false
+    editor: *ref_2
+    fields: *ref_3
+    label: Origin & Purity Note
+    name: labTestedNote
+    hint: Highlight lab testing or sourcing credentials.
+  - label: Good to Know
+    name: goodToKnow
+    widget: object
+    collapsed: true
+    fields:
+      - widget: object
         i18n: true
+        required: false
+        editor: *ref_0
+        fields: *ref_1
+        label: Title
+        name: title
+        hint: Optional heading above the quick facts list.
+      - widget: object
+        i18n: true
+        required: false
+        editor: *ref_6
+        fields: *ref_7
+        label: Items
+        name: items
+        hint: Short facts or usage notes.
+    required: false
+  - widget: object
+    i18n: true
+    required: false
+    editor: *ref_6
+    fields: *ref_7
+    label: Multi-use Tips
+    name: multiUseTips
+    hint: Optional multi-use ideas shown on PDP.
+  - label: Knowledge Hub
+    name: knowledge
+    widget: object
+    collapsed: true
+    fields: *ref_8
+    required: false
+  - label: FAQs
+    name: faqs
+    widget: list
+    summary: '{{fields.question.en}}'
+    fields: *ref_9
+    required: false
+article_item_fields: &ref_55
+  - label: ID
+    name: id
+    widget: string
+    required: false
+  - label: Slug
+    name: slug
+    widget: string
+    required: false
+  - widget: object
+    i18n: true
+    required: false
+    editor: *ref_0
+    fields: *ref_1
+    label: Title
+    name: title
+    hint: Displayed as the article headline.
+  - widget: object
+    i18n: true
+    required: false
+    editor: *ref_2
+    fields: *ref_3
+    label: Preview
+    name: preview
+    hint: Short summary shown in the Learn hub (≤200 characters).
+  - widget: object
+    i18n: true
+    required: false
+    editor: *ref_10
+    fields: *ref_11
+    label: Content
+    name: content
+    hint: Full article body. Supports Markdown.
+  - label: Category
+    name: category
+    widget: string
+    hint: Used for filtering in the Learn hub.
+    required: false
+  - label: Featured Image
+    name: imageUrl
+    widget: image
+    choose_url: true
+    hint: Preview image shown on the Learn hub and article hero.
+    required: false
+  - label: Related Product ID
+    name: relatedProductId
+    widget: string
+    required: false
+    hint: Optional primary product ID to highlight.
+  - label: Related Product IDs
+    name: relatedProductIds
+    widget: list
+    required: false
+    field:
+      label: Product ID
+      name: id
+      widget: string
+      required: false
+  - label: FAQs
+    name: faqs
+    widget: list
+    required: false
+    summary: '{{fields.question.en}}'
+    fields: *ref_9
+hero_content_fields: &ref_13
+  - widget: object
+    i18n: true
+    required: false
+    editor: *ref_0
+    fields: *ref_1
+    label: Headline
+    name: headline
+    hint: Main hero message displayed in large type.
+  - widget: object
+    i18n: true
+    required: false
+    editor: *ref_2
+    fields: *ref_3
+    label: Subheading
+    name: subheading
+    hint: Optional supporting sentence shown under the headline.
+  - label: Primary Call-to-Action
+    name: primaryCta
+    widget: object
+    collapsed: true
+    required: false
+    fields:
+      - widget: object
+        i18n: true
+        required: false
+        editor: *ref_0
+        fields: *ref_1
+        label: Button Label
+        name: label
+      - label: Link URL
+        name: href
+        widget: string
+        required: false
+        hint: Use internal routes (e.g. /shop) or full https:// links.
+  - label: Secondary Call-to-Action
+    name: secondaryCta
+    widget: object
+    collapsed: true
+    required: false
+    fields:
+      - widget: object
+        i18n: true
+        required: false
+        editor: *ref_0
+        fields: *ref_1
+        label: Button Label
+        name: label
+      - label: Link URL
+        name: href
+        widget: string
+        required: false
+        hint: Optional supporting action.
+  - label: Hero Image
+    name: image
+    widget: object
+    collapsed: true
+    required: false
+    fields:
+      - label: Image
+        name: src
+        widget: image
+        choose_url: true
+        required: false
+        hint: Upload or pick an image from the media library.
+      - widget: object
+        i18n: true
+        required: false
+        editor: *ref_0
+        fields: *ref_1
+        label: Alt Text
+        name: alt
+        hint: Describe the visual for accessibility and SEO.
+      - label: Focal Point
+        name: focal
+        widget: object
+        collapsed: true
+        required: false
+        hint: Optional focus point to control how the hero image crops responsively.
+        fields: *ref_12
+  - label: Text Anchor Override
+    name: position
+    widget: select
+    required: false
+    options:
+      - label: Top left
+        value: top-left
+      - label: Top center
+        value: top-center
+      - label: Top right
+        value: top-right
+      - label: Middle left
+        value: middle-left
+      - label: Middle center
+        value: middle-center
+      - label: Middle right
+        value: middle-right
+      - label: Bottom left
+        value: bottom-left
+      - label: Bottom center
+        value: bottom-center
+      - label: Bottom right
+        value: bottom-right
+    hint: Fine-tune where the hero copy sits when overlaying imagery.
+media_copy_fields: &ref_14
+  - widget: object
+    i18n: true
+    required: false
+    editor: *ref_0
+    fields: *ref_1
+    label: Heading
+    name: heading
+    hint: Title displayed above the paragraph copy.
+  - widget: object
+    i18n: true
+    required: false
+    editor: *ref_10
+    fields: *ref_11
+    label: Body
+    name: body
+    hint: Supports Markdown for emphasis, links, and line breaks.
+  - label: Call-to-Action
+    name: cta
+    widget: object
+    collapsed: true
+    required: false
+    fields:
+      - widget: object
+        i18n: true
+        required: false
+        editor: *ref_0
+        fields: *ref_1
+        label: Button Label
+        name: label
+      - label: Link URL
+        name: href
+        widget: string
+        required: false
+        hint: Link readers to relevant resources.
+  - label: Image
+    name: image
+    widget: object
+    collapsed: true
+    required: false
+    fields:
+      - label: Image
+        name: src
+        widget: image
+        choose_url: true
+        required: false
+        hint: Upload or pick an image from the media library.
+      - widget: object
+        i18n: true
+        required: false
+        editor: *ref_0
+        fields: *ref_1
+        label: Alt Text
+        name: alt
+        hint: Describe the image for screen readers.
+      - label: Focal Point
+        name: focal
+        widget: object
+        collapsed: true
+        required: false
+        hint: Optional focus point to guide cropping when the layout uses object-fit cover.
+        fields: *ref_12
+testimonial_fields:
+  - widget: object
+    i18n: true
+    required: false
+    editor: *ref_10
+    fields: *ref_11
+    label: Quote
+    name: quote
+    hint: Testimonial text displayed inside quotation marks.
+  - widget: object
+    i18n: true
+    required: false
+    editor: *ref_0
+    fields: *ref_1
+    label: Author
+    name: author
+    hint: Name of the customer, partner, or practitioner.
+  - widget: object
+    i18n: true
+    required: false
+    editor: *ref_0
+    fields: *ref_1
+    label: Role or Context
+    name: role
+    hint: Clinic, title, or context shown under the author.
+  - label: Avatar
+    name: avatar
+    widget: image
+    choose_url: true
+    required: false
+    hint: Optional headshot displayed with the testimonial.
+  - label: Linked Testimonial
+    name: testimonialRef
+    widget: relation
+    collection: testimonials
+    value_field: fileRelativePath
+    display_fields:
+      - name
+      - title
+    search_fields:
+      - name
+      - title
+      - quote
+    required: false
+    hint: Reuse a saved testimonial entry. Leave empty to author custom copy in this section.
+hero_object:
+  label: Hero Content
+  name: content
+  widget: object
+  summary: '{{fields.headline.en}}'
+  fields: *ref_13
+  required: false
+media_copy_object:
+  label: Media & Copy
+  name: content
+  widget: object
+  summary: '{{fields.heading.en}}'
+  fields: *ref_14
+  required: false
+shared_sections:
+  - &ref_16
+    label: Media + Copy
+    name: mediaCopy
+    widget: object
+    collapsed: true
+    summary: Media + Copy · {{fields.title | default('Untitled')}}
+    fields:
+      - name: type
+        widget: hidden
+        default: mediaCopy
+        required: false
+      - *ref_15
+      - label: Title
+        name: title
+        widget: string
+        required: false
+      - label: Body
+        name: body
+        widget: text
+        required: false
+      - label: Layout
+        name: layout
+        widget: select
+        required: false
+        options:
+          - label: Image right
+            value: image-right
+          - label: Image left
+            value: image-left
+          - label: Overlay
+            value: overlay
+      - label: Image (upload or path)
+        name: image
+        widget: image
+        choose_url: true
+        required: false
+      - label: Image URL
+        name: imageUrl
+        widget: string
+        required: false
+      - label: Image Alt Text
+        name: imageAlt
+        widget: string
+        required: false
+      - label: Image Focal Point
+        name: imageFocal
+        widget: object
+        collapsed: true
+        required: false
+        hint: >-
+          Adjust the image focus area. Values between 0 and 1 represent the relative horizontal and vertical point to
+          keep in view.
+        fields: *ref_12
+      - label: CTA Label
+        name: ctaLabel
+        widget: string
+        required: false
+      - label: CTA Link
+        name: ctaHref
+        widget: string
+        required: false
+    required: false
+  - &ref_17
+    label: Media Showcase
+    name: mediaShowcase
+    widget: object
+    collapsed: true
+    summary: Media Showcase · {{fields.title | default('Untitled')}}
+    fields:
+      - name: type
+        widget: hidden
+        default: mediaShowcase
+        required: false
+      - *ref_15
+      - label: Title
+        name: title
+        widget: string
+        required: false
+      - label: Items
+        name: items
+        widget: list
+        collapsed: true
+        summary: '{{fields.title | default(fields.eyebrow) | default(''Card'')}}'
+        fields:
+          - label: Eyebrow
+            name: eyebrow
+            widget: string
+            required: false
+          - label: Title
+            name: title
+            widget: string
+            required: false
+          - label: Body
+            name: body
+            widget: text
+            required: false
+          - label: Image (upload or path)
+            name: image
+            widget: image
+            choose_url: true
+            required: false
+          - label: Image URL
+            name: imageUrl
+            widget: string
+            required: false
+          - label: Image Alt Text
+            name: imageAlt
+            widget: string
+            required: false
+          - label: Image Focal Point
+            name: imageFocal
+            widget: object
+            collapsed: true
+            required: false
+            hint: >-
+              Adjust the image focus area. Values between 0 and 1 represent the relative horizontal and vertical point
+              to keep in view.
+            fields: *ref_12
+          - label: CTA Label
+            name: ctaLabel
+            widget: string
+            required: false
+          - label: CTA Link
+            name: ctaHref
+            widget: string
+            required: false
+        required: false
+    required: false
+  - &ref_18
+    label: Feature Grid
+    name: featureGrid
+    widget: object
+    collapsed: true
+    summary: Feature Grid · {{fields.title | default('Untitled')}}
+    fields:
+      - name: type
+        widget: hidden
+        default: featureGrid
+        required: false
+      - *ref_15
+      - label: Title
+        name: title
+        widget: string
+        required: false
+      - label: Columns
+        name: columns
+        widget: number
+        value_type: int
+        min: 1
+        max: 4
+        required: false
+      - label: Items
+        name: items
+        widget: list
+        collapsed: true
+        summary: '{{fields.label | default(''Feature'')}}'
+        fields:
+          - label: Label
+            name: label
+            widget: string
+            required: false
+          - label: Description
+            name: description
+            widget: text
+            required: false
+        required: false
+    required: false
+  - &ref_19
+    label: Product Grid
+    name: productGrid
+    widget: object
+    collapsed: true
+    summary: Product Grid · {{fields.title | default('Untitled')}}
+    fields:
+      - name: type
+        widget: hidden
+        default: productGrid
+        required: false
+      - *ref_15
+      - label: Title
+        name: title
+        widget: string
+        required: false
+      - label: Columns
+        name: columns
+        widget: number
+        value_type: int
+        min: 1
+        max: 4
+        required: false
+      - label: Products
+        name: products
+        widget: list
+        collapsed: true
+        summary: '{{fields.id | default(''Product'')}}'
+        hint: Select the individual products to feature.
+        fields:
+          - label: Product
+            name: id
+            widget: relation
+            collection: products
+            file: catalog
+            path: items
+            search_fields:
+              - name.en
+              - id
+            display_fields:
+              - name.en
+            value_field: id
+            options_length: 20
+            required: false
+        required: false
+    required: false
+  - &ref_20
+    label: Testimonials
+    name: testimonials
+    widget: object
+    collapsed: true
+    summary: Testimonials · {{fields.title | default('Selected entries')}}
+    fields:
+      - name: type
+        widget: hidden
+        default: testimonials
+        required: false
+      - *ref_15
+      - label: Section Title
+        name: title
+        widget: string
+        required: false
+      - label: Testimonials
+        name: testimonials
+        widget: list
+        collapsed: true
+        summary: '{{fields.testimonialRef | default(fields.author) | default(''Testimonial'')}}'
+        fields:
+          - label: Testimonial Reference
+            name: testimonialRef
+            widget: relation
+            collection: testimonials
+            value_field: fileRelativePath
+            display_fields:
+              - name
+              - title
+            search_fields:
+              - name
+              - title
+              - quote
+            required: false
+          - label: Quote
+            name: quote
+            widget: text
+            required: false
+          - label: Author
+            name: author
+            widget: string
+            required: false
+          - label: Role
+            name: role
+            widget: string
+            required: false
+        required: false
+    required: false
+  - &ref_21
+    label: Community Carousel
+    name: communityCarousel
+    widget: object
+    collapsed: true
+    summary: Community Carousel · {{fields.title | default('Untitled')}}
+    fields:
+      - name: type
+        widget: hidden
+        default: communityCarousel
+        required: false
+      - *ref_15
+      - label: Title
+        name: title
+        widget: string
+        required: false
+      - label: Slides
+        name: slides
+        widget: list
+        collapsed: true
+        summary: '{{fields.name | default(fields.alt) | default(''Slide'')}}'
+        fields:
+          - label: Image (upload or path)
+            name: image
+            widget: image
+            choose_url: true
+            required: false
+          - label: Image Focal Point
+            name: imageFocal
+            widget: object
+            collapsed: true
+            required: false
+            hint: >-
+              Adjust the image focus area. Values between 0 and 1 represent the relative horizontal and vertical point
+              to keep in view.
+            fields: *ref_12
+          - label: Alt Text
+            name: alt
+            widget: string
+            required: false
+          - label: Quote
+            name: quote
+            widget: text
+            required: false
+          - label: Name
+            name: name
+            widget: string
+            required: false
+          - label: Role or Context
+            name: role
+            widget: string
+            required: false
+        required: false
+    required: false
+  - &ref_22
+    label: Newsletter Signup
+    name: newsletterSignup
+    widget: object
+    collapsed: true
+    summary: Newsletter Signup · {{fields.title | default('Signup')}}
+    fields:
+      - name: type
+        widget: hidden
+        default: newsletterSignup
+        required: false
+      - *ref_15
+      - label: Title
+        name: title
+        widget: string
+        required: false
+      - label: Subtitle
+        name: subtitle
+        widget: text
+        required: false
+      - label: Placeholder
+        name: placeholder
+        widget: string
+        required: false
+      - label: CTA Label
+        name: ctaLabel
+        widget: string
+        required: false
+      - label: Confirmation Message
+        name: confirmation
+        widget: text
+        required: false
+      - label: Background
+        name: background
+        widget: select
+        required: false
+        options:
+          - label: Light
+            value: light
+          - label: Beige
+            value: beige
+          - label: Dark
+            value: dark
+      - label: Alignment
+        name: alignment
+        widget: select
+        required: false
+        options:
+          - label: Left
+            value: left
+          - label: Center
+            value: center
+    required: false
+  - &ref_23
+    label: Banner
+    name: banner
+    widget: object
+    collapsed: true
+    summary: Banner · {{fields.text | default('Banner')}}
+    fields:
+      - name: type
+        widget: hidden
+        default: banner
+        required: false
+      - *ref_15
+      - label: Text
+        name: text
+        widget: string
+        required: false
+      - label: CTA Label
+        name: cta
+        widget: string
+        required: false
+      - label: CTA Link
+        name: url
+        widget: string
+        required: false
+    required: false
+  - &ref_24
+    label: Video Gallery
+    name: videoGallery
+    widget: object
+    collapsed: true
+    summary: Video Gallery · {{fields.title | default('Untitled')}}
+    fields:
+      - name: type
+        widget: hidden
+        default: videoGallery
+        required: false
+      - *ref_15
+      - label: Title
+        name: title
+        widget: string
+        required: false
+      - label: Description
+        name: description
+        widget: text
+        required: false
+      - label: Entries
+        name: entries
+        widget: list
+        collapsed: true
+        summary: '{{fields.title | default(''Video'')}}'
         fields:
           - label: Title
             name: title
             widget: string
-            i18n: true
+            required: false
           - label: Description
             name: description
             widget: text
-            i18n: true
-          - label: Body
-            name: body
-            widget: markdown
-            i18n: true
-          - label: Sections
-            name: sections
-            widget: list
-            types:
-              - label: "Text Section"
-                name: "text"
-                widget: object
-                fields:
-                  - {label: Title, name: title, widget: string}
-                  - {label: Content, name: content, widget: markdown}
-              - label: "Image Section"
-                name: "image"
-                widget: object
-                fields:
-                  - {label: Image, name: image, widget: image}
-                  - {label: Caption, name: caption, widget: string}
-              - label: "Features Section"
-                name: "features"
-                widget: object
-                fields:
-                  - label: Features
-                    name: items
-                    widget: list
-                    fields:
-                      - {label: Title, name: title, widget: string}
-                      - {label: Description, name: description, widget: text}
-                      - {label: Icon, name: icon, widget: string}
-
-      - label: Advanced Settings
-        name: advanced
-        widget: object
+            required: false
+          - label: Video URL
+            name: videoUrl
+            widget: string
+            required: false
+          - label: Thumbnail
+            name: thumbnail
+            widget: image
+            choose_url: true
+            required: false
+        required: false
+    required: false
+  - &ref_25
+    label: Training List
+    name: trainingList
+    widget: object
+    collapsed: true
+    summary: Training List · {{fields.title | default('Untitled')}}
+    fields:
+      - name: type
+        widget: hidden
+        default: trainingList
+        required: false
+      - *ref_15
+      - label: Title
+        name: title
+        widget: string
+        required: false
+      - label: Description
+        name: description
+        widget: text
+        required: false
+      - label: Entries
+        name: entries
+        widget: list
         collapsed: true
+        summary: '{{fields.courseTitle | default(''Training'')}}'
         fields:
-          - label: SEO
+          - label: Course Title
+            name: courseTitle
+            widget: string
+            required: false
+          - label: Summary
+            name: courseSummary
+            widget: text
+            required: false
+          - label: Link URL
+            name: linkUrl
+            widget: string
+            required: false
+        required: false
+    required: false
+  - &ref_26
+    label: Timeline
+    name: timeline
+    widget: object
+    collapsed: true
+    summary: Timeline · {{fields.title | default('Timeline')}}
+    fields:
+      - name: type
+        widget: hidden
+        default: timeline
+        required: false
+      - *ref_15
+      - label: Title
+        name: title
+        widget: string
+        required: false
+      - label: Entries
+        name: entries
+        widget: list
+        collapsed: true
+        summary: '{{fields.year | default(fields.title) | default(''Entry'')}}'
+        fields:
+          - label: Year
+            name: year
+            widget: string
+            required: false
+          - label: Title
+            name: title
+            widget: string
+            required: false
+          - label: Description
+            name: description
+            widget: markdown
+            required: false
+        required: false
+    required: false
+  - &ref_27
+    label: Fact Block
+    name: facts
+    widget: object
+    collapsed: true
+    summary: Fact Block · {{fields.title | default('Fact')}}
+    fields:
+      - name: type
+        widget: hidden
+        default: facts
+        required: false
+      - *ref_15
+      - label: Title
+        name: title
+        widget: string
+        required: false
+      - label: Text
+        name: text
+        widget: text
+        required: false
+    required: false
+  - &ref_28
+    label: Bulleted List
+    name: bullets
+    widget: object
+    collapsed: true
+    summary: Bulleted List · {{fields.title | default('List')}}
+    fields:
+      - name: type
+        widget: hidden
+        default: bullets
+        required: false
+      - *ref_15
+      - label: Title
+        name: title
+        widget: string
+        required: false
+      - label: Items
+        name: items
+        widget: list
+        collapsed: true
+        summary: '{{.}}'
+        field:
+          label: Bullet
+          name: bullet
+          widget: string
+          required: false
+        required: false
+    required: false
+  - &ref_29
+    label: Specialties
+    name: specialties
+    widget: object
+    collapsed: true
+    summary: Specialties · {{fields.title | default('Specialties')}}
+    fields:
+      - name: type
+        widget: hidden
+        default: specialties
+        required: false
+      - *ref_15
+      - label: Title
+        name: title
+        widget: string
+        required: false
+      - label: Specialties
+        name: items
+        widget: list
+        collapsed: true
+        summary: '{{fields.title | default(''Specialty'')}}'
+        fields:
+          - label: Title
+            name: title
+            widget: string
+            required: false
+          - label: Bullets
+            name: bullets
+            widget: list
+            collapsed: true
+            summary: '{{.}}'
+            field:
+              label: Bullet
+              name: bullet
+              widget: string
+              required: false
+            required: false
+        required: false
+    required: false
+  - &ref_30
+    label: FAQ
+    name: faq
+    widget: object
+    collapsed: true
+    summary: FAQ · {{fields.title | default('FAQ')}}
+    fields:
+      - name: type
+        widget: hidden
+        default: faq
+        required: false
+      - *ref_15
+      - label: Title
+        name: title
+        widget: string
+        required: false
+      - label: Items
+        name: items
+        widget: list
+        collapsed: true
+        summary: '{{fields.question | default(''Question'')}}'
+        fields:
+          - label: Question
+            name: question
+            widget: string
+            required: false
+          - label: Answer
+            name: answer
+            widget: markdown
+            required: false
+        required: false
+    required: false
+section_library: &ref_31
+  - *ref_16
+  - *ref_17
+  - *ref_18
+  - *ref_19
+  - *ref_20
+  - *ref_21
+  - *ref_22
+  - *ref_23
+  - *ref_24
+  - *ref_25
+  - *ref_26
+  - *ref_27
+  - *ref_28
+  - *ref_29
+  - *ref_30
+sections_field: &ref_33
+  label: Sections
+  name: sections
+  widget: list
+  i18n: true
+  collapsed: true
+  summary: '{{fields.type}} · {{fields.title | default(fields.heading) | default(fields.name) | default(''Section'')}}'
+  hint: Reorder or edit the content sections that compose this page.
+  types: *ref_31
+  required: false
+content_fields: &ref_34
+  label: Content
+  name: content
+  widget: object
+  fields:
+    - widget: object
+      i18n: true
+      required: false
+      editor: *ref_0
+      fields: *ref_1
+      label: Title
+      name: title
+      hint: Main page title or heading
+    - widget: object
+      i18n: true
+      required: false
+      editor: *ref_2
+      fields: *ref_3
+      label: Description
+      name: description
+      hint: Brief summary or introduction
+    - widget: object
+      i18n: true
+      required: false
+      editor: *ref_10
+      fields: *ref_11
+      label: Body
+      name: body
+      hint: Main content area with rich text formatting
+    - label: Call to Action
+      name: cta
+      widget: object
+      fields: *ref_32
+      required: false
+    - *ref_33
+  required: false
+visual_fields: &ref_35
+  label: Visual Settings
+  name: visual
+  widget: object
+  fields:
+    - label: Layout
+      name: layout
+      widget: select
+      options:
+        - label: Default
+          value: default
+        - label: Full Width
+          value: full
+        - label: Narrow
+          value: narrow
+      required: false
+    - label: Spacing
+      name: spacing
+      widget: select
+      options:
+        - label: Compact
+          value: compact
+        - label: Normal
+          value: normal
+        - label: Spacious
+          value: spacious
+      required: false
+    - label: Background
+      name: background
+      widget: select
+      options:
+        - label: None
+          value: none
+        - label: Light
+          value: light
+        - label: Dark
+          value: dark
+        - label: Accent
+          value: accent
+      required: false
+    - label: Hero Image
+      name: heroImage
+      widget: object
+      fields:
+        - label: Image
+          name: src
+          widget: image
+          choose_url: true
+          required: false
+        - label: Focal Point
+          name: focal
+          widget: object
+          collapsed: true
+          required: false
+          hint: Control how the hero image crops responsively
+          fields: *ref_12
+        - widget: object
+          i18n: true
+          required: false
+          editor: *ref_0
+          fields: *ref_1
+          label: Alt Text
+          name: alt
+          hint: Describe the visual for accessibility and SEO
+      required: false
+  required: false
+advanced_fields: &ref_36
+  label: Advanced Settings
+  name: advanced
+  widget: object
+  collapsed: true
+  fields:
+    - label: SEO
+      name: seo
+      widget: object
+      fields:
+        - widget: object
+          i18n: true
+          required: false
+          editor: *ref_0
+          fields: *ref_1
+          label: Meta Title
+          name: title
+          hint: Page title shown in search results (<60 chars)
+        - widget: object
+          i18n: true
+          required: false
+          editor: *ref_2
+          fields: *ref_3
+          label: Meta Description
+          name: description
+          hint: Summary shown in search results (<160 chars)
+        - label: Keywords
+          name: keywords
+          widget: list
+          hint: Search terms to help find this page
+          required: false
+      required: false
+    - *ref_4
+    - *ref_5
+    - *ref_15
+  required: false
+backend:
+  name: git-gateway
+  branch: main
+  commit_messages:
+    create: Create {{collection}} "{{slug}}" · {{author-name}}
+    update: Update {{collection}} "{{slug}}" · {{author-name}}
+    delete: Delete {{collection}} "{{slug}}" · {{author-name}}
+    uploadMedia: Upload asset {{path}} · {{author-login}}
+    deleteMedia: Delete asset {{path}} · {{author-login}}
+    openAuthoring: '{{message}} (Open Authoring)'
+publish_mode: editorial_workflow
+editorial:
+  dashboard:
+    widgets:
+      - widget: dashboard
+        required: false
+local_backend: true
+media_folder: /uploads
+public_folder: /uploads
+site_url: https://kapunka-new.netlify.app
+display_url: https://kapunka-new.netlify.app
+collection_groups:
+  - label: Site Settings
+    collections:
+      - site
+      - policies
+  - label: Page Builder
+    collections:
+      - pages
+      - sectionTemplates
+  - label: Assets & Media
+    collections:
+      - assets_images
+      - mediaSets
+  - label: Translations
+    collections:
+      - translations
+  - label: Products
+    collections:
+      - products
+      - reviews
+      - testimonials
+      - courses
+      - trainingEntries
+  - label: Blog Posts
+    collections:
+      - articles
+      - videoEntries
+media_library:
+  name: cloudinary
+  config:
+    cloud_name: ${CLOUDINARY_CLOUD_NAME}
+    api_key: ${NETLIFY_ENV_CLOUDINARY_API_KEY}
+    default_transformations:
+      - - fetch_format: auto
+          quality: auto
+          dpr: auto
+collections:
+  - name: site
+    label: Site Settings
+    group: Site Settings
+    files:
+      - name: site
+        label: Site Configuration
+        file: content/site.json
+        format: json
+        media_folder: content/uploads/site
+        public_folder: /content/uploads/site
+        fields:
+          - label: Brand
+            name: brand
+            widget: object
+            fields:
+              - label: Name
+                name: name
+                widget: object
+                i18n: true
+                hint: Provide the localized brand name exactly as it should appear in navigation, footer, and metadata.
+                fields:
+                  - label: English Name
+                    name: en
+                    widget: string
+                    pattern:
+                      - ^(?:.{1,40}|)$
+                      - Enter 1–40 characters.
+                    hint: English brand name shown in the site chrome.
+                    required: false
+                  - label: Portuguese Name
+                    name: pt
+                    widget: string
+                    pattern:
+                      - ^(?:.{1,40}|)$
+                      - Enter 1–40 characters.
+                    hint: Portuguese brand name used across localized navigation.
+                    required: false
+                  - label: Spanish Name
+                    name: es
+                    widget: string
+                    pattern:
+                      - ^(?:.{1,40}|)$
+                      - Enter 1–40 characters.
+                    hint: Spanish brand name displayed in localized UI.
+                    required: false
+                required: false
+            required: false
+          - label: Home
+            name: home
+            widget: object
+            fields:
+              - label: Hero Image
+                name: heroImage
+                widget: image
+                choose_url: true
+                hint: Homepage hero background image. Upload high-quality assets at least 2000px wide.
+                required: false
+              - label: Featured Bestsellers
+                name: featuredProductIds
+                widget: relation
+                collection: products
+                file: catalog
+                path: items
+                search_fields:
+                  - name.en
+                  - id
+                display_fields:
+                  - name.en
+                value_field: id
+                options_length: 20
+                multiple: true
+                required: false
+                hint: Optional featured product IDs shown on the homepage carousel. Select up to 6 items.
+            required: false
+          - label: Contact
+            name: contact
+            widget: object
+            fields:
+              - label: Email Address
+                name: email
+                widget: string
+                pattern:
+                  - ^(?:[^\s@]+@[^\s@]+\.[^\s@]+|)$
+                  - Enter a valid email address (e.g. hello@example.com).
+                hint: Primary inbox for contact inquiries.
+                required: false
+              - label: Phone Number
+                name: phone
+                widget: string
+                pattern:
+                  - ^(?:[+\d()\s-]{4,25}|)$
+                  - Use digits, spaces, parentheses, or dashes (4–25 characters).
+                hint: Customer service phone number including country/area code.
+                required: false
+              - label: WhatsApp Link
+                name: whatsapp
+                widget: string
+                pattern:
+                  - ^(?:https://wa\.me/\d{6,15}|)$
+                  - Use the WhatsApp short link format (https://wa.me/##########).
+                hint: Direct WhatsApp link for quick chat support.
+                required: false
+            required: false
+          - label: About Page Imagery
+            name: about
+            widget: object
+            fields:
+              - label: Brand Story Image
+                name: storyImage
+                widget: image
+                choose_url: true
+                hint: Recommended minimum 2000×1300 JPG or WEBP to preserve the hero layout.
+                required: false
+              - label: Brand Story Alt Text
+                name: storyAlt
+                widget: object
+                i18n: true
+                hint: Localized description for the Brand Story hero image (≤120 characters).
+                fields:
+                  - label: English Alt Text
+                    name: en
+                    widget: string
+                    required: false
+                    pattern:
+                      - ^.{0,120}$
+                      - Keep under 120 characters.
+                    hint: English description for screen readers.
+                  - label: Portuguese Alt Text
+                    name: pt
+                    widget: string
+                    required: false
+                    pattern:
+                      - ^.{0,120}$
+                      - Keep under 120 characters.
+                    hint: Portuguese description for accessibility.
+                  - label: Spanish Alt Text
+                    name: es
+                    widget: string
+                    required: false
+                    pattern:
+                      - ^.{0,120}$
+                      - Keep under 120 characters.
+                    hint: Spanish description for accessibility.
+                required: false
+              - label: Argan Sourcing Image
+                name: sourcingImage
+                widget: image
+                choose_url: true
+                hint: Recommended minimum 2000×1300 JPG or WEBP to preserve the secondary layout.
+                required: false
+              - label: Argan Sourcing Alt Text
+                name: sourcingAlt
+                widget: object
+                i18n: true
+                hint: Describe the sourcing image for each locale (≤120 characters).
+                fields:
+                  - label: English Alt Text
+                    name: en
+                    widget: string
+                    required: false
+                    pattern:
+                      - ^.{0,120}$
+                      - Keep under 120 characters.
+                    hint: English sourcing image description.
+                  - label: Portuguese Alt Text
+                    name: pt
+                    widget: string
+                    required: false
+                    pattern:
+                      - ^.{0,120}$
+                      - Keep under 120 characters.
+                    hint: Portuguese sourcing image description.
+                  - label: Spanish Alt Text
+                    name: es
+                    widget: string
+                    required: false
+                    pattern:
+                      - ^.{0,120}$
+                      - Keep under 120 characters.
+                    hint: Spanish sourcing image description.
+                required: false
+            required: false
+          - label: For Clinics
+            name: clinics
+            widget: object
+            fields:
+              - label: CTA Link
+                name: ctaLink
+                widget: string
+                hint: HTTPS link used for the For Clinics CTA button (max 200 characters).
+                pattern:
+                  - ^(?:https://|)$
+                  - Please enter a secure HTTPS link.
+                required: false
+            required: false
+          - label: Footer
+            name: footer
+            widget: object
+            fields:
+              - label: Legal Name
+                name: legalName
+                widget: object
+                i18n: true
+                hint: Localized registered business name shown in the footer (≤80 characters).
+                fields:
+                  - label: English Legal Name
+                    name: en
+                    widget: string
+                    pattern:
+                      - ^(?:.{1,80}|)$
+                      - Enter 1–80 characters.
+                    hint: English legal entity text.
+                    required: false
+                  - label: Portuguese Legal Name
+                    name: pt
+                    widget: string
+                    pattern:
+                      - ^(?:.{1,80}|)$
+                      - Enter 1–80 characters.
+                    hint: Portuguese legal entity text.
+                    required: false
+                  - label: Spanish Legal Name
+                    name: es
+                    widget: string
+                    pattern:
+                      - ^(?:.{1,80}|)$
+                      - Enter 1–80 characters.
+                    hint: Spanish legal entity text.
+                    required: false
+                required: false
+              - label: Social Links
+                name: socialLinks
+                widget: list
+                summary: '{{fields.label.en}}'
+                fields:
+                  - label: ID
+                    name: id
+                    widget: string
+                    pattern:
+                      - ^(?:[a-z0-9_-]+|)$
+                      - Use lowercase letters, numbers, dashes, or underscores.
+                    hint: Stable identifier referenced in the code (lowercase, no spaces).
+                    required: false
+                  - label: Label
+                    name: label
+                    widget: object
+                    i18n: true
+                    hint: Localized social link label (≤24 characters).
+                    fields:
+                      - label: English Label
+                        name: en
+                        widget: string
+                        pattern:
+                          - ^(?:.{1,24}|)$
+                          - Enter 1–24 characters.
+                        hint: English link label shown to visitors.
+                        required: false
+                      - label: Portuguese Label
+                        name: pt
+                        widget: string
+                        pattern:
+                          - ^(?:.{1,24}|)$
+                          - Enter 1–24 characters.
+                        hint: Portuguese link label.
+                        required: false
+                      - label: Spanish Label
+                        name: es
+                        widget: string
+                        pattern:
+                          - ^(?:.{1,24}|)$
+                          - Enter 1–24 characters.
+                        hint: Spanish link label.
+                        required: false
+                    required: false
+                  - label: URL
+                    name: url
+                    widget: string
+                    pattern:
+                      - ^(?:(https?://|/)\S+|)$
+                      - Use an absolute https:// URL or internal /path.
+                    hint: Full URL to the social destination (https:// or internal /path).
+                    required: false
+                  - label: Icon
+                    name: icon
+                    widget: select
+                    options:
+                      - label: Facebook
+                        value: facebook
+                      - label: Instagram
+                        value: instagram
+                      - label: LinkedIn
+                        value: linkedin
+                      - label: YouTube
+                        value: youtube
+                      - label: Globe
+                        value: globe
+                    hint: Choose which icon to display with the social link.
+                    required: false
+                required: false
+            required: false
+          - label: SEO Defaults
             name: seo
             widget: object
             fields:
-              - label: Meta Title
+              - label: Favicon
+                name: favicon
+                widget: image
+                choose_url: true
+                required: false
+                hint: Upload a square SVG, PNG, or ICO file used as the site favicon (at least 64×64).
+              - label: Default Title
+                name: defaultTitle
+                widget: object
+                i18n: true
+                hint: Localized fallback page title for SEO (≤60 characters).
+                fields:
+                  - label: English Title
+                    name: en
+                    widget: string
+                    pattern:
+                      - ^(?:.{1,60}|)$
+                      - Enter 1–60 characters.
+                    hint: Default English SEO title.
+                    required: false
+                  - label: Portuguese Title
+                    name: pt
+                    widget: string
+                    pattern:
+                      - ^(?:.{1,60}|)$
+                      - Enter 1–60 characters.
+                    hint: Default Portuguese SEO title.
+                    required: false
+                  - label: Spanish Title
+                    name: es
+                    widget: string
+                    pattern:
+                      - ^(?:.{1,60}|)$
+                      - Enter 1–60 characters.
+                    hint: Default Spanish SEO title.
+                    required: false
+                required: false
+              - label: Default Description
+                name: defaultDescription
+                widget: object
+                i18n: true
+                hint: Localized fallback meta description used when a page lacks custom copy (≤160 characters).
+                fields:
+                  - label: English Description
+                    name: en
+                    widget: text
+                    pattern:
+                      - ^(?:.{1,160}|)$
+                      - Enter 1–160 characters.
+                    hint: Default English meta description.
+                    required: false
+                  - label: Portuguese Description
+                    name: pt
+                    widget: text
+                    pattern:
+                      - ^(?:.{1,160}|)$
+                      - Enter 1–160 characters.
+                    hint: Default Portuguese meta description.
+                    required: false
+                  - label: Spanish Description
+                    name: es
+                    widget: text
+                    pattern:
+                      - ^(?:.{1,160}|)$
+                      - Enter 1–160 characters.
+                    hint: Default Spanish meta description.
+                    required: false
+                required: false
+            required: false
+  - name: assets_images
+    label: Image Library
+    label_singular: Image
+    group: Assets & Media
+    editor:
+      preview: false
+    folder: content/assets/images
+    create: true
+    slug: '{{slug}}'
+    view_filters:
+      - label: Missing alt text
+        field: alt
+        pattern: ^$
+      - label: Has credit/source
+        field: credit
+        pattern: .+
+    view_groups:
+      - label: Primary tag
+        field: tags.0
+        pattern: .+
+    identifier_field: title
+    fields:
+      - label: Title
+        name: title
+        widget: string
+        hint: Internal name for the asset (≤60 characters).
+        required: false
+      - label: Image
+        name: image
+        widget: image
+        choose_url: false
+        hint: Upload the source file for this asset.
+        required: false
+      - label: Alt text
+        name: alt
+        widget: string
+        required: false
+        hint: Descriptive copy for accessibility and SEO (≤120 characters).
+      - label: Credit / Source
+        name: credit
+        widget: string
+        required: false
+        hint: Optional attribution or photographer credit (≤80 characters).
+      - label: Tags
+        name: tags
+        widget: list
+        required: false
+        hint: Add descriptors to group related images.
+      - label: Focal Point
+        name: focal
+        widget: object
+        collapsed: true
+        required: false
+        hint: Optional default focal point metadata shared across entries that reference this asset.
+        fields: *ref_12
+  - name: pages
+    label: Page Builder
+    label_singular: Page
+    group: Page Builder
+    description: Edit Kapunka pages stored in a single JSON index.
+    files:
+      - name: index
+        label: Page Index
+        file: content/pages_v2/index.json
+        format: json
+        i18n: false
+        editor:
+          preview: true
+        fields:
+          - label: Pages
+            name: pages
+            widget: list
+            collapsed: true
+            summary: '{{fields.label}}'
+            types:
+              - label: Page
+                name: page
+                widget: object
+                fields:
+                  - label: Page ID
+                    name: id
+                    widget: string
+                    hint: Unique identifier used by the application. Avoid renaming once linked.
+                    required: false
+                  - label: Admin Label
+                    name: label
+                    widget: string
+                    hint: Display name shown within the CMS navigation.
+                    required: false
+                  - label: Slug
+                    name: slug
+                    widget: string
+                    required: false
+                    hint: Public URL path beginning with a forward slash.
+                  - label: Page Type
+                    name: type
+                    widget: hidden
+                    default: page
+                    required: false
+                  - label: Metadata
+                    name: metadata
+                    widget: object
+                    collapsed: true
+                    fields:
+                      - widget: object
+                        i18n: true
+                        required: false
+                        editor: *ref_0
+                        fields: *ref_1
+                        label: Meta Title
+                        name: title
+                      - widget: object
+                        i18n: true
+                        required: false
+                        editor: *ref_2
+                        fields: *ref_3
+                        label: Meta Description
+                        name: description
+                    required: false
+                  - *ref_34
+                  - *ref_35
+                  - *ref_36
+                  - label: Hero
+                    name: hero
+                    widget: object
+                    collapsed: true
+                    required: false
+                    hint: Configure the large hero at the top of the page.
+                    fields:
+                      - label: Copy & Highlights
+                        name: content
+                        widget: object
+                        collapsed: true
+                        required: false
+                        fields:
+                          - widget: object
+                            i18n: true
+                            required: false
+                            editor: *ref_0
+                            fields: *ref_1
+                            label: Headline
+                            name: headline
+                          - widget: object
+                            i18n: true
+                            required: false
+                            editor: *ref_2
+                            fields: *ref_3
+                            label: Subheadline
+                            name: subheadline
+                          - widget: object
+                            i18n: true
+                            required: false
+                            editor: *ref_2
+                            fields: *ref_3
+                            label: Body
+                            name: body
+                          - label: Highlights
+                            name: highlights
+                            widget: list
+                            collapsed: true
+                            required: false
+                            summary: '{{fields.text.en | default(''Highlight'')}}'
+                            fields:
+                              - widget: object
+                                i18n: true
+                                required: false
+                                editor: *ref_2
+                                fields: *ref_3
+                                label: Highlight Text
+                                name: text
+                      - label: Buttons
+                        name: ctas
+                        widget: object
+                        collapsed: true
+                        required: false
+                        fields:
+                          - label: Primary Button
+                            name: primary
+                            widget: object
+                            collapsed: true
+                            required: false
+                            fields:
+                              - widget: object
+                                i18n: true
+                                required: false
+                                editor: *ref_0
+                                fields: *ref_1
+                                label: Label
+                                name: label
+                              - widget: object
+                                i18n: true
+                                required: false
+                                editor: *ref_0
+                                fields: *ref_1
+                                label: Link
+                                name: href
+                          - label: Secondary Button
+                            name: secondary
+                            widget: object
+                            collapsed: true
+                            required: false
+                            fields:
+                              - widget: object
+                                i18n: true
+                                required: false
+                                editor: *ref_0
+                                fields: *ref_1
+                                label: Label
+                                name: label
+                              - widget: object
+                                i18n: true
+                                required: false
+                                editor: *ref_0
+                                fields: *ref_1
+                                label: Link
+                                name: href
+                      - label: Layout (advanced)
+                        name: layout
+                        widget: object
+                        collapsed: true
+                        required: false
+                        hint: Optional alignment overrides that mirror the hero layout controls on the frontend.
+                        fields:
+                          - widget: object
+                            i18n: true
+                            required: false
+                            editor: *ref_0
+                            fields: *ref_1
+                            label: Horizontal Alignment
+                            name: alignX
+                          - widget: object
+                            i18n: true
+                            required: false
+                            editor: *ref_0
+                            fields: *ref_1
+                            label: Vertical Alignment
+                            name: alignY
+                          - widget: object
+                            i18n: true
+                            required: false
+                            editor: *ref_0
+                            fields: *ref_1
+                            label: Text Position
+                            name: textPosition
+                          - widget: object
+                            i18n: true
+                            required: false
+                            editor: *ref_0
+                            fields: *ref_1
+                            label: Text Anchor
+                            name: textAnchor
+                          - widget: object
+                            i18n: true
+                            required: false
+                            editor: *ref_0
+                            fields: *ref_1
+                            label: Overlay Strength
+                            name: overlay
+                          - widget: object
+                            i18n: true
+                            required: false
+                            editor: *ref_0
+                            fields: *ref_1
+                            label: Layout Hint
+                            name: layoutHint
+                  - label: Sections
+                    name: sections
+                    widget: list
+                    collapsed: true
+                    summary: '{{fields.type | upper}} · {{fields.title.en | default(fields.label.en) | default(''Section'')}}'
+                    hint: Stack the same section blocks that appear on the live page.
+                    types:
+                      - label: Media + Copy
+                        name: mediaCopy
+                        widget: object
+                        hint: Split layout with text and media, matching the Media Copy component.
+                        fields:
+                          - name: type
+                            widget: hidden
+                            default: mediaCopy
+                            required: false
+                          - widget: object
+                            i18n: true
+                            required: false
+                            editor: *ref_0
+                            fields: *ref_1
+                            label: Title
+                            name: title
+                          - widget: object
+                            i18n: true
+                            required: false
+                            editor: *ref_2
+                            fields: *ref_3
+                            label: Body
+                            name: body
+                          - widget: object
+                            i18n: true
+                            required: false
+                            editor: *ref_0
+                            fields: *ref_1
+                            label: Layout
+                            name: layout
+                        required: false
+                      - label: Media Showcase
+                        name: mediaShowcase
+                        widget: object
+                        hint: Carousel-style media cards pulled into a grid.
+                        fields:
+                          - name: type
+                            widget: hidden
+                            default: mediaShowcase
+                            required: false
+                          - widget: object
+                            i18n: true
+                            required: false
+                            editor: *ref_0
+                            fields: *ref_1
+                            label: Title
+                            name: title
+                          - label: Columns
+                            name: columns
+                            widget: object
+                            collapsed: true
+                            required: false
+                            fields:
+                              - label: English
+                                name: en
+                                widget: number
+                                required: false
+                              - label: Portuguese
+                                name: pt
+                                widget: number
+                                required: false
+                              - label: Spanish
+                                name: es
+                                widget: number
+                                required: false
+                          - label: Items
+                            name: items
+                            widget: list
+                            collapsed: true
+                            summary: '{{fields.title.en | default(fields.label.en) | default(''Item'')}}'
+                            fields:
+                              - widget: object
+                                i18n: true
+                                required: false
+                                editor: *ref_0
+                                fields: *ref_1
+                                label: Eyebrow
+                                name: eyebrow
+                              - widget: object
+                                i18n: true
+                                required: false
+                                editor: *ref_0
+                                fields: *ref_1
+                                label: Label
+                                name: label
+                              - widget: object
+                                i18n: true
+                                required: false
+                                editor: *ref_0
+                                fields: *ref_1
+                                label: Title
+                                name: title
+                              - widget: object
+                                i18n: true
+                                required: false
+                                editor: *ref_2
+                                fields: *ref_3
+                                label: Description
+                                name: description
+                              - widget: object
+                                i18n: true
+                                required: false
+                                editor: *ref_2
+                                fields: *ref_3
+                                label: Body
+                                name: body
+                              - widget: object
+                                i18n: true
+                                required: false
+                                editor: *ref_0
+                                fields: *ref_1
+                                label: CTA Label
+                                name: ctaLabel
+                              - widget: object
+                                i18n: true
+                                required: false
+                                editor: *ref_0
+                                fields: *ref_1
+                                label: CTA Link
+                                name: ctaHref
+                              - label: Image
+                                name: image
+                                widget: image
+                                required: false
+                                choose_url: true
+                              - widget: object
+                                i18n: true
+                                required: false
+                                editor: *ref_2
+                                fields: *ref_3
+                                label: Image Alt Text
+                                name: imageAlt
+                            required: false
+                        required: false
+                      - label: Feature Grid
+                        name: featureGrid
+                        widget: object
+                        hint: Icon and copy grid used for value propositions.
+                        fields:
+                          - name: type
+                            widget: hidden
+                            default: featureGrid
+                            required: false
+                          - widget: object
+                            i18n: true
+                            required: false
+                            editor: *ref_0
+                            fields: *ref_1
+                            label: Title
+                            name: title
+                          - label: Columns
+                            name: columns
+                            widget: object
+                            collapsed: true
+                            required: false
+                            fields:
+                              - label: English
+                                name: en
+                                widget: number
+                                required: false
+                              - label: Portuguese
+                                name: pt
+                                widget: number
+                                required: false
+                              - label: Spanish
+                                name: es
+                                widget: number
+                                required: false
+                          - label: Items
+                            name: items
+                            widget: list
+                            summary: '{{fields.label.en | default(''Item'')}}'
+                            fields:
+                              - widget: object
+                                i18n: true
+                                required: false
+                                editor: *ref_0
+                                fields: *ref_1
+                                label: Label
+                                name: label
+                              - widget: object
+                                i18n: true
+                                required: false
+                                editor: *ref_2
+                                fields: *ref_3
+                                label: Description
+                                name: description
+                            required: false
+                          - label: Product References
+                            name: products
+                            widget: list
+                            collapsed: true
+                            required: false
+                            summary: '{{fields.id.en | default(''Product'')}}'
+                            fields:
+                              - widget: object
+                                i18n: true
+                                required: false
+                                editor: *ref_0
+                                fields: *ref_1
+                                label: Product ID
+                                name: id
+                        required: false
+                      - label: Product Grid
+                        name: productGrid
+                        widget: object
+                        hint: Product gallery with optional highlight cards, matching the shop grid layout.
+                        fields:
+                          - name: type
+                            widget: hidden
+                            default: productGrid
+                            required: false
+                          - widget: object
+                            i18n: true
+                            required: false
+                            editor: *ref_0
+                            fields: *ref_1
+                            label: Title
+                            name: title
+                          - label: Columns
+                            name: columns
+                            widget: object
+                            collapsed: true
+                            required: false
+                            fields:
+                              - label: English
+                                name: en
+                                widget: number
+                                required: false
+                              - label: Portuguese
+                                name: pt
+                                widget: number
+                                required: false
+                              - label: Spanish
+                                name: es
+                                widget: number
+                                required: false
+                          - label: Items
+                            name: items
+                            widget: list
+                            collapsed: true
+                            summary: '{{fields.title.en | default(fields.label.en) | default(''Item'')}}'
+                            fields:
+                              - widget: object
+                                i18n: true
+                                required: false
+                                editor: *ref_0
+                                fields: *ref_1
+                                label: Eyebrow
+                                name: eyebrow
+                              - widget: object
+                                i18n: true
+                                required: false
+                                editor: *ref_0
+                                fields: *ref_1
+                                label: Label
+                                name: label
+                              - widget: object
+                                i18n: true
+                                required: false
+                                editor: *ref_0
+                                fields: *ref_1
+                                label: Title
+                                name: title
+                              - widget: object
+                                i18n: true
+                                required: false
+                                editor: *ref_2
+                                fields: *ref_3
+                                label: Body
+                                name: body
+                              - widget: object
+                                i18n: true
+                                required: false
+                                editor: *ref_0
+                                fields: *ref_1
+                                label: CTA Label
+                                name: ctaLabel
+                              - widget: object
+                                i18n: true
+                                required: false
+                                editor: *ref_0
+                                fields: *ref_1
+                                label: CTA Link
+                                name: ctaHref
+                              - widget: object
+                                i18n: true
+                                required: false
+                                editor: *ref_2
+                                fields: *ref_3
+                                label: Image Alt Text
+                                name: imageAlt
+                            required: false
+                          - label: Product References
+                            name: products
+                            widget: list
+                            collapsed: true
+                            required: false
+                            summary: '{{fields.id.en | default(''Product'')}}'
+                            fields:
+                              - widget: object
+                                i18n: true
+                                required: false
+                                editor: *ref_0
+                                fields: *ref_1
+                                label: Product ID
+                                name: id
+                        required: false
+                      - label: Community Carousel
+                        name: communityCarousel
+                        widget: object
+                        hint: Looping community carousel with imagery and rotating quotes.
+                        fields:
+                          - name: type
+                            widget: hidden
+                            default: communityCarousel
+                            required: false
+                          - widget: object
+                            i18n: true
+                            required: false
+                            editor: *ref_0
+                            fields: *ref_1
+                            label: Title
+                            name: title
+                          - label: Slides
+                            name: slides
+                            widget: list
+                            collapsed: true
+                            summary: '{{fields.name.en | default(''Slide'')}}'
+                            fields:
+                              - label: Image
+                                name: image
+                                widget: image
+                                required: false
+                                choose_url: true
+                              - widget: object
+                                i18n: true
+                                required: false
+                                editor: *ref_2
+                                fields: *ref_3
+                                label: Alt Text
+                                name: alt
+                              - widget: object
+                                i18n: true
+                                required: false
+                                editor: *ref_0
+                                fields: *ref_1
+                                label: Name
+                                name: name
+                              - widget: object
+                                i18n: true
+                                required: false
+                                editor: *ref_2
+                                fields: *ref_3
+                                label: Quote
+                                name: quote
+                              - widget: object
+                                i18n: true
+                                required: false
+                                editor: *ref_0
+                                fields: *ref_1
+                                label: Role
+                                name: role
+                            required: false
+                        required: false
+                      - label: Newsletter Signup
+                        name: newsletterSignup
+                        widget: object
+                        hint: Email capture panel that mirrors the newsletter card on the site.
+                        fields:
+                          - name: type
+                            widget: hidden
+                            default: newsletterSignup
+                            required: false
+                          - widget: object
+                            i18n: true
+                            required: false
+                            editor: *ref_0
+                            fields: *ref_1
+                            label: Title
+                            name: title
+                          - widget: object
+                            i18n: true
+                            required: false
+                            editor: *ref_2
+                            fields: *ref_3
+                            label: Subtitle
+                            name: subtitle
+                          - widget: object
+                            i18n: true
+                            required: false
+                            editor: *ref_0
+                            fields: *ref_1
+                            label: Placeholder
+                            name: placeholder
+                          - widget: object
+                            i18n: true
+                            required: false
+                            editor: *ref_0
+                            fields: *ref_1
+                            label: Button Label
+                            name: ctaLabel
+                          - widget: object
+                            i18n: true
+                            required: false
+                            editor: *ref_2
+                            fields: *ref_3
+                            label: Confirmation Message
+                            name: confirmation
+                          - widget: object
+                            i18n: true
+                            required: false
+                            editor: *ref_0
+                            fields: *ref_1
+                            label: Alignment
+                            name: alignment
+                          - widget: object
+                            i18n: true
+                            required: false
+                            editor: *ref_0
+                            fields: *ref_1
+                            label: Background
+                            name: background
+                        required: false
+                      - label: Testimonials
+                        name: testimonials
+                        widget: object
+                        hint: Quote carousel used for social proof.
+                        fields:
+                          - name: type
+                            widget: hidden
+                            default: testimonials
+                            required: false
+                          - widget: object
+                            i18n: true
+                            required: false
+                            editor: *ref_0
+                            fields: *ref_1
+                            label: Title
+                            name: title
+                          - label: Quotes
+                            name: quotes
+                            widget: list
+                            summary: '{{fields.author.en | default(''Quote'')}}'
+                            fields:
+                              - widget: object
+                                i18n: true
+                                required: false
+                                editor: *ref_0
+                                fields: *ref_1
+                                label: Author
+                                name: author
+                              - widget: object
+                                i18n: true
+                                required: false
+                                editor: *ref_0
+                                fields: *ref_1
+                                label: Role
+                                name: role
+                              - widget: object
+                                i18n: true
+                                required: false
+                                editor: *ref_2
+                                fields: *ref_3
+                                label: Quote
+                                name: text
+                            required: false
+                        required: false
+                      - label: Banner
+                        name: banner
+                        widget: object
+                        hint: Single-line promo banner rendered above or between sections.
+                        fields:
+                          - name: type
+                            widget: hidden
+                            default: banner
+                            required: false
+                          - widget: object
+                            i18n: true
+                            required: false
+                            editor: *ref_0
+                            fields: *ref_1
+                            label: Text
+                            name: text
+                          - widget: object
+                            i18n: true
+                            required: false
+                            editor: *ref_0
+                            fields: *ref_1
+                            label: CTA Label
+                            name: cta
+                          - widget: object
+                            i18n: true
+                            required: false
+                            editor: *ref_0
+                            fields: *ref_1
+                            label: Link
+                            name: url
+                        required: false
+                    required: false
+                  - label: Additional Fields
+                    name: fields
+                    widget: list
+                    collapsed: true
+                    required: false
+                    summary: '{{fields.key}}'
+                    fields:
+                      - label: Key
+                        name: key
+                        widget: string
+                        required: false
+                      - widget: object
+                        i18n: true
+                        required: false
+                        editor: *ref_2
+                        fields: *ref_3
+                        label: Value
+                        name: value
+                      - label: Type
+                        name: type
+                        widget: hidden
+                        default: field
+                        required: false
+                required: false
+            required: false
+    load_strategy: lazy
+  - name: sectionTemplates
+    label: Section Templates
+    label_singular: Section Template
+    group: Page Builder
+    folder: content/templates/sections
+    create: true
+    slug: '{{slug}}'
+    summary: '{{title}}'
+    identifier_field: title
+    editor:
+      preview: false
+      add_to_top: true
+    fields:
+      - widget: string
+        required: false
+        i18n: duplicate
+        label: Template Title
+        name: title
+        hint: Name used inside the CMS template picker.
+      - label: Section Type
+        name: sectionType
+        widget: select
+        options:
+          - hero
+          - mediaCopy
+          - mediaShowcase
+          - communityCarousel
+          - newsletterSignup
+          - banner
+          - videoGallery
+          - featureGrid
+        hint: Matches the `type` value used in page sections.
+        required: false
+      - widget: text
+        required: false
+        i18n: duplicate
+        label: Short Description
+        name: description
+        hint: Describe when to use this template so editors can choose quickly.
+      - label: Best Practices
+        name: bestPractices
+        widget: list
+        required: false
+        collapsed: true
+        summary: '{{fields.tip}}'
+        field:
+          widget: string
+          required: false
+          i18n: duplicate
+          label: Tip
+          name: tip
+        hint: Share editorial tips or reminders for consistent copy and imagery.
+      - label: Starter Section JSON
+        name: content
+        widget: code
+        output_code_only: true
+        default_language: json
+        i18n: duplicate
+        hint: Copy this JSON into a new section block to preload the layout and sample copy.
+        required: false
+    load_strategy: lazy
+  - name: mediaSets
+    label: Media Sets
+    group: Assets & Media
+    folder: content/media-sets
+    create: true
+    slug: '{{slug}}'
+    i18n: false
+    fields:
+      - label: Title
+        name: title
+        widget: string
+        hint: Internal media set name (≤80 characters).
+        required: false
+      - label: Images
+        name: images
+        widget: list
+        summary: '{{fields.caption | default(''Image'')}}'
+        hint: Add one or more images included in this set.
+        fields:
+          - label: Image
+            name: src
+            widget: image
+            hint: Upload the image file for this media set item.
+            required: false
+          - label: Caption (optional)
+            name: caption
+            widget: string
+            required: false
+            hint: Short caption describing the image (≤120 characters).
+          - label: Focal Point
+            name: focal
+            widget: object
+            collapsed: true
+            required: false
+            hint: Optional focal point (0–1) to reuse when rendering this media set image.
+            fields: *ref_12
+        required: false
+  - name: translations
+    label: Translations
+    group: Translations
+    files:
+      - name: nav
+        label: Navigation
+        file: content/translations/nav.json
+        format: json
+        fields:
+          - label: English
+            name: en
+            widget: object
+            fields: &ref_37
+              - label: Shop Link
+                name: shop
+                widget: string
+                hint: Header navigation label for the Shop link (≤16 characters).
+                required: false
+              - label: Learn Link
+                name: learn
+                widget: string
+                hint: Header navigation label for the Learn link (≤16 characters).
+                required: false
+              - label: For Professionals Link
+                name: forProfessionals
+                widget: string
+                hint: Header navigation label for the For Professionals link (≤20 characters).
+                required: false
+              - label: Story Link
+                name: manifesto
+                widget: string
+                hint: Dropdown label for the Story & Manifesto page (≤24 characters).
+                required: false
+              - label: Videos Link
+                name: videos
+                widget: string
+                hint: Dropdown label for Videos (≤20 characters).
+                required: false
+              - label: Product Education Link
+                name: productEducation
+                widget: string
+                hint: Dropdown label for Product Education (≤24 characters).
+                required: false
+              - label: Method Link
+                name: method
+                widget: string
+                hint: Dropdown label for Method (≤20 characters).
+                required: false
+              - label: Training Link
+                name: training
+                widget: string
+                hint: Dropdown label for Training (≤20 characters).
+                required: false
+              - label: Clinics Link
+                name: clinics
+                widget: string
+                hint: Dropdown label for the Clinics page (≤20 characters).
+                required: false
+              - label: About Link
+                name: about
+                widget: string
+                hint: Header navigation label for About (≤16 characters).
+                required: false
+              - label: Contact Link
+                name: contact
+                widget: string
+                hint: Header navigation label for Contact (≤16 characters).
+                required: false
+            required: false
+          - label: Portuguese
+            name: pt
+            widget: object
+            fields: *ref_37
+            required: false
+          - label: Spanish
+            name: es
+            widget: object
+            fields: *ref_37
+            required: false
+      - name: common
+        label: Loading States
+        file: content/translations/common.json
+        format: json
+        fields:
+          - label: English
+            name: en
+            widget: object
+            fields: &ref_38
+              - label: Loading
+                name: loading
+                widget: string
+                hint: Generic loading state copy (≤40 characters).
+                required: false
+              - label: Loading Products
+                name: loadingProducts
+                widget: string
+                hint: Loading message for product lists (≤40 characters).
+                required: false
+              - label: Loading Bestsellers
+                name: loadingBestsellers
+                widget: string
+                hint: Loading message for bestsellers (≤40 characters).
+                required: false
+              - label: Loading Reviews
+                name: loadingReviews
+                widget: string
+                hint: Loading message for reviews (≤40 characters).
+                required: false
+              - label: Loading Courses
+                name: loadingCourses
+                widget: string
+                hint: Loading message for courses (≤40 characters).
+                required: false
+              - label: Loading Professionals
+                name: loadingProfessionals
+                widget: string
+                hint: Loading message for professionals list (≤40 characters).
+                required: false
+              - label: Loading Article
+                name: loadingArticle
+                widget: string
+                hint: Loading message for article pages (≤40 characters).
+                required: false
+              - label: Loading Policies
+                name: loadingPolicies
+                widget: string
+                hint: Loading message for policies list (≤40 characters).
+                required: false
+              - label: Loading Cart
+                name: loadingCart
+                widget: string
+                hint: Loading message for the cart (≤40 characters).
+                required: false
+              - label: Loading Product
+                name: loadingProduct
+                widget: string
+                hint: Loading message for a single product (≤40 characters).
+                required: false
+            required: false
+          - label: Portuguese
+            name: pt
+            widget: object
+            fields: *ref_38
+            required: false
+          - label: Spanish
+            name: es
+            widget: object
+            fields: *ref_38
+            required: false
+      - name: footer
+        label: Footer
+        file: content/translations/footer.json
+        format: json
+        fields:
+          - label: English
+            name: en
+            widget: object
+            fields: &ref_39
+              - label: Tagline
+                name: tagline
+                widget: string
+                hint: Footer brand statement (≤80 characters).
+                required: false
+              - label: Follow Us
+                name: followUs
+                widget: string
+                hint: Label above social links (≤30 characters).
+                required: false
+              - label: Shop
+                name: shop
+                widget: string
+                hint: Shop navigation label in footer (≤20 characters).
+                required: false
+              - label: All Products
+                name: allProducts
+                widget: string
+                hint: Footer link label for all products (≤20 characters).
+                required: false
+              - label: Guides
+                name: guides
+                widget: string
+                hint: Footer link label for guides (≤20 characters).
+                required: false
+              - label: About
+                name: about
+                widget: string
+                hint: Footer link label for About (≤20 characters).
+                required: false
+              - label: Our Story
+                name: ourStory
+                widget: string
+                hint: Footer link label for the story page (≤24 characters).
+                required: false
+              - label: Contact
+                name: contact
+                widget: string
+                hint: Footer link label for contact (≤20 characters).
+                required: false
+              - label: Policies
+                name: policies
+                widget: string
+                hint: Footer heading for policies links (≤20 characters).
+                required: false
+              - label: Shipping Policy
+                name: shipping
+                widget: string
+                hint: Footer link label for shipping policy (≤24 characters).
+                required: false
+              - label: Return Policy
+                name: returns
+                widget: string
+                hint: Footer link label for return policy (≤24 characters).
+                required: false
+              - label: Privacy Policy
+                name: privacy
+                widget: string
+                hint: Footer link label for privacy policy (≤24 characters).
+                required: false
+              - label: Terms of Service
+                name: terms
+                widget: string
+                hint: Footer link label for terms of service (≤24 characters).
+                required: false
+            required: false
+          - label: Portuguese
+            name: pt
+            widget: object
+            fields: *ref_39
+            required: false
+          - label: Spanish
+            name: es
+            widget: object
+            fields: *ref_39
+            required: false
+      - name: cookies
+        label: Cookies Banner
+        file: content/translations/cookies.json
+        format: json
+        fields:
+          - label: English
+            name: en
+            widget: object
+            fields: &ref_40
+              - label: Message
+                name: message
+                widget: text
+                hint: Cookies banner body copy (≤240 characters).
+                required: false
+              - label: Learn More Label
+                name: learnMore
+                widget: string
+                hint: Link text directing users to learn more (≤24 characters).
+                required: false
+              - label: Decline Label
+                name: decline
+                widget: string
+                hint: Button label to decline cookies (≤16 characters).
+                required: false
+              - label: Accept Label
+                name: accept
+                widget: string
+                hint: Button label to accept cookies (≤16 characters).
+                required: false
+            required: false
+          - label: Portuguese
+            name: pt
+            widget: object
+            fields: *ref_40
+            required: false
+          - label: Spanish
+            name: es
+            widget: object
+            fields: *ref_40
+            required: false
+      - name: policy
+        label: Policy Pages
+        file: content/translations/policy.json
+        format: json
+        fields:
+          - label: English
+            name: en
+            widget: object
+            fields: &ref_41
+              - label: Loading Copy
+                name: loading
+                widget: string
+                hint: Loading message shown while policies load (≤60 characters).
+                required: false
+              - label: Not Found Copy
+                name: notFound
+                widget: string
+                hint: Fallback message when a policy is missing (≤120 characters).
+                required: false
+              - label: Contact Prompt
+                name: contactPrompt
+                widget: text
+                hint: Follow-up guidance shown on missing policy pages (≤240 characters).
+                required: false
+            required: false
+          - label: Portuguese
+            name: pt
+            widget: object
+            fields: *ref_41
+            required: false
+          - label: Spanish
+            name: es
+            widget: object
+            fields: *ref_41
+            required: false
+      - name: article
+        label: Article Page
+        file: content/translations/article.json
+        format: json
+        fields:
+          - label: English
+            name: en
+            widget: object
+            fields: &ref_42
+              - label: Featured Product Label
+                name: featuredProduct
+                widget: string
+                hint: Label shown above the featured product module (≤40 characters).
+                required: false
+              - label: FAQ Title
+                name: faqTitle
+                widget: string
+                hint: Headline above the article FAQ section (≤60 characters).
+                required: false
+              - label: Back to Library Label
+                name: backToLibrary
+                widget: string
+                hint: Button text that returns to the article library (≤32 characters).
+                required: false
+              - label: Not Found Copy
+                name: notFound
+                widget: string
+                hint: Message shown when the article is missing (≤120 characters).
+                required: false
+              - label: Loading Copy
+                name: loading
+                widget: string
+                hint: Loading text displayed while the article loads (≤60 characters).
+                required: false
+            required: false
+          - label: Portuguese
+            name: pt
+            widget: object
+            fields: *ref_42
+            required: false
+          - label: Spanish
+            name: es
+            widget: object
+            fields: *ref_42
+            required: false
+      - name: academy
+        label: Academy Page
+        file: content/translations/academy.json
+        format: json
+        fields:
+          - label: English
+            name: en
+            widget: object
+            fields: &ref_43
+              - label: Header Title
+                name: headerTitle
+                widget: string
+                required: false
+              - label: Header Subtitle
+                name: headerSubtitle
+                widget: text
+                required: false
+              - label: Courses Title
+                name: coursesTitle
+                widget: string
+                required: false
+              - label: Enroll Button
+                name: enrollNow
+                widget: string
+                required: false
+            required: false
+          - label: Portuguese
+            name: pt
+            widget: object
+            fields: *ref_43
+            required: false
+          - label: Spanish
+            name: es
+            widget: object
+            fields: *ref_43
+            required: false
+      - name: cart
+        label: Cart & Checkout
+        file: content/translations/cart.json
+        format: json
+        fields:
+          - label: English
+            name: en
+            widget: object
+            fields: &ref_44
+              - label: Cart Title
                 name: title
                 widget: string
-                i18n: true
-              - label: Meta Description
-                name: description
-                widget: text
-                i18n: true
-              - label: Keywords
-                name: keywords
-                widget: list
-                i18n: true
-          - label: Page Settings
-            name: settings
-            widget: object
-            fields:
-              - label: URL Path
-                name: path
+                required: false
+              - label: Subtotal Label
+                name: subtotal
                 widget: string
-              - label: Published
-                name: published
-                widget: boolean
-              - label: Publication Date
-                name: publishDate
-                widget: datetime
+                required: false
+              - label: Shipping Note
+                name: shippingNote
+                widget: text
+                required: false
+              - label: View Cart Button
+                name: viewCart
+                widget: string
+                required: false
+              - label: Empty Cart Copy
+                name: empty
+                widget: string
+                required: false
+              - label: Continue Shopping Button
+                name: continueShopping
+                widget: string
+                required: false
+              - label: Page Title
+                name: pageTitle
+                widget: string
+                required: false
+              - label: Summary Heading
+                name: summary
+                widget: string
+                required: false
+              - label: Shipping Label
+                name: shipping
+                widget: string
+                required: false
+              - label: Shipping Calculated Copy
+                name: shippingCalculated
+                widget: string
+                required: false
+              - label: Total Label
+                name: total
+                widget: string
+                required: false
+              - label: Checkout Button
+                name: checkout
+                widget: string
+                required: false
+              - label: Checkout Redirect Copy
+                name: checkoutRedirect
+                widget: text
+                required: false
+            required: false
+          - label: Portuguese
+            name: pt
+            widget: object
+            fields: *ref_44
+            required: false
+          - label: Spanish
+            name: es
+            widget: object
+            fields: *ref_44
+            required: false
+      - name: shop
+        label: Shop Page
+        file: content/translations/shop.json
+        format: json
+        fields:
+          - label: English
+            name: en
+            widget: object
+            fields: &ref_45
+              - label: Page Title
+                name: title
+                widget: string
+                required: false
+              - label: Meta Description
+                name: metaDescription
+                widget: text
+                required: false
+              - label: Subtitle
+                name: subtitle
+                widget: text
+                required: false
+              - label: Sort Featured
+                name: sortFeatured
+                widget: string
+                required: false
+              - label: Sort Price Ascending
+                name: sortPriceAsc
+                widget: string
+                required: false
+              - label: Sort Price Descending
+                name: sortPriceDesc
+                widget: string
+                required: false
+              - label: Sort Name Ascending
+                name: sortNameAsc
+                widget: string
+                required: false
+              - label: Sort Name Descending
+                name: sortNameDesc
+                widget: string
+                required: false
+              - label: Sort Dropdown Label
+                name: sortLabel
+                widget: string
+                required: false
+              - label: Category Filter Label
+                name: categoryFilterLabel
+                widget: string
+                required: false
+              - label: Related Resources Heading
+                name: relatedResources
+                widget: string
+                required: false
+              - label: No Products Copy
+                name: noProducts
+                widget: string
+                required: false
+            required: false
+          - label: Portuguese
+            name: pt
+            widget: object
+            fields: *ref_45
+            required: false
+          - label: Spanish
+            name: es
+            widget: object
+            fields: *ref_45
+            required: false
+      - name: pdp
+        label: Product Detail Page
+        file: content/translations/pdp.json
+        format: json
+        fields:
+          - label: English
+            name: en
+            widget: object
+            fields: &ref_46
+              - label: Not Found Copy
+                name: notFound
+                widget: string
+                required: false
+              - label: Size Label
+                name: size
+                widget: string
+                required: false
+              - label: Add to Cart Button
+                name: addToCart
+                widget: string
+                required: false
+              - label: Tabs
+                name: tabs
+                widget: object
+                fields:
+                  - label: Benefits Tab
+                    name: benefits
+                    widget: string
+                    required: false
+                  - label: How To Use Tab
+                    name: howToUse
+                    widget: string
+                    required: false
+                  - label: Ingredients Tab
+                    name: ingredients
+                    widget: string
+                    required: false
+                  - label: Origin & Purity Tab
+                    name: labTested
+                    widget: string
+                    required: false
+                required: false
+              - label: Bundle Includes Heading
+                name: bundleIncludes
+                widget: string
+                required: false
+              - label: Related Products Heading
+                name: relatedProducts
+                widget: string
+                required: false
+              - label: Knowledge Section
+                name: knowledge
+                widget: object
+                fields:
+                  - label: Section Title
+                    name: title
+                    widget: string
+                    required: false
+                  - label: Section Subtitle
+                    name: subtitle
+                    widget: text
+                    required: false
+                  - label: Sub-sections
+                    name: sections
+                    widget: object
+                    fields:
+                      - label: What It Is
+                        name: whatItIs
+                        widget: string
+                        required: false
+                      - label: How It Works
+                        name: howItWorks
+                        widget: string
+                        required: false
+                      - label: Who It's For
+                        name: whoItsFor
+                        widget: string
+                        required: false
+                      - label: Scientific Backing
+                        name: scientificBacking
+                        widget: string
+                        required: false
+                      - label: Cultural Context
+                        name: culturalContext
+                        widget: string
+                        required: false
+                    required: false
+                required: false
+              - label: FAQ Section
+                name: faq
+                widget: object
+                fields:
+                  - label: FAQ Title
+                    name: title
+                    widget: string
+                    required: false
+                  - label: FAQ Subtitle
+                    name: subtitle
+                    widget: text
+                    required: false
+                required: false
+            required: false
+          - label: Portuguese
+            name: pt
+            widget: object
+            fields: *ref_46
+            required: false
+          - label: Spanish
+            name: es
+            widget: object
+            fields: *ref_46
+            required: false
+      - name: home
+        label: Home Page
+        file: content/translations/home.json
+        format: json
+        fields:
+          - label: English
+            name: en
+            widget: object
+            fields: &ref_47
+              - label: Meta Title
+                name: metaTitle
+                widget: string
+                required: false
+              - label: Meta Description
+                name: metaDescription
+                widget: text
+                required: false
+              - label: Meta Tags
+                name: meta
+                widget: object
+                fields:
+                  - label: Title
+                    name: title
+                    widget: string
+                    required: false
+                  - label: Description
+                    name: description
+                    widget: text
+                    required: false
+                required: false
+              - label: Hero Title
+                name: heroTitle
+                widget: string
+                required: false
+              - label: Hero Subtitle
+                name: heroSubtitle
+                widget: text
+                required: false
+              - label: Hero Section
+                name: hero
+                widget: object
+                fields:
+                  - label: Title
+                    name: title
+                    widget: string
+                    required: false
+                  - label: Subtitle
+                    name: subtitle
+                    widget: text
+                    required: false
+                  - label: Primary CTA
+                    name: ctaPrimary
+                    widget: string
+                    required: false
+                  - label: Secondary CTA
+                    name: ctaSecondary
+                    widget: string
+                    required: false
+                required: false
+              - label: Shop CTA
+                name: ctaShop
+                widget: string
+                required: false
+              - label: Clinics CTA
+                name: ctaClinics
+                widget: string
+                required: false
+              - label: Bestsellers Title
+                name: bestsellersTitle
+                widget: string
+                required: false
+              - label: Bestsellers Section
+                name: bestsellers
+                widget: object
+                fields:
+                  - label: Intro Copy
+                    name: intro
+                    widget: text
+                    required: false
+                  - label: Cards
+                    name: cards
+                    widget: list
+                    summary: '{{fields.slug}}'
+                    fields:
+                      - label: Product Slug
+                        name: slug
+                        widget: string
+                        required: false
+                      - label: Blurb
+                        name: blurb
+                        widget: string
+                        required: false
+                    required: false
+                required: false
+              - label: Value Proposition 1
+                name: value1
+                widget: string
+                required: false
+              - label: Value Proposition 2
+                name: value2
+                widget: string
+                required: false
+              - label: Value Proposition 3
+                name: value3
+                widget: string
+                required: false
+              - label: Value Proposition 4
+                name: value4
+                widget: string
+                required: false
+              - label: Value Props Grid
+                name: valueProps
+                widget: list
+                summary: '{{fields.title}}'
+                fields:
+                  - label: Title
+                    name: title
+                    widget: string
+                    required: false
+                  - label: Subtitle
+                    name: subtitle
+                    widget: string
+                    required: false
+                required: false
+              - label: Reviews Title
+                name: reviewsTitle
+                widget: string
+                required: false
+              - label: Clinics Highlight
+                name: clinics
+                widget: object
+                fields:
+                  - label: Title
+                    name: title
+                    widget: string
+                    required: false
+                  - label: Copy
+                    name: copy
+                    widget: text
+                    required: false
+                  - label: CTA Label
+                    name: cta
+                    widget: string
+                    required: false
+                required: false
+              - label: Social Proof
+                name: socialProof
+                widget: object
+                fields:
+                  - label: Line
+                    name: line
+                    widget: string
+                    required: false
+                required: false
+              - label: Learn Section
+                name: learn
+                widget: object
+                fields:
+                  - label: Teaser
+                    name: teaser
+                    widget: string
+                    required: false
+                required: false
+              - label: Newsletter Title
+                name: newsletterTitle
+                widget: string
+                required: false
+              - label: Newsletter Subtitle
+                name: newsletterSubtitle
+                widget: text
+                required: false
+              - label: Newsletter Pitch
+                name: newsletter
+                widget: object
+                fields:
+                  - label: Pitch
+                    name: pitch
+                    widget: text
+                    required: false
+                required: false
+              - label: Newsletter Success Copy
+                name: newsletterThanks
+                widget: string
+                required: false
+              - label: Newsletter Placeholder
+                name: newsletterPlaceholder
+                widget: string
+                required: false
+              - label: Newsletter Submit Label
+                name: newsletterSubmit
+                widget: string
+                required: false
+              - label: Footer Callout
+                name: footer
+                widget: object
+                fields:
+                  - label: Compliance Note
+                    name: complianceNote
+                    widget: text
+                    required: false
+                required: false
+            required: false
+          - label: Portuguese
+            name: pt
+            widget: object
+            fields: *ref_47
+            required: false
+          - label: Spanish
+            name: es
+            widget: object
+            fields: *ref_47
+            required: false
+      - name: learn
+        label: Learn Page
+        file: content/translations/learn.json
+        format: json
+        fields:
+          - label: English
+            name: en
+            widget: object
+            fields: &ref_48
+              - label: Meta Title
+                name: metaTitle
+                widget: string
+                required: false
+              - label: Meta Description
+                name: metaDescription
+                widget: text
+                required: false
+              - label: Page Title
+                name: title
+                widget: string
+                required: false
+              - label: Subtitle
+                name: subtitle
+                widget: text
+                required: false
+              - label: Categories
+                name: categories
+                widget: object
+                fields:
+                  - label: All Topics
+                    name: all
+                    widget: string
+                    required: false
+                  - label: Argan Oil
+                    name: argan-oil
+                    widget: string
+                    required: false
+                  - label: Uses & Applications
+                    name: uses-applications
+                    widget: string
+                    required: false
+                  - label: Post-Procedure
+                    name: post-procedure
+                    widget: string
+                    required: false
+                  - label: Skin Barrier
+                    name: skin-barrier
+                    widget: string
+                    required: false
+                  - label: Baby Care
+                    name: baby
+                    widget: string
+                    required: false
+                  - label: Scars & Recovery
+                    name: scars
+                    widget: string
+                    required: false
+                required: false
+            required: false
+          - label: Portuguese
+            name: pt
+            widget: object
+            fields: *ref_48
+            required: false
+          - label: Spanish
+            name: es
+            widget: object
+            fields: *ref_48
+            required: false
+      - name: videos
+        label: Videos Page
+        file: content/translations/videos.json
+        format: json
+        fields:
+          - label: English
+            name: en
+            widget: object
+            fields: &ref_49
+              - label: Meta Title
+                name: metaTitle
+                widget: string
+                required: false
+              - label: Meta Description
+                name: metaDescription
+                widget: text
+                required: false
+              - label: Page Title
+                name: title
+                widget: string
+                required: false
+              - label: Subtitle
+                name: subtitle
+                widget: text
+                required: false
+              - label: Empty State Copy
+                name: emptyState
+                widget: text
+                required: false
+              - label: Watch Label
+                name: watchLabel
+                widget: string
+                required: false
+            required: false
+          - label: Portuguese
+            name: pt
+            widget: object
+            fields: *ref_49
+            required: false
+          - label: Spanish
+            name: es
+            widget: object
+            fields: *ref_49
+            required: false
+      - name: training
+        label: Training Page
+        file: content/translations/training.json
+        format: json
+        fields:
+          - label: English
+            name: en
+            widget: object
+            fields: &ref_50
+              - label: Meta Title
+                name: metaTitle
+                widget: string
+                required: false
+              - label: Meta Description
+                name: metaDescription
+                widget: text
+                required: false
+              - label: Page Title
+                name: title
+                widget: string
+                required: false
+              - label: Subtitle
+                name: subtitle
+                widget: text
+                required: false
+              - label: Empty State Copy
+                name: emptyState
+                widget: text
+                required: false
+              - label: Learn More Label
+                name: learnMore
+                widget: string
+                required: false
+            required: false
+          - label: Portuguese
+            name: pt
+            widget: object
+            fields: *ref_50
+            required: false
+          - label: Spanish
+            name: es
+            widget: object
+            fields: *ref_50
+            required: false
+      - name: about
+        label: About Page
+        file: content/translations/about.json
+        format: json
+        fields:
+          - label: English
+            name: en
+            widget: object
+            fields: &ref_51
+              - label: Section Title
+                name: title
+                widget: string
+                required: false
+              - label: Meta Description
+                name: metaDescription
+                widget: text
+                required: false
+              - label: Header Title
+                name: headerTitle
+                widget: string
+                required: false
+              - label: Header Subtitle
+                name: headerSubtitle
+                widget: text
+                required: false
+              - label: Story Title
+                name: storyTitle
+                widget: string
+                required: false
+              - label: Story Paragraph 1
+                name: storyText1
+                widget: text
+                required: false
+              - label: Story Paragraph 2
+                name: storyText2
+                widget: text
+                required: false
+              - label: Sourcing Title
+                name: sourcingTitle
+                widget: string
+                required: false
+              - label: Sourcing Paragraph 1
+                name: sourcingText1
+                widget: text
+                required: false
+              - label: Sourcing Paragraph 2
+                name: sourcingText2
+                widget: text
+                required: false
+              - label: Sourcing Image Alt
+                name: sourcingImageAlt
+                widget: string
+                required: false
+            required: false
+          - label: Portuguese
+            name: pt
+            widget: object
+            fields: *ref_51
+            required: false
+          - label: Spanish
+            name: es
+            widget: object
+            fields: *ref_51
+            required: false
+      - name: contact
+        label: Contact Page
+        file: content/translations/contact.json
+        format: json
+        fields:
+          - label: English
+            name: en
+            widget: object
+            fields: &ref_52
+              - label: Page Title
+                name: title
+                widget: string
+                required: false
+              - label: Meta Description
+                name: metaDescription
+                widget: text
+                required: false
+              - label: Header Title
+                name: headerTitle
+                widget: string
+                required: false
+              - label: Header Subtitle
+                name: headerSubtitle
+                widget: text
+                required: false
+              - label: Form Title
+                name: formTitle
+                widget: string
+                required: false
+              - label: Form Labels
+                name: form
+                widget: object
+                fields:
+                  - label: Name Field
+                    name: name
+                    widget: string
+                    required: false
+                  - label: Email Field
+                    name: email
+                    widget: string
+                    required: false
+                  - label: Message Field
+                    name: message
+                    widget: string
+                    required: false
+                  - label: Sending State
+                    name: sending
+                    widget: string
+                    required: false
+                  - label: Submit Button
+                    name: submit
+                    widget: string
+                    required: false
+                  - label: Success Message
+                    name: success
+                    widget: text
+                    required: false
+                  - label: Error Message
+                    name: error
+                    widget: text
+                    required: false
+                required: false
+              - label: Info Title
+                name: infoTitle
+                widget: string
+                required: false
+              - label: Email Heading
+                name: emailTitle
+                widget: string
+                required: false
+              - label: Phone Heading
+                name: phoneTitle
+                widget: string
+                required: false
+              - label: WhatsApp Heading
+                name: whatsappTitle
+                widget: string
+                required: false
+              - label: WhatsApp Action
+                name: whatsappAction
+                widget: string
+                required: false
+            required: false
+          - label: Portuguese
+            name: pt
+            widget: object
+            fields: *ref_52
+            required: false
+          - label: Spanish
+            name: es
+            widget: object
+            fields: *ref_52
+            required: false
+      - name: clinics
+        label: Clinics Page
+        file: content/translations/clinics.json
+        format: json
+        fields:
+          - label: English
+            name: en
+            widget: object
+            fields: &ref_53
+              - label: Page Title
+                name: title
+                widget: string
+                required: false
+              - label: Meta Description
+                name: metaDescription
+                widget: text
+                required: false
+              - label: Header Title
+                name: headerTitle
+                widget: string
+                required: false
+              - label: Header Subtitle
+                name: headerSubtitle
+                widget: text
+                required: false
+              - label: Section 1 Title
+                name: section1Title
+                widget: string
+                required: false
+              - label: Section 1 Paragraph 1
+                name: section1Text1
+                widget: text
+                required: false
+              - label: Section 1 Paragraph 2
+                name: section1Text2
+                widget: text
+                required: false
+              - label: Protocol Section
+                name: protocolSection
+                widget: object
+                fields:
+                  - label: Title
+                    name: title
+                    widget: string
+                    required: false
+                  - label: Subtitle
+                    name: subtitle
+                    widget: text
+                    required: false
+                  - label: Cards
+                    name: cards
+                    widget: list
+                    summary: '{{fields.title}}'
+                    fields:
+                      - label: Card Title
+                        name: title
+                        widget: string
+                        required: false
+                      - label: Focus Copy
+                        name: focus
+                        widget: text
+                        required: false
+                      - label: Steps
+                        name: steps
+                        widget: list
+                        field:
+                          label: Step
+                          name: step
+                          widget: text
+                          required: false
+                        required: false
+                      - label: Evidence
+                        name: evidence
+                        widget: text
+                        required: false
+                    required: false
+                required: false
+              - label: References Section
+                name: referencesSection
+                widget: object
+                fields:
+                  - label: Title
+                    name: title
+                    widget: string
+                    required: false
+                  - label: Studies Title
+                    name: studiesTitle
+                    widget: string
+                    required: false
+                  - label: Studies
+                    name: studies
+                    widget: list
+                    summary: '{{fields.title}}'
+                    fields:
+                      - label: Study Title
+                        name: title
+                        widget: string
+                        required: false
+                      - label: Study Details
+                        name: details
+                        widget: text
+                        required: false
+                    required: false
+                  - label: Testimonials Title
+                    name: testimonialsTitle
+                    widget: string
+                    required: false
+                  - label: Testimonials
+                    name: testimonials
+                    widget: list
+                    summary: '{{fields.name}}'
+                    fields:
+                      - label: Quote
+                        name: quote
+                        widget: text
+                        required: false
+                      - label: Name
+                        name: name
+                        widget: string
+                        required: false
+                      - label: Credentials
+                        name: credentials
+                        widget: string
+                        required: false
+                    required: false
+                required: false
+              - label: Keyword Section
+                name: keywordSection
+                widget: object
+                fields:
+                  - label: Title
+                    name: title
+                    widget: string
+                    required: false
+                  - label: Subtitle
+                    name: subtitle
+                    widget: text
+                    required: false
+                  - label: Keywords
+                    name: keywords
+                    widget: list
+                    field:
+                      label: Keyword
+                      name: keyword
+                      widget: string
+                      required: false
+                    required: false
+                required: false
+              - label: FAQ Section
+                name: faqSection
+                widget: object
+                fields:
+                  - label: Title
+                    name: title
+                    widget: string
+                    required: false
+                  - label: Subtitle
+                    name: subtitle
+                    widget: text
+                    required: false
+                  - label: Items
+                    name: items
+                    widget: list
+                    summary: '{{fields.question}}'
+                    fields:
+                      - label: Question
+                        name: question
+                        widget: string
+                        required: false
+                      - label: Answer
+                        name: answer
+                        widget: text
+                        required: false
+                    required: false
+                required: false
+              - label: CTA Title
+                name: ctaTitle
+                widget: string
+                required: false
+              - label: CTA Subtitle
+                name: ctaSubtitle
+                widget: text
+                required: false
+              - label: CTA Button
+                name: ctaButton
+                widget: string
+                required: false
+            required: false
+          - label: Portuguese
+            name: pt
+            widget: object
+            fields: *ref_53
+            required: false
+          - label: Spanish
+            name: es
+            widget: object
+            fields: *ref_53
+            required: false
+    load_strategy: lazy
+  - name: products
+    label: Products
+    group: Products
+    editor:
+      preview: false
+    load_strategy: lazy
+    files:
+      - name: catalog
+        label: Product Catalog
+        file: content/products/index.json
+        format: json
+        media_folder: content/uploads/products
+        public_folder: /content/uploads/products
+        fields:
+          - label: Products
+            name: items
+            widget: list
+            summary: '{{fields.name.en}}'
+            fields: *ref_54
+            required: false
+  - name: articles
+    label: Blog Posts
+    group: Blog Posts
+    editor:
+      preview: false
+    load_strategy: lazy
+    files:
+      - name: articles
+        label: Skincare Library
+        file: content/articles/index.json
+        format: json
+        media_folder: content/uploads/articles
+        public_folder: /content/uploads/articles
+        fields:
+          - label: Articles
+            name: items
+            widget: list
+            summary: '{{fields.title.en}}'
+            fields: *ref_55
+            required: false
+  - name: reviews
+    label: Product Reviews
+    group: Products
+    files:
+      - name: reviews
+        label: Testimonials
+        file: content/reviews/index.json
+        format: json
+        fields:
+          - label: Reviews
+            name: items
+            widget: list
+            summary: '{{fields.author.en}}'
+            fields:
+              - label: ID
+                name: id
+                widget: string
+                required: false
+              - label: Quote
+                name: text
+                widget: object
+                fields:
+                  - label: English
+                    name: en
+                    widget: text
+                    required: false
+                  - label: Portuguese
+                    name: pt
+                    widget: text
+                    required: false
+                  - label: Spanish
+                    name: es
+                    widget: text
+                    required: false
+                required: false
+              - label: Author
+                name: author
+                widget: object
+                fields:
+                  - label: English
+                    name: en
+                    widget: string
+                    required: false
+                  - label: Portuguese
+                    name: pt
+                    widget: string
+                    required: false
+                  - label: Spanish
+                    name: es
+                    widget: string
+                    required: false
+                required: false
+            required: false
+  - name: testimonials
+    label: Clinical Testimonials
+    group: Products
+    editor:
+      preview: false
+    folder: content/testimonials
+    format: json
+    create: true
+    slug: '{{slug}}'
+    identifier_field: name
+    media_folder: content/uploads/testimonials
+    public_folder: /content/uploads/testimonials
+    fields:
+      - label: Name
+        name: name
+        widget: string
+        required: false
+      - label: Title or Credentials
+        name: title
+        widget: string
+        required: false
+      - label: Quote
+        name: quote
+        widget: text
+        required: false
+      - label: Avatar
+        name: avatar
+        widget: image
+        choose_url: true
+        required: false
+      - label: Language
+        name: language
+        widget: select
+        options:
+          - label: English
+            value: en
+          - label: Portuguese
+            value: pt
+          - label: Spanish
+            value: es
+        default: en
+        required: false
+  - name: courses
+    label: Courses
+    group: Products
+    editor:
+      preview: false
+    load_strategy: lazy
+    files:
+      - name: courses
+        label: Academy Courses
+        file: content/courses.json
+        format: json
+        fields:
+          - label: Courses
+            name: courses
+            widget: list
+            summary: '{{fields.title.en}}'
+            fields: *ref_56
+            required: false
+  - name: videoEntries
+    label: Video Library
+    group: Blog Posts
+    editor:
+      preview: false
+    load_strategy: lazy
+    files:
+      - name: videos
+        label: Video Library
+        file: content/videos.json
+        format: json
+        fields:
+          - label: Videos
+            name: videos
+            widget: list
+            summary: '{{fields.title}}'
+            fields: *ref_57
+            required: false
+  - name: trainingEntries
+    label: Training Library
+    group: Products
+    editor:
+      preview: false
+    load_strategy: lazy
+    files:
+      - name: training
+        label: Training Catalog
+        file: content/training.json
+        format: json
+        fields:
+          - label: Trainings
+            name: trainings
+            widget: list
+            summary: '{{fields.courseTitle}}'
+            min: 1
+            fields: *ref_58
+            required: false
+  - name: policies
+    label: Policies
+    group: Site Settings
+    editor:
+      preview: false
+    files:
+      - name: policies
+        label: Store Policies
+        file: content/policies.json
+        format: json
+        fields:
+          - label: Policies
+            name: items
+            widget: list
+            summary: '{{fields.title.en}}'
+            fields:
+              - label: ID
+                name: id
+                widget: string
+                required: false
+              - label: Title
+                name: title
+                widget: object
+                fields:
+                  - label: English
+                    name: en
+                    widget: string
+                    required: false
+                  - label: Portuguese
+                    name: pt
+                    widget: string
+                    required: false
+                  - label: Spanish
+                    name: es
+                    widget: string
+                    required: false
+                required: false
+              - label: Content
+                name: content
+                widget: object
+                fields:
+                  - label: English
+                    name: en
+                    widget: markdown
+                    required: false
+                  - label: Portuguese
+                    name: pt
+                    widget: markdown
+                    required: false
+                  - label: Spanish
+                    name: es
+                    widget: markdown
+                    required: false
+                required: false
+            required: false
+    load_strategy: lazy
