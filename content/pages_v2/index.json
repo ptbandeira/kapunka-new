@@ -1188,7 +1188,7 @@
                 "pt": "Carrega outra imagem da comunidade",
                 "es": "Sube otra imagen de la comunidad"
               },
-              "image": "shared/img_20200328_165441-copia-2-.jpg",
+              "image": "https://res.cloudinary.com/du6xl727e/image/upload/v1759614978/kapunka_instagrammer_-_Lidia_Simon_Canut_qsatxd.jpg",
               "name": {
                 "en": "Partner or practitioner",
                 "pt": "Parceiro ou profissional",
@@ -1211,7 +1211,7 @@
                 "pt": "Adiciona imagens de lifestyle reais e acolhedoras",
                 "es": "Añade imágenes de estilo de vida cálidas y reales"
               },
-              "image": "shared/img_20200328_165521-copia-2-.jpg",
+              "image": "https://res.cloudinary.com/du6xl727e/image/upload/v1759614960/instagrammer_kapunka-Nieves_Bolo%CC%81s_xkpp1x.jpg",
               "name": {
                 "en": "Add a name",
                 "pt": "Adiciona um nome",
@@ -1229,31 +1229,34 @@
               }
             },
             {
-              "image": "shared/img_20200328_162420-copia-3-.jpg"
+              "image": "https://res.cloudinary.com/du6xl727e/image/upload/v1759614955/instagrammer_kapunka_Maria_capell_hzh6gi.jpg"
             },
             {
-              "image": "shared/img_20200328_165740-copia-2-.jpg"
+              "image": "https://res.cloudinary.com/du6xl727e/image/upload/v1759614952/IMG_20200612_122445_cmresv.jpg"
             },
             {
-              "image": "shared/img_20200328_165916-copia-2-.jpg"
+              "image": "https://res.cloudinary.com/du6xl727e/image/upload/v1759614951/IMG_20200328_170944_us5x7c.jpg"
             },
             {
-              "image": "shared/img_20200328_165948-copia-2-.jpg"
+              "image": "https://res.cloudinary.com/du6xl727e/image/upload/v1759614714/IMG_20200328_170929_ksncvf.jpg"
             },
             {
-              "image": "shared/img_20200328_170735-copia-2-.jpg"
+              "image": "https://res.cloudinary.com/du6xl727e/image/upload/v1759614645/IMG_20200328_170817_c0b5vz.jpg"
             },
             {
-              "image": "shared/instagrammer-kapunka-maria-capell-.jpg"
+              "image": "https://res.cloudinary.com/du6xl727e/image/upload/v1759614628/IMG_20200328_170735_-_copia_2_qg3sdf.jpg"
             },
             {
-              "image": "https://images.pexels.com/photos/415829/pexels-photo-415829.jpeg?auto=compress&cs=tinysrgb&w=1920"
+              "image": "https://res.cloudinary.com/du6xl727e/image/upload/v1759614586/IMG_20200328_165948_-_copia_2_lkc6wy.jpg"
             },
             {
-              "image": "shared/kapunka-in-the-wild.jpg"
+              "image": "https://res.cloudinary.com/du6xl727e/image/upload/v1759614559/IMG_20200328_165521_-_copia_2_kqipch.jpg"
             },
             {
-              "image": "shared/kapunka-instagrammer-lidia-simon-canut-.jpg"
+              "image": "https://res.cloudinary.com/du6xl727e/image/upload/v1759614542/IMG_20200328_165251_-_copia_3_yjiwp3.jpg"
+            },
+            {
+              "image": "https://res.cloudinary.com/du6xl727e/image/upload/v1759614526/grupblanc_fscak3.jpg"
             }
           ],
           "title": {
