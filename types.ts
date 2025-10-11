@@ -240,6 +240,7 @@ export interface HeroSimpleSectionContent extends VisibilityFlag {
   title?: string;
   subtitle?: string;
   eyebrow?: string;
+  image?: string;
   titleFieldPath?: string;
   subtitleFieldPath?: string;
   eyebrowFieldPath?: string;

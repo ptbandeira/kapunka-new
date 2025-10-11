@@ -10,32 +10,48 @@ const HeroSimple: React.FC<HeroSimpleProps> = ({ section, fieldPath }) => {
   const title = section.title?.trim();
   const subtitle = section.subtitle?.trim();
   const eyebrow = section.eyebrow?.trim();
+  const imageSrc = section.image;
 
   if (!title && !subtitle && !eyebrow) {
     return null;
   }
 
-  // Field paths are no longer needed after visual editor removal
-
   return (
-    <section className="py-16 sm:py-24">
-      <div className="container mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
-        <div className="space-y-4 text-center">
-          {eyebrow ? (
-            <p className="text-xs font-semibold uppercase tracking-[0.3em] text-stone-500">
-              {eyebrow}
-            </p>
-          ) : null}
-          {title ? (
-            <h1 className="text-4xl font-semibold tracking-tight text-stone-900 sm:text-5xl">
-              {title}
-            </h1>
-          ) : null}
-          {subtitle ? (
-            <p className="mx-auto max-w-2xl text-lg text-stone-600">
-              {subtitle}
-            </p>
-          ) : null}
+    <section className="relative h-screen bg-black">
+      {/* Background Image */}
+      {imageSrc && (
+        <div className="absolute inset-0">
+          <img
+            src={imageSrc}
+            alt={title || 'Hero background'}
+            className="h-full w-full object-cover opacity-90"
+          />
+          <div className="absolute inset-0 bg-gradient-to-r from-black/70 to-transparent"></div>
+        </div>
+      )}
+
+      {/* Content */}
+      <div className="relative h-full">
+        <div className="container mx-auto h-full px-6 lg:px-8">
+          <div className="flex h-full items-center justify-end">
+            <div className="w-full max-w-xl space-y-6 text-white lg:w-1/2">
+              {eyebrow && (
+                <p className="text-sm font-medium uppercase tracking-[0.2em] text-white/70">
+                  {eyebrow}
+                </p>
+              )}
+              {title && (
+                <h1 className="text-5xl font-bold leading-tight tracking-tight text-white md:text-6xl lg:text-7xl">
+                  {title}
+                </h1>
+              )}
+              {subtitle && (
+                <p className="text-lg text-white/80 md:text-xl">
+                  {subtitle}
+                </p>
+              )}
+            </div>
+          </div>
         </div>
       </div>
     </section>
