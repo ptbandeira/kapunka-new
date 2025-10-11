@@ -68,9 +68,12 @@ const MediaShowcase: React.FC<MediaShowcaseProps> = ({ section, fieldPath }) => 
 
     if (internalPath) {
       return (
-        import React from 'react';
-import { Link } from 'react-router-dom';
-import { useLanguage } from '../../contexts/LanguageContext';
+        <Link
+          to={buildLocalizedPath(internalPath, language)}
+          className="inline-flex items-center rounded-full border border-white/60 bg-white/10 px-5 py-2 text-sm font-medium tracking-wide text-white transition hover:bg-white hover:text-stone-900"
+        >
+          <span>{item.ctaLabel}</span>
+        </Link>
       );
     }
 
