@@ -17,24 +17,24 @@ const HeroSimple: React.FC<HeroSimpleProps> = ({ section, fieldPath }) => {
   }
 
   return (
-    <section className="relative h-screen bg-black">
+    <section className="relative min-h-[165vh] bg-black">
       {/* Background Image */}
       {imageSrc && (
         <div className="absolute inset-0">
           <img
             src={imageSrc}
             alt={title || 'Hero background'}
-            className="h-full w-full object-cover opacity-90"
+            className="h-full w-full object-cover"
           />
-          <div className="absolute inset-0 bg-gradient-to-r from-black/70 to-transparent"></div>
+          <div className="absolute inset-0 bg-gradient-to-r from-black via-black/80 to-transparent"></div>
         </div>
       )}
 
       {/* Content */}
       <div className="relative h-full">
         <div className="container mx-auto h-full px-6 lg:px-8">
-          <div className="flex h-full items-center justify-end">
-            <div className="w-full max-w-xl space-y-6 text-white lg:w-1/2">
+          <div className="flex h-full items-center">
+            <div className="w-full max-w-xl space-y-6 text-white lg:w-2/5 pt-32">
               {eyebrow && (
                 <p className="text-sm font-medium uppercase tracking-[0.2em] text-white/70">
                   {eyebrow}
