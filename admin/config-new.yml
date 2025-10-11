@@ -1,0 +1,169 @@
+backend:
+  name: git-gateway
+  branch: main
+
+local_backend: true
+
+media_folder: "content/uploads"
+public_folder: "/uploads"
+
+editor:
+  preview: true
+
+i18n:
+  structure: multiple_folders
+  locales: [en, pt, es]
+  default_locale: en
+
+collections:
+  - name: "pages"
+    label: "Pages"
+    folder: "content/pages"
+    create: true
+    extension: json
+    format: json
+    i18n: true
+    editor:
+      preview: true
+    fields:
+      - label: Visual Settings
+        name: visual
+        widget: object
+        collapsed: false
+        fields:
+          - label: Layout
+            name: layout
+            widget: select
+            options:
+              - { label: "Default", value: "default" }
+              - { label: "Full Width", value: "full" }
+              - { label: "Narrow", value: "narrow" }
+          - label: Spacing
+            name: spacing
+            widget: select
+            options:
+              - { label: "Compact", value: "compact" }
+              - { label: "Normal", value: "normal" }
+              - { label: "Spacious", value: "spacious" }
+          - label: Background
+            name: background
+            widget: select
+            options:
+              - { label: "None", value: "none" }
+              - { label: "Light", value: "light" }
+              - { label: "Dark", value: "dark" }
+              - { label: "Accent", value: "accent" }
+          - label: Hero Settings
+            name: hero
+            widget: object
+            fields:
+              - label: Image
+                name: image
+                widget: object
+                fields:
+                  - label: Source
+                    name: src
+                    widget: image
+                  - label: Focal Point
+                    name: focal
+                    widget: object
+                    fields:
+                      - label: X Position
+                        name: x
+                        widget: number
+                        min: 0
+                        max: 1
+                        step: 0.1
+                      - label: Y Position
+                        name: y
+                        widget: number
+                        min: 0
+                        max: 1
+                        step: 0.1
+              - label: Text Position
+                name: textPosition
+                widget: select
+                options:
+                  - { label: "Left", value: "left" }
+                  - { label: "Center", value: "center" }
+                  - { label: "Right", value: "right" }
+
+      - label: Content
+        name: content
+        widget: object
+        i18n: true
+        fields:
+          - label: Title
+            name: title
+            widget: string
+            i18n: true
+          - label: Description
+            name: description
+            widget: text
+            i18n: true
+          - label: Body
+            name: body
+            widget: markdown
+            i18n: true
+          - label: Sections
+            name: sections
+            widget: list
+            types:
+              - label: "Text Section"
+                name: "text"
+                widget: object
+                fields:
+                  - {label: Title, name: title, widget: string}
+                  - {label: Content, name: content, widget: markdown}
+              - label: "Image Section"
+                name: "image"
+                widget: object
+                fields:
+                  - {label: Image, name: image, widget: image}
+                  - {label: Caption, name: caption, widget: string}
+              - label: "Features Section"
+                name: "features"
+                widget: object
+                fields:
+                  - label: Features
+                    name: items
+                    widget: list
+                    fields:
+                      - {label: Title, name: title, widget: string}
+                      - {label: Description, name: description, widget: text}
+                      - {label: Icon, name: icon, widget: string}
+
+      - label: Advanced Settings
+        name: advanced
+        widget: object
+        collapsed: true
+        fields:
+          - label: SEO
+            name: seo
+            widget: object
+            fields:
+              - label: Meta Title
+                name: title
+                widget: string
+                i18n: true
+              - label: Meta Description
+                name: description
+                widget: text
+                i18n: true
+              - label: Keywords
+                name: keywords
+                widget: list
+                i18n: true
+          - label: Page Settings
+            name: settings
+            widget: object
+            fields:
+              - label: URL Path
+                name: path
+                widget: string
+              - label: Published
+                name: published
+                widget: boolean
+              - label: Publication Date
+                name: publishDate
+                widget: datetime

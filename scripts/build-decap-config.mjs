@@ -5,6 +5,7 @@ import yaml from 'js-yaml';
 
 const ROOT = process.cwd();
 const ANCHORS_PATH = path.join(ROOT, 'admin', 'config-modules', 'anchors.yaml');
+const FIELD_GROUPS_PATH = path.join(ROOT, 'admin', 'config-modules', 'field-groups.yaml');
 const MAIN_PATH = path.join(ROOT, 'admin', 'config-modules', 'main.yaml');
 const OUTPUT_PATH = path.join(ROOT, 'admin', 'config.yml');
 
@@ -118,8 +119,9 @@ function relaxFieldValidation(config) {
 
 function mergeModules() {
   const anchorsRaw = readFile(ANCHORS_PATH);
+  const fieldGroupsRaw = readFile(FIELD_GROUPS_PATH);
   const mainRaw = readFile(MAIN_PATH);
-  const mergedRaw = `${anchorsRaw}\n${mainRaw}`;
+  const mergedRaw = `${anchorsRaw}\n${fieldGroupsRaw}\n${mainRaw}`;
 
   const config = yaml.load(mergedRaw, { json: true }) || {};
 

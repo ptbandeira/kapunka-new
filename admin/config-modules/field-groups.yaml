@@ -1,0 +1,92 @@
+# Field Organization Groups
+
+content_fields: &content_fields
+  label: "Content"
+  name: "content" 
+  widget: "object"
+  fields:
+    - <<: *localized_string_field
+      label: "Title"
+      name: "title"
+      hint: "Main page title or heading"
+    - <<: *localized_text_field  
+      label: "Description"
+      name: "description"
+      hint: "Brief summary or introduction"
+    - <<: *localized_markdown_field
+      label: "Body"
+      name: "body" 
+      hint: "Main content area with rich text formatting"
+    - label: "Call to Action"
+      name: "cta"
+      widget: "object"
+      fields: *button_settings_fields
+    - *sections_field
+
+visual_fields: &visual_fields
+  label: "Visual Settings"
+  name: "visual"
+  widget: "object"
+  fields:
+    - label: "Layout"
+      name: "layout"
+      widget: "select"
+      options:
+        - { label: "Default", value: "default" }
+        - { label: "Full Width", value: "full" }
+        - { label: "Narrow", value: "narrow" }
+    - label: "Spacing"
+      name: "spacing" 
+      widget: "select"
+      options:
+        - { label: "Compact", value: "compact" }
+        - { label: "Normal", value: "normal" }
+        - { label: "Spacious", value: "spacious" }
+    - label: "Background"
+      name: "background"
+      widget: "select" 
+      options:
+        - { label: "None", value: "none" }
+        - { label: "Light", value: "light" }
+        - { label: "Dark", value: "dark" }
+        - { label: "Accent", value: "accent" }
+    - label: "Hero Image"
+      name: "heroImage"
+      widget: "object"
+      fields:
+        - label: "Image"
+          name: "src"
+          widget: "image"
+          choose_url: true
+        - <<: *focal_point_field
+          hint: "Control how the hero image crops responsively"
+        - <<: *localized_string_field
+          label: "Alt Text"
+          name: "alt"
+          hint: "Describe the visual for accessibility and SEO"
+
+advanced_fields: &advanced_fields
+  label: "Advanced Settings"
+  name: "advanced"
+  widget: "object"
+  collapsed: true
+  fields:
+    - label: "SEO"
+      name: "seo"
+      widget: "object"
+      fields:
+        - <<: *localized_string_field
+          label: "Meta Title"
+          name: "title"
+          hint: "Page title shown in search results (<60 chars)"
+        - <<: *localized_text_field
+          label: "Meta Description"
+          name: "description"
+          hint: "Summary shown in search results (<160 chars)"
+        - label: "Keywords"
+          name: "keywords"
+          widget: "list"
+          hint: "Search terms to help find this page"
+    - *status_field
+    - *schedule_fields
+    - *visibility_field
