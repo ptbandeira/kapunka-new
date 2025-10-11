@@ -37,33 +37,49 @@ export function registerPagePreviews(CMS, templates) {
     return;
   }
 
-  const { ContactPreview, TrainingPreview, MediaShowcasePreview } = templates;
+    const { 
+    HomePreview,
+    ContactPreview, 
+    MethodPreview,
+    ProductPreview,
+    PagePreview 
+  } = templates;
 
-  // Register existing previews
+  // Register home preview
+  if (typeof HomePreview === 'function') {
+    CMS.registerPreviewTemplate('home', HomePreview);
+    CMS.registerPreviewTemplate('pages/home', HomePreview);
+  }
+
+  // Register contact preview  
   if (typeof ContactPreview === 'function') {
     CMS.registerPreviewTemplate('contact', ContactPreview);
     CMS.registerPreviewTemplate('pages/contact', ContactPreview);
   }
 
-  if (typeof TrainingPreview === 'function') {
-    CMS.registerPreviewTemplate('training', TrainingPreview);
-    CMS.registerPreviewTemplate('pages/training', TrainingPreview);
+  // Register method preview
+  if (typeof MethodPreview === 'function') {
+    CMS.registerPreviewTemplate('method', MethodPreview);
+    CMS.registerPreviewTemplate('pages/method', MethodPreview);
   }
 
-  // Register MediaShowcase preview
-  if (typeof MediaShowcasePreview === 'function') {
-    CMS.registerPreviewTemplate('mediaShowcase', MediaShowcasePreview);
-    
-    // Register for pages that may contain MediaShowcase sections
-    const pagesWithMediaShowcase = [
-      'pages/home',
+  // Register product preview
+  if (typeof ProductPreview === 'function') {
+    CMS.registerPreviewTemplate('product', ProductPreview);
+    CMS.registerPreviewTemplate('pages/product', ProductPreview);
+    CMS.registerPreviewTemplate('products', ProductPreview);
+  }
+
+  // Register generic page preview
+  if (typeof PagePreview === 'function') {
+    [
       'pages/about',
-      'pages/products',
-      'pages/gallery'
-    ];
-    
-    pagesWithMediaShowcase.forEach(path => {
-      CMS.registerPreviewTemplate(path, MediaShowcasePreview);
+      'pages/mission',
+      'pages/gallery',
+      'pages/testimonials',
+      'pages/blog'
+    ].forEach(path => {
+      CMS.registerPreviewTemplate(path, PagePreview);
     });
   }
 }

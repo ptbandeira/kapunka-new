@@ -1,7 +1,17 @@
+// Import dependencies
+import { stateManager } from './state-manager.js';
+import { cmsAnalytics } from './analytics.js';
+import * as previews from './preview-templates.js';
+import { 
+  HomePreview,
+  ContactPreview,
+  MethodPreview,
+  ProductPreview,
+  PagePreview 
+} from './page-previews.js';
+
 (function initCustomCms() {
   'use strict';
-
-  const LOCALE_CONTAINER_ID = 'cms-preview-locale-links';
   const SUPPORTED_LOCALES = ['en', 'pt', 'es'];
   const LOCALE_FALLBACKS = {
     en: ['en', 'pt', 'es'],
@@ -47,18 +57,24 @@
   ];
   const ADVANCED_STYLE_ID = 'cms-advanced-style';
 
-  function waitForCms() {
-    if (!window.CMS || !(window.React || window.h)) {
-      window.setTimeout(waitForCms, 50);
-      return;
-    }
+    import { 
+      HomePreview,
+      ContactPreview,
+      MethodPreview,
+      ProductPreview,
+      PagePreview 
+    } from './page-previews.js';
+    
+    function waitForCms() {
+      if (!window.CMS || !(window.React || window.h)) {
+        window.setTimeout(waitForCms, 50);
+        return;
+      }
 
-    bootstrapCms(window.CMS).catch((error) => {
-      console.error('Failed to initialize CMS previews', error);
-    });
-  }
-
-  function loadStoredLocaleMode() {
+      bootstrapCms(window.CMS).catch((error) => {
+        console.error('Failed to initialize CMS previews', error);
+      });
+    }  function loadStoredLocaleMode() {
     try {
       const stored = window.localStorage.getItem(LOCALE_MODE_STORAGE_KEY);
       if (stored && (stored === 'all' || SUPPORTED_LOCALES.includes(stored))) {
@@ -172,19 +188,8 @@
     const {
       PreviewLayout,
       Hero,
-      SectionCard,
-      ProductGrid,
-      FeatureGrid,
-      MediaShowcase,
-      CommunityCarousel,
-      NewsletterSignup,
-      Testimonials,
-      Faq,
-      MediaCopy,
-      VideoSection,
-      Banner,
-      GenericSection,
-    } = await import('./preview-components.js');
+      SectionCard
+    } = await import('./preview-utils.js');
 
     CMS.registerPreviewStyle('/admin/preview.css');
     CMS.registerPreviewStyle('/styles/globals.css');
@@ -2078,7 +2083,13 @@
 
     if (typeof registerPagePreviews === 'function') {
       try {
-        registerPagePreviews(CMS, { ContactPreview, TrainingPreview });
+        registerPagePreviews(CMS, { 
+          HomePreview,
+          ContactPreview,
+          MethodPreview,
+          ProductPreview,
+          PagePreview
+        });
       } catch (error) {
         console.warn('Failed to register targeted previews', error);
       }
