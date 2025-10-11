@@ -237,18 +237,33 @@ export interface MediaCopySectionContent extends VisibilityFlag {
 
 export interface HeroSimpleSectionContent extends VisibilityFlag {
   type: 'heroSimple';
-  title?: string;
-  subtitle?: string;
-  eyebrow?: string;
+  content?: {
+    headline?: Translatable;
+    subheadline?: Translatable;
+    body?: Translatable;
+    highlights?: Array<{
+      text: Translatable;
+    }>;
+  };
+  ctas?: {
+    primary?: {
+      label: Translatable;
+      href: Translatable;
+    };
+    secondary?: {
+      label: Translatable;
+      href: Translatable;
+    };
+  };
+  layout?: {
+    alignX?: LocalizedValue<string>;
+    alignY?: LocalizedValue<string>;
+    textPosition?: LocalizedValue<string>;
+    textAnchor?: LocalizedValue<string>;
+    overlay?: LocalizedValue<string | number | boolean>;
+    layoutHint?: LocalizedValue<string>;
+  };
   image?: string;
-  primaryCta?: {
-    label: string;
-    href: string;
-  };
-  secondaryCta?: {
-    label: string;
-    href: string;
-  };
   titleFieldPath?: string;
   subtitleFieldPath?: string;
   eyebrowFieldPath?: string;
