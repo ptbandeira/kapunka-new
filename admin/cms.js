@@ -9,6 +9,8 @@ import {
   ProductPreview,
   PagePreview 
 } from './page-previews.js';
+import { VISUAL_FIELDS, CONTENT_FIELDS, ADVANCED_FIELDS } from './config-fields.js';
+import { LivePreview, VisualSettingsPanel } from './preview-system.js';
 
 (function initCustomCms() {
   'use strict';
@@ -33,37 +35,7 @@ import {
   const EDIT_MODE_STORAGE_KEY = 'kapunka.cms.editMode';
   const EDIT_MODE_DEFAULT = 'beginner';
   const EDIT_MODES = ['beginner', 'advanced'];
-  const ADVANCED_FIELD_EXACT = new Set([
-    'heroAlignment.heroAlignX',
-    'heroAlignment.heroAlignY',
-    'heroAlignment.heroTextAnchor',
-    'heroAlignment.heroOverlay',
-    'heroAlignment.heroLayoutHint',
-    'heroCtas.ctaSecondary.label',
-    'heroCtas.ctaSecondary.href',
-  ]);
-  const ADVANCED_FIELD_PATTERNS = [
-    /^heroAlignment\./,
-    /^heroCtas\.ctaSecondary\./,
-    /^sections\.[^.]+\.layout$/,
-    /^sections\.[^.]+\.columns$/,
-    /^sections\.[^.]+\.overlay/,
-    /^sections\.[^.]+\.imageFocal/,
-    /^sections\.[^.]+\.slideDuration$/,
-    /^sections\.[^.]+\.quoteDuration$/,
-    /^sections\.[^.]+\.background$/,
-    /^sections\.[^.]+\.alignment$/,
-    /^sections\.[^.]+\.column(Start|Span|Width)?$/,
-  ];
   const ADVANCED_STYLE_ID = 'cms-advanced-style';
-
-    import { 
-      HomePreview,
-      ContactPreview,
-      MethodPreview,
-      ProductPreview,
-      PagePreview 
-    } from './page-previews.js';
     
     function waitForCms() {
       if (!window.CMS || !(window.React || window.h)) {
